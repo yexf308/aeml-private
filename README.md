@@ -34,9 +34,10 @@ where $\tanh(\cdot)$ is applied component-wise to vectors. The encoder is given 
 
 
 Training a single auto-encoder means solving empirical risk minimization problem:
-$$ \min_{\theta} \mathcal{R}_{n,0}(\theta)$$
+
+$$ \min_{\theta} R_{n,0}(\theta)$$
 where
-$$ \mathcal{R}_{n,0}(\theta) = \frac{1}{n}\sum_{i=1}^n \|r_\theta(X_i)-X_i\|_2^2,$$
+$$ R_{n,0}(\theta) = \frac{1}{n}\sum_{i=1}^n \|r_\theta(X_i)-X_i\|_2^2,$$
 where $r_\theta(x)=\phi_\theta \circ \pi_\theta(x)$ is the reconstructed point. In practice, this is done with stochastic gradient descent and backpropagation.
 
 ### Data generation
