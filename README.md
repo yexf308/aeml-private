@@ -27,7 +27,7 @@ To run the penalty ablation experiment:
 python run_experiments.py
 ```
 
-add command line arguments (see penalty_ablation.py for full list):
+add command line arguments (TODO document list of arguments here...):
 ```bash
 python run_experiments.py --epochs 1000 --hidden_dim 32
 ```
