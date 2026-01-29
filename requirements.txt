@@ -1,0 +1,7 @@
+# Required packageds
+numpy
+sympy
+scipy
+matplotlib
+pandas
+torch
