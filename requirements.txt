@@ -5,3 +5,4 @@ scipy
 matplotlib
 pandas
 torch
+pytest

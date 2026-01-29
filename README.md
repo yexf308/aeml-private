@@ -22,6 +22,16 @@ pip install --upgrade pip
 pip install -r requirements.txt
 ```
 
+To run the penalty ablation experiment:
+```bash
+python run_experiments.py
+```
+
+add command line arguments (see penalty_ablation.py for full list):
+```bash
+python run_experiments.py --epochs 1000 --hidden_dim 32
+```
+
 
 ## Mathematical overview
 Let $(M, g)$ be a $d$-dimensional Riemannian manifold embedded in $\mathbb{R}^D$. We identify $M$ with its embedding. We observe a uniformly distributed point cloud: $X_1,\dotsc, X_n$ where $X_i$ are IID $\mathcal{U}(M)$ RVs given as points in the ambient space $\mathbb{R}^D$. We let $\pi_\theta: \mathbb{R}^D\to \mathbb{R}^d$ denote the encoder and
