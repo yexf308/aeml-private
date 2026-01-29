@@ -29,7 +29,7 @@ $\phi_\theta: \mathbb{R}^d\to \mathbb{R}^D$ denote the decoder. The parameter $\
 $$\pi(x) =\tanh(W_2 \tanh(W_1 x+b_1)+b_2)$$
 and the decoder has the form
 $$\phi(z) = W_2'\tanh(W_1' z+b_1')+b_2',$$
-where $\tanh(\cdot)$ is applied component-wise to vectors. The encoder is given a non-identity final activation layer so that, in the case of hyperbolic tangent, $\operatorname{rng}\pi = (-1,1)^d$. If the weights are tied, then the decoder has the transpose of the weights of the encoder in reverse order: $W_1'=W_2^\top$ and $W_2'=W_1^\top$. 
+where $\tanh(\cdot)$ is applied component-wise to vectors. The encoder is given a non-identity final activation layer so that, in the case of hyperbolic tangent, $\text{rng } \pi = (-1,1)^d$. If the weights are tied, then the decoder has the transpose of the weights of the encoder in reverse order: $W_1'=W_2^\top$ and $W_2'=W_1^\top$. 
 
 
 
