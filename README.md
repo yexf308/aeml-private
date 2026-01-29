@@ -43,13 +43,15 @@ $$\min_{\theta} R_{n,0}(\theta)$$
 
 where
 
-$$R_{n,0}(\theta) = \frac{1}{n}\sum_{i=1}^n \lVert r_\theta (X_i)-X_i\rVert_2^2$$
+$$R_{n,0}(\theta) = \frac{1}{n}\sum_{i=1}^{n} \lVert r_\theta (X_i)-X_i\rVert_2^2$$
 
 where $r_\theta(x)=\phi_\theta \circ \pi_\theta(x)$ is the reconstructed point. In practice, this is done with stochastic gradient descent and backpropagation.
 
 ### Data generation
 We generate data on manifolds of the form $(x,y, f(x,y))$ using importance-sampling. We use sympy to compute all the differential-geometry objects (e.g. the volume measure) and then use that to weight the importance-sampling to get uniformly distributed points in the local-coordinates. We then use the map 
-$$ (x,y) \mapsto (x,y,f(x,y))$$
+
+$$(x,y) \mapsto (x,y,f(x,y))$$
+
 to obtain ambient point cloud samples.
 Similarly, we use sympy to compute the orthogonal projection onto $T_pM$ for a given point $p\in M$ and evaluate this at each point in the point cloud.
 
