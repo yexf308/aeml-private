@@ -37,11 +37,22 @@ class TrainingConfig:
 
 
 @dataclass
+class TrainingPhase:
+    """A training phase with specific loss weights and duration."""
+    epochs: int
+    loss_weights: LossWeights
+    name: str = ""  # Optional name for logging
+
+
+@dataclass
 class ModelConfig:
     """Configuration for individual models"""
     name: str
     loss_weights: LossWeights
     architecture_params: Optional[Dict[str, Any]] = None
+    # Optional training schedule: list of phases to execute in order
+    # If provided, loss_weights is used as the final phase weights
+    training_schedule: Optional[list] = None  # List[TrainingPhase]
 
 class MultiModelTrainer:
     """Class to handle training multiple models simultaneously"""
@@ -79,20 +90,45 @@ class MultiModelTrainer:
         self.model_configs[model_config.name] = model_config
     
     def create_data_loader(self, dataset: Union[DatasetBatch, Tuple[torch.Tensor, ...]]):
-        """Create a DataLoader for batched training"""
+        """Create a DataLoader for batched training.
+
+        If any model uses tangent_bundle penalty, precompute tangent basis for efficiency.
+        """
+        # Check if any model can benefit from efficient tangent loss
+        needs_tangent_basis = any(
+            cfg.loss_weights.tangent_bundle > 0
+            for cfg in self.model_configs.values()
+        )
+
         if isinstance(dataset, DatasetBatch):
-            tensors = dataset.as_tuple()
+            # Precompute tangent basis if needed
+            if needs_tangent_basis and dataset.tangent_basis is None:
+                dataset.compute_tangent_basis(self.config.latent_dim)
+
+            # Include tangent_basis in the tensor dataset if computed
+            if dataset.tangent_basis is not None:
+                tensors = dataset.as_tuple() + (dataset.tangent_basis,)
+            else:
+                tensors = dataset.as_tuple()
         else:
             tensors = dataset
-        dataset = torch.utils.data.TensorDataset(*tensors)
+
+        tensor_dataset = torch.utils.data.TensorDataset(*tensors)
         return torch.utils.data.DataLoader(
-            dataset, 
-            batch_size=self.config.batch_size, 
+            tensor_dataset,
+            batch_size=self.config.batch_size,
             shuffle=True
         )
     
-    def train_epoch(self, data_loader):
-        """Train all models for one epoch"""
+    def train_epoch(self, data_loader, loss_weights_override: Optional[Dict[str, LossWeights]] = None):
+        """Train all models for one epoch.
+
+        Args:
+            data_loader: DataLoader for training data
+            loss_weights_override: Optional dict mapping model names to LossWeights
+                                   to use instead of the default config weights.
+                                   Useful for training schedules with warm-up phases.
+        """
         epoch_losses = {}
 
         for model_name, model in self.models.items():
@@ -100,21 +136,30 @@ class MultiModelTrainer:
             epoch_losses[model_name] = 0.0
 
         for batch_idx, batch in enumerate(data_loader):
-            # Assuming batch contains (samples, local_samples, mu, cov, p, weights, hessians)
-            x, _, mu, cov, p, _, _ = batch
+            # Batch contains (samples, local_samples, mu, cov, p, weights, hessians, [tangent_basis])
+            # tangent_basis is optional (8th element if present)
+            x, _, mu, cov, p, _, _ = batch[:7]
+            tangent_basis = batch[7] if len(batch) > 7 else None
+
             # Move tensors to device
             x = x.to(self.device)
             mu = mu.to(self.device)
             cov = cov.to(self.device)
             p = p.to(self.device)
+            if tangent_basis is not None:
+                tangent_basis = tangent_basis.to(self.device)
             targets = (x, mu, cov, p)
 
             for model_name, model in self.models.items():
                 optimizer = self.optimizers[model_name]
-                loss_weights = self.model_configs[model_name].loss_weights
+                # Use override weights if provided, otherwise use config weights
+                if loss_weights_override and model_name in loss_weights_override:
+                    loss_weights = loss_weights_override[model_name]
+                else:
+                    loss_weights = self.model_configs[model_name].loss_weights
 
                 optimizer.zero_grad()
-                loss = autoencoder_loss(model, targets, loss_weights)
+                loss = autoencoder_loss(model, targets, loss_weights, tangent_basis=tangent_basis)
                 loss.backward()
                 # Gradient clipping for training stability
                 torch.nn.utils.clip_grad_norm_(
@@ -132,6 +177,36 @@ class MultiModelTrainer:
             self.schedulers[model_name].step(epoch_losses[model_name])
 
         return epoch_losses
+
+    def train_with_schedule(self, data_loader, model_name: str, schedule: list, print_interval: int = 100):
+        """Train a model with a multi-phase schedule.
+
+        Args:
+            data_loader: DataLoader for training data
+            model_name: Name of the model to train
+            schedule: List of TrainingPhase objects defining the training schedule
+            print_interval: How often to print progress
+
+        Example schedule for diffeo warm-up:
+            schedule = [
+                TrainingPhase(epochs=100, loss_weights=LossWeights(diffeo=1.0), name="diffeo-warmup"),
+                TrainingPhase(epochs=400, loss_weights=LossWeights(tangent_bundle=1.0, diffeo=1.0, curvature=1.0), name="full"),
+            ]
+        """
+        total_epochs = 0
+        for phase in schedule:
+            phase_name = phase.name or f"phase-{schedule.index(phase)}"
+            print(f"\n[{model_name}] Starting {phase_name}: {phase.epochs} epochs")
+
+            for epoch in range(phase.epochs):
+                losses = self.train_epoch(data_loader, {model_name: phase.loss_weights})
+                total_epochs += 1
+
+                if (epoch + 1) % print_interval == 0:
+                    print(f"  Epoch {total_epochs} ({phase_name} {epoch+1}/{phase.epochs}): "
+                          f"loss = {losses[model_name]:.4f}")
+
+        return total_epochs
      
 def train_models(data_loader, trainer: MultiModelTrainer, config: TrainingConfig):
     for epoch in range(config.epochs):
