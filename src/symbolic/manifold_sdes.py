@@ -1,10 +1,12 @@
+from typing import Optional
+
 import sympy as sp
 from sympy import Matrix
 
 from .riemannian import RiemannianManifold
 
 class ManifoldSDE(object):
-    def __init__(self, manifold: RiemannianManifold, local_drift: Matrix | None = None, local_diffusion: Matrix | None = None):
+    def __init__(self, manifold: RiemannianManifold, local_drift: Optional[Matrix] = None, local_diffusion: Optional[Matrix] = None):
         self.manifold = manifold
         self.local_drift = local_drift
         self.local_diffusion = local_diffusion
