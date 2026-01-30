@@ -8,6 +8,7 @@ from torch import Tensor
 import torch.nn as nn
 import numpy as np
 import torch
+from torch.func import jacrev, vmap
 
 from .ffnn import FeedForwardNeuralNet
 from .geometry import (
@@ -230,14 +231,29 @@ class AutoEncoder(nn.Module):
         result = 0.5 * (divergence + grad_log_vol)  # (B, d)
         return result
 
-    def brownian_drift_2(self, z: Tensor) -> Tensor:
+    def brownian_drift_2(self, z: Tensor, method: str = "vmap") -> Tensor:
         """
         Compute the intrinsic Brownian‐motion drift on the manifold via
         b^k = 0.5 * g^{ij} Gamma^k_{ij},
         with Gamma^k_{ij} = 0.5 * g^{kℓ}(∂_i g_{jℓ} + ∂_j g_{iℓ} - ∂_ℓ g_{ij}).
 
         More efficient than row‐wise divergence + volume correction.
+
+        Args:
+            z: Latent tensor of shape (batch_size, intrinsic_dim)
+            method: "vmap" (default, vectorized) or "loop" (original)
+
+        Returns:
+            Drift vector field of shape (batch_size, intrinsic_dim)
         """
+        if method == "vmap":
+            return self._brownian_drift_2_vmap(z)
+        elif method == "loop":
+            return self._brownian_drift_2_loop(z)
+        raise ValueError(f"Unsupported method: {method}")
+
+    def _brownian_drift_2_loop(self, z: Tensor) -> Tensor:
+        """Original loop-based implementation."""
         z = z.requires_grad_(True)
         B, d = z.shape
 
@@ -257,18 +273,56 @@ class AutoEncoder(nn.Module):
             )  # (d, d, d)
 
             # 4) contract to get b^k = 0.5 * g_inv^{ij} Γ^k_{ij}
-            # note: Γ^k_{ij} = 0.5 * g_inv[b, k, ℓ] * (metric_grad[i,j,ℓ] + metric_grad[j,i,ℓ] - metric_grad[ℓ,i,j])
+            # note: Γ^k_{ij} = 0.5 * g_inv[b, k, l] * (metric_grad[i,j,l] + metric_grad[j,i,l] - metric_grad[l,i,j])
             gamma = 0.5 * torch.einsum(
-                'kℓ,ijℓ->ijk',
+                'kl,ijl->ijk',
                 g_inv[b],
-                (metric_grad.permute(2, 1, 0)  # ∂_i g_{jℓ}
-                 + metric_grad.permute(1, 2, 0)  # ∂_j g_{iℓ}
-                 - metric_grad)                  # - ∂_ℓ g_{ij}
+                (metric_grad.permute(2, 1, 0)  # ∂_i g_{jl}
+                 + metric_grad.permute(1, 2, 0)  # ∂_j g_{il}
+                 - metric_grad)                  # - ∂_l g_{ij}
             )  # (i,j,k)
 
             drift[b] = 0.5 * torch.einsum('ij,ijk->k', g_inv[b], gamma)
 
         return drift
+
+    def _brownian_drift_2_vmap(self, z: Tensor) -> Tensor:
+        """
+        Vectorized Brownian drift computation using torch.func.
+
+        Uses vmap over the batch dimension to compute Christoffel symbols
+        and drift in parallel.
+        """
+        z = z.requires_grad_(True)
+        B, d = z.shape
+
+        # Compute metric and inverse for all samples
+        g = self.neural_metric_tensor(z)        # (B, d, d)
+        g_inv = torch.linalg.inv(g)             # (B, d, d)
+
+        def compute_drift_single(z_single: Tensor, g_inv_single: Tensor) -> Tensor:
+            """Compute drift for a single sample."""
+            def metric_fn(y: Tensor) -> Tensor:
+                return self.neural_metric_tensor(y.unsqueeze(0))[0]
+
+            # Compute metric gradient using jacrev
+            metric_grad = jacrev(metric_fn)(z_single)  # (d, d, d)
+
+            # Compute Christoffel symbols
+            # Γ^k_{ij} = 0.5 * g_inv^{kℓ} * (∂_i g_{jℓ} + ∂_j g_{iℓ} - ∂_ℓ g_{ij})
+            gamma = 0.5 * torch.einsum(
+                'kl,ijl->ijk',
+                g_inv_single,
+                (metric_grad.permute(2, 1, 0)  # ∂_i g_{jℓ}
+                 + metric_grad.permute(1, 2, 0)  # ∂_j g_{iℓ}
+                 - metric_grad)                  # - ∂_ℓ g_{ij}
+            )  # (i, j, k)
+
+            # b^k = 0.5 * g_inv^{ij} Γ^k_{ij}
+            return 0.5 * torch.einsum('ij,ijk->k', g_inv_single, gamma)
+
+        # Vectorize over batch dimension
+        return vmap(compute_drift_single)(z, g_inv)
 
 
 

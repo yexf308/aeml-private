@@ -6,7 +6,7 @@ import numpy as np
 import sympy as sp
 import torch
 
-def sample_from_manifold(manifold_sde: ManifoldSDE, bounds, n_samples=1000, seed=None) -> DatasetBatch:
+def sample_from_manifold(manifold_sde: ManifoldSDE, bounds, n_samples=1000, seed=None, device='cpu') -> DatasetBatch:
     """
     Sample points from a Riemannian manifold using importance sampling.
 
@@ -51,7 +51,8 @@ def sample_from_manifold(manifold_sde: ManifoldSDE, bounds, n_samples=1000, seed
     orthogonal_projections = np.array([np_orthogonal_projection(*sample) for sample in local_samples])
     hessians = np.array([[np_phi_hessian[i](*sample) for i in range(manifold_sde.extrinsic_dim)] for sample in local_samples])
     return convert_samples_to_torch(
-        (ambient_samples, local_samples, extrinsic_drifts, extrinsic_covariances, orthogonal_projections, weights, hessians)
+        (ambient_samples, local_samples, extrinsic_drifts, extrinsic_covariances, orthogonal_projections, weights, hessians),
+        device=device
     )
 
 
@@ -114,10 +115,10 @@ def embed_data_with_qr_matrix(x, mu, cov, p, hessians, embedding_matrix) -> Tupl
     hessian_embed = torch.einsum('ai, tibc -> tabc', embedding_matrix, hessians)
     return x_embed, mu_embed, cov_embed, p_embed, hessian_embed
 
-def create_embedding_matrix(embedding_dim, extrinsic_dim, embedding_seed=17) -> torch.Tensor:
+def create_embedding_matrix(embedding_dim, extrinsic_dim, embedding_seed=17, device='cpu') -> torch.Tensor:
     # Embedding matrix
     rng = np.random.default_rng(seed=embedding_seed)
     base = rng.standard_normal(size=(extrinsic_dim, embedding_dim))
-    base = torch.tensor(base, dtype=torch.float32)
+    base = torch.tensor(base, dtype=torch.float32, device=device)
     q, _ = torch.linalg.qr(base)
     return q.T

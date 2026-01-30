@@ -12,6 +12,7 @@ from typing import List, Sequence, Optional, Any, Protocol, cast
 import torch
 import torch.nn as nn
 import torch.nn.utils.parametrize as parametrize
+from torch.func import jacrev, jacfwd, vmap
 
 from torch import Tensor
 
@@ -36,6 +37,37 @@ class FrobeniusClipParametrization(nn.Module):
         if frob_norm > self.max_norm:
             X = X * (self.max_norm / frob_norm)
         return X
+
+
+class TiedWeightParametrization(nn.Module):
+    """
+    Parametrization to tie decoder weights to encoder weights via transpose.
+
+    This ensures that decoder weights are always the transpose of the corresponding
+    encoder weights, even during backpropagation. Gradients are properly aggregated
+    through the transpose operation.
+    """
+
+    def __init__(self, encoder_layer: nn.Linear):
+        """
+        Initialize the tied weight parametrization.
+
+        Args:
+            encoder_layer: The encoder linear layer whose weights this decoder layer
+                          will be tied to (via transpose).
+        """
+        super().__init__()
+        self.encoder_layer = encoder_layer
+
+    def forward(self, W: Tensor) -> Tensor:
+        """
+        Return the transpose of the encoder layer's weight.
+
+        The input W (original decoder weight) is ignored; we always return
+        the transpose of the encoder weight. This makes the decoder weight
+        a computed value rather than a learned parameter.
+        """
+        return self.encoder_layer.weight.t()
 
 class FeedForwardNeuralNet(nn.Module):
     """
@@ -129,14 +161,17 @@ class FeedForwardNeuralNet(nn.Module):
                 x = activation(x)
         return x
 
-    def jacobian_network(self, x: Tensor, method: str = "autograd") -> Tensor:
+    def jacobian_network(self, x: Tensor, method: str = "vmap") -> Tensor:
         """
+        Compute the Jacobian of the network output with respect to input.
 
-        :param x:
-        :param method:
-        :return:
+        :param x: Input tensor of shape (batch_size, input_dim)
+        :param method: Computation method - "vmap" (default, vectorized), "autograd", or "exact"
+        :return: Jacobian tensor of shape (batch_size, output_dim, input_dim)
         """
-        if method == "autograd":
+        if method == "vmap":
+            return self._jacobian_network_vmap(x)
+        elif method == "autograd":
             return self._jacobian_network_autograd(x)
         elif method == "exact":
             return self._jacobian_network_explicit(x)
@@ -163,6 +198,27 @@ class FeedForwardNeuralNet(nn.Module):
             jacobian.append(jacob)
         jacobian = torch.stack(jacobian, dim=1)
         return jacobian
+
+    def _jacobian_network_vmap(self, x: Tensor) -> Tensor:
+        """
+        Computes the Jacobian matrix using vectorized torch.func operations.
+
+        This is significantly faster than the autograd loop approach for batched inputs.
+
+        Args:
+            x (Tensor): Input tensor of shape (batch_size, input_dim)
+
+        Returns:
+            Tensor: Jacobian matrix of shape (batch_size, output_dim, input_dim)
+        """
+        def net_func(single_input: Tensor) -> Tensor:
+            # single_input shape: (input_dim,)
+            return self.forward(single_input.unsqueeze(0)).squeeze(0)
+
+        # jacrev computes Jacobian via reverse-mode autodiff (efficient when output_dim < input_dim)
+        jacobian_fn = jacrev(net_func)
+        # vmap vectorizes over the batch dimension
+        return vmap(jacobian_fn)(x)
 
     def _jacobian_network_explicit(self, x: Tensor):
         """
@@ -226,17 +282,28 @@ class FeedForwardNeuralNet(nn.Module):
 
         return jacobian
 
-    def hessian_network(self, x: Tensor):
+    def hessian_network(self, x: Tensor, method: str = "vmap") -> Tensor:
         """
         Computes the Hessian matrix of the network's output with respect to its input.
 
         Args:
             x (Tensor): The input tensor to the network of shape (n, d),
                               where n is the batch size and d is the input dimension.
+            method (str): Computation method - "vmap" (default, vectorized) or "autograd"
 
         Returns:
             Tensor: A tensor representing the Hessian matrix of the network's output
                           with respect to the input, of shape (n, self.output_dim, d, d).
+        """
+        if method == "vmap":
+            return self._hessian_network_vmap(x)
+        elif method == "autograd":
+            return self._hessian_network_autograd(x)
+        raise ValueError(f"Unsupported Hessian method: {method}")
+
+    def _hessian_network_autograd(self, x: Tensor) -> Tensor:
+        """
+        Computes Hessian using loop-based autograd (original implementation).
         """
         n, d = x.shape
         x.requires_grad_(True)
@@ -261,20 +328,51 @@ class FeedForwardNeuralNet(nn.Module):
 
         return hessians
 
-    def jacobian_network_for_paths(self, x: Tensor):
+    def _hessian_network_vmap(self, x: Tensor) -> Tensor:
+        """
+        Computes the Hessian matrix using vectorized torch.func operations.
+
+        Uses jacfwd(jacrev()) which is typically optimal for Hessian computation
+        (forward-over-reverse mode).
+
+        Args:
+            x (Tensor): Input tensor of shape (batch_size, input_dim)
+
+        Returns:
+            Tensor: Hessian tensor of shape (batch_size, output_dim, input_dim, input_dim)
+        """
+        def net_func(single_input: Tensor) -> Tensor:
+            # single_input shape: (input_dim,)
+            return self.forward(single_input.unsqueeze(0)).squeeze(0)
+
+        # jacfwd(jacrev()) is typically more efficient than jacrev(jacrev())
+        # for Hessian computation (forward-over-reverse mode)
+        hessian_fn = jacfwd(jacrev(net_func))
+        # vmap vectorizes over the batch dimension
+        return vmap(hessian_fn)(x)
+
+    def jacobian_network_for_paths(self, x: Tensor, method: str = "vmap") -> Tensor:
         """
         Computes the Jacobian matrix of the network's output with respect to its input.
 
         Args:
-            x (Tensor): The input tensor to the network of shape (num_paths, n+1, d). The tensor should have
-            `requires_grad` enabled.
+            x (Tensor): The input tensor to the network of shape (num_paths, n, d).
+            method (str): Computation method - "vmap" (default, vectorized) or "autograd"
 
         Returns:
-            Tensor: A tensor representing the Jacobian matrix of the network's output with respect to the input.
+            Tensor: A tensor representing the Jacobian matrix of shape (num_paths, n, output_dim, input_dim).
         """
+        if method == "vmap":
+            return self._jacobian_network_for_paths_vmap(x)
+        elif method == "autograd":
+            return self._jacobian_network_for_paths_autograd(x)
+        raise ValueError(f"Unsupported method: {method}")
+
+    def _jacobian_network_for_paths_autograd(self, x: Tensor) -> Tensor:
+        """Original loop-based implementation."""
         num_paths, n, d = x.size()
         x.requires_grad_(True)
-        jacobian = torch.zeros(num_paths, n, d, self.output_dim)
+        jacobian = torch.zeros(num_paths, n, d, self.output_dim, device=x.device, dtype=x.dtype)
         for i in range(num_paths):
             for j in range(n):
                 x_ij = x[i, j, :].unsqueeze(0)  # shape (1, d)
@@ -287,22 +385,54 @@ class FeedForwardNeuralNet(nn.Module):
                     jacobian[i, j, :, k] = gradients.squeeze()
         return jacobian.transpose(2, 3)
 
-    def hessian_network_for_paths(self, x: Tensor):
+    def _jacobian_network_for_paths_vmap(self, x: Tensor) -> Tensor:
+        """
+        Vectorized Jacobian computation for paths using torch.func.
+
+        Reshapes (num_paths, n, d) to (num_paths * n, d), applies vectorized Jacobian,
+        then reshapes back.
+
+        Args:
+            x (Tensor): Input tensor of shape (num_paths, n, d)
+
+        Returns:
+            Tensor: Jacobian tensor of shape (num_paths, n, output_dim, input_dim)
+        """
+        num_paths, n, d = x.shape
+
+        # Flatten paths and time steps into single batch dimension
+        x_flat = x.reshape(num_paths * n, d)
+
+        # Use vectorized Jacobian computation
+        jacobian_flat = self._jacobian_network_vmap(x_flat)  # (num_paths * n, output_dim, input_dim)
+
+        # Reshape back to path structure
+        return jacobian_flat.reshape(num_paths, n, self.output_dim, d)
+
+    def hessian_network_for_paths(self, x: Tensor, method: str = "vmap") -> Tensor:
         """
         Computes the Hessian matrix of the network's output with respect to its input.
 
         Args:
-            x (Tensor): The input tensor to the network of shape (num_paths, n+1, d). The tensor should have
-            `requires_grad` enabled.
+            x (Tensor): The input tensor to the network of shape (num_paths, n, d).
+            method (str): Computation method - "vmap" (default, vectorized) or "autograd"
 
         Returns:
-            Tensor: A tensor representing the Hessian matrix of the network's output with respect to the input.
+            Tensor: A tensor representing the Hessian matrix of shape (num_paths, n, output_dim, d, d).
         """
+        if method == "vmap":
+            return self._hessian_network_for_paths_vmap(x)
+        elif method == "autograd":
+            return self._hessian_network_for_paths_autograd(x)
+        raise ValueError(f"Unsupported method: {method}")
+
+    def _hessian_network_for_paths_autograd(self, x: Tensor) -> Tensor:
+        """Original loop-based implementation."""
         num_paths, n, d = x.shape
         x.requires_grad_(True)
         outputs = self.forward(x)
 
-        hessians = torch.zeros(num_paths, n, self.output_dim, d, d)
+        hessians = torch.zeros(num_paths, n, self.output_dim, d, d, device=x.device, dtype=x.dtype)
 
         for i in range(num_paths):
             for j in range(n):
@@ -321,14 +451,45 @@ class FeedForwardNeuralNet(nn.Module):
 
         return hessians
 
+    def _hessian_network_for_paths_vmap(self, x: Tensor) -> Tensor:
+        """
+        Vectorized Hessian computation for paths using torch.func.
+
+        Reshapes (num_paths, n, d) to (num_paths * n, d), applies vectorized Hessian,
+        then reshapes back.
+
+        Args:
+            x (Tensor): Input tensor of shape (num_paths, n, d)
+
+        Returns:
+            Tensor: Hessian tensor of shape (num_paths, n, output_dim, d, d)
+        """
+        num_paths, n, d = x.shape
+
+        # Flatten paths and time steps into single batch dimension
+        x_flat = x.reshape(num_paths * n, d)
+
+        # Use vectorized Hessian computation
+        hessian_flat = self._hessian_network_vmap(x_flat)  # (num_paths * n, output_dim, d, d)
+
+        # Reshape back to path structure
+        return hessian_flat.reshape(num_paths, n, self.output_dim, d, d)
+
     def tie_weights(self, other: "FeedForwardNeuralNet"):
         """
         Tie the weights of this network to the transpose of another one.
+
+        Uses PyTorch parametrization to maintain the tie during training.
+        The decoder weights become computed as the transpose of encoder weights,
+        ensuring gradients properly flow through the constraint.
         """
         for layer_self, layer_other in zip(self.layers, reversed(other.layers)):
             if isinstance(layer_self, nn.Linear) and isinstance(layer_other, nn.Linear):
-                with torch.no_grad():
-                    layer_self.weight.copy_(layer_other.weight.t())
+                # Register parametrization so decoder weight = encoder weight transpose
+                parametrize.register_parametrization(
+                    layer_self, 'weight',
+                    TiedWeightParametrization(layer_other)
+                )
 
     def frobenius_inner_product_jvp(self, latent_covariance: Tensor,
                                     x: Tensor) -> Tensor:

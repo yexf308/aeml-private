@@ -1,9 +1,14 @@
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from typing import Callable, Dict, List, Optional, Sequence, Tuple
 
 import sympy as sp
 import torch
 import torch.nn as nn
+
+
+def _default_device() -> str:
+    """Return default device based on CUDA availability."""
+    return "cuda" if torch.cuda.is_available() else "cpu"
 
 from src.numeric.datagen import (
     create_embedding_matrix,
@@ -47,6 +52,7 @@ class ExperimentConfig:
     surface_choice: str = "paraboloid"
     rbm: bool = False
     bounds: Tuple[Tuple[float, float], Tuple[float, float]] = ((-1.0, 1.0), (-1.0, 1.0))
+    device: str = field(default_factory=_default_device)
 
 
 @dataclass
@@ -121,6 +127,7 @@ def setup_manifold_and_data(config: ExperimentConfig) -> Tuple[DatasetBatch, Dat
         list(config.bounds),
         n_samples=config.n_samples,
         seed=config.data_seed,
+        device=config.device,
     )
 
     if config.embed:
@@ -128,7 +135,7 @@ def setup_manifold_and_data(config: ExperimentConfig) -> Tuple[DatasetBatch, Dat
         print("Drift shape before embedding")
         print(dataset.mu.size())
         embedding_matrix = create_embedding_matrix(
-            config.embedding_dim, config.input_dim, config.embedding_seed
+            config.embedding_dim, config.input_dim, config.embedding_seed, device=config.device
         )
         dataset = embed_dataset_with_qr_matrix(dataset, embedding_matrix)
         print("Drift shape after embedding")
@@ -171,6 +178,7 @@ def run_experiment(config: ExperimentConfig, model_specs: List[ModelSpec]) -> No
         embedding_dim=config.embedding_dim,
         embedding_seed=config.embedding_seed,
         effective_dim=config.embedding_dim if config.embed else config.input_dim,
+        device=config.device,
     ))
 
     for spec in model_specs:

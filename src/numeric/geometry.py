@@ -18,9 +18,21 @@ def metric_tensor_from_jacobian(jacobian: Tensor) -> Tensor:
     return torch.bmm(jacobian.mT, jacobian)
 
 
-def orthogonal_projection_from_jacobian(jacobian: Tensor) -> Tensor:
+def orthogonal_projection_from_jacobian(jacobian: Tensor, eps: float = 1e-6) -> Tensor:
+    """
+    Compute orthogonal projection onto the tangent space.
+
+    Args:
+        jacobian: Jacobian tensor of shape (batch, output_dim, input_dim)
+        eps: Small regularization term for numerical stability in matrix inversion
+
+    Returns:
+        Orthogonal projection tensor of shape (batch, output_dim, output_dim)
+    """
     g = metric_tensor_from_jacobian(jacobian)
-    g_inv = torch.linalg.inv(g)
+    # Add regularization for numerical stability
+    g_reg = g + eps * torch.eye(g.shape[-1], device=g.device, dtype=g.dtype)
+    g_inv = torch.linalg.inv(g_reg)
     return torch.bmm(jacobian, torch.bmm(g_inv, jacobian.mT))
 
 
