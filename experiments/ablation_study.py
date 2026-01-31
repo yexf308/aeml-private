@@ -5,20 +5,30 @@ This script systematically tests different combinations of loss penalties
 across multiple benchmark surfaces to understand their individual and
 combined effects on model performance.
 
-Penalties tested:
-- tangent_bundle: Tangent space alignment
-- contractive: Encoder Jacobian regularization
-- decoder_contraction: Decoder Jacobian regularization
-- diffeo: Diffeomorphism penalty (encoder-decoder composition)
-- curvature: Normal drift matching (second-order)
+Penalties tested (6 total, 64 combinations):
+- T: tangent_bundle - Tangent space alignment
+- C: contractive - Encoder Jacobian regularization
+- N: normal_decoder_jacobian - Normal component of decoder Jacobian
+- D: decoder_contraction - Decoder Jacobian regularization
+- F: diffeo - Diffeomorphism penalty (encoder-decoder composition)
+- K: curvature - Normal drift matching (second-order)
 
 Surfaces tested:
 - paraboloid, hyperbolic paraboloid, hyperboloid
 - monkey saddle, gaussian bump, sinusoidal, plane
 
 Usage:
-    python -m experiments.ablation_study --surfaces paraboloid gaussian_bump --epochs 1000
-    python -m experiments.ablation_study --full  # Run all combinations
+    # Run curated subset of penalties on specific surfaces
+    python -m experiments.ablation_study --surfaces paraboloid "gaussian bump" --epochs 500
+
+    # Run ALL 64 penalty combinations on specific surfaces
+    python -m experiments.ablation_study --surfaces paraboloid --all-penalties --epochs 500
+
+    # Run on all surfaces with all penalties (7 × 64 = 448 experiments)
+    python -m experiments.ablation_study --full --all-penalties --epochs 500
+
+    # Run specific penalties
+    python -m experiments.ablation_study --penalties T T+K T+F+K baseline
 """
 
 import argparse
@@ -38,21 +48,63 @@ from src.numeric.performance_stats import compute_losses_per_sample, evaluate_mo
 from src.numeric.training import ModelConfig, MultiModelTrainer, TrainingConfig, train_models
 
 
-# Define penalty configurations for ablation
-PENALTY_CONFIGS = {
-    "baseline": LossWeights(),  # Only reconstruction loss
-    "tangent": LossWeights(tangent_bundle=1.0),
-    "contractive": LossWeights(contractive=0.01),
-    "decoder_contr": LossWeights(decoder_contraction=0.01),
-    "diffeo": LossWeights(diffeo=1.0),
-    "curvature": LossWeights(curvature=1.0),
-    # Combinations
-    "tangent+diffeo": LossWeights(tangent_bundle=1.0, diffeo=1.0),
-    "tangent+curvature": LossWeights(tangent_bundle=1.0, curvature=1.0),
-    "tangent+contractive": LossWeights(tangent_bundle=1.0, contractive=0.01),
-    "diffeo+curvature": LossWeights(diffeo=1.0, curvature=1.0),
-    "full": LossWeights(tangent_bundle=1.0, diffeo=1.0, curvature=1.0, contractive=0.01),
+# Penalty short names and their default weights
+PENALTY_WEIGHTS = {
+    "T": ("tangent_bundle", 1.0),      # Tangent space alignment
+    "C": ("contractive", 0.01),         # Encoder contraction
+    "N": ("normal_decoder_jacobian", 0.01),  # Normal decoder jacobian
+    "D": ("decoder_contraction", 0.01), # Decoder contraction
+    "F": ("diffeo", 1.0),               # Diffeomorphism constraint
+    "K": ("curvature", 1.0),            # Curvature drift matching
 }
+
+
+def generate_all_penalty_configs() -> Dict[str, LossWeights]:
+    """Generate all 2^6 = 64 combinations of penalties."""
+    configs = {"baseline": LossWeights()}  # Start with baseline
+
+    penalty_keys = list(PENALTY_WEIGHTS.keys())
+    n_penalties = len(penalty_keys)
+
+    # Generate all 2^n - 1 non-empty subsets
+    for mask in range(1, 2**n_penalties):
+        # Build config name and weights dict
+        active_penalties = []
+        weights_dict = {}
+
+        for i, key in enumerate(penalty_keys):
+            if mask & (1 << i):
+                active_penalties.append(key)
+                param_name, weight_value = PENALTY_WEIGHTS[key]
+                weights_dict[param_name] = weight_value
+
+        config_name = "+".join(active_penalties)
+        configs[config_name] = LossWeights(**weights_dict)
+
+    return configs
+
+
+# Generate all combinations
+PENALTY_CONFIGS_ALL = generate_all_penalty_configs()
+
+# Curated subset for quick tests (original selection)
+PENALTY_CONFIGS_CURATED = {
+    "baseline": LossWeights(),
+    "T": LossWeights(tangent_bundle=1.0),
+    "C": LossWeights(contractive=0.01),
+    "D": LossWeights(decoder_contraction=0.01),
+    "F": LossWeights(diffeo=1.0),
+    "K": LossWeights(curvature=1.0),
+    "T+F": LossWeights(tangent_bundle=1.0, diffeo=1.0),
+    "T+K": LossWeights(tangent_bundle=1.0, curvature=1.0),
+    "T+C": LossWeights(tangent_bundle=1.0, contractive=0.01),
+    "F+K": LossWeights(diffeo=1.0, curvature=1.0),
+    "T+F+K": LossWeights(tangent_bundle=1.0, diffeo=1.0, curvature=1.0),
+    "T+C+F+K": LossWeights(tangent_bundle=1.0, contractive=0.01, diffeo=1.0, curvature=1.0),
+}
+
+# Default to curated for backward compatibility
+PENALTY_CONFIGS = PENALTY_CONFIGS_CURATED
 
 
 @dataclass
@@ -361,8 +413,12 @@ def main():
         "--penalties",
         nargs="+",
         default=None,
-        choices=list(PENALTY_CONFIGS.keys()),
-        help="Penalty configs to test (default: all)"
+        help="Specific penalty configs to test (e.g., 'T' 'T+K' 'baseline')"
+    )
+    parser.add_argument(
+        "--all-penalties",
+        action="store_true",
+        help="Test all 64 penalty combinations (2^6)"
     )
     parser.add_argument("--epochs", type=int, default=1000, help="Training epochs")
     parser.add_argument("--n_samples", type=int, default=2000, help="Number of samples")
@@ -404,10 +460,17 @@ def main():
         surfaces = args.surfaces
 
     # Determine penalties
-    if args.penalties:
-        penalty_configs = {k: PENALTY_CONFIGS[k] for k in args.penalties}
+    if args.all_penalties:
+        penalty_configs = PENALTY_CONFIGS_ALL
+        print(f"\n  Running FULL ablation: {len(penalty_configs)} penalty combinations")
+    elif args.penalties:
+        # Use specified penalties from ALL configs
+        penalty_configs = {k: PENALTY_CONFIGS_ALL[k] for k in args.penalties if k in PENALTY_CONFIGS_ALL}
+        if not penalty_configs:
+            print(f"ERROR: None of the specified penalties found. Available: {list(PENALTY_CONFIGS_ALL.keys())[:10]}...")
+            return
     else:
-        penalty_configs = PENALTY_CONFIGS
+        penalty_configs = PENALTY_CONFIGS_CURATED
 
     print(f"\nAblation Study Configuration:")
     print(f"  Surfaces: {surfaces}")
