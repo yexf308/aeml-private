@@ -19,6 +19,12 @@ def metric_tensor_from_jacobian(jacobian: Tensor) -> Tensor:
     return torch.bmm(jacobian.mT, jacobian)
 
 
+def regularized_metric_inverse(g: Tensor, eps: float = 1e-6) -> Tensor:
+    """Compute (g + eps*I)^{-1} for numerical stability."""
+    g_reg = g + eps * torch.eye(g.shape[-1], device=g.device, dtype=g.dtype)
+    return torch.linalg.inv(g_reg)
+
+
 def orthogonal_projection_from_jacobian(jacobian: Tensor, eps: float = 1e-6) -> Tensor:
     """
     Compute orthogonal projection onto the tangent space.
@@ -31,9 +37,7 @@ def orthogonal_projection_from_jacobian(jacobian: Tensor, eps: float = 1e-6) -> 
         Orthogonal projection tensor of shape (batch, output_dim, output_dim)
     """
     g = metric_tensor_from_jacobian(jacobian)
-    # Add regularization for numerical stability
-    g_reg = g + eps * torch.eye(g.shape[-1], device=g.device, dtype=g.dtype)
-    g_inv = torch.linalg.inv(g_reg)
+    g_inv = regularized_metric_inverse(g, eps)
     return torch.bmm(jacobian, torch.bmm(g_inv, jacobian.mT))
 
 
@@ -259,3 +263,71 @@ def curvature_drift_explicit(
     normal_q = torch.bmm(normal_proj, q.unsqueeze(-1)).squeeze(-1)  # (B, D)
 
     return 0.5 * normal_q
+
+
+def curvature_drift_explicit_full(
+    decoder_hessian: Tensor,
+    local_cov: Tensor,
+) -> Tensor:
+    """
+    Compute the full-space (unprojected) Ito correction using explicit Hessian.
+
+    Unlike curvature_drift_explicit, this does NOT project onto the normal space.
+    The result is the full ambient-space Ito correction vector:
+        (1/2) * Σᵢⱼ Λᵢⱼ ∂²φ/∂zᵢ∂zⱼ
+
+    Note: this quantity is chart-dependent. Only the sum Dφ·b_z + q is
+    chart-invariant. See design doc for discussion.
+
+    Args:
+        decoder_hessian: Full Hessian tensor, shape (B, D, d, d)
+        local_cov: Local covariance (transformed), shape (B, d, d)
+
+    Returns:
+        ito_correction: (1/2) * tr(Λ·H), shape (B, D)
+    """
+    q = ambient_quadratic_variation_drift(local_cov, decoder_hessian)  # (B, D)
+    return 0.5 * q
+
+
+def curvature_drift_hessian_free_full(
+    decoder_func,
+    z: Tensor,
+    local_cov: Tensor,
+) -> Tensor:
+    """
+    Compute the full-space (unprojected) Ito correction using Hessian-free JVP.
+
+    Like curvature_drift_hessian_free but without the normal projection step.
+    Uses Proposition 8: Σᵢⱼ Λᵢⱼ H_{r,ij} = Σₖ λₖ ∇²φ_r(eₖ, eₖ)
+
+    Note: this quantity is chart-dependent. See curvature_drift_explicit_full.
+
+    Args:
+        decoder_func: Decoder network callable
+        z: Latent points, shape (B, d)
+        local_cov: Local covariance matrices, shape (B, d, d)
+
+    Returns:
+        ito_correction: (1/2) * tr(Λ·H), shape (B, D)
+    """
+    B, d = z.shape
+
+    # Eigendecompose local covariance
+    eigenvalues, eigenvectors = torch.linalg.eigh(local_cov)  # (B, d), (B, d, d)
+
+    # Determine D from a probe forward pass
+    with torch.no_grad():
+        D = decoder_func(z[:1]).shape[-1]
+
+    result = torch.zeros(B, D, device=z.device, dtype=z.dtype)
+
+    for k in range(d):
+        e_k = eigenvectors[:, :, k]  # (B, d)
+        lam_k = eigenvalues[:, k]    # (B,)
+
+        hvvp = hessian_vector_vector_product_batch(decoder_func, z, e_k)  # (B, D)
+        # NO normal projection — full ambient vector
+        result = result + lam_k.unsqueeze(-1) * hvvp
+
+    return 0.5 * result

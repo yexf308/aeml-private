@@ -64,7 +64,8 @@ class MultiModelTrainer:
         self.optimizers: Dict[str, torch.optim.Optimizer] = {}
         self.schedulers: Dict[str, torch.optim.lr_scheduler._LRScheduler] = {}
         self.model_configs: Dict[str, ModelConfig] = {}
-    
+        self._has_local_cov = False
+
     def add_model(self, model_config: ModelConfig):
         """Add a model to the training pipeline"""
         # Create model with architecture params or default config
@@ -101,6 +102,8 @@ class MultiModelTrainer:
         )
 
         if isinstance(dataset, DatasetBatch):
+            self._has_local_cov = dataset.local_cov is not None
+
             # Precompute tangent basis if needed
             if needs_tangent_basis and dataset.tangent_basis is None:
                 dataset.compute_tangent_basis(self.config.latent_dim)
@@ -111,6 +114,13 @@ class MultiModelTrainer:
             else:
                 tensors = dataset.as_tuple()
         else:
+            # Tuple input: disambiguate local_cov (d,d) from tangent_basis (D,d).
+            # If 8th element is square (last two dims equal), it's local_cov.
+            # tangent_basis is (B, D, d) where D > d, so not square.
+            if len(dataset) >= 8 and dataset[7].shape[-1] == dataset[7].shape[-2]:
+                self._has_local_cov = True
+            else:
+                self._has_local_cov = False
             tensors = dataset
 
         tensor_dataset = torch.utils.data.TensorDataset(*tensors)
@@ -136,16 +146,23 @@ class MultiModelTrainer:
             epoch_losses[model_name] = 0.0
 
         for batch_idx, batch in enumerate(data_loader):
-            # Batch contains (samples, local_samples, mu, cov, p, weights, hessians, [tangent_basis])
-            # tangent_basis is optional (8th element if present)
-            x, _, mu, cov, p, _, _ = batch[:7]
-            tangent_basis = batch[7] if len(batch) > 7 else None
+            x, _, mu, cov, p, _, hessians_batch = batch[:7]
+            idx = 7
+            if self._has_local_cov:
+                local_cov_true_batch = batch[idx]
+                idx += 1
+            else:
+                local_cov_true_batch = None
+            tangent_basis = batch[idx] if len(batch) > idx else None
 
             # Move tensors to device
             x = x.to(self.device)
             mu = mu.to(self.device)
             cov = cov.to(self.device)
             p = p.to(self.device)
+            hessians_batch = hessians_batch.to(self.device)
+            if local_cov_true_batch is not None:
+                local_cov_true_batch = local_cov_true_batch.to(self.device)
             if tangent_basis is not None:
                 tangent_basis = tangent_basis.to(self.device)
             targets = (x, mu, cov, p)
@@ -159,7 +176,12 @@ class MultiModelTrainer:
                     loss_weights = self.model_configs[model_name].loss_weights
 
                 optimizer.zero_grad()
-                loss = autoencoder_loss(model, targets, loss_weights, tangent_basis=tangent_basis)
+                loss = autoencoder_loss(
+                    model, targets, loss_weights,
+                    tangent_basis=tangent_basis,
+                    hessians=hessians_batch,
+                    local_cov_true=local_cov_true_batch,
+                )
                 loss.backward()
                 # Gradient clipping for training stability
                 torch.nn.utils.clip_grad_norm_(

@@ -31,6 +31,7 @@ def sample_from_manifold(manifold_sde: ManifoldSDE, bounds, n_samples=1000, seed
     np_ambient_covariance = manifold_sde.manifold.sympy_to_numpy(manifold_sde.ambient_covariance)
     np_orthogonal_projection = manifold_sde.manifold.sympy_to_numpy(manifold_sde.manifold.orthogonal_projection())
     np_phi_hessian = [manifold_sde.manifold.sympy_to_numpy(sp.hessian(manifold_sde.manifold.chart[i], manifold_sde.manifold.local_coordinates)) for i in range(manifold_sde.extrinsic_dim)]
+    np_local_cov = manifold_sde.manifold.sympy_to_numpy(manifold_sde.local_covariance)
     # Flatten bounds for ImportanceSampler
     flat_bounds = [b for bound in bounds for b in bound]
     
@@ -50,8 +51,9 @@ def sample_from_manifold(manifold_sde: ManifoldSDE, bounds, n_samples=1000, seed
     extrinsic_covariances = np.array([np_ambient_covariance(*sample) for sample in local_samples])
     orthogonal_projections = np.array([np_orthogonal_projection(*sample) for sample in local_samples])
     hessians = np.array([[np_phi_hessian[i](*sample) for i in range(manifold_sde.extrinsic_dim)] for sample in local_samples])
+    local_covs = np.array([np_local_cov(*sample) for sample in local_samples])
     return convert_samples_to_torch(
-        (ambient_samples, local_samples, extrinsic_drifts, extrinsic_covariances, orthogonal_projections, weights, hessians),
+        (ambient_samples, local_samples, extrinsic_drifts, extrinsic_covariances, orthogonal_projections, weights, hessians, local_covs),
         device=device
     )
 
@@ -104,6 +106,7 @@ def embed_dataset_with_qr_matrix(dataset: DatasetBatch, embedding_matrix) -> Dat
         p=p_e,
         weights=dataset.weights,
         hessians=h_e,
+        local_cov=dataset.local_cov,  # intrinsic — not embedded
     )
 
 def embed_data_with_qr_matrix(x, mu, cov, p, hessians, embedding_matrix) -> Tuple[torch.Tensor,...]:

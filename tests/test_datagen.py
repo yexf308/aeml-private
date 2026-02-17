@@ -125,3 +125,91 @@ def test_embed_dataset_with_qr_matrix_shapes() -> None:
     assert embedded.cov.shape == (n, embedding_dim, embedding_dim)
     assert embedded.p.shape == (n, embedding_dim, embedding_dim)
     assert embedded.hessians.shape == (n, embedding_dim, intrinsic_dim, intrinsic_dim)
+
+
+def test_dataset_batch_local_cov_field():
+    """DatasetBatch should carry optional local_cov field."""
+    n, D, d = 4, 3, 2
+    batch = DatasetBatch(
+        samples=torch.randn(n, D),
+        local_samples=torch.randn(n, d),
+        mu=torch.randn(n, D),
+        cov=torch.randn(n, D, D),
+        p=torch.randn(n, D, D),
+        weights=torch.randn(n),
+        hessians=torch.randn(n, D, d, d),
+        local_cov=torch.randn(n, d, d),
+    )
+    assert batch.local_cov.shape == (n, d, d)
+
+    # as_tuple should include local_cov (8 elements)
+    t = batch.as_tuple()
+    assert len(t) == 8
+    assert t[7].shape == (n, d, d)
+
+    # from_tuple round-trip
+    batch2 = DatasetBatch.from_tuple(t)
+    assert torch.allclose(batch2.local_cov, batch.local_cov)
+
+
+def test_sample_from_manifold_includes_local_cov():
+    """sample_from_manifold should populate local_cov field."""
+    man = _make_manifold()
+    sde = ManifoldSDE(man)
+    bounds = [(-1.0, 1.0), (-1.0, 1.0)]
+    batch = sample_from_manifold(sde, bounds, n_samples=8, seed=123)
+
+    assert batch.local_cov is not None
+    assert batch.local_cov.shape == (8, 2, 2)
+    # local_cov should be positive semi-definite (eigenvalues >= 0)
+    # Symmetrize first to avoid numerical flake
+    lc = batch.local_cov
+    lc_sym = 0.5 * (lc + lc.transpose(-1, -2))
+    eigvals = torch.linalg.eigvalsh(lc_sym)
+    assert (eigvals >= -1e-6).all()
+
+
+def test_embed_dataset_preserves_local_cov():
+    """embed_dataset_with_qr_matrix should preserve local_cov (intrinsic, not embedded)."""
+    from src.numeric.datagen import embed_dataset_with_qr_matrix, create_embedding_matrix
+
+    n, d = 4, 2
+    extrinsic_dim = 5
+    embedding_dim = 3
+    local_cov_orig = torch.randn(n, d, d)
+    batch = DatasetBatch(
+        samples=torch.randn(n, extrinsic_dim),
+        local_samples=torch.randn(n, d),
+        mu=torch.randn(n, extrinsic_dim),
+        cov=torch.randn(n, extrinsic_dim, extrinsic_dim),
+        p=torch.randn(n, extrinsic_dim, extrinsic_dim),
+        weights=torch.randn(n),
+        hessians=torch.randn(n, extrinsic_dim, d, d),
+        local_cov=local_cov_orig,
+    )
+    emb = create_embedding_matrix(embedding_dim=embedding_dim, extrinsic_dim=extrinsic_dim, embedding_seed=11)
+    embedded = embed_dataset_with_qr_matrix(batch, emb)
+    # local_cov is intrinsic — must be preserved unchanged
+    assert embedded.local_cov is not None
+    assert torch.allclose(embedded.local_cov, local_cov_orig)
+
+
+def test_dataset_batch_local_cov_defaults_none():
+    """local_cov should default to None and as_tuple should still work (7 elements)."""
+    n, D, d = 4, 3, 2
+    batch = DatasetBatch(
+        samples=torch.randn(n, D),
+        local_samples=torch.randn(n, d),
+        mu=torch.randn(n, D),
+        cov=torch.randn(n, D, D),
+        p=torch.randn(n, D, D),
+        weights=torch.randn(n),
+        hessians=torch.randn(n, D, d, d),
+    )
+    assert batch.local_cov is None
+    t = batch.as_tuple()
+    assert len(t) == 7
+
+    # from_tuple with 7 elements still works
+    batch2 = DatasetBatch.from_tuple(t)
+    assert batch2.local_cov is None

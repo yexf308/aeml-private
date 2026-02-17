@@ -13,11 +13,12 @@ class DatasetBatch:
     p: torch.Tensor
     weights: torch.Tensor
     hessians: torch.Tensor
+    local_cov: torch.Tensor = None  # Shape: (batch, d, d) — true local covariance σσ^T
     # Efficient tangent basis storage: U_d from SVD of P (optional)
     tangent_basis: torch.Tensor = None  # Shape: (batch, D, d) - top d eigenvectors
 
     def as_tuple(self) -> Tuple[torch.Tensor, ...]:
-        return (
+        base = (
             self.samples,
             self.local_samples,
             self.mu,
@@ -26,6 +27,9 @@ class DatasetBatch:
             self.weights,
             self.hessians,
         )
+        if self.local_cov is not None:
+            return base + (self.local_cov,)
+        return base
 
     def compute_tangent_basis(self, intrinsic_dim: int) -> torch.Tensor:
         """
@@ -50,6 +54,9 @@ class DatasetBatch:
 
     @classmethod
     def from_tuple(cls, tensors: Tuple[torch.Tensor, ...]) -> "DatasetBatch":
-        if len(tensors) != 7:
-            raise ValueError("Expected a tuple of length 7.")
-        return cls(*tensors)
+        if len(tensors) == 7:
+            return cls(*tensors)
+        elif len(tensors) == 8:
+            return cls(*tensors[:7], local_cov=tensors[7])
+        else:
+            raise ValueError(f"Expected tuple of length 7 or 8, got {len(tensors)}.")

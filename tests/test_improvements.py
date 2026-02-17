@@ -13,8 +13,17 @@ import pytest
 from src.numeric.ffnn import FeedForwardNeuralNet, TiedWeightParametrization
 from src.numeric.autoencoders import AutoEncoder
 from src.numeric.training import TrainingConfig, MultiModelTrainer, ModelConfig
-from src.numeric.losses import LossWeights
-from src.numeric.geometry import orthogonal_projection_from_jacobian
+from src.numeric.losses import LossWeights, autoencoder_loss
+from src.numeric.datasets import DatasetBatch
+from src.numeric.geometry import (
+    curvature_drift_explicit,
+    curvature_drift_explicit_full,
+    curvature_drift_hessian_free,
+    curvature_drift_hessian_free_full,
+    orthogonal_projection_from_jacobian,
+    ambient_quadratic_variation_drift,
+    transform_covariance,
+)
 
 
 class TestDeviceConfiguration:
@@ -266,6 +275,166 @@ class TestNumericalStability:
         proj = orthogonal_projection_from_jacobian(jacobian, eps=1e-6)
         assert not torch.isnan(proj).any()
         assert not torch.isinf(proj).any()
+
+
+class TestFullSpaceCurvature:
+    """Tests for full-space (no normal projection) curvature functions."""
+
+    def setup_method(self):
+        B, D, d = 4, 5, 2
+        self.B, self.D, self.d = B, D, d
+        self.decoder_hessian = torch.randn(B, D, d, d)
+        # Make local_cov symmetric positive definite
+        L = torch.randn(B, d, d)
+        self.local_cov = torch.bmm(L, L.mT) + 0.1 * torch.eye(d).unsqueeze(0)
+        # Projection matrix
+        dphi = torch.randn(B, D, d)
+        self.normal_proj = torch.eye(D).unsqueeze(0) - orthogonal_projection_from_jacobian(dphi)
+
+    def test_curvature_drift_explicit_full_shape(self):
+        result = curvature_drift_explicit_full(self.decoder_hessian, self.local_cov)
+        assert result.shape == (self.B, self.D)
+
+    def test_curvature_drift_explicit_full_no_projection(self):
+        """Full version should equal explicit version WITHOUT the normal projection step."""
+        full = curvature_drift_explicit_full(self.decoder_hessian, self.local_cov)
+        expected = 0.5 * ambient_quadratic_variation_drift(self.local_cov, self.decoder_hessian)
+        assert torch.allclose(full, expected, atol=1e-6)
+
+    def test_curvature_drift_explicit_full_vs_projected(self):
+        """Full version should differ from projected version (unless normal_proj is identity)."""
+        full = curvature_drift_explicit_full(self.decoder_hessian, self.local_cov)
+        projected = curvature_drift_explicit(self.decoder_hessian, self.local_cov, self.normal_proj)
+        # They should generally NOT be equal
+        assert not torch.allclose(full, projected, atol=1e-4)
+
+    def test_curvature_drift_hessian_free_full_shape(self):
+        ae = AutoEncoder(
+            extrinsic_dim=self.D, intrinsic_dim=self.d,
+            hidden_dims=[8], encoder_act=nn.Tanh(), decoder_act=nn.Tanh(),
+            tie_weights=False,
+        )
+        z = torch.randn(self.B, self.d)
+        result = curvature_drift_hessian_free_full(ae.decoder, z, self.local_cov)
+        assert result.shape == (self.B, self.D)
+
+    def test_curvature_drift_hessian_free_full_matches_explicit(self):
+        """Hessian-free full should match explicit full for same decoder."""
+        ae = AutoEncoder(
+            extrinsic_dim=self.D, intrinsic_dim=self.d,
+            hidden_dims=[8], encoder_act=nn.Tanh(), decoder_act=nn.Tanh(),
+            tie_weights=False,
+        )
+        z = torch.randn(self.B, self.d)
+        d2phi = ae.hessian_decoder(z)
+
+        explicit = curvature_drift_explicit_full(d2phi, self.local_cov)
+        hfree = curvature_drift_hessian_free_full(ae.decoder, z, self.local_cov)
+        assert torch.allclose(explicit, hfree, rtol=1e-3, atol=1e-4)
+
+
+class TestCurvatureFullLoss:
+    """Tests for the curvature_full loss in autoencoder_loss."""
+
+    def setup_method(self):
+        self.ae = AutoEncoder(
+            extrinsic_dim=3, intrinsic_dim=2,
+            hidden_dims=[8], encoder_act=nn.Tanh(), decoder_act=nn.Tanh(),
+            tie_weights=False,
+        )
+        B, D, d = 6, 3, 2
+        self.x = torch.randn(B, D)
+        self.mu = torch.randn(B, D)
+        self.cov = torch.eye(D).unsqueeze(0).expand(B, -1, -1) * 0.1
+        self.p = torch.eye(D).unsqueeze(0).expand(B, -1, -1) * 0.5
+        # Make local_cov_true SPD
+        L = torch.randn(B, d, d)
+        self.local_cov_true = torch.bmm(L, L.mT) + 0.1 * torch.eye(d).unsqueeze(0)
+        self.hessians = torch.randn(B, D, d, d)
+
+    def test_loss_weights_has_curvature_full(self):
+        lw = LossWeights(curvature_full=0.5)
+        assert lw.curvature_full == 0.5
+
+    def test_curvature_full_loss_runs(self):
+        """autoencoder_loss with curvature_full > 0 should compute without error."""
+        lw = LossWeights(curvature_full=1.0)
+        targets = (self.x, self.mu, self.cov, self.p)
+        loss = autoencoder_loss(
+            self.ae, targets, lw,
+            hessians=self.hessians, local_cov_true=self.local_cov_true,
+        )
+        assert loss.dim() == 0  # scalar
+        assert not torch.isnan(loss)
+
+    def test_curvature_full_loss_changes_total(self):
+        """Adding curvature_full should change the total loss vs baseline."""
+        targets = (self.x, self.mu, self.cov, self.p)
+        loss_base = autoencoder_loss(self.ae, targets, LossWeights())
+        loss_kf = autoencoder_loss(
+            self.ae, targets, LossWeights(curvature_full=1.0),
+            hessians=self.hessians, local_cov_true=self.local_cov_true,
+        )
+        assert loss_kf > loss_base  # penalty should add positive term
+
+    def test_curvature_full_backward(self):
+        """curvature_full loss should be differentiable."""
+        lw = LossWeights(tangent_bundle=1.0, curvature_full=1.0)
+        targets = (self.x, self.mu, self.cov, self.p)
+        loss = autoencoder_loss(
+            self.ae, targets, lw,
+            hessians=self.hessians, local_cov_true=self.local_cov_true,
+        )
+        loss.backward()
+        # Check gradients exist on decoder parameters
+        for param in self.ae.decoder.parameters():
+            assert param.grad is not None
+
+    def test_curvature_full_missing_data_raises(self):
+        """curvature_full > 0 without hessians/local_cov_true should raise ValueError."""
+        lw = LossWeights(curvature_full=1.0)
+        targets = (self.x, self.mu, self.cov, self.p)
+        with pytest.raises(ValueError, match="curvature_full"):
+            autoencoder_loss(self.ae, targets, lw)
+        with pytest.raises(ValueError, match="curvature_full"):
+            autoencoder_loss(self.ae, targets, lw, hessians=self.hessians)
+        with pytest.raises(ValueError, match="curvature_full"):
+            autoencoder_loss(self.ae, targets, lw, local_cov_true=self.local_cov_true)
+
+
+class TestCurvatureFullTraining:
+    """Test that curvature_full loss works end-to-end through training."""
+
+    def test_train_epoch_with_curvature_full(self):
+        """Training with curvature_full should complete without error."""
+        config = TrainingConfig(
+            device="cpu", hidden_dim=8, latent_dim=2, input_dim=3,
+            batch_size=4, epochs=1,
+        )
+        trainer = MultiModelTrainer(config)
+        trainer.add_model(ModelConfig(
+            name="kf_test",
+            loss_weights=LossWeights(tangent_bundle=1.0, curvature_full=1.0),
+        ))
+
+        B, D, d = 8, 3, 2
+        L = torch.randn(B, d, d)
+        local_cov = torch.bmm(L, L.mT) + 0.1 * torch.eye(d).unsqueeze(0)
+        dataset = DatasetBatch(
+            samples=torch.randn(B, D),
+            local_samples=torch.randn(B, d),
+            mu=torch.randn(B, D),
+            cov=torch.eye(D).unsqueeze(0).expand(B, -1, -1) * 0.1,
+            p=torch.eye(D).unsqueeze(0).expand(B, -1, -1) * 0.5,
+            weights=torch.ones(B) / B,
+            hessians=torch.randn(B, D, d, d),
+            local_cov=local_cov,
+        )
+
+        data_loader = trainer.create_data_loader(dataset)
+        losses = trainer.train_epoch(data_loader)
+        assert "kf_test" in losses
+        assert losses["kf_test"] > 0
 
 
 if __name__ == "__main__":

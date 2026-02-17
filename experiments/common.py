@@ -36,6 +36,8 @@ PENALTY_CONFIGS = {
     "T+K": LossWeights(tangent_bundle=1.0, curvature=1.0),
     "T+F": LossWeights(tangent_bundle=1.0, diffeo=1.0),
     "T+F+K": LossWeights(tangent_bundle=1.0, diffeo=1.0, curvature=1.0),
+    "T+Kf":     LossWeights(tangent_bundle=1.0, curvature_full=1.0),
+    "T+F+Kf":   LossWeights(tangent_bundle=1.0, diffeo=1.0, curvature_full=1.0),
 }
 
 
@@ -81,6 +83,7 @@ def sample_ring_region(
         cov=full_dataset.cov[indices],
         p=full_dataset.p[indices],
         hessians=full_dataset.hessians[indices],
+        local_cov=full_dataset.local_cov[indices] if full_dataset.local_cov is not None else None,
     )
 
 

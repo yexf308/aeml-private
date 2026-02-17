@@ -37,7 +37,7 @@ where:
 - `q_model = 0.5 * einsum(Λ_z, d²φ_model)` — model Ito correction in z-coords → ambient vector
 - `q_true = 0.5 * einsum(σσ^T_uv, H_true_uv)` — true Ito correction in (u,v) coords → ambient vector
 
-Both produce ambient-space vectors that are directly comparable (coordinate-free).
+Both are ambient-space vectors (same target space ℝ^D) and directly comparable, but individually chart-dependent (see limitation below).
 
 ### Proposition 8 Preserved
 
@@ -47,9 +47,13 @@ The Hessian-free JVP identity still applies:
 ```
 Only the final `(I-P) @` projection step is removed. The eigendecomposition + double-JVP computation is unchanged.
 
-### Chart Invariance
+### Chart Dependence (Limitation)
 
-The full Ito correction `0.5 * tr(Λ·H)` in ambient space is chart-invariant — it's the same geometric quantity regardless of parameterization. Removing the normal projection does not break chart invariance.
+The full Ito correction `q = 0.5 * tr(Λ·H)` is **not** chart-invariant on its own. Under a reparameterization ψ∘φ, both the first-order drift `Dφ·b_z` and the second-order correction `q` change individually — only their sum (the ambient drift `μ = Dφ·b_z + q`) is coordinate-free. Matching `q_model` to `q_true` therefore implicitly fixes a gauge: it penalizes parameterizations where the Ito correction differs from the true chart's, even if the ambient drift is correct.
+
+In our synthetic setting this is acceptable because the true chart is known and the goal is to faithfully reproduce the SDE simulation (which uses q explicitly). However, for a general learned chart on real data, this loss would be gauge-dependent and could fight equivalent parameterizations. If this becomes a concern, the gauge-invariant alternative is to match the full ambient drift `Dφ·b_z + q` instead.
+
+For fair ablation comparisons, `curvature_full` should always be paired with `diffeo` (F) since F already constrains the parameterization toward an isometry, making the gauge-fixing less problematic.
 
 ## Implementation Plan
 
