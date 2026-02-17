@@ -7,10 +7,12 @@ used across extrapolation and dynamics studies.
 
 import numpy as np
 import torch
+import torch.nn as nn
 
 from src.numeric.datagen import sample_from_manifold
 from src.numeric.datasets import DatasetBatch
 from src.numeric.losses import LossWeights
+from src.numeric.training import ModelConfig
 from src.symbolic.manifold_sdes import ManifoldSDE
 from src.symbolic.surfaces import (
     paraboloid, hyperbolic_paraboloid, monkey_saddle,
@@ -36,9 +38,32 @@ PENALTY_CONFIGS = {
     "T+K": LossWeights(tangent_bundle=1.0, curvature=1.0),
     "T+F": LossWeights(tangent_bundle=1.0, diffeo=1.0),
     "T+F+K": LossWeights(tangent_bundle=1.0, diffeo=1.0, curvature=1.0),
-    "T+Kf":     LossWeights(tangent_bundle=1.0, curvature_full=1.0),
-    "T+F+Kf":   LossWeights(tangent_bundle=1.0, diffeo=1.0, curvature_full=1.0),
+    "T+Kf":     LossWeights(tangent_bundle=1.0, curvature_full=0.1),
+    "T+F+Kf":   LossWeights(tangent_bundle=1.0, diffeo=1.0, curvature_full=0.1),
 }
+
+# Kf configs need deeper networks to satisfy both reconstruction and curvature.
+KF_HIDDEN_DIMS = [64, 64]
+
+
+def make_model_config(
+    name: str,
+    loss_weights: LossWeights,
+    extrinsic_dim: int = 3,
+    intrinsic_dim: int = 2,
+    hidden_dims: list = None,
+) -> ModelConfig:
+    """Build a ModelConfig, using deeper architecture when curvature_full is active."""
+    if hidden_dims is None:
+        hidden_dims = KF_HIDDEN_DIMS if loss_weights.curvature_full > 0 else [64]
+    arch = {
+        "extrinsic_dim": extrinsic_dim,
+        "intrinsic_dim": intrinsic_dim,
+        "hidden_dims": hidden_dims,
+        "encoder_act": nn.Tanh(),
+        "decoder_act": nn.Tanh(),
+    }
+    return ModelConfig(name=name, loss_weights=loss_weights, architecture_params=arch)
 
 
 def sample_ring_region(

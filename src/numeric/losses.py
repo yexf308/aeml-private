@@ -227,13 +227,18 @@ def autoencoder_loss(model: AutoEncoder,
         # True target: full Ito correction in ambient space from true local covariance
         ito_true = 0.5 * ambient_quadratic_variation_drift(local_cov_true, hessians)
 
+        # Detach z so Kf gradients only reach the decoder, not the encoder.
+        # This prevents the curvature objective from degrading reconstruction.
+        z_det = z.detach()
+        dphi_det = model.jacobian_decoder(z_det)
+        penrose_det = torch.linalg.pinv(dphi_det)
+        local_cov_z_det = transform_covariance(cov, penrose_det)
+
         if use_hessian_free_curvature_full:
-            ito_model = curvature_drift_hessian_free_full(model.decoder, z, local_cov_z)
+            ito_model = curvature_drift_hessian_free_full(model.decoder, z_det, local_cov_z_det)
         else:
-            # Reuse d2phi if already computed for old curvature; otherwise compute it
-            if loss_weights.curvature == 0. or use_hessian_free_curvature:
-                d2phi = model.hessian_decoder(z)
-            ito_model = curvature_drift_explicit_full(d2phi, local_cov_z)
+            d2phi_det = model.hessian_decoder(z_det)
+            ito_model = curvature_drift_explicit_full(d2phi_det, local_cov_z_det)
 
 
 
