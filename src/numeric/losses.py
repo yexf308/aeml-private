@@ -23,6 +23,7 @@ class LossWeights:
     diffeo: float = 0.
     curvature: float = 0.
     curvature_full: float = 0.
+    drift: float = 0.
 
 # Pointwise loss functions
 def fro_norm_sq(matrix):
@@ -132,19 +133,19 @@ def autoencoder_loss(model: AutoEncoder,
                        If provided, uses efficient O(Dd²) tangent bundle loss
                        instead of O(D²d) version.
         hessians: Optional (B, D, d, d) tensor of true surface Hessians.
-                  Required when curvature_full > 0.
+                  Required when curvature_full > 0 or drift > 0.
         local_cov_true: Optional (B, d, d) tensor of true local covariance.
-                        Required when curvature_full > 0.
+                        Required when curvature_full > 0 or drift > 0.
 
     Returns:
         total_loss: Scalar loss value
     """
     x, mu, cov, p = targets
 
-    if loss_weights.curvature_full > 0.:
+    if loss_weights.curvature_full > 0. or loss_weights.drift > 0.:
         if hessians is None or local_cov_true is None:
             raise ValueError(
-                "curvature_full > 0 requires both `hessians` and `local_cov_true` arguments"
+                "curvature_full/drift > 0 requires both `hessians` and `local_cov_true` arguments"
             )
 
     D = p.size(2)
@@ -166,6 +167,7 @@ def autoencoder_loss(model: AutoEncoder,
         or loss_weights.diffeo > 0.
         or loss_weights.curvature > 0.
         or loss_weights.curvature_full > 0.
+        or loss_weights.drift > 0.
         or use_efficient_tangent
     )
     # Only need full projection matrix if NOT using efficient tangent loss
@@ -240,7 +242,26 @@ def autoencoder_loss(model: AutoEncoder,
             d2phi_det = model.hessian_decoder(z_det)
             ito_model = curvature_drift_explicit_full(d2phi_det, local_cov_z_det)
 
+    if loss_weights.drift > 0.:
+        # Unified ambient drift matching: ||P̂·(mu - q_true) + q̂ - mu||²
+        # Directly optimizes the full ambient drift round-trip through the model.
+        # When P̂ ≈ P, reduces to Kf (||q̂ - q_true||²).
+        # When q̂ ≈ q_true, penalizes tangent space misalignment.
+        z_det = z.detach()
+        dphi_det = model.jacobian_decoder(z_det)
+        d2phi_det = model.hessian_decoder(z_det)
+        g_det = torch.bmm(dphi_det.mT, dphi_det)
+        ginv_det = regularized_metric_inverse(g_det)
+        phat_det = torch.bmm(dphi_det, torch.bmm(ginv_det, dphi_det.mT))
 
+        penrose_det = torch.linalg.pinv(dphi_det)
+        local_cov_z_det = transform_covariance(cov, penrose_det)
+
+        q_true = 0.5 * ambient_quadratic_variation_drift(local_cov_true, hessians)
+        q_model = curvature_drift_explicit_full(d2phi_det, local_cov_z_det)
+
+        tangential_true = mu - q_true
+        mu_model = torch.bmm(phat_det, tangential_true.unsqueeze(-1)).squeeze(-1) + q_model
 
     # Accumulating losses
     total_loss = empirical_l2_risk(xhat, x)
@@ -264,4 +285,6 @@ def autoencoder_loss(model: AutoEncoder,
         total_loss += loss_weights.curvature * empirical_l2_risk(normal_drift_model, normal_drift_true)
     if loss_weights.curvature_full > 0.0:
         total_loss += loss_weights.curvature_full * empirical_l2_risk(ito_model, ito_true)
+    if loss_weights.drift > 0.0:
+        total_loss += loss_weights.drift * empirical_l2_risk(mu_model, mu)
     return total_loss
