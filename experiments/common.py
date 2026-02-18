@@ -38,14 +38,7 @@ PENALTY_CONFIGS = {
     "T+K": LossWeights(tangent_bundle=1.0, curvature=1.0),
     "T+F": LossWeights(tangent_bundle=1.0, diffeo=1.0),
     "T+F+K": LossWeights(tangent_bundle=1.0, diffeo=1.0, curvature=1.0),
-    "T+Kf":     LossWeights(tangent_bundle=1.0, curvature_full=0.1),
-    "T+F+Kf":   LossWeights(tangent_bundle=1.0, diffeo=1.0, curvature_full=0.1),
-    "T+F+D":    LossWeights(tangent_bundle=1.0, diffeo=1.0, drift=0.1),
 }
-
-# Kf configs need deeper networks to satisfy both reconstruction and curvature.
-KF_HIDDEN_DIMS = [64, 64]
-
 
 def make_model_config(
     name: str,
@@ -54,10 +47,9 @@ def make_model_config(
     intrinsic_dim: int = 2,
     hidden_dims: list = None,
 ) -> ModelConfig:
-    """Build a ModelConfig, using deeper architecture when curvature_full or drift is active."""
+    """Build a ModelConfig with the given architecture."""
     if hidden_dims is None:
-        needs_depth = loss_weights.curvature_full > 0 or loss_weights.drift > 0
-        hidden_dims = KF_HIDDEN_DIMS if needs_depth else [64]
+        hidden_dims = [64]
     arch = {
         "extrinsic_dim": extrinsic_dim,
         "intrinsic_dim": intrinsic_dim,

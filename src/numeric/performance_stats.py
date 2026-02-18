@@ -2,7 +2,7 @@ from .losses import l2_loss, tangent_bundle_loss, contraction_loss, diffeomorphi
 from .autoencoders import AutoEncoder
 from .training import MultiModelTrainer
 from .datasets import DatasetBatch
-from .geometry import transform_covariance, ambient_quadratic_variation_drift
+from .geometry import transform_covariance, ambient_quadratic_variation_drift, regularized_metric_inverse
 import pandas as pd
 import numpy as np
 import torch
@@ -110,7 +110,9 @@ def compute_losses_per_sample(model: AutoEncoder, targets: DatasetBatch):
     dpi = model.jacobian_encoder(x)
     dphi = model.jacobian_decoder(z)
     d2phi = model.hessian_decoder(z)
-    dphi_penroseinv = torch.linalg.pinv(dphi)
+    g_perf = dphi.mT @ dphi
+    ginv_perf = regularized_metric_inverse(g_perf)
+    dphi_penroseinv = ginv_perf @ dphi.mT
     local_cov = transform_covariance(cov, dphi_penroseinv)
     qhat = ambient_quadratic_variation_drift(local_cov, d2phi)
     nhat = torch.eye(p.size(1), device=p.device, dtype=p.dtype).unsqueeze(0) - phat

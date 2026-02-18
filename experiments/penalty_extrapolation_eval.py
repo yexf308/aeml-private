@@ -137,7 +137,9 @@ def compute_eval_metrics(model: AutoEncoder, dataset: DatasetBatch) -> Dict[str,
 
     # --- Curvature-corrected drift (uses Hessian) ---
     d2phi = model.hessian_decoder(z)  # (B, D, d, d)
-    dphi_pinv = torch.linalg.pinv(dphi)  # (B, d, D)
+    g_eval = dphi.mT @ dphi  # (B, d, d)
+    ginv_eval = regularized_metric_inverse(g_eval)  # (B, d, d)
+    dphi_pinv = ginv_eval @ dphi.mT  # (B, d, D)
     local_cov = transform_covariance(Lambda_ambient, dphi_pinv)  # (B, d, d)
     qhat = ambient_quadratic_variation_drift(local_cov, d2phi)  # (B, D)
 

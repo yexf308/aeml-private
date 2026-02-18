@@ -5,11 +5,8 @@ from typing import Tuple
 from .autoencoders import AutoEncoder
 from .geometry import (
     transform_covariance,
-    ambient_quadratic_variation_drift,
     curvature_drift_explicit,
-    curvature_drift_explicit_full,
     curvature_drift_hessian_free,
-    curvature_drift_hessian_free_full,
     regularized_metric_inverse,
 )
 
@@ -22,8 +19,6 @@ class LossWeights:
     decoder_contraction: float = 0.
     diffeo: float = 0.
     curvature: float = 0.
-    curvature_full: float = 0.
-    drift: float = 0.
 
 # Pointwise loss functions
 def fro_norm_sq(matrix):
@@ -133,20 +128,14 @@ def autoencoder_loss(model: AutoEncoder,
                        If provided, uses efficient O(Dd²) tangent bundle loss
                        instead of O(D²d) version.
         hessians: Optional (B, D, d, d) tensor of true surface Hessians.
-                  Required when curvature_full > 0 or drift > 0.
+                  Passed through from DatasetBatch but currently unused.
         local_cov_true: Optional (B, d, d) tensor of true local covariance.
-                        Required when curvature_full > 0 or drift > 0.
+                        Passed through from DatasetBatch but currently unused.
 
     Returns:
         total_loss: Scalar loss value
     """
     x, mu, cov, p = targets
-
-    if loss_weights.curvature_full > 0. or loss_weights.drift > 0.:
-        if hessians is None or local_cov_true is None:
-            raise ValueError(
-                "curvature_full/drift > 0 requires both `hessians` and `local_cov_true` arguments"
-            )
 
     D = p.size(2)
     normal_proj = torch.eye(D, device=p.device, dtype=p.dtype).unsqueeze(0) - p
@@ -166,8 +155,6 @@ def autoencoder_loss(model: AutoEncoder,
         or loss_weights.decoder_contraction > 0.
         or loss_weights.diffeo > 0.
         or loss_weights.curvature > 0.
-        or loss_weights.curvature_full > 0.
-        or loss_weights.drift > 0.
         or use_efficient_tangent
     )
     # Only need full projection matrix if NOT using efficient tangent loss
@@ -181,14 +168,8 @@ def autoencoder_loss(model: AutoEncoder,
         and D > 200
         and d <= 3
     )
-    use_hessian_free_curvature_full = (
-        loss_weights.curvature_full > 0.0
-        and D > 200
-        and d <= 3
-    )
     need_decoder_hessian = (
-        (loss_weights.curvature > 0. and not use_hessian_free_curvature)
-        or (loss_weights.curvature_full > 0. and not use_hessian_free_curvature_full)
+        loss_weights.curvature > 0. and not use_hessian_free_curvature
     )
 
     # We always need to encode/decode
@@ -207,11 +188,14 @@ def autoencoder_loss(model: AutoEncoder,
             phat = torch.bmm(dphi, torch.bmm(ginv, dphi.mT))
         else:
             phat = model.orthogonal_projection(z)
-    # Shared computation for curvature losses
+    # Shared computation for curvature loss
     # local_cov_z = pulled-back ambient covariance in z-coordinates
-    if loss_weights.curvature > 0. or loss_weights.curvature_full > 0.:
-        penrose = torch.linalg.pinv(dphi)
-        local_cov_z = transform_covariance(cov, penrose)
+    if loss_weights.curvature > 0.:
+        g_curv = dphi.mT @ dphi
+        ginv_curv = regularized_metric_inverse(g_curv)
+        pinv_curv = ginv_curv @ dphi.mT  # stable pseudoinverse
+        local_cov_z = transform_covariance(cov, pinv_curv)
+        local_cov_z = 0.5 * (local_cov_z + local_cov_z.mT)  # symmetrize
 
     if loss_weights.curvature > 0.:
         normal_drift_true = torch.bmm(normal_proj, mu.unsqueeze(-1)).squeeze(-1)
@@ -224,44 +208,6 @@ def autoencoder_loss(model: AutoEncoder,
         else:
             d2phi = model.hessian_decoder(z)
             normal_drift_model = curvature_drift_explicit(d2phi, local_cov_z, nhat)
-
-    if loss_weights.curvature_full > 0.:
-        # True target: full Ito correction in ambient space from true local covariance
-        ito_true = 0.5 * ambient_quadratic_variation_drift(local_cov_true, hessians)
-
-        # Detach z so Kf gradients only reach the decoder, not the encoder.
-        # This prevents the curvature objective from degrading reconstruction.
-        z_det = z.detach()
-        dphi_det = model.jacobian_decoder(z_det)
-        penrose_det = torch.linalg.pinv(dphi_det)
-        local_cov_z_det = transform_covariance(cov, penrose_det)
-
-        if use_hessian_free_curvature_full:
-            ito_model = curvature_drift_hessian_free_full(model.decoder, z_det, local_cov_z_det)
-        else:
-            d2phi_det = model.hessian_decoder(z_det)
-            ito_model = curvature_drift_explicit_full(d2phi_det, local_cov_z_det)
-
-    if loss_weights.drift > 0.:
-        # Unified ambient drift matching: ||P̂·(mu - q_true) + q̂ - mu||²
-        # Directly optimizes the full ambient drift round-trip through the model.
-        # When P̂ ≈ P, reduces to Kf (||q̂ - q_true||²).
-        # When q̂ ≈ q_true, penalizes tangent space misalignment.
-        z_det = z.detach()
-        dphi_det = model.jacobian_decoder(z_det)
-        d2phi_det = model.hessian_decoder(z_det)
-        g_det = torch.bmm(dphi_det.mT, dphi_det)
-        ginv_det = regularized_metric_inverse(g_det)
-        phat_det = torch.bmm(dphi_det, torch.bmm(ginv_det, dphi_det.mT))
-
-        penrose_det = torch.linalg.pinv(dphi_det)
-        local_cov_z_det = transform_covariance(cov, penrose_det)
-
-        q_true = 0.5 * ambient_quadratic_variation_drift(local_cov_true, hessians)
-        q_model = curvature_drift_explicit_full(d2phi_det, local_cov_z_det)
-
-        tangential_true = mu - q_true
-        mu_model = torch.bmm(phat_det, tangential_true.unsqueeze(-1)).squeeze(-1) + q_model
 
     # Accumulating losses
     total_loss = empirical_l2_risk(xhat, x)
@@ -283,8 +229,4 @@ def autoencoder_loss(model: AutoEncoder,
         total_loss += loss_weights.diffeo * empirical_diffeo_penalty(dpi, dphi)
     if loss_weights.curvature > 0.0:
         total_loss += loss_weights.curvature * empirical_l2_risk(normal_drift_model, normal_drift_true)
-    if loss_weights.curvature_full > 0.0:
-        total_loss += loss_weights.curvature_full * empirical_l2_risk(ito_model, ito_true)
-    if loss_weights.drift > 0.0:
-        total_loss += loss_weights.drift * empirical_l2_risk(mu_model, mu)
     return total_loss
