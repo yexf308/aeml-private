@@ -14,3 +14,9 @@ env/
 
 # OS junk
 .DS_Store
+
+# Paper (separate repo)
+Autoencoder-Paper/
+
+# Claude Code
+CLAUDE.md

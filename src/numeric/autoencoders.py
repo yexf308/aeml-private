@@ -15,6 +15,7 @@ from .geometry import (
     metric_tensor_from_jacobian,
     orthogonal_projection_from_jacobian,
     volume_measure_from_metric,
+    regularized_metric_inverse,
 )
 from .visualization import lift_sample_paths as _lift_sample_paths
 from .visualization import plot_surface as _plot_surface
@@ -172,7 +173,7 @@ class AutoEncoder(nn.Module):
         z = self.encoder(x)
         dphi = self.decoder_jacobian(z)
         g = metric_tensor_from_jacobian(dphi)
-        ginv = torch.linalg.inv(g)
+        ginv = regularized_metric_inverse(g)
         evals, evecs = torch.linalg.eigh(ginv)
         # Square root matrix via EVD:
         gframe = torch.bmm(evecs, torch.bmm(torch.diag_embed(torch.sqrt(evals)), evecs.mT))
@@ -204,7 +205,7 @@ class AutoEncoder(nn.Module):
 
         # Compute metric and its inverse
         g = self.neural_metric_tensor(z)  # (B, d, d)
-        g_inv = torch.linalg.inv(g)       # (B, d, d)
+        g_inv = regularized_metric_inverse(g)  # (B, d, d)
 
         # Compute log(sqrt(det g)) = 0.5 * log det g
         log_sqrt_det_g = 0.5 * torch.logdet(g)  # (B,)
@@ -259,7 +260,7 @@ class AutoEncoder(nn.Module):
 
         # 1) metric and inverse
         g = self.neural_metric_tensor(z)        # (B, d, d)
-        g_inv = torch.linalg.inv(g)             # (B, d, d)
+        g_inv = regularized_metric_inverse(g)   # (B, d, d)
 
         drift = torch.zeros(B, d, device=z.device, dtype=z.dtype)
         for b in range(B):
@@ -298,7 +299,7 @@ class AutoEncoder(nn.Module):
 
         # Compute metric and inverse for all samples
         g = self.neural_metric_tensor(z)        # (B, d, d)
-        g_inv = torch.linalg.inv(g)             # (B, d, d)
+        g_inv = regularized_metric_inverse(g)   # (B, d, d)
 
         def compute_drift_single(z_single: Tensor, g_inv_single: Tensor) -> Tensor:
             """Compute drift for a single sample."""

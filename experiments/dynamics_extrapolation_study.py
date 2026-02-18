@@ -18,41 +18,19 @@ import torch
 import numpy as np
 import pandas as pd
 import sympy as sp
-from dataclasses import dataclass
-from typing import Dict, List, Tuple
+from typing import Dict
 
 from src.numeric.autoencoders import AutoEncoder
 from src.numeric.datagen import sample_from_manifold
 from src.numeric.datasets import DatasetBatch
 from src.numeric.losses import LossWeights
-from src.numeric.geometry import (
-    transform_covariance,
-    orthogonal_projection_from_jacobian,
-)
+from src.numeric.geometry import regularized_metric_inverse
 from src.numeric.training import ModelConfig, MultiModelTrainer, TrainingConfig
 from src.symbolic.manifold_sdes import ManifoldSDE
 from src.symbolic.riemannian import RiemannianManifold
-from src.symbolic.surfaces import (
-    paraboloid, hyperbolic_paraboloid, monkey_saddle,
-    sinusoidal, plane, surface
-)
+from src.symbolic.surfaces import surface
 
-SURFACE_MAP = {
-    "paraboloid": paraboloid,
-    "hyperbolic_paraboloid": hyperbolic_paraboloid,
-    "monkey_saddle": monkey_saddle,
-    "sinusoidal": sinusoidal,
-    "plane": plane,
-}
-
-PENALTY_CONFIGS = {
-    "baseline": LossWeights(),
-    "T": LossWeights(tangent_bundle=1.0),
-    "K": LossWeights(curvature=1.0),
-    "T+K": LossWeights(tangent_bundle=1.0, curvature=1.0),
-    "T+F": LossWeights(tangent_bundle=1.0, diffeo=1.0),
-    "T+F+K": LossWeights(tangent_bundle=1.0, diffeo=1.0, curvature=1.0),
-}
+from experiments.common import SURFACE_MAP, PENALTY_CONFIGS, sample_ring_region, create_test_datasets
 
 
 def create_manifold_sde(surface_name: str):
@@ -73,51 +51,6 @@ def create_manifold_sde(surface_name: str):
     )
 
     return manifold_sde
-
-
-def sample_ring_region(
-    manifold_sde: ManifoldSDE,
-    inner_bound: float,
-    outer_bound: float,
-    n_samples: int,
-    device: str = "cpu",
-    seed: int = 42,
-) -> DatasetBatch:
-    """Sample from ring region: [-outer, outer] \ [-inner, inner]."""
-    torch.manual_seed(seed)
-    np.random.seed(seed)
-
-    oversample_factor = 4
-    full_dataset = sample_from_manifold(
-        manifold_sde,
-        [(-outer_bound, outer_bound), (-outer_bound, outer_bound)],
-        n_samples=n_samples * oversample_factor,
-        seed=seed,
-        device=device,
-    )
-
-    local = full_dataset.local_samples
-    in_outer = (local[:, 0].abs() <= outer_bound) & (local[:, 1].abs() <= outer_bound)
-    in_inner = (local[:, 0].abs() <= inner_bound) & (local[:, 1].abs() <= inner_bound)
-    in_ring = in_outer & ~in_inner
-
-    ring_indices = torch.where(in_ring)[0]
-
-    if len(ring_indices) < n_samples:
-        indices = ring_indices
-    else:
-        perm = torch.randperm(len(ring_indices))[:n_samples]
-        indices = ring_indices[perm]
-
-    return DatasetBatch(
-        samples=full_dataset.samples[indices],
-        local_samples=full_dataset.local_samples[indices],
-        weights=full_dataset.weights[indices],
-        mu=full_dataset.mu[indices],
-        cov=full_dataset.cov[indices],
-        p=full_dataset.p[indices],
-        hessians=full_dataset.hessians[indices],
-    )
 
 
 def compute_dynamics_metrics(model: AutoEncoder, dataset: DatasetBatch) -> Dict[str, float]:
@@ -156,7 +89,7 @@ def compute_dynamics_metrics(model: AutoEncoder, dataset: DatasetBatch) -> Dict[
     # Learned tangent projector: P = ∇φ (∇φᵀ∇φ)⁻¹ ∇φᵀ
     dphi_T = dphi.transpose(-1, -2)  # (B, d, D)
     gram = torch.bmm(dphi_T, dphi)  # (B, d, d)
-    gram_inv = torch.linalg.inv(gram)  # (B, d, d)
+    gram_inv = regularized_metric_inverse(gram)  # (B, d, d)
     P_learned = torch.bmm(torch.bmm(dphi, gram_inv), dphi_T)  # (B, D, D)
 
     # True tangent projector
@@ -253,24 +186,12 @@ def run_dynamics_extrapolation_study(
 
     # Create test datasets
     distances = [0.0] + list(np.arange(dist_step, max_extrap_dist + dist_step/2, dist_step))
-    test_datasets = {}
 
     print("\nSampling test data at different distances...")
+    test_datasets = create_test_datasets(
+        manifold_sde, train_bound, distances, dist_step, n_test, device, seed
+    )
     for dist in distances:
-        if dist == 0.0:
-            test_datasets[dist] = sample_from_manifold(
-                manifold_sde,
-                [(-train_bound, train_bound), (-train_bound, train_bound)],
-                n_samples=n_test,
-                seed=seed + 1000,
-                device=device,
-            )
-        else:
-            inner = train_bound + dist - dist_step
-            outer = train_bound + dist
-            test_datasets[dist] = sample_ring_region(
-                manifold_sde, inner, outer, n_test, device, seed + int(dist * 1000)
-            )
         print(f"  dist={dist:.1f}: {len(test_datasets[dist].samples)} samples")
 
     results = []

@@ -179,8 +179,7 @@ def run_single_ablation(
 
     # Evaluate on test set
     trainer.models[penalty_name].eval()
-    with torch.no_grad():
-        test_losses_df = compute_losses_per_sample(trainer.models[penalty_name], test_data)
+    test_losses_df = compute_losses_per_sample(trainer.models[penalty_name], test_data)
 
     test_metrics = {
         col: {
@@ -237,7 +236,7 @@ def run_ablation_study(
                 # Save intermediate results
                 save_results(results, output_dir)
 
-            except Exception as e:
+            except (RuntimeError, torch.linalg.LinAlgError, ValueError) as e:
                 print(f"ERROR in {surface} + {penalty_name}: {e}")
                 import traceback
                 traceback.print_exc()
