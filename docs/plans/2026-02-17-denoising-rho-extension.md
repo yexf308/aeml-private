@@ -205,13 +205,13 @@ $$\hat{\ell}_\rho = \ell_\rho^{\mathrm{clean}} + \Delta_{\mathrm{label}} + \Delt
 
 **Label noise perturbation** ($\tilde{v}$ vs $v$):
 
-$$\Delta_{\mathrm{label}} = \|\phi_\theta(\mathcal{E}_\theta(\tilde{x})) - \tilde{v}\|^2 - \|\phi_\theta(\mathcal{E}_\theta(\tilde{x})) - v\|^2 = \|w^v\|^2 - 2\langle w^v,\, v - \phi_\theta(\mathcal{E}_\theta(\tilde{x}))\rangle$$
+$$\Delta_{\mathrm{label}} = \|\phi_\theta(\mathcal{E}_\theta(\tilde{x})) - \tilde{v}\|^2 - \|\phi_\theta(\mathcal{E}_\theta(\tilde{x})) - v\|^2 = \|w^v\|^2 + 2\langle w^v,\, v - \phi_\theta(\mathcal{E}_\theta(\tilde{x}))\rangle$$
 
-Taking expectations: $\mathbb{E}[\Delta_{\mathrm{label}} \mid v, \tilde{x}] = \mathbb{E}[\|w^v\|^2] - 2\langle \beta(v),\, v - \phi_\theta(\mathcal{E}_\theta(\tilde{x}))\rangle$.
+Taking expectations: $\mathbb{E}[\Delta_{\mathrm{label}} \mid v, \tilde{x}] = \mathbb{E}[\|w^v\|^2] + 2\langle \beta(v),\, v - \phi_\theta(\mathcal{E}_\theta(\tilde{x}))\rangle$.
 
 - The term $\mathbb{E}[\|\eta\|^2] + \|\beta(v)\|^2$ contributes a $\theta$-independent constant plus a bias piece. The constant does not affect the minimizer.
 - The cross term $2\langle \beta(v),\, v - \phi_\theta(\mathcal{E}_\theta(\tilde{x}))\rangle$ is bounded via Young's inequality $2ab \leq a^2 + b^2$: for any $\alpha > 0$,
-  $$2\|\beta\|_\infty \cdot \|v - r_\theta(\tilde{x})\| \leq \alpha\,\|v - r_\theta(\tilde{x})\|^2 + \frac{\epsilon_{\mathrm{bias}}^2}{\alpha}.$$
+  $$2\|\beta\|_\infty \cdot \|v - \phi_\theta(\mathcal{E}_\theta(\tilde{x}))\| \leq \alpha\,\|v - \phi_\theta(\mathcal{E}_\theta(\tilde{x}))\|^2 + \frac{\epsilon_{\mathrm{bias}}^2}{\alpha}.$$
   Choosing $\alpha$ small enough to absorb the first term into the reconstruction loss gives an additive $O(\epsilon_{\mathrm{bias}}^2)$ contribution, matching term (III) in the theorem.
 
 For **mean-zero** label noise ($\beta \equiv 0$): the conditional expectation of $\Delta_{\mathrm{label}}$ is a $\theta$-independent constant, so the population minimizer is unchanged. At finite $m$, the mean-zero cross terms $\langle \eta_i, v_i - \phi_\theta(\mathcal{E}_\theta(\tilde{x}_i))\rangle$ contribute variance (not bias) to the ERM; this is absorbed into the estimation term (II) with the constant $C$ depending on $\sigma_v$. The rate is preserved.
@@ -230,8 +230,8 @@ The oracle autoencoder $(\mathcal{E}_\star, \phi_\star)$ with $\mathcal{E}_\star
 
 **Encoder contribution:** The encoder error $\|\mathcal{E}_\theta(\tilde{x}) - \mathcal{E}_\star(\tilde{x})\| \leq \delta_{\mathrm{enc}}$ propagates through the decoder:
 
-- Reconstruction: $\|\phi_\star(\mathcal{E}_\theta(\tilde{x})) - \phi_\star(\mathcal{E}_\star(\tilde{x}))\| \leq \|\phi_\star\|_{\mathrm{Lip}} \cdot \delta_{\mathrm{enc}} \leq r_0\,\delta_{\mathrm{enc}}$
-- Projection: $\|P_{\phi_\star}(\mathcal{E}_\theta(\tilde{x})) - P_{\phi_\star}(\mathcal{E}_\star(\tilde{x}))\|_F \leq \frac{\sqrt{2}}{s_0/2} \cdot \|D\phi_\star\|_{\mathrm{Lip}} \cdot \delta_{\mathrm{enc}}$
+- Reconstruction: $\|\phi_\star(\mathcal{E}_\theta(\tilde{x})) - \phi_\star(\mathcal{E}_\star(\tilde{x}))\| \leq \|\phi_\star\|_{\mathrm{Lip}} \cdot \delta_{\mathrm{enc}} \leq \|D\phi_\star\|_{L^\infty(U)}\,\delta_{\mathrm{enc}}$
+- Projection: $\|P_{\phi_\star}(\mathcal{E}_\theta(\tilde{x})) - P_{\phi_\star}(\mathcal{E}_\star(\tilde{x}))\|_F \leq \frac{\sqrt{2}}{s_0} \cdot \|D\phi_\star\|_{\mathrm{Lip}(U)} \cdot \delta_{\mathrm{enc}}$
 
 Combined with decoder error via triangle inequality: approximation term is $O(\delta_{\mathrm{dec}}^2 + \delta_{\mathrm{enc}}^2(1 + s_0^{-2}))$.
 
@@ -247,7 +247,7 @@ The estimation error is $O(\mathrm{Pdim}(\mathcal{H}) \log m / m)$, with the sam
 
 ### Step 3: Geometric label noise via base-point Lipschitz lemma
 
-The geometric label $\hat{P}_i$ is estimated at a landmark $z_j \in \mathcal{M}(q)$ that may be off-manifold. Let $z_j^\star := \pi_M(z_j)$ be the on-manifold projection of the landmark. The error decomposes into three terms:
+The geometric label $\hat{P}_i$ is estimated at a landmark $z_j \in \mathcal{M}(q)$ that may be off-manifold. Let $z_j^\star := \pi_M(z_j)$ be the on-manifold projection of the landmark. The error decomposes into two terms:
 
 $$\|\hat{P}_i - P_\star(v_i)\|_F \leq \underbrace{\|\hat{P}_i - P_\star(z_j^\star)\|_F}_{\text{(a) statistical + off-manifold}} + \underbrace{\|P_\star(z_j^\star) - P_\star(v_i)\|_F}_{\text{(b) on-manifold displacement}}$$
 

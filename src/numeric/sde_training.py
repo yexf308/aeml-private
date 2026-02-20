@@ -3,17 +3,19 @@ Multi-stage SDE training pipeline.
 
 Stage 1: Train autoencoder with recon + T + K (existing MultiModelTrainer).
 Stage 2: Freeze AE, train drift_net with tangential drift matching.
-Stage 3: Freeze AE, train diffusion_net with tangent-projected cov + K reg.
+Stage 3: Freeze AE, train diffusion_net with ambient covariance matching.
 
 Conventions:
 - In Stages 2/3: freeze entire autoencoder AND detach z.
 - Do NOT wrap in torch.no_grad() — torch.func transforms need the graph.
 """
+import copy
+
 import torch
 import torch.nn as nn
 from torch.utils.data import DataLoader, TensorDataset
 
-from .sde_losses import tangential_drift_loss, tangent_diffusion_loss
+from .sde_losses import tangential_drift_loss, ambient_diffusion_loss
 
 
 class SDEPipelineTrainer:
@@ -42,6 +44,32 @@ class SDEPipelineTrainer:
         for p in self.autoencoder.parameters():
             p.requires_grad_(True)
 
+    def precompute_decoder_derivatives(self, x, batch_size=64):
+        """Precompute z, dphi, d2phi for all training points (frozen AE).
+
+        This avoids recomputing expensive Hessians every batch in Stages 2/3.
+
+        Args:
+            x: Ambient samples, shape (N, D).
+            batch_size: Batch size for precomputation.
+
+        Returns:
+            z: Latent encodings, shape (N, d). Detached.
+            dphi: Decoder Jacobians, shape (N, D, d). Detached.
+            d2phi: Decoder Hessians, shape (N, D, d, d). Detached.
+        """
+        self._freeze_autoencoder()
+        z_all, dphi_all, d2phi_all = [], [], []
+        for i in range(0, len(x), batch_size):
+            x_b = x[i:i + batch_size].to(self.device)
+            z = self.autoencoder.encoder(x_b).detach()
+            dphi = self.autoencoder.decoder.jacobian_network(z).detach()
+            d2phi = self.autoencoder.decoder.hessian_network(z).detach()
+            z_all.append(z)
+            dphi_all.append(dphi)
+            d2phi_all.append(d2phi)
+        return torch.cat(z_all), torch.cat(dphi_all), torch.cat(d2phi_all)
+
     def train_stage2(
         self, x, v, Lambda, epochs, lr=1e-3, batch_size=32, print_interval=100,
     ):
@@ -65,6 +93,7 @@ class SDEPipelineTrainer:
         optimizer = torch.optim.Adam(self.drift_net.parameters(), lr=lr)
         loader = self._make_sde_dataloader(x, v, Lambda, batch_size)
         losses = []
+        best_loss, best_state = float("inf"), None
 
         for epoch in range(epochs):
             epoch_loss = 0.0
@@ -84,48 +113,34 @@ class SDEPipelineTrainer:
                 n_batches += 1
             avg_loss = epoch_loss / max(n_batches, 1)
             losses.append(avg_loss)
+            if avg_loss < best_loss:
+                best_loss = avg_loss
+                best_state = copy.deepcopy(self.drift_net.state_dict())
             if print_interval and (epoch + 1) % print_interval == 0:
                 print(f"  Stage 2 epoch {epoch+1}/{epochs}: loss={avg_loss:.6f}")
 
+        self.drift_net.load_state_dict(best_state)
         return losses
 
-    def train_stage3(
-        self, x, v, Lambda, epochs, lr=1e-3, batch_size=32,
-        lambda_K=0.1, print_interval=100,
+    def train_stage2_precomputed(
+        self, z, dphi, d2phi, v, Lambda, epochs, lr=1e-3,
+        batch_size=32, print_interval=100,
     ):
-        """
-        Stage 3: Train diffusion_net with tangent-projected cov + K reg (frozen AE).
-
-        Args:
-            x: Ambient samples, shape (N, D).
-            v: Ambient drift/velocity, shape (N, D).
-            Lambda: Ambient covariance, shape (N, D, D).
-            epochs: Number of training epochs.
-            lr: Learning rate.
-            batch_size: Batch size.
-            lambda_K: Weight for K identity regularization.
-            print_interval: Print loss every N epochs.
-
-        Returns:
-            List of epoch-averaged losses.
-        """
-        self._freeze_autoencoder()
-        self.diffusion_net.train()
-        optimizer = torch.optim.Adam(self.diffusion_net.parameters(), lr=lr)
-        loader = self._make_sde_dataloader(x, v, Lambda, batch_size)
+        """Stage 2 with precomputed decoder derivatives (much faster)."""
+        self.drift_net.train()
+        optimizer = torch.optim.Adam(self.drift_net.parameters(), lr=lr)
+        dataset = TensorDataset(z, dphi, d2phi, v, Lambda)
+        loader = DataLoader(dataset, batch_size=batch_size, shuffle=True)
         losses = []
+        best_loss, best_state = float("inf"), None
 
         for epoch in range(epochs):
             epoch_loss = 0.0
             n_batches = 0
-            for x_b, v_b, Lambda_b in loader:
-                x_b = x_b.to(self.device)
-                v_b = v_b.to(self.device)
-                Lambda_b = Lambda_b.to(self.device)
-                z = self.autoencoder.encoder(x_b).detach()
-                loss = tangent_diffusion_loss(
-                    self.autoencoder.decoder, self.diffusion_net,
-                    z, v_b, Lambda_b, lambda_K=lambda_K,
+            for z_b, dphi_b, d2phi_b, v_b, Lambda_b in loader:
+                loss = tangential_drift_loss(
+                    self.autoencoder.decoder, self.drift_net,
+                    z_b, v_b, Lambda_b, dphi=dphi_b, d2phi=d2phi_b,
                 )
                 optimizer.zero_grad()
                 loss.backward()
@@ -134,9 +149,118 @@ class SDEPipelineTrainer:
                 n_batches += 1
             avg_loss = epoch_loss / max(n_batches, 1)
             losses.append(avg_loss)
+            if avg_loss < best_loss:
+                best_loss = avg_loss
+                best_state = copy.deepcopy(self.drift_net.state_dict())
+            if print_interval and (epoch + 1) % print_interval == 0:
+                print(f"  Stage 2 epoch {epoch+1}/{epochs}: loss={avg_loss:.6f}")
+
+        self.drift_net.load_state_dict(best_state)
+        return losses
+
+    def train_stage3(
+        self, x, Lambda, epochs, lr=1e-3, batch_size=32, print_interval=100,
+    ):
+        """
+        Stage 3: Train diffusion_net with ambient covariance matching (frozen AE).
+
+        Args:
+            x: Ambient samples, shape (N, D).
+            Lambda: Ambient covariance, shape (N, D, D).
+            epochs: Number of training epochs.
+            lr: Learning rate.
+            batch_size: Batch size.
+            print_interval: Print loss every N epochs.
+
+        Returns:
+            List of epoch-averaged losses.
+        """
+        self._freeze_autoencoder()
+        self.diffusion_net.train()
+        optimizer = torch.optim.Adam(self.diffusion_net.parameters(), lr=lr)
+        dataset = TensorDataset(x, Lambda)
+        loader = DataLoader(dataset, batch_size=batch_size, shuffle=True)
+        losses = []
+        best_loss, best_state = float("inf"), None
+
+        for epoch in range(epochs):
+            epoch_loss = 0.0
+            n_batches = 0
+            for x_b, Lambda_b in loader:
+                x_b = x_b.to(self.device)
+                Lambda_b = Lambda_b.to(self.device)
+                z = self.autoencoder.encoder(x_b).detach()
+                loss = ambient_diffusion_loss(
+                    self.diffusion_net, z, Lambda_b,
+                    decoder=self.autoencoder.decoder,
+                )
+                optimizer.zero_grad()
+                loss.backward()
+                optimizer.step()
+                epoch_loss += loss.item()
+                n_batches += 1
+            avg_loss = epoch_loss / max(n_batches, 1)
+            losses.append(avg_loss)
+            if avg_loss < best_loss:
+                best_loss = avg_loss
+                best_state = copy.deepcopy(self.diffusion_net.state_dict())
             if print_interval and (epoch + 1) % print_interval == 0:
                 print(f"  Stage 3 epoch {epoch+1}/{epochs}: loss={avg_loss:.6f}")
 
+        self.diffusion_net.load_state_dict(best_state)
+        return losses
+
+    def train_stage3_precomputed(
+        self, z, dphi, Lambda, epochs, lr=1e-3,
+        batch_size=32, print_interval=100,
+        v=None, d2phi=None, lambda_K=0.0,
+    ):
+        """Stage 3 with precomputed decoder Jacobians (much faster).
+
+        Args:
+            v: Ambient drift, shape (N, D). Required if lambda_K > 0.
+            d2phi: Decoder Hessians, shape (N, D, d, d). Required if lambda_K > 0.
+            lambda_K: Weight for K identity regularization in diffusion loss.
+        """
+        self.diffusion_net.train()
+        optimizer = torch.optim.Adam(self.diffusion_net.parameters(), lr=lr)
+        if lambda_K > 0:
+            dataset = TensorDataset(z, dphi, d2phi, v, Lambda)
+        else:
+            dataset = TensorDataset(z, dphi, Lambda)
+        loader = DataLoader(dataset, batch_size=batch_size, shuffle=True)
+        losses = []
+        best_loss, best_state = float("inf"), None
+
+        for epoch in range(epochs):
+            epoch_loss = 0.0
+            n_batches = 0
+            for batch in loader:
+                if lambda_K > 0:
+                    z_b, dphi_b, d2phi_b, v_b, Lambda_b = batch
+                    loss = ambient_diffusion_loss(
+                        self.diffusion_net, z_b, Lambda_b, dphi=dphi_b,
+                        v=v_b, d2phi=d2phi_b, lambda_K=lambda_K,
+                    )
+                else:
+                    z_b, dphi_b, Lambda_b = batch
+                    loss = ambient_diffusion_loss(
+                        self.diffusion_net, z_b, Lambda_b, dphi=dphi_b,
+                    )
+                optimizer.zero_grad()
+                loss.backward()
+                optimizer.step()
+                epoch_loss += loss.item()
+                n_batches += 1
+            avg_loss = epoch_loss / max(n_batches, 1)
+            losses.append(avg_loss)
+            if avg_loss < best_loss:
+                best_loss = avg_loss
+                best_state = copy.deepcopy(self.diffusion_net.state_dict())
+            if print_interval and (epoch + 1) % print_interval == 0:
+                print(f"  Stage 3 epoch {epoch+1}/{epochs}: loss={avg_loss:.6f}")
+
+        self.diffusion_net.load_state_dict(best_state)
         return losses
 
     @torch.no_grad()

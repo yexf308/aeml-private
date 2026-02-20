@@ -198,8 +198,8 @@ def autoencoder_loss(model: AutoEncoder,
         local_cov_z = 0.5 * (local_cov_z + local_cov_z.mT)  # symmetrize
 
     if loss_weights.curvature > 0.:
-        normal_drift_true = torch.bmm(normal_proj, mu.unsqueeze(-1)).squeeze(-1)
         nhat = torch.eye(p.size(1), device=p.device, dtype=p.dtype).unsqueeze(0) - phat
+        normal_drift_true = torch.bmm(nhat, mu.unsqueeze(-1)).squeeze(-1)
 
         if use_hessian_free_curvature:
             normal_drift_model = curvature_drift_hessian_free(

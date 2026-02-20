@@ -3,7 +3,7 @@ Tests for the data-driven latent SDE pipeline components.
 
 Covers:
 - DriftNet / DiffusionNet forward shapes and properties
-- tangential_drift_loss / tangent_diffusion_loss correctness
+- tangential_drift_loss / ambient_diffusion_loss correctness
 - Gradient isolation: each loss only trains its target net
 - Numerical conventions: halved q, stable pseudoinverse, symmetry, P_hat idempotency
 """
@@ -13,7 +13,7 @@ import pytest
 
 from src.numeric.autoencoders import AutoEncoder
 from src.numeric.sde_nets import DriftNet, DiffusionNet
-from src.numeric.sde_losses import tangential_drift_loss, tangent_diffusion_loss
+from src.numeric.sde_losses import tangential_drift_loss, ambient_diffusion_loss
 from src.numeric.geometry import (
     curvature_drift_explicit_full,
     ambient_quadratic_variation_drift,
@@ -176,29 +176,41 @@ class TestTangentialDriftLoss:
 
 
 # ---------------------------------------------------------------------------
-# Tangent diffusion loss tests
+# Ambient diffusion loss tests
 # ---------------------------------------------------------------------------
 
-class TestTangentDiffusionLoss:
+class TestAmbientDiffusionLoss:
     def test_loss_runs(self, ae, diffusion_net, sample_data):
         """Loss computes without error."""
-        x, v, Lambda = sample_data
+        x, _, Lambda = sample_data
         ae.eval()
         for p in ae.parameters():
             p.requires_grad_(False)
         z = ae.encoder(x).detach()
-        loss = tangent_diffusion_loss(ae.decoder, diffusion_net, z, v, Lambda)
+        loss = ambient_diffusion_loss(diffusion_net, z, Lambda, decoder=ae.decoder)
+        assert loss.dim() == 0
+        assert torch.isfinite(loss)
+
+    def test_loss_with_precomputed_dphi(self, ae, diffusion_net, sample_data):
+        """Loss works with precomputed Jacobian."""
+        x, _, Lambda = sample_data
+        ae.eval()
+        for p in ae.parameters():
+            p.requires_grad_(False)
+        z = ae.encoder(x).detach()
+        dphi = ae.decoder.jacobian_network(z).detach()
+        loss = ambient_diffusion_loss(diffusion_net, z, Lambda, dphi=dphi)
         assert loss.dim() == 0
         assert torch.isfinite(loss)
 
     def test_gradient_flows_to_diffusion_net_only(self, ae, drift_net, diffusion_net, sample_data):
         """Gradient should flow to diffusion_net only."""
-        x, v, Lambda = sample_data
+        x, _, Lambda = sample_data
         ae.eval()
         for p in ae.parameters():
             p.requires_grad_(False)
         z = ae.encoder(x).detach()
-        loss = tangent_diffusion_loss(ae.decoder, diffusion_net, z, v, Lambda)
+        loss = ambient_diffusion_loss(diffusion_net, z, Lambda, decoder=ae.decoder)
         loss.backward()
 
         # diffusion_net should have gradients
