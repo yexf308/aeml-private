@@ -34,10 +34,10 @@ SURFACE_MAP = {
 PENALTY_CONFIGS = {
     "baseline": LossWeights(),
     "T": LossWeights(tangent_bundle=1.0),
-    "K": LossWeights(curvature=1.0),
-    "T+K": LossWeights(tangent_bundle=1.0, curvature=1.0),
+    "K": LossWeights(curvature=0.1),
+    "T+K": LossWeights(tangent_bundle=1.0, curvature=0.1),
     "T+F": LossWeights(tangent_bundle=1.0, diffeo=1.0),
-    "T+F+K": LossWeights(tangent_bundle=1.0, diffeo=1.0, curvature=1.0),
+    "T+F+K": LossWeights(tangent_bundle=1.0, diffeo=1.0, curvature=0.1),
 }
 
 def make_model_config(
