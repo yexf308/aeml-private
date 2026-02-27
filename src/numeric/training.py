@@ -53,6 +53,7 @@ class ModelConfig:
     # Optional training schedule: list of phases to execute in order
     # If provided, loss_weights is used as the final phase weights
     training_schedule: Optional[list] = None  # List[TrainingPhase]
+    use_true_projection: bool = False
 
 class MultiModelTrainer:
     """Class to handle training multiple models simultaneously"""
@@ -181,6 +182,7 @@ class MultiModelTrainer:
                     tangent_basis=tangent_basis,
                     hessians=hessians_batch,
                     local_cov_true=local_cov_true_batch,
+                    use_true_projection=self.model_configs[model_name].use_true_projection,
                 )
                 loss.backward()
                 # Gradient clipping for training stability

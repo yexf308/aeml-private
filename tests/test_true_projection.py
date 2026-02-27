@@ -4,6 +4,7 @@ import torch.nn as nn
 import pytest
 from src.numeric.autoencoders import AutoEncoder
 from src.numeric.losses import autoencoder_loss, LossWeights
+from src.numeric.training import ModelConfig
 
 
 @pytest.fixture
@@ -51,3 +52,16 @@ def test_use_true_projection_no_curvature_is_noop(setup):
     loss_learned = autoencoder_loss(ae, targets, lw_no_k, use_true_projection=False)
     loss_true = autoencoder_loss(ae, targets, lw_no_k, use_true_projection=True)
     assert torch.allclose(loss_learned, loss_true)
+
+
+def test_model_config_use_true_projection():
+    """ModelConfig should accept and store use_true_projection."""
+    mc = ModelConfig(
+        name="test",
+        loss_weights=LossWeights(curvature=0.1),
+        use_true_projection=True,
+    )
+    assert mc.use_true_projection is True
+
+    mc_default = ModelConfig(name="test2", loss_weights=LossWeights())
+    assert mc_default.use_true_projection is False
