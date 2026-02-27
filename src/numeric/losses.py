@@ -116,7 +116,8 @@ def autoencoder_loss(model: AutoEncoder,
                      loss_weights: LossWeights,
                      tangent_basis: torch.Tensor = None,
                      hessians: torch.Tensor = None,
-                     local_cov_true: torch.Tensor = None):
+                     local_cov_true: torch.Tensor = None,
+                     use_true_projection: bool = False):
     """
     Compute total autoencoder loss with optional regularization penalties.
 
@@ -198,7 +199,10 @@ def autoencoder_loss(model: AutoEncoder,
         local_cov_z = 0.5 * (local_cov_z + local_cov_z.mT)  # symmetrize
 
     if loss_weights.curvature > 0.:
-        nhat = torch.eye(p.size(1), device=p.device, dtype=p.dtype).unsqueeze(0) - phat
+        if use_true_projection:
+            nhat = torch.eye(p.size(1), device=p.device, dtype=p.dtype).unsqueeze(0) - p
+        else:
+            nhat = torch.eye(p.size(1), device=p.device, dtype=p.dtype).unsqueeze(0) - phat
         normal_drift_true = torch.bmm(nhat, mu.unsqueeze(-1)).squeeze(-1)
 
         if use_hessian_free_curvature:
