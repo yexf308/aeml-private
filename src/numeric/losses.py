@@ -214,7 +214,7 @@ def autoencoder_loss(model: AutoEncoder,
             normal_drift_model = curvature_drift_explicit(d2phi, local_cov_z, nhat)
 
     # Accumulating losses
-    total_loss = empirical_l2_risk(xhat, x)
+    total_loss = empirical_l2_risk(xhat, x) / D
     if loss_weights.tangent_bundle > 0.0:
         if use_efficient_tangent:
             # Use efficient O(Dd²) trace-based computation
@@ -232,5 +232,5 @@ def autoencoder_loss(model: AutoEncoder,
     if loss_weights.diffeo > 0.0:
         total_loss += loss_weights.diffeo * empirical_diffeo_penalty(dpi, dphi)
     if loss_weights.curvature > 0.0:
-        total_loss += loss_weights.curvature * empirical_l2_risk(normal_drift_model, normal_drift_true)
+        total_loss += loss_weights.curvature * empirical_l2_risk(normal_drift_model, normal_drift_true) / D
     return total_loss

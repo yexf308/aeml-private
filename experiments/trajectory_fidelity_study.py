@@ -193,18 +193,20 @@ def simulate_ground_truth(
         boundary: hard boundary in local coordinates
 
     Returns:
-        ambient_traj: (B, n_steps+1, 3) trajectories in ambient space
+        ambient_traj: (B, n_steps+1, D) trajectories in ambient space
         alive: (B, n_steps+1) boolean mask (True = trajectory still active)
     """
     B = initial_local.shape[0]
     device = initial_local.device
     sqrt_dt = math.sqrt(dt)
 
-    ambient_traj = torch.zeros(B, n_steps + 1, 3, device=device)
     alive = torch.ones(B, n_steps + 1, dtype=torch.bool, device=device)
 
     coords = initial_local.clone()
-    ambient_traj[:, 0] = sde.chart(coords)
+    x0 = sde.chart(coords)
+    D = x0.shape[-1]
+    ambient_traj = torch.zeros(B, n_steps + 1, D, device=device)
+    ambient_traj[:, 0] = x0
 
     for step in range(n_steps):
         drift = sde.local_drift(coords)
@@ -259,7 +261,6 @@ def simulate_learned_latent(
     device = initial_local.device
     sqrt_dt = math.sqrt(dt)
 
-    ambient_traj = torch.zeros(B, n_steps + 1, 3, device=device)
     alive = torch.ones(B, n_steps + 1, dtype=torch.bool, device=device)
 
     coords = initial_local.clone()
@@ -267,7 +268,10 @@ def simulate_learned_latent(
     # Map initial position through learned model: phi -> encoder -> decoder
     with torch.no_grad():
         x_true = sde.chart(coords)
-        ambient_traj[:, 0] = model.decoder(model.encoder(x_true))
+        x0 = model.decoder(model.encoder(x_true))
+        D = x0.shape[-1]
+    ambient_traj = torch.zeros(B, n_steps + 1, D, device=device)
+    ambient_traj[:, 0] = x0
 
     for step in range(n_steps):
         # TRUE SDE coefficients at TRUE local coordinates
@@ -325,7 +329,7 @@ def simulate_end_to_end(
         boundary: Hard boundary in latent coordinates.
 
     Returns:
-        ambient_traj: (B, n_steps+1, 3) trajectories in ambient space.
+        ambient_traj: (B, n_steps+1, D) trajectories in ambient space.
         alive: (B, n_steps+1) boolean mask.
     """
     model.eval()
@@ -333,7 +337,8 @@ def simulate_end_to_end(
     device = initial_ambient.device
     sqrt_dt = math.sqrt(dt)
 
-    ambient_traj = torch.zeros(B, n_steps + 1, 3, device=device)
+    D = initial_ambient.shape[-1]
+    ambient_traj = torch.zeros(B, n_steps + 1, D, device=device)
     alive = torch.ones(B, n_steps + 1, dtype=torch.bool, device=device)
 
     # Encode initial ambient positions to latent space

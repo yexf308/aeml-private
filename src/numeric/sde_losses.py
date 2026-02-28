@@ -71,7 +71,8 @@ def tangential_drift_loss(
     residual = dphi_bz - (v - q)           # full ambient residual
     tan_res = (P_hat @ residual.unsqueeze(-1)).squeeze(-1)  # project to tangent
 
-    return (tan_res ** 2).sum(-1).mean()
+    D = tan_res.shape[-1]
+    return (tan_res ** 2).sum(-1).mean() / D
 
 
 def ambient_diffusion_loss(
@@ -117,7 +118,8 @@ def ambient_diffusion_loss(
     Sigma_z = 0.5 * (Sigma_z + Sigma_z.mT)
 
     Lambda_pred = dphi @ Sigma_z @ dphi.mT  # (B, D, D)
-    cov_loss = ((Lambda_pred - Lambda) ** 2).sum((-1, -2)).mean()
+    D = Lambda.shape[-1]
+    cov_loss = ((Lambda_pred - Lambda) ** 2).sum((-1, -2)).mean() / (D * D)
 
     if lambda_K == 0.0:
         return cov_loss
@@ -137,6 +139,6 @@ def ambient_diffusion_loss(
     I_mat = torch.eye(D, device=z.device, dtype=z.dtype).unsqueeze(0)
     N_hat = I_mat - P_hat
     normal_res = (N_hat @ (v - q).unsqueeze(-1)).squeeze(-1)
-    K_loss = (normal_res ** 2).sum(-1).mean()
+    K_loss = (normal_res ** 2).sum(-1).mean() / D
 
     return cov_loss + lambda_K * K_loss

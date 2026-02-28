@@ -91,6 +91,9 @@ class SDEPipelineTrainer:
         self._freeze_autoencoder()
         self.drift_net.train()
         optimizer = torch.optim.Adam(self.drift_net.parameters(), lr=lr)
+        scheduler = torch.optim.lr_scheduler.ReduceLROnPlateau(
+            optimizer, mode='min', factor=0.5, patience=50,
+        )
         loader = self._make_sde_dataloader(x, v, Lambda, batch_size)
         losses = []
         best_loss, best_state = float("inf"), None
@@ -108,11 +111,13 @@ class SDEPipelineTrainer:
                 )
                 optimizer.zero_grad()
                 loss.backward()
+                torch.nn.utils.clip_grad_norm_(self.drift_net.parameters(), max_norm=1.0)
                 optimizer.step()
                 epoch_loss += loss.item()
                 n_batches += 1
             avg_loss = epoch_loss / max(n_batches, 1)
             losses.append(avg_loss)
+            scheduler.step(avg_loss)
             if avg_loss < best_loss:
                 best_loss = avg_loss
                 best_state = copy.deepcopy(self.drift_net.state_dict())
@@ -129,6 +134,9 @@ class SDEPipelineTrainer:
         """Stage 2 with precomputed decoder derivatives (much faster)."""
         self.drift_net.train()
         optimizer = torch.optim.Adam(self.drift_net.parameters(), lr=lr)
+        scheduler = torch.optim.lr_scheduler.ReduceLROnPlateau(
+            optimizer, mode='min', factor=0.5, patience=50,
+        )
         dataset = TensorDataset(z, dphi, d2phi, v, Lambda)
         loader = DataLoader(dataset, batch_size=batch_size, shuffle=True)
         losses = []
@@ -144,11 +152,13 @@ class SDEPipelineTrainer:
                 )
                 optimizer.zero_grad()
                 loss.backward()
+                torch.nn.utils.clip_grad_norm_(self.drift_net.parameters(), max_norm=1.0)
                 optimizer.step()
                 epoch_loss += loss.item()
                 n_batches += 1
             avg_loss = epoch_loss / max(n_batches, 1)
             losses.append(avg_loss)
+            scheduler.step(avg_loss)
             if avg_loss < best_loss:
                 best_loss = avg_loss
                 best_state = copy.deepcopy(self.drift_net.state_dict())
@@ -178,6 +188,9 @@ class SDEPipelineTrainer:
         self._freeze_autoencoder()
         self.diffusion_net.train()
         optimizer = torch.optim.Adam(self.diffusion_net.parameters(), lr=lr)
+        scheduler = torch.optim.lr_scheduler.ReduceLROnPlateau(
+            optimizer, mode='min', factor=0.5, patience=50,
+        )
         dataset = TensorDataset(x, Lambda)
         loader = DataLoader(dataset, batch_size=batch_size, shuffle=True)
         losses = []
@@ -196,11 +209,13 @@ class SDEPipelineTrainer:
                 )
                 optimizer.zero_grad()
                 loss.backward()
+                torch.nn.utils.clip_grad_norm_(self.diffusion_net.parameters(), max_norm=1.0)
                 optimizer.step()
                 epoch_loss += loss.item()
                 n_batches += 1
             avg_loss = epoch_loss / max(n_batches, 1)
             losses.append(avg_loss)
+            scheduler.step(avg_loss)
             if avg_loss < best_loss:
                 best_loss = avg_loss
                 best_state = copy.deepcopy(self.diffusion_net.state_dict())
@@ -224,6 +239,9 @@ class SDEPipelineTrainer:
         """
         self.diffusion_net.train()
         optimizer = torch.optim.Adam(self.diffusion_net.parameters(), lr=lr)
+        scheduler = torch.optim.lr_scheduler.ReduceLROnPlateau(
+            optimizer, mode='min', factor=0.5, patience=50,
+        )
         if lambda_K > 0:
             dataset = TensorDataset(z, dphi, d2phi, v, Lambda)
         else:
@@ -249,11 +267,13 @@ class SDEPipelineTrainer:
                     )
                 optimizer.zero_grad()
                 loss.backward()
+                torch.nn.utils.clip_grad_norm_(self.diffusion_net.parameters(), max_norm=1.0)
                 optimizer.step()
                 epoch_loss += loss.item()
                 n_batches += 1
             avg_loss = epoch_loss / max(n_batches, 1)
             losses.append(avg_loss)
+            scheduler.step(avg_loss)
             if avg_loss < best_loss:
                 best_loss = avg_loss
                 best_state = copy.deepcopy(self.diffusion_net.state_dict())
