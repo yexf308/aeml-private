@@ -127,7 +127,7 @@ def run_single_fork(surface_name, D, seed, epochs_ae=500, epochs_sde=300):
     Lambda = train_data.cov.to(DEVICE)
 
     # ── Phase 1: T+F warmup (ONCE) ──
-    phase1_epochs = epochs_ae // 2
+    phase1_epochs = max(1, epochs_ae // 2)
 
     trainer = MultiModelTrainer(TrainingConfig(
         epochs=epochs_ae, n_samples=N_TRAIN, input_dim=D, hidden_dim=hdims[0],
