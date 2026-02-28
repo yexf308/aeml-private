@@ -18,5 +18,8 @@ env/
 # Paper (separate repo)
 Autoencoder-Paper/
 
+# Worktrees
+.worktrees/
+
 # Claude Code
 CLAUDE.md
