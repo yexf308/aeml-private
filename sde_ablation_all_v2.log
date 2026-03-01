@@ -1,0 +1,482 @@
+Device: cuda
+
+AE regularization ablation on sinusoidal
+AE regs: ['T', 'T+K', 'T+F', 'T+F+K']
+
+--- Generating training data (once) ---
+--- Lambdifying SDE for evaluation (once) ---
+
+============================================================
+AE reg group: T
+============================================================
+
+--- Stage 1: Autoencoder (recon + T) ---
+/network/rit/lab/Yelab/anaconda3/lib/python3.9/site-packages/torch/autograd/graph.py:829: UserWarning: Attempting to run cuBLAS, but there was no current CUDA context! Attempting to set the primary context... (Triggered internally at /pytorch/aten/src/ATen/cuda/CublasHandlePool.cpp:179.)
+  return Variable._execution_engine.run_backward(  # Calls into the C++ engine to run the backward pass
+  Epoch 100: loss=0.000612
+  Epoch 200: loss=0.000515
+  Epoch 300: loss=0.000701
+  Epoch 400: loss=0.000252
+  Epoch 500: loss=0.000826
+  Precomputing decoder Jacobians/Hessians...
+  Precomputed in 0.3s
+
+  Stage 2: Drift net (300 epochs)
+  Stage 2 epoch 60/300: loss=0.001533
+  Stage 2 epoch 120/300: loss=0.000520
+  Stage 2 epoch 180/300: loss=0.000277
+  Stage 2 epoch 240/300: loss=0.000292
+  Stage 2 epoch 300/300: loss=0.000147
+
+  Stage 3: Diffusion net (300 epochs)
+  Stage 3 epoch 60/300: loss=0.010885
+  Stage 3 epoch 120/300: loss=0.009397
+  Stage 3 epoch 180/300: loss=0.006110
+  Stage 3 epoch 240/300: loss=0.005173
+  Stage 3 epoch 300/300: loss=0.005246
+  Evaluating trajectory fidelity...
+  MTE@0.1: 0.2921
+  MTE@0.5: 0.7089
+  MTE@1.0: 1.0701
+  W2@1.0:  0.8831
+  MMD@1.0: 0.1557
+  Survival@1.0: 76.5%
+  Run time: 57.4s
+
+============================================================
+AE reg group: T+K
+============================================================
+
+--- Stage 1: Autoencoder (recon + T+K) ---
+  Epoch 100: loss=0.006109
+  Epoch 200: loss=0.003487
+  Epoch 300: loss=0.000840
+  Epoch 400: loss=0.000964
+  Epoch 500: loss=0.000530
+  Precomputing decoder Jacobians/Hessians...
+  Precomputed in 0.3s
+
+  Stage 2: Drift net (300 epochs)
+  Stage 2 epoch 60/300: loss=0.000571
+  Stage 2 epoch 120/300: loss=0.000303
+  Stage 2 epoch 180/300: loss=0.000213
+  Stage 2 epoch 240/300: loss=0.000137
+  Stage 2 epoch 300/300: loss=0.000219
+
+  Stage 3: Diffusion net (300 epochs)
+  Stage 3 epoch 60/300: loss=0.003730
+  Stage 3 epoch 120/300: loss=0.002236
+  Stage 3 epoch 180/300: loss=0.001756
+  Stage 3 epoch 240/300: loss=0.001566
+  Stage 3 epoch 300/300: loss=0.001305
+  Evaluating trajectory fidelity...
+  MTE@0.1: 0.2961
+  MTE@0.5: 0.7431
+  MTE@1.0: 1.1164
+  W2@1.0:  1.1952
+  MMD@1.0: 0.1698
+  Survival@1.0: 76.5%
+  Run time: 57.5s
+
+============================================================
+AE reg group: T+F
+============================================================
+
+--- Stage 1: Autoencoder (recon + T+F) ---
+  Epoch 100: loss=0.000350
+  Epoch 200: loss=0.000172
+  Epoch 300: loss=0.000393
+  Epoch 400: loss=0.000052
+  Epoch 500: loss=0.000129
+  Precomputing decoder Jacobians/Hessians...
+  Precomputed in 0.3s
+
+  Stage 2: Drift net (300 epochs)
+  Stage 2 epoch 60/300: loss=0.000683
+  Stage 2 epoch 120/300: loss=0.000489
+  Stage 2 epoch 180/300: loss=0.000332
+  Stage 2 epoch 240/300: loss=0.000303
+  Stage 2 epoch 300/300: loss=0.000347
+
+  Stage 3: Diffusion net (300 epochs)
+  Stage 3 epoch 60/300: loss=0.005968
+  Stage 3 epoch 120/300: loss=0.004085
+  Stage 3 epoch 180/300: loss=0.002464
+  Stage 3 epoch 240/300: loss=0.004977
+  Stage 3 epoch 300/300: loss=0.002914
+  Evaluating trajectory fidelity...
+  MTE@0.1: 0.2906
+  MTE@0.5: 0.7336
+  MTE@1.0: 1.1483
+  W2@1.0:  1.2824
+  MMD@1.0: 0.1790
+  Survival@1.0: 76.5%
+  Run time: 57.7s
+
+============================================================
+AE reg group: T+F+K
+============================================================
+
+--- Stage 1: Autoencoder (recon + T+F+K) ---
+  Epoch 100: loss=0.014585
+  Epoch 200: loss=0.008711
+  Epoch 300: loss=0.003392
+  Epoch 400: loss=0.000829
+  Epoch 500: loss=0.000756
+  Precomputing decoder Jacobians/Hessians...
+  Precomputed in 0.3s
+
+  Stage 2: Drift net (300 epochs)
+  Stage 2 epoch 60/300: loss=0.000699
+  Stage 2 epoch 120/300: loss=0.000235
+  Stage 2 epoch 180/300: loss=0.000190
+  Stage 2 epoch 240/300: loss=0.000085
+  Stage 2 epoch 300/300: loss=0.000041
+
+  Stage 3: Diffusion net (300 epochs)
+  Stage 3 epoch 60/300: loss=0.009176
+  Stage 3 epoch 120/300: loss=0.005012
+  Stage 3 epoch 180/300: loss=0.003495
+  Stage 3 epoch 240/300: loss=0.003122
+  Stage 3 epoch 300/300: loss=0.003939
+  Evaluating trajectory fidelity...
+  MTE@0.1: 0.2987
+  MTE@0.5: 0.7241
+  MTE@1.0: 1.0574
+  W2@1.0:  1.0032
+  MMD@1.0: 0.1564
+  Survival@1.0: 76.5%
+  Run time: 57.5s
+
+
+======================================================================
+ABLATION RESULTS
+======================================================================
+   surface ae_reg  ae_loss  drift_loss  diff_loss  MTE@0.1  MTE@0.5  MTE@1.0   W2@1.0  MMD@1.0  survival@1.0
+sinusoidal      T 0.000826    0.000147   0.005246 0.292094 0.708852 1.070058 0.883060 0.155682         0.765
+sinusoidal    T+K 0.000530    0.000219   0.001305 0.296072 0.743130 1.116376 1.195199 0.169792         0.765
+sinusoidal    T+F 0.000129    0.000347   0.002914 0.290581 0.733587 1.148259 1.282405 0.179006         0.765
+sinusoidal  T+F+K 0.000756    0.000041   0.003939 0.298720 0.724100 1.057407 1.003172 0.156358         0.765
+
+Total ablation time: 3205.6s
+Saved sde_ablation_sinusoidal.csv
+
+AE regularization ablation on paraboloid
+AE regs: ['T', 'T+K', 'T+F', 'T+F+K']
+
+--- Generating training data (once) ---
+--- Lambdifying SDE for evaluation (once) ---
+
+============================================================
+AE reg group: T
+============================================================
+
+--- Stage 1: Autoencoder (recon + T) ---
+  Epoch 100: loss=0.004390
+  Epoch 200: loss=0.000539
+  Epoch 300: loss=0.000517
+  Epoch 400: loss=0.000583
+  Epoch 500: loss=0.000528
+  Precomputing decoder Jacobians/Hessians...
+  Precomputed in 0.2s
+
+  Stage 2: Drift net (300 epochs)
+  Stage 2 epoch 60/300: loss=0.033550
+  Stage 2 epoch 120/300: loss=0.012687
+  Stage 2 epoch 180/300: loss=0.008737
+  Stage 2 epoch 240/300: loss=0.068253
+  Stage 2 epoch 300/300: loss=0.019541
+
+  Stage 3: Diffusion net (300 epochs)
+  Stage 3 epoch 60/300: loss=0.560183
+  Stage 3 epoch 120/300: loss=0.216040
+  Stage 3 epoch 180/300: loss=0.083285
+  Stage 3 epoch 240/300: loss=0.109975
+  Stage 3 epoch 300/300: loss=0.052160
+  Evaluating trajectory fidelity...
+  MTE@0.1: 1.0551
+  MTE@0.5: 2.2643
+  MTE@1.0: 2.8539
+  W2@1.0:  2.1112
+  MMD@1.0: 0.2715
+  Survival@1.0: 76.5%
+  Run time: 57.4s
+
+============================================================
+AE reg group: T+K
+============================================================
+
+--- Stage 1: Autoencoder (recon + T+K) ---
+  Epoch 100: loss=0.005281
+  Epoch 200: loss=0.003981
+  Epoch 300: loss=0.006061
+  Epoch 400: loss=0.000777
+  Epoch 500: loss=0.000620
+  Precomputing decoder Jacobians/Hessians...
+  Precomputed in 0.3s
+
+  Stage 2: Drift net (300 epochs)
+  Stage 2 epoch 60/300: loss=0.005462
+  Stage 2 epoch 120/300: loss=0.002181
+  Stage 2 epoch 180/300: loss=0.002592
+  Stage 2 epoch 240/300: loss=0.001704
+  Stage 2 epoch 300/300: loss=0.001546
+
+  Stage 3: Diffusion net (300 epochs)
+  Stage 3 epoch 60/300: loss=0.166894
+  Stage 3 epoch 120/300: loss=0.057142
+  Stage 3 epoch 180/300: loss=0.032414
+  Stage 3 epoch 240/300: loss=0.044342
+  Stage 3 epoch 300/300: loss=0.064205
+  Evaluating trajectory fidelity...
+  MTE@0.1: 0.4740
+  MTE@0.5: 1.4633
+  MTE@1.0: 2.3304
+  W2@1.0:  1.9998
+  MMD@1.0: 0.2726
+  Survival@1.0: 76.5%
+  Run time: 57.5s
+
+============================================================
+AE reg group: T+F
+============================================================
+
+--- Stage 1: Autoencoder (recon + T+F) ---
+  Epoch 100: loss=0.001457
+  Epoch 200: loss=0.000445
+  Epoch 300: loss=0.000363
+  Epoch 400: loss=0.003170
+  Epoch 500: loss=0.000479
+  Precomputing decoder Jacobians/Hessians...
+  Precomputed in 0.1s
+
+  Stage 2: Drift net (300 epochs)
+  Stage 2 epoch 60/300: loss=0.022463
+  Stage 2 epoch 120/300: loss=0.010231
+  Stage 2 epoch 180/300: loss=0.005749
+  Stage 2 epoch 240/300: loss=0.047191
+  Stage 2 epoch 300/300: loss=0.064470
+
+  Stage 3: Diffusion net (300 epochs)
+  Stage 3 epoch 60/300: loss=0.521726
+  Stage 3 epoch 120/300: loss=0.262236
+  Stage 3 epoch 180/300: loss=0.081202
+  Stage 3 epoch 240/300: loss=0.133855
+  Stage 3 epoch 300/300: loss=0.046876
+  Evaluating trajectory fidelity...
+  MTE@0.1: 1.0648
+  MTE@0.5: 2.2254
+  MTE@1.0: 2.7924
+  W2@1.0:  1.9677
+  MMD@1.0: 0.2799
+  Survival@1.0: 76.5%
+  Run time: 57.5s
+
+============================================================
+AE reg group: T+F+K
+============================================================
+
+--- Stage 1: Autoencoder (recon + T+F+K) ---
+  Epoch 100: loss=0.011535
+  Epoch 200: loss=0.015601
+  Epoch 300: loss=0.003109
+  Epoch 400: loss=0.004468
+  Epoch 500: loss=0.004703
+  Precomputing decoder Jacobians/Hessians...
+  Precomputed in 0.3s
+
+  Stage 2: Drift net (300 epochs)
+  Stage 2 epoch 60/300: loss=0.005754
+  Stage 2 epoch 120/300: loss=0.002265
+  Stage 2 epoch 180/300: loss=0.001269
+  Stage 2 epoch 240/300: loss=0.001280
+  Stage 2 epoch 300/300: loss=0.002323
+
+  Stage 3: Diffusion net (300 epochs)
+  Stage 3 epoch 60/300: loss=0.181761
+  Stage 3 epoch 120/300: loss=0.140115
+  Stage 3 epoch 180/300: loss=0.038462
+  Stage 3 epoch 240/300: loss=0.030090
+  Stage 3 epoch 300/300: loss=0.276319
+  Evaluating trajectory fidelity...
+  MTE@0.1: 1.0657
+  MTE@0.5: 2.2480
+  MTE@1.0: 2.8320
+  W2@1.0:  1.8051
+  MMD@1.0: 0.2349
+  Survival@1.0: 76.5%
+  Run time: 57.7s
+
+
+======================================================================
+ABLATION RESULTS
+======================================================================
+   surface ae_reg  ae_loss  drift_loss  diff_loss  MTE@0.1  MTE@0.5  MTE@1.0   W2@1.0  MMD@1.0  survival@1.0
+paraboloid      T 0.000528    0.019541   0.052160 1.055053 2.264254 2.853909 2.111209 0.271522         0.765
+paraboloid    T+K 0.000620    0.001546   0.064205 0.473957 1.463315 2.330424 1.999811 0.272650         0.765
+paraboloid    T+F 0.000479    0.064470   0.046876 1.064780 2.225435 2.792444 1.967684 0.279863         0.765
+paraboloid  T+F+K 0.004703    0.002323   0.276319 1.065717 2.247996 2.832026 1.805081 0.234857         0.765
+
+Total ablation time: 3204.0s
+Saved sde_ablation_paraboloid.csv
+
+AE regularization ablation on hyperbolic_paraboloid
+AE regs: ['T', 'T+K', 'T+F', 'T+F+K']
+
+--- Generating training data (once) ---
+--- Lambdifying SDE for evaluation (once) ---
+
+============================================================
+AE reg group: T
+============================================================
+
+--- Stage 1: Autoencoder (recon + T) ---
+  Epoch 100: loss=0.003439
+  Epoch 200: loss=0.001056
+  Epoch 300: loss=0.000620
+  Epoch 400: loss=0.000500
+  Epoch 500: loss=0.000164
+  Precomputing decoder Jacobians/Hessians...
+  Precomputed in 0.2s
+
+  Stage 2: Drift net (300 epochs)
+  Stage 2 epoch 60/300: loss=0.014247
+  Stage 2 epoch 120/300: loss=0.003395
+  Stage 2 epoch 180/300: loss=0.001518
+  Stage 2 epoch 240/300: loss=0.000715
+  Stage 2 epoch 300/300: loss=0.000565
+
+  Stage 3: Diffusion net (300 epochs)
+  Stage 3 epoch 60/300: loss=0.146505
+  Stage 3 epoch 120/300: loss=0.052990
+  Stage 3 epoch 180/300: loss=0.031553
+  Stage 3 epoch 240/300: loss=0.022165
+  Stage 3 epoch 300/300: loss=0.042882
+  Evaluating trajectory fidelity...
+  MTE@0.1: 0.4195
+  MTE@0.5: 1.2977
+  MTE@1.0: 1.9569
+  W2@1.0:  1.5093
+  MMD@1.0: 0.1764
+  Survival@1.0: 76.5%
+  Run time: 57.4s
+
+============================================================
+AE reg group: T+K
+============================================================
+
+--- Stage 1: Autoencoder (recon + T+K) ---
+  Epoch 100: loss=0.003422
+  Epoch 200: loss=0.001686
+  Epoch 300: loss=0.000569
+  Epoch 400: loss=0.000401
+  Epoch 500: loss=0.001921
+  Precomputing decoder Jacobians/Hessians...
+  Precomputed in 0.3s
+
+  Stage 2: Drift net (300 epochs)
+  Stage 2 epoch 60/300: loss=0.008699
+  Stage 2 epoch 120/300: loss=0.001491
+  Stage 2 epoch 180/300: loss=0.000580
+  Stage 2 epoch 240/300: loss=0.000457
+  Stage 2 epoch 300/300: loss=0.000225
+
+  Stage 3: Diffusion net (300 epochs)
+  Stage 3 epoch 60/300: loss=1.254972
+  Stage 3 epoch 120/300: loss=0.997050
+  Stage 3 epoch 180/300: loss=0.295291
+  Stage 3 epoch 240/300: loss=0.183969
+  Stage 3 epoch 300/300: loss=0.155875
+  Evaluating trajectory fidelity...
+  MTE@0.1: 0.7238
+  MTE@0.5: 1.7825
+  MTE@1.0: 2.2087
+  W2@1.0:  1.2566
+  MMD@1.0: 0.1385
+  Survival@1.0: 76.5%
+  Run time: 57.4s
+
+============================================================
+AE reg group: T+F
+============================================================
+
+--- Stage 1: Autoencoder (recon + T+F) ---
+  Epoch 100: loss=0.001175
+  Epoch 200: loss=0.000848
+  Epoch 300: loss=0.000669
+  Epoch 400: loss=0.000482
+  Epoch 500: loss=0.000173
+  Precomputing decoder Jacobians/Hessians...
+  Precomputed in 0.3s
+
+  Stage 2: Drift net (300 epochs)
+  Stage 2 epoch 60/300: loss=0.007921
+  Stage 2 epoch 120/300: loss=0.001804
+  Stage 2 epoch 180/300: loss=0.000538
+  Stage 2 epoch 240/300: loss=0.000440
+  Stage 2 epoch 300/300: loss=0.000324
+
+  Stage 3: Diffusion net (300 epochs)
+  Stage 3 epoch 60/300: loss=0.065206
+  Stage 3 epoch 120/300: loss=0.108864
+  Stage 3 epoch 180/300: loss=0.017477
+  Stage 3 epoch 240/300: loss=0.023737
+  Stage 3 epoch 300/300: loss=0.042920
+  Evaluating trajectory fidelity...
+  MTE@0.1: 1.0517
+  MTE@0.5: 2.5032
+  MTE@1.0: 2.9507
+  W2@1.0:  1.2835
+  MMD@1.0: 0.1610
+  Survival@1.0: 76.5%
+  Run time: 57.4s
+
+============================================================
+AE reg group: T+F+K
+============================================================
+
+--- Stage 1: Autoencoder (recon + T+F+K) ---
+  Epoch 100: loss=0.005221
+  Epoch 200: loss=0.005096
+  Epoch 300: loss=0.000534
+  Epoch 400: loss=0.000133
+  Epoch 500: loss=0.000090
+  Precomputing decoder Jacobians/Hessians...
+  Precomputed in 0.2s
+
+  Stage 2: Drift net (300 epochs)
+  Stage 2 epoch 60/300: loss=0.002973
+  Stage 2 epoch 120/300: loss=0.000728
+  Stage 2 epoch 180/300: loss=0.000441
+  Stage 2 epoch 240/300: loss=0.000207
+  Stage 2 epoch 300/300: loss=0.000290
+
+  Stage 3: Diffusion net (300 epochs)
+  Stage 3 epoch 60/300: loss=0.088432
+  Stage 3 epoch 120/300: loss=0.106963
+  Stage 3 epoch 180/300: loss=0.021176
+  Stage 3 epoch 240/300: loss=0.040128
+  Stage 3 epoch 300/300: loss=0.022916
+  Evaluating trajectory fidelity...
+  MTE@0.1: 0.8028
+  MTE@0.5: 1.9442
+  MTE@1.0: 2.7119
+  W2@1.0:  1.3762
+  MMD@1.0: 0.1897
+  Survival@1.0: 76.5%
+  Run time: 57.9s
+
+
+======================================================================
+ABLATION RESULTS
+======================================================================
+              surface ae_reg  ae_loss  drift_loss  diff_loss  MTE@0.1  MTE@0.5  MTE@1.0   W2@1.0  MMD@1.0  survival@1.0
+hyperbolic_paraboloid      T 0.000164    0.000565   0.042882 0.419547 1.297678 1.956929 1.509339 0.176441         0.765
+hyperbolic_paraboloid    T+K 0.001921    0.000225   0.155875 0.723776 1.782485 2.208680 1.256592 0.138487         0.765
+hyperbolic_paraboloid    T+F 0.000173    0.000324   0.042920 1.051709 2.503230 2.950678 1.283468 0.161022         0.765
+hyperbolic_paraboloid  T+F+K 0.000090    0.000290   0.022916 0.802754 1.944163 2.711903 1.376229 0.189683         0.765
+
+Total ablation time: 3199.1s
+Saved sde_ablation_hyperbolic_paraboloid.csv
+
+Done.

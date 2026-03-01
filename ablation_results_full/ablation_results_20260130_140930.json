@@ -1,0 +1,272 @@
+[
+  {
+    "surface": "paraboloid",
+    "penalty_config": "baseline",
+    "loss_weights": {
+      "tangent_bundle": 0.0,
+      "contractive": 0.0,
+      "normal_decoder_jacobian": 0.0,
+      "decoder_contraction": 0.0,
+      "diffeo": 0.0,
+      "curvature": 0.0
+    },
+    "epochs": 500,
+    "final_losses": {
+      "baseline": 0.005105707561597228
+    },
+    "test_metrics": {
+      "reconstruction": {
+        "mean": 0.011161528527736664,
+        "std": 0.021422211080789566,
+        "median": 0.00508616678416729
+      },
+      "tangent": {
+        "mean": 0.013753901235759258,
+        "std": 0.016096515581011772,
+        "median": 0.007444045040756464
+      },
+      "encoder contr": {
+        "mean": 1.1632106304168701,
+        "std": 0.33305230736732483,
+        "median": 1.1906174421310425
+      },
+      "decoder contr": {
+        "mean": 4.248672962188721,
+        "std": 0.6715342998504639,
+        "median": 4.375073432922363
+      },
+      "diffeo": {
+        "mean": 0.14255006611347198,
+        "std": 0.19334374368190765,
+        "median": 0.06375235319137573
+      },
+      "curvature": {
+        "mean": 0.4251541495323181,
+        "std": 0.678600013256073,
+        "median": 0.201335608959198
+      },
+      "hessian": {
+        "mean": 3.979897975921631,
+        "std": 3.8956873416900635,
+        "median": 2.3446199893951416
+      }
+    },
+    "training_time_seconds": 8.65093994140625
+  },
+  {
+    "surface": "paraboloid",
+    "penalty_config": "T",
+    "loss_weights": {
+      "tangent_bundle": 1.0,
+      "contractive": 0.0,
+      "normal_decoder_jacobian": 0.0,
+      "decoder_contraction": 0.0,
+      "diffeo": 0.0,
+      "curvature": 0.0
+    },
+    "epochs": 500,
+    "final_losses": {
+      "T": 0.009754945213596026
+    },
+    "test_metrics": {
+      "reconstruction": {
+        "mean": 0.01359618455171585,
+        "std": 0.019656145945191383,
+        "median": 0.008889884687960148
+      },
+      "tangent": {
+        "mean": 0.004254883620887995,
+        "std": 0.005777955986559391,
+        "median": 0.0022543855011463165
+      },
+      "encoder contr": {
+        "mean": 1.1566816568374634,
+        "std": 0.38303157687187195,
+        "median": 1.136507511138916
+      },
+      "decoder contr": {
+        "mean": 4.510966777801514,
+        "std": 0.8066083192825317,
+        "median": 4.577439308166504
+      },
+      "diffeo": {
+        "mean": 0.16094215214252472,
+        "std": 0.21864186227321625,
+        "median": 0.06303620338439941
+      },
+      "curvature": {
+        "mean": 0.054989252239465714,
+        "std": 0.09778539091348648,
+        "median": 0.02610037848353386
+      },
+      "hessian": {
+        "mean": 2.443591356277466,
+        "std": 1.947299838066101,
+        "median": 1.8146721124649048
+      }
+    },
+    "training_time_seconds": 12.308233737945557
+  },
+  {
+    "surface": "paraboloid",
+    "penalty_config": "C",
+    "loss_weights": {
+      "tangent_bundle": 0.0,
+      "contractive": 0.01,
+      "normal_decoder_jacobian": 0.0,
+      "decoder_contraction": 0.0,
+      "diffeo": 0.0,
+      "curvature": 0.0
+    },
+    "epochs": 500,
+    "final_losses": {
+      "C": 0.015348430722951889
+    },
+    "test_metrics": {
+      "reconstruction": {
+        "mean": 0.00944675412029028,
+        "std": 0.01776944100856781,
+        "median": 0.0050074076279997826
+      },
+      "tangent": {
+        "mean": 0.016551226377487183,
+        "std": 0.015450356528162956,
+        "median": 0.011312412098050117
+      },
+      "encoder contr": {
+        "mean": 1.0485554933547974,
+        "std": 0.27178314328193665,
+        "median": 1.0524523258209229
+      },
+      "decoder contr": {
+        "mean": 4.41214656829834,
+        "std": 0.6361730694770813,
+        "median": 4.46309757232666
+      },
+      "diffeo": {
+        "mean": 0.12075986713171005,
+        "std": 0.17346808314323425,
+        "median": 0.058749690651893616
+      },
+      "curvature": {
+        "mean": 0.38804349303245544,
+        "std": 0.6046739816665649,
+        "median": 0.18162982165813446
+      },
+      "hessian": {
+        "mean": 4.329774856567383,
+        "std": 4.228825092315674,
+        "median": 2.4689602851867676
+      }
+    },
+    "training_time_seconds": 11.043428897857666
+  },
+  {
+    "surface": "paraboloid",
+    "penalty_config": "T+C",
+    "loss_weights": {
+      "tangent_bundle": 1.0,
+      "contractive": 0.01,
+      "normal_decoder_jacobian": 0.0,
+      "decoder_contraction": 0.0,
+      "diffeo": 0.0,
+      "curvature": 0.0
+    },
+    "epochs": 500,
+    "final_losses": {
+      "T+C": 0.017862210050225258
+    },
+    "test_metrics": {
+      "reconstruction": {
+        "mean": 0.010383881628513336,
+        "std": 0.016076724976301193,
+        "median": 0.005777034908533096
+      },
+      "tangent": {
+        "mean": 0.0026493514887988567,
+        "std": 0.004094118718057871,
+        "median": 0.0015316326171159744
+      },
+      "encoder contr": {
+        "mean": 1.045562982559204,
+        "std": 0.3098026514053345,
+        "median": 1.0251199007034302
+      },
+      "decoder contr": {
+        "mean": 4.856603145599365,
+        "std": 0.8718412518501282,
+        "median": 4.898798942565918
+      },
+      "diffeo": {
+        "mean": 0.13059942424297333,
+        "std": 0.18576347827911377,
+        "median": 0.05313730239868164
+      },
+      "curvature": {
+        "mean": 0.044760849326848984,
+        "std": 0.08083825558423996,
+        "median": 0.024429159238934517
+      },
+      "hessian": {
+        "mean": 2.7594356536865234,
+        "std": 1.9638489484786987,
+        "median": 2.2769758701324463
+      }
+    },
+    "training_time_seconds": 17.035062551498413
+  },
+  {
+    "surface": "paraboloid",
+    "penalty_config": "N",
+    "loss_weights": {
+      "tangent_bundle": 0.0,
+      "contractive": 0.0,
+      "normal_decoder_jacobian": 0.01,
+      "decoder_contraction": 0.0,
+      "diffeo": 0.0,
+      "curvature": 0.0
+    },
+    "epochs": 500,
+    "final_losses": {
+      "N": 0.00501474520812432
+    },
+    "test_metrics": {
+      "reconstruction": {
+        "mean": 0.010599198751151562,
+        "std": 0.02069215103983879,
+        "median": 0.004404601640999317
+      },
+      "tangent": {
+        "mean": 0.012106810696423054,
+        "std": 0.015309215523302555,
+        "median": 0.005618852563202381
+      },
+      "encoder contr": {
+        "mean": 1.166320562362671,
+        "std": 0.33774420619010925,
+        "median": 1.1961374282836914
+      },
+      "decoder contr": {
+        "mean": 4.246662616729736,
+        "std": 0.6485266089439392,
+        "median": 4.369479179382324
+      },
+      "diffeo": {
+        "mean": 0.14168544113636017,
+        "std": 0.19417636096477509,
+        "median": 0.06112900748848915
+      },
+      "curvature": {
+        "mean": 0.36111629009246826,
+        "std": 0.6189914345741272,
+        "median": 0.1750670075416565
+      },
+      "hessian": {
+        "mean": 3.799199342727661,
+        "std": 3.6504480838775635,
+        "median": 2.3356595039367676
+      }
+    },
+    "training_time_seconds": 11.38625454902649
+  }
+]

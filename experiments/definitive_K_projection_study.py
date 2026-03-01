@@ -122,6 +122,7 @@ def run_single_fork(surface_name, seed, n_train, epochs_ae=500, epochs_sde=300):
         mc2 = make_model_config("ae", WARMUP_LW, hidden_dims=[64, 64])
         mc2.use_true_projection = use_true_proj
         t2.add_model(mc2)
+        t2._has_local_cov = True  # Match Phase 1 loader layout
         t2.models["ae"].load_state_dict(phase1_state)
         t2.optimizers["ae"].load_state_dict(phase1_optim_state)
         t2.schedulers["ae"].load_state_dict(phase1_sched_state)

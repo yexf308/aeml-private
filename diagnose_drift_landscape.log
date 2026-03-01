@@ -1,0 +1,427 @@
+Device: cuda
+Investigating drift landscape across surfaces
+
+
+======================================================================
+Surface: sinusoidal
+======================================================================
+
+  --- AE: T+F ---
+    Epoch 100: loss=0.001008
+    Epoch 200: loss=0.000261
+    Epoch 300: loss=0.000170
+    Epoch 400: loss=0.000567
+    Epoch 500: loss=0.000074
+
+    Drift complexity:
+      ||b_z|| mean: 0.448457
+      ||b_z|| std: 0.203763
+      ||b_z|| max: 1.300174
+      b_z range (dim0): 1.181033
+      b_z range (dim1): 1.945203
+      Lipschitz est (mean): 1.063371
+      Lipschitz est (95th): 1.518688
+      Lipschitz est (max): 2.880902
+      NN smoothness (mean): 1.114751
+      NN smoothness (95th): 1.686608
+      z range (dim0): 1.267268
+      z range (dim1): 1.236594
+
+    --- DriftNet [64, 64] ---
+  Stage 2 epoch 60/300: loss=0.000495
+  Stage 2 epoch 120/300: loss=0.000392
+  Stage 2 epoch 180/300: loss=0.000329
+  Stage 2 epoch 240/300: loss=0.000287
+  Stage 2 epoch 300/300: loss=0.000318
+  Stage 3 epoch 60/300: loss=0.006995
+  Stage 3 epoch 120/300: loss=0.005965
+  Stage 3 epoch 180/300: loss=0.002121
+  Stage 3 epoch 240/300: loss=0.001653
+  Stage 3 epoch 300/300: loss=0.001586
+    [64,64] Evaluating...
+  MTE@0.1: 0.2905
+  MTE@0.5: 0.7327
+  MTE@1.0: 1.1429
+  W2@1.0:  1.3048
+  MMD@1.0: 0.1782
+  Survival@1.0: 76.5%
+      drift_residual: 0.000062
+      MTE@1.0: 1.1429
+
+    --- DriftNet [128, 128, 128] ---
+  Stage 2 epoch 60/300: loss=0.000680
+  Stage 2 epoch 120/300: loss=0.000750
+  Stage 2 epoch 180/300: loss=0.000198
+  Stage 2 epoch 240/300: loss=0.000102
+  Stage 2 epoch 300/300: loss=0.000068
+  Stage 3 epoch 60/300: loss=0.006995
+  Stage 3 epoch 120/300: loss=0.005965
+  Stage 3 epoch 180/300: loss=0.002121
+  Stage 3 epoch 240/300: loss=0.001653
+  Stage 3 epoch 300/300: loss=0.001586
+    [128,128,128] Evaluating...
+  MTE@0.1: 0.2903
+  MTE@0.5: 0.7236
+  MTE@1.0: 1.1225
+  W2@1.0:  1.2130
+  MMD@1.0: 0.1700
+  Survival@1.0: 76.5%
+      drift_residual: 0.000012
+      MTE@1.0: 1.1225
+
+  --- AE: T+F+K ---
+    Epoch 100: loss=0.000217
+    Epoch 200: loss=0.000198
+    Epoch 300: loss=0.000114
+    Epoch 400: loss=0.000331
+    Epoch 500: loss=0.000065
+
+    Drift complexity:
+      ||b_z|| mean: 0.457875
+      ||b_z|| std: 0.220748
+      ||b_z|| max: 1.550517
+      b_z range (dim0): 1.164734
+      b_z range (dim1): 2.152510
+      Lipschitz est (mean): 1.077779
+      Lipschitz est (95th): 1.570055
+      Lipschitz est (max): 3.361207
+      NN smoothness (mean): 1.146738
+      NN smoothness (95th): 1.847021
+      z range (dim0): 1.268665
+      z range (dim1): 1.288467
+
+    --- DriftNet [64, 64] ---
+  Stage 2 epoch 60/300: loss=0.000336
+  Stage 2 epoch 120/300: loss=0.000238
+  Stage 2 epoch 180/300: loss=0.000217
+  Stage 2 epoch 240/300: loss=0.000181
+  Stage 2 epoch 300/300: loss=0.000061
+  Stage 3 epoch 60/300: loss=0.005588
+  Stage 3 epoch 120/300: loss=0.005337
+  Stage 3 epoch 180/300: loss=0.001413
+  Stage 3 epoch 240/300: loss=0.000735
+  Stage 3 epoch 300/300: loss=0.000950
+    [64,64] Evaluating...
+  MTE@0.1: 0.2905
+  MTE@0.5: 0.7397
+  MTE@1.0: 1.1395
+  W2@1.0:  1.1966
+  MMD@1.0: 0.1717
+  Survival@1.0: 76.5%
+      drift_residual: 0.000009
+      MTE@1.0: 1.1395
+
+    --- DriftNet [128, 128, 128] ---
+  Stage 2 epoch 60/300: loss=0.000379
+  Stage 2 epoch 120/300: loss=0.000307
+  Stage 2 epoch 180/300: loss=0.000136
+  Stage 2 epoch 240/300: loss=0.000162
+  Stage 2 epoch 300/300: loss=0.000071
+  Stage 3 epoch 60/300: loss=0.005588
+  Stage 3 epoch 120/300: loss=0.005337
+  Stage 3 epoch 180/300: loss=0.001413
+  Stage 3 epoch 240/300: loss=0.000735
+  Stage 3 epoch 300/300: loss=0.000950
+    [128,128,128] Evaluating...
+  MTE@0.1: 0.2901
+  MTE@0.5: 0.7242
+  MTE@1.0: 1.1088
+  W2@1.0:  1.0912
+  MMD@1.0: 0.1611
+  Survival@1.0: 76.5%
+      drift_residual: 0.000009
+      MTE@1.0: 1.1088
+
+======================================================================
+Surface: paraboloid
+======================================================================
+
+  --- AE: T+F ---
+    Epoch 100: loss=0.001457
+    Epoch 200: loss=0.000445
+    Epoch 300: loss=0.000363
+    Epoch 400: loss=0.003170
+    Epoch 500: loss=0.000479
+
+    Drift complexity:
+      ||b_z|| mean: 0.739800
+      ||b_z|| std: 0.879210
+      ||b_z|| max: 14.169368
+      b_z range (dim0): 13.209398
+      b_z range (dim1): 11.910166
+      Lipschitz est (mean): 1.680187
+      Lipschitz est (95th): 3.527869
+      Lipschitz est (max): 53.944904
+      NN smoothness (mean): 2.350055
+      NN smoothness (95th): 6.334726
+      z range (dim0): 1.499150
+      z range (dim1): 1.459639
+
+    --- DriftNet [64, 64] ---
+  Stage 2 epoch 60/300: loss=0.022463
+  Stage 2 epoch 120/300: loss=0.010231
+  Stage 2 epoch 180/300: loss=0.005749
+  Stage 2 epoch 240/300: loss=0.047191
+  Stage 2 epoch 300/300: loss=0.064470
+  Stage 3 epoch 60/300: loss=0.521726
+  Stage 3 epoch 120/300: loss=0.262236
+  Stage 3 epoch 180/300: loss=0.081202
+  Stage 3 epoch 240/300: loss=0.133855
+  Stage 3 epoch 300/300: loss=0.046876
+    [64,64] Evaluating...
+  MTE@0.1: 1.0648
+  MTE@0.5: 2.2254
+  MTE@1.0: 2.7924
+  W2@1.0:  1.9677
+  MMD@1.0: 0.2799
+  Survival@1.0: 76.5%
+      drift_residual: 0.000753
+      MTE@1.0: 2.7924
+
+    --- DriftNet [128, 128, 128] ---
+  Stage 2 epoch 60/300: loss=0.066530
+  Stage 2 epoch 120/300: loss=0.003960
+  Stage 2 epoch 180/300: loss=0.002588
+  Stage 2 epoch 240/300: loss=0.002658
+  Stage 2 epoch 300/300: loss=0.003273
+  Stage 3 epoch 60/300: loss=0.521726
+  Stage 3 epoch 120/300: loss=0.262236
+  Stage 3 epoch 180/300: loss=0.081202
+  Stage 3 epoch 240/300: loss=0.133855
+  Stage 3 epoch 300/300: loss=0.046876
+    [128,128,128] Evaluating...
+  MTE@0.1: 1.0563
+  MTE@0.5: 2.2083
+  MTE@1.0: 2.7266
+  W2@1.0:  1.9557
+  MMD@1.0: 0.2764
+  Survival@1.0: 76.5%
+      drift_residual: 0.000251
+      MTE@1.0: 2.7266
+
+  --- AE: T+F+K ---
+    Epoch 100: loss=0.006763
+    Epoch 200: loss=0.004586
+    Epoch 300: loss=0.000460
+    Epoch 400: loss=0.000174
+    Epoch 500: loss=0.000163
+
+    Drift complexity:
+      ||b_z|| mean: 0.713758
+      ||b_z|| std: 0.692909
+      ||b_z|| max: 8.512122
+      b_z range (dim0): 8.544345
+      b_z range (dim1): 8.335671
+      Lipschitz est (mean): 1.600990
+      Lipschitz est (95th): 3.351172
+      Lipschitz est (max): 25.946337
+      NN smoothness (mean): 2.149923
+      NN smoothness (95th): 5.884978
+      z range (dim0): 1.526490
+      z range (dim1): 1.483160
+
+    --- DriftNet [64, 64] ---
+  Stage 2 epoch 60/300: loss=0.010732
+  Stage 2 epoch 120/300: loss=0.003171
+  Stage 2 epoch 180/300: loss=0.002258
+  Stage 2 epoch 240/300: loss=0.002853
+  Stage 2 epoch 300/300: loss=0.010552
+  Stage 3 epoch 60/300: loss=0.196005
+  Stage 3 epoch 120/300: loss=0.052310
+  Stage 3 epoch 180/300: loss=0.041820
+  Stage 3 epoch 240/300: loss=0.048260
+  Stage 3 epoch 300/300: loss=0.021827
+    [64,64] Evaluating...
+  MTE@0.1: 0.8437
+  MTE@0.5: 2.0803
+  MTE@1.0: 2.8015
+  W2@1.0:  2.0594
+  MMD@1.0: 0.2811
+  Survival@1.0: 76.5%
+      drift_residual: 0.000121
+      MTE@1.0: 2.8015
+
+    --- DriftNet [128, 128, 128] ---
+  Stage 2 epoch 60/300: loss=0.003616
+  Stage 2 epoch 120/300: loss=0.018337
+  Stage 2 epoch 180/300: loss=0.003648
+  Stage 2 epoch 240/300: loss=0.001302
+  Stage 2 epoch 300/300: loss=0.005027
+  Stage 3 epoch 60/300: loss=0.196005
+  Stage 3 epoch 120/300: loss=0.052310
+  Stage 3 epoch 180/300: loss=0.041820
+  Stage 3 epoch 240/300: loss=0.048260
+  Stage 3 epoch 300/300: loss=0.021827
+    [128,128,128] Evaluating...
+  MTE@0.1: 0.8400
+  MTE@0.5: 2.0540
+  MTE@1.0: 2.7898
+  W2@1.0:  2.0081
+  MMD@1.0: 0.2674
+  Survival@1.0: 76.5%
+      drift_residual: 0.000094
+      MTE@1.0: 2.7898
+
+======================================================================
+Surface: hyperbolic_paraboloid
+======================================================================
+
+  --- AE: T+F ---
+    Epoch 100: loss=0.001175
+    Epoch 200: loss=0.000848
+    Epoch 300: loss=0.000669
+    Epoch 400: loss=0.000482
+    Epoch 500: loss=0.000173
+
+    Drift complexity:
+      ||b_z|| mean: 0.520637
+      ||b_z|| std: 0.238660
+      ||b_z|| max: 1.327745
+      b_z range (dim0): 2.026763
+      b_z range (dim1): 2.201780
+      Lipschitz est (mean): 1.069619
+      Lipschitz est (95th): 1.522655
+      Lipschitz est (max): 3.698438
+      NN smoothness (mean): 1.349005
+      NN smoothness (95th): 3.085078
+      z range (dim0): 1.389716
+      z range (dim1): 1.374146
+
+    --- DriftNet [64, 64] ---
+  Stage 2 epoch 60/300: loss=0.007921
+  Stage 2 epoch 120/300: loss=0.001804
+  Stage 2 epoch 180/300: loss=0.000538
+  Stage 2 epoch 240/300: loss=0.000440
+  Stage 2 epoch 300/300: loss=0.000324
+  Stage 3 epoch 60/300: loss=0.065206
+  Stage 3 epoch 120/300: loss=0.108864
+  Stage 3 epoch 180/300: loss=0.017477
+  Stage 3 epoch 240/300: loss=0.023737
+  Stage 3 epoch 300/300: loss=0.042920
+    [64,64] Evaluating...
+  MTE@0.1: 1.0517
+  MTE@0.5: 2.5032
+  MTE@1.0: 2.9507
+  W2@1.0:  1.2835
+  MMD@1.0: 0.1610
+  Survival@1.0: 76.5%
+      drift_residual: 0.000044
+      MTE@1.0: 2.9507
+
+    --- DriftNet [128, 128, 128] ---
+  Stage 2 epoch 60/300: loss=0.002403
+  Stage 2 epoch 120/300: loss=0.000883
+  Stage 2 epoch 180/300: loss=0.000872
+  Stage 2 epoch 240/300: loss=0.000339
+  Stage 2 epoch 300/300: loss=0.000197
+  Stage 3 epoch 60/300: loss=0.065206
+  Stage 3 epoch 120/300: loss=0.108864
+  Stage 3 epoch 180/300: loss=0.017477
+  Stage 3 epoch 240/300: loss=0.023737
+  Stage 3 epoch 300/300: loss=0.042920
+    [128,128,128] Evaluating...
+  MTE@0.1: 1.0485
+  MTE@0.5: 2.4881
+  MTE@1.0: 2.9048
+  W2@1.0:  1.1914
+  MMD@1.0: 0.1482
+  Survival@1.0: 76.5%
+      drift_residual: 0.000064
+      MTE@1.0: 2.9048
+
+  --- AE: T+F+K ---
+    Epoch 100: loss=0.003157
+    Epoch 200: loss=0.000922
+    Epoch 300: loss=0.000857
+    Epoch 400: loss=0.000895
+    Epoch 500: loss=0.000087
+
+    Drift complexity:
+      ||b_z|| mean: 0.556644
+      ||b_z|| std: 0.293523
+      ||b_z|| max: 1.987024
+      b_z range (dim0): 2.165390
+      b_z range (dim1): 2.683855
+      Lipschitz est (mean): 1.217038
+      Lipschitz est (95th): 1.925427
+      Lipschitz est (max): 4.598596
+      NN smoothness (mean): 1.582185
+      NN smoothness (95th): 3.784559
+      z range (dim0): 1.340764
+      z range (dim1): 1.354969
+
+    --- DriftNet [64, 64] ---
+  Stage 2 epoch 60/300: loss=0.006840
+  Stage 2 epoch 120/300: loss=0.001549
+  Stage 2 epoch 180/300: loss=0.000482
+  Stage 2 epoch 240/300: loss=0.000532
+  Stage 2 epoch 300/300: loss=0.000272
+  Stage 3 epoch 60/300: loss=0.116902
+  Stage 3 epoch 120/300: loss=0.050656
+  Stage 3 epoch 180/300: loss=0.090957
+  Stage 3 epoch 240/300: loss=0.044071
+  Stage 3 epoch 300/300: loss=0.018403
+    [64,64] Evaluating...
+  MTE@0.1: 0.7968
+  MTE@0.5: 1.9683
+  MTE@1.0: 2.7498
+  W2@1.0:  1.5104
+  MMD@1.0: 0.1821
+  Survival@1.0: 76.5%
+      drift_residual: 0.000030
+      MTE@1.0: 2.7498
+
+    --- DriftNet [128, 128, 128] ---
+  Stage 2 epoch 60/300: loss=0.001773
+  Stage 2 epoch 120/300: loss=0.000996
+  Stage 2 epoch 180/300: loss=0.000262
+  Stage 2 epoch 240/300: loss=0.001002
+  Stage 2 epoch 300/300: loss=0.000276
+  Stage 3 epoch 60/300: loss=0.116902
+  Stage 3 epoch 120/300: loss=0.050656
+  Stage 3 epoch 180/300: loss=0.090957
+  Stage 3 epoch 240/300: loss=0.044071
+  Stage 3 epoch 300/300: loss=0.018403
+    [128,128,128] Evaluating...
+  MTE@0.1: 0.7951
+  MTE@0.5: 1.9329
+  MTE@1.0: 2.6547
+  W2@1.0:  1.4036
+  MMD@1.0: 0.1657
+  Survival@1.0: 76.5%
+      drift_residual: 0.000051
+      MTE@1.0: 2.6547
+
+
+========================================================================================================================
+DRIFT LANDSCAPE ANALYSIS
+========================================================================================================================
+                  surface     reg   Lip(95th)   NN_smooth   ||b_z||    sm_resid    sm_MTE     sm_W2    lg_resid    lg_MTE     lg_W2
+-----------------------------------------------------------------------------------------------------------------------------------
+               sinusoidal     T+F      1.5187      1.1148    0.4485    0.000062    1.1429    1.3048    0.000012    1.1225    1.2130
+               sinusoidal   T+F+K      1.5701      1.1467    0.4579    0.000009    1.1395    1.1966    0.000009    1.1088    1.0912
+               paraboloid     T+F      3.5279      2.3501    0.7398    0.000753    2.7924    1.9677    0.000251    2.7266    1.9557
+               paraboloid   T+F+K      3.3512      2.1499    0.7138    0.000121    2.8015    2.0594    0.000094    2.7898    2.0081
+    hyperbolic_paraboloid     T+F      1.5227      1.3490    0.5206    0.000044    2.9507    1.2835    0.000064    2.9048    1.1914
+    hyperbolic_paraboloid   T+F+K      1.9254      1.5822    0.5566    0.000030    2.7498    1.5104    0.000051    2.6547    1.4036
+
+
+KEY QUESTION: Does a larger drift net fix the T+F+K gap on hyperbolic_paraboloid?
+
+  sinusoidal:
+    Small DriftNet:  T+F MTE=1.1429  T+F+K MTE=1.1395  delta=-0.0034
+    Large DriftNet:  T+F MTE=1.1225  T+F+K MTE=1.1088  delta=-0.0137
+    Lipschitz(95th): T+F=1.5187  T+F+K=1.5701
+
+  paraboloid:
+    Small DriftNet:  T+F MTE=2.7924  T+F+K MTE=2.8015  delta=+0.0090
+    Large DriftNet:  T+F MTE=2.7266  T+F+K MTE=2.7898  delta=+0.0632
+    Lipschitz(95th): T+F=3.5279  T+F+K=3.3512
+
+  hyperbolic_paraboloid:
+    Small DriftNet:  T+F MTE=2.9507  T+F+K MTE=2.7498  delta=-0.2009
+    Large DriftNet:  T+F MTE=2.9048  T+F+K MTE=2.6547  delta=-0.2501
+    Lipschitz(95th): T+F=1.5227  T+F+K=1.9254
+
+Total time: 3942.7s
+Done.

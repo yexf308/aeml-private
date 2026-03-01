@@ -1,0 +1,327 @@
+Using device: cuda
+
+============================================================
+Extrapolation Study: monkey_saddle
+Train region: [-1.0, 1.0]
+Max extrapolation distance: 0.5
+============================================================
+Using device: cuda
+
+============================================================
+Extrapolation Study: hyperbolic_paraboloid
+Train region: [-1.0, 1.0]
+Max extrapolation distance: 0.5
+============================================================
+Using device: cuda
+
+============================================================
+Extrapolation Study: sinusoidal
+Train region: [-1.0, 1.0]
+Max extrapolation distance: 0.5
+============================================================
+
+Sampling training data...
+
+Sampling test data at different distances...
+
+Sampling training data...
+  dist=0.0: 500 samples
+  dist=0.1: 342 samples
+  dist=0.2: 345 samples
+
+Sampling test data at different distances...
+  dist=0.3: 301 samples
+
+Sampling training data...
+  dist=0.4: 272 samples
+  dist=0.0: 500 samples
+  dist=0.5: 250 samples
+
+--- Training: baseline ---
+  dist=0.1: 342 samples
+
+Sampling test data at different distances...
+  dist=0.2: 345 samples
+  dist=0.3: 301 samples
+  dist=0.0: 500 samples
+  dist=0.4: 272 samples
+  dist=0.5: 250 samples
+
+--- Training: baseline ---
+  dist=0.1: 342 samples
+  Epoch 100: 0.001508
+  dist=0.2: 345 samples
+  dist=0.3: 301 samples
+  Epoch 200: 0.001508
+  Epoch 100: 0.017180
+  dist=0.4: 272 samples
+  dist=0.5: 250 samples
+
+--- Training: baseline ---
+  Epoch 300: 0.000791
+  Epoch 200: 0.011359
+  Epoch 100: 0.001160
+  Epoch 400: 0.000644
+  Epoch 300: 0.008550
+  Epoch 200: 0.000896
+  Epoch 500: 0.000493
+  dist=0.0: recon_error=0.016514
+  dist=0.1: recon_error=0.091507
+  dist=0.2: recon_error=0.184779
+  dist=0.3: recon_error=0.314859
+  dist=0.4: recon_error=0.495384
+  dist=0.5: recon_error=0.681291
+
+--- Training: T ---
+  Epoch 400: 0.006842
+  Epoch 300: 0.000736
+  Epoch 500: 0.005187
+  dist=0.0: recon_error=0.071891
+  dist=0.1: recon_error=0.279758
+  dist=0.2: recon_error=0.512971
+  dist=0.3: recon_error=0.895965
+  dist=0.4: recon_error=1.470806
+  dist=0.5: recon_error=2.051862
+
+--- Training: T ---
+  Epoch 400: 0.000565
+  Epoch 100: 0.002297
+  Epoch 500: 0.000396
+  dist=0.0: recon_error=0.029167
+  dist=0.1: recon_error=0.060843
+  dist=0.2: recon_error=0.101569
+  dist=0.3: recon_error=0.160314
+  dist=0.4: recon_error=0.232740
+  dist=0.5: recon_error=0.320780
+
+--- Training: T ---
+  Epoch 100: 0.076497
+  Epoch 200: 0.001662
+  Epoch 100: 0.000706
+  Epoch 200: 0.006288
+  Epoch 300: 0.001453
+  Epoch 200: 0.000994
+  Epoch 300: 0.005075
+  Epoch 400: 0.001285
+  Epoch 300: 0.000779
+  Epoch 400: 0.006148
+  Epoch 500: 0.001719
+  dist=0.0: recon_error=0.032465
+  dist=0.1: recon_error=0.098369
+  dist=0.2: recon_error=0.204516
+  dist=0.3: recon_error=0.343613
+  dist=0.4: recon_error=0.527289
+  dist=0.5: recon_error=0.717179
+
+--- Training: T+K ---
+  Epoch 400: 0.000504
+  Epoch 500: 0.002740
+  dist=0.0: recon_error=0.035497
+  dist=0.1: recon_error=0.226204
+  dist=0.2: recon_error=0.468556
+  dist=0.3: recon_error=0.862145
+  dist=0.4: recon_error=1.375309
+  dist=0.5: recon_error=1.914363
+
+--- Training: T+K ---
+  Epoch 500: 0.000362
+  dist=0.0: recon_error=0.017683
+  dist=0.1: recon_error=0.041776
+  dist=0.2: recon_error=0.074318
+  dist=0.3: recon_error=0.131057
+  dist=0.4: recon_error=0.204279
+  dist=0.5: recon_error=0.289072
+
+--- Training: T+K ---
+  Epoch 100: 0.002793
+  Epoch 100: 0.172503
+  Epoch 100: 0.002419
+  Epoch 200: 0.001632
+  Epoch 200: 0.125756
+  Epoch 200: 0.000763
+  Epoch 300: 0.001879
+  Epoch 300: 0.009736
+  Epoch 300: 0.000998
+  Epoch 400: 0.001398
+  Epoch 400: 0.005481
+  Epoch 400: 0.000599
+  Epoch 500: 0.001554
+  dist=0.0: recon_error=0.021549
+  dist=0.1: recon_error=0.107432
+  dist=0.2: recon_error=0.208295
+  dist=0.3: recon_error=0.346606
+  dist=0.4: recon_error=0.529409
+  dist=0.5: recon_error=0.724348
+
+--- Training: T+F ---
+  Epoch 500: 0.005866
+  dist=0.0: recon_error=0.042460
+  dist=0.1: recon_error=0.247790
+  dist=0.2: recon_error=0.494927
+  dist=0.3: recon_error=0.873357
+  dist=0.4: recon_error=1.398437
+  dist=0.5: recon_error=1.926234
+
+--- Training: T+F ---
+  Epoch 500: 0.000342
+  dist=0.0: recon_error=0.011078
+  dist=0.1: recon_error=0.040366
+  dist=0.2: recon_error=0.076031
+  dist=0.3: recon_error=0.133068
+  dist=0.4: recon_error=0.208578
+  dist=0.5: recon_error=0.293427
+
+--- Training: T+F ---
+  Epoch 100: 0.003231
+  Epoch 100: 0.137960
+  Epoch 100: 0.000808
+  Epoch 200: 0.002146
+  Epoch 200: 0.027882
+  Epoch 200: 0.000641
+  Epoch 300: 0.001423
+  Epoch 300: 0.021024
+  Epoch 300: 0.001202
+  Epoch 400: 0.001194
+  Epoch 400: 0.019011
+  Epoch 400: 0.000535
+  Epoch 500: 0.001379
+  dist=0.0: recon_error=0.008927
+  dist=0.1: recon_error=0.022423
+  dist=0.2: recon_error=0.061039
+  dist=0.3: recon_error=0.136907
+  dist=0.4: recon_error=0.265703
+  dist=0.5: recon_error=0.421414
+
+--- Training: T+F+K ---
+  Epoch 500: 0.017292
+  dist=0.0: recon_error=0.036279
+  dist=0.1: recon_error=0.178077
+  dist=0.2: recon_error=0.344289
+  dist=0.3: recon_error=0.643433
+  dist=0.4: recon_error=1.107071
+  dist=0.5: recon_error=1.632565
+
+--- Training: T+F+K ---
+  Epoch 500: 0.000202
+  dist=0.0: recon_error=0.007701
+  dist=0.1: recon_error=0.010098
+  dist=0.2: recon_error=0.014765
+  dist=0.3: recon_error=0.031383
+  dist=0.4: recon_error=0.060355
+  dist=0.5: recon_error=0.107094
+
+--- Training: T+F+K ---
+  Epoch 100: 0.001996
+  Epoch 100: 1.184597
+  Epoch 100: 0.000912
+  Epoch 200: 0.001674
+  Epoch 200: 1.181455
+  Epoch 200: 0.001024
+  Epoch 300: 0.001606
+  Epoch 300: 0.067560
+  Epoch 300: 0.000692
+  Epoch 400: 0.000780
+  Epoch 400: 0.024220
+  Epoch 400: 0.000403
+  Epoch 500: 0.000887
+  dist=0.0: recon_error=0.006026
+  dist=0.1: recon_error=0.015211
+  dist=0.2: recon_error=0.045328
+  dist=0.3: recon_error=0.108343
+  dist=0.4: recon_error=0.222399
+  dist=0.5: recon_error=0.363968
+
+--- Training: K ---
+  Epoch 500: 0.015512
+  dist=0.0: recon_error=0.030255
+  dist=0.1: recon_error=0.175366
+  dist=0.2: recon_error=0.346680
+  dist=0.3: recon_error=0.675899
+  dist=0.4: recon_error=1.144786
+  dist=0.5: recon_error=1.679742
+
+--- Training: K ---
+  Epoch 500: 0.000927
+  dist=0.0: recon_error=0.004025
+  dist=0.1: recon_error=0.007661
+  dist=0.2: recon_error=0.017911
+  dist=0.3: recon_error=0.041508
+  dist=0.4: recon_error=0.078131
+  dist=0.5: recon_error=0.132978
+
+--- Training: K ---
+  Epoch 100: 0.001673
+  Epoch 100: 0.014751
+  Epoch 100: 0.000800
+  Epoch 200: 0.001084
+  Epoch 200: 0.007595
+  Epoch 200: 0.000709
+  Epoch 300: 0.000605
+  Epoch 300: 0.004927
+  Epoch 300: 0.000659
+  Epoch 400: 0.000624
+  Epoch 400: 0.005184
+  Epoch 400: 0.000281
+  Epoch 500: 0.000607
+  dist=0.0: recon_error=0.024805
+  dist=0.1: recon_error=0.083826
+  dist=0.2: recon_error=0.180755
+  dist=0.3: recon_error=0.310059
+  dist=0.4: recon_error=0.495656
+  dist=0.5: recon_error=0.682561
+
+Results saved to extrapolation_hyperbolic_paraboloid.csv
+
+============================================================
+EXTRAPOLATION SUMMARY
+============================================================
+penalty          K         T       T+F     T+F+K       T+K  baseline
+distance                                                            
+0.0       0.024805  0.032465  0.008927  0.006026  0.021549  0.016514
+0.1       0.083826  0.098369  0.022423  0.015211  0.107432  0.091507
+0.2       0.180755  0.204516  0.061039  0.045328  0.208295  0.184779
+0.3       0.310059  0.343613  0.136907  0.108343  0.346606  0.314859
+0.4       0.495656  0.527289  0.265703  0.222399  0.529409  0.495384
+0.5       0.682561  0.717179  0.421414  0.363968  0.724348  0.681291
+  Epoch 500: 0.005255
+  dist=0.0: recon_error=0.044406
+  dist=0.1: recon_error=0.269001
+  dist=0.2: recon_error=0.519476
+  dist=0.3: recon_error=0.950680
+  dist=0.4: recon_error=1.540625
+  dist=0.5: recon_error=2.168644
+
+Results saved to extrapolation_monkey_saddle.csv
+
+============================================================
+EXTRAPOLATION SUMMARY
+============================================================
+penalty          K         T       T+F     T+F+K       T+K  baseline
+distance                                                            
+0.0       0.044406  0.035497  0.036279  0.030255  0.042460  0.071891
+0.1       0.269001  0.226204  0.178077  0.175366  0.247790  0.279758
+0.2       0.519476  0.468556  0.344289  0.346680  0.494927  0.512971
+0.3       0.950680  0.862145  0.643433  0.675899  0.873357  0.895965
+0.4       1.540625  1.375309  1.107071  1.144786  1.398437  1.470806
+0.5       2.168644  1.914363  1.632565  1.679742  1.926234  2.051862
+  Epoch 500: 0.000494
+  dist=0.0: recon_error=0.013800
+  dist=0.1: recon_error=0.041248
+  dist=0.2: recon_error=0.073397
+  dist=0.3: recon_error=0.126791
+  dist=0.4: recon_error=0.196920
+  dist=0.5: recon_error=0.280094
+
+Results saved to extrapolation_sinusoidal.csv
+
+============================================================
+EXTRAPOLATION SUMMARY
+============================================================
+penalty          K         T       T+F     T+F+K       T+K  baseline
+distance                                                            
+0.0       0.013800  0.017683  0.007701  0.004025  0.011078  0.029167
+0.1       0.041248  0.041776  0.010098  0.007661  0.040366  0.060843
+0.2       0.073397  0.074318  0.014765  0.017911  0.076031  0.101569
+0.3       0.126791  0.131057  0.031383  0.041508  0.133068  0.160314
+0.4       0.196920  0.204279  0.060355  0.078131  0.208578  0.232740
+0.5       0.280094  0.289072  0.107094  0.132978  0.293427  0.320780

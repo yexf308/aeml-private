@@ -1,0 +1,379 @@
+Device: cuda
+Surface: sinusoidal
+N_TRAIN sweep: [20, 50, 200]
+AE regs: ['T', 'T+K', 'T+F', 'T+F+K']
+
+--- Generating data ---
+
+======================================================================
+N_TRAIN = 20
+======================================================================
+
+  --- AE reg: T ---
+/network/rit/lab/Yelab/anaconda3/lib/python3.9/site-packages/torch/autograd/graph.py:829: UserWarning: Attempting to run cuBLAS, but there was no current CUDA context! Attempting to set the primary context... (Triggered internally at /pytorch/aten/src/ATen/cuda/CublasHandlePool.cpp:179.)
+  return Variable._execution_engine.run_backward(  # Calls into the C++ engine to run the backward pass
+    Epoch 100: loss=0.235495
+    Epoch 200: loss=0.042170
+    Epoch 300: loss=0.021578
+    Epoch 400: loss=0.008762
+    Epoch 500: loss=0.007016
+    Recon MSE (test): 0.019938
+    Metric cond (mean/max): 2.20 / 3.23
+    Projector err: 0.00000000
+  Stage 2 epoch 60/300: loss=0.028406
+  Stage 2 epoch 120/300: loss=0.016165
+  Stage 2 epoch 180/300: loss=0.011186
+  Stage 2 epoch 240/300: loss=0.009687
+  Stage 2 epoch 300/300: loss=0.008784
+  Stage 3 epoch 60/300: loss=2.053063
+  Stage 3 epoch 120/300: loss=1.057885
+  Stage 3 epoch 180/300: loss=0.864305
+  Stage 3 epoch 240/300: loss=0.792645
+  Stage 3 epoch 300/300: loss=0.746989
+    Evaluating trajectories...
+  MTE@0.1: 0.5645
+  MTE@0.5: 1.2809
+  MTE@1.0: 1.6875
+  W2@1.0:  0.9768
+  MMD@1.0: 0.1621
+  Survival@1.0: 76.5%
+
+  --- AE reg: T+K ---
+    Epoch 100: loss=0.116701
+    Epoch 200: loss=0.045568
+    Epoch 300: loss=0.033663
+    Epoch 400: loss=0.012092
+    Epoch 500: loss=0.006170
+    Recon MSE (test): 0.028592
+    Metric cond (mean/max): 2.20 / 3.22
+    Projector err: 0.00000000
+  Stage 2 epoch 60/300: loss=0.081097
+  Stage 2 epoch 120/300: loss=0.057031
+  Stage 2 epoch 180/300: loss=0.031014
+  Stage 2 epoch 240/300: loss=0.020290
+  Stage 2 epoch 300/300: loss=0.016037
+  Stage 3 epoch 60/300: loss=1.344427
+  Stage 3 epoch 120/300: loss=0.964522
+  Stage 3 epoch 180/300: loss=0.842408
+  Stage 3 epoch 240/300: loss=0.772881
+  Stage 3 epoch 300/300: loss=0.720994
+    Evaluating trajectories...
+  MTE@0.1: 0.6022
+  MTE@0.5: 1.3747
+  MTE@1.0: 1.8245
+  W2@1.0:  1.4515
+  MMD@1.0: 0.1518
+  Survival@1.0: 76.5%
+
+  --- AE reg: T+F ---
+    Epoch 100: loss=0.215205
+    Epoch 200: loss=0.210816
+    Epoch 300: loss=0.191154
+    Epoch 400: loss=0.047663
+    Epoch 500: loss=0.018196
+    Recon MSE (test): 0.007707
+    Metric cond (mean/max): 1.45 / 2.00
+    Projector err: 0.00000000
+  Stage 2 epoch 60/300: loss=0.063978
+  Stage 2 epoch 120/300: loss=0.045019
+  Stage 2 epoch 180/300: loss=0.029848
+  Stage 2 epoch 240/300: loss=0.023861
+  Stage 2 epoch 300/300: loss=0.021352
+  Stage 3 epoch 60/300: loss=3.109269
+  Stage 3 epoch 120/300: loss=2.278226
+  Stage 3 epoch 180/300: loss=0.731349
+  Stage 3 epoch 240/300: loss=0.372373
+  Stage 3 epoch 300/300: loss=0.331422
+    Evaluating trajectories...
+  MTE@0.1: 0.2881
+  MTE@0.5: 0.6676
+  MTE@1.0: 1.0543
+  W2@1.0:  0.8604
+  MMD@1.0: 0.1374
+  Survival@1.0: 76.5%
+
+  --- AE reg: T+F+K ---
+    Epoch 100: loss=0.296181
+    Epoch 200: loss=0.121953
+    Epoch 300: loss=0.077402
+    Epoch 400: loss=0.045490
+    Epoch 500: loss=0.007279
+    Recon MSE (test): 0.006587
+    Metric cond (mean/max): 1.77 / 3.80
+    Projector err: 0.00000000
+  Stage 2 epoch 60/300: loss=0.080412
+  Stage 2 epoch 120/300: loss=0.056899
+  Stage 2 epoch 180/300: loss=0.025382
+  Stage 2 epoch 240/300: loss=0.005451
+  Stage 2 epoch 300/300: loss=0.003777
+  Stage 3 epoch 60/300: loss=1.508417
+  Stage 3 epoch 120/300: loss=1.129259
+  Stage 3 epoch 180/300: loss=0.947841
+  Stage 3 epoch 240/300: loss=0.849956
+  Stage 3 epoch 300/300: loss=0.802139
+    Evaluating trajectories...
+  MTE@0.1: 0.5635
+  MTE@0.5: 1.3132
+  MTE@1.0: 1.7688
+  W2@1.0:  1.4590
+  MMD@1.0: 0.1335
+  Survival@1.0: 76.5%
+
+======================================================================
+N_TRAIN = 50
+======================================================================
+
+  --- AE reg: T ---
+    Epoch 100: loss=0.081172
+    Epoch 200: loss=0.017928
+    Epoch 300: loss=0.007123
+    Epoch 400: loss=0.004633
+    Epoch 500: loss=0.015762
+    Recon MSE (test): 0.008754
+    Metric cond (mean/max): 1.88 / 2.73
+    Projector err: 0.00000000
+  Stage 2 epoch 60/300: loss=0.046520
+  Stage 2 epoch 120/300: loss=0.017006
+  Stage 2 epoch 180/300: loss=0.008592
+  Stage 2 epoch 240/300: loss=0.005757
+  Stage 2 epoch 300/300: loss=0.004131
+  Stage 3 epoch 60/300: loss=2.291474
+  Stage 3 epoch 120/300: loss=0.465361
+  Stage 3 epoch 180/300: loss=0.172891
+  Stage 3 epoch 240/300: loss=0.114829
+  Stage 3 epoch 300/300: loss=0.099033
+    Evaluating trajectories...
+  MTE@0.1: 0.3018
+  MTE@0.5: 0.7212
+  MTE@1.0: 1.1687
+  W2@1.0:  1.2488
+  MMD@1.0: 0.1711
+  Survival@1.0: 76.5%
+
+  --- AE reg: T+K ---
+    Epoch 100: loss=0.158606
+    Epoch 200: loss=0.040188
+    Epoch 300: loss=0.084119
+    Epoch 400: loss=0.021316
+    Epoch 500: loss=0.015761
+    Recon MSE (test): 0.009494
+    Metric cond (mean/max): 2.49 / 3.98
+    Projector err: 0.00000000
+  Stage 2 epoch 60/300: loss=0.149362
+  Stage 2 epoch 120/300: loss=0.101386
+  Stage 2 epoch 180/300: loss=0.064747
+  Stage 2 epoch 240/300: loss=0.033595
+  Stage 2 epoch 300/300: loss=0.018276
+  Stage 3 epoch 60/300: loss=1.301016
+  Stage 3 epoch 120/300: loss=0.952588
+  Stage 3 epoch 180/300: loss=0.822705
+  Stage 3 epoch 240/300: loss=0.660165
+  Stage 3 epoch 300/300: loss=0.654849
+    Evaluating trajectories...
+  MTE@0.1: 0.4854
+  MTE@0.5: 1.1453
+  MTE@1.0: 1.6568
+  W2@1.0:  1.2678
+  MMD@1.0: 0.1755
+  Survival@1.0: 76.5%
+
+  --- AE reg: T+F ---
+    Epoch 100: loss=0.175206
+    Epoch 200: loss=0.050055
+    Epoch 300: loss=0.039508
+    Epoch 400: loss=0.013875
+    Epoch 500: loss=0.008253
+    Recon MSE (test): 0.003540
+    Metric cond (mean/max): 2.19 / 3.53
+    Projector err: 0.00000000
+  Stage 2 epoch 60/300: loss=0.037914
+  Stage 2 epoch 120/300: loss=0.030660
+  Stage 2 epoch 180/300: loss=0.022559
+  Stage 2 epoch 240/300: loss=0.022551
+  Stage 2 epoch 300/300: loss=0.016401
+  Stage 3 epoch 60/300: loss=3.153429
+  Stage 3 epoch 120/300: loss=1.610406
+  Stage 3 epoch 180/300: loss=0.345469
+  Stage 3 epoch 240/300: loss=0.264587
+  Stage 3 epoch 300/300: loss=0.207343
+    Evaluating trajectories...
+  MTE@0.1: 0.2916
+  MTE@0.5: 0.7509
+  MTE@1.0: 1.2217
+  W2@1.0:  1.1274
+  MMD@1.0: 0.1694
+  Survival@1.0: 76.5%
+
+  --- AE reg: T+F+K ---
+    Epoch 100: loss=0.332738
+    Epoch 200: loss=0.105112
+    Epoch 300: loss=0.044153
+    Epoch 400: loss=0.088243
+    Epoch 500: loss=0.023491
+    Recon MSE (test): 0.005916
+    Metric cond (mean/max): 1.80 / 3.96
+    Projector err: 0.00000000
+  Stage 2 epoch 60/300: loss=0.060921
+  Stage 2 epoch 120/300: loss=0.039227
+  Stage 2 epoch 180/300: loss=0.033970
+  Stage 2 epoch 240/300: loss=0.030018
+  Stage 2 epoch 300/300: loss=0.015238
+  Stage 3 epoch 60/300: loss=1.534936
+  Stage 3 epoch 120/300: loss=1.327298
+  Stage 3 epoch 180/300: loss=1.310800
+  Stage 3 epoch 240/300: loss=1.109666
+  Stage 3 epoch 300/300: loss=1.020702
+    Evaluating trajectories...
+  MTE@0.1: 0.5882
+  MTE@0.5: 1.4040
+  MTE@1.0: 1.8291
+  W2@1.0:  1.2535
+  MMD@1.0: 0.1422
+  Survival@1.0: 76.5%
+
+======================================================================
+N_TRAIN = 200
+======================================================================
+
+  --- AE reg: T ---
+    Epoch 100: loss=0.014206
+    Epoch 200: loss=0.008391
+    Epoch 300: loss=0.009014
+    Epoch 400: loss=0.004244
+    Epoch 500: loss=0.001833
+    Recon MSE (test): 0.005447
+    Metric cond (mean/max): 2.19 / 3.63
+    Projector err: 0.00000000
+  Stage 2 epoch 60/300: loss=0.016324
+  Stage 2 epoch 120/300: loss=0.004518
+  Stage 2 epoch 180/300: loss=0.003310
+  Stage 2 epoch 240/300: loss=0.002367
+  Stage 2 epoch 300/300: loss=0.001709
+  Stage 3 epoch 60/300: loss=0.228944
+  Stage 3 epoch 120/300: loss=0.081523
+  Stage 3 epoch 180/300: loss=0.056620
+  Stage 3 epoch 240/300: loss=0.045319
+  Stage 3 epoch 300/300: loss=0.048823
+    Evaluating trajectories...
+  MTE@0.1: 0.2959
+  MTE@0.5: 0.7462
+  MTE@1.0: 1.1834
+  W2@1.0:  1.3066
+  MMD@1.0: 0.1797
+  Survival@1.0: 76.5%
+
+  --- AE reg: T+K ---
+    Epoch 100: loss=0.055004
+    Epoch 200: loss=0.020283
+    Epoch 300: loss=0.014884
+    Epoch 400: loss=0.018128
+    Epoch 500: loss=0.010619
+    Recon MSE (test): 0.003289
+    Metric cond (mean/max): 1.84 / 2.74
+    Projector err: 0.00000000
+  Stage 2 epoch 60/300: loss=0.008980
+  Stage 2 epoch 120/300: loss=0.006815
+  Stage 2 epoch 180/300: loss=0.004744
+  Stage 2 epoch 240/300: loss=0.002700
+  Stage 2 epoch 300/300: loss=0.002045
+  Stage 3 epoch 60/300: loss=1.204305
+  Stage 3 epoch 120/300: loss=0.765327
+  Stage 3 epoch 180/300: loss=0.492447
+  Stage 3 epoch 240/300: loss=0.402724
+  Stage 3 epoch 300/300: loss=0.319408
+    Evaluating trajectories...
+  MTE@0.1: 0.6531
+  MTE@0.5: 1.4573
+  MTE@1.0: 2.1129
+  W2@1.0:  1.4829
+  MMD@1.0: 0.1825
+  Survival@1.0: 76.5%
+
+  --- AE reg: T+F ---
+    Epoch 100: loss=0.021968
+    Epoch 200: loss=0.005246
+    Epoch 300: loss=0.002703
+    Epoch 400: loss=0.005280
+    Epoch 500: loss=0.000182
+    Recon MSE (test): 0.000030
+    Metric cond (mean/max): 2.35 / 3.67
+    Projector err: 0.00000000
+  Stage 2 epoch 60/300: loss=0.027682
+  Stage 2 epoch 120/300: loss=0.004163
+  Stage 2 epoch 180/300: loss=0.001785
+  Stage 2 epoch 240/300: loss=0.001444
+  Stage 2 epoch 300/300: loss=0.001332
+  Stage 3 epoch 60/300: loss=0.346502
+  Stage 3 epoch 120/300: loss=0.096018
+  Stage 3 epoch 180/300: loss=0.040473
+  Stage 3 epoch 240/300: loss=0.025411
+  Stage 3 epoch 300/300: loss=0.021683
+    Evaluating trajectories...
+  MTE@0.1: 0.2912
+  MTE@0.5: 0.7526
+  MTE@1.0: 1.1899
+  W2@1.0:  1.2378
+  MMD@1.0: 0.1759
+  Survival@1.0: 76.5%
+
+  --- AE reg: T+F+K ---
+    Epoch 100: loss=0.048061
+    Epoch 200: loss=0.065065
+    Epoch 300: loss=0.015473
+    Epoch 400: loss=0.050925
+    Epoch 500: loss=0.011968
+    Recon MSE (test): 0.003026
+    Metric cond (mean/max): 1.70 / 4.27
+    Projector err: 0.00000000
+  Stage 2 epoch 60/300: loss=0.012810
+  Stage 2 epoch 120/300: loss=0.002384
+  Stage 2 epoch 180/300: loss=0.002097
+  Stage 2 epoch 240/300: loss=0.001070
+  Stage 2 epoch 300/300: loss=0.001425
+  Stage 3 epoch 60/300: loss=1.399414
+  Stage 3 epoch 120/300: loss=0.906975
+  Stage 3 epoch 180/300: loss=0.590834
+  Stage 3 epoch 240/300: loss=0.459973
+  Stage 3 epoch 300/300: loss=0.319388
+    Evaluating trajectories...
+  MTE@0.1: 0.6461
+  MTE@0.5: 1.4693
+  MTE@1.0: 2.1085
+  W2@1.0:  1.4852
+  MMD@1.0: 0.1924
+  Survival@1.0: 76.5%
+
+
+========================================================================================================================
+AE LOW-DATA REGIME: Does K help manifold construction?
+========================================================================================================================
+   N    reg   recon_mse   mean_cond    proj_err   MTE@0.1   MTE@0.5   MTE@1.0    W2@1.0   MMD@1.0
+-------------------------------------------------------------------------------------------------
+  20      T    0.019938        2.20  0.00000000    0.5645    1.2809    1.6875    0.9768    0.1621
+  20    T+K    0.028592        2.20  0.00000000    0.6022    1.3747    1.8245    1.4515    0.1518
+  20    T+F    0.007707        1.45  0.00000000    0.2881    0.6676    1.0543    0.8604    0.1374
+  20  T+F+K    0.006587        1.77  0.00000000    0.5635    1.3132    1.7688    1.4590    0.1335
+  50      T    0.008754        1.88  0.00000000    0.3018    0.7212    1.1687    1.2488    0.1711
+  50    T+K    0.009494        2.49  0.00000000    0.4854    1.1453    1.6568    1.2678    0.1755
+  50    T+F    0.003540        2.19  0.00000000    0.2916    0.7509    1.2217    1.1274    0.1694
+  50  T+F+K    0.005916        1.80  0.00000000    0.5882    1.4040    1.8291    1.2535    0.1422
+ 200      T    0.005447        2.19  0.00000000    0.2959    0.7462    1.1834    1.3066    0.1797
+ 200    T+K    0.003289        1.84  0.00000000    0.6531    1.4573    2.1129    1.4829    0.1825
+ 200    T+F    0.000030        2.35  0.00000000    0.2912    0.7526    1.1899    1.2378    0.1759
+ 200  T+F+K    0.003026        1.70  0.00000000    0.6461    1.4693    2.1085    1.4852    0.1924
+
+  N=20:
+    Best recon_mse: T+F+K = 0.0066  (T=0.0199, T+K=0.0286, T+F=0.0077, T+F+K=0.0066)
+    Best MTE@1.0: T+F = 1.0543  (T=1.6875, T+K=1.8245, T+F=1.0543, T+F+K=1.7688)
+    Best W2@1.0: T+F = 0.8604  (T=0.9768, T+K=1.4515, T+F=0.8604, T+F+K=1.4590)
+  N=50:
+    Best recon_mse: T+F = 0.0035  (T=0.0088, T+K=0.0095, T+F=0.0035, T+F+K=0.0059)
+    Best MTE@1.0: T = 1.1687  (T=1.1687, T+K=1.6568, T+F=1.2217, T+F+K=1.8291)
+    Best W2@1.0: T+F = 1.1274  (T=1.2488, T+K=1.2678, T+F=1.1274, T+F+K=1.2535)
+  N=200:
+    Best recon_mse: T+F = 0.0000  (T=0.0054, T+K=0.0033, T+F=0.0000, T+F+K=0.0030)
+    Best MTE@1.0: T = 1.1834  (T=1.1834, T+K=2.1129, T+F=1.1899, T+F+K=2.1085)
+    Best W2@1.0: T+F = 1.2378  (T=1.3066, T+K=1.4829, T+F=1.2378, T+F+K=1.4852)
+
+Total time: 495.9s
+Done.

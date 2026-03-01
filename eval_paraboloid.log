@@ -1,0 +1,19 @@
+Device: cuda
+Surfaces: ['paraboloid']
+Penalties: ['baseline', 'T', 'N', 'K', 'T+N', 'T+K', 'N+K', 'T+N+K', 'T+F', 'T+F+K', 'T+F+N', 'T+F+N+K']
+Epochs: 500
+Estimated: 12 model trainings
+
+======================================================================
+Surface: paraboloid
+======================================================================
+  Manifold SDE created in 0.5s
+  Test dist=0.0: 500 samples
+  Test dist=0.1: 342 samples
+  Test dist=0.2: 345 samples
+  Test dist=0.3: 301 samples
+  Test dist=0.4: 272 samples
+  Test dist=0.5: 250 samples
+
+  --- baseline ---
+    Epoch 100: 0.001690

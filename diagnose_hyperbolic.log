@@ -1,0 +1,165 @@
+Device: cuda
+Comparing curvature signal across surfaces
+
+
+============================================================
+Surface: sinusoidal
+============================================================
+
+  Raw data statistics:
+    ||v|| mean:           1.509936
+    ||(I-P_true)v|| mean: 0.774225
+    ||P_true v|| mean:    1.130014
+    Normal/Total ratio:   0.5128
+    ||(I-P_true)v|| std:  1.079091
+
+  --- AE: T+F ---
+    Epoch 100: loss=0.001008
+    Epoch 200: loss=0.000261
+    Epoch 300: loss=0.000170
+    Epoch 400: loss=0.000567
+    Epoch 500: loss=0.000074
+    ||v||: 1.509936
+    ||(I-P_hat)v||: 0.774427
+    ||(I-P_hat)q||: 0.766462
+    ||(I-P_true)v||: 0.774225
+    K_residual: 0.002160
+    K_residual_std: 0.015813
+    signal_ratio: 0.512887
+    recon_mse: 0.000015
+    proj_err: 0.000018
+    ||d2phi||_F: 3.767466
+    metric_cond: 2.040449
+    metric_cond_max: 2.989978
+
+  --- AE: T+F+K ---
+    Epoch 100: loss=0.000217
+    Epoch 200: loss=0.000198
+    Epoch 300: loss=0.000114
+    Epoch 400: loss=0.000331
+    Epoch 500: loss=0.000065
+    ||v||: 1.509936
+    ||(I-P_hat)v||: 0.773111
+    ||(I-P_hat)q||: 0.770495
+    ||(I-P_true)v||: 0.774225
+    K_residual: 0.000060
+    K_residual_std: 0.000103
+    signal_ratio: 0.512016
+    recon_mse: 0.000024
+    proj_err: 0.000018
+    ||d2phi||_F: 3.613167
+    metric_cond: 1.971741
+    metric_cond_max: 2.849132
+
+============================================================
+Surface: paraboloid
+============================================================
+
+  Raw data statistics:
+    ||v|| mean:           3.150895
+    ||(I-P_true)v|| mean: 1.648592
+    ||P_true v|| mean:    2.607255
+    Normal/Total ratio:   0.5232
+    ||(I-P_true)v|| std:  0.308573
+
+  --- AE: T+F ---
+    Epoch 100: loss=0.001457
+    Epoch 200: loss=0.000445
+    Epoch 300: loss=0.000363
+    Epoch 400: loss=0.003170
+    Epoch 500: loss=0.000479
+    ||v||: 3.150895
+    ||(I-P_hat)v||: 1.649216
+    ||(I-P_hat)q||: 1.607394
+    ||(I-P_true)v||: 1.648592
+    K_residual: 0.014106
+    K_residual_std: 0.101133
+    signal_ratio: 0.523412
+    recon_mse: 0.000102
+    proj_err: 0.000088
+    ||d2phi||_F: 6.190717
+    metric_cond: 2.650913
+    metric_cond_max: 4.190125
+
+  --- AE: T+F+K ---
+    Epoch 100: loss=0.006763
+    Epoch 200: loss=0.004586
+    Epoch 300: loss=0.000460
+    Epoch 400: loss=0.000174
+    Epoch 500: loss=0.000163
+    ||v||: 3.150895
+    ||(I-P_hat)v||: 1.648010
+    ||(I-P_hat)q||: 1.644550
+    ||(I-P_true)v||: 1.648592
+    K_residual: 0.000216
+    K_residual_std: 0.000433
+    signal_ratio: 0.523029
+    recon_mse: 0.000054
+    proj_err: 0.000071
+    ||d2phi||_F: 6.131274
+    metric_cond: 2.572905
+    metric_cond_max: 4.315129
+
+============================================================
+Surface: hyperbolic_paraboloid
+============================================================
+
+  Raw data statistics:
+    ||v|| mean:           1.131563
+    ||(I-P_true)v|| mean: 0.342951
+    ||P_true v|| mean:    0.987411
+    Normal/Total ratio:   0.3031
+    ||(I-P_true)v|| std:  0.340352
+
+  --- AE: T+F ---
+    Epoch 100: loss=0.001175
+    Epoch 200: loss=0.000848
+    Epoch 300: loss=0.000669
+    Epoch 400: loss=0.000482
+    Epoch 500: loss=0.000173
+    ||v||: 1.131563
+    ||(I-P_hat)v||: 0.343586
+    ||(I-P_hat)q||: 0.331152
+    ||(I-P_true)v||: 0.342951
+    K_residual: 0.004105
+    K_residual_std: 0.012221
+    signal_ratio: 0.303639
+    recon_mse: 0.000074
+    proj_err: 0.000041
+    ||d2phi||_F: 5.502766
+    metric_cond: 2.577239
+    metric_cond_max: 5.077967
+
+  --- AE: T+F+K ---
+    Epoch 100: loss=0.003157
+    Epoch 200: loss=0.000922
+    Epoch 300: loss=0.000857
+    Epoch 400: loss=0.000895
+    Epoch 500: loss=0.000087
+    ||v||: 1.131563
+    ||(I-P_hat)v||: 0.342306
+    ||(I-P_hat)q||: 0.342958
+    ||(I-P_true)v||: 0.342951
+    K_residual: 0.000034
+    K_residual_std: 0.000079
+    signal_ratio: 0.302507
+    recon_mse: 0.000014
+    proj_err: 0.000012
+    ||d2phi||_F: 5.861801
+    metric_cond: 2.489321
+    metric_cond_max: 4.573044
+
+
+====================================================================================================
+CROSS-SURFACE COMPARISON
+====================================================================================================
+                  surface     reg           ||v||  ||(I-P_hat)v||  ||(I-P_hat)q||    signal_ratio      K_residual       recon_mse        proj_err     ||d2phi||_F     metric_cond
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+               sinusoidal     T+F        1.509936        0.774427        0.766462        0.512887        0.002160        0.000015        0.000018        3.767466        2.040449
+               sinusoidal   T+F+K        1.509936        0.773111        0.770495        0.512016        0.000060        0.000024        0.000018        3.613167        1.971741
+               paraboloid     T+F        3.150895        1.649216        1.607394        0.523412        0.014106        0.000102        0.000088        6.190717        2.650913
+               paraboloid   T+F+K        3.150895        1.648010        1.644550        0.523029        0.000216        0.000054        0.000071        6.131274        2.572905
+    hyperbolic_paraboloid     T+F        1.131563        0.343586        0.331152        0.303639        0.004105        0.000074        0.000041        5.502766        2.577239
+    hyperbolic_paraboloid   T+F+K        1.131563        0.342306        0.342958        0.302507        0.000034        0.000014        0.000012        5.861801        2.489321
+
+Done.

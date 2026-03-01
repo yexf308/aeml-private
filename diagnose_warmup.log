@@ -1,0 +1,282 @@
+Device: cuda
+Surface: sinusoidal
+N_TRAIN: [20, 200]
+Warmup epochs (T+F before T+F+K): [0, 100, 250, 400, 500]
+
+======================================================================
+N_TRAIN = 20
+======================================================================
+
+  --- pure T+F+K (T+F for 0, T+F+K for 500) ---
+    [T+F+K] Epoch 100: loss=0.273522
+    [T+F+K] Epoch 200: loss=0.118525
+    [T+F+K] Epoch 300: loss=0.034189
+    [T+F+K] Epoch 400: loss=0.043841
+    [T+F+K] Epoch 500: loss=0.020185
+    Recon MSE: 0.012809, Cond: 1.76
+  Stage 2 epoch 60/300: loss=0.095086
+  Stage 2 epoch 120/300: loss=0.070535
+  Stage 2 epoch 180/300: loss=0.034747
+  Stage 2 epoch 240/300: loss=0.007956
+  Stage 2 epoch 300/300: loss=0.005011
+  Stage 3 epoch 60/300: loss=1.449944
+  Stage 3 epoch 120/300: loss=1.097431
+  Stage 3 epoch 180/300: loss=0.935048
+  Stage 3 epoch 240/300: loss=0.826276
+  Stage 3 epoch 300/300: loss=0.769509
+    Evaluating...
+  MTE@0.1: 0.5820
+  MTE@0.5: 1.3462
+  MTE@1.0: 1.8164
+  W2@1.0:  1.5514
+  MMD@1.0: 0.1252
+  Survival@1.0: 76.5%
+
+  --- W=100 (T+F for 100, T+F+K for 400) ---
+    [T+F] Epoch 100: loss=0.215205
+    [T+F+K] Epoch 200: loss=0.293098
+    [T+F+K] Epoch 300: loss=0.034962
+    [T+F+K] Epoch 400: loss=0.014725
+    [T+F+K] Epoch 500: loss=0.059648
+    Recon MSE: 0.003231, Cond: 1.87
+  Stage 2 epoch 60/300: loss=0.074004
+  Stage 2 epoch 120/300: loss=0.051606
+  Stage 2 epoch 180/300: loss=0.026610
+  Stage 2 epoch 240/300: loss=0.010223
+  Stage 2 epoch 300/300: loss=0.007206
+  Stage 3 epoch 60/300: loss=1.411288
+  Stage 3 epoch 120/300: loss=1.070491
+  Stage 3 epoch 180/300: loss=0.968400
+  Stage 3 epoch 240/300: loss=0.906601
+  Stage 3 epoch 300/300: loss=0.866893
+    Evaluating...
+  MTE@0.1: 0.5716
+  MTE@0.5: 1.3234
+  MTE@1.0: 1.7776
+  W2@1.0:  1.2169
+  MMD@1.0: 0.1596
+  Survival@1.0: 76.5%
+
+  --- W=250 (T+F for 250, T+F+K for 250) ---
+    [T+F] Epoch 100: loss=0.215205
+    [T+F] Epoch 200: loss=0.210816
+    [T+F+K] Epoch 300: loss=0.549216
+    [T+F+K] Epoch 400: loss=0.639858
+    [T+F+K] Epoch 500: loss=0.050493
+    Recon MSE: 0.005648, Cond: 1.67
+  Stage 2 epoch 60/300: loss=0.073562
+  Stage 2 epoch 120/300: loss=0.049341
+  Stage 2 epoch 180/300: loss=0.020177
+  Stage 2 epoch 240/300: loss=0.004653
+  Stage 2 epoch 300/300: loss=0.003394
+  Stage 3 epoch 60/300: loss=4.227409
+  Stage 3 epoch 120/300: loss=3.143065
+  Stage 3 epoch 180/300: loss=0.528320
+  Stage 3 epoch 240/300: loss=0.207658
+  Stage 3 epoch 300/300: loss=0.171745
+    Evaluating...
+  MTE@0.1: 0.3034
+  MTE@0.5: 0.7644
+  MTE@1.0: 1.2809
+  W2@1.0:  1.3539
+  MMD@1.0: 0.1765
+  Survival@1.0: 76.5%
+
+  --- W=400 (T+F for 400, T+F+K for 100) ---
+    [T+F] Epoch 100: loss=0.215205
+    [T+F] Epoch 200: loss=0.210816
+    [T+F] Epoch 300: loss=0.191154
+    [T+F] Epoch 400: loss=0.047663
+    [T+F+K] Epoch 500: loss=0.049571
+    Recon MSE: 0.016146, Cond: 1.85
+  Stage 2 epoch 60/300: loss=0.035885
+  Stage 2 epoch 120/300: loss=0.027846
+  Stage 2 epoch 180/300: loss=0.020822
+  Stage 2 epoch 240/300: loss=0.013824
+  Stage 2 epoch 300/300: loss=0.009393
+  Stage 3 epoch 60/300: loss=4.306441
+  Stage 3 epoch 120/300: loss=3.429649
+  Stage 3 epoch 180/300: loss=0.960733
+  Stage 3 epoch 240/300: loss=0.251786
+  Stage 3 epoch 300/300: loss=0.202169
+    Evaluating...
+  MTE@0.1: 0.3360
+  MTE@0.5: 0.7738
+  MTE@1.0: 1.2349
+  W2@1.0:  1.1084
+  MMD@1.0: 0.1502
+  Survival@1.0: 76.5%
+
+  --- pure T+F (T+F for 500, T+F+K for 0) ---
+    [T+F] Epoch 100: loss=0.215205
+    [T+F] Epoch 200: loss=0.210816
+    [T+F] Epoch 300: loss=0.191154
+    [T+F] Epoch 400: loss=0.047663
+    [T+F] Epoch 500: loss=0.018196
+    Recon MSE: 0.007707, Cond: 1.45
+  Stage 2 epoch 60/300: loss=0.063978
+  Stage 2 epoch 120/300: loss=0.045019
+  Stage 2 epoch 180/300: loss=0.029848
+  Stage 2 epoch 240/300: loss=0.023861
+  Stage 2 epoch 300/300: loss=0.021352
+  Stage 3 epoch 60/300: loss=3.109269
+  Stage 3 epoch 120/300: loss=2.278226
+  Stage 3 epoch 180/300: loss=0.731349
+  Stage 3 epoch 240/300: loss=0.372373
+  Stage 3 epoch 300/300: loss=0.331422
+    Evaluating...
+  MTE@0.1: 0.2881
+  MTE@0.5: 0.6676
+  MTE@1.0: 1.0543
+  W2@1.0:  0.8604
+  MMD@1.0: 0.1374
+  Survival@1.0: 76.5%
+
+======================================================================
+N_TRAIN = 200
+======================================================================
+
+  --- pure T+F+K (T+F for 0, T+F+K for 500) ---
+    [T+F+K] Epoch 100: loss=0.048061
+    [T+F+K] Epoch 200: loss=0.065065
+    [T+F+K] Epoch 300: loss=0.015473
+    [T+F+K] Epoch 400: loss=0.050925
+    [T+F+K] Epoch 500: loss=0.011968
+    Recon MSE: 0.003026, Cond: 1.70
+  Stage 2 epoch 60/300: loss=0.012810
+  Stage 2 epoch 120/300: loss=0.002384
+  Stage 2 epoch 180/300: loss=0.002097
+  Stage 2 epoch 240/300: loss=0.001070
+  Stage 2 epoch 300/300: loss=0.001425
+  Stage 3 epoch 60/300: loss=1.399414
+  Stage 3 epoch 120/300: loss=0.906975
+  Stage 3 epoch 180/300: loss=0.590834
+  Stage 3 epoch 240/300: loss=0.459973
+  Stage 3 epoch 300/300: loss=0.319388
+    Evaluating...
+  MTE@0.1: 0.6461
+  MTE@0.5: 1.4693
+  MTE@1.0: 2.1085
+  W2@1.0:  1.4852
+  MMD@1.0: 0.1924
+  Survival@1.0: 76.5%
+
+  --- W=100 (T+F for 100, T+F+K for 400) ---
+    [T+F] Epoch 100: loss=0.021968
+    [T+F+K] Epoch 200: loss=0.096116
+    [T+F+K] Epoch 300: loss=0.055801
+    [T+F+K] Epoch 400: loss=0.012259
+    [T+F+K] Epoch 500: loss=0.005911
+    Recon MSE: 0.001036, Cond: 2.01
+  Stage 2 epoch 60/300: loss=0.022940
+  Stage 2 epoch 120/300: loss=0.003113
+  Stage 2 epoch 180/300: loss=0.001207
+  Stage 2 epoch 240/300: loss=0.001072
+  Stage 2 epoch 300/300: loss=0.000855
+  Stage 3 epoch 60/300: loss=0.308584
+  Stage 3 epoch 120/300: loss=0.085807
+  Stage 3 epoch 180/300: loss=0.040837
+  Stage 3 epoch 240/300: loss=0.025896
+  Stage 3 epoch 300/300: loss=0.021088
+    Evaluating...
+  MTE@0.1: 0.2948
+  MTE@0.5: 0.7575
+  MTE@1.0: 1.1993
+  W2@1.0:  1.2934
+  MMD@1.0: 0.1831
+  Survival@1.0: 76.5%
+
+  --- W=250 (T+F for 250, T+F+K for 250) ---
+    [T+F] Epoch 100: loss=0.021968
+    [T+F] Epoch 200: loss=0.005246
+    [T+F+K] Epoch 300: loss=0.020658
+    [T+F+K] Epoch 400: loss=0.027601
+    [T+F+K] Epoch 500: loss=0.030169
+    Recon MSE: 0.007875, Cond: 2.04
+  Stage 2 epoch 60/300: loss=0.029341
+  Stage 2 epoch 120/300: loss=0.003398
+  Stage 2 epoch 180/300: loss=0.001660
+  Stage 2 epoch 240/300: loss=0.001258
+  Stage 2 epoch 300/300: loss=0.001875
+  Stage 3 epoch 60/300: loss=0.359462
+  Stage 3 epoch 120/300: loss=0.103492
+  Stage 3 epoch 180/300: loss=0.053469
+  Stage 3 epoch 240/300: loss=0.041077
+  Stage 3 epoch 300/300: loss=0.039693
+    Evaluating...
+  MTE@0.1: 0.3126
+  MTE@0.5: 0.7700
+  MTE@1.0: 1.2022
+  W2@1.0:  1.1974
+  MMD@1.0: 0.1754
+  Survival@1.0: 76.5%
+
+  --- W=400 (T+F for 400, T+F+K for 100) ---
+    [T+F] Epoch 100: loss=0.021968
+    [T+F] Epoch 200: loss=0.005246
+    [T+F] Epoch 300: loss=0.002703
+    [T+F] Epoch 400: loss=0.005280
+    [T+F+K] Epoch 500: loss=0.024436
+    Recon MSE: 0.005459, Cond: 2.18
+  Stage 2 epoch 60/300: loss=0.025954
+  Stage 2 epoch 120/300: loss=0.002565
+  Stage 2 epoch 180/300: loss=0.001675
+  Stage 2 epoch 240/300: loss=0.001174
+  Stage 2 epoch 300/300: loss=0.000910
+  Stage 3 epoch 60/300: loss=0.333343
+  Stage 3 epoch 120/300: loss=0.102456
+  Stage 3 epoch 180/300: loss=0.061920
+  Stage 3 epoch 240/300: loss=0.043648
+  Stage 3 epoch 300/300: loss=0.047621
+    Evaluating...
+  MTE@0.1: 0.3063
+  MTE@0.5: 0.7577
+  MTE@1.0: 1.1994
+  W2@1.0:  1.2111
+  MMD@1.0: 0.1776
+  Survival@1.0: 76.5%
+
+  --- pure T+F (T+F for 500, T+F+K for 0) ---
+    [T+F] Epoch 100: loss=0.021968
+    [T+F] Epoch 200: loss=0.005246
+    [T+F] Epoch 300: loss=0.002703
+    [T+F] Epoch 400: loss=0.005280
+    [T+F] Epoch 500: loss=0.000182
+    Recon MSE: 0.000030, Cond: 2.35
+  Stage 2 epoch 60/300: loss=0.027682
+  Stage 2 epoch 120/300: loss=0.004163
+  Stage 2 epoch 180/300: loss=0.001785
+  Stage 2 epoch 240/300: loss=0.001444
+  Stage 2 epoch 300/300: loss=0.001332
+  Stage 3 epoch 60/300: loss=0.346502
+  Stage 3 epoch 120/300: loss=0.096018
+  Stage 3 epoch 180/300: loss=0.040473
+  Stage 3 epoch 240/300: loss=0.025411
+  Stage 3 epoch 300/300: loss=0.021683
+    Evaluating...
+  MTE@0.1: 0.2912
+  MTE@0.5: 0.7526
+  MTE@1.0: 1.1899
+  W2@1.0:  1.2378
+  MMD@1.0: 0.1759
+  Survival@1.0: 76.5%
+
+
+====================================================================================================
+WARMUP RESULTS: T+F warmup before T+F+K
+====================================================================================================
+   N  warmup         label       recon    cond   MTE@0.1   MTE@0.5   MTE@1.0    W2@1.0   MMD@1.0
+------------------------------------------------------------------------------------------------
+  20       0    pure T+F+K    0.012809    1.76    0.5820    1.3462    1.8164    1.5514    0.1252
+  20     100         W=100    0.003231    1.87    0.5716    1.3234    1.7776    1.2169    0.1596
+  20     250         W=250    0.005648    1.67    0.3034    0.7644    1.2809    1.3539    0.1765
+  20     400         W=400    0.016146    1.85    0.3360    0.7738    1.2349    1.1084    0.1502
+  20     500      pure T+F    0.007707    1.45    0.2881    0.6676    1.0543    0.8604    0.1374
+ 200       0    pure T+F+K    0.003026    1.70    0.6461    1.4693    2.1085    1.4852    0.1924
+ 200     100         W=100    0.001036    2.01    0.2948    0.7575    1.1993    1.2934    0.1831
+ 200     250         W=250    0.007875    2.04    0.3126    0.7700    1.2022    1.1974    0.1754
+ 200     400         W=400    0.005459    2.18    0.3063    0.7577    1.1994    1.2111    0.1776
+ 200     500      pure T+F    0.000030    2.35    0.2912    0.7526    1.1899    1.2378    0.1759
+
+Total time: 575.5s
+Done.

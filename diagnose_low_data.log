@@ -1,0 +1,193 @@
+Device: cuda
+Surface: sinusoidal
+N_TRAIN sweep: [20, 50, 200]
+lambda_K sweep: [0.0, 0.1, 1.0]
+
+--- Generating full dataset for AE training ---
+
+--- Stage 1: AE (T+F, 500 epochs, N=2000) ---
+  Epoch 100: loss=0.001008
+  Epoch 200: loss=0.000261
+  Epoch 300: loss=0.000170
+  Epoch 400: loss=0.000567
+  Epoch 500: loss=0.000074
+
+======================================================================
+N_TRAIN = 20  (params/constraints = 4600/60)
+======================================================================
+  Stage 2 epoch 60/300: loss=0.015745
+  Stage 2 epoch 120/300: loss=0.012720
+  Stage 2 epoch 180/300: loss=0.011329
+  Stage 2 epoch 240/300: loss=0.009999
+  Stage 2 epoch 300/300: loss=0.008782
+  Drift loss: 0.008782
+
+  --- lambda_K=0.0 ---
+  Stage 3 epoch 60/300: loss=1.108171
+  Stage 3 epoch 120/300: loss=1.015821
+  Stage 3 epoch 180/300: loss=0.933342
+  Stage 3 epoch 240/300: loss=0.816454
+  Stage 3 epoch 300/300: loss=0.641217
+  Evaluating...
+  MTE@0.1: 0.2948
+  MTE@0.5: 0.7524
+  MTE@1.0: 1.2845
+  W2@1.0:  0.9982
+  MMD@1.0: 0.1783
+  Survival@1.0: 76.5%
+
+  --- lambda_K=0.1 ---
+  Stage 3 epoch 60/300: loss=1.114293
+  Stage 3 epoch 120/300: loss=1.021937
+  Stage 3 epoch 180/300: loss=0.939133
+  Stage 3 epoch 240/300: loss=0.821785
+  Stage 3 epoch 300/300: loss=0.645651
+  Evaluating...
+  MTE@0.1: 0.2949
+  MTE@0.5: 0.7524
+  MTE@1.0: 1.2842
+  W2@1.0:  0.9986
+  MMD@1.0: 0.1783
+  Survival@1.0: 76.5%
+
+  --- lambda_K=1.0 ---
+  Stage 3 epoch 60/300: loss=1.167526
+  Stage 3 epoch 120/300: loss=1.074742
+  Stage 3 epoch 180/300: loss=0.988282
+  Stage 3 epoch 240/300: loss=0.865401
+  Stage 3 epoch 300/300: loss=0.679357
+  Evaluating...
+  MTE@0.1: 0.2955
+  MTE@0.5: 0.7520
+  MTE@1.0: 1.2818
+  W2@1.0:  1.0023
+  MMD@1.0: 0.1784
+  Survival@1.0: 76.5%
+
+======================================================================
+N_TRAIN = 50  (params/constraints = 4600/150)
+======================================================================
+  Stage 2 epoch 60/300: loss=0.026661
+  Stage 2 epoch 120/300: loss=0.021630
+  Stage 2 epoch 180/300: loss=0.015983
+  Stage 2 epoch 240/300: loss=0.009965
+  Stage 2 epoch 300/300: loss=0.007207
+  Drift loss: 0.007207
+
+  --- lambda_K=0.0 ---
+  Stage 3 epoch 60/300: loss=1.620954
+  Stage 3 epoch 120/300: loss=1.336064
+  Stage 3 epoch 180/300: loss=0.386067
+  Stage 3 epoch 240/300: loss=0.155811
+  Stage 3 epoch 300/300: loss=0.114833
+  Evaluating...
+  MTE@0.1: 0.2870
+  MTE@0.5: 0.7234
+  MTE@1.0: 1.1782
+  W2@1.0:  1.1096
+  MMD@1.0: 0.1679
+  Survival@1.0: 76.5%
+
+  --- lambda_K=0.1 ---
+  Stage 3 epoch 60/300: loss=1.645025
+  Stage 3 epoch 120/300: loss=1.359372
+  Stage 3 epoch 180/300: loss=0.393559
+  Stage 3 epoch 240/300: loss=0.157711
+  Stage 3 epoch 300/300: loss=0.115937
+  Evaluating...
+  MTE@0.1: 0.2870
+  MTE@0.5: 0.7233
+  MTE@1.0: 1.1773
+  W2@1.0:  1.1107
+  MMD@1.0: 0.1679
+  Survival@1.0: 76.5%
+
+  --- lambda_K=1.0 ---
+  Stage 3 epoch 60/300: loss=1.834603
+  Stage 3 epoch 120/300: loss=1.547328
+  Stage 3 epoch 180/300: loss=0.482806
+  Stage 3 epoch 240/300: loss=0.175730
+  Stage 3 epoch 300/300: loss=0.128399
+  Evaluating...
+  MTE@0.1: 0.2869
+  MTE@0.5: 0.7231
+  MTE@1.0: 1.1738
+  W2@1.0:  1.1177
+  MMD@1.0: 0.1675
+  Survival@1.0: 76.5%
+
+======================================================================
+N_TRAIN = 200  (params/constraints = 4600/600)
+======================================================================
+  Stage 2 epoch 60/300: loss=0.015934
+  Stage 2 epoch 120/300: loss=0.003978
+  Stage 2 epoch 180/300: loss=0.000807
+  Stage 2 epoch 240/300: loss=0.000492
+  Stage 2 epoch 300/300: loss=0.000418
+  Drift loss: 0.000418
+
+  --- lambda_K=0.0 ---
+  Stage 3 epoch 60/300: loss=0.312908
+  Stage 3 epoch 120/300: loss=0.060862
+  Stage 3 epoch 180/300: loss=0.049199
+  Stage 3 epoch 240/300: loss=0.044397
+  Stage 3 epoch 300/300: loss=0.015639
+  Evaluating...
+  MTE@0.1: 0.2863
+  MTE@0.5: 0.7202
+  MTE@1.0: 1.1500
+  W2@1.0:  1.2699
+  MMD@1.0: 0.1768
+  Survival@1.0: 76.5%
+
+  --- lambda_K=0.1 ---
+  Stage 3 epoch 60/300: loss=0.318671
+  Stage 3 epoch 120/300: loss=0.062119
+  Stage 3 epoch 180/300: loss=0.050882
+  Stage 3 epoch 240/300: loss=0.045722
+  Stage 3 epoch 300/300: loss=0.016425
+  Evaluating...
+  MTE@0.1: 0.2862
+  MTE@0.5: 0.7199
+  MTE@1.0: 1.1482
+  W2@1.0:  1.2712
+  MMD@1.0: 0.1767
+  Survival@1.0: 76.5%
+
+  --- lambda_K=1.0 ---
+  Stage 3 epoch 60/300: loss=0.389638
+  Stage 3 epoch 120/300: loss=0.072997
+  Stage 3 epoch 180/300: loss=0.062117
+  Stage 3 epoch 240/300: loss=0.051264
+  Stage 3 epoch 300/300: loss=0.018903
+  Evaluating...
+  MTE@0.1: 0.2867
+  MTE@0.5: 0.7233
+  MTE@1.0: 1.1471
+  W2@1.0:  1.2971
+  MMD@1.0: 0.1784
+  Survival@1.0: 76.5%
+
+
+==========================================================================================
+LOW-DATA REGIME: Does K help when the network is underconstrained?
+==========================================================================================
+
+    N  lambda_K   diff_loss   MTE@0.1   MTE@0.5   MTE@1.0    W2@1.0   MMD@1.0
+-----------------------------------------------------------------------------
+   20      0.00    0.641217    0.2948    0.7524    1.2845    0.9982    0.1783
+   20      0.10    0.645651    0.2949    0.7524    1.2842    0.9986    0.1783
+   20      1.00    0.679357    0.2955    0.7520    1.2818    1.0023    0.1784
+   50      0.00    0.114833    0.2870    0.7234    1.1782    1.1096    0.1679
+   50      0.10    0.115937    0.2870    0.7233    1.1773    1.1107    0.1679
+   50      1.00    0.128399    0.2869    0.7231    1.1738    1.1177    0.1675
+  200      0.00    0.015639    0.2863    0.7202    1.1500    1.2699    0.1768
+  200      0.10    0.016425    0.2862    0.7199    1.1482    1.2712    0.1767
+  200      1.00    0.018903    0.2867    0.7233    1.1471    1.2971    0.1784
+
+  N=  20: best lambda_K=1.00 (MTE@1.0=1.2818), lambda_K=0 MTE@1.0=1.2845, delta=+0.2%
+  N=  50: best lambda_K=1.00 (MTE@1.0=1.1738), lambda_K=0 MTE@1.0=1.1782, delta=+0.4%
+  N= 200: best lambda_K=1.00 (MTE@1.0=1.1471), lambda_K=0 MTE@1.0=1.1500, delta=+0.3%
+
+Total time: 502.8s
+Done.

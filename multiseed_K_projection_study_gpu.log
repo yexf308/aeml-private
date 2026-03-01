@@ -1,0 +1,3364 @@
+Device: cuda
+Seeds: [42, 1042, 2042, 3042, 4042, 5042, 6042, 7042, 8042, 9042]
+Surfaces: ['sinusoidal', 'paraboloid', 'hyperbolic_paraboloid']
+Conditions: ['T+F', 'T+F+K(Phat)2ph', 'T+F+K(Pstar)2ph', 'T+F+K(Pstar)1ph']
+AE epochs: 500, SDE epochs: 300
+
+
+============================================================
+  sinusoidal | T+F | seed=42
+============================================================
+      AE Epoch 100: loss=0.138467
+      AE Epoch 200: loss=0.081891
+      AE Epoch 300: loss=0.069851
+      AE Epoch 400: loss=0.032224
+      AE Epoch 500: loss=0.018866
+  Stage 2 epoch 60/300: loss=0.048782
+  Stage 2 epoch 120/300: loss=0.039329
+  Stage 2 epoch 180/300: loss=0.036842
+  Stage 2 epoch 240/300: loss=0.034518
+  Stage 2 epoch 300/300: loss=0.032420
+  Stage 3 epoch 60/300: loss=1.253094
+  Stage 3 epoch 120/300: loss=1.108777
+  Stage 3 epoch 180/300: loss=0.890075
+  Stage 3 epoch 240/300: loss=0.613601
+  Stage 3 epoch 300/300: loss=0.570356
+  MTE@0.1: 0.3065
+  MTE@0.5: 0.7218
+  MTE@1.0: 1.1413
+  W2@1.0:  0.8924
+  MMD@1.0: 0.1884
+  Survival@1.0: 76.5%
+    MTE@1.0=1.1413  W2@1.0=0.8924  MMD@1.0=0.1884
+
+============================================================
+  sinusoidal | T+F+K(Phat)2ph | seed=42
+============================================================
+
+[ae] Starting T+F-warmup: 250 epochs
+  Epoch 100 (T+F-warmup 100/250): loss = 0.1569
+  Epoch 200 (T+F-warmup 200/250): loss = 0.0807
+
+[ae] Starting T+F+K-finetune: 250 epochs
+  Epoch 350 (T+F+K-finetune 100/250): loss = 0.1925
+  Epoch 450 (T+F+K-finetune 200/250): loss = 0.0961
+  Stage 2 epoch 60/300: loss=0.034821
+  Stage 2 epoch 120/300: loss=0.029742
+  Stage 2 epoch 180/300: loss=0.028226
+  Stage 2 epoch 240/300: loss=0.026500
+  Stage 2 epoch 300/300: loss=0.024493
+  Stage 3 epoch 60/300: loss=1.661372
+  Stage 3 epoch 120/300: loss=1.462732
+  Stage 3 epoch 180/300: loss=1.047505
+  Stage 3 epoch 240/300: loss=0.467799
+  Stage 3 epoch 300/300: loss=0.372048
+  MTE@0.1: 0.3034
+  MTE@0.5: 0.7906
+  MTE@1.0: 1.2740
+  W2@1.0:  1.0236
+  MMD@1.0: 0.1931
+  Survival@1.0: 76.5%
+    MTE@1.0=1.2740  W2@1.0=1.0236  MMD@1.0=0.1931
+
+============================================================
+  sinusoidal | T+F+K(Pstar)2ph | seed=42
+============================================================
+
+[ae] Starting T+F-warmup: 250 epochs
+  Epoch 100 (T+F-warmup 100/250): loss = 0.1569
+  Epoch 200 (T+F-warmup 200/250): loss = 0.0807
+
+[ae] Starting T+F+K-finetune: 250 epochs
+  Epoch 350 (T+F+K-finetune 100/250): loss = 0.1124
+  Epoch 450 (T+F+K-finetune 200/250): loss = 0.0166
+  Stage 2 epoch 60/300: loss=0.031899
+  Stage 2 epoch 120/300: loss=0.027563
+  Stage 2 epoch 180/300: loss=0.024017
+  Stage 2 epoch 240/300: loss=0.019282
+  Stage 2 epoch 300/300: loss=0.013055
+  Stage 3 epoch 60/300: loss=1.798159
+  Stage 3 epoch 120/300: loss=1.591647
+  Stage 3 epoch 180/300: loss=1.219773
+  Stage 3 epoch 240/300: loss=0.455554
+  Stage 3 epoch 300/300: loss=0.229091
+  MTE@0.1: 0.3185
+  MTE@0.5: 0.7704
+  MTE@1.0: 1.2384
+  W2@1.0:  1.0509
+  MMD@1.0: 0.1983
+  Survival@1.0: 76.5%
+    MTE@1.0=1.2384  W2@1.0=1.0509  MMD@1.0=0.1983
+
+============================================================
+  sinusoidal | T+F+K(Pstar)1ph | seed=42
+============================================================
+      AE Epoch 100: loss=0.338065
+      AE Epoch 200: loss=0.051550
+      AE Epoch 300: loss=0.026102
+      AE Epoch 400: loss=0.005291
+      AE Epoch 500: loss=0.002597
+  Stage 2 epoch 60/300: loss=0.047218
+  Stage 2 epoch 120/300: loss=0.041231
+  Stage 2 epoch 180/300: loss=0.034692
+  Stage 2 epoch 240/300: loss=0.026239
+  Stage 2 epoch 300/300: loss=0.015209
+  Stage 3 epoch 60/300: loss=1.684595
+  Stage 3 epoch 120/300: loss=1.440247
+  Stage 3 epoch 180/300: loss=0.906443
+  Stage 3 epoch 240/300: loss=0.271513
+  Stage 3 epoch 300/300: loss=0.112709
+  MTE@0.1: 0.3049
+  MTE@0.5: 0.7862
+  MTE@1.0: 1.2933
+  W2@1.0:  1.2103
+  MMD@1.0: 0.1914
+  Survival@1.0: 76.5%
+    MTE@1.0=1.2933  W2@1.0=1.2103  MMD@1.0=0.1914
+
+============================================================
+  sinusoidal | T+F | seed=1042
+============================================================
+      AE Epoch 100: loss=0.078894
+      AE Epoch 200: loss=0.046399
+      AE Epoch 300: loss=0.053293
+      AE Epoch 400: loss=0.039762
+      AE Epoch 500: loss=0.124162
+  Stage 2 epoch 60/300: loss=0.146238
+  Stage 2 epoch 120/300: loss=0.123000
+  Stage 2 epoch 180/300: loss=0.085425
+  Stage 2 epoch 240/300: loss=0.028213
+  Stage 2 epoch 300/300: loss=0.008649
+  Stage 3 epoch 60/300: loss=2.451252
+  Stage 3 epoch 120/300: loss=1.141293
+  Stage 3 epoch 180/300: loss=0.949679
+  Stage 3 epoch 240/300: loss=0.798192
+  Stage 3 epoch 300/300: loss=0.741268
+  MTE@0.1: 0.8238
+  MTE@0.5: 1.4714
+  MTE@1.0: 1.9915
+  W2@1.0:  0.8415
+  MMD@1.0: 0.1445
+  Survival@1.0: 72.0%
+    MTE@1.0=1.9915  W2@1.0=0.8415  MMD@1.0=0.1445
+
+============================================================
+  sinusoidal | T+F+K(Phat)2ph | seed=1042
+============================================================
+
+[ae] Starting T+F-warmup: 250 epochs
+  Epoch 100 (T+F-warmup 100/250): loss = 0.0789
+  Epoch 200 (T+F-warmup 200/250): loss = 0.0464
+
+[ae] Starting T+F+K-finetune: 250 epochs
+  Epoch 350 (T+F+K-finetune 100/250): loss = 0.1015
+  Epoch 450 (T+F+K-finetune 200/250): loss = 0.1004
+  Stage 2 epoch 60/300: loss=0.157528
+  Stage 2 epoch 120/300: loss=0.132090
+  Stage 2 epoch 180/300: loss=0.090939
+  Stage 2 epoch 240/300: loss=0.029354
+  Stage 2 epoch 300/300: loss=0.009279
+  Stage 3 epoch 60/300: loss=2.545107
+  Stage 3 epoch 120/300: loss=1.223100
+  Stage 3 epoch 180/300: loss=1.009103
+  Stage 3 epoch 240/300: loss=0.861817
+  Stage 3 epoch 300/300: loss=0.805834
+  MTE@0.1: 0.8319
+  MTE@0.5: 1.4763
+  MTE@1.0: 1.9900
+  W2@1.0:  0.8536
+  MMD@1.0: 0.1518
+  Survival@1.0: 72.0%
+    MTE@1.0=1.9900  W2@1.0=0.8536  MMD@1.0=0.1518
+
+============================================================
+  sinusoidal | T+F+K(Pstar)2ph | seed=1042
+============================================================
+
+[ae] Starting T+F-warmup: 250 epochs
+  Epoch 100 (T+F-warmup 100/250): loss = 0.0789
+  Epoch 200 (T+F-warmup 200/250): loss = 0.0464
+
+[ae] Starting T+F+K-finetune: 250 epochs
+  Epoch 350 (T+F+K-finetune 100/250): loss = 0.1312
+  Epoch 450 (T+F+K-finetune 200/250): loss = 0.1211
+  Stage 2 epoch 60/300: loss=0.126409
+  Stage 2 epoch 120/300: loss=0.102536
+  Stage 2 epoch 180/300: loss=0.065593
+  Stage 2 epoch 240/300: loss=0.019527
+  Stage 2 epoch 300/300: loss=0.007261
+  Stage 3 epoch 60/300: loss=2.118069
+  Stage 3 epoch 120/300: loss=0.915491
+  Stage 3 epoch 180/300: loss=0.762988
+  Stage 3 epoch 240/300: loss=0.653114
+  Stage 3 epoch 300/300: loss=0.603364
+  MTE@0.1: 0.8485
+  MTE@0.5: 1.5100
+  MTE@1.0: 2.0569
+  W2@1.0:  0.8817
+  MMD@1.0: 0.1631
+  Survival@1.0: 72.0%
+    MTE@1.0=2.0569  W2@1.0=0.8817  MMD@1.0=0.1631
+
+============================================================
+  sinusoidal | T+F+K(Pstar)1ph | seed=1042
+============================================================
+      AE Epoch 100: loss=0.151116
+      AE Epoch 200: loss=0.143968
+      AE Epoch 300: loss=0.123926
+      AE Epoch 400: loss=0.019214
+      AE Epoch 500: loss=0.009304
+  Stage 2 epoch 60/300: loss=0.007627
+  Stage 2 epoch 120/300: loss=0.006689
+  Stage 2 epoch 180/300: loss=0.006373
+  Stage 2 epoch 240/300: loss=0.006064
+  Stage 2 epoch 300/300: loss=0.005774
+  Stage 3 epoch 60/300: loss=0.274791
+  Stage 3 epoch 120/300: loss=0.218988
+  Stage 3 epoch 180/300: loss=0.201667
+  Stage 3 epoch 240/300: loss=0.183722
+  Stage 3 epoch 300/300: loss=0.164715
+  MTE@0.1: 0.7139
+  MTE@0.5: 1.4637
+  MTE@1.0: 1.8773
+  W2@1.0:  1.1041
+  MMD@1.0: 0.1990
+  Survival@1.0: 72.0%
+    MTE@1.0=1.8773  W2@1.0=1.1041  MMD@1.0=0.1990
+
+============================================================
+  sinusoidal | T+F | seed=2042
+============================================================
+      AE Epoch 100: loss=0.129734
+      AE Epoch 200: loss=0.159972
+      AE Epoch 300: loss=0.088459
+      AE Epoch 400: loss=0.087078
+      AE Epoch 500: loss=0.085279
+  Stage 2 epoch 60/300: loss=0.230043
+  Stage 2 epoch 120/300: loss=0.185667
+  Stage 2 epoch 180/300: loss=0.101428
+  Stage 2 epoch 240/300: loss=0.035884
+  Stage 2 epoch 300/300: loss=0.019254
+  Stage 3 epoch 60/300: loss=2.815226
+  Stage 3 epoch 120/300: loss=2.423395
+  Stage 3 epoch 180/300: loss=2.090761
+  Stage 3 epoch 240/300: loss=2.012624
+  Stage 3 epoch 300/300: loss=1.979495
+  MTE@0.1: 0.9128
+  MTE@0.5: 1.8677
+  MTE@1.0: 2.1126
+  W2@1.0:  0.6151
+  MMD@1.0: 0.0995
+  Survival@1.0: 78.5%
+    MTE@1.0=2.1126  W2@1.0=0.6151  MMD@1.0=0.0995
+
+============================================================
+  sinusoidal | T+F+K(Phat)2ph | seed=2042
+============================================================
+
+[ae] Starting T+F-warmup: 250 epochs
+  Epoch 100 (T+F-warmup 100/250): loss = 0.1297
+  Epoch 200 (T+F-warmup 200/250): loss = 0.1600
+
+[ae] Starting T+F+K-finetune: 250 epochs
+  Epoch 350 (T+F+K-finetune 100/250): loss = 0.2023
+  Epoch 450 (T+F+K-finetune 200/250): loss = 0.2005
+  Stage 2 epoch 60/300: loss=0.293976
+  Stage 2 epoch 120/300: loss=0.238426
+  Stage 2 epoch 180/300: loss=0.127056
+  Stage 2 epoch 240/300: loss=0.043073
+  Stage 2 epoch 300/300: loss=0.023134
+  Stage 3 epoch 60/300: loss=3.342220
+  Stage 3 epoch 120/300: loss=2.841044
+  Stage 3 epoch 180/300: loss=2.444768
+  Stage 3 epoch 240/300: loss=2.366153
+  Stage 3 epoch 300/300: loss=2.319727
+  MTE@0.1: 0.9195
+  MTE@0.5: 1.8732
+  MTE@1.0: 2.1081
+  W2@1.0:  0.6373
+  MMD@1.0: 0.1013
+  Survival@1.0: 78.5%
+    MTE@1.0=2.1081  W2@1.0=0.6373  MMD@1.0=0.1013
+
+============================================================
+  sinusoidal | T+F+K(Pstar)2ph | seed=2042
+============================================================
+
+[ae] Starting T+F-warmup: 250 epochs
+  Epoch 100 (T+F-warmup 100/250): loss = 0.1297
+  Epoch 200 (T+F-warmup 200/250): loss = 0.1600
+
+[ae] Starting T+F+K-finetune: 250 epochs
+  Epoch 350 (T+F+K-finetune 100/250): loss = 0.2909
+  Epoch 450 (T+F+K-finetune 200/250): loss = 0.2135
+  Stage 2 epoch 60/300: loss=0.037051
+  Stage 2 epoch 120/300: loss=0.032598
+  Stage 2 epoch 180/300: loss=0.029902
+  Stage 2 epoch 240/300: loss=0.028095
+  Stage 2 epoch 300/300: loss=0.026731
+  Stage 3 epoch 60/300: loss=0.652462
+  Stage 3 epoch 120/300: loss=0.567646
+  Stage 3 epoch 180/300: loss=0.518334
+  Stage 3 epoch 240/300: loss=0.473866
+  Stage 3 epoch 300/300: loss=0.433949
+  MTE@0.1: 0.8928
+  MTE@0.5: 1.9172
+  MTE@1.0: 2.2776
+  W2@1.0:  1.1665
+  MMD@1.0: 0.1580
+  Survival@1.0: 78.5%
+    MTE@1.0=2.2776  W2@1.0=1.1665  MMD@1.0=0.1580
+
+============================================================
+  sinusoidal | T+F+K(Pstar)1ph | seed=2042
+============================================================
+      AE Epoch 100: loss=0.531836
+      AE Epoch 200: loss=0.271865
+      AE Epoch 300: loss=0.036732
+      AE Epoch 400: loss=0.020100
+      AE Epoch 500: loss=0.019402
+  Stage 2 epoch 60/300: loss=0.015956
+  Stage 2 epoch 120/300: loss=0.013268
+  Stage 2 epoch 180/300: loss=0.011145
+  Stage 2 epoch 240/300: loss=0.008765
+  Stage 2 epoch 300/300: loss=0.006265
+  Stage 3 epoch 60/300: loss=0.678459
+  Stage 3 epoch 120/300: loss=0.572830
+  Stage 3 epoch 180/300: loss=0.517716
+  Stage 3 epoch 240/300: loss=0.463564
+  Stage 3 epoch 300/300: loss=0.405958
+  MTE@0.1: 0.8643
+  MTE@0.5: 1.8627
+  MTE@1.0: 2.2265
+  W2@1.0:  1.4334
+  MMD@1.0: 0.1580
+  Survival@1.0: 78.5%
+    MTE@1.0=2.2265  W2@1.0=1.4334  MMD@1.0=0.1580
+
+============================================================
+  sinusoidal | T+F | seed=3042
+============================================================
+      AE Epoch 100: loss=0.074597
+      AE Epoch 200: loss=0.066052
+      AE Epoch 300: loss=0.130871
+      AE Epoch 400: loss=0.056860
+      AE Epoch 500: loss=0.053136
+  Stage 2 epoch 60/300: loss=0.144883
+  Stage 2 epoch 120/300: loss=0.117581
+  Stage 2 epoch 180/300: loss=0.082796
+  Stage 2 epoch 240/300: loss=0.044219
+  Stage 2 epoch 300/300: loss=0.019706
+  Stage 3 epoch 60/300: loss=2.215849
+  Stage 3 epoch 120/300: loss=2.039909
+  Stage 3 epoch 180/300: loss=1.783496
+  Stage 3 epoch 240/300: loss=1.451205
+  Stage 3 epoch 300/300: loss=1.312783
+  MTE@0.1: 1.0804
+  MTE@0.5: 1.9919
+  MTE@1.0: 2.4244
+  W2@1.0:  0.5997
+  MMD@1.0: 0.1005
+  Survival@1.0: 74.5%
+    MTE@1.0=2.4244  W2@1.0=0.5997  MMD@1.0=0.1005
+
+============================================================
+  sinusoidal | T+F+K(Phat)2ph | seed=3042
+============================================================
+
+[ae] Starting T+F-warmup: 250 epochs
+  Epoch 100 (T+F-warmup 100/250): loss = 0.0746
+  Epoch 200 (T+F-warmup 200/250): loss = 0.0661
+
+[ae] Starting T+F+K-finetune: 250 epochs
+  Epoch 350 (T+F+K-finetune 100/250): loss = 0.1864
+  Epoch 450 (T+F+K-finetune 200/250): loss = 0.1532
+  Stage 2 epoch 60/300: loss=0.076430
+  Stage 2 epoch 120/300: loss=0.065668
+  Stage 2 epoch 180/300: loss=0.054153
+  Stage 2 epoch 240/300: loss=0.041875
+  Stage 2 epoch 300/300: loss=0.024150
+  Stage 3 epoch 60/300: loss=1.064748
+  Stage 3 epoch 120/300: loss=0.956535
+  Stage 3 epoch 180/300: loss=0.819704
+  Stage 3 epoch 240/300: loss=0.602333
+  Stage 3 epoch 300/300: loss=0.468653
+  MTE@0.1: 1.0829
+  MTE@0.5: 2.0204
+  MTE@1.0: 2.4833
+  W2@1.0:  0.5802
+  MMD@1.0: 0.1129
+  Survival@1.0: 74.5%
+    MTE@1.0=2.4833  W2@1.0=0.5802  MMD@1.0=0.1129
+
+============================================================
+  sinusoidal | T+F+K(Pstar)2ph | seed=3042
+============================================================
+
+[ae] Starting T+F-warmup: 250 epochs
+  Epoch 100 (T+F-warmup 100/250): loss = 0.0746
+  Epoch 200 (T+F-warmup 200/250): loss = 0.0661
+
+[ae] Starting T+F+K-finetune: 250 epochs
+  Epoch 350 (T+F+K-finetune 100/250): loss = 0.1904
+  Epoch 450 (T+F+K-finetune 200/250): loss = 0.0096
+  Stage 2 epoch 60/300: loss=0.016320
+  Stage 2 epoch 120/300: loss=0.009659
+  Stage 2 epoch 180/300: loss=0.005926
+  Stage 2 epoch 240/300: loss=0.003312
+  Stage 2 epoch 300/300: loss=0.002016
+  Stage 3 epoch 60/300: loss=1.273900
+  Stage 3 epoch 120/300: loss=1.115095
+  Stage 3 epoch 180/300: loss=0.910316
+  Stage 3 epoch 240/300: loss=0.485779
+  Stage 3 epoch 300/300: loss=0.233070
+  MTE@0.1: 1.0766
+  MTE@0.5: 2.0492
+  MTE@1.0: 2.5926
+  W2@1.0:  0.9044
+  MMD@1.0: 0.1551
+  Survival@1.0: 74.5%
+    MTE@1.0=2.5926  W2@1.0=0.9044  MMD@1.0=0.1551
+
+============================================================
+  sinusoidal | T+F+K(Pstar)1ph | seed=3042
+============================================================
+      AE Epoch 100: loss=0.285808
+      AE Epoch 200: loss=0.054908
+      AE Epoch 300: loss=0.022166
+      AE Epoch 400: loss=0.014245
+      AE Epoch 500: loss=0.002618
+  Stage 2 epoch 60/300: loss=0.033882
+  Stage 2 epoch 120/300: loss=0.022550
+  Stage 2 epoch 180/300: loss=0.012041
+  Stage 2 epoch 240/300: loss=0.004658
+  Stage 2 epoch 300/300: loss=0.002089
+  Stage 3 epoch 60/300: loss=1.420008
+  Stage 3 epoch 120/300: loss=1.259856
+  Stage 3 epoch 180/300: loss=1.078747
+  Stage 3 epoch 240/300: loss=0.776783
+  Stage 3 epoch 300/300: loss=0.304276
+  MTE@0.1: 1.0825
+  MTE@0.5: 2.0480
+  MTE@1.0: 2.5909
+  W2@1.0:  0.9696
+  MMD@1.0: 0.1597
+  Survival@1.0: 74.5%
+    MTE@1.0=2.5909  W2@1.0=0.9696  MMD@1.0=0.1597
+
+============================================================
+  sinusoidal | T+F | seed=4042
+============================================================
+      AE Epoch 100: loss=0.053097
+      AE Epoch 200: loss=0.039397
+      AE Epoch 300: loss=0.038319
+      AE Epoch 400: loss=0.056729
+      AE Epoch 500: loss=0.019992
+  Stage 2 epoch 60/300: loss=0.055013
+  Stage 2 epoch 120/300: loss=0.034551
+  Stage 2 epoch 180/300: loss=0.022478
+  Stage 2 epoch 240/300: loss=0.017497
+  Stage 2 epoch 300/300: loss=0.014728
+  Stage 3 epoch 60/300: loss=2.082497
+  Stage 3 epoch 120/300: loss=1.660672
+  Stage 3 epoch 180/300: loss=1.402384
+  Stage 3 epoch 240/300: loss=1.190861
+  Stage 3 epoch 300/300: loss=1.058410
+  MTE@0.1: 0.9129
+  MTE@0.5: 1.8141
+  MTE@1.0: 2.0202
+  W2@1.0:  0.8494
+  MMD@1.0: 0.1307
+  Survival@1.0: 76.0%
+    MTE@1.0=2.0202  W2@1.0=0.8494  MMD@1.0=0.1307
+
+============================================================
+  sinusoidal | T+F+K(Phat)2ph | seed=4042
+============================================================
+
+[ae] Starting T+F-warmup: 250 epochs
+  Epoch 100 (T+F-warmup 100/250): loss = 0.0531
+  Epoch 200 (T+F-warmup 200/250): loss = 0.0394
+
+[ae] Starting T+F+K-finetune: 250 epochs
+  Epoch 350 (T+F+K-finetune 100/250): loss = 0.0602
+  Epoch 450 (T+F+K-finetune 200/250): loss = 0.0251
+  Stage 2 epoch 60/300: loss=0.054202
+  Stage 2 epoch 120/300: loss=0.039686
+  Stage 2 epoch 180/300: loss=0.028097
+  Stage 2 epoch 240/300: loss=0.020666
+  Stage 2 epoch 300/300: loss=0.016255
+  Stage 3 epoch 60/300: loss=2.087975
+  Stage 3 epoch 120/300: loss=1.634402
+  Stage 3 epoch 180/300: loss=1.425596
+  Stage 3 epoch 240/300: loss=1.272300
+  Stage 3 epoch 300/300: loss=1.145798
+  MTE@0.1: 0.9038
+  MTE@0.5: 1.8025
+  MTE@1.0: 2.0049
+  W2@1.0:  0.8884
+  MMD@1.0: 0.1196
+  Survival@1.0: 76.0%
+    MTE@1.0=2.0049  W2@1.0=0.8884  MMD@1.0=0.1196
+
+============================================================
+  sinusoidal | T+F+K(Pstar)2ph | seed=4042
+============================================================
+
+[ae] Starting T+F-warmup: 250 epochs
+  Epoch 100 (T+F-warmup 100/250): loss = 0.0531
+  Epoch 200 (T+F-warmup 200/250): loss = 0.0394
+
+[ae] Starting T+F+K-finetune: 250 epochs
+  Epoch 350 (T+F+K-finetune 100/250): loss = 0.0327
+  Epoch 450 (T+F+K-finetune 200/250): loss = 0.0134
+  Stage 2 epoch 60/300: loss=0.031698
+  Stage 2 epoch 120/300: loss=0.028087
+  Stage 2 epoch 180/300: loss=0.025329
+  Stage 2 epoch 240/300: loss=0.022631
+  Stage 2 epoch 300/300: loss=0.019980
+  Stage 3 epoch 60/300: loss=2.258544
+  Stage 3 epoch 120/300: loss=1.632869
+  Stage 3 epoch 180/300: loss=1.481586
+  Stage 3 epoch 240/300: loss=1.380720
+  Stage 3 epoch 300/300: loss=1.263741
+  MTE@0.1: 0.8925
+  MTE@0.5: 1.8142
+  MTE@1.0: 2.0510
+  W2@1.0:  0.9495
+  MMD@1.0: 0.1337
+  Survival@1.0: 76.0%
+    MTE@1.0=2.0510  W2@1.0=0.9495  MMD@1.0=0.1337
+
+============================================================
+  sinusoidal | T+F+K(Pstar)1ph | seed=4042
+============================================================
+      AE Epoch 100: loss=0.121034
+      AE Epoch 200: loss=0.100839
+      AE Epoch 300: loss=0.021191
+      AE Epoch 400: loss=0.016980
+      AE Epoch 500: loss=0.003029
+  Stage 2 epoch 60/300: loss=0.033506
+  Stage 2 epoch 120/300: loss=0.023492
+  Stage 2 epoch 180/300: loss=0.015026
+  Stage 2 epoch 240/300: loss=0.008794
+  Stage 2 epoch 300/300: loss=0.005420
+  Stage 3 epoch 60/300: loss=1.766047
+  Stage 3 epoch 120/300: loss=1.535467
+  Stage 3 epoch 180/300: loss=1.289833
+  Stage 3 epoch 240/300: loss=1.012675
+  Stage 3 epoch 300/300: loss=0.770214
+  MTE@0.1: 0.9071
+  MTE@0.5: 1.7832
+  MTE@1.0: 2.0632
+  W2@1.0:  0.9654
+  MMD@1.0: 0.1720
+  Survival@1.0: 76.0%
+    MTE@1.0=2.0632  W2@1.0=0.9654  MMD@1.0=0.1720
+
+============================================================
+  sinusoidal | T+F | seed=5042
+============================================================
+      AE Epoch 100: loss=0.090932
+      AE Epoch 200: loss=0.070540
+      AE Epoch 300: loss=0.038829
+      AE Epoch 400: loss=0.027252
+      AE Epoch 500: loss=0.016758
+  Stage 2 epoch 60/300: loss=0.051059
+  Stage 2 epoch 120/300: loss=0.046871
+  Stage 2 epoch 180/300: loss=0.044992
+  Stage 2 epoch 240/300: loss=0.042983
+  Stage 2 epoch 300/300: loss=0.040872
+  Stage 3 epoch 60/300: loss=0.950095
+  Stage 3 epoch 120/300: loss=0.808727
+  Stage 3 epoch 180/300: loss=0.568826
+  Stage 3 epoch 240/300: loss=0.403347
+  Stage 3 epoch 300/300: loss=0.353874
+  MTE@0.1: 0.9619
+  MTE@0.5: 1.8724
+  MTE@1.0: 2.3180
+  W2@1.0:  0.8087
+  MMD@1.0: 0.1349
+  Survival@1.0: 76.5%
+    MTE@1.0=2.3180  W2@1.0=0.8087  MMD@1.0=0.1349
+
+============================================================
+  sinusoidal | T+F+K(Phat)2ph | seed=5042
+============================================================
+
+[ae] Starting T+F-warmup: 250 epochs
+  Epoch 100 (T+F-warmup 100/250): loss = 0.0909
+  Epoch 200 (T+F-warmup 200/250): loss = 0.0705
+
+[ae] Starting T+F+K-finetune: 250 epochs
+  Epoch 350 (T+F+K-finetune 100/250): loss = 0.1331
+  Epoch 450 (T+F+K-finetune 200/250): loss = 0.0796
+  Stage 2 epoch 60/300: loss=0.032924
+  Stage 2 epoch 120/300: loss=0.029123
+  Stage 2 epoch 180/300: loss=0.025994
+  Stage 2 epoch 240/300: loss=0.022295
+  Stage 2 epoch 300/300: loss=0.017925
+  Stage 3 epoch 60/300: loss=0.727794
+  Stage 3 epoch 120/300: loss=0.646869
+  Stage 3 epoch 180/300: loss=0.563904
+  Stage 3 epoch 240/300: loss=0.423937
+  Stage 3 epoch 300/300: loss=0.312654
+  MTE@0.1: 0.9477
+  MTE@0.5: 1.8206
+  MTE@1.0: 2.2478
+  W2@1.0:  0.7614
+  MMD@1.0: 0.1091
+  Survival@1.0: 76.5%
+    MTE@1.0=2.2478  W2@1.0=0.7614  MMD@1.0=0.1091
+
+============================================================
+  sinusoidal | T+F+K(Pstar)2ph | seed=5042
+============================================================
+
+[ae] Starting T+F-warmup: 250 epochs
+  Epoch 100 (T+F-warmup 100/250): loss = 0.0909
+  Epoch 200 (T+F-warmup 200/250): loss = 0.0705
+
+[ae] Starting T+F+K-finetune: 250 epochs
+  Epoch 350 (T+F+K-finetune 100/250): loss = 0.0084
+  Epoch 450 (T+F+K-finetune 200/250): loss = 0.0020
+  Stage 2 epoch 60/300: loss=0.036520
+  Stage 2 epoch 120/300: loss=0.033761
+  Stage 2 epoch 180/300: loss=0.030826
+  Stage 2 epoch 240/300: loss=0.027163
+  Stage 2 epoch 300/300: loss=0.022555
+  Stage 3 epoch 60/300: loss=0.728780
+  Stage 3 epoch 120/300: loss=0.612159
+  Stage 3 epoch 180/300: loss=0.454217
+  Stage 3 epoch 240/300: loss=0.234571
+  Stage 3 epoch 300/300: loss=0.118492
+  MTE@0.1: 0.9379
+  MTE@0.5: 1.8112
+  MTE@1.0: 2.2876
+  W2@1.0:  0.9900
+  MMD@1.0: 0.1388
+  Survival@1.0: 76.5%
+    MTE@1.0=2.2876  W2@1.0=0.9900  MMD@1.0=0.1388
+
+============================================================
+  sinusoidal | T+F+K(Pstar)1ph | seed=5042
+============================================================
+      AE Epoch 100: loss=0.264559
+      AE Epoch 200: loss=0.060010
+      AE Epoch 300: loss=0.017591
+      AE Epoch 400: loss=0.006422
+      AE Epoch 500: loss=0.013720
+  Stage 2 epoch 60/300: loss=0.005311
+  Stage 2 epoch 120/300: loss=0.004760
+  Stage 2 epoch 180/300: loss=0.004465
+  Stage 2 epoch 240/300: loss=0.004170
+  Stage 2 epoch 300/300: loss=0.003886
+  Stage 3 epoch 60/300: loss=0.709596
+  Stage 3 epoch 120/300: loss=0.602081
+  Stage 3 epoch 180/300: loss=0.455259
+  Stage 3 epoch 240/300: loss=0.244326
+  Stage 3 epoch 300/300: loss=0.117693
+  MTE@0.1: 0.9595
+  MTE@0.5: 1.8239
+  MTE@1.0: 2.2822
+  W2@1.0:  1.0193
+  MMD@1.0: 0.1305
+  Survival@1.0: 76.5%
+    MTE@1.0=2.2822  W2@1.0=1.0193  MMD@1.0=0.1305
+
+============================================================
+  sinusoidal | T+F | seed=6042
+============================================================
+      AE Epoch 100: loss=0.080057
+      AE Epoch 200: loss=0.104068
+      AE Epoch 300: loss=0.074616
+      AE Epoch 400: loss=0.036085
+      AE Epoch 500: loss=0.101446
+  Stage 2 epoch 60/300: loss=0.058749
+  Stage 2 epoch 120/300: loss=0.049268
+  Stage 2 epoch 180/300: loss=0.043449
+  Stage 2 epoch 240/300: loss=0.037073
+  Stage 2 epoch 300/300: loss=0.029728
+  Stage 3 epoch 60/300: loss=0.646999
+  Stage 3 epoch 120/300: loss=0.551132
+  Stage 3 epoch 180/300: loss=0.466901
+  Stage 3 epoch 240/300: loss=0.373476
+  Stage 3 epoch 300/300: loss=0.306753
+  MTE@0.1: 0.6235
+  MTE@0.5: 1.1166
+  MTE@1.0: 1.2553
+  W2@1.0:  0.8489
+  MMD@1.0: 0.1577
+  Survival@1.0: 73.0%
+    MTE@1.0=1.2553  W2@1.0=0.8489  MMD@1.0=0.1577
+
+============================================================
+  sinusoidal | T+F+K(Phat)2ph | seed=6042
+============================================================
+
+[ae] Starting T+F-warmup: 250 epochs
+  Epoch 100 (T+F-warmup 100/250): loss = 0.0801
+  Epoch 200 (T+F-warmup 200/250): loss = 0.1041
+
+[ae] Starting T+F+K-finetune: 250 epochs
+  Epoch 350 (T+F+K-finetune 100/250): loss = 0.1447
+  Epoch 450 (T+F+K-finetune 200/250): loss = 0.0789
+  Stage 2 epoch 60/300: loss=0.116612
+  Stage 2 epoch 120/300: loss=0.102999
+  Stage 2 epoch 180/300: loss=0.086998
+  Stage 2 epoch 240/300: loss=0.063538
+  Stage 2 epoch 300/300: loss=0.034820
+  Stage 3 epoch 60/300: loss=0.387859
+  Stage 3 epoch 120/300: loss=0.324078
+  Stage 3 epoch 180/300: loss=0.281943
+  Stage 3 epoch 240/300: loss=0.238125
+  Stage 3 epoch 300/300: loss=0.200976
+  MTE@0.1: 0.5651
+  MTE@0.5: 1.1364
+  MTE@1.0: 1.3014
+  W2@1.0:  0.9185
+  MMD@1.0: 0.1502
+  Survival@1.0: 73.0%
+    MTE@1.0=1.3014  W2@1.0=0.9185  MMD@1.0=0.1502
+
+============================================================
+  sinusoidal | T+F+K(Pstar)2ph | seed=6042
+============================================================
+
+[ae] Starting T+F-warmup: 250 epochs
+  Epoch 100 (T+F-warmup 100/250): loss = 0.0801
+  Epoch 200 (T+F-warmup 200/250): loss = 0.1041
+
+[ae] Starting T+F+K-finetune: 250 epochs
+  Epoch 350 (T+F+K-finetune 100/250): loss = 0.0519
+  Epoch 450 (T+F+K-finetune 200/250): loss = 0.0022
+  Stage 2 epoch 60/300: loss=0.031328
+  Stage 2 epoch 120/300: loss=0.029140
+  Stage 2 epoch 180/300: loss=0.027387
+  Stage 2 epoch 240/300: loss=0.025366
+  Stage 2 epoch 300/300: loss=0.023064
+  Stage 3 epoch 60/300: loss=0.416010
+  Stage 3 epoch 120/300: loss=0.295484
+  Stage 3 epoch 180/300: loss=0.265636
+  Stage 3 epoch 240/300: loss=0.234264
+  Stage 3 epoch 300/300: loss=0.200271
+  MTE@0.1: 0.6451
+  MTE@0.5: 1.3453
+  MTE@1.0: 1.6019
+  W2@1.0:  1.4989
+  MMD@1.0: 0.1845
+  Survival@1.0: 73.0%
+    MTE@1.0=1.6019  W2@1.0=1.4989  MMD@1.0=0.1845
+
+============================================================
+  sinusoidal | T+F+K(Pstar)1ph | seed=6042
+============================================================
+      AE Epoch 100: loss=0.326627
+      AE Epoch 200: loss=0.201443
+      AE Epoch 300: loss=0.015236
+      AE Epoch 400: loss=0.016532
+      AE Epoch 500: loss=0.015521
+  Stage 2 epoch 60/300: loss=0.020396
+  Stage 2 epoch 120/300: loss=0.019499
+  Stage 2 epoch 180/300: loss=0.019274
+  Stage 2 epoch 240/300: loss=0.018997
+  Stage 2 epoch 300/300: loss=0.018648
+  Stage 3 epoch 60/300: loss=0.418586
+  Stage 3 epoch 120/300: loss=0.342843
+  Stage 3 epoch 180/300: loss=0.306340
+  Stage 3 epoch 240/300: loss=0.267568
+  Stage 3 epoch 300/300: loss=0.224825
+  MTE@0.1: 0.6214
+  MTE@0.5: 1.2928
+  MTE@1.0: 1.5556
+  W2@1.0:  1.5213
+  MMD@1.0: 0.1812
+  Survival@1.0: 73.0%
+    MTE@1.0=1.5556  W2@1.0=1.5213  MMD@1.0=0.1812
+
+============================================================
+  sinusoidal | T+F | seed=7042
+============================================================
+      AE Epoch 100: loss=0.107424
+      AE Epoch 200: loss=0.087997
+      AE Epoch 300: loss=0.084058
+      AE Epoch 400: loss=0.053211
+      AE Epoch 500: loss=0.051965
+  Stage 2 epoch 60/300: loss=0.126138
+  Stage 2 epoch 120/300: loss=0.113334
+  Stage 2 epoch 180/300: loss=0.095711
+  Stage 2 epoch 240/300: loss=0.068460
+  Stage 2 epoch 300/300: loss=0.038273
+  Stage 3 epoch 60/300: loss=1.347303
+  Stage 3 epoch 120/300: loss=1.261882
+  Stage 3 epoch 180/300: loss=1.142295
+  Stage 3 epoch 240/300: loss=1.020313
+  Stage 3 epoch 300/300: loss=0.967999
+  MTE@0.1: 0.8067
+  MTE@0.5: 1.5551
+  MTE@1.0: 1.8008
+  W2@1.0:  0.7797
+  MMD@1.0: 0.1306
+  Survival@1.0: 76.5%
+    MTE@1.0=1.8008  W2@1.0=0.7797  MMD@1.0=0.1306
+
+============================================================
+  sinusoidal | T+F+K(Phat)2ph | seed=7042
+============================================================
+
+[ae] Starting T+F-warmup: 250 epochs
+  Epoch 100 (T+F-warmup 100/250): loss = 0.1074
+  Epoch 200 (T+F-warmup 200/250): loss = 0.0880
+
+[ae] Starting T+F+K-finetune: 250 epochs
+  Epoch 350 (T+F+K-finetune 100/250): loss = 0.1186
+  Epoch 450 (T+F+K-finetune 200/250): loss = 0.1144
+  Stage 2 epoch 60/300: loss=0.136543
+  Stage 2 epoch 120/300: loss=0.122200
+  Stage 2 epoch 180/300: loss=0.102382
+  Stage 2 epoch 240/300: loss=0.071950
+  Stage 2 epoch 300/300: loss=0.039450
+  Stage 3 epoch 60/300: loss=1.448370
+  Stage 3 epoch 120/300: loss=1.355177
+  Stage 3 epoch 180/300: loss=1.223313
+  Stage 3 epoch 240/300: loss=1.098926
+  Stage 3 epoch 300/300: loss=1.048808
+  MTE@0.1: 0.8054
+  MTE@0.5: 1.5441
+  MTE@1.0: 1.7859
+  W2@1.0:  0.7867
+  MMD@1.0: 0.1303
+  Survival@1.0: 76.5%
+    MTE@1.0=1.7859  W2@1.0=0.7867  MMD@1.0=0.1303
+
+============================================================
+  sinusoidal | T+F+K(Pstar)2ph | seed=7042
+============================================================
+
+[ae] Starting T+F-warmup: 250 epochs
+  Epoch 100 (T+F-warmup 100/250): loss = 0.1074
+  Epoch 200 (T+F-warmup 200/250): loss = 0.0880
+
+[ae] Starting T+F+K-finetune: 250 epochs
+  Epoch 350 (T+F+K-finetune 100/250): loss = 0.1601
+  Epoch 450 (T+F+K-finetune 200/250): loss = 0.1522
+  Stage 2 epoch 60/300: loss=0.108179
+  Stage 2 epoch 120/300: loss=0.095320
+  Stage 2 epoch 180/300: loss=0.077969
+  Stage 2 epoch 240/300: loss=0.053182
+  Stage 2 epoch 300/300: loss=0.029746
+  Stage 3 epoch 60/300: loss=1.144317
+  Stage 3 epoch 120/300: loss=1.062368
+  Stage 3 epoch 180/300: loss=0.967957
+  Stage 3 epoch 240/300: loss=0.879112
+  Stage 3 epoch 300/300: loss=0.837218
+  MTE@0.1: 0.8062
+  MTE@0.5: 1.5590
+  MTE@1.0: 1.8055
+  W2@1.0:  0.7750
+  MMD@1.0: 0.1290
+  Survival@1.0: 76.5%
+    MTE@1.0=1.8055  W2@1.0=0.7750  MMD@1.0=0.1290
+
+============================================================
+  sinusoidal | T+F+K(Pstar)1ph | seed=7042
+============================================================
+      AE Epoch 100: loss=0.227525
+      AE Epoch 200: loss=0.161534
+      AE Epoch 300: loss=0.040714
+      AE Epoch 400: loss=0.028601
+      AE Epoch 500: loss=0.017496
+  Stage 2 epoch 60/300: loss=0.021329
+  Stage 2 epoch 120/300: loss=0.019473
+  Stage 2 epoch 180/300: loss=0.018681
+  Stage 2 epoch 240/300: loss=0.017926
+  Stage 2 epoch 300/300: loss=0.017227
+  Stage 3 epoch 60/300: loss=0.366542
+  Stage 3 epoch 120/300: loss=0.304543
+  Stage 3 epoch 180/300: loss=0.282022
+  Stage 3 epoch 240/300: loss=0.256471
+  Stage 3 epoch 300/300: loss=0.225758
+  MTE@0.1: 0.7964
+  MTE@0.5: 1.5733
+  MTE@1.0: 1.9093
+  W2@1.0:  0.7654
+  MMD@1.0: 0.1359
+  Survival@1.0: 76.5%
+    MTE@1.0=1.9093  W2@1.0=0.7654  MMD@1.0=0.1359
+
+============================================================
+  sinusoidal | T+F | seed=8042
+============================================================
+      AE Epoch 100: loss=0.052949
+      AE Epoch 200: loss=0.061950
+      AE Epoch 300: loss=0.053489
+      AE Epoch 400: loss=0.035723
+      AE Epoch 500: loss=0.013817
+  Stage 2 epoch 60/300: loss=0.022270
+  Stage 2 epoch 120/300: loss=0.017875
+  Stage 2 epoch 180/300: loss=0.015623
+  Stage 2 epoch 240/300: loss=0.013263
+  Stage 2 epoch 300/300: loss=0.010927
+  Stage 3 epoch 60/300: loss=1.800337
+  Stage 3 epoch 120/300: loss=1.535074
+  Stage 3 epoch 180/300: loss=1.402386
+  Stage 3 epoch 240/300: loss=1.329084
+  Stage 3 epoch 300/300: loss=1.229536
+  MTE@0.1: 0.6201
+  MTE@0.5: 1.1628
+  MTE@1.0: 1.5292
+  W2@1.0:  1.0502
+  MMD@1.0: 0.1497
+  Survival@1.0: 79.5%
+    MTE@1.0=1.5292  W2@1.0=1.0502  MMD@1.0=0.1497
+
+============================================================
+  sinusoidal | T+F+K(Phat)2ph | seed=8042
+============================================================
+
+[ae] Starting T+F-warmup: 250 epochs
+  Epoch 100 (T+F-warmup 100/250): loss = 0.0529
+  Epoch 200 (T+F-warmup 200/250): loss = 0.0619
+
+[ae] Starting T+F+K-finetune: 250 epochs
+  Epoch 350 (T+F+K-finetune 100/250): loss = 0.0433
+  Epoch 450 (T+F+K-finetune 200/250): loss = 0.0337
+  Stage 2 epoch 60/300: loss=0.019852
+  Stage 2 epoch 120/300: loss=0.016059
+  Stage 2 epoch 180/300: loss=0.014041
+  Stage 2 epoch 240/300: loss=0.011984
+  Stage 2 epoch 300/300: loss=0.010032
+  Stage 3 epoch 60/300: loss=1.755087
+  Stage 3 epoch 120/300: loss=1.436188
+  Stage 3 epoch 180/300: loss=1.309468
+  Stage 3 epoch 240/300: loss=1.242074
+  Stage 3 epoch 300/300: loss=1.149851
+  MTE@0.1: 0.6071
+  MTE@0.5: 1.1470
+  MTE@1.0: 1.5285
+  W2@1.0:  1.0795
+  MMD@1.0: 0.1546
+  Survival@1.0: 79.5%
+    MTE@1.0=1.5285  W2@1.0=1.0795  MMD@1.0=0.1546
+
+============================================================
+  sinusoidal | T+F+K(Pstar)2ph | seed=8042
+============================================================
+
+[ae] Starting T+F-warmup: 250 epochs
+  Epoch 100 (T+F-warmup 100/250): loss = 0.0529
+  Epoch 200 (T+F-warmup 200/250): loss = 0.0619
+
+[ae] Starting T+F+K-finetune: 250 epochs
+  Epoch 350 (T+F+K-finetune 100/250): loss = 0.0445
+  Epoch 450 (T+F+K-finetune 200/250): loss = 0.0363
+  Stage 2 epoch 60/300: loss=0.020948
+  Stage 2 epoch 120/300: loss=0.017085
+  Stage 2 epoch 180/300: loss=0.014927
+  Stage 2 epoch 240/300: loss=0.012711
+  Stage 2 epoch 300/300: loss=0.010596
+  Stage 3 epoch 60/300: loss=1.753618
+  Stage 3 epoch 120/300: loss=1.418269
+  Stage 3 epoch 180/300: loss=1.301462
+  Stage 3 epoch 240/300: loss=1.236851
+  Stage 3 epoch 300/300: loss=1.147166
+  MTE@0.1: 0.6041
+  MTE@0.5: 1.1438
+  MTE@1.0: 1.5258
+  W2@1.0:  1.0925
+  MMD@1.0: 0.1541
+  Survival@1.0: 79.5%
+    MTE@1.0=1.5258  W2@1.0=1.0925  MMD@1.0=0.1541
+
+============================================================
+  sinusoidal | T+F+K(Pstar)1ph | seed=8042
+============================================================
+      AE Epoch 100: loss=0.074169
+      AE Epoch 200: loss=0.147423
+      AE Epoch 300: loss=0.045222
+      AE Epoch 400: loss=0.038113
+      AE Epoch 500: loss=0.010615
+  Stage 2 epoch 60/300: loss=0.016713
+  Stage 2 epoch 120/300: loss=0.014381
+  Stage 2 epoch 180/300: loss=0.013297
+  Stage 2 epoch 240/300: loss=0.012182
+  Stage 2 epoch 300/300: loss=0.011098
+  Stage 3 epoch 60/300: loss=1.271958
+  Stage 3 epoch 120/300: loss=0.765537
+  Stage 3 epoch 180/300: loss=0.738924
+  Stage 3 epoch 240/300: loss=0.714263
+  Stage 3 epoch 300/300: loss=0.688429
+  MTE@0.1: 0.5699
+  MTE@0.5: 1.0987
+  MTE@1.0: 1.4924
+  W2@1.0:  1.1648
+  MMD@1.0: 0.1740
+  Survival@1.0: 79.5%
+    MTE@1.0=1.4924  W2@1.0=1.1648  MMD@1.0=0.1740
+
+============================================================
+  sinusoidal | T+F | seed=9042
+============================================================
+      AE Epoch 100: loss=0.091460
+      AE Epoch 200: loss=0.076174
+      AE Epoch 300: loss=0.060750
+      AE Epoch 400: loss=0.061663
+      AE Epoch 500: loss=0.055001
+  Stage 2 epoch 60/300: loss=0.200870
+  Stage 2 epoch 120/300: loss=0.153653
+  Stage 2 epoch 180/300: loss=0.079012
+  Stage 2 epoch 240/300: loss=0.016051
+  Stage 2 epoch 300/300: loss=0.009278
+  Stage 3 epoch 60/300: loss=2.144643
+  Stage 3 epoch 120/300: loss=1.984362
+  Stage 3 epoch 180/300: loss=1.706750
+  Stage 3 epoch 240/300: loss=1.262183
+  Stage 3 epoch 300/300: loss=1.080163
+  MTE@0.1: 0.6939
+  MTE@0.5: 1.2079
+  MTE@1.0: 1.6653
+  W2@1.0:  0.6210
+  MMD@1.0: 0.1179
+  Survival@1.0: 76.0%
+    MTE@1.0=1.6653  W2@1.0=0.6210  MMD@1.0=0.1179
+
+============================================================
+  sinusoidal | T+F+K(Phat)2ph | seed=9042
+============================================================
+
+[ae] Starting T+F-warmup: 250 epochs
+  Epoch 100 (T+F-warmup 100/250): loss = 0.0915
+  Epoch 200 (T+F-warmup 200/250): loss = 0.0762
+
+[ae] Starting T+F+K-finetune: 250 epochs
+  Epoch 350 (T+F+K-finetune 100/250): loss = 0.1771
+  Epoch 450 (T+F+K-finetune 200/250): loss = 0.1748
+  Stage 2 epoch 60/300: loss=0.264778
+  Stage 2 epoch 120/300: loss=0.208915
+  Stage 2 epoch 180/300: loss=0.119926
+  Stage 2 epoch 240/300: loss=0.027017
+  Stage 2 epoch 300/300: loss=0.012769
+  Stage 3 epoch 60/300: loss=2.669987
+  Stage 3 epoch 120/300: loss=2.509761
+  Stage 3 epoch 180/300: loss=2.225704
+  Stage 3 epoch 240/300: loss=1.761342
+  Stage 3 epoch 300/300: loss=1.560914
+  MTE@0.1: 0.6983
+  MTE@0.5: 1.2070
+  MTE@1.0: 1.6712
+  W2@1.0:  0.6202
+  MMD@1.0: 0.1193
+  Survival@1.0: 76.0%
+    MTE@1.0=1.6712  W2@1.0=0.6202  MMD@1.0=0.1193
+
+============================================================
+  sinusoidal | T+F+K(Pstar)2ph | seed=9042
+============================================================
+
+[ae] Starting T+F-warmup: 250 epochs
+  Epoch 100 (T+F-warmup 100/250): loss = 0.0915
+  Epoch 200 (T+F-warmup 200/250): loss = 0.0762
+
+[ae] Starting T+F+K-finetune: 250 epochs
+  Epoch 350 (T+F+K-finetune 100/250): loss = 0.1109
+  Epoch 450 (T+F+K-finetune 200/250): loss = 0.0071
+  Stage 2 epoch 60/300: loss=0.003454
+  Stage 2 epoch 120/300: loss=0.002839
+  Stage 2 epoch 180/300: loss=0.002632
+  Stage 2 epoch 240/300: loss=0.002485
+  Stage 2 epoch 300/300: loss=0.002389
+  Stage 3 epoch 60/300: loss=1.311591
+  Stage 3 epoch 120/300: loss=1.130544
+  Stage 3 epoch 180/300: loss=0.846704
+  Stage 3 epoch 240/300: loss=0.348363
+  Stage 3 epoch 300/300: loss=0.145496
+  MTE@0.1: 0.6533
+  MTE@0.5: 1.2637
+  MTE@1.0: 1.7881
+  W2@1.0:  0.8703
+  MMD@1.0: 0.1422
+  Survival@1.0: 76.0%
+    MTE@1.0=1.7881  W2@1.0=0.8703  MMD@1.0=0.1422
+
+============================================================
+  sinusoidal | T+F+K(Pstar)1ph | seed=9042
+============================================================
+      AE Epoch 100: loss=0.278847
+      AE Epoch 200: loss=0.043387
+      AE Epoch 300: loss=0.030170
+      AE Epoch 400: loss=0.025886
+      AE Epoch 500: loss=0.017186
+  Stage 2 epoch 60/300: loss=0.008069
+  Stage 2 epoch 120/300: loss=0.005861
+  Stage 2 epoch 180/300: loss=0.004396
+  Stage 2 epoch 240/300: loss=0.003363
+  Stage 2 epoch 300/300: loss=0.002775
+  Stage 3 epoch 60/300: loss=1.448679
+  Stage 3 epoch 120/300: loss=1.224954
+  Stage 3 epoch 180/300: loss=0.875016
+  Stage 3 epoch 240/300: loss=0.322872
+  Stage 3 epoch 300/300: loss=0.152937
+  MTE@0.1: 0.6783
+  MTE@0.5: 1.2898
+  MTE@1.0: 1.8343
+  W2@1.0:  0.9939
+  MMD@1.0: 0.1484
+  Survival@1.0: 76.0%
+    MTE@1.0=1.8343  W2@1.0=0.9939  MMD@1.0=0.1484
+
+============================================================
+  paraboloid | T+F | seed=42
+============================================================
+      AE Epoch 100: loss=0.785068
+      AE Epoch 200: loss=0.563134
+      AE Epoch 300: loss=0.049929
+      AE Epoch 400: loss=0.031694
+      AE Epoch 500: loss=0.009796
+  Stage 2 epoch 60/300: loss=2.191166
+  Stage 2 epoch 120/300: loss=2.044508
+  Stage 2 epoch 180/300: loss=1.593916
+  Stage 2 epoch 240/300: loss=0.390612
+  Stage 2 epoch 300/300: loss=0.085744
+  Stage 3 epoch 60/300: loss=15.549911
+  Stage 3 epoch 120/300: loss=11.328586
+  Stage 3 epoch 180/300: loss=9.740222
+  Stage 3 epoch 240/300: loss=6.886117
+  Stage 3 epoch 300/300: loss=3.712866
+  MTE@0.1: 0.5163
+  MTE@0.5: 1.4428
+  MTE@1.0: 2.1722
+  W2@1.0:  1.7147
+  MMD@1.0: 0.1876
+  Survival@1.0: 76.5%
+    MTE@1.0=2.1722  W2@1.0=1.7147  MMD@1.0=0.1876
+
+============================================================
+  paraboloid | T+F+K(Phat)2ph | seed=42
+============================================================
+
+[ae] Starting T+F-warmup: 250 epochs
+  Epoch 100 (T+F-warmup 100/250): loss = 0.7851
+  Epoch 200 (T+F-warmup 200/250): loss = 0.5631
+
+[ae] Starting T+F+K-finetune: 250 epochs
+  Epoch 350 (T+F+K-finetune 100/250): loss = 0.0487
+  Epoch 450 (T+F+K-finetune 200/250): loss = 0.0271
+  Stage 2 epoch 60/300: loss=2.897513
+  Stage 2 epoch 120/300: loss=2.718028
+  Stage 2 epoch 180/300: loss=2.245861
+  Stage 2 epoch 240/300: loss=0.749700
+  Stage 2 epoch 300/300: loss=0.078494
+  Stage 3 epoch 60/300: loss=13.264951
+  Stage 3 epoch 120/300: loss=9.661130
+  Stage 3 epoch 180/300: loss=7.420577
+  Stage 3 epoch 240/300: loss=4.336958
+  Stage 3 epoch 300/300: loss=2.303512
+  MTE@0.1: 0.5281
+  MTE@0.5: 1.3718
+  MTE@1.0: 1.9439
+  W2@1.0:  1.5440
+  MMD@1.0: 0.1650
+  Survival@1.0: 76.5%
+    MTE@1.0=1.9439  W2@1.0=1.5440  MMD@1.0=0.1650
+
+============================================================
+  paraboloid | T+F+K(Pstar)2ph | seed=42
+============================================================
+
+[ae] Starting T+F-warmup: 250 epochs
+  Epoch 100 (T+F-warmup 100/250): loss = 0.7851
+  Epoch 200 (T+F-warmup 200/250): loss = 0.5631
+
+[ae] Starting T+F+K-finetune: 250 epochs
+  Epoch 350 (T+F+K-finetune 100/250): loss = 0.0586
+  Epoch 450 (T+F+K-finetune 200/250): loss = 0.0784
+  Stage 2 epoch 60/300: loss=2.679950
+  Stage 2 epoch 120/300: loss=2.479729
+  Stage 2 epoch 180/300: loss=1.994211
+  Stage 2 epoch 240/300: loss=0.626581
+  Stage 2 epoch 300/300: loss=0.066867
+  Stage 3 epoch 60/300: loss=15.740134
+  Stage 3 epoch 120/300: loss=11.681951
+  Stage 3 epoch 180/300: loss=8.181966
+  Stage 3 epoch 240/300: loss=3.643728
+  Stage 3 epoch 300/300: loss=1.894694
+  MTE@0.1: 0.5231
+  MTE@0.5: 1.4156
+  MTE@1.0: 2.0591
+  W2@1.0:  1.5459
+  MMD@1.0: 0.1793
+  Survival@1.0: 76.5%
+    MTE@1.0=2.0591  W2@1.0=1.5459  MMD@1.0=0.1793
+
+============================================================
+  paraboloid | T+F+K(Pstar)1ph | seed=42
+============================================================
+      AE Epoch 100: loss=0.666805
+      AE Epoch 200: loss=0.181778
+      AE Epoch 300: loss=0.034992
+      AE Epoch 400: loss=0.033782
+      AE Epoch 500: loss=0.002610
+  Stage 2 epoch 60/300: loss=0.871028
+  Stage 2 epoch 120/300: loss=0.760280
+  Stage 2 epoch 180/300: loss=0.514397
+  Stage 2 epoch 240/300: loss=0.130972
+  Stage 2 epoch 300/300: loss=0.034575
+  Stage 3 epoch 60/300: loss=9.142433
+  Stage 3 epoch 120/300: loss=6.983951
+  Stage 3 epoch 180/300: loss=5.887472
+  Stage 3 epoch 240/300: loss=4.130933
+  Stage 3 epoch 300/300: loss=1.899570
+  MTE@0.1: 0.5065
+  MTE@0.5: 1.4254
+  MTE@1.0: 2.1667
+  W2@1.0:  1.8933
+  MMD@1.0: 0.2705
+  Survival@1.0: 76.5%
+    MTE@1.0=2.1667  W2@1.0=1.8933  MMD@1.0=0.2705
+
+============================================================
+  paraboloid | T+F | seed=1042
+============================================================
+      AE Epoch 100: loss=0.715910
+      AE Epoch 200: loss=0.144495
+      AE Epoch 300: loss=0.034739
+      AE Epoch 400: loss=0.021792
+      AE Epoch 500: loss=0.014781
+  Stage 2 epoch 60/300: loss=0.151575
+  Stage 2 epoch 120/300: loss=0.133742
+  Stage 2 epoch 180/300: loss=0.115647
+  Stage 2 epoch 240/300: loss=0.090569
+  Stage 2 epoch 300/300: loss=0.058823
+  Stage 3 epoch 60/300: loss=6.804405
+  Stage 3 epoch 120/300: loss=4.953203
+  Stage 3 epoch 180/300: loss=3.075862
+  Stage 3 epoch 240/300: loss=2.705539
+  Stage 3 epoch 300/300: loss=2.321934
+  MTE@0.1: 1.0030
+  MTE@0.5: 1.7391
+  MTE@1.0: 2.2983
+  W2@1.0:  1.0989
+  MMD@1.0: 0.0951
+  Survival@1.0: 72.0%
+    MTE@1.0=2.2983  W2@1.0=1.0989  MMD@1.0=0.0951
+
+============================================================
+  paraboloid | T+F+K(Phat)2ph | seed=1042
+============================================================
+
+[ae] Starting T+F-warmup: 250 epochs
+  Epoch 100 (T+F-warmup 100/250): loss = 0.7159
+  Epoch 200 (T+F-warmup 200/250): loss = 0.1445
+
+[ae] Starting T+F+K-finetune: 250 epochs
+  Epoch 350 (T+F+K-finetune 100/250): loss = 0.0260
+  Epoch 450 (T+F+K-finetune 200/250): loss = 0.0190
+  Stage 2 epoch 60/300: loss=0.153476
+  Stage 2 epoch 120/300: loss=0.132276
+  Stage 2 epoch 180/300: loss=0.114715
+  Stage 2 epoch 240/300: loss=0.094771
+  Stage 2 epoch 300/300: loss=0.066489
+  Stage 3 epoch 60/300: loss=7.047978
+  Stage 3 epoch 120/300: loss=3.299589
+  Stage 3 epoch 180/300: loss=2.695767
+  Stage 3 epoch 240/300: loss=2.341796
+  Stage 3 epoch 300/300: loss=2.033121
+  MTE@0.1: 1.0208
+  MTE@0.5: 1.7460
+  MTE@1.0: 2.2538
+  W2@1.0:  1.1302
+  MMD@1.0: 0.1058
+  Survival@1.0: 72.0%
+    MTE@1.0=2.2538  W2@1.0=1.1302  MMD@1.0=0.1058
+
+============================================================
+  paraboloid | T+F+K(Pstar)2ph | seed=1042
+============================================================
+
+[ae] Starting T+F-warmup: 250 epochs
+  Epoch 100 (T+F-warmup 100/250): loss = 0.7159
+  Epoch 200 (T+F-warmup 200/250): loss = 0.1445
+
+[ae] Starting T+F+K-finetune: 250 epochs
+  Epoch 350 (T+F+K-finetune 100/250): loss = 0.0239
+  Epoch 450 (T+F+K-finetune 200/250): loss = 0.0187
+  Stage 2 epoch 60/300: loss=0.151282
+  Stage 2 epoch 120/300: loss=0.131970
+  Stage 2 epoch 180/300: loss=0.115971
+  Stage 2 epoch 240/300: loss=0.097583
+  Stage 2 epoch 300/300: loss=0.071814
+  Stage 3 epoch 60/300: loss=6.957367
+  Stage 3 epoch 120/300: loss=3.320640
+  Stage 3 epoch 180/300: loss=2.736804
+  Stage 3 epoch 240/300: loss=2.377690
+  Stage 3 epoch 300/300: loss=2.050134
+  MTE@0.1: 1.0226
+  MTE@0.5: 1.7515
+  MTE@1.0: 2.2667
+  W2@1.0:  1.1150
+  MMD@1.0: 0.1018
+  Survival@1.0: 72.0%
+    MTE@1.0=2.2667  W2@1.0=1.1150  MMD@1.0=0.1018
+
+============================================================
+  paraboloid | T+F+K(Pstar)1ph | seed=1042
+============================================================
+      AE Epoch 100: loss=0.445550
+      AE Epoch 200: loss=0.058122
+      AE Epoch 300: loss=0.045578
+      AE Epoch 400: loss=0.030588
+      AE Epoch 500: loss=0.003352
+  Stage 2 epoch 60/300: loss=0.125451
+  Stage 2 epoch 120/300: loss=0.107248
+  Stage 2 epoch 180/300: loss=0.087104
+  Stage 2 epoch 240/300: loss=0.060541
+  Stage 2 epoch 300/300: loss=0.031691
+  Stage 3 epoch 60/300: loss=5.544579
+  Stage 3 epoch 120/300: loss=2.479120
+  Stage 3 epoch 180/300: loss=2.046608
+  Stage 3 epoch 240/300: loss=1.806149
+  Stage 3 epoch 300/300: loss=1.599618
+  MTE@0.1: 1.1071
+  MTE@0.5: 1.8838
+  MTE@1.0: 2.4876
+  W2@1.0:  1.1384
+  MMD@1.0: 0.1102
+  Survival@1.0: 72.0%
+    MTE@1.0=2.4876  W2@1.0=1.1384  MMD@1.0=0.1102
+
+============================================================
+  paraboloid | T+F | seed=2042
+============================================================
+      AE Epoch 100: loss=0.784444
+      AE Epoch 200: loss=0.298014
+      AE Epoch 300: loss=0.040631
+      AE Epoch 400: loss=0.024134
+      AE Epoch 500: loss=0.015273
+  Stage 2 epoch 60/300: loss=2.570769
+  Stage 2 epoch 120/300: loss=2.122238
+  Stage 2 epoch 180/300: loss=1.280381
+  Stage 2 epoch 240/300: loss=0.530696
+  Stage 2 epoch 300/300: loss=0.214821
+  Stage 3 epoch 60/300: loss=19.058887
+  Stage 3 epoch 120/300: loss=8.383545
+  Stage 3 epoch 180/300: loss=6.387698
+  Stage 3 epoch 240/300: loss=5.486200
+  Stage 3 epoch 300/300: loss=4.518917
+  MTE@0.1: 0.8389
+  MTE@0.5: 1.7881
+  MTE@1.0: 2.5759
+  W2@1.0:  1.9346
+  MMD@1.0: 0.2093
+  Survival@1.0: 78.5%
+    MTE@1.0=2.5759  W2@1.0=1.9346  MMD@1.0=0.2093
+
+============================================================
+  paraboloid | T+F+K(Phat)2ph | seed=2042
+============================================================
+
+[ae] Starting T+F-warmup: 250 epochs
+  Epoch 100 (T+F-warmup 100/250): loss = 0.7844
+  Epoch 200 (T+F-warmup 200/250): loss = 0.2980
+
+[ae] Starting T+F+K-finetune: 250 epochs
+  Epoch 350 (T+F+K-finetune 100/250): loss = 0.0774
+  Epoch 450 (T+F+K-finetune 200/250): loss = 0.0210
+  Stage 2 epoch 60/300: loss=1.953536
+  Stage 2 epoch 120/300: loss=1.586340
+  Stage 2 epoch 180/300: loss=0.978799
+  Stage 2 epoch 240/300: loss=0.430362
+  Stage 2 epoch 300/300: loss=0.133073
+  Stage 3 epoch 60/300: loss=6.249810
+  Stage 3 epoch 120/300: loss=4.586543
+  Stage 3 epoch 180/300: loss=4.148243
+  Stage 3 epoch 240/300: loss=3.997677
+  Stage 3 epoch 300/300: loss=3.882163
+  MTE@0.1: 0.8144
+  MTE@0.5: 1.8448
+  MTE@1.0: 2.6853
+  W2@1.0:  1.6398
+  MMD@1.0: 0.1703
+  Survival@1.0: 78.5%
+    MTE@1.0=2.6853  W2@1.0=1.6398  MMD@1.0=0.1703
+
+============================================================
+  paraboloid | T+F+K(Pstar)2ph | seed=2042
+============================================================
+
+[ae] Starting T+F-warmup: 250 epochs
+  Epoch 100 (T+F-warmup 100/250): loss = 0.7844
+  Epoch 200 (T+F-warmup 200/250): loss = 0.2980
+
+[ae] Starting T+F+K-finetune: 250 epochs
+  Epoch 350 (T+F+K-finetune 100/250): loss = 0.0686
+  Epoch 450 (T+F+K-finetune 200/250): loss = 0.0229
+  Stage 2 epoch 60/300: loss=1.143928
+  Stage 2 epoch 120/300: loss=0.974821
+  Stage 2 epoch 180/300: loss=0.710669
+  Stage 2 epoch 240/300: loss=0.411643
+  Stage 2 epoch 300/300: loss=0.198012
+  Stage 3 epoch 60/300: loss=17.014521
+  Stage 3 epoch 120/300: loss=6.004846
+  Stage 3 epoch 180/300: loss=5.049509
+  Stage 3 epoch 240/300: loss=4.588277
+  Stage 3 epoch 300/300: loss=3.997522
+  MTE@0.1: 0.8500
+  MTE@0.5: 1.7617
+  MTE@1.0: 2.3505
+  W2@1.0:  1.5087
+  MMD@1.0: 0.1518
+  Survival@1.0: 78.5%
+    MTE@1.0=2.3505  W2@1.0=1.5087  MMD@1.0=0.1518
+
+============================================================
+  paraboloid | T+F+K(Pstar)1ph | seed=2042
+============================================================
+      AE Epoch 100: loss=0.862131
+      AE Epoch 200: loss=0.255969
+      AE Epoch 300: loss=0.027501
+      AE Epoch 400: loss=0.020027
+      AE Epoch 500: loss=0.008176
+  Stage 2 epoch 60/300: loss=1.525967
+  Stage 2 epoch 120/300: loss=1.160112
+  Stage 2 epoch 180/300: loss=0.489271
+  Stage 2 epoch 240/300: loss=0.127211
+  Stage 2 epoch 300/300: loss=0.027785
+  Stage 3 epoch 60/300: loss=16.361521
+  Stage 3 epoch 120/300: loss=5.566905
+  Stage 3 epoch 180/300: loss=3.977315
+  Stage 3 epoch 240/300: loss=3.518719
+  Stage 3 epoch 300/300: loss=3.071079
+  MTE@0.1: 0.8030
+  MTE@0.5: 1.7098
+  MTE@1.0: 2.4001
+  W2@1.0:  1.6513
+  MMD@1.0: 0.1352
+  Survival@1.0: 78.5%
+    MTE@1.0=2.4001  W2@1.0=1.6513  MMD@1.0=0.1352
+
+============================================================
+  paraboloid | T+F | seed=3042
+============================================================
+      AE Epoch 100: loss=0.758564
+      AE Epoch 200: loss=0.332842
+      AE Epoch 300: loss=0.049218
+      AE Epoch 400: loss=0.025524
+      AE Epoch 500: loss=0.023874
+  Stage 2 epoch 60/300: loss=2.101323
+  Stage 2 epoch 120/300: loss=1.575799
+  Stage 2 epoch 180/300: loss=0.698763
+  Stage 2 epoch 240/300: loss=0.277211
+  Stage 2 epoch 300/300: loss=0.139743
+  Stage 3 epoch 60/300: loss=14.570579
+  Stage 3 epoch 120/300: loss=11.988566
+  Stage 3 epoch 180/300: loss=7.819337
+  Stage 3 epoch 240/300: loss=3.899188
+  Stage 3 epoch 300/300: loss=2.639452
+  MTE@0.1: 1.3726
+  MTE@0.5: 2.5659
+  MTE@1.0: 3.2744
+  W2@1.0:  1.9190
+  MMD@1.0: 0.2666
+  Survival@1.0: 74.5%
+    MTE@1.0=3.2744  W2@1.0=1.9190  MMD@1.0=0.2666
+
+============================================================
+  paraboloid | T+F+K(Phat)2ph | seed=3042
+============================================================
+
+[ae] Starting T+F-warmup: 250 epochs
+  Epoch 100 (T+F-warmup 100/250): loss = 0.7586
+  Epoch 200 (T+F-warmup 200/250): loss = 0.3328
+
+[ae] Starting T+F+K-finetune: 250 epochs
+  Epoch 350 (T+F+K-finetune 100/250): loss = 0.0319
+  Epoch 450 (T+F+K-finetune 200/250): loss = 0.0224
+  Stage 2 epoch 60/300: loss=1.815041
+  Stage 2 epoch 120/300: loss=1.450192
+  Stage 2 epoch 180/300: loss=0.578851
+  Stage 2 epoch 240/300: loss=0.174739
+  Stage 2 epoch 300/300: loss=0.092161
+  Stage 3 epoch 60/300: loss=14.408237
+  Stage 3 epoch 120/300: loss=11.709862
+  Stage 3 epoch 180/300: loss=7.348354
+  Stage 3 epoch 240/300: loss=2.903216
+  Stage 3 epoch 300/300: loss=1.548803
+  MTE@0.1: 1.3682
+  MTE@0.5: 2.5139
+  MTE@1.0: 3.1749
+  W2@1.0:  1.7379
+  MMD@1.0: 0.2553
+  Survival@1.0: 74.5%
+    MTE@1.0=3.1749  W2@1.0=1.7379  MMD@1.0=0.2553
+
+============================================================
+  paraboloid | T+F+K(Pstar)2ph | seed=3042
+============================================================
+
+[ae] Starting T+F-warmup: 250 epochs
+  Epoch 100 (T+F-warmup 100/250): loss = 0.7586
+  Epoch 200 (T+F-warmup 200/250): loss = 0.3328
+
+[ae] Starting T+F+K-finetune: 250 epochs
+  Epoch 350 (T+F+K-finetune 100/250): loss = 0.0482
+  Epoch 450 (T+F+K-finetune 200/250): loss = 0.0284
+  Stage 2 epoch 60/300: loss=1.711485
+  Stage 2 epoch 120/300: loss=1.273675
+  Stage 2 epoch 180/300: loss=0.461479
+  Stage 2 epoch 240/300: loss=0.175148
+  Stage 2 epoch 300/300: loss=0.097268
+  Stage 3 epoch 60/300: loss=14.473093
+  Stage 3 epoch 120/300: loss=11.430997
+  Stage 3 epoch 180/300: loss=6.714737
+  Stage 3 epoch 240/300: loss=2.753228
+  Stage 3 epoch 300/300: loss=1.632707
+  MTE@0.1: 1.3689
+  MTE@0.5: 2.5274
+  MTE@1.0: 3.1433
+  W2@1.0:  1.7511
+  MMD@1.0: 0.2655
+  Survival@1.0: 74.5%
+    MTE@1.0=3.1433  W2@1.0=1.7511  MMD@1.0=0.2655
+
+============================================================
+  paraboloid | T+F+K(Pstar)1ph | seed=3042
+============================================================
+      AE Epoch 100: loss=0.556758
+      AE Epoch 200: loss=0.096277
+      AE Epoch 300: loss=0.028425
+      AE Epoch 400: loss=0.037117
+      AE Epoch 500: loss=0.007938
+  Stage 2 epoch 60/300: loss=0.694509
+  Stage 2 epoch 120/300: loss=0.543453
+  Stage 2 epoch 180/300: loss=0.346538
+  Stage 2 epoch 240/300: loss=0.202851
+  Stage 2 epoch 300/300: loss=0.119628
+  Stage 3 epoch 60/300: loss=15.373810
+  Stage 3 epoch 120/300: loss=11.408303
+  Stage 3 epoch 180/300: loss=5.619770
+  Stage 3 epoch 240/300: loss=2.761387
+  Stage 3 epoch 300/300: loss=1.716174
+  MTE@0.1: 1.3538
+  MTE@0.5: 2.5352
+  MTE@1.0: 3.3682
+  W2@1.0:  2.1492
+  MMD@1.0: 0.3491
+  Survival@1.0: 74.5%
+    MTE@1.0=3.3682  W2@1.0=2.1492  MMD@1.0=0.3491
+
+============================================================
+  paraboloid | T+F | seed=4042
+============================================================
+      AE Epoch 100: loss=0.674721
+      AE Epoch 200: loss=0.066054
+      AE Epoch 300: loss=0.043037
+      AE Epoch 400: loss=0.020587
+      AE Epoch 500: loss=0.018182
+  Stage 2 epoch 60/300: loss=0.092587
+  Stage 2 epoch 120/300: loss=0.078435
+  Stage 2 epoch 180/300: loss=0.065322
+  Stage 2 epoch 240/300: loss=0.053907
+  Stage 2 epoch 300/300: loss=0.043576
+  Stage 3 epoch 60/300: loss=2.989230
+  Stage 3 epoch 120/300: loss=2.502342
+  Stage 3 epoch 180/300: loss=2.110714
+  Stage 3 epoch 240/300: loss=1.613407
+  Stage 3 epoch 300/300: loss=0.976715
+  MTE@0.1: 1.3200
+  MTE@0.5: 2.6158
+  MTE@1.0: 2.8995
+  W2@1.0:  1.3025
+  MMD@1.0: 0.2074
+  Survival@1.0: 76.0%
+    MTE@1.0=2.8995  W2@1.0=1.3025  MMD@1.0=0.2074
+
+============================================================
+  paraboloid | T+F+K(Phat)2ph | seed=4042
+============================================================
+
+[ae] Starting T+F-warmup: 250 epochs
+  Epoch 100 (T+F-warmup 100/250): loss = 0.6747
+  Epoch 200 (T+F-warmup 200/250): loss = 0.0661
+
+[ae] Starting T+F+K-finetune: 250 epochs
+  Epoch 350 (T+F+K-finetune 100/250): loss = 0.0253
+  Epoch 450 (T+F+K-finetune 200/250): loss = 0.0140
+  Stage 2 epoch 60/300: loss=0.079398
+  Stage 2 epoch 120/300: loss=0.070496
+  Stage 2 epoch 180/300: loss=0.061776
+  Stage 2 epoch 240/300: loss=0.052505
+  Stage 2 epoch 300/300: loss=0.042219
+  Stage 3 epoch 60/300: loss=3.114923
+  Stage 3 epoch 120/300: loss=2.654768
+  Stage 3 epoch 180/300: loss=2.234273
+  Stage 3 epoch 240/300: loss=1.598853
+  Stage 3 epoch 300/300: loss=0.847254
+  MTE@0.1: 1.3220
+  MTE@0.5: 2.5877
+  MTE@1.0: 2.8200
+  W2@1.0:  1.2516
+  MMD@1.0: 0.2269
+  Survival@1.0: 76.0%
+    MTE@1.0=2.8200  W2@1.0=1.2516  MMD@1.0=0.2269
+
+============================================================
+  paraboloid | T+F+K(Pstar)2ph | seed=4042
+============================================================
+
+[ae] Starting T+F-warmup: 250 epochs
+  Epoch 100 (T+F-warmup 100/250): loss = 0.6747
+  Epoch 200 (T+F-warmup 200/250): loss = 0.0661
+
+[ae] Starting T+F+K-finetune: 250 epochs
+  Epoch 350 (T+F+K-finetune 100/250): loss = 0.0259
+  Epoch 450 (T+F+K-finetune 200/250): loss = 0.0141
+  Stage 2 epoch 60/300: loss=0.087559
+  Stage 2 epoch 120/300: loss=0.077396
+  Stage 2 epoch 180/300: loss=0.067510
+  Stage 2 epoch 240/300: loss=0.056994
+  Stage 2 epoch 300/300: loss=0.045546
+  Stage 3 epoch 60/300: loss=3.165148
+  Stage 3 epoch 120/300: loss=2.714046
+  Stage 3 epoch 180/300: loss=2.296938
+  Stage 3 epoch 240/300: loss=1.656397
+  Stage 3 epoch 300/300: loss=0.880313
+  MTE@0.1: 1.3227
+  MTE@0.5: 2.5911
+  MTE@1.0: 2.8214
+  W2@1.0:  1.2855
+  MMD@1.0: 0.2295
+  Survival@1.0: 76.0%
+    MTE@1.0=2.8214  W2@1.0=1.2855  MMD@1.0=0.2295
+
+============================================================
+  paraboloid | T+F+K(Pstar)1ph | seed=4042
+============================================================
+      AE Epoch 100: loss=0.339694
+      AE Epoch 200: loss=0.042251
+      AE Epoch 300: loss=0.026373
+      AE Epoch 400: loss=0.024448
+      AE Epoch 500: loss=0.024021
+  Stage 2 epoch 60/300: loss=0.106917
+  Stage 2 epoch 120/300: loss=0.088528
+  Stage 2 epoch 180/300: loss=0.064011
+  Stage 2 epoch 240/300: loss=0.039859
+  Stage 2 epoch 300/300: loss=0.026199
+  Stage 3 epoch 60/300: loss=3.947268
+  Stage 3 epoch 120/300: loss=3.285196
+  Stage 3 epoch 180/300: loss=2.545628
+  Stage 3 epoch 240/300: loss=1.519277
+  Stage 3 epoch 300/300: loss=0.864852
+  MTE@0.1: 1.3143
+  MTE@0.5: 2.5458
+  MTE@1.0: 2.7617
+  W2@1.0:  1.2232
+  MMD@1.0: 0.2205
+  Survival@1.0: 76.0%
+    MTE@1.0=2.7617  W2@1.0=1.2232  MMD@1.0=0.2205
+
+============================================================
+  paraboloid | T+F | seed=5042
+============================================================
+      AE Epoch 100: loss=0.463848
+      AE Epoch 200: loss=0.127498
+      AE Epoch 300: loss=0.065396
+      AE Epoch 400: loss=0.036171
+      AE Epoch 500: loss=0.076323
+  Stage 2 epoch 60/300: loss=3.783761
+  Stage 2 epoch 120/300: loss=2.502814
+  Stage 2 epoch 180/300: loss=0.663702
+  Stage 2 epoch 240/300: loss=0.188043
+  Stage 2 epoch 300/300: loss=0.116914
+  Stage 3 epoch 60/300: loss=7.516402
+  Stage 3 epoch 120/300: loss=3.598556
+  Stage 3 epoch 180/300: loss=3.280643
+  Stage 3 epoch 240/300: loss=3.058264
+  Stage 3 epoch 300/300: loss=2.871618
+  MTE@0.1: 1.2011
+  MTE@0.5: 2.2400
+  MTE@1.0: 2.9701
+  W2@1.0:  2.6123
+  MMD@1.0: 0.3114
+  Survival@1.0: 76.5%
+    MTE@1.0=2.9701  W2@1.0=2.6123  MMD@1.0=0.3114
+
+============================================================
+  paraboloid | T+F+K(Phat)2ph | seed=5042
+============================================================
+
+[ae] Starting T+F-warmup: 250 epochs
+  Epoch 100 (T+F-warmup 100/250): loss = 0.4638
+  Epoch 200 (T+F-warmup 200/250): loss = 0.1275
+
+[ae] Starting T+F+K-finetune: 250 epochs
+  Epoch 350 (T+F+K-finetune 100/250): loss = 0.0932
+  Epoch 450 (T+F+K-finetune 200/250): loss = 0.0353
+  Stage 2 epoch 60/300: loss=3.652228
+  Stage 2 epoch 120/300: loss=2.123426
+  Stage 2 epoch 180/300: loss=0.362322
+  Stage 2 epoch 240/300: loss=0.122921
+  Stage 2 epoch 300/300: loss=0.091657
+  Stage 3 epoch 60/300: loss=4.362608
+  Stage 3 epoch 120/300: loss=1.837773
+  Stage 3 epoch 180/300: loss=1.684358
+  Stage 3 epoch 240/300: loss=1.555281
+  Stage 3 epoch 300/300: loss=1.439301
+  MTE@0.1: 1.1426
+  MTE@0.5: 1.9846
+  MTE@1.0: 2.6037
+  W2@1.0:  2.0355
+  MMD@1.0: 0.2701
+  Survival@1.0: 76.5%
+    MTE@1.0=2.6037  W2@1.0=2.0355  MMD@1.0=0.2701
+
+============================================================
+  paraboloid | T+F+K(Pstar)2ph | seed=5042
+============================================================
+
+[ae] Starting T+F-warmup: 250 epochs
+  Epoch 100 (T+F-warmup 100/250): loss = 0.4638
+  Epoch 200 (T+F-warmup 200/250): loss = 0.1275
+
+[ae] Starting T+F+K-finetune: 250 epochs
+  Epoch 350 (T+F+K-finetune 100/250): loss = 0.1037
+  Epoch 450 (T+F+K-finetune 200/250): loss = 0.0266
+  Stage 2 epoch 60/300: loss=2.490792
+  Stage 2 epoch 120/300: loss=1.437133
+  Stage 2 epoch 180/300: loss=0.262646
+  Stage 2 epoch 240/300: loss=0.134442
+  Stage 2 epoch 300/300: loss=0.104493
+  Stage 3 epoch 60/300: loss=2.740966
+  Stage 3 epoch 120/300: loss=1.441363
+  Stage 3 epoch 180/300: loss=1.368281
+  Stage 3 epoch 240/300: loss=1.331952
+  Stage 3 epoch 300/300: loss=1.292968
+  MTE@0.1: 1.1569
+  MTE@0.5: 2.0506
+  MTE@1.0: 2.6209
+  W2@1.0:  1.9344
+  MMD@1.0: 0.2298
+  Survival@1.0: 76.5%
+    MTE@1.0=2.6209  W2@1.0=1.9344  MMD@1.0=0.2298
+
+============================================================
+  paraboloid | T+F+K(Pstar)1ph | seed=5042
+============================================================
+      AE Epoch 100: loss=0.208551
+      AE Epoch 200: loss=0.069519
+      AE Epoch 300: loss=0.030527
+      AE Epoch 400: loss=0.014022
+      AE Epoch 500: loss=0.018841
+  Stage 2 epoch 60/300: loss=1.111537
+  Stage 2 epoch 120/300: loss=0.798000
+  Stage 2 epoch 180/300: loss=0.306113
+  Stage 2 epoch 240/300: loss=0.152267
+  Stage 2 epoch 300/300: loss=0.091155
+  Stage 3 epoch 60/300: loss=4.812777
+  Stage 3 epoch 120/300: loss=1.798647
+  Stage 3 epoch 180/300: loss=1.531831
+  Stage 3 epoch 240/300: loss=1.428815
+  Stage 3 epoch 300/300: loss=1.329539
+  MTE@0.1: 1.0979
+  MTE@0.5: 2.0037
+  MTE@1.0: 2.5126
+  W2@1.0:  1.5940
+  MMD@1.0: 0.1713
+  Survival@1.0: 76.5%
+    MTE@1.0=2.5126  W2@1.0=1.5940  MMD@1.0=0.1713
+
+============================================================
+  paraboloid | T+F | seed=6042
+============================================================
+      AE Epoch 100: loss=0.504231
+      AE Epoch 200: loss=0.251532
+      AE Epoch 300: loss=0.198148
+      AE Epoch 400: loss=0.087771
+      AE Epoch 500: loss=0.049672
+  Stage 2 epoch 60/300: loss=1.562239
+  Stage 2 epoch 120/300: loss=1.330093
+  Stage 2 epoch 180/300: loss=1.121720
+  Stage 2 epoch 240/300: loss=0.724913
+  Stage 2 epoch 300/300: loss=0.365625
+  Stage 3 epoch 60/300: loss=5.622573
+  Stage 3 epoch 120/300: loss=4.268069
+  Stage 3 epoch 180/300: loss=3.353666
+  Stage 3 epoch 240/300: loss=3.127502
+  Stage 3 epoch 300/300: loss=2.921031
+  MTE@0.1: 0.9312
+  MTE@0.5: 1.9979
+  MTE@1.0: 2.5454
+  W2@1.0:  2.2080
+  MMD@1.0: 0.2432
+  Survival@1.0: 73.0%
+    MTE@1.0=2.5454  W2@1.0=2.2080  MMD@1.0=0.2432
+
+============================================================
+  paraboloid | T+F+K(Phat)2ph | seed=6042
+============================================================
+
+[ae] Starting T+F-warmup: 250 epochs
+  Epoch 100 (T+F-warmup 100/250): loss = 0.5042
+  Epoch 200 (T+F-warmup 200/250): loss = 0.2515
+
+[ae] Starting T+F+K-finetune: 250 epochs
+  Epoch 350 (T+F+K-finetune 100/250): loss = 0.1843
+  Epoch 450 (T+F+K-finetune 200/250): loss = 0.1033
+  Stage 2 epoch 60/300: loss=0.835064
+  Stage 2 epoch 120/300: loss=0.659582
+  Stage 2 epoch 180/300: loss=0.565238
+  Stage 2 epoch 240/300: loss=0.430065
+  Stage 2 epoch 300/300: loss=0.267679
+  Stage 3 epoch 60/300: loss=4.057180
+  Stage 3 epoch 120/300: loss=2.463164
+  Stage 3 epoch 180/300: loss=1.853220
+  Stage 3 epoch 240/300: loss=1.723260
+  Stage 3 epoch 300/300: loss=1.620489
+  MTE@0.1: 0.9285
+  MTE@0.5: 1.8405
+  MTE@1.0: 2.2232
+  W2@1.0:  1.6046
+  MMD@1.0: 0.2228
+  Survival@1.0: 73.0%
+    MTE@1.0=2.2232  W2@1.0=1.6046  MMD@1.0=0.2228
+
+============================================================
+  paraboloid | T+F+K(Pstar)2ph | seed=6042
+============================================================
+
+[ae] Starting T+F-warmup: 250 epochs
+  Epoch 100 (T+F-warmup 100/250): loss = 0.5042
+  Epoch 200 (T+F-warmup 200/250): loss = 0.2515
+
+[ae] Starting T+F+K-finetune: 250 epochs
+  Epoch 350 (T+F+K-finetune 100/250): loss = 0.1536
+  Epoch 450 (T+F+K-finetune 200/250): loss = 0.1372
+  Stage 2 epoch 60/300: loss=0.795974
+  Stage 2 epoch 120/300: loss=0.739585
+  Stage 2 epoch 180/300: loss=0.672397
+  Stage 2 epoch 240/300: loss=0.550149
+  Stage 2 epoch 300/300: loss=0.366880
+  Stage 3 epoch 60/300: loss=3.518695
+  Stage 3 epoch 120/300: loss=2.492600
+  Stage 3 epoch 180/300: loss=1.938360
+  Stage 3 epoch 240/300: loss=1.746702
+  Stage 3 epoch 300/300: loss=1.651635
+  MTE@0.1: 0.9004
+  MTE@0.5: 1.7934
+  MTE@1.0: 2.0619
+  W2@1.0:  1.3365
+  MMD@1.0: 0.1180
+  Survival@1.0: 73.0%
+    MTE@1.0=2.0619  W2@1.0=1.3365  MMD@1.0=0.1180
+
+============================================================
+  paraboloid | T+F+K(Pstar)1ph | seed=6042
+============================================================
+      AE Epoch 100: loss=0.600370
+      AE Epoch 200: loss=0.164929
+      AE Epoch 300: loss=0.043856
+      AE Epoch 400: loss=0.022149
+      AE Epoch 500: loss=0.011913
+  Stage 2 epoch 60/300: loss=0.333301
+  Stage 2 epoch 120/300: loss=0.308899
+  Stage 2 epoch 180/300: loss=0.286671
+  Stage 2 epoch 240/300: loss=0.253998
+  Stage 2 epoch 300/300: loss=0.204942
+  Stage 3 epoch 60/300: loss=5.449041
+  Stage 3 epoch 120/300: loss=3.780738
+  Stage 3 epoch 180/300: loss=2.889219
+  Stage 3 epoch 240/300: loss=2.409029
+  Stage 3 epoch 300/300: loss=1.960195
+  MTE@0.1: 0.7929
+  MTE@0.5: 1.7951
+  MTE@1.0: 2.2955
+  W2@1.0:  1.3164
+  MMD@1.0: 0.1833
+  Survival@1.0: 73.0%
+    MTE@1.0=2.2955  W2@1.0=1.3164  MMD@1.0=0.1833
+
+============================================================
+  paraboloid | T+F | seed=7042
+============================================================
+      AE Epoch 100: loss=0.655045
+      AE Epoch 200: loss=0.323562
+      AE Epoch 300: loss=0.077494
+      AE Epoch 400: loss=0.018425
+      AE Epoch 500: loss=0.009925
+  Stage 2 epoch 60/300: loss=0.380101
+  Stage 2 epoch 120/300: loss=0.325587
+  Stage 2 epoch 180/300: loss=0.234683
+  Stage 2 epoch 240/300: loss=0.137484
+  Stage 2 epoch 300/300: loss=0.097372
+  Stage 3 epoch 60/300: loss=3.464909
+  Stage 3 epoch 120/300: loss=3.047951
+  Stage 3 epoch 180/300: loss=2.720693
+  Stage 3 epoch 240/300: loss=2.291460
+  Stage 3 epoch 300/300: loss=1.691625
+  MTE@0.1: 1.0250
+  MTE@0.5: 2.0959
+  MTE@1.0: 2.5819
+  W2@1.0:  1.7275
+  MMD@1.0: 0.1895
+  Survival@1.0: 76.5%
+    MTE@1.0=2.5819  W2@1.0=1.7275  MMD@1.0=0.1895
+
+============================================================
+  paraboloid | T+F+K(Phat)2ph | seed=7042
+============================================================
+
+[ae] Starting T+F-warmup: 250 epochs
+  Epoch 100 (T+F-warmup 100/250): loss = 0.6550
+  Epoch 200 (T+F-warmup 200/250): loss = 0.3236
+
+[ae] Starting T+F+K-finetune: 250 epochs
+  Epoch 350 (T+F+K-finetune 100/250): loss = 0.0687
+  Epoch 450 (T+F+K-finetune 200/250): loss = 0.0531
+  Stage 2 epoch 60/300: loss=0.279092
+  Stage 2 epoch 120/300: loss=0.222333
+  Stage 2 epoch 180/300: loss=0.129278
+  Stage 2 epoch 240/300: loss=0.060745
+  Stage 2 epoch 300/300: loss=0.044909
+  Stage 3 epoch 60/300: loss=3.500916
+  Stage 3 epoch 120/300: loss=2.873471
+  Stage 3 epoch 180/300: loss=2.361125
+  Stage 3 epoch 240/300: loss=1.654310
+  Stage 3 epoch 300/300: loss=0.937588
+  MTE@0.1: 1.0471
+  MTE@0.5: 2.0464
+  MTE@1.0: 2.4241
+  W2@1.0:  1.4935
+  MMD@1.0: 0.1785
+  Survival@1.0: 76.5%
+    MTE@1.0=2.4241  W2@1.0=1.4935  MMD@1.0=0.1785
+
+============================================================
+  paraboloid | T+F+K(Pstar)2ph | seed=7042
+============================================================
+
+[ae] Starting T+F-warmup: 250 epochs
+  Epoch 100 (T+F-warmup 100/250): loss = 0.6550
+  Epoch 200 (T+F-warmup 200/250): loss = 0.3236
+
+[ae] Starting T+F+K-finetune: 250 epochs
+  Epoch 350 (T+F+K-finetune 100/250): loss = 0.0534
+  Epoch 450 (T+F+K-finetune 200/250): loss = 0.0145
+  Stage 2 epoch 60/300: loss=0.343247
+  Stage 2 epoch 120/300: loss=0.300368
+  Stage 2 epoch 180/300: loss=0.240931
+  Stage 2 epoch 240/300: loss=0.139373
+  Stage 2 epoch 300/300: loss=0.065900
+  Stage 3 epoch 60/300: loss=5.065614
+  Stage 3 epoch 120/300: loss=4.180501
+  Stage 3 epoch 180/300: loss=3.336122
+  Stage 3 epoch 240/300: loss=2.097259
+  Stage 3 epoch 300/300: loss=0.992825
+  MTE@0.1: 1.0430
+  MTE@0.5: 2.0670
+  MTE@1.0: 2.5019
+  W2@1.0:  1.5744
+  MMD@1.0: 0.2178
+  Survival@1.0: 76.5%
+    MTE@1.0=2.5019  W2@1.0=1.5744  MMD@1.0=0.2178
+
+============================================================
+  paraboloid | T+F+K(Pstar)1ph | seed=7042
+============================================================
+      AE Epoch 100: loss=0.826031
+      AE Epoch 200: loss=0.112436
+      AE Epoch 300: loss=0.038997
+      AE Epoch 400: loss=0.019959
+      AE Epoch 500: loss=0.007865
+  Stage 2 epoch 60/300: loss=0.482492
+  Stage 2 epoch 120/300: loss=0.394991
+  Stage 2 epoch 180/300: loss=0.221812
+  Stage 2 epoch 240/300: loss=0.082864
+  Stage 2 epoch 300/300: loss=0.057133
+  Stage 3 epoch 60/300: loss=3.913666
+  Stage 3 epoch 120/300: loss=3.365503
+  Stage 3 epoch 180/300: loss=2.902053
+  Stage 3 epoch 240/300: loss=2.240001
+  Stage 3 epoch 300/300: loss=1.271593
+  MTE@0.1: 1.0447
+  MTE@0.5: 2.1249
+  MTE@1.0: 2.6721
+  W2@1.0:  1.6831
+  MMD@1.0: 0.2678
+  Survival@1.0: 76.5%
+    MTE@1.0=2.6721  W2@1.0=1.6831  MMD@1.0=0.2678
+
+============================================================
+  paraboloid | T+F | seed=8042
+============================================================
+      AE Epoch 100: loss=0.605433
+      AE Epoch 200: loss=0.199545
+      AE Epoch 300: loss=0.065259
+      AE Epoch 400: loss=0.134947
+      AE Epoch 500: loss=0.014774
+  Stage 2 epoch 60/300: loss=0.321881
+  Stage 2 epoch 120/300: loss=0.290575
+  Stage 2 epoch 180/300: loss=0.250473
+  Stage 2 epoch 240/300: loss=0.196758
+  Stage 2 epoch 300/300: loss=0.142572
+  Stage 3 epoch 60/300: loss=5.713929
+  Stage 3 epoch 120/300: loss=1.921623
+  Stage 3 epoch 180/300: loss=1.670801
+  Stage 3 epoch 240/300: loss=1.502000
+  Stage 3 epoch 300/300: loss=1.323196
+  MTE@0.1: 0.9230
+  MTE@0.5: 1.5962
+  MTE@1.0: 1.9713
+  W2@1.0:  1.3391
+  MMD@1.0: 0.1497
+  Survival@1.0: 79.5%
+    MTE@1.0=1.9713  W2@1.0=1.3391  MMD@1.0=0.1497
+
+============================================================
+  paraboloid | T+F+K(Phat)2ph | seed=8042
+============================================================
+
+[ae] Starting T+F-warmup: 250 epochs
+  Epoch 100 (T+F-warmup 100/250): loss = 0.6054
+  Epoch 200 (T+F-warmup 200/250): loss = 0.1995
+
+[ae] Starting T+F+K-finetune: 250 epochs
+  Epoch 350 (T+F+K-finetune 100/250): loss = 0.0541
+  Epoch 450 (T+F+K-finetune 200/250): loss = 0.0454
+  Stage 2 epoch 60/300: loss=0.184776
+  Stage 2 epoch 120/300: loss=0.166390
+  Stage 2 epoch 180/300: loss=0.153504
+  Stage 2 epoch 240/300: loss=0.138315
+  Stage 2 epoch 300/300: loss=0.121487
+  Stage 3 epoch 60/300: loss=4.984628
+  Stage 3 epoch 120/300: loss=1.818686
+  Stage 3 epoch 180/300: loss=1.584755
+  Stage 3 epoch 240/300: loss=1.400214
+  Stage 3 epoch 300/300: loss=1.224635
+  MTE@0.1: 0.8136
+  MTE@0.5: 1.4786
+  MTE@1.0: 1.8849
+  W2@1.0:  1.1678
+  MMD@1.0: 0.1042
+  Survival@1.0: 79.5%
+    MTE@1.0=1.8849  W2@1.0=1.1678  MMD@1.0=0.1042
+
+============================================================
+  paraboloid | T+F+K(Pstar)2ph | seed=8042
+============================================================
+
+[ae] Starting T+F-warmup: 250 epochs
+  Epoch 100 (T+F-warmup 100/250): loss = 0.6054
+  Epoch 200 (T+F-warmup 200/250): loss = 0.1995
+
+[ae] Starting T+F+K-finetune: 250 epochs
+  Epoch 350 (T+F+K-finetune 100/250): loss = 0.0416
+  Epoch 450 (T+F+K-finetune 200/250): loss = 0.0214
+  Stage 2 epoch 60/300: loss=0.194490
+  Stage 2 epoch 120/300: loss=0.177326
+  Stage 2 epoch 180/300: loss=0.163556
+  Stage 2 epoch 240/300: loss=0.146793
+  Stage 2 epoch 300/300: loss=0.128921
+  Stage 3 epoch 60/300: loss=5.168328
+  Stage 3 epoch 120/300: loss=1.940634
+  Stage 3 epoch 180/300: loss=1.635509
+  Stage 3 epoch 240/300: loss=1.486311
+  Stage 3 epoch 300/300: loss=1.329436
+  MTE@0.1: 0.8242
+  MTE@0.5: 1.5303
+  MTE@1.0: 1.9290
+  W2@1.0:  1.2020
+  MMD@1.0: 0.1211
+  Survival@1.0: 79.5%
+    MTE@1.0=1.9290  W2@1.0=1.2020  MMD@1.0=0.1211
+
+============================================================
+  paraboloid | T+F+K(Pstar)1ph | seed=8042
+============================================================
+      AE Epoch 100: loss=0.488251
+      AE Epoch 200: loss=0.122168
+      AE Epoch 300: loss=0.055748
+      AE Epoch 400: loss=0.024337
+      AE Epoch 500: loss=0.015933
+  Stage 2 epoch 60/300: loss=0.097084
+  Stage 2 epoch 120/300: loss=0.089890
+  Stage 2 epoch 180/300: loss=0.085100
+  Stage 2 epoch 240/300: loss=0.080467
+  Stage 2 epoch 300/300: loss=0.075629
+  Stage 3 epoch 60/300: loss=2.749201
+  Stage 3 epoch 120/300: loss=1.057593
+  Stage 3 epoch 180/300: loss=0.840768
+  Stage 3 epoch 240/300: loss=0.705432
+  Stage 3 epoch 300/300: loss=0.635845
+  MTE@0.1: 0.8343
+  MTE@0.5: 1.5516
+  MTE@1.0: 1.9072
+  W2@1.0:  1.0459
+  MMD@1.0: 0.1228
+  Survival@1.0: 79.5%
+    MTE@1.0=1.9072  W2@1.0=1.0459  MMD@1.0=0.1228
+
+============================================================
+  paraboloid | T+F | seed=9042
+============================================================
+      AE Epoch 100: loss=0.731549
+      AE Epoch 200: loss=0.268283
+      AE Epoch 300: loss=0.135366
+      AE Epoch 400: loss=0.047888
+      AE Epoch 500: loss=0.043364
+  Stage 2 epoch 60/300: loss=0.808900
+  Stage 2 epoch 120/300: loss=0.745059
+  Stage 2 epoch 180/300: loss=0.619523
+  Stage 2 epoch 240/300: loss=0.407460
+  Stage 2 epoch 300/300: loss=0.237004
+  Stage 3 epoch 60/300: loss=6.031969
+  Stage 3 epoch 120/300: loss=5.535760
+  Stage 3 epoch 180/300: loss=4.893013
+  Stage 3 epoch 240/300: loss=2.610967
+  Stage 3 epoch 300/300: loss=2.425778
+  MTE@0.1: 0.9106
+  MTE@0.5: 1.7281
+  MTE@1.0: 2.3646
+  W2@1.0:  1.4941
+  MMD@1.0: 0.1921
+  Survival@1.0: 76.0%
+    MTE@1.0=2.3646  W2@1.0=1.4941  MMD@1.0=0.1921
+
+============================================================
+  paraboloid | T+F+K(Phat)2ph | seed=9042
+============================================================
+
+[ae] Starting T+F-warmup: 250 epochs
+  Epoch 100 (T+F-warmup 100/250): loss = 0.7315
+  Epoch 200 (T+F-warmup 200/250): loss = 0.2683
+
+[ae] Starting T+F+K-finetune: 250 epochs
+  Epoch 350 (T+F+K-finetune 100/250): loss = 0.0554
+  Epoch 450 (T+F+K-finetune 200/250): loss = 0.0464
+  Stage 2 epoch 60/300: loss=0.415292
+  Stage 2 epoch 120/300: loss=0.382653
+  Stage 2 epoch 180/300: loss=0.324385
+  Stage 2 epoch 240/300: loss=0.256040
+  Stage 2 epoch 300/300: loss=0.219767
+  Stage 3 epoch 60/300: loss=4.734268
+  Stage 3 epoch 120/300: loss=4.352612
+  Stage 3 epoch 180/300: loss=4.013149
+  Stage 3 epoch 240/300: loss=3.352156
+  Stage 3 epoch 300/300: loss=2.316339
+  MTE@0.1: 0.6123
+  MTE@0.5: 1.2752
+  MTE@1.0: 1.9551
+  W2@1.0:  1.3543
+  MMD@1.0: 0.2539
+  Survival@1.0: 76.0%
+    MTE@1.0=1.9551  W2@1.0=1.3543  MMD@1.0=0.2539
+
+============================================================
+  paraboloid | T+F+K(Pstar)2ph | seed=9042
+============================================================
+
+[ae] Starting T+F-warmup: 250 epochs
+  Epoch 100 (T+F-warmup 100/250): loss = 0.7315
+  Epoch 200 (T+F-warmup 200/250): loss = 0.2683
+
+[ae] Starting T+F+K-finetune: 250 epochs
+  Epoch 350 (T+F+K-finetune 100/250): loss = 0.0730
+  Epoch 450 (T+F+K-finetune 200/250): loss = 0.1057
+  Stage 2 epoch 60/300: loss=0.388224
+  Stage 2 epoch 120/300: loss=0.362906
+  Stage 2 epoch 180/300: loss=0.332942
+  Stage 2 epoch 240/300: loss=0.287425
+  Stage 2 epoch 300/300: loss=0.232930
+  Stage 3 epoch 60/300: loss=5.391498
+  Stage 3 epoch 120/300: loss=5.024952
+  Stage 3 epoch 180/300: loss=4.730495
+  Stage 3 epoch 240/300: loss=4.226171
+  Stage 3 epoch 300/300: loss=3.183085
+  MTE@0.1: 0.6015
+  MTE@0.5: 1.2188
+  MTE@1.0: 1.8283
+  W2@1.0:  1.3260
+  MMD@1.0: 0.2413
+  Survival@1.0: 76.0%
+    MTE@1.0=1.8283  W2@1.0=1.3260  MMD@1.0=0.2413
+
+============================================================
+  paraboloid | T+F+K(Pstar)1ph | seed=9042
+============================================================
+      AE Epoch 100: loss=0.654446
+      AE Epoch 200: loss=0.186750
+      AE Epoch 300: loss=0.022578
+      AE Epoch 400: loss=0.039719
+      AE Epoch 500: loss=0.005571
+  Stage 2 epoch 60/300: loss=0.058882
+  Stage 2 epoch 120/300: loss=0.054643
+  Stage 2 epoch 180/300: loss=0.050668
+  Stage 2 epoch 240/300: loss=0.046714
+  Stage 2 epoch 300/300: loss=0.042910
+  Stage 3 epoch 60/300: loss=3.044212
+  Stage 3 epoch 120/300: loss=2.788247
+  Stage 3 epoch 180/300: loss=2.663822
+  Stage 3 epoch 240/300: loss=2.526794
+  Stage 3 epoch 300/300: loss=2.326251
+  MTE@0.1: 1.0149
+  MTE@0.5: 1.7534
+  MTE@1.0: 2.3837
+  W2@1.0:  1.3853
+  MMD@1.0: 0.2299
+  Survival@1.0: 76.0%
+    MTE@1.0=2.3837  W2@1.0=1.3853  MMD@1.0=0.2299
+
+============================================================
+  hyperbolic_paraboloid | T+F | seed=42
+============================================================
+      AE Epoch 100: loss=0.883191
+      AE Epoch 200: loss=0.611826
+      AE Epoch 300: loss=0.037706
+      AE Epoch 400: loss=0.020716
+      AE Epoch 500: loss=0.004082
+  Stage 2 epoch 60/300: loss=0.171755
+  Stage 2 epoch 120/300: loss=0.158143
+  Stage 2 epoch 180/300: loss=0.145615
+  Stage 2 epoch 240/300: loss=0.127806
+  Stage 2 epoch 300/300: loss=0.101947
+  Stage 3 epoch 60/300: loss=3.480382
+  Stage 3 epoch 120/300: loss=2.453029
+  Stage 3 epoch 180/300: loss=2.097342
+  Stage 3 epoch 240/300: loss=1.779094
+  Stage 3 epoch 300/300: loss=1.513247
+  MTE@0.1: 0.6212
+  MTE@0.5: 1.5349
+  MTE@1.0: 2.0729
+  W2@1.0:  1.0048
+  MMD@1.0: 0.1099
+  Survival@1.0: 76.5%
+    MTE@1.0=2.0729  W2@1.0=1.0048  MMD@1.0=0.1099
+
+============================================================
+  hyperbolic_paraboloid | T+F+K(Phat)2ph | seed=42
+============================================================
+
+[ae] Starting T+F-warmup: 250 epochs
+  Epoch 100 (T+F-warmup 100/250): loss = 0.8832
+  Epoch 200 (T+F-warmup 200/250): loss = 0.6118
+
+[ae] Starting T+F+K-finetune: 250 epochs
+  Epoch 350 (T+F+K-finetune 100/250): loss = 0.0649
+  Epoch 450 (T+F+K-finetune 200/250): loss = 0.0239
+  Stage 2 epoch 60/300: loss=0.060397
+  Stage 2 epoch 120/300: loss=0.051669
+  Stage 2 epoch 180/300: loss=0.045852
+  Stage 2 epoch 240/300: loss=0.039675
+  Stage 2 epoch 300/300: loss=0.033622
+  Stage 3 epoch 60/300: loss=3.474812
+  Stage 3 epoch 120/300: loss=2.331957
+  Stage 3 epoch 180/300: loss=1.972523
+  Stage 3 epoch 240/300: loss=1.680716
+  Stage 3 epoch 300/300: loss=1.425911
+  MTE@0.1: 0.6153
+  MTE@0.5: 1.4920
+  MTE@1.0: 1.9889
+  W2@1.0:  0.9260
+  MMD@1.0: 0.1021
+  Survival@1.0: 76.5%
+    MTE@1.0=1.9889  W2@1.0=0.9260  MMD@1.0=0.1021
+
+============================================================
+  hyperbolic_paraboloid | T+F+K(Pstar)2ph | seed=42
+============================================================
+
+[ae] Starting T+F-warmup: 250 epochs
+  Epoch 100 (T+F-warmup 100/250): loss = 0.8832
+  Epoch 200 (T+F-warmup 200/250): loss = 0.6118
+
+[ae] Starting T+F+K-finetune: 250 epochs
+  Epoch 350 (T+F+K-finetune 100/250): loss = 0.0422
+  Epoch 450 (T+F+K-finetune 200/250): loss = 0.0519
+  Stage 2 epoch 60/300: loss=0.064331
+  Stage 2 epoch 120/300: loss=0.056213
+  Stage 2 epoch 180/300: loss=0.049893
+  Stage 2 epoch 240/300: loss=0.043404
+  Stage 2 epoch 300/300: loss=0.037483
+  Stage 3 epoch 60/300: loss=3.407933
+  Stage 3 epoch 120/300: loss=2.288262
+  Stage 3 epoch 180/300: loss=1.934859
+  Stage 3 epoch 240/300: loss=1.647087
+  Stage 3 epoch 300/300: loss=1.404672
+  MTE@0.1: 0.6385
+  MTE@0.5: 1.5356
+  MTE@1.0: 2.0230
+  W2@1.0:  1.0052
+  MMD@1.0: 0.1181
+  Survival@1.0: 76.5%
+    MTE@1.0=2.0230  W2@1.0=1.0052  MMD@1.0=0.1181
+
+============================================================
+  hyperbolic_paraboloid | T+F+K(Pstar)1ph | seed=42
+============================================================
+      AE Epoch 100: loss=0.720361
+      AE Epoch 200: loss=0.036873
+      AE Epoch 300: loss=0.069515
+      AE Epoch 400: loss=0.078265
+      AE Epoch 500: loss=0.016081
+  Stage 2 epoch 60/300: loss=0.028829
+  Stage 2 epoch 120/300: loss=0.023560
+  Stage 2 epoch 180/300: loss=0.020692
+  Stage 2 epoch 240/300: loss=0.018136
+  Stage 2 epoch 300/300: loss=0.015938
+  Stage 3 epoch 60/300: loss=3.174117
+  Stage 3 epoch 120/300: loss=2.604606
+  Stage 3 epoch 180/300: loss=1.955175
+  Stage 3 epoch 240/300: loss=1.072390
+  Stage 3 epoch 300/300: loss=0.588718
+  MTE@0.1: 0.4622
+  MTE@0.5: 1.1772
+  MTE@1.0: 1.8265
+  W2@1.0:  1.0483
+  MMD@1.0: 0.1315
+  Survival@1.0: 76.5%
+    MTE@1.0=1.8265  W2@1.0=1.0483  MMD@1.0=0.1315
+
+============================================================
+  hyperbolic_paraboloid | T+F | seed=1042
+============================================================
+      AE Epoch 100: loss=0.647019
+      AE Epoch 200: loss=0.573660
+      AE Epoch 300: loss=0.062754
+      AE Epoch 400: loss=0.026317
+      AE Epoch 500: loss=0.021933
+  Stage 2 epoch 60/300: loss=0.106542
+  Stage 2 epoch 120/300: loss=0.095703
+  Stage 2 epoch 180/300: loss=0.085106
+  Stage 2 epoch 240/300: loss=0.071292
+  Stage 2 epoch 300/300: loss=0.054401
+  Stage 3 epoch 60/300: loss=5.085346
+  Stage 3 epoch 120/300: loss=3.443650
+  Stage 3 epoch 180/300: loss=2.378872
+  Stage 3 epoch 240/300: loss=1.994639
+  Stage 3 epoch 300/300: loss=1.703643
+  MTE@0.1: 1.0632
+  MTE@0.5: 1.9952
+  MTE@1.0: 2.5181
+  W2@1.0:  1.3603
+  MMD@1.0: 0.1912
+  Survival@1.0: 72.0%
+    MTE@1.0=2.5181  W2@1.0=1.3603  MMD@1.0=0.1912
+
+============================================================
+  hyperbolic_paraboloid | T+F+K(Phat)2ph | seed=1042
+============================================================
+
+[ae] Starting T+F-warmup: 250 epochs
+  Epoch 100 (T+F-warmup 100/250): loss = 0.6470
+  Epoch 200 (T+F-warmup 200/250): loss = 0.5737
+
+[ae] Starting T+F+K-finetune: 250 epochs
+  Epoch 350 (T+F+K-finetune 100/250): loss = 0.0420
+  Epoch 450 (T+F+K-finetune 200/250): loss = 0.0323
+  Stage 2 epoch 60/300: loss=0.073891
+  Stage 2 epoch 120/300: loss=0.064742
+  Stage 2 epoch 180/300: loss=0.057094
+  Stage 2 epoch 240/300: loss=0.048635
+  Stage 2 epoch 300/300: loss=0.039743
+  Stage 3 epoch 60/300: loss=4.981277
+  Stage 3 epoch 120/300: loss=3.311934
+  Stage 3 epoch 180/300: loss=2.074788
+  Stage 3 epoch 240/300: loss=1.837248
+  Stage 3 epoch 300/300: loss=1.664003
+  MTE@0.1: 1.0816
+  MTE@0.5: 2.0153
+  MTE@1.0: 2.5349
+  W2@1.0:  1.3739
+  MMD@1.0: 0.1992
+  Survival@1.0: 72.0%
+    MTE@1.0=2.5349  W2@1.0=1.3739  MMD@1.0=0.1992
+
+============================================================
+  hyperbolic_paraboloid | T+F+K(Pstar)2ph | seed=1042
+============================================================
+
+[ae] Starting T+F-warmup: 250 epochs
+  Epoch 100 (T+F-warmup 100/250): loss = 0.6470
+  Epoch 200 (T+F-warmup 200/250): loss = 0.5737
+
+[ae] Starting T+F+K-finetune: 250 epochs
+  Epoch 350 (T+F+K-finetune 100/250): loss = 0.0345
+  Epoch 450 (T+F+K-finetune 200/250): loss = 0.0224
+  Stage 2 epoch 60/300: loss=0.055449
+  Stage 2 epoch 120/300: loss=0.048845
+  Stage 2 epoch 180/300: loss=0.044220
+  Stage 2 epoch 240/300: loss=0.038953
+  Stage 2 epoch 300/300: loss=0.032927
+  Stage 3 epoch 60/300: loss=5.384103
+  Stage 3 epoch 120/300: loss=2.905187
+  Stage 3 epoch 180/300: loss=2.305465
+  Stage 3 epoch 240/300: loss=1.994799
+  Stage 3 epoch 300/300: loss=1.775066
+  MTE@0.1: 1.0708
+  MTE@0.5: 2.0143
+  MTE@1.0: 2.5272
+  W2@1.0:  1.3690
+  MMD@1.0: 0.1947
+  Survival@1.0: 72.0%
+    MTE@1.0=2.5272  W2@1.0=1.3690  MMD@1.0=0.1947
+
+============================================================
+  hyperbolic_paraboloid | T+F+K(Pstar)1ph | seed=1042
+============================================================
+      AE Epoch 100: loss=0.659642
+      AE Epoch 200: loss=0.464135
+      AE Epoch 300: loss=0.059770
+      AE Epoch 400: loss=0.027424
+      AE Epoch 500: loss=0.106271
+  Stage 2 epoch 60/300: loss=0.057008
+  Stage 2 epoch 120/300: loss=0.048845
+  Stage 2 epoch 180/300: loss=0.042359
+  Stage 2 epoch 240/300: loss=0.035964
+  Stage 2 epoch 300/300: loss=0.029767
+  Stage 3 epoch 60/300: loss=5.609475
+  Stage 3 epoch 120/300: loss=3.161223
+  Stage 3 epoch 180/300: loss=2.505411
+  Stage 3 epoch 240/300: loss=2.114327
+  Stage 3 epoch 300/300: loss=1.865999
+  MTE@0.1: 1.0862
+  MTE@0.5: 2.0158
+  MTE@1.0: 2.5046
+  W2@1.0:  1.3687
+  MMD@1.0: 0.2037
+  Survival@1.0: 72.0%
+    MTE@1.0=2.5046  W2@1.0=1.3687  MMD@1.0=0.2037
+
+============================================================
+  hyperbolic_paraboloid | T+F | seed=2042
+============================================================
+      AE Epoch 100: loss=0.849032
+      AE Epoch 200: loss=0.292253
+      AE Epoch 300: loss=0.032179
+      AE Epoch 400: loss=0.018627
+      AE Epoch 500: loss=0.026486
+  Stage 2 epoch 60/300: loss=0.239933
+  Stage 2 epoch 120/300: loss=0.209784
+  Stage 2 epoch 180/300: loss=0.165494
+  Stage 2 epoch 240/300: loss=0.104192
+  Stage 2 epoch 300/300: loss=0.055168
+  Stage 3 epoch 60/300: loss=11.983340
+  Stage 3 epoch 120/300: loss=8.218937
+  Stage 3 epoch 180/300: loss=6.655143
+  Stage 3 epoch 240/300: loss=5.253969
+  Stage 3 epoch 300/300: loss=3.934881
+  MTE@0.1: 0.9351
+  MTE@0.5: 2.3507
+  MTE@1.0: 2.8964
+  W2@1.0:  1.4518
+  MMD@1.0: 0.1882
+  Survival@1.0: 78.5%
+    MTE@1.0=2.8964  W2@1.0=1.4518  MMD@1.0=0.1882
+
+============================================================
+  hyperbolic_paraboloid | T+F+K(Phat)2ph | seed=2042
+============================================================
+
+[ae] Starting T+F-warmup: 250 epochs
+  Epoch 100 (T+F-warmup 100/250): loss = 0.8490
+  Epoch 200 (T+F-warmup 200/250): loss = 0.2923
+
+[ae] Starting T+F+K-finetune: 250 epochs
+  Epoch 350 (T+F+K-finetune 100/250): loss = 0.0296
+  Epoch 450 (T+F+K-finetune 200/250): loss = 0.0190
+  Stage 2 epoch 60/300: loss=0.093254
+  Stage 2 epoch 120/300: loss=0.084587
+  Stage 2 epoch 180/300: loss=0.072100
+  Stage 2 epoch 240/300: loss=0.052249
+  Stage 2 epoch 300/300: loss=0.032370
+  Stage 3 epoch 60/300: loss=12.411510
+  Stage 3 epoch 120/300: loss=8.989874
+  Stage 3 epoch 180/300: loss=7.505058
+  Stage 3 epoch 240/300: loss=6.081401
+  Stage 3 epoch 300/300: loss=4.348362
+  MTE@0.1: 1.0241
+  MTE@0.5: 2.3235
+  MTE@1.0: 2.7091
+  W2@1.0:  1.3553
+  MMD@1.0: 0.1736
+  Survival@1.0: 78.5%
+    MTE@1.0=2.7091  W2@1.0=1.3553  MMD@1.0=0.1736
+
+============================================================
+  hyperbolic_paraboloid | T+F+K(Pstar)2ph | seed=2042
+============================================================
+
+[ae] Starting T+F-warmup: 250 epochs
+  Epoch 100 (T+F-warmup 100/250): loss = 0.8490
+  Epoch 200 (T+F-warmup 200/250): loss = 0.2923
+
+[ae] Starting T+F+K-finetune: 250 epochs
+  Epoch 350 (T+F+K-finetune 100/250): loss = 0.0295
+  Epoch 450 (T+F+K-finetune 200/250): loss = 0.0438
+  Stage 2 epoch 60/300: loss=0.102507
+  Stage 2 epoch 120/300: loss=0.086757
+  Stage 2 epoch 180/300: loss=0.069208
+  Stage 2 epoch 240/300: loss=0.053066
+  Stage 2 epoch 300/300: loss=0.040431
+  Stage 3 epoch 60/300: loss=12.005600
+  Stage 3 epoch 120/300: loss=8.553172
+  Stage 3 epoch 180/300: loss=6.977189
+  Stage 3 epoch 240/300: loss=5.393380
+  Stage 3 epoch 300/300: loss=3.822857
+  MTE@0.1: 1.0041
+  MTE@0.5: 2.3224
+  MTE@1.0: 2.7104
+  W2@1.0:  1.3187
+  MMD@1.0: 0.1723
+  Survival@1.0: 78.5%
+    MTE@1.0=2.7104  W2@1.0=1.3187  MMD@1.0=0.1723
+
+============================================================
+  hyperbolic_paraboloid | T+F+K(Pstar)1ph | seed=2042
+============================================================
+      AE Epoch 100: loss=0.815070
+      AE Epoch 200: loss=0.176302
+      AE Epoch 300: loss=0.064627
+      AE Epoch 400: loss=0.031721
+      AE Epoch 500: loss=0.007934
+  Stage 2 epoch 60/300: loss=0.189300
+  Stage 2 epoch 120/300: loss=0.161144
+  Stage 2 epoch 180/300: loss=0.122060
+  Stage 2 epoch 240/300: loss=0.080887
+  Stage 2 epoch 300/300: loss=0.055967
+  Stage 3 epoch 60/300: loss=10.867560
+  Stage 3 epoch 120/300: loss=8.514582
+  Stage 3 epoch 180/300: loss=7.024045
+  Stage 3 epoch 240/300: loss=5.310044
+  Stage 3 epoch 300/300: loss=3.813980
+  MTE@0.1: 0.8449
+  MTE@0.5: 2.1899
+  MTE@1.0: 2.7041
+  W2@1.0:  1.3923
+  MMD@1.0: 0.1746
+  Survival@1.0: 78.5%
+    MTE@1.0=2.7041  W2@1.0=1.3923  MMD@1.0=0.1746
+
+============================================================
+  hyperbolic_paraboloid | T+F | seed=3042
+============================================================
+      AE Epoch 100: loss=0.875271
+      AE Epoch 200: loss=0.065090
+      AE Epoch 300: loss=0.028551
+      AE Epoch 400: loss=0.019800
+      AE Epoch 500: loss=0.009778
+  Stage 2 epoch 60/300: loss=0.283418
+  Stage 2 epoch 120/300: loss=0.256243
+  Stage 2 epoch 180/300: loss=0.218949
+  Stage 2 epoch 240/300: loss=0.163227
+  Stage 2 epoch 300/300: loss=0.082490
+  Stage 3 epoch 60/300: loss=4.474933
+  Stage 3 epoch 120/300: loss=3.814394
+  Stage 3 epoch 180/300: loss=3.288872
+  Stage 3 epoch 240/300: loss=2.680493
+  Stage 3 epoch 300/300: loss=2.038222
+  MTE@0.1: 0.9912
+  MTE@0.5: 2.0968
+  MTE@1.0: 2.8578
+  W2@1.0:  1.5597
+  MMD@1.0: 0.2196
+  Survival@1.0: 74.5%
+    MTE@1.0=2.8578  W2@1.0=1.5597  MMD@1.0=0.2196
+
+============================================================
+  hyperbolic_paraboloid | T+F+K(Phat)2ph | seed=3042
+============================================================
+
+[ae] Starting T+F-warmup: 250 epochs
+  Epoch 100 (T+F-warmup 100/250): loss = 0.8753
+  Epoch 200 (T+F-warmup 200/250): loss = 0.0651
+
+[ae] Starting T+F+K-finetune: 250 epochs
+  Epoch 350 (T+F+K-finetune 100/250): loss = 0.0260
+  Epoch 450 (T+F+K-finetune 200/250): loss = 0.0191
+  Stage 2 epoch 60/300: loss=0.077993
+  Stage 2 epoch 120/300: loss=0.061500
+  Stage 2 epoch 180/300: loss=0.050235
+  Stage 2 epoch 240/300: loss=0.043838
+  Stage 2 epoch 300/300: loss=0.039728
+  Stage 3 epoch 60/300: loss=3.998511
+  Stage 3 epoch 120/300: loss=3.377059
+  Stage 3 epoch 180/300: loss=2.863619
+  Stage 3 epoch 240/300: loss=2.350011
+  Stage 3 epoch 300/300: loss=1.889521
+  MTE@0.1: 0.9837
+  MTE@0.5: 2.0419
+  MTE@1.0: 2.6569
+  W2@1.0:  1.2838
+  MMD@1.0: 0.1743
+  Survival@1.0: 74.5%
+    MTE@1.0=2.6569  W2@1.0=1.2838  MMD@1.0=0.1743
+
+============================================================
+  hyperbolic_paraboloid | T+F+K(Pstar)2ph | seed=3042
+============================================================
+
+[ae] Starting T+F-warmup: 250 epochs
+  Epoch 100 (T+F-warmup 100/250): loss = 0.8753
+  Epoch 200 (T+F-warmup 200/250): loss = 0.0651
+
+[ae] Starting T+F+K-finetune: 250 epochs
+  Epoch 350 (T+F+K-finetune 100/250): loss = 0.0289
+  Epoch 450 (T+F+K-finetune 200/250): loss = 0.0183
+  Stage 2 epoch 60/300: loss=0.082398
+  Stage 2 epoch 120/300: loss=0.069563
+  Stage 2 epoch 180/300: loss=0.060405
+  Stage 2 epoch 240/300: loss=0.055317
+  Stage 2 epoch 300/300: loss=0.052054
+  Stage 3 epoch 60/300: loss=4.864599
+  Stage 3 epoch 120/300: loss=4.236010
+  Stage 3 epoch 180/300: loss=3.684954
+  Stage 3 epoch 240/300: loss=3.114406
+  Stage 3 epoch 300/300: loss=2.579068
+  MTE@0.1: 1.0141
+  MTE@0.5: 2.0564
+  MTE@1.0: 2.6762
+  W2@1.0:  1.3657
+  MMD@1.0: 0.1968
+  Survival@1.0: 74.5%
+    MTE@1.0=2.6762  W2@1.0=1.3657  MMD@1.0=0.1968
+
+============================================================
+  hyperbolic_paraboloid | T+F+K(Pstar)1ph | seed=3042
+============================================================
+      AE Epoch 100: loss=0.902779
+      AE Epoch 200: loss=0.731184
+      AE Epoch 300: loss=0.088336
+      AE Epoch 400: loss=0.026763
+      AE Epoch 500: loss=0.011610
+  Stage 2 epoch 60/300: loss=0.077712
+  Stage 2 epoch 120/300: loss=0.064428
+  Stage 2 epoch 180/300: loss=0.051949
+  Stage 2 epoch 240/300: loss=0.041846
+  Stage 2 epoch 300/300: loss=0.034711
+  Stage 3 epoch 60/300: loss=3.838385
+  Stage 3 epoch 120/300: loss=3.213668
+  Stage 3 epoch 180/300: loss=2.741038
+  Stage 3 epoch 240/300: loss=2.256831
+  Stage 3 epoch 300/300: loss=1.797464
+  MTE@0.1: 0.9885
+  MTE@0.5: 2.0364
+  MTE@1.0: 2.6595
+  W2@1.0:  1.2483
+  MMD@1.0: 0.1740
+  Survival@1.0: 74.5%
+    MTE@1.0=2.6595  W2@1.0=1.2483  MMD@1.0=0.1740
+
+============================================================
+  hyperbolic_paraboloid | T+F | seed=4042
+============================================================
+      AE Epoch 100: loss=0.678662
+      AE Epoch 200: loss=0.127562
+      AE Epoch 300: loss=0.037611
+      AE Epoch 400: loss=0.032762
+      AE Epoch 500: loss=0.004669
+  Stage 2 epoch 60/300: loss=0.236442
+  Stage 2 epoch 120/300: loss=0.214579
+  Stage 2 epoch 180/300: loss=0.177985
+  Stage 2 epoch 240/300: loss=0.128126
+  Stage 2 epoch 300/300: loss=0.088254
+  Stage 3 epoch 60/300: loss=3.483702
+  Stage 3 epoch 120/300: loss=2.677108
+  Stage 3 epoch 180/300: loss=2.300507
+  Stage 3 epoch 240/300: loss=1.867020
+  Stage 3 epoch 300/300: loss=1.430442
+  MTE@0.1: 1.2656
+  MTE@0.5: 2.5621
+  MTE@1.0: 2.7752
+  W2@1.0:  1.3252
+  MMD@1.0: 0.1808
+  Survival@1.0: 76.0%
+    MTE@1.0=2.7752  W2@1.0=1.3252  MMD@1.0=0.1808
+
+============================================================
+  hyperbolic_paraboloid | T+F+K(Phat)2ph | seed=4042
+============================================================
+
+[ae] Starting T+F-warmup: 250 epochs
+  Epoch 100 (T+F-warmup 100/250): loss = 0.6787
+  Epoch 200 (T+F-warmup 200/250): loss = 0.1276
+
+[ae] Starting T+F+K-finetune: 250 epochs
+  Epoch 350 (T+F+K-finetune 100/250): loss = 0.0276
+  Epoch 450 (T+F+K-finetune 200/250): loss = 0.0219
+  Stage 2 epoch 60/300: loss=0.049552
+  Stage 2 epoch 120/300: loss=0.042582
+  Stage 2 epoch 180/300: loss=0.036967
+  Stage 2 epoch 240/300: loss=0.030776
+  Stage 2 epoch 300/300: loss=0.024783
+  Stage 3 epoch 60/300: loss=3.439603
+  Stage 3 epoch 120/300: loss=2.493328
+  Stage 3 epoch 180/300: loss=2.180698
+  Stage 3 epoch 240/300: loss=1.817476
+  Stage 3 epoch 300/300: loss=1.424479
+  MTE@0.1: 1.2775
+  MTE@0.5: 2.5984
+  MTE@1.0: 2.8051
+  W2@1.0:  1.2640
+  MMD@1.0: 0.1758
+  Survival@1.0: 76.0%
+    MTE@1.0=2.8051  W2@1.0=1.2640  MMD@1.0=0.1758
+
+============================================================
+  hyperbolic_paraboloid | T+F+K(Pstar)2ph | seed=4042
+============================================================
+
+[ae] Starting T+F-warmup: 250 epochs
+  Epoch 100 (T+F-warmup 100/250): loss = 0.6787
+  Epoch 200 (T+F-warmup 200/250): loss = 0.1276
+
+[ae] Starting T+F+K-finetune: 250 epochs
+  Epoch 350 (T+F+K-finetune 100/250): loss = 0.0281
+  Epoch 450 (T+F+K-finetune 200/250): loss = 0.0199
+  Stage 2 epoch 60/300: loss=0.051709
+  Stage 2 epoch 120/300: loss=0.044455
+  Stage 2 epoch 180/300: loss=0.038889
+  Stage 2 epoch 240/300: loss=0.033155
+  Stage 2 epoch 300/300: loss=0.027797
+  Stage 3 epoch 60/300: loss=3.107157
+  Stage 3 epoch 120/300: loss=2.567803
+  Stage 3 epoch 180/300: loss=2.268830
+  Stage 3 epoch 240/300: loss=1.912550
+  Stage 3 epoch 300/300: loss=1.504932
+  MTE@0.1: 1.2747
+  MTE@0.5: 2.6217
+  MTE@1.0: 2.8283
+  W2@1.0:  1.3478
+  MMD@1.0: 0.2082
+  Survival@1.0: 76.0%
+    MTE@1.0=2.8283  W2@1.0=1.3478  MMD@1.0=0.2082
+
+============================================================
+  hyperbolic_paraboloid | T+F+K(Pstar)1ph | seed=4042
+============================================================
+      AE Epoch 100: loss=0.678992
+      AE Epoch 200: loss=0.087201
+      AE Epoch 300: loss=0.021950
+      AE Epoch 400: loss=0.066353
+      AE Epoch 500: loss=0.004636
+  Stage 2 epoch 60/300: loss=0.127138
+  Stage 2 epoch 120/300: loss=0.115825
+  Stage 2 epoch 180/300: loss=0.103903
+  Stage 2 epoch 240/300: loss=0.083825
+  Stage 2 epoch 300/300: loss=0.053465
+  Stage 3 epoch 60/300: loss=3.490629
+  Stage 3 epoch 120/300: loss=2.835551
+  Stage 3 epoch 180/300: loss=2.519654
+  Stage 3 epoch 240/300: loss=2.129977
+  Stage 3 epoch 300/300: loss=1.635545
+  MTE@0.1: 1.2754
+  MTE@0.5: 2.5952
+  MTE@1.0: 2.8286
+  W2@1.0:  1.2680
+  MMD@1.0: 0.1810
+  Survival@1.0: 76.0%
+    MTE@1.0=2.8286  W2@1.0=1.2680  MMD@1.0=0.1810
+
+============================================================
+  hyperbolic_paraboloid | T+F | seed=5042
+============================================================
+      AE Epoch 100: loss=0.398781
+      AE Epoch 200: loss=0.122892
+      AE Epoch 300: loss=0.057057
+      AE Epoch 400: loss=0.029725
+      AE Epoch 500: loss=0.022728
+  Stage 2 epoch 60/300: loss=0.365220
+  Stage 2 epoch 120/300: loss=0.313734
+  Stage 2 epoch 180/300: loss=0.226249
+  Stage 2 epoch 240/300: loss=0.082968
+  Stage 2 epoch 300/300: loss=0.037128
+  Stage 3 epoch 60/300: loss=1.963131
+  Stage 3 epoch 120/300: loss=1.623425
+  Stage 3 epoch 180/300: loss=1.474499
+  Stage 3 epoch 240/300: loss=1.182473
+  Stage 3 epoch 300/300: loss=0.717284
+  MTE@0.1: 0.8828
+  MTE@0.5: 1.8398
+  MTE@1.0: 2.5982
+  W2@1.0:  1.4689
+  MMD@1.0: 0.2282
+  Survival@1.0: 76.5%
+    MTE@1.0=2.5982  W2@1.0=1.4689  MMD@1.0=0.2282
+
+============================================================
+  hyperbolic_paraboloid | T+F+K(Phat)2ph | seed=5042
+============================================================
+
+[ae] Starting T+F-warmup: 250 epochs
+  Epoch 100 (T+F-warmup 100/250): loss = 0.3988
+  Epoch 200 (T+F-warmup 200/250): loss = 0.1229
+
+[ae] Starting T+F+K-finetune: 250 epochs
+  Epoch 350 (T+F+K-finetune 100/250): loss = 0.0474
+  Epoch 450 (T+F+K-finetune 200/250): loss = 0.0683
+  Stage 2 epoch 60/300: loss=0.192093
+  Stage 2 epoch 120/300: loss=0.158999
+  Stage 2 epoch 180/300: loss=0.116904
+  Stage 2 epoch 240/300: loss=0.058364
+  Stage 2 epoch 300/300: loss=0.025806
+  Stage 3 epoch 60/300: loss=1.747916
+  Stage 3 epoch 120/300: loss=1.451316
+  Stage 3 epoch 180/300: loss=1.318948
+  Stage 3 epoch 240/300: loss=1.067642
+  Stage 3 epoch 300/300: loss=0.658471
+  MTE@0.1: 0.8715
+  MTE@0.5: 1.7926
+  MTE@1.0: 2.4654
+  W2@1.0:  1.2588
+  MMD@1.0: 0.1917
+  Survival@1.0: 76.5%
+    MTE@1.0=2.4654  W2@1.0=1.2588  MMD@1.0=0.1917
+
+============================================================
+  hyperbolic_paraboloid | T+F+K(Pstar)2ph | seed=5042
+============================================================
+
+[ae] Starting T+F-warmup: 250 epochs
+  Epoch 100 (T+F-warmup 100/250): loss = 0.3988
+  Epoch 200 (T+F-warmup 200/250): loss = 0.1229
+
+[ae] Starting T+F+K-finetune: 250 epochs
+  Epoch 350 (T+F+K-finetune 100/250): loss = 0.0443
+  Epoch 450 (T+F+K-finetune 200/250): loss = 0.0331
+  Stage 2 epoch 60/300: loss=0.189263
+  Stage 2 epoch 120/300: loss=0.157896
+  Stage 2 epoch 180/300: loss=0.114528
+  Stage 2 epoch 240/300: loss=0.050954
+  Stage 2 epoch 300/300: loss=0.020133
+  Stage 3 epoch 60/300: loss=1.723870
+  Stage 3 epoch 120/300: loss=1.404989
+  Stage 3 epoch 180/300: loss=1.290476
+  Stage 3 epoch 240/300: loss=1.084447
+  Stage 3 epoch 300/300: loss=0.710397
+  MTE@0.1: 0.8529
+  MTE@0.5: 1.7578
+  MTE@1.0: 2.4202
+  W2@1.0:  1.2568
+  MMD@1.0: 0.1677
+  Survival@1.0: 76.5%
+    MTE@1.0=2.4202  W2@1.0=1.2568  MMD@1.0=0.1677
+
+============================================================
+  hyperbolic_paraboloid | T+F+K(Pstar)1ph | seed=5042
+============================================================
+      AE Epoch 100: loss=0.364557
+      AE Epoch 200: loss=0.081705
+      AE Epoch 300: loss=0.048404
+      AE Epoch 400: loss=0.036140
+      AE Epoch 500: loss=0.026612
+  Stage 2 epoch 60/300: loss=0.198587
+  Stage 2 epoch 120/300: loss=0.172129
+  Stage 2 epoch 180/300: loss=0.137000
+  Stage 2 epoch 240/300: loss=0.075339
+  Stage 2 epoch 300/300: loss=0.025385
+  Stage 3 epoch 60/300: loss=1.964132
+  Stage 3 epoch 120/300: loss=1.544695
+  Stage 3 epoch 180/300: loss=1.399912
+  Stage 3 epoch 240/300: loss=1.120497
+  Stage 3 epoch 300/300: loss=0.655685
+  MTE@0.1: 0.8928
+  MTE@0.5: 1.8188
+  MTE@1.0: 2.5211
+  W2@1.0:  1.2625
+  MMD@1.0: 0.1646
+  Survival@1.0: 76.5%
+    MTE@1.0=2.5211  W2@1.0=1.2625  MMD@1.0=0.1646
+
+============================================================
+  hyperbolic_paraboloid | T+F | seed=6042
+============================================================
+      AE Epoch 100: loss=0.517723
+      AE Epoch 200: loss=0.220178
+      AE Epoch 300: loss=0.081759
+      AE Epoch 400: loss=0.039588
+      AE Epoch 500: loss=0.043662
+  Stage 2 epoch 60/300: loss=0.180069
+  Stage 2 epoch 120/300: loss=0.157184
+  Stage 2 epoch 180/300: loss=0.124029
+  Stage 2 epoch 240/300: loss=0.087750
+  Stage 2 epoch 300/300: loss=0.059247
+  Stage 3 epoch 60/300: loss=3.443073
+  Stage 3 epoch 120/300: loss=3.026579
+  Stage 3 epoch 180/300: loss=2.491998
+  Stage 3 epoch 240/300: loss=1.786256
+  Stage 3 epoch 300/300: loss=1.359086
+  MTE@0.1: 0.7272
+  MTE@0.5: 1.5470
+  MTE@1.0: 2.1995
+  W2@1.0:  1.7249
+  MMD@1.0: 0.2404
+  Survival@1.0: 73.0%
+    MTE@1.0=2.1995  W2@1.0=1.7249  MMD@1.0=0.2404
+
+============================================================
+  hyperbolic_paraboloid | T+F+K(Phat)2ph | seed=6042
+============================================================
+
+[ae] Starting T+F-warmup: 250 epochs
+  Epoch 100 (T+F-warmup 100/250): loss = 0.5177
+  Epoch 200 (T+F-warmup 200/250): loss = 0.2202
+
+[ae] Starting T+F+K-finetune: 250 epochs
+  Epoch 350 (T+F+K-finetune 100/250): loss = 0.0710
+  Epoch 450 (T+F+K-finetune 200/250): loss = 0.0318
+  Stage 2 epoch 60/300: loss=0.095865
+  Stage 2 epoch 120/300: loss=0.083239
+  Stage 2 epoch 180/300: loss=0.068831
+  Stage 2 epoch 240/300: loss=0.053674
+  Stage 2 epoch 300/300: loss=0.038151
+  Stage 3 epoch 60/300: loss=2.830578
+  Stage 3 epoch 120/300: loss=2.469818
+  Stage 3 epoch 180/300: loss=2.077808
+  Stage 3 epoch 240/300: loss=1.551151
+  Stage 3 epoch 300/300: loss=1.154983
+  MTE@0.1: 0.7210
+  MTE@0.5: 1.5346
+  MTE@1.0: 2.1303
+  W2@1.0:  1.5530
+  MMD@1.0: 0.2164
+  Survival@1.0: 73.0%
+    MTE@1.0=2.1303  W2@1.0=1.5530  MMD@1.0=0.2164
+
+============================================================
+  hyperbolic_paraboloid | T+F+K(Pstar)2ph | seed=6042
+============================================================
+
+[ae] Starting T+F-warmup: 250 epochs
+  Epoch 100 (T+F-warmup 100/250): loss = 0.5177
+  Epoch 200 (T+F-warmup 200/250): loss = 0.2202
+
+[ae] Starting T+F+K-finetune: 250 epochs
+  Epoch 350 (T+F+K-finetune 100/250): loss = 0.0826
+  Epoch 450 (T+F+K-finetune 200/250): loss = 0.0351
+  Stage 2 epoch 60/300: loss=0.117271
+  Stage 2 epoch 120/300: loss=0.101551
+  Stage 2 epoch 180/300: loss=0.080889
+  Stage 2 epoch 240/300: loss=0.058822
+  Stage 2 epoch 300/300: loss=0.039349
+  Stage 3 epoch 60/300: loss=3.100731
+  Stage 3 epoch 120/300: loss=2.699344
+  Stage 3 epoch 180/300: loss=2.230531
+  Stage 3 epoch 240/300: loss=1.608257
+  Stage 3 epoch 300/300: loss=1.178047
+  MTE@0.1: 0.7352
+  MTE@0.5: 1.5501
+  MTE@1.0: 2.2225
+  W2@1.0:  1.7311
+  MMD@1.0: 0.2489
+  Survival@1.0: 73.0%
+    MTE@1.0=2.2225  W2@1.0=1.7311  MMD@1.0=0.2489
+
+============================================================
+  hyperbolic_paraboloid | T+F+K(Pstar)1ph | seed=6042
+============================================================
+      AE Epoch 100: loss=0.517952
+      AE Epoch 200: loss=0.471639
+      AE Epoch 300: loss=0.180537
+      AE Epoch 400: loss=0.075793
+      AE Epoch 500: loss=0.223563
+  Stage 2 epoch 60/300: loss=0.139603
+  Stage 2 epoch 120/300: loss=0.123563
+  Stage 2 epoch 180/300: loss=0.106964
+  Stage 2 epoch 240/300: loss=0.090548
+  Stage 2 epoch 300/300: loss=0.073322
+  Stage 3 epoch 60/300: loss=2.846099
+  Stage 3 epoch 120/300: loss=2.073540
+  Stage 3 epoch 180/300: loss=1.515464
+  Stage 3 epoch 240/300: loss=0.945615
+  Stage 3 epoch 300/300: loss=0.766623
+  MTE@0.1: 0.9844
+  MTE@0.5: 2.0971
+  MTE@1.0: 2.5554
+  W2@1.0:  1.3406
+  MMD@1.0: 0.1929
+  Survival@1.0: 73.0%
+    MTE@1.0=2.5554  W2@1.0=1.3406  MMD@1.0=0.1929
+
+============================================================
+  hyperbolic_paraboloid | T+F | seed=7042
+============================================================
+      AE Epoch 100: loss=0.354015
+      AE Epoch 200: loss=0.045269
+      AE Epoch 300: loss=0.021408
+      AE Epoch 400: loss=0.018249
+      AE Epoch 500: loss=0.023660
+  Stage 2 epoch 60/300: loss=0.134699
+  Stage 2 epoch 120/300: loss=0.115271
+  Stage 2 epoch 180/300: loss=0.094308
+  Stage 2 epoch 240/300: loss=0.073903
+  Stage 2 epoch 300/300: loss=0.052252
+  Stage 3 epoch 60/300: loss=2.741605
+  Stage 3 epoch 120/300: loss=2.405723
+  Stage 3 epoch 180/300: loss=2.064169
+  Stage 3 epoch 240/300: loss=1.653028
+  Stage 3 epoch 300/300: loss=1.245005
+  MTE@0.1: 1.0048
+  MTE@0.5: 1.9866
+  MTE@1.0: 2.5075
+  W2@1.0:  1.3733
+  MMD@1.0: 0.2254
+  Survival@1.0: 76.5%
+    MTE@1.0=2.5075  W2@1.0=1.3733  MMD@1.0=0.2254
+
+============================================================
+  hyperbolic_paraboloid | T+F+K(Phat)2ph | seed=7042
+============================================================
+
+[ae] Starting T+F-warmup: 250 epochs
+  Epoch 100 (T+F-warmup 100/250): loss = 0.3540
+  Epoch 200 (T+F-warmup 200/250): loss = 0.0453
+
+[ae] Starting T+F+K-finetune: 250 epochs
+  Epoch 350 (T+F+K-finetune 100/250): loss = 0.1046
+  Epoch 450 (T+F+K-finetune 200/250): loss = 0.0899
+  Stage 2 epoch 60/300: loss=0.112691
+  Stage 2 epoch 120/300: loss=0.093946
+  Stage 2 epoch 180/300: loss=0.074024
+  Stage 2 epoch 240/300: loss=0.050404
+  Stage 2 epoch 300/300: loss=0.028139
+  Stage 3 epoch 60/300: loss=2.774807
+  Stage 3 epoch 120/300: loss=2.499784
+  Stage 3 epoch 180/300: loss=2.261067
+  Stage 3 epoch 240/300: loss=1.956241
+  Stage 3 epoch 300/300: loss=1.556767
+  MTE@0.1: 1.0184
+  MTE@0.5: 1.9937
+  MTE@1.0: 2.5682
+  W2@1.0:  1.1774
+  MMD@1.0: 0.1557
+  Survival@1.0: 76.5%
+    MTE@1.0=2.5682  W2@1.0=1.1774  MMD@1.0=0.1557
+
+============================================================
+  hyperbolic_paraboloid | T+F+K(Pstar)2ph | seed=7042
+============================================================
+
+[ae] Starting T+F-warmup: 250 epochs
+  Epoch 100 (T+F-warmup 100/250): loss = 0.3540
+  Epoch 200 (T+F-warmup 200/250): loss = 0.0453
+
+[ae] Starting T+F+K-finetune: 250 epochs
+  Epoch 350 (T+F+K-finetune 100/250): loss = 0.0304
+  Epoch 450 (T+F+K-finetune 200/250): loss = 0.0098
+  Stage 2 epoch 60/300: loss=0.086694
+  Stage 2 epoch 120/300: loss=0.071273
+  Stage 2 epoch 180/300: loss=0.057673
+  Stage 2 epoch 240/300: loss=0.044645
+  Stage 2 epoch 300/300: loss=0.034077
+  Stage 3 epoch 60/300: loss=2.707989
+  Stage 3 epoch 120/300: loss=2.409072
+  Stage 3 epoch 180/300: loss=2.123259
+  Stage 3 epoch 240/300: loss=1.755913
+  Stage 3 epoch 300/300: loss=1.309647
+  MTE@0.1: 1.0073
+  MTE@0.5: 2.0069
+  MTE@1.0: 2.5547
+  W2@1.0:  1.3294
+  MMD@1.0: 0.2027
+  Survival@1.0: 76.5%
+    MTE@1.0=2.5547  W2@1.0=1.3294  MMD@1.0=0.2027
+
+============================================================
+  hyperbolic_paraboloid | T+F+K(Pstar)1ph | seed=7042
+============================================================
+      AE Epoch 100: loss=0.638925
+      AE Epoch 200: loss=0.094213
+      AE Epoch 300: loss=0.023885
+      AE Epoch 400: loss=0.074576
+      AE Epoch 500: loss=0.020466
+  Stage 2 epoch 60/300: loss=0.109306
+  Stage 2 epoch 120/300: loss=0.095897
+  Stage 2 epoch 180/300: loss=0.085311
+  Stage 2 epoch 240/300: loss=0.073717
+  Stage 2 epoch 300/300: loss=0.060668
+  Stage 3 epoch 60/300: loss=2.935149
+  Stage 3 epoch 120/300: loss=1.694412
+  Stage 3 epoch 180/300: loss=1.641039
+  Stage 3 epoch 240/300: loss=1.594621
+  Stage 3 epoch 300/300: loss=1.551186
+  MTE@0.1: 1.0490
+  MTE@0.5: 2.2907
+  MTE@1.0: 2.5859
+  W2@1.0:  1.2924
+  MMD@1.0: 0.2242
+  Survival@1.0: 76.5%
+    MTE@1.0=2.5859  W2@1.0=1.2924  MMD@1.0=0.2242
+
+============================================================
+  hyperbolic_paraboloid | T+F | seed=8042
+============================================================
+      AE Epoch 100: loss=0.649004
+      AE Epoch 200: loss=0.522074
+      AE Epoch 300: loss=0.054478
+      AE Epoch 400: loss=0.032358
+      AE Epoch 500: loss=0.018849
+  Stage 2 epoch 60/300: loss=0.229571
+  Stage 2 epoch 120/300: loss=0.215463
+  Stage 2 epoch 180/300: loss=0.199001
+  Stage 2 epoch 240/300: loss=0.173656
+  Stage 2 epoch 300/300: loss=0.129769
+  Stage 3 epoch 60/300: loss=4.018318
+  Stage 3 epoch 120/300: loss=3.309811
+  Stage 3 epoch 180/300: loss=2.896858
+  Stage 3 epoch 240/300: loss=2.489357
+  Stage 3 epoch 300/300: loss=2.112335
+  MTE@0.1: 0.8958
+  MTE@0.5: 1.7589
+  MTE@1.0: 2.3272
+  W2@1.0:  1.4506
+  MMD@1.0: 0.2370
+  Survival@1.0: 79.5%
+    MTE@1.0=2.3272  W2@1.0=1.4506  MMD@1.0=0.2370
+
+============================================================
+  hyperbolic_paraboloid | T+F+K(Phat)2ph | seed=8042
+============================================================
+
+[ae] Starting T+F-warmup: 250 epochs
+  Epoch 100 (T+F-warmup 100/250): loss = 0.6490
+  Epoch 200 (T+F-warmup 200/250): loss = 0.5221
+
+[ae] Starting T+F+K-finetune: 250 epochs
+  Epoch 350 (T+F+K-finetune 100/250): loss = 0.0289
+  Epoch 450 (T+F+K-finetune 200/250): loss = 0.0251
+  Stage 2 epoch 60/300: loss=0.075660
+  Stage 2 epoch 120/300: loss=0.068838
+  Stage 2 epoch 180/300: loss=0.061943
+  Stage 2 epoch 240/300: loss=0.054013
+  Stage 2 epoch 300/300: loss=0.044760
+  Stage 3 epoch 60/300: loss=3.148885
+  Stage 3 epoch 120/300: loss=2.585797
+  Stage 3 epoch 180/300: loss=2.276534
+  Stage 3 epoch 240/300: loss=2.002199
+  Stage 3 epoch 300/300: loss=1.744890
+  MTE@0.1: 0.9294
+  MTE@0.5: 1.7771
+  MTE@1.0: 2.2574
+  W2@1.0:  1.2446
+  MMD@1.0: 0.1976
+  Survival@1.0: 79.5%
+    MTE@1.0=2.2574  W2@1.0=1.2446  MMD@1.0=0.1976
+
+============================================================
+  hyperbolic_paraboloid | T+F+K(Pstar)2ph | seed=8042
+============================================================
+
+[ae] Starting T+F-warmup: 250 epochs
+  Epoch 100 (T+F-warmup 100/250): loss = 0.6490
+  Epoch 200 (T+F-warmup 200/250): loss = 0.5221
+
+[ae] Starting T+F+K-finetune: 250 epochs
+  Epoch 350 (T+F+K-finetune 100/250): loss = 0.0471
+  Epoch 450 (T+F+K-finetune 200/250): loss = 0.0271
+  Stage 2 epoch 60/300: loss=0.097676
+  Stage 2 epoch 120/300: loss=0.088296
+  Stage 2 epoch 180/300: loss=0.078497
+  Stage 2 epoch 240/300: loss=0.067506
+  Stage 2 epoch 300/300: loss=0.054344
+  Stage 3 epoch 60/300: loss=3.512103
+  Stage 3 epoch 120/300: loss=2.871818
+  Stage 3 epoch 180/300: loss=2.509355
+  Stage 3 epoch 240/300: loss=2.179244
+  Stage 3 epoch 300/300: loss=1.865420
+  MTE@0.1: 0.9259
+  MTE@0.5: 1.7561
+  MTE@1.0: 2.2482
+  W2@1.0:  1.2630
+  MMD@1.0: 0.2025
+  Survival@1.0: 79.5%
+    MTE@1.0=2.2482  W2@1.0=1.2630  MMD@1.0=0.2025
+
+============================================================
+  hyperbolic_paraboloid | T+F+K(Pstar)1ph | seed=8042
+============================================================
+      AE Epoch 100: loss=0.678680
+      AE Epoch 200: loss=0.276515
+      AE Epoch 300: loss=0.108105
+      AE Epoch 400: loss=0.025952
+      AE Epoch 500: loss=0.018519
+  Stage 2 epoch 60/300: loss=0.139193
+  Stage 2 epoch 120/300: loss=0.123602
+  Stage 2 epoch 180/300: loss=0.104779
+  Stage 2 epoch 240/300: loss=0.081308
+  Stage 2 epoch 300/300: loss=0.055175
+  Stage 3 epoch 60/300: loss=3.500186
+  Stage 3 epoch 120/300: loss=2.823386
+  Stage 3 epoch 180/300: loss=2.386348
+  Stage 3 epoch 240/300: loss=2.008307
+  Stage 3 epoch 300/300: loss=1.710093
+  MTE@0.1: 0.9230
+  MTE@0.5: 1.6307
+  MTE@1.0: 2.1821
+  W2@1.0:  1.3157
+  MMD@1.0: 0.1770
+  Survival@1.0: 79.5%
+    MTE@1.0=2.1821  W2@1.0=1.3157  MMD@1.0=0.1770
+
+============================================================
+  hyperbolic_paraboloid | T+F | seed=9042
+============================================================
+      AE Epoch 100: loss=0.713255
+      AE Epoch 200: loss=0.230809
+      AE Epoch 300: loss=0.030172
+      AE Epoch 400: loss=0.021637
+      AE Epoch 500: loss=0.004591
+  Stage 2 epoch 60/300: loss=0.175943
+  Stage 2 epoch 120/300: loss=0.126807
+  Stage 2 epoch 180/300: loss=0.100070
+  Stage 2 epoch 240/300: loss=0.088576
+  Stage 2 epoch 300/300: loss=0.082685
+  Stage 3 epoch 60/300: loss=2.347097
+  Stage 3 epoch 120/300: loss=1.899556
+  Stage 3 epoch 180/300: loss=1.814585
+  Stage 3 epoch 240/300: loss=1.712177
+  Stage 3 epoch 300/300: loss=1.573288
+  MTE@0.1: 1.0364
+  MTE@0.5: 1.8397
+  MTE@1.0: 2.5367
+  W2@1.0:  1.2055
+  MMD@1.0: 0.1306
+  Survival@1.0: 76.0%
+    MTE@1.0=2.5367  W2@1.0=1.2055  MMD@1.0=0.1306
+
+============================================================
+  hyperbolic_paraboloid | T+F+K(Phat)2ph | seed=9042
+============================================================
+
+[ae] Starting T+F-warmup: 250 epochs
+  Epoch 100 (T+F-warmup 100/250): loss = 0.7133
+  Epoch 200 (T+F-warmup 200/250): loss = 0.2308
+
+[ae] Starting T+F+K-finetune: 250 epochs
+  Epoch 350 (T+F+K-finetune 100/250): loss = 0.1219
+  Epoch 450 (T+F+K-finetune 200/250): loss = 0.0307
+  Stage 2 epoch 60/300: loss=0.121737
+  Stage 2 epoch 120/300: loss=0.092606
+  Stage 2 epoch 180/300: loss=0.069463
+  Stage 2 epoch 240/300: loss=0.055817
+  Stage 2 epoch 300/300: loss=0.045935
+  Stage 3 epoch 60/300: loss=2.464491
+  Stage 3 epoch 120/300: loss=2.012395
+  Stage 3 epoch 180/300: loss=1.915045
+  Stage 3 epoch 240/300: loss=1.806966
+  Stage 3 epoch 300/300: loss=1.665220
+  MTE@0.1: 1.0357
+  MTE@0.5: 1.8417
+  MTE@1.0: 2.5436
+  W2@1.0:  1.1637
+  MMD@1.0: 0.1263
+  Survival@1.0: 76.0%
+    MTE@1.0=2.5436  W2@1.0=1.1637  MMD@1.0=0.1263
+
+============================================================
+  hyperbolic_paraboloid | T+F+K(Pstar)2ph | seed=9042
+============================================================
+
+[ae] Starting T+F-warmup: 250 epochs
+  Epoch 100 (T+F-warmup 100/250): loss = 0.7133
+  Epoch 200 (T+F-warmup 200/250): loss = 0.2308
+
+[ae] Starting T+F+K-finetune: 250 epochs
+  Epoch 350 (T+F+K-finetune 100/250): loss = 0.0301
+  Epoch 450 (T+F+K-finetune 200/250): loss = 0.0203
+  Stage 2 epoch 60/300: loss=0.172198
+  Stage 2 epoch 120/300: loss=0.124671
+  Stage 2 epoch 180/300: loss=0.086706
+  Stage 2 epoch 240/300: loss=0.065197
+  Stage 2 epoch 300/300: loss=0.049039
+  Stage 3 epoch 60/300: loss=2.886625
+  Stage 3 epoch 120/300: loss=2.204256
+  Stage 3 epoch 180/300: loss=2.137550
+  Stage 3 epoch 240/300: loss=2.059489
+  Stage 3 epoch 300/300: loss=1.955067
+  MTE@0.1: 1.0756
+  MTE@0.5: 1.8783
+  MTE@1.0: 2.5496
+  W2@1.0:  1.2813
+  MMD@1.0: 0.1661
+  Survival@1.0: 76.0%
+    MTE@1.0=2.5496  W2@1.0=1.2813  MMD@1.0=0.1661
+
+============================================================
+  hyperbolic_paraboloid | T+F+K(Pstar)1ph | seed=9042
+============================================================
+      AE Epoch 100: loss=0.770120
+      AE Epoch 200: loss=0.239072
+      AE Epoch 300: loss=0.039206
+      AE Epoch 400: loss=0.034022
+      AE Epoch 500: loss=0.019848
+  Stage 2 epoch 60/300: loss=0.119988
+  Stage 2 epoch 120/300: loss=0.091073
+  Stage 2 epoch 180/300: loss=0.066699
+  Stage 2 epoch 240/300: loss=0.048262
+  Stage 2 epoch 300/300: loss=0.037324
+  Stage 3 epoch 60/300: loss=1.378437
+  Stage 3 epoch 120/300: loss=1.216057
+  Stage 3 epoch 180/300: loss=1.156448
+  Stage 3 epoch 240/300: loss=1.089883
+  Stage 3 epoch 300/300: loss=1.008508
+  MTE@0.1: 1.0884
+  MTE@0.5: 2.0768
+  MTE@1.0: 2.6250
+  W2@1.0:  1.3006
+  MMD@1.0: 0.1484
+  Survival@1.0: 76.0%
+    MTE@1.0=2.6250  W2@1.0=1.3006  MMD@1.0=0.1484
+
+Saved raw results to multiseed_K_projection_study.csv
+
+
+==============================================================================================================
+K PROJECTION ABLATION RESULTS
+==============================================================================================================
+
+                  surface         condition    n      mean    +-std      mean    +-std      mean    +-std  
+--------------------------------------------------------------------------------------------------------------
+               sinusoidal               T+F   10    1.8258   0.4070    0.7907   0.1355    0.1354   0.0254  
+               sinusoidal    T+F+K(Phat)2ph   10    1.8395   0.3796    0.8149   0.1611    0.1342   0.0266  
+               sinusoidal   T+F+K(Pstar)2ph   10    1.9225   0.3877    1.0180   0.1944    0.1557   0.0209  
+               sinusoidal   T+F+K(Pstar)1ph   10    1.9125   0.3759    1.1147   0.2163    0.1650   0.0215  
+               paraboloid               T+F   10    2.5654   0.3739    1.7351   0.4329    0.2052   0.0570  
+               paraboloid    T+F+K(Phat)2ph   10    2.3969   0.4030    1.4959   0.2657    0.1953   0.0570  
+               paraboloid   T+F+K(Pstar)2ph   10    2.3583   0.3964    1.4579   0.2412    0.1856   0.0560  
+               paraboloid   T+F+K(Pstar)1ph   10    2.4955   0.3715    1.5080   0.3318    0.2061   0.0722  
+    hyperbolic_paraboloid               T+F   10    2.5289   0.2582    1.3925   0.1850    0.1951   0.0425  
+    hyperbolic_paraboloid    T+F+K(Phat)2ph   10    2.4660   0.2481    1.2601   0.1537    0.1713   0.0332  
+    hyperbolic_paraboloid   T+F+K(Pstar)2ph   10    2.4760   0.2362    1.3268   0.1679    0.1878   0.0327  
+    hyperbolic_paraboloid   T+F+K(Pstar)1ph   10    2.4993   0.2750    1.2837   0.0900    0.1772   0.0250  
+
+
+==============================================================================================================
+PAIRED COMPARISONS (negative delta = first condition is better)
+==============================================================================================================
+
+  K(Phat) vs baseline: T+F+K(Phat)2ph vs T+F
+                    surface     delta    p-val     delta    p-val     delta    p-val    verdict
+  ----------------------------------------------------------------------------------------------------
+                 sinusoidal   +0.0137  0.4485   +0.0243  0.1533   -0.0012  0.7295    not significant
+                 paraboloid   -0.1685  0.0094**  -0.2391  0.0051**  -0.0099  0.3668    MTE@1.0: better; W2@1.0: better
+      hyperbolic_paraboloid   -0.0630  0.0572+  -0.1324  0.0014**  -0.0239  0.0111*   W2@1.0: better; MMD@1.0: better
+
+  K(Pstar) vs baseline: T+F+K(Pstar)2ph vs T+F
+                    surface     delta    p-val     delta    p-val     delta    p-val    verdict
+  ----------------------------------------------------------------------------------------------------
+                 sinusoidal   +0.0967  0.0232*  +0.2273  0.0098**  +0.0202  0.0150*   MTE@1.0: worse; W2@1.0: worse; MMD@1.0: worse
+                 paraboloid   -0.2071  0.0065**  -0.2771  0.0146*  -0.0196  0.2823    MTE@1.0: better; W2@1.0: better
+      hyperbolic_paraboloid   -0.0529  0.1207   -0.0657  0.0811+  -0.0073  0.4509    not significant
+
+  Pstar vs Phat (both 2ph): T+F+K(Pstar)2ph vs T+F+K(Phat)2ph
+                    surface     delta    p-val     delta    p-val     delta    p-val    verdict
+  ----------------------------------------------------------------------------------------------------
+                 sinusoidal   +0.0830  0.0246*  +0.2030  0.0166*  +0.0215  0.0064**   MTE@1.0: worse; W2@1.0: worse; MMD@1.0: worse
+                 paraboloid   -0.0386  0.3870   -0.0380  0.2723   -0.0097  0.4626    not significant
+      hyperbolic_paraboloid   +0.0100  0.4060   +0.0667  0.0160*  +0.0165  0.0453*   W2@1.0: worse; MMD@1.0: worse
+
+  1ph vs 2ph (both Pstar): T+F+K(Pstar)1ph vs T+F+K(Pstar)2ph
+                    surface     delta    p-val     delta    p-val     delta    p-val    verdict
+  ----------------------------------------------------------------------------------------------------
+                 sinusoidal   -0.0100  0.6894   +0.0968  0.0097**  +0.0093  0.1117    W2@1.0: worse
+                 paraboloid   +0.1372  0.0504+  +0.0501  0.4895   +0.0205  0.2217    not significant
+      hyperbolic_paraboloid   +0.0233  0.6013   -0.0431  0.3422   -0.0106  0.1870    not significant
+
+Total time: 2055.6s
+Done.
