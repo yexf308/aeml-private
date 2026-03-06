@@ -14,7 +14,7 @@ Design:
     - N ∈ {20, 50, 100, 200}
     - D ∈ {11, 201} (low-D vs high-D extremes)
     - Surfaces: paraboloid, hyperbolic_paraboloid
-    - Conditions: baseline (no Phase 2), K(Phat) (Phase 2 with curvature)
+    - Conditions: baseline (Phase 2 with T+F), K(Phat) (Phase 2 with T+F+K)
     - 5 seeds → 4 × 2 × 2 × 2 × 5 = 160 runs
 
   Hidden dims: D-dependent (<=11:[64,64], <=51:[128,128], else:[256,256]).
@@ -74,12 +74,14 @@ def hidden_dims_for_D(D: int) -> list:
 
 # Phase 1: T+F warmup (no curvature)
 WARMUP_LW = LossWeights(tangent_bundle=1.0, diffeo=1.0)
-# Phase 2: T+F+K finetune
+# Phase 2 options: T+F continuation (baseline) vs T+F+K finetune
+BASELINE_LW = LossWeights(tangent_bundle=1.0, diffeo=1.0, curvature=0.0)
 FULL_LW = LossWeights(tangent_bundle=1.0, diffeo=1.0, curvature=0.1)
 
-# (label, phase2_loss_weights_or_None)
+# (label, phase2_loss_weights)
+# Both conditions get Phase 1 + Phase 2 = same total epoch budget.
 CONDITIONS = [
-    ("baseline", None),
+    ("baseline", BASELINE_LW),
     ("K(Phat)", FULL_LW),
 ]
 
@@ -184,9 +186,9 @@ def run_single_fork(surface_name, D, seed, n_train=20, epochs_ae=500, epochs_sde
         t2.optimizers["ae"].load_state_dict(phase1_optim_state)
         t2.schedulers["ae"].load_state_dict(phase1_sched_state)
 
-        if phase2_lw is not None and phase1_converged:
+        if phase2_lw is not None and phase1_converged and phase2_epochs > 0:
             warmup_frac = 0.2
-            warmup_epochs = int(phase2_epochs * warmup_frac)
+            warmup_epochs = max(1, int(phase2_epochs * warmup_frac))
             for epoch in range(phase2_epochs):
                 if epoch < warmup_epochs:
                     ramp = (epoch + 1) / warmup_epochs
@@ -238,7 +240,7 @@ def run_single_fork(surface_name, D, seed, n_train=20, epochs_ae=500, epochs_sde
         # Evaluate
         eval_results = evaluate_pipeline(pipeline, ae, sde, seed)
         results[cond_label] = {
-            "ae_loss": ep_losses["ae"] if (phase2_lw is not None and phase1_converged) else losses["ae"],
+            "ae_loss": ep_losses["ae"] if (phase2_lw is not None and phase1_converged and phase2_epochs > 0) else losses["ae"],
             "drift_loss": drift_losses[-1],
             "diff_loss": diff_losses[-1],
             "recon_per_dim": recon_per_dim,

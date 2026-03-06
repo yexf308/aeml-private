@@ -406,6 +406,134 @@ def simulate_end_to_end(
     return ambient_traj, alive
 
 
+def simulate_end_to_end_with_coefficients(
+    model: AutoEncoder,
+    initial_ambient: torch.Tensor,
+    sde: LambdifiedSDE,
+    n_steps: int,
+    dt: float,
+    dW: torch.Tensor,
+    boundary: float,
+    snapshot_steps: List[int] = None,
+) -> Tuple[torch.Tensor, torch.Tensor, Dict[int, Dict[str, torch.Tensor]]]:
+    """End-to-end simulation that also records coefficient errors at snapshot steps.
+
+    Same as simulate_end_to_end, but additionally computes ambient-space
+    coefficient errors at snapshot steps (coordinate-free, in R^D):
+      - drift_error:  ||Dphi mu_learned + 0.5 q - b||^2  (ambient drift roundtrip error)
+      - cov_error:    ||P_learned Lambda P_learned - Lambda||_F^2  (tangent covariance error)
+
+    These correspond to the ambient coefficient errors in Theorem 5.3
+    of the supplement.
+
+    Args:
+        snapshot_steps: list of step indices at which to record coefficient errors.
+            If None, records at steps corresponding to times [0.1, 0.2, 0.5, 1.0].
+
+    Returns:
+        ambient_traj, alive: same as simulate_end_to_end
+        coeff_errors: dict mapping step -> {"drift_error": (B,), "cov_error": (B,),
+                                            "alive": (B,) bool}
+    """
+    if snapshot_steps is None:
+        snapshot_steps = [int(round(t / dt)) for t in [0.1, 0.2, 0.5, 1.0]]
+    snapshot_set = set(snapshot_steps)
+
+    model.eval()
+    B = initial_ambient.shape[0]
+    device = initial_ambient.device
+    sqrt_dt = math.sqrt(dt)
+
+    D = initial_ambient.shape[-1]
+    ambient_traj = torch.zeros(B, n_steps + 1, D, device=device)
+    alive = torch.ones(B, n_steps + 1, dtype=torch.bool, device=device)
+    coeff_errors = {}
+
+    with torch.no_grad():
+        z = model.encoder(initial_ambient)
+    ambient_traj[:, 0] = initial_ambient
+
+    for step in range(n_steps):
+        # Learned geometry
+        dphi = model.decoder_jacobian(z).detach()
+        hessian = model.decoder_hessian(z).detach()
+        g = torch.bmm(dphi.mT, dphi)
+        g_inv = regularized_metric_inverse(g)
+
+        with torch.no_grad():
+            x = model.decoder(z)
+        true_local = x[:, :2].detach()
+
+        # True ambient coefficients
+        b = sde.ambient_drift(true_local)
+        Lambda = sde.ambient_covariance(true_local)
+
+        # Learned local covariance
+        dphi_T = dphi.mT
+        Sigma_learned = torch.bmm(
+            g_inv,
+            torch.bmm(dphi_T, torch.bmm(Lambda, torch.bmm(dphi, g_inv)))
+        )
+
+        # Learned local drift (with Ito correction)
+        q = ambient_quadratic_variation_drift(Sigma_learned, hessian)
+        residual = b - 0.5 * q
+        mu_learned = torch.bmm(
+            g_inv, torch.bmm(dphi_T, residual.unsqueeze(-1))
+        ).squeeze(-1)
+
+        # Record ambient-space coefficient errors at snapshot steps.
+        # These are coordinate-free (in R^D) and correspond to the
+        # ambient coefficient convergence of Theorem 5.3 in the supplement.
+        if step in snapshot_set:
+            # Learned tangent projector
+            P_learned = torch.bmm(torch.bmm(dphi, g_inv), dphi_T)  # (B, D, D)
+
+            # Ambient covariance error: ||P Λ P - Λ||²_F
+            # Tests GC1 (tangent-space condition). For a perfect chart,
+            # P Λ P = Λ since Λ is tangent-valued.
+            P_Lambda_P = torch.bmm(torch.bmm(P_learned, Lambda), P_learned)
+            cov_err = ((P_Lambda_P - Lambda) ** 2).sum(dim=(-1, -2))  # (B,)
+
+            # Ambient drift error: ||Dφ μ_learned + ½q - b||²
+            # This is the roundtrip error: pull back b through learned
+            # geometry, then push forward. For a perfect chart this is zero.
+            b_recon = torch.bmm(
+                dphi, mu_learned.unsqueeze(-1)
+            ).squeeze(-1) + 0.5 * q                       # (B, D)
+            drift_err = ((b_recon - b) ** 2).sum(dim=-1)  # (B,)
+
+            coeff_errors[step] = {
+                "drift_error": drift_err.detach(),
+                "cov_error": cov_err.detach(),
+                "alive": alive[:, step].clone(),
+            }
+
+        # Diffusion via Cholesky
+        Sigma_reg = Sigma_learned + 1e-6 * torch.eye(2, device=device, dtype=Sigma_learned.dtype)
+        try:
+            sigma = torch.linalg.cholesky(Sigma_reg)
+        except torch.linalg.LinAlgError:
+            evals, evecs = torch.linalg.eigh(Sigma_reg)
+            evals = evals.clamp(min=1e-6)
+            sigma = torch.bmm(evecs, torch.diag_embed(torch.sqrt(evals)))
+
+        # Euler-Maruyama step
+        noise = dW[:, step, :]
+        z_new = z.detach() + mu_learned * dt + torch.bmm(
+            sigma, noise.unsqueeze(-1)
+        ).squeeze(-1) * sqrt_dt
+
+        out = (z_new.abs() > boundary).any(dim=-1) | torch.isnan(z_new).any(dim=-1) | torch.isinf(z_new).any(dim=-1)
+        alive[:, step + 1] = alive[:, step] & ~out
+        z = torch.where(alive[:, step + 1].unsqueeze(-1), z_new, z)
+
+        with torch.no_grad():
+            ambient_traj[:, step + 1] = model.decoder(z)
+
+    return ambient_traj, alive, coeff_errors
+
+
 # ============================================================================
 # Metrics
 # ============================================================================

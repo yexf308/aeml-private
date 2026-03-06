@@ -3,11 +3,13 @@ Dynamics Extrapolation Study for AEML
 
 Tests whether curvature penalty helps match DYNAMICS (drift & covariance) outside training region.
 
-Unlike reconstruction extrapolation, this measures:
-1. Drift matching: ||∇φ·μ + ½q - b|| (tangent + Ito correction = ambient drift)
-2. Covariance matching: ||∇φ·Λ^l·∇φᵀ - Λ|| (transformed local cov = ambient cov)
-3. Tangent alignment: ||P_learned - P_true||
-4. Curvature drift: ||(I-P)b - ½II:Λ||
+Unlike reconstruction extrapolation, this measures tangent-projection quality:
+1. Covariance tangent error: ||P_learned Λ P_learned - Λ||²_F  (tests GC1: PΛP ≈ Λ)
+2. Drift tangent error: ||P_learned b - P_true b||²            (tangent drift under learned vs true projector)
+3. Tangent alignment: ||P_learned - P_true||²_F / 2
+
+Note: these are tangent-projection proxies for the coefficient errors in
+Theorem 5.7, not full local-to-ambient coefficient transformation errors.
 
 Usage:
     python -m experiments.dynamics_extrapolation_study --surface paraboloid
@@ -55,14 +57,15 @@ def create_manifold_sde(surface_name: str):
 
 def compute_dynamics_metrics(model: AutoEncoder, dataset: DatasetBatch) -> Dict[str, float]:
     """
-    Compute dynamics matching metrics.
+    Compute tangent-projection quality metrics (proxies for SDE coefficient errors).
 
     Returns:
-        - reconstruction: ||x - φ(ψ(x))||²
-        - tangent: ||P_learned - P_true||²_F
-        - drift_matching: ||∇φ·b^l + ½q - b||² (ambient drift error)
-        - cov_matching: ||∇φ·Λ^l·∇φᵀ - Λ||²_F (covariance transformation error)
-        - curvature_drift: ||(I-P)b - ½II:Λ||² (normal drift = curvature term)
+        - reconstruction: ||x - φ(π(x))||² (ambient reconstruction)
+        - tangent: ||P_learned - P_true||²_F / 2 (projector Frobenius distance)
+        - cov_tangent: ||P_learned Λ P_learned - Λ||²_F (tests GC1: PΛP ≈ Λ)
+        - drift_tangent: ||P_learned b - P_true b||² (tangent drift under learned vs true projector)
+        - normal_drift_learned: ||(I - P_learned) b||² (learned normal drift magnitude)
+        - normal_drift_true: ||(I - P_true) b||² (true normal drift magnitude)
     """
     model.eval()
     device = dataset.samples.device

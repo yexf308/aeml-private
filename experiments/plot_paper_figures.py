@@ -78,8 +78,18 @@ def _save(fig, name):
 # ---------------------------------------------------------------------------
 
 def plot_extrapolation():
-    """Reconstruction error vs extrapolation distance for four surfaces."""
-    df = pd.read_csv("extrapolation_all_surfaces.csv")
+    """Reconstruction error vs extrapolation distance for four surfaces.
+
+    Reads paper_extrapolation.csv (multi-seed), aggregates mean ± 95% CI.
+    """
+    csv_path = "paper_extrapolation.csv"
+    df = pd.read_csv(csv_path)
+
+    # Validate expected columns
+    required = {"surface", "config", "seed", "distance", "reconstruction"}
+    missing = required - set(df.columns)
+    assert not missing, f"{csv_path} missing columns: {missing}"
+
     surfaces = ["paraboloid", "hyperbolic_paraboloid", "monkey_saddle", "sinusoidal"]
     conditions = ["baseline", "T+F", "T+F+K", "T+K"]
 
@@ -87,32 +97,41 @@ def plot_extrapolation():
 
     for ax, surf in zip(axes, surfaces):
         ds = df[df["surface"] == surf]
-        # Shade region between baseline and T+F
-        bl = ds[ds["penalty"] == "baseline"].sort_values("distance")
-        tf = ds[ds["penalty"] == "T+F"].sort_values("distance")
-        if len(bl) == len(tf):
+
+        # Aggregate over seeds: mean ± 95% CI
+        agg = ds.groupby(["config", "distance"])["reconstruction"].agg(["mean", "std", "count"]).reset_index()
+        agg["ci95"] = 1.96 * agg["std"] / np.sqrt(agg["count"])
+
+        # Shade between baseline and T+F
+        bl = agg[agg["config"] == "baseline"].sort_values("distance")
+        tf = agg[agg["config"] == "T+F"].sort_values("distance")
+        if len(bl) == len(tf) and len(bl) > 0:
             ax.fill_between(
                 bl["distance"].values,
-                bl["reconstruction_error"].values,
-                tf["reconstruction_error"].values,
+                bl["mean"].values,
+                tf["mean"].values,
                 color=COLORS["T+F"], alpha=0.08,
             )
-        # Plot each condition
+
         for cond in conditions:
-            sub = ds[ds["penalty"] == cond].sort_values("distance")
+            sub = agg[agg["config"] == cond].sort_values("distance")
             if sub.empty:
                 continue
             ax.plot(
-                sub["distance"], sub["reconstruction_error"],
+                sub["distance"], sub["mean"],
                 color=COLORS[cond], ls=LINESTYLES[cond],
                 marker=MARKERS[cond], markersize=3.5,
                 label=LABELS[cond],
             )
+            ax.fill_between(
+                sub["distance"], sub["mean"] - sub["ci95"], sub["mean"] + sub["ci95"],
+                color=COLORS[cond], alpha=0.1,
+            )
+
         ax.set_xlabel(r"Distance $\delta$")
         ax.set_title(SURFACE_TITLES[surf])
 
     axes[0].set_ylabel("Reconstruction error")
-    # Single legend on rightmost panel
     axes[-1].legend(loc="upper left", framealpha=0.9)
 
     _save(fig, "fig_extrapolation")
@@ -125,8 +144,17 @@ def plot_extrapolation():
 # ---------------------------------------------------------------------------
 
 def plot_traj_mte():
-    """MTE vs time for three surfaces (end_to_end sim mode)."""
-    df = pd.read_csv("trajectory_fidelity_train.csv")
+    """MTE vs time for three surfaces (end_to_end sim mode).
+
+    Reads paper_trajectory.csv (multi-seed), aggregates mean ± 95% CI.
+    """
+    csv_path = "paper_trajectory.csv"
+    df = pd.read_csv(csv_path)
+
+    required = {"surface", "config", "seed", "time", "sim_mode", "MTE"}
+    missing = required - set(df.columns)
+    assert not missing, f"{csv_path} missing columns: {missing}"
+
     surfaces = ["paraboloid", "hyperbolic_paraboloid", "sinusoidal"]
     times = [0.1, 0.2, 0.5, 1.0]
 
@@ -135,15 +163,23 @@ def plot_traj_mte():
     for ax, surf in zip(axes, surfaces):
         ds = df[(df["surface"] == surf) & (df["sim_mode"] == "end_to_end")]
         ds = ds[ds["time"].isin(times) & ds["MTE"].notna()]
+
+        agg = ds.groupby(["config", "time"])["MTE"].agg(["mean", "std", "count"]).reset_index()
+        agg["ci95"] = 1.96 * agg["std"] / np.sqrt(agg["count"])
+
         for cond in FOCUS:
-            sub = ds[ds["penalty"] == cond].sort_values("time")
+            sub = agg[agg["config"] == cond].sort_values("time")
             if sub.empty:
                 continue
             ax.plot(
-                sub["time"], sub["MTE"],
+                sub["time"], sub["mean"],
                 color=COLORS[cond], ls=LINESTYLES[cond],
                 marker=MARKERS[cond], markersize=3.5,
                 label=LABELS[cond],
+            )
+            ax.fill_between(
+                sub["time"], sub["mean"] - sub["ci95"], sub["mean"] + sub["ci95"],
+                color=COLORS[cond], alpha=0.1,
             )
         ax.set_xlabel("Time")
         ax.set_title(SURFACE_TITLES[surf])
@@ -163,8 +199,17 @@ def plot_traj_mte():
 # ---------------------------------------------------------------------------
 
 def plot_traj_w2():
-    """W2 distance vs time for three surfaces (end_to_end sim mode)."""
-    df = pd.read_csv("trajectory_fidelity_train.csv")
+    """W2 distance vs time for three surfaces (end_to_end sim mode).
+
+    Reads paper_trajectory.csv (multi-seed), aggregates mean ± 95% CI.
+    """
+    csv_path = "paper_trajectory.csv"
+    df = pd.read_csv(csv_path)
+
+    required = {"surface", "config", "seed", "time", "sim_mode", "W2"}
+    missing = required - set(df.columns)
+    assert not missing, f"{csv_path} missing columns: {missing}"
+
     surfaces = ["paraboloid", "hyperbolic_paraboloid", "sinusoidal"]
     times = [1.0, 2.0, 3.0, 4.0, 5.0]
 
@@ -173,15 +218,23 @@ def plot_traj_w2():
     for ax, surf in zip(axes, surfaces):
         ds = df[(df["surface"] == surf) & (df["sim_mode"] == "end_to_end")]
         ds = ds[ds["time"].isin(times) & ds["W2"].notna()]
+
+        agg = ds.groupby(["config", "time"])["W2"].agg(["mean", "std", "count"]).reset_index()
+        agg["ci95"] = 1.96 * agg["std"] / np.sqrt(agg["count"])
+
         for cond in FOCUS:
-            sub = ds[ds["penalty"] == cond].sort_values("time")
+            sub = agg[agg["config"] == cond].sort_values("time")
             if sub.empty:
                 continue
             ax.plot(
-                sub["time"], sub["W2"],
+                sub["time"], sub["mean"],
                 color=COLORS[cond], ls=LINESTYLES[cond],
                 marker=MARKERS[cond], markersize=3.5,
                 label=LABELS[cond],
+            )
+            ax.fill_between(
+                sub["time"], sub["mean"] - sub["ci95"], sub["mean"] + sub["ci95"],
+                color=COLORS[cond], alpha=0.1,
             )
         ax.set_xlabel("Time")
         ax.set_title(SURFACE_TITLES[surf])

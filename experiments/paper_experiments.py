@@ -1,10 +1,11 @@
 """
 Unified multi-seed experiment runner for the paper.
 
-Three subcommands:
+Four subcommands:
   ablation        -- AE ablation across 8 penalty configs (1 surface, default paraboloid)
   extrapolation   -- Reconstruction extrapolation across distances (multiple surfaces)
   dynamics        -- Dynamics extrapolation across distances (1 surface, default paraboloid)
+  trajectory      -- Trajectory fidelity via SDE simulation (multiple surfaces, N=20, multi-seed)
 
 All experiments use N=20 sparse training data, two-phase AE training when K is active,
 and 10 seeds by default for statistical rigor.
@@ -13,6 +14,7 @@ Usage:
     python -m experiments.paper_experiments ablation --n-seeds 10 --output paper_ablation.csv
     python -m experiments.paper_experiments extrapolation --n-seeds 10 --output paper_extrapolation.csv
     python -m experiments.paper_experiments dynamics --n-seeds 10 --output paper_dynamics.csv
+    python -m experiments.paper_experiments trajectory --n-seeds 5 --output paper_trajectory.csv
 """
 
 import argparse
@@ -40,6 +42,21 @@ from experiments.common import (
     create_test_datasets,
 )
 from experiments.dynamics_extrapolation_study import compute_dynamics_metrics
+from experiments.trajectory_fidelity_study import (
+    lambdify_sde,
+    simulate_ground_truth,
+    simulate_end_to_end,
+    simulate_end_to_end_with_coefficients,
+    compute_metrics_at_snapshots,
+    PATH_TIMES,
+    DIST_TIMES,
+)
+
+try:
+    import ot  # noqa: F401
+    HAS_POT = True
+except ImportError:
+    HAS_POT = False
 
 # ──────────────────────────────────────────────────────────────
 # Constants
@@ -408,6 +425,174 @@ def run_dynamics(surface_name, seeds, epochs, output):
 
 
 # ──────────────────────────────────────────────────────────────
+# TRAJECTORY FIDELITY STUDY
+# ──────────────────────────────────────────────────────────────
+
+# Focus configs for trajectory study (subset of full ablation grid)
+TRAJECTORY_CONFIGS = {
+    "baseline": ABLATION_CONFIGS["baseline"],
+    "T+F": ABLATION_CONFIGS["T+F"],
+    "T+F+K": ABLATION_CONFIGS["T+F+K"],
+}
+
+# Simulation parameters
+N_TRAJ = 200
+T_MAX = 5.0
+DT = 0.01
+BOUNDARY = 3.0
+
+
+def run_trajectory_seed(surface_name, config_name, lw, seed, epochs, sde,
+                        gt_traj, gt_alive, initial_local, initial_ambient,
+                        n_steps, dW):
+    """Run trajectory simulation for one trained model (one config, one seed).
+
+    For end_to_end mode, also records coefficient errors (drift, covariance)
+    along trajectories at snapshot times, corresponding to epsilon_mu and
+    epsilon_Sigma in Theorem 5.7.
+    """
+    torch.manual_seed(seed)
+    np.random.seed(seed)
+
+    manifold_sde = create_manifold_sde(surface_name, with_dynamics=True)
+    train_data = sample_from_manifold(
+        manifold_sde,
+        [(-TRAIN_BOUND, TRAIN_BOUND), (-TRAIN_BOUND, TRAIN_BOUND)],
+        n_samples=N_TRAIN, seed=seed, device=DEVICE,
+    )
+
+    model = train_ae_with_twophase(train_data, config_name, lw, epochs)
+
+    # Snapshot steps for coefficient error recording (PATH_TIMES only)
+    snapshot_steps = [int(round(t / DT)) for t in PATH_TIMES]
+
+    rows = []
+    for sim_mode in ["learned_latent", "end_to_end"]:
+        if sim_mode == "learned_latent":
+            from experiments.trajectory_fidelity_study import simulate_learned_latent
+            learned_traj, learned_alive = simulate_learned_latent(
+                model, initial_local, sde, n_steps, DT, dW, BOUNDARY,
+            )
+            coeff_errors = {}
+        else:
+            learned_traj, learned_alive, coeff_errors = simulate_end_to_end_with_coefficients(
+                model, initial_ambient, sde, n_steps, DT, dW, BOUNDARY,
+                snapshot_steps=snapshot_steps,
+            )
+
+        metrics_rows = compute_metrics_at_snapshots(
+            learned_traj, gt_traj, learned_alive, gt_alive,
+            DT, PATH_TIMES, DIST_TIMES,
+        )
+
+        for row in metrics_rows:
+            row["surface"] = surface_name
+            row["config"] = config_name
+            row["seed"] = seed
+            row["sim_mode"] = sim_mode
+
+            # Attach coefficient errors for matching snapshot times
+            # Use intersection of learned and GT alive masks (consistent with MTE)
+            step = int(round(row["time"] / DT))
+            if step in coeff_errors:
+                ce = coeff_errors[step]
+                both_alive = ce["alive"] & gt_alive[:, step]
+                count = both_alive.float().sum().item()
+                if count > 0:
+                    row["drift_coeff_error"] = (ce["drift_error"] * both_alive.float()).sum().item() / count
+                    row["cov_coeff_error"] = (ce["cov_error"] * both_alive.float()).sum().item() / count
+
+            rows.append(row)
+
+    return rows
+
+
+def run_trajectory(surfaces, seeds, epochs, output):
+    """Multi-seed trajectory fidelity study with paper-grade training."""
+    assert HAS_POT, (
+        "POT (Python Optimal Transport) is required for W2 metrics. "
+        "Install with: pip install POT"
+    )
+
+    n_steps = int(T_MAX / DT)
+
+    print(f"\n{'='*70}")
+    print("TRAJECTORY FIDELITY STUDY")
+    print(f"Surfaces: {surfaces}")
+    print(f"Seeds: {seeds}")
+    print(f"Configs: {list(TRAJECTORY_CONFIGS.keys())}")
+    print(f"N_TRAIN={N_TRAIN}, N_TRAJ={N_TRAJ}, T_MAX={T_MAX}, DT={DT}")
+    print(f"{'='*70}")
+
+    all_rows = []
+    for surf in surfaces:
+        print(f"\n--- Surface: {surf} ---")
+
+        # Create lambdified SDE (once per surface)
+        manifold_sde = create_manifold_sde(surf, with_dynamics=True)
+        sde = lambdify_sde(manifold_sde)
+
+        for seed in seeds:
+            print(f"\n  Seed: {seed}")
+
+            # Shared Brownian increments and initial conditions (per seed)
+            torch.manual_seed(seed + 1234)
+            dW = torch.randn(N_TRAJ, n_steps, 2, device=DEVICE)
+
+            torch.manual_seed(seed + 999)
+            initial_local = (torch.rand(N_TRAJ, 2, device=DEVICE) * 2 - 1) * TRAIN_BOUND
+            initial_ambient = sde.chart(initial_local).to(DEVICE)
+
+            # Ground truth (shared across configs for this seed)
+            gt_traj, gt_alive = simulate_ground_truth(
+                initial_local, sde, n_steps, DT, dW, BOUNDARY,
+            )
+            gt_survival = gt_alive[:, -1].float().mean().item()
+            print(f"    GT survival at T={T_MAX}: {gt_survival:.1%}")
+
+            for cfg_name, lw in TRAJECTORY_CONFIGS.items():
+                print(f"    Config: {cfg_name}")
+                rows = run_trajectory_seed(
+                    surf, cfg_name, lw, seed, epochs, sde,
+                    gt_traj, gt_alive, initial_local, initial_ambient,
+                    n_steps, dW,
+                )
+                all_rows.extend(rows)
+
+                # Print summary metrics
+                mte_rows = [r for r in rows if "MTE" in r and abs(r["time"] - 1.0) < 0.01
+                            and r["sim_mode"] == "end_to_end"]
+                if mte_rows:
+                    print(f"      end_to_end MTE@1.0 = {mte_rows[0]['MTE']:.6f}")
+
+    df = pd.DataFrame(all_rows)
+    if output:
+        df.to_csv(output, index=False)
+        print(f"\nSaved to {output}")
+
+    # Summary
+    print(f"\n{'='*70}")
+    print("TRAJECTORY SUMMARY (mean +/- std over seeds)")
+    print(f"{'='*70}")
+    for sim_mode in ["end_to_end"]:
+        print(f"\n  sim_mode = {sim_mode}")
+        sub = df[(df["sim_mode"] == sim_mode) & (df["time"].apply(lambda t: abs(t - 1.0) < 0.01))]
+        if sub.empty:
+            continue
+        for surf in surfaces:
+            print(f"\n    Surface: {surf}")
+            for cfg_name in TRAJECTORY_CONFIGS:
+                vals = sub[(sub["surface"] == surf) & (sub["config"] == cfg_name)]
+                if "MTE" in vals.columns and len(vals) > 0:
+                    mte = vals["MTE"].dropna()
+                    w2 = vals["W2"].dropna() if "W2" in vals.columns else pd.Series()
+                    print(f"      {cfg_name:>8s}  MTE@1.0={mte.mean():.4f}+/-{mte.std():.4f}"
+                          + (f"  W2@1.0={w2.mean():.4f}+/-{w2.std():.4f}" if len(w2) > 0 else ""))
+
+    return df
+
+
+# ──────────────────────────────────────────────────────────────
 # CLI
 # ──────────────────────────────────────────────────────────────
 
@@ -443,6 +628,13 @@ def main():
     p_dyn.add_argument("--surface", type=str, default="paraboloid",
                         choices=list(SURFACE_MAP.keys()))
 
+    # Trajectory fidelity
+    p_traj = subparsers.add_parser("trajectory", help="Trajectory fidelity via SDE simulation")
+    add_common_args(p_traj)
+    p_traj.add_argument("--surfaces", type=str, nargs="+",
+                         default=["paraboloid", "hyperbolic_paraboloid", "sinusoidal"],
+                         choices=list(SURFACE_MAP.keys()))
+
     args = parser.parse_args()
     seeds = [args.base_seed + i * 1000 for i in range(args.n_seeds)]
 
@@ -462,6 +654,9 @@ def main():
     elif args.study == "dynamics":
         output = args.output or "paper_dynamics.csv"
         run_dynamics(args.surface, seeds, args.epochs, output)
+    elif args.study == "trajectory":
+        output = args.output or "paper_trajectory.csv"
+        run_trajectory(args.surfaces, seeds, args.epochs, output)
 
     print(f"\nTotal time: {time.time() - t0:.1f}s")
     print("Done.")
