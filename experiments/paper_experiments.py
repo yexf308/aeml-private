@@ -493,14 +493,14 @@ def run_trajectory_seed(surface_name, config_name, lw, seed, epochs, sde,
 
             # Attach coefficient errors for matching snapshot times
             # Use intersection of learned and GT alive masks (consistent with MTE)
+            # Report median (robust to boundary-extrapolation outliers)
             step = int(round(row["time"] / DT))
             if step in coeff_errors:
                 ce = coeff_errors[step]
                 both_alive = ce["alive"] & gt_alive[:, step]
-                count = both_alive.float().sum().item()
-                if count > 0:
-                    row["drift_coeff_error"] = (ce["drift_error"] * both_alive.float()).sum().item() / count
-                    row["cov_coeff_error"] = (ce["cov_error"] * both_alive.float()).sum().item() / count
+                if both_alive.any():
+                    row["drift_coeff_error"] = ce["drift_error"][both_alive].median().item()
+                    row["cov_coeff_error"] = ce["cov_error"][both_alive].median().item()
 
             rows.append(row)
 
