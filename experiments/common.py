@@ -16,18 +16,28 @@ from src.numeric.training import ModelConfig
 from src.symbolic.manifold_sdes import ManifoldSDE
 from src.symbolic.surfaces import (
     paraboloid, hyperbolic_paraboloid, monkey_saddle,
-    sinusoidal, plane,
+    gaussian_bump, quartic_dome, sinusoidal, plane,
+    half_torus_chart,
 )
 
 
 # Canonical surface map for experiment scripts (keys use underscores).
 # For the runner's map (keys with spaces), import _SURFACE_MAP from runner.py.
+# Values are either f(u,v)->scalar (Monge patch) or None for general charts.
 SURFACE_MAP = {
     "paraboloid": paraboloid,
     "hyperbolic_paraboloid": hyperbolic_paraboloid,
     "monkey_saddle": monkey_saddle,
+    "gaussian_bump": gaussian_bump,
+    "quartic_dome": quartic_dome,
     "sinusoidal": sinusoidal,
     "plane": plane,
+    "half_torus": None,  # general chart, handled in create_manifold_sde
+}
+
+# General chart constructors: name -> callable returning (local_coord, chart)
+GENERAL_CHARTS = {
+    "half_torus": half_torus_chart,
 }
 
 # Penalty configs shared by extrapolation studies

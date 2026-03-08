@@ -37,6 +37,7 @@ from src.symbolic.surfaces import surface
 
 from experiments.common import (
     SURFACE_MAP,
+    GENERAL_CHARTS,
     PENALTY_CONFIGS,
     make_model_config,
     create_test_datasets,
@@ -88,7 +89,10 @@ ABLATION_CONFIGS = {
 
 def create_manifold_sde(surface_name, with_dynamics=False):
     u, v = sp.symbols("u v", real=True)
-    local_coord, chart = surface(SURFACE_MAP[surface_name], u, v)
+    if surface_name in GENERAL_CHARTS:
+        local_coord, chart = GENERAL_CHARTS[surface_name](u, v)
+    else:
+        local_coord, chart = surface(SURFACE_MAP[surface_name], u, v)
     manifold = RiemannianManifold(local_coord, chart)
     if with_dynamics:
         local_drift = sp.Matrix([-v, u])
@@ -168,12 +172,11 @@ def paired_ttest(vals_a, vals_b):
 # ABLATION STUDY
 # ──────────────────────────────────────────────────────────────
 
-def run_ablation_seed(surface_name, config_name, lw, seed, epochs):
+def run_ablation_seed(manifold_sde, surface_name, config_name, lw, seed, epochs):
     """Run one ablation seed: train AE, evaluate on 500-point test set."""
     torch.manual_seed(seed)
     np.random.seed(seed)
 
-    manifold_sde = create_manifold_sde(surface_name, with_dynamics=True)
     train_data = sample_from_manifold(
         manifold_sde,
         [(-TRAIN_BOUND, TRAIN_BOUND), (-TRAIN_BOUND, TRAIN_BOUND)],
@@ -208,11 +211,12 @@ def run_ablation(surface_name, seeds, epochs, output):
     print(f"Configs: {list(ABLATION_CONFIGS.keys())}")
     print(f"{'='*70}")
 
+    manifold_sde = create_manifold_sde(surface_name, with_dynamics=True)
     rows = []
     for seed in seeds:
         for cfg_name, lw in ABLATION_CONFIGS.items():
             print(f"\n  {surface_name} | {cfg_name} | seed={seed}")
-            row = run_ablation_seed(surface_name, cfg_name, lw, seed, epochs)
+            row = run_ablation_seed(manifold_sde, surface_name, cfg_name, lw, seed, epochs)
             rows.append(row)
             print(f"    recon={row['reconstruction']:.6f}  tangent={row['tangent']:.6f}  "
                   f"curvature={row['curvature']:.6f}")
@@ -249,12 +253,11 @@ def run_ablation(surface_name, seeds, epochs, output):
 # EXTRAPOLATION STUDY
 # ──────────────────────────────────────────────────────────────
 
-def run_extrapolation_seed(surface_name, config_name, lw, seed, epochs, distances, dist_step):
+def run_extrapolation_seed(manifold_sde, surface_name, config_name, lw, seed, epochs, distances, dist_step):
     """Run one extrapolation seed: train AE, eval at each distance."""
     torch.manual_seed(seed)
     np.random.seed(seed)
 
-    manifold_sde = create_manifold_sde(surface_name, with_dynamics=False)
     train_data = sample_from_manifold(
         manifold_sde,
         [(-TRAIN_BOUND, TRAIN_BOUND), (-TRAIN_BOUND, TRAIN_BOUND)],
@@ -298,10 +301,11 @@ def run_extrapolation(surfaces, seeds, epochs, output):
 
     all_rows = []
     for surf in surfaces:
+        manifold_sde = create_manifold_sde(surf, with_dynamics=False)
         for seed in seeds:
             for cfg_name, lw in PENALTY_CONFIGS.items():
                 print(f"\n  {surf} | {cfg_name} | seed={seed}")
-                rows = run_extrapolation_seed(surf, cfg_name, lw, seed, epochs, distances, dist_step)
+                rows = run_extrapolation_seed(manifold_sde, surf, cfg_name, lw, seed, epochs, distances, dist_step)
                 all_rows.extend(rows)
                 # Print interpolation and max extrapolation
                 r0 = [r for r in rows if r["distance"] == 0.0][0]
@@ -337,12 +341,11 @@ def run_extrapolation(surfaces, seeds, epochs, output):
 # DYNAMICS STUDY
 # ──────────────────────────────────────────────────────────────
 
-def run_dynamics_extrap_seed(surface_name, config_name, lw, seed, epochs, distances, dist_step):
+def run_dynamics_extrap_seed(manifold_sde, surface_name, config_name, lw, seed, epochs, distances, dist_step):
     """Run one dynamics extrapolation seed: train AE, eval dynamics at each distance."""
     torch.manual_seed(seed)
     np.random.seed(seed)
 
-    manifold_sde = create_manifold_sde(surface_name, with_dynamics=True)
     train_data = sample_from_manifold(
         manifold_sde,
         [(-TRAIN_BOUND, TRAIN_BOUND), (-TRAIN_BOUND, TRAIN_BOUND)],
@@ -381,11 +384,12 @@ def run_dynamics(surface_name, seeds, epochs, output):
     print(f"Distances: {distances}")
     print(f"{'='*70}")
 
+    manifold_sde = create_manifold_sde(surface_name, with_dynamics=True)
     all_rows = []
     for seed in seeds:
         for cfg_name, lw in PENALTY_CONFIGS.items():
             print(f"\n  {surface_name} | {cfg_name} | seed={seed}")
-            rows = run_dynamics_extrap_seed(surface_name, cfg_name, lw, seed, epochs, distances, dist_step)
+            rows = run_dynamics_extrap_seed(manifold_sde, surface_name, cfg_name, lw, seed, epochs, distances, dist_step)
             all_rows.extend(rows)
             r0 = [r for r in rows if r["distance"] == 0.0][0]
             r5 = [r for r in rows if r["distance"] == 0.5][0]
@@ -442,7 +446,7 @@ DT = 0.01
 BOUNDARY = 3.0
 
 
-def run_trajectory_seed(surface_name, config_name, lw, seed, epochs, sde,
+def run_trajectory_seed(manifold_sde, surface_name, config_name, lw, seed, epochs, sde,
                         gt_traj, gt_alive, initial_local, initial_ambient,
                         n_steps, dW):
     """Run trajectory simulation for one trained model (one config, one seed).
@@ -454,7 +458,6 @@ def run_trajectory_seed(surface_name, config_name, lw, seed, epochs, sde,
     torch.manual_seed(seed)
     np.random.seed(seed)
 
-    manifold_sde = create_manifold_sde(surface_name, with_dynamics=True)
     train_data = sample_from_manifold(
         manifold_sde,
         [(-TRAIN_BOUND, TRAIN_BOUND), (-TRAIN_BOUND, TRAIN_BOUND)],
@@ -553,7 +556,7 @@ def run_trajectory(surfaces, seeds, epochs, output):
             for cfg_name, lw in TRAJECTORY_CONFIGS.items():
                 print(f"    Config: {cfg_name}")
                 rows = run_trajectory_seed(
-                    surf, cfg_name, lw, seed, epochs, sde,
+                    manifold_sde, surf, cfg_name, lw, seed, epochs, sde,
                     gt_traj, gt_alive, initial_local, initial_ambient,
                     n_steps, dW,
                 )
@@ -619,7 +622,7 @@ def main():
     p_ext = subparsers.add_parser("extrapolation", help="Reconstruction extrapolation")
     add_common_args(p_ext)
     p_ext.add_argument("--surfaces", type=str, nargs="+",
-                        default=["paraboloid", "hyperbolic_paraboloid", "monkey_saddle", "sinusoidal"],
+                        default=["paraboloid", "hyperbolic_paraboloid", "quartic_dome", "sinusoidal"],
                         choices=list(SURFACE_MAP.keys()))
 
     # Dynamics
@@ -632,7 +635,7 @@ def main():
     p_traj = subparsers.add_parser("trajectory", help="Trajectory fidelity via SDE simulation")
     add_common_args(p_traj)
     p_traj.add_argument("--surfaces", type=str, nargs="+",
-                         default=["paraboloid", "hyperbolic_paraboloid", "sinusoidal"],
+                         default=["paraboloid", "hyperbolic_paraboloid", "quartic_dome", "sinusoidal"],
                          choices=list(SURFACE_MAP.keys()))
 
     args = parser.parse_args()

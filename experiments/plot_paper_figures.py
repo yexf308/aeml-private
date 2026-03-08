@@ -36,7 +36,7 @@ LABELS = {"baseline": "Baseline", "T+F": "T+F", "T+F+K": "T+F+K", "T+K": "T+K"}
 SURFACE_TITLES = {
     "paraboloid": "Paraboloid",
     "hyperbolic_paraboloid": "Hyp. paraboloid",
-    "monkey_saddle": "Monkey saddle",
+    "quartic_dome": "Quartic dome",
     "sinusoidal": "Sinusoidal",
 }
 
@@ -90,7 +90,7 @@ def plot_extrapolation():
     missing = required - set(df.columns)
     assert not missing, f"{csv_path} missing columns: {missing}"
 
-    surfaces = ["paraboloid", "hyperbolic_paraboloid", "monkey_saddle", "sinusoidal"]
+    surfaces = ["paraboloid", "hyperbolic_paraboloid", "quartic_dome", "sinusoidal"]
     conditions = ["baseline", "T+F", "T+F+K", "T+K"]
 
     fig, axes = plt.subplots(1, 4, figsize=(7.0, 1.9), sharey=False)
