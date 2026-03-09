@@ -236,10 +236,28 @@ def create_highd_lambdified_sde(
     def chart_batch(uv: torch.Tensor) -> torch.Tensor:
         return surface.chart(uv)
 
+    def ambient_drift_batch(uv: torch.Tensor) -> torch.Tensor:
+        """True ambient drift b(u,v) = J·μ_local + ½q. Input (B,2) -> (B,D)."""
+        J = surface.jacobian(uv)  # (B, D, 2)
+        H = surface.hessians(uv)  # (B, D, 2, 2)
+        mu_local = local_drift_fn(uv)  # (B, 2)
+        sigma_local = local_diffusion_fn(uv)  # (B, 2, 2)
+        local_cov = torch.bmm(sigma_local, sigma_local.transpose(-1, -2))
+        q = ambient_quadratic_variation_drift(local_cov, H)  # (B, D)
+        mu_tan = torch.bmm(J, mu_local.unsqueeze(-1)).squeeze(-1)  # (B, D)
+        return mu_tan + 0.5 * q
+
+    def ambient_covariance_batch(uv: torch.Tensor) -> torch.Tensor:
+        """True ambient covariance Λ(u,v) = J·Σ_z·Jᵀ. Input (B,2) -> (B,D,D)."""
+        J = surface.jacobian(uv)  # (B, D, 2)
+        sigma_local = local_diffusion_fn(uv)  # (B, 2, 2)
+        local_cov = torch.bmm(sigma_local, sigma_local.transpose(-1, -2))
+        return torch.bmm(J, torch.bmm(local_cov, J.transpose(-1, -2)))
+
     return LambdifiedSDE(
         local_drift=local_drift_fn,
         local_diffusion=local_diffusion_fn,
         chart=chart_batch,
-        ambient_drift=None,
-        ambient_covariance=None,
+        ambient_drift=ambient_drift_batch,
+        ambient_covariance=ambient_covariance_batch,
     )

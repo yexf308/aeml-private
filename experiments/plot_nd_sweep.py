@@ -44,11 +44,13 @@ def compute_benefit(df, surface, D, N, metric):
     b_vals = base[metric].values
     k_vals = kphat[metric].values
 
-    # Per-seed relative change (%)
-    rel_change = (k_vals - b_vals) / b_vals * 100
+    # Delta-of-means (%) — consistent with paper table
+    mean_delta = (k_vals.mean() - b_vals.mean()) / b_vals.mean() * 100
 
-    mean_delta = rel_change.mean()
-    sem_delta = rel_change.std(ddof=1) / np.sqrt(len(rel_change))
+    # SEM via bootstrap on paired differences
+    diffs = k_vals - b_vals
+    sem_abs = diffs.std(ddof=1) / np.sqrt(len(diffs))
+    sem_delta = sem_abs / b_vals.mean() * 100  # convert to % scale
 
     # Paired t-test on raw values
     t_stat, p_val = stats.ttest_rel(k_vals, b_vals)
@@ -72,11 +74,11 @@ def sig_marker(p):
 
 
 def plot_benefit_figure(df, outpath="nd_sweep_benefit"):
-    """Create the 2×2 benefit panel figure."""
+    """Create the 2×2 benefit panel figure (rows: E_mu, W2; cols: surfaces)."""
     surfaces = ["paraboloid", "hyperbolic_paraboloid"]
     surface_labels = ["Paraboloid", "Hyperbolic paraboloid"]
-    metrics = ["MTE@1.0", "W2@1.0"]
-    metric_labels = [r"$\Delta\,$MTE (%)", r"$\Delta\,W_2$ (%)"]
+    metrics = [("E_mu", r"$\Delta\,\mathcal{E}_\mu$ (%)"),
+               ("W2@1.0", r"$\Delta\,W_2$ (%)")]
     D_values = [11, 201]
     N_values = sorted(df["N"].unique())
 
@@ -88,10 +90,16 @@ def plot_benefit_figure(df, outpath="nd_sweep_benefit"):
     markers = {11: "o", 201: "s"}
     fills = {11: "#2176AE", 201: "white"}  # open markers for D=201
 
-    fig, axes = plt.subplots(2, 2, figsize=(7.0, 5.5), sharex=True)
+    fig, axes = plt.subplots(2, 2, figsize=(7.0, 5.5))
 
-    for j, (surface, surf_label) in enumerate(zip(surfaces, surface_labels)):
-        for i, (metric, met_label) in enumerate(zip(metrics, metric_labels)):
+    for i, (metric, met_label) in enumerate(metrics):
+        # Skip E_mu row if not in the data
+        if metric not in df.columns:
+            for j in range(2):
+                axes[i, j].set_visible(False)
+            continue
+
+        for j, (surface, surf_label) in enumerate(zip(surfaces, surface_labels)):
             ax = axes[i, j]
 
             for D in D_values:
@@ -128,7 +136,6 @@ def plot_benefit_figure(df, outpath="nd_sweep_benefit"):
                 for k, (xp, m, p) in enumerate(zip(x_pos, means, ps)):
                     star = sig_marker(p)
                     if star:
-                        # Place above the error bar (or below if positive)
                         if m <= 0:
                             y_pos = m - sems[k] - 2.5
                             va = "top"
@@ -144,16 +151,15 @@ def plot_benefit_figure(df, outpath="nd_sweep_benefit"):
 
             ax.set_ylabel(met_label, fontsize=10)
             ax.tick_params(labelsize=9)
+            ax.set_xlabel("Training set size $N$", fontsize=10)
+            ax.set_xticks(x_ticks)
+            ax.set_xticklabels(N_values)
 
+            # Title only on top row
             if i == 0:
-                ax.set_title(surf_label, fontsize=11, fontweight="bold",
-                             pad=8)
-            if i == 1:
-                ax.set_xlabel("Training set size $N$", fontsize=10)
-                ax.set_xticks(x_ticks)
-                ax.set_xticklabels(N_values)
+                ax.set_title(surf_label, fontsize=11, fontweight="bold", pad=8)
 
-            # Only show legend in top-left
+            # Only show legend in top-left panel
             if i == 0 and j == 0:
                 ax.legend(fontsize=8.5, loc="lower right",
                           framealpha=0.95, edgecolor="0.7",
@@ -165,24 +171,24 @@ def plot_benefit_figure(df, outpath="nd_sweep_benefit"):
             ax.spines["left"].set_color("0.6")
             ax.spines["bottom"].set_color("0.6")
 
-    # Synchronize y-limits per row
-    for i in range(2):
-        ymin = min(axes[i, jj].get_ylim()[0] for jj in range(2))
-        ymax = max(axes[i, jj].get_ylim()[1] for jj in range(2))
-        pad = (ymax - ymin) * 0.12
-        for jj in range(2):
-            axes[i, jj].set_ylim(ymin - pad, ymax + pad)
+        # Synchronize y-limits within each row
+        row_axes = [axes[i, j] for j in range(2) if axes[i, j].get_visible()]
+        if row_axes:
+            ymin = min(a.get_ylim()[0] for a in row_axes)
+            ymax = max(a.get_ylim()[1] for a in row_axes)
+            pad = (ymax - ymin) * 0.12
+            for a in row_axes:
+                a.set_ylim(ymin - pad, ymax + pad)
 
-    # Add "K helps" annotation with downward arrow in bottom-left panel
-    ax0 = axes[1, 0]
-    ax0.annotate(
+    # Add "K helps" annotation on bottom-left
+    axes[1, 0].annotate(
         "$K$ helps $\\downarrow$",
         xy=(0.97, 0.03), xycoords="axes fraction",
         fontsize=8, color="0.45", fontstyle="italic",
         ha="right", va="bottom",
     )
 
-    fig.tight_layout(h_pad=0.8, w_pad=1.2)
+    fig.tight_layout(w_pad=1.2, h_pad=1.5)
 
     for fmt in ["pdf", "png"]:
         fig.savefig(f"{outpath}.{fmt}", dpi=200, bbox_inches="tight")

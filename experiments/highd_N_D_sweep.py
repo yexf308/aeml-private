@@ -40,6 +40,7 @@ from src.numeric.losses import LossWeights
 from src.numeric.sde_nets import DriftNet, DiffusionNet
 from src.numeric.sde_training import SDEPipelineTrainer
 from src.numeric.training import MultiModelTrainer, TrainingConfig
+from src.numeric.geometry import regularized_metric_inverse, ambient_quadratic_variation_drift
 from src.numeric.highd_manifolds import (
     FourierAugmentedSurface,
     sample_from_highd_manifold,
@@ -85,7 +86,7 @@ CONDITIONS = [
     ("K(Phat)", FULL_LW),
 ]
 
-METRICS = ["MTE@0.1", "MTE@0.5", "MTE@1.0", "W2@1.0", "MMD@1.0"]
+METRICS = ["MTE@0.1", "MTE@0.5", "MTE@1.0", "W2@1.0", "MMD@1.0", "E_mu", "E_Sigma"]
 
 
 # ── Local dynamics (same as highd_K_study.py) ─────────────────────────────
@@ -104,6 +105,80 @@ def local_diffusion_fn(uv: torch.Tensor) -> torch.Tensor:
     sigma[:, 0, 1] = u + v
     sigma[:, 1, 1] = 1 + v ** 2 / 4
     return sigma
+
+
+N_EVAL = 200  # number of points for E_mu/E_Sigma evaluation
+
+
+def compute_coefficient_errors(ae, sde, surface, eval_uv, device):
+    """Compute ambient drift and covariance coefficient errors at static points.
+
+    Returns (E_mu_median, E_Sigma_median) — medians over evaluation points.
+    E_mu = ||Dφ·μ_learned + ½q - b||²  (roundtrip drift error)
+    E_Sigma = ||P·Λ·P - Λ||²_F         (tangent covariance error)
+    """
+    ae.eval()
+    # Note: sde.ambient_drift uses surface.jacobian which needs autograd,
+    # so we cannot use torch.no_grad() for the true-coefficient computation.
+    b = sde.ambient_drift(eval_uv.detach())        # (B, D)
+    Lambda = sde.ambient_covariance(eval_uv.detach())  # (B, D, D)
+    b, Lambda = b.detach(), Lambda.detach()
+
+    with torch.no_grad():
+        x_eval = sde.chart(eval_uv)  # (B, D)
+        z = ae.encoder(x_eval)       # (B, 2)
+
+    # Decoder derivatives (need grad for Jacobian/Hessian)
+    dphi = torch.func.vmap(torch.func.jacrev(ae.decoder))(z)  # (B, D, 2)
+
+    # Hessian via vmap(jacrev(jacrev))
+    def decoder_hessian(z_single):
+        return torch.func.jacrev(torch.func.jacrev(ae.decoder))(z_single)
+
+    d2phi = torch.func.vmap(decoder_hessian)(z)  # (B, D, 2, 2)
+
+    dphi = dphi.detach()
+    d2phi = d2phi.detach()
+    z = z.detach()
+
+    with torch.no_grad():
+        dphi_T = dphi.transpose(-1, -2)  # (B, 2, D)
+
+        # Metric and inverse
+        g = torch.bmm(dphi_T, dphi)                    # (B, 2, 2)
+        g_inv = regularized_metric_inverse(g)           # (B, 2, 2)
+
+        # Learned tangent projector
+        P = torch.bmm(torch.bmm(dphi, g_inv), dphi_T)  # (B, D, D)
+
+        # Covariance error: ||P Λ P - Λ||²_F
+        P_Lambda_P = torch.bmm(torch.bmm(P, Lambda), P)
+        cov_err = ((P_Lambda_P - Lambda) ** 2).sum(dim=(-1, -2))  # (B,)
+
+        # Local covariance: Σ_z = g⁻¹ Jᵀ Λ J g⁻¹
+        Sigma_learned = torch.bmm(
+            g_inv, torch.bmm(dphi_T, torch.bmm(Lambda, torch.bmm(dphi, g_inv)))
+        )  # (B, 2, 2)
+
+        # Ito correction
+        q = ambient_quadratic_variation_drift(Sigma_learned, d2phi)  # (B, D)
+
+        # Learned local drift: μ_z = g⁻¹ Jᵀ (b - ½q)
+        residual = b - 0.5 * q
+        mu_learned = torch.bmm(
+            g_inv, torch.bmm(dphi_T, residual.unsqueeze(-1))
+        ).squeeze(-1)  # (B, 2)
+
+        # Roundtrip ambient drift: Dφ·μ_z + ½q
+        b_recon = torch.bmm(dphi, mu_learned.unsqueeze(-1)).squeeze(-1) + 0.5 * q
+        drift_err = ((b_recon - b) ** 2).sum(dim=-1)  # (B,)
+
+        # Filter out NaN/Inf
+        valid = torch.isfinite(drift_err) & torch.isfinite(cov_err)
+        if valid.sum() < 2:
+            return float('nan'), float('nan')
+
+        return drift_err[valid].median().item(), cov_err[valid].median().item()
 
 
 # ── Main experiment ─────────────────────────────────────────────────────────
@@ -209,6 +284,12 @@ def run_single_fork(surface_name, D, seed, n_train=20, epochs_ae=500, epochs_sde
         ae = t2.models["ae"]
         ae.eval()
 
+        # Compute E_mu and E_Sigma (chart-quality coefficient errors)
+        torch.manual_seed(seed + 5000)
+        eval_uv = (torch.rand(N_EVAL, 2, device=DEVICE) * 2 - 1) * TRAIN_BOUND
+        e_mu, e_sigma = compute_coefficient_errors(ae, sde, surface, eval_uv, DEVICE)
+        print(f"        E_mu={e_mu:.4f}  E_Sigma={e_sigma:.4f}")
+
         # Precompute decoder derivatives for SDE stages
         d = 2
         dummy = SDEPipelineTrainer(
@@ -245,6 +326,8 @@ def run_single_fork(surface_name, D, seed, n_train=20, epochs_ae=500, epochs_sde
             "diff_loss": diff_losses[-1],
             "recon_per_dim": recon_per_dim,
             "phase1_converged": phase1_converged,
+            "E_mu": e_mu,
+            "E_Sigma": e_sigma,
             **eval_results,
         }
 
@@ -270,9 +353,9 @@ def print_summary(df):
     """Print grouped summary tables with paired t-tests, grouped by (D, N)."""
     cond_labels = [c[0] for c in CONDITIONS]
 
-    print(f"\n\n{'='*120}")
+    print(f"\n\n{'='*150}")
     print("N×D SWEEP: TRAINING SET SIZE × AMBIENT DIMENSION INTERACTION")
-    print(f"{'='*120}")
+    print(f"{'='*150}")
 
     for D_val in sorted(df["D"].unique()):
         for N_val in sorted(df["N"].unique()):
@@ -280,16 +363,16 @@ def print_summary(df):
             if len(df_dn) == 0:
                 continue
 
-            print(f"\n{'─'*120}")
+            print(f"\n{'─'*150}")
             print(f"  D = {D_val}, N = {N_val}")
-            print(f"{'─'*120}")
+            print(f"{'─'*150}")
 
             # Mean ± std table
             print(f"\n  {'surface':>25s}  {'condition':>10s}  {'n':>3s}  ", end="")
             for m in METRICS:
                 print(f"{'mean':>8s} {'+-std':>8s}  ", end="")
             print()
-            print("  " + "-" * 110)
+            print("  " + "-" * 140)
 
             for surface_name in SURFACES:
                 for cond_label in cond_labels:
@@ -310,7 +393,7 @@ def print_summary(df):
             for m in METRICS:
                 print(f"{'delta':>8s} {'p-val':>8s}  ", end="")
             print("  win-rate  verdict")
-            print("    " + "-" * 108)
+            print("    " + "-" * 138)
 
             for surface_name in SURFACES:
                 a = df_dn[
@@ -344,7 +427,7 @@ def main():
     parser = argparse.ArgumentParser(
         description="N×D Sweep: training set size × ambient dimension interaction",
     )
-    parser.add_argument("--n-seeds", type=int, default=5)
+    parser.add_argument("--n-seeds", type=int, default=10)
     parser.add_argument("--epochs", type=int, default=500)
     parser.add_argument("--sde-epochs", type=int, default=300)
     parser.add_argument("--base-seed", type=int, default=42)
@@ -405,8 +488,8 @@ def main():
                             **metrics,
                         })
 
-                        print(f"    {cond_label:>10s}: MTE@1.0={metrics['MTE@1.0']:.4f}  "
-                              f"W2@1.0={metrics['W2@1.0']:.4f}  MMD@1.0={metrics['MMD@1.0']:.4f}")
+                        print(f"    {cond_label:>10s}: W2={metrics['W2@1.0']:.4f}  "
+                              f"E_mu={metrics['E_mu']:.4f}  E_Sig={metrics['E_Sigma']:.4f}")
 
             elapsed_dn = time.time() - t_dn
             print(f"\n  N={N}, D={D_val} completed in {elapsed_dn:.1f}s "
