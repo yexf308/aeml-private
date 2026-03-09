@@ -77,14 +77,20 @@ def hidden_dims_for_D(D: int) -> list:
 WARMUP_LW = LossWeights(tangent_bundle=1.0, diffeo=1.0)
 # Phase 2 options: T+F continuation (baseline) vs T+F+K finetune
 BASELINE_LW = LossWeights(tangent_bundle=1.0, diffeo=1.0, curvature=0.0)
-FULL_LW = LossWeights(tangent_bundle=1.0, diffeo=1.0, curvature=0.1)
+BASE_K_WEIGHT = 0.1  # curvature weight at reference dimension D_REF
+D_REF = 11  # reference dimension for curvature weight scaling
 
-# (label, phase2_loss_weights)
-# Both conditions get Phase 1 + Phase 2 = same total epoch budget.
-CONDITIONS = [
-    ("baseline", BASELINE_LW),
-    ("K(Phat)", FULL_LW),
-]
+def make_conditions(D, scale_k_with_d=False):
+    """Create (label, loss_weights) pairs, optionally scaling K weight with D."""
+    k_weight = BASE_K_WEIGHT * (D / D_REF) if scale_k_with_d else BASE_K_WEIGHT
+    full_lw = LossWeights(tangent_bundle=1.0, diffeo=1.0, curvature=k_weight)
+    return [
+        ("baseline", BASELINE_LW),
+        ("K(Phat)", full_lw),
+    ]
+
+# Default (backward-compatible)
+CONDITIONS = make_conditions(11, scale_k_with_d=False)
 
 METRICS = ["MTE@0.1", "MTE@0.5", "MTE@1.0", "W2@1.0", "MMD@1.0", "E_mu", "E_Sigma"]
 
@@ -183,7 +189,8 @@ def compute_coefficient_errors(ae, sde, surface, eval_uv, device):
 
 # ── Main experiment ─────────────────────────────────────────────────────────
 
-def run_single_fork(surface_name, D, seed, n_train=20, epochs_ae=500, epochs_sde=300):
+def run_single_fork(surface_name, D, seed, n_train=20, epochs_ae=500, epochs_sde=300,
+                    scale_k_with_d=False):
     """Run shared-checkpoint fork for one (surface, D, seed, n_train).
 
     Returns dict mapping condition_label -> metrics dict.
@@ -244,9 +251,10 @@ def run_single_fork(surface_name, D, seed, n_train=20, epochs_ae=500, epochs_sde
     # ── Fork into conditions ──
     phase2_epochs = epochs_ae - phase1_epochs
     results = {}
+    conditions = make_conditions(D, scale_k_with_d)
 
-    for cond_label, phase2_lw in CONDITIONS:
-        print(f"      Condition: {cond_label}")
+    for cond_label, phase2_lw in conditions:
+        print(f"      Condition: {cond_label} (K_weight={phase2_lw.curvature:.4f})")
 
         # Create fresh trainer, load Phase 1 checkpoint
         t2 = MultiModelTrainer(TrainingConfig(
@@ -435,6 +443,8 @@ def main():
                         help="D values to test (default: 11 201)")
     parser.add_argument("--n-values", type=int, nargs="+", default=None,
                         help="N (training set size) values to test (default: 20 50 100 200)")
+    parser.add_argument("--scale-k-with-d", action="store_true",
+                        help="Scale curvature weight proportionally to D/D_REF")
     args = parser.parse_args()
 
     # Determine D configs
@@ -447,7 +457,7 @@ def main():
     n_values = args.n_values if args.n_values is not None else N_VALUES
 
     seeds = [args.base_seed + i * 1000 for i in range(args.n_seeds)]
-    cond_labels = [c[0] for c in CONDITIONS]
+    cond_labels = [c[0] for c in make_conditions(11)]
 
     print(f"Device: {DEVICE}")
     print(f"Seeds ({len(seeds)}): {seeds}")
@@ -455,6 +465,10 @@ def main():
     print(f"Conditions: {cond_labels}")
     print(f"D configs: {d_configs}")
     print(f"N values: {n_values}")
+    if args.scale_k_with_d:
+        print(f"Curvature weight scaling: K_weight = {BASE_K_WEIGHT} * D/{D_REF}")
+    else:
+        print(f"Curvature weight: {BASE_K_WEIGHT} (fixed)")
     print(f"Hidden dims: D-dependent (<=11:[64,64], <=51:[128,128], else:[256,256])")
     print(f"AE epochs: {args.epochs} (Phase 1: {args.epochs // 2}, Phase 2: {args.epochs - args.epochs // 2})")
     print(f"SDE epochs: {args.sde_epochs}")
@@ -476,6 +490,7 @@ def main():
                     fork_results = run_single_fork(
                         surface_name, D_val, seed, n_train=N,
                         epochs_ae=args.epochs, epochs_sde=args.sde_epochs,
+                        scale_k_with_d=args.scale_k_with_d,
                     )
                     for cond_label, metrics in fork_results.items():
                         all_rows.append({
