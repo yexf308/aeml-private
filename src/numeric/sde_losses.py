@@ -23,6 +23,7 @@ def tangential_drift_loss(
     Lambda: Tensor,
     dphi: Tensor = None,
     d2phi: Tensor = None,
+    q_override: Tensor = None,
 ) -> Tensor:
     """
     Tangential drift matching loss (Stage 2 — trains drift_net only).
@@ -41,14 +42,14 @@ def tangential_drift_loss(
         Lambda: Observed ambient covariance, shape (B, D, D).
         dphi: Optional precomputed Jacobian, shape (B, D, d).
         d2phi: Optional precomputed Hessian, shape (B, D, d, d).
+        q_override: Optional precomputed curvature correction, shape (B, D).
+            If provided, used instead of computing q from d2phi.
 
     Returns:
         Scalar loss value.
     """
     if dphi is None:
         dphi = decoder.jacobian_network(z)     # (B, D, d)
-    if d2phi is None:
-        d2phi = decoder.hessian_network(z)     # (B, D, d, d)
 
     g = dphi.mT @ dphi                    # (B, d, d)
     ginv = regularized_metric_inverse(g)   # (B, d, d)
@@ -57,13 +58,19 @@ def tangential_drift_loss(
     P_hat = dphi @ pinv                    # (B, D, D)
     P_hat = 0.5 * (P_hat + P_hat.mT)      # symmetrize projector
 
-    Lambda_tan = P_hat @ Lambda @ P_hat    # pre-project to tangent
-    Lambda_tan = 0.5 * (Lambda_tan + Lambda_tan.mT)
+    if q_override is not None:
+        q = q_override
+    else:
+        if d2phi is None:
+            d2phi = decoder.hessian_network(z)     # (B, D, d, d)
 
-    Sigma_z_obs = pinv @ Lambda_tan @ pinv.mT  # (B, d, d)
-    Sigma_z_obs = 0.5 * (Sigma_z_obs + Sigma_z_obs.mT)
+        Lambda_tan = P_hat @ Lambda @ P_hat    # pre-project to tangent
+        Lambda_tan = 0.5 * (Lambda_tan + Lambda_tan.mT)
 
-    q = curvature_drift_explicit_full(d2phi, Sigma_z_obs)  # already halved, (B, D)
+        Sigma_z_obs = pinv @ Lambda_tan @ pinv.mT  # (B, d, d)
+        Sigma_z_obs = 0.5 * (Sigma_z_obs + Sigma_z_obs.mT)
+
+        q = curvature_drift_explicit_full(d2phi, Sigma_z_obs)  # already halved, (B, D)
 
     b_z = drift_net(z)                     # (B, d)
     dphi_bz = (dphi @ b_z.unsqueeze(-1)).squeeze(-1)  # Dphi * b_z, (B, D)
@@ -73,6 +80,41 @@ def tangential_drift_loss(
 
     D = tan_res.shape[-1]
     return (tan_res ** 2).sum(-1).mean() / D
+
+
+def latent_drift_regression_loss(
+    drift_net,
+    z: Tensor,
+    b_z_target: Tensor,
+    g: Tensor = None,
+) -> Tensor:
+    """
+    Metric-weighted latent drift regression loss.
+
+    L = (b_z - b_target)^T g (b_z - b_target) / D
+
+    When g is None, uses plain Euclidean MSE (equivalent to g = I).
+
+    Args:
+        drift_net: DriftNet to train.
+        z: Detached latent points, shape (B, d).
+        b_z_target: Precomputed target latent drift, shape (B, d).
+        g: Optional metric tensor, shape (B, d, d). If None, Euclidean MSE.
+
+    Returns:
+        Scalar loss value.
+    """
+    b_z = drift_net(z)                     # (B, d)
+    residual = b_z - b_z_target            # (B, d)
+
+    if g is not None:
+        # Metric-weighted: r^T g r
+        D_from_g = g.shape[-1]  # Use trace(g) / d as proxy for ambient D
+        cost = (residual.unsqueeze(-2) @ g @ residual.unsqueeze(-1)).squeeze(-1).squeeze(-1)
+    else:
+        cost = (residual ** 2).sum(-1)
+
+    return cost.mean()
 
 
 def drift_smoothness_loss(

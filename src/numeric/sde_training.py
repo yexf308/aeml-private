@@ -18,6 +18,7 @@ from torch.utils.data import DataLoader, TensorDataset
 from .sde_losses import (
     tangential_drift_loss, ambient_diffusion_loss, latent_diffusion_loss,
     drift_smoothness_loss, diffusion_smoothness_loss,
+    latent_drift_regression_loss,
 )
 
 
@@ -146,18 +147,26 @@ class SDEPipelineTrainer:
         self, z, dphi, d2phi, v, Lambda, epochs, lr=1e-3,
         batch_size=32, print_interval=100,
         lambda_smooth=0.0, aug_sigma=0.1, use_metric=True,
+        q_override=None,
     ):
         """Stage 2 with precomputed decoder derivatives (much faster).
 
         Note: the smoothness loss recomputes dphi at augmented points via the
         decoder, since precomputed derivatives are only valid at training z.
+
+        Args:
+            q_override: Optional precomputed curvature correction, shape (N, D).
+                If provided, used instead of computing q from d2phi.
         """
         self.drift_net.train()
         optimizer = torch.optim.Adam(self.drift_net.parameters(), lr=lr)
         scheduler = torch.optim.lr_scheduler.ReduceLROnPlateau(
             optimizer, mode='min', factor=0.5, patience=50,
         )
-        dataset = TensorDataset(z, dphi, d2phi, v, Lambda)
+        if q_override is not None:
+            dataset = TensorDataset(z, dphi, d2phi, v, Lambda, q_override)
+        else:
+            dataset = TensorDataset(z, dphi, d2phi, v, Lambda)
         loader = DataLoader(dataset, batch_size=batch_size, shuffle=True)
         losses = []
         best_loss, best_state = float("inf"), None
@@ -165,10 +174,86 @@ class SDEPipelineTrainer:
         for epoch in range(epochs):
             epoch_loss = 0.0
             n_batches = 0
-            for z_b, dphi_b, d2phi_b, v_b, Lambda_b in loader:
-                loss = tangential_drift_loss(
-                    self.autoencoder.decoder, self.drift_net,
-                    z_b, v_b, Lambda_b, dphi=dphi_b, d2phi=d2phi_b,
+            for batch in loader:
+                if q_override is not None:
+                    z_b, dphi_b, d2phi_b, v_b, Lambda_b, q_b = batch
+                    loss = tangential_drift_loss(
+                        self.autoencoder.decoder, self.drift_net,
+                        z_b, v_b, Lambda_b, dphi=dphi_b, d2phi=d2phi_b,
+                        q_override=q_b,
+                    )
+                else:
+                    z_b, dphi_b, d2phi_b, v_b, Lambda_b = batch
+                    loss = tangential_drift_loss(
+                        self.autoencoder.decoder, self.drift_net,
+                        z_b, v_b, Lambda_b, dphi=dphi_b, d2phi=d2phi_b,
+                    )
+
+                if lambda_smooth > 0.0:
+                    z_aug = z_b + torch.randn_like(z_b) * aug_sigma
+                    loss = loss + lambda_smooth * drift_smoothness_loss(
+                        self.autoencoder.decoder, self.drift_net, z_aug,
+                        use_metric=use_metric,
+                    )
+
+                optimizer.zero_grad()
+                loss.backward()
+                torch.nn.utils.clip_grad_norm_(self.drift_net.parameters(), max_norm=1.0)
+                optimizer.step()
+                epoch_loss += loss.item()
+                n_batches += 1
+            avg_loss = epoch_loss / max(n_batches, 1)
+            losses.append(avg_loss)
+            scheduler.step(avg_loss)
+            if avg_loss < best_loss:
+                best_loss = avg_loss
+                best_state = copy.deepcopy(self.drift_net.state_dict())
+            if print_interval and (epoch + 1) % print_interval == 0:
+                print(f"  Stage 2 epoch {epoch+1}/{epochs}: loss={avg_loss:.6f}")
+
+        self.drift_net.load_state_dict(best_state)
+        return losses
+
+    def train_stage2_regression(
+        self, z, b_z_target, g, epochs, lr=1e-3,
+        batch_size=32, print_interval=100,
+        lambda_smooth=0.0, aug_sigma=0.1, use_metric=True,
+    ):
+        """Stage 2 with precomputed latent drift target (regression).
+
+        Trains drift_net to match a precomputed b_z_target using
+        metric-weighted MSE: (b_z - b_target)^T g (b_z - b_target).
+
+        Used for encoder-pullback and direct-regression oracle conditions.
+
+        Args:
+            z: Latent points, shape (N, d).
+            b_z_target: Target latent drift, shape (N, d).
+            g: Metric tensor, shape (N, d, d).
+            epochs: Number of training epochs.
+            lr: Learning rate.
+            batch_size: Batch size.
+            print_interval: Print interval.
+            lambda_smooth: Drift smoothness weight.
+            aug_sigma: Augmentation noise std.
+            use_metric: Metric-weighted smoothness.
+        """
+        self.drift_net.train()
+        optimizer = torch.optim.Adam(self.drift_net.parameters(), lr=lr)
+        scheduler = torch.optim.lr_scheduler.ReduceLROnPlateau(
+            optimizer, mode='min', factor=0.5, patience=50,
+        )
+        dataset = TensorDataset(z, b_z_target, g)
+        loader = DataLoader(dataset, batch_size=batch_size, shuffle=True)
+        losses = []
+        best_loss, best_state = float("inf"), None
+
+        for epoch in range(epochs):
+            epoch_loss = 0.0
+            n_batches = 0
+            for z_b, target_b, g_b in loader:
+                loss = latent_drift_regression_loss(
+                    self.drift_net, z_b, target_b, g=g_b,
                 )
 
                 if lambda_smooth > 0.0:
