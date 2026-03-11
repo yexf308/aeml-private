@@ -15,7 +15,10 @@ import torch
 import torch.nn as nn
 from torch.utils.data import DataLoader, TensorDataset
 
-from .sde_losses import tangential_drift_loss, ambient_diffusion_loss
+from .sde_losses import (
+    tangential_drift_loss, ambient_diffusion_loss, latent_diffusion_loss,
+    drift_smoothness_loss, diffusion_smoothness_loss,
+)
 
 
 class SDEPipelineTrainer:
@@ -72,6 +75,7 @@ class SDEPipelineTrainer:
 
     def train_stage2(
         self, x, v, Lambda, epochs, lr=1e-3, batch_size=32, print_interval=100,
+        lambda_smooth=0.0, aug_sigma=0.1, use_metric=True,
     ):
         """
         Stage 2: Train drift_net with tangential drift matching (frozen AE).
@@ -84,6 +88,9 @@ class SDEPipelineTrainer:
             lr: Learning rate.
             batch_size: Batch size.
             print_interval: Print loss every N epochs.
+            lambda_smooth: Weight for drift smoothness regularization (0 = off).
+            aug_sigma: Std of Gaussian noise for augmented latent points.
+            use_metric: If True, metric-weighted smoothness; if False, Euclidean.
 
         Returns:
             List of epoch-averaged losses.
@@ -109,6 +116,14 @@ class SDEPipelineTrainer:
                 loss = tangential_drift_loss(
                     self.autoencoder.decoder, self.drift_net, z, v_b, Lambda_b,
                 )
+
+                if lambda_smooth > 0.0:
+                    z_aug = z + torch.randn_like(z) * aug_sigma
+                    loss = loss + lambda_smooth * drift_smoothness_loss(
+                        self.autoencoder.decoder, self.drift_net, z_aug,
+                        use_metric=use_metric,
+                    )
+
                 optimizer.zero_grad()
                 loss.backward()
                 torch.nn.utils.clip_grad_norm_(self.drift_net.parameters(), max_norm=1.0)
@@ -130,8 +145,13 @@ class SDEPipelineTrainer:
     def train_stage2_precomputed(
         self, z, dphi, d2phi, v, Lambda, epochs, lr=1e-3,
         batch_size=32, print_interval=100,
+        lambda_smooth=0.0, aug_sigma=0.1, use_metric=True,
     ):
-        """Stage 2 with precomputed decoder derivatives (much faster)."""
+        """Stage 2 with precomputed decoder derivatives (much faster).
+
+        Note: the smoothness loss recomputes dphi at augmented points via the
+        decoder, since precomputed derivatives are only valid at training z.
+        """
         self.drift_net.train()
         optimizer = torch.optim.Adam(self.drift_net.parameters(), lr=lr)
         scheduler = torch.optim.lr_scheduler.ReduceLROnPlateau(
@@ -150,6 +170,14 @@ class SDEPipelineTrainer:
                     self.autoencoder.decoder, self.drift_net,
                     z_b, v_b, Lambda_b, dphi=dphi_b, d2phi=d2phi_b,
                 )
+
+                if lambda_smooth > 0.0:
+                    z_aug = z_b + torch.randn_like(z_b) * aug_sigma
+                    loss = loss + lambda_smooth * drift_smoothness_loss(
+                        self.autoencoder.decoder, self.drift_net, z_aug,
+                        use_metric=use_metric,
+                    )
+
                 optimizer.zero_grad()
                 loss.backward()
                 torch.nn.utils.clip_grad_norm_(self.drift_net.parameters(), max_norm=1.0)
@@ -170,6 +198,7 @@ class SDEPipelineTrainer:
 
     def train_stage3(
         self, x, Lambda, epochs, lr=1e-3, batch_size=32, print_interval=100,
+        lambda_smooth_diff=0.0, aug_sigma=0.1, use_latent_loss=False,
     ):
         """
         Stage 3: Train diffusion_net with ambient covariance matching (frozen AE).
@@ -203,10 +232,21 @@ class SDEPipelineTrainer:
                 x_b = x_b.to(self.device)
                 Lambda_b = Lambda_b.to(self.device)
                 z = self.autoencoder.encoder(x_b).detach()
-                loss = ambient_diffusion_loss(
-                    self.diffusion_net, z, Lambda_b,
-                    decoder=self.autoencoder.decoder,
-                )
+                if use_latent_loss:
+                    dphi = self.autoencoder.decoder.jacobian_network(z).detach()
+                    loss = latent_diffusion_loss(
+                        self.diffusion_net, z, Lambda_b, dphi,
+                    )
+                else:
+                    loss = ambient_diffusion_loss(
+                        self.diffusion_net, z, Lambda_b,
+                        decoder=self.autoencoder.decoder,
+                    )
+                if lambda_smooth_diff > 0.0:
+                    z_aug = z + torch.randn_like(z) * aug_sigma
+                    loss = loss + lambda_smooth_diff * diffusion_smoothness_loss(
+                        self.autoencoder.decoder, self.diffusion_net, z_aug,
+                    )
                 optimizer.zero_grad()
                 loss.backward()
                 torch.nn.utils.clip_grad_norm_(self.diffusion_net.parameters(), max_norm=1.0)
@@ -229,6 +269,7 @@ class SDEPipelineTrainer:
         self, z, dphi, Lambda, epochs, lr=1e-3,
         batch_size=32, print_interval=100,
         v=None, d2phi=None, lambda_K=0.0,
+        use_latent_loss=False,
     ):
         """Stage 3 with precomputed decoder Jacobians (much faster).
 
@@ -259,6 +300,11 @@ class SDEPipelineTrainer:
                     loss = ambient_diffusion_loss(
                         self.diffusion_net, z_b, Lambda_b, dphi=dphi_b,
                         v=v_b, d2phi=d2phi_b, lambda_K=lambda_K,
+                    )
+                elif use_latent_loss:
+                    z_b, dphi_b, Lambda_b = batch
+                    loss = latent_diffusion_loss(
+                        self.diffusion_net, z_b, Lambda_b, dphi=dphi_b,
                     )
                 else:
                     z_b, dphi_b, Lambda_b = batch

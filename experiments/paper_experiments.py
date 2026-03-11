@@ -547,7 +547,7 @@ def run_trajectory(surfaces, seeds, epochs, output):
             initial_ambient = sde.chart(initial_local).to(DEVICE)
 
             # Ground truth (shared across configs for this seed)
-            gt_traj, gt_alive = simulate_ground_truth(
+            gt_traj, gt_alive, _ = simulate_ground_truth(
                 initial_local, sde, n_steps, DT, dW, BOUNDARY,
             )
             gt_survival = gt_alive[:, -1].float().mean().item()

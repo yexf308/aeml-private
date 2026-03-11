@@ -13,7 +13,7 @@ import pytest
 
 from src.numeric.autoencoders import AutoEncoder
 from src.numeric.sde_nets import DriftNet, DiffusionNet
-from src.numeric.sde_losses import tangential_drift_loss, ambient_diffusion_loss
+from src.numeric.sde_losses import tangential_drift_loss, ambient_diffusion_loss, drift_smoothness_loss
 from src.numeric.geometry import (
     curvature_drift_explicit_full,
     ambient_quadratic_variation_drift,
@@ -299,6 +299,113 @@ class TestNumericalConventions:
         Sigma_z_obs = 0.5 * (Sigma_z_obs + Sigma_z_obs.mT)
         assert torch.allclose(Sigma_z_obs, Sigma_z_obs.mT, atol=1e-6), \
             "Sigma_z_obs should be symmetric"
+
+
+# ---------------------------------------------------------------------------
+# Stage 2 with smoothing tests
+# ---------------------------------------------------------------------------
+
+class TestStage2WithSmoothing:
+    def test_train_stage2_with_smoothing(self, ae, sample_data):
+        """Stage 2 runs with lambda_smooth > 0."""
+        from src.numeric.sde_training import SDEPipelineTrainer
+        x, v, Lambda = sample_data
+        drift = DriftNet(2, [8, 8])
+        diff = DiffusionNet(2, [8, 8])
+        trainer = SDEPipelineTrainer(ae, drift, diff)
+        losses = trainer.train_stage2(
+            x, v, Lambda, epochs=5, lr=1e-3,
+            lambda_smooth=0.1, aug_sigma=0.1,
+            print_interval=0,
+        )
+        assert len(losses) == 5
+        assert all(l > 0 for l in losses)
+
+    def test_smoothing_reduces_jacobian(self, ae, sample_data):
+        """With smoothing, drift Jacobian norm should be smaller."""
+        from src.numeric.sde_training import SDEPipelineTrainer
+        x, v, Lambda = sample_data
+        torch.manual_seed(0)
+
+        # Train without smoothing
+        drift_no = DriftNet(2, [8, 8])
+        diff_no = DiffusionNet(2, [8, 8])
+        trainer_no = SDEPipelineTrainer(ae, drift_no, diff_no)
+        trainer_no.train_stage2(x, v, Lambda, epochs=50, lr=1e-3, print_interval=0)
+
+        # Train with smoothing
+        torch.manual_seed(0)
+        drift_sm = DriftNet(2, [8, 8])
+        diff_sm = DiffusionNet(2, [8, 8])
+        trainer_sm = SDEPipelineTrainer(ae, drift_sm, diff_sm)
+        trainer_sm.train_stage2(
+            x, v, Lambda, epochs=50, lr=1e-3,
+            lambda_smooth=1.0, aug_sigma=0.1, print_interval=0,
+        )
+
+        z_test = torch.randn(20, 2)
+        ae.eval()
+        for p in ae.parameters():
+            p.requires_grad_(False)
+        smooth_no = drift_smoothness_loss(ae.decoder, drift_no, z_test).item()
+        smooth_sm = drift_smoothness_loss(ae.decoder, drift_sm, z_test).item()
+        assert smooth_sm < smooth_no, \
+            f"Smoothed ({smooth_sm:.4f}) should have lower Jacobian norm than unsmoothed ({smooth_no:.4f})"
+
+
+# ---------------------------------------------------------------------------
+# Drift smoothness loss tests
+# ---------------------------------------------------------------------------
+
+class TestDriftSmoothnessLoss:
+    def test_loss_runs(self, ae, drift_net):
+        """Smoothness loss computes without error."""
+        z_aug = torch.randn(6, 2)
+        ae.eval()
+        for p in ae.parameters():
+            p.requires_grad_(False)
+        loss = drift_smoothness_loss(ae.decoder, drift_net, z_aug)
+        assert loss.dim() == 0
+        assert torch.isfinite(loss)
+        assert loss.item() >= 0
+
+    def test_gradient_flows_to_drift_net_only(self, ae, drift_net):
+        """Gradient should flow to drift_net, not AE."""
+        z_aug = torch.randn(6, 2)
+        ae.eval()
+        for p in ae.parameters():
+            p.requires_grad_(False)
+        loss = drift_smoothness_loss(ae.decoder, drift_net, z_aug)
+        loss.backward()
+        drift_has_grad = any(
+            p.grad is not None and p.grad.abs().sum() > 0
+            for p in drift_net.parameters()
+        )
+        assert drift_has_grad
+        for p in ae.parameters():
+            assert p.grad is None or p.grad.abs().sum() == 0
+
+    def test_smoother_drift_has_lower_loss(self):
+        """A constant drift should have lower smoothness loss than a wiggly one."""
+        ae = AutoEncoder(3, 2, [8], nn.Tanh(), nn.Tanh(), False)
+        ae.eval()
+        for p in ae.parameters():
+            p.requires_grad_(False)
+        z = torch.randn(10, 2)
+
+        # Constant drift (zero Jacobian)
+        const_net = DriftNet(2, [8, 8])
+        with torch.no_grad():
+            for p in const_net.parameters():
+                p.zero_()
+        loss_const = drift_smoothness_loss(ae.decoder, const_net, z)
+
+        # Random drift (nonzero Jacobian)
+        rand_net = DriftNet(2, [8, 8])
+        loss_rand = drift_smoothness_loss(ae.decoder, rand_net, z)
+
+        assert loss_const < loss_rand, \
+            f"Constant drift ({loss_const:.6f}) should be smoother than random ({loss_rand:.6f})"
 
 
 if __name__ == "__main__":

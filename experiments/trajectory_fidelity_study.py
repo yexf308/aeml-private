@@ -197,6 +197,7 @@ def simulate_ground_truth(
         alive: (B, n_steps+1) boolean mask (True = trajectory still active)
     """
     B = initial_local.shape[0]
+    d = initial_local.shape[1]
     device = initial_local.device
     sqrt_dt = math.sqrt(dt)
 
@@ -206,7 +207,9 @@ def simulate_ground_truth(
     x0 = sde.chart(coords)
     D = x0.shape[-1]
     ambient_traj = torch.zeros(B, n_steps + 1, D, device=device)
+    local_traj = torch.zeros(B, n_steps + 1, d, device=device)
     ambient_traj[:, 0] = x0
+    local_traj[:, 0] = coords
 
     for step in range(n_steps):
         drift = sde.local_drift(coords)
@@ -221,8 +224,9 @@ def simulate_ground_truth(
         alive[:, step + 1] = alive[:, step] & ~out
         coords = torch.where(alive[:, step + 1].unsqueeze(-1), coords_new, coords)
         ambient_traj[:, step + 1] = sde.chart(coords)
+        local_traj[:, step + 1] = coords
 
-    return ambient_traj, alive
+    return ambient_traj, alive, local_traj
 
 
 def simulate_learned_latent(
@@ -931,7 +935,7 @@ def run_trajectory_fidelity_study(
 
     # Simulate ground truth (shared across all penalties)
     print("\nSimulating ground-truth trajectories...")
-    gt_traj, gt_alive = simulate_ground_truth(
+    gt_traj, gt_alive, _ = simulate_ground_truth(
         initial_local, sde, n_steps, dt, dW, boundary,
     )
     gt_survival = gt_alive[:, -1].float().mean().item()
@@ -1125,7 +1129,7 @@ def run_trajectory_fidelity_sweep(
         dW = torch.randn(actual_n, n_steps, 2, device=device)
 
         # Ground truth
-        gt_traj, gt_alive = simulate_ground_truth(
+        gt_traj, gt_alive, _ = simulate_ground_truth(
             initial_local, sde, n_steps, dt, dW, boundary,
         )
         gt_survival = gt_alive[:, -1].float().mean().item()

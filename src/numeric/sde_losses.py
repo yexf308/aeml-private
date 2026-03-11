@@ -75,6 +75,168 @@ def tangential_drift_loss(
     return (tan_res ** 2).sum(-1).mean() / D
 
 
+def drift_smoothness_loss(
+    decoder,
+    drift_net,
+    z_aug: Tensor,
+    use_metric: bool = True,
+) -> Tensor:
+    """
+    Latent Jacobian penalty for drift_net smoothness.
+
+    When use_metric=True (default):
+        L = E_z[ tr(J_bz^T g J_bz g^{-1}) / D ]
+    When use_metric=False (Euclidean ablation):
+        L = E_z[ ||J_bz||_F^2 / D ]
+
+    where J_bz = d(b_z)/dz (d x d), g = Dphi^T Dphi is the metric from
+    the frozen decoder, and D is the ambient dimension.
+
+    Normalised by D (not d) so that lambda_smooth has consistent effective
+    weight relative to tangential_drift_loss (which also divides by D).
+
+    Args:
+        decoder: Frozen decoder (requires_grad=False on params).
+        drift_net: DriftNet being trained.
+        z_aug: Augmented latent points, shape (B, d).
+        use_metric: If True, use metric-weighted penalty; if False, plain Frobenius.
+
+    Returns:
+        Scalar loss (non-negative).
+    """
+    import torch
+
+    # Exact Jacobian of drift_net: J_bz[i,j] = d(b_z)_i / dz_j
+    J_bz = torch.func.vmap(torch.func.jacrev(drift_net))(z_aug)  # (B, d, d)
+
+    if use_metric:
+        # Metric tensor from frozen decoder
+        with torch.no_grad():
+            dphi = decoder.jacobian_network(z_aug)          # (B, D, d)
+            g = dphi.mT @ dphi                              # (B, d, d)
+            ginv = regularized_metric_inverse(g)             # (B, d, d)
+
+        D = dphi.shape[1]  # ambient dimension
+
+        # tr(J_bz^T g J_bz g^{-1}) / D
+        M = J_bz.mT @ g @ J_bz @ ginv                       # (B, d, d)
+        return torch.diagonal(M, dim1=-2, dim2=-1).sum(-1).mean() / D
+    else:
+        # Plain Euclidean: ||J_bz||_F^2 / D
+        # Need D from decoder; fall back to d if decoder unavailable
+        with torch.no_grad():
+            dphi = decoder.jacobian_network(z_aug)
+        D = dphi.shape[1]
+        return (J_bz ** 2).sum((-1, -2)).mean() / D
+
+
+def diffusion_smoothness_loss(
+    decoder,
+    diffusion_net,
+    z_aug: Tensor,
+) -> Tensor:
+    """
+    Jacobian penalty on the latent covariance Sigma(z) = sigma sigma^T.
+
+    Smooths the *identifiable* covariance tensor (not the raw Cholesky factor)
+    to avoid gauge dependence.  Uses vech (unique entries of the symmetric 2x2)
+    and normalises by D^2 to match ambient_diffusion_loss scaling.
+
+        L = E_z[ ||J_{vech(Sigma)}||_F^2 ] / D^2
+
+    Args:
+        decoder: Frozen decoder (for D extraction).
+        diffusion_net: DiffusionNet being trained.
+        z_aug: Augmented latent points, shape (B, d).
+
+    Returns:
+        Scalar loss (non-negative).
+    """
+    import torch
+
+    # Use functional_call to avoid in-place index_put_ in DiffusionNet.forward
+    # which is incompatible with vmap.  Instead, directly call the inner MLP
+    # and reconstruct Σ = σ σ^T functionally.
+    d = z_aug.shape[-1]
+    tril_rows = torch.tril_indices(d, d, device=z_aug.device)[0]
+    tril_cols = torch.tril_indices(d, d, device=z_aug.device)[1]
+
+    params = dict(diffusion_net.named_parameters())
+    buffers = dict(diffusion_net.named_buffers())
+
+    def _vech_cov(z_single):
+        """z -> vech(Sigma) for a single point, purely functional."""
+        raw = torch.func.functional_call(
+            diffusion_net.net, {k.removeprefix("net."): v for k, v in {**params, **buffers}.items() if k.startswith("net.")},
+            (z_single.unsqueeze(0),),
+        ).squeeze(0)  # (n_tril,)
+        # Build lower-triangular sigma without in-place ops
+        sigma = torch.zeros(d, d, device=z_single.device, dtype=z_single.dtype)
+        sigma = sigma.index_put((tril_rows, tril_cols), raw)  # out-of-place
+        Sigma = sigma @ sigma.T
+        # vech
+        return Sigma[tril_rows, tril_cols]
+
+    # Jacobian of vech(Sigma) w.r.t. z: shape (B, n_vech, d)
+    J = torch.func.vmap(torch.func.jacrev(_vech_cov))(z_aug)
+
+    with torch.no_grad():
+        dphi = decoder.jacobian_network(z_aug)
+    D = dphi.shape[1]
+
+    return (J ** 2).sum((-1, -2)).mean() / (D * D)
+
+
+def latent_diffusion_loss(
+    diffusion_net,
+    z: Tensor,
+    Lambda: Tensor,
+    dphi: Tensor,
+) -> Tensor:
+    """
+    Latent-coordinate covariance matching loss (Stage 3 alternative).
+
+    Instead of pushing Sigma_z up to ambient and matching D×D matrices,
+    pull the observed Lambda down to latent and match d×d matrices:
+
+        Sigma_z_obs = g^{-1} Dphi^T P Lambda P Dphi g^{-1}
+        L = ||sigma sigma^T - Sigma_z_obs||^2_F
+
+    This is rank-aware: the loss operates on d×d (e.g. 2×2) regardless of D,
+    eliminating the normal-direction chart error that inflates the ambient loss
+    at high D.
+
+    Args:
+        diffusion_net: DiffusionNet to train.
+        z: Detached latent points, shape (B, d).
+        Lambda: Observed ambient covariance, shape (B, D, D).
+        dphi: Precomputed Jacobian, shape (B, D, d).
+
+    Returns:
+        Scalar loss value.
+    """
+    import torch
+
+    g = dphi.mT @ dphi                              # (B, d, d)
+    ginv = regularized_metric_inverse(g)             # (B, d, d)
+    pinv = ginv @ dphi.mT                            # (B, d, D)
+
+    P_hat = dphi @ pinv                              # (B, D, D)
+    P_hat = 0.5 * (P_hat + P_hat.mT)
+
+    Lambda_tan = P_hat @ Lambda @ P_hat
+    Lambda_tan = 0.5 * (Lambda_tan + Lambda_tan.mT)
+
+    Sigma_z_obs = pinv @ Lambda_tan @ pinv.mT        # (B, d, d)
+    Sigma_z_obs = 0.5 * (Sigma_z_obs + Sigma_z_obs.mT)
+
+    sigma = diffusion_net(z)                          # (B, d, d)
+    Sigma_z = sigma @ sigma.mT
+    Sigma_z = 0.5 * (Sigma_z + Sigma_z.mT)
+
+    return ((Sigma_z - Sigma_z_obs) ** 2).sum((-1, -2)).mean()
+
+
 def ambient_diffusion_loss(
     diffusion_net,
     z: Tensor,

@@ -48,8 +48,9 @@ N_TRAIN = 20
 BATCH_SIZE = 32
 LR_AE = 0.005
 LR_SDE = 1e-3
-BOUNDARY = 3.0
-N_TRAJ = 200
+BOUNDARY = 1.5
+STOP_BOUND = 1.0  # stopped-process stays within training domain
+N_TRAJ = 500
 T_MAX = 1.0
 DT = 0.01
 N_STEPS = int(T_MAX / DT)
@@ -118,7 +119,7 @@ def evaluate_pipeline(pipeline, autoencoder, sde, seed):
     torch.manual_seed(seed + 1234)
     dW = torch.randn(N_TRAJ, N_STEPS, 2, device=DEVICE)
 
-    gt_traj, gt_alive = simulate_ground_truth(init_local, sde, N_STEPS, DT, dW, BOUNDARY)
+    gt_traj, gt_alive, gt_local = simulate_ground_truth(init_local, sde, N_STEPS, DT, dW, BOUNDARY)
 
     with torch.no_grad():
         z0 = autoencoder.encoder(init_ambient)
@@ -127,6 +128,13 @@ def evaluate_pipeline(pipeline, autoencoder, sde, seed):
     # Learned trajectories have no boundary — mark all alive
     B = learned_traj.shape[0]
     learned_alive = torch.ones(B, N_STEPS + 1, dtype=torch.bool, device=DEVICE)
+
+    # Stopped-process mask: GT trajectory stays within interior region
+    # This removes extrapolation confound and matches the local theorem
+    stopped_alive = (gt_local.abs() <= STOP_BOUND).all(dim=-1)  # (B, n_steps+1)
+    # Once a trajectory exits, it stays dead
+    for step in range(1, N_STEPS + 1):
+        stopped_alive[:, step] = stopped_alive[:, step] & stopped_alive[:, step - 1]
 
     results = {}
 
@@ -138,25 +146,46 @@ def evaluate_pipeline(pipeline, autoencoder, sde, seed):
         results[f"MTE@{t_val}"] = mte
         print(f"  MTE@{t_val}: {mte:.4f}")
 
-    # Distributional: W2 and MMD at T=1.0
+    # Distributional: W2 at T=1.0 (standard, full boundary)
     step_final = int(round(1.0 / DT))
-    w2 = compute_w2(
+    both_alive_final = gt_alive[:, step_final] & learned_alive[:, step_final]
+    w2_full = compute_w2(
         learned_traj[:, step_final], gt_traj[:, step_final],
-        learned_alive[:, step_final], gt_alive[:, step_final],
+        both_alive_final, both_alive_final,
     )
+    results["W2@1.0"] = w2_full
+    print(f"  W2@1.0:  {w2_full:.4f}")
+
+    # Stopped-process W2: only trajectories staying in [-STOP_BOUND, STOP_BOUND]²
+    for t_val in [0.1, 0.2, 0.5, 1.0]:
+        step = int(round(t_val / DT))
+        stopped_mask = stopped_alive[:, step] & learned_alive[:, step]
+        n_stopped = stopped_mask.sum().item()
+        if n_stopped >= 10:
+            w2_s = compute_w2(
+                learned_traj[:, step], gt_traj[:, step],
+                stopped_mask, stopped_mask,
+            )
+        else:
+            w2_s = float('nan')
+        results[f"sW2@{t_val}"] = w2_s
+        print(f"  sW2@{t_val}: {w2_s:.4f} ({n_stopped}/{B} in region)")
+
+    # MMD at T=1.0 only
     mmd = compute_mmd(
         learned_traj[:, step_final], gt_traj[:, step_final],
         learned_alive[:, step_final], gt_alive[:, step_final],
     )
-    results["W2@1.0"] = w2
     results["MMD@1.0"] = mmd
-    print(f"  W2@1.0:  {w2:.4f}")
     print(f"  MMD@1.0: {mmd:.4f}")
 
     # Survival: fraction of GT trajectories still in bounds at T=1.0
     survival = gt_alive[:, step_final].float().mean().item()
     results["survival@1.0"] = survival
     print(f"  Survival@1.0: {survival:.1%}")
+    stopped_survival = stopped_alive[:, step_final].float().mean().item()
+    results["stopped@1.0"] = stopped_survival
+    print(f"  Stopped@1.0:  {stopped_survival:.1%}")
 
     return results
 

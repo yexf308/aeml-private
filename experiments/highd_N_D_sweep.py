@@ -2,30 +2,32 @@
 N×D Sweep: Does training set size interact with K benefit at high D?
 
 K regularization helps at N=20 (sparse) but not N=2000 (abundant) for D=3.
-The stabilized high-D study shows K helps strongly at D=201 with N=20.
 Question: does the "crossover N" where K stops helping shift with D?
 Hypothesis: higher D extends the sparse regime to larger N.
 
 Design:
-  Shared-checkpoint fork (same as highd_K_study.py):
+  Shared-checkpoint fork:
   Phase 1 (T+F warmup) trained ONCE per seed, then forked into conditions.
+  Phase 2 AE grouped: baseline (T+F) and K (T+F+K) each trained once.
+  Stage 2 drift: K AE forked into {no smooth, smooth} for K and K+S.
 
   Parameters:
-    - N ∈ {20, 50, 100, 200}
-    - D ∈ {11, 201} (low-D vs high-D extremes)
+    - N in {20, 50, 100, 200}
+    - D in {11, 201}
     - Surfaces: paraboloid, hyperbolic_paraboloid
-    - Conditions: baseline (Phase 2 with T+F), K(Phat) (Phase 2 with T+F+K)
-    - 5 seeds → 4 × 2 × 2 × 2 × 5 = 160 runs
+    - Conditions: baseline (T+F), K (T+F+K sqrt-scaled), K+S (T+F+K + smooth)
+    - 10 seeds
 
-  Hidden dims: D-dependent (<=11:[64,64], <=51:[128,128], else:[256,256]).
+  K weight scaling: lambda_K = 0.1 * sqrt(D / D_ref), D_ref = 11.
+  Jacobian smoothing: ||J_{drift_net}||_F^2 / d penalty in Stage 2.
 
 Usage:
     # Smoke test
     python -m experiments.highd_N_D_sweep --n-seeds 1 --epochs 50 --sde-epochs 50 --d-values 11 --n-values 20 50
 
     # Full GPU run
-    srun --partition=dgx --gres=gpu:1 --time=02:00:00 \\
-      python3 -u -m experiments.highd_N_D_sweep --n-seeds 5
+    srun --partition=dgx --gres=gpu:1 --time=04:00:00 \
+      python3 -u -m experiments.highd_N_D_sweep --n-seeds 10
 """
 
 import argparse
@@ -75,24 +77,40 @@ def hidden_dims_for_D(D: int) -> list:
 
 # Phase 1: T+F warmup (no curvature)
 WARMUP_LW = LossWeights(tangent_bundle=1.0, diffeo=1.0)
-# Phase 2 options: T+F continuation (baseline) vs T+F+K finetune
+# Phase 2 baseline: T+F continuation
 BASELINE_LW = LossWeights(tangent_bundle=1.0, diffeo=1.0, curvature=0.0)
-BASE_K_WEIGHT = 0.1  # curvature weight at reference dimension D_REF
-D_REF = 11  # reference dimension for curvature weight scaling
 
-def make_conditions(D, scale_k_with_d=False):
-    """Create (label, loss_weights) pairs, optionally scaling K weight with D."""
-    k_weight = BASE_K_WEIGHT * (D / D_REF) if scale_k_with_d else BASE_K_WEIGHT
+# K weight scaling: sqrt(D/D_ref) to compensate 1/D normalisation of L_K
+BASE_K_WEIGHT = 0.1
+D_REF = 11
+
+# Drift smoothness regularisation
+LAMBDA_SMOOTH = 0.5
+AUG_SIGMA = 0.1
+
+# Exported for plot_nd_sweep.py compatibility
+FULL_LW = LossWeights(tangent_bundle=1.0, diffeo=1.0, curvature=BASE_K_WEIGHT)
+
+
+def make_conditions(D, lambda_smooth=LAMBDA_SMOOTH):
+    """Create conditions: (label, phase2_lw, lambda_smooth_stage2).
+
+    K weight uses sqrt(D/D_ref) scaling.  Group-lasso theory
+    (Yuan & Lin 2006) prescribes sqrt(group_size) scaling for L2-type
+    penalties, keeping per-sample penalty magnitude constant across D.
+    """
+    k_weight = BASE_K_WEIGHT * (D / D_REF) ** 0.5
     full_lw = LossWeights(tangent_bundle=1.0, diffeo=1.0, curvature=k_weight)
     return [
-        ("baseline", BASELINE_LW),
-        ("K(Phat)", full_lw),
+        ("baseline", BASELINE_LW, 0.0),
+        ("K",        full_lw,     0.0),
+        ("K+S",      full_lw,     lambda_smooth),
     ]
 
-# Default (backward-compatible)
-CONDITIONS = make_conditions(11, scale_k_with_d=False)
 
-METRICS = ["MTE@0.1", "MTE@0.5", "MTE@1.0", "W2@1.0", "MMD@1.0", "E_mu", "E_Sigma"]
+COND_LABELS = ["baseline", "K", "K+S"]
+METRICS = ["MTE@0.1", "MTE@0.5", "MTE@1.0", "W2@1.0", "sW2@0.5", "sW2@1.0",
+           "MMD@1.0", "E_mu", "E_Sigma"]
 
 
 # ── Local dynamics (same as highd_K_study.py) ─────────────────────────────
@@ -124,62 +142,47 @@ def compute_coefficient_errors(ae, sde, surface, eval_uv, device):
     E_Sigma = ||P·Λ·P - Λ||²_F         (tangent covariance error)
     """
     ae.eval()
-    # Note: sde.ambient_drift uses surface.jacobian which needs autograd,
-    # so we cannot use torch.no_grad() for the true-coefficient computation.
-    b = sde.ambient_drift(eval_uv.detach())        # (B, D)
-    Lambda = sde.ambient_covariance(eval_uv.detach())  # (B, D, D)
+    b = sde.ambient_drift(eval_uv.detach())
+    Lambda = sde.ambient_covariance(eval_uv.detach())
     b, Lambda = b.detach(), Lambda.detach()
 
     with torch.no_grad():
-        x_eval = sde.chart(eval_uv)  # (B, D)
-        z = ae.encoder(x_eval)       # (B, 2)
+        x_eval = sde.chart(eval_uv)
+        z = ae.encoder(x_eval)
 
-    # Decoder derivatives (need grad for Jacobian/Hessian)
-    dphi = torch.func.vmap(torch.func.jacrev(ae.decoder))(z)  # (B, D, 2)
+    dphi = torch.func.vmap(torch.func.jacrev(ae.decoder))(z)
 
-    # Hessian via vmap(jacrev(jacrev))
     def decoder_hessian(z_single):
         return torch.func.jacrev(torch.func.jacrev(ae.decoder))(z_single)
 
-    d2phi = torch.func.vmap(decoder_hessian)(z)  # (B, D, 2, 2)
+    d2phi = torch.func.vmap(decoder_hessian)(z)
 
     dphi = dphi.detach()
     d2phi = d2phi.detach()
     z = z.detach()
 
     with torch.no_grad():
-        dphi_T = dphi.transpose(-1, -2)  # (B, 2, D)
+        dphi_T = dphi.transpose(-1, -2)
+        g = torch.bmm(dphi_T, dphi)
+        g_inv = regularized_metric_inverse(g)
+        P = torch.bmm(torch.bmm(dphi, g_inv), dphi_T)
 
-        # Metric and inverse
-        g = torch.bmm(dphi_T, dphi)                    # (B, 2, 2)
-        g_inv = regularized_metric_inverse(g)           # (B, 2, 2)
-
-        # Learned tangent projector
-        P = torch.bmm(torch.bmm(dphi, g_inv), dphi_T)  # (B, D, D)
-
-        # Covariance error: ||P Λ P - Λ||²_F
         P_Lambda_P = torch.bmm(torch.bmm(P, Lambda), P)
-        cov_err = ((P_Lambda_P - Lambda) ** 2).sum(dim=(-1, -2))  # (B,)
+        cov_err = ((P_Lambda_P - Lambda) ** 2).sum(dim=(-1, -2))
 
-        # Local covariance: Σ_z = g⁻¹ Jᵀ Λ J g⁻¹
         Sigma_learned = torch.bmm(
             g_inv, torch.bmm(dphi_T, torch.bmm(Lambda, torch.bmm(dphi, g_inv)))
-        )  # (B, 2, 2)
+        )
+        q = ambient_quadratic_variation_drift(Sigma_learned, d2phi)
 
-        # Ito correction
-        q = ambient_quadratic_variation_drift(Sigma_learned, d2phi)  # (B, D)
-
-        # Learned local drift: μ_z = g⁻¹ Jᵀ (b - ½q)
         residual = b - 0.5 * q
         mu_learned = torch.bmm(
             g_inv, torch.bmm(dphi_T, residual.unsqueeze(-1))
-        ).squeeze(-1)  # (B, 2)
+        ).squeeze(-1)
 
-        # Roundtrip ambient drift: Dφ·μ_z + ½q
         b_recon = torch.bmm(dphi, mu_learned.unsqueeze(-1)).squeeze(-1) + 0.5 * q
-        drift_err = ((b_recon - b) ** 2).sum(dim=-1)  # (B,)
+        drift_err = ((b_recon - b) ** 2).sum(dim=-1)
 
-        # Filter out NaN/Inf
         valid = torch.isfinite(drift_err) & torch.isfinite(cov_err)
         if valid.sum() < 2:
             return float('nan'), float('nan')
@@ -187,11 +190,93 @@ def compute_coefficient_errors(ae, sde, surface, eval_uv, device):
         return drift_err[valid].median().item(), cov_err[valid].median().item()
 
 
+# ── Phase 2 AE training ───────────────────────────────────────────────────
+
+def _train_phase2(trainer, loader, mc, phase2_lw, phase2_epochs, phase1_converged):
+    """Run Phase 2 fine-tuning with ramped loss weights.
+
+    Returns final epoch loss.
+    """
+    if phase2_lw is None or not phase1_converged or phase2_epochs <= 0:
+        if not phase1_converged:
+            print(f"        Skipping Phase 2 (Phase 1 unconverged)")
+        return None
+
+    warmup_frac = 0.2
+    warmup_epochs = max(1, int(phase2_epochs * warmup_frac))
+    ep_losses = None
+    for epoch in range(phase2_epochs):
+        if epoch < warmup_epochs:
+            ramp = (epoch + 1) / warmup_epochs
+            lw_epoch = LossWeights(
+                tangent_bundle=phase2_lw.tangent_bundle,
+                diffeo=phase2_lw.diffeo,
+                curvature=phase2_lw.curvature * ramp,
+            )
+        else:
+            lw_epoch = phase2_lw
+        ep_losses = trainer.train_epoch(loader, {mc.name: lw_epoch})
+        if (epoch + 1) % max(1, phase2_epochs // 5) == 0:
+            print(f"        Phase2 Epoch {epoch+1}/{phase2_epochs}: "
+                  f"loss={ep_losses['ae']:.6f}")
+    return ep_losses["ae"] if ep_losses else None
+
+
+def _run_sde_stages(ae, x, v, Lambda, sde, surface, seed, n_train,
+                    epochs_sde, lambda_smooth):
+    """Train Stage 2 + 3, evaluate full pipeline.
+
+    Returns metrics dict.
+    """
+    batch_size = min(n_train, BATCH_SIZE)
+    d = 2
+
+    # Precompute decoder derivatives
+    dummy = SDEPipelineTrainer(
+        ae, DriftNet(d).to(DEVICE), DiffusionNet(d).to(DEVICE), device=DEVICE,
+    )
+    z_pre, dphi_pre, d2phi_pre = dummy.precompute_decoder_derivatives(x)
+
+    # Stage 2: Drift
+    torch.manual_seed(seed + 100)
+    drift_net = DriftNet(d).to(DEVICE)
+    dp = SDEPipelineTrainer(ae, drift_net, DiffusionNet(d).to(DEVICE), device=DEVICE)
+    drift_losses = dp.train_stage2_precomputed(
+        z_pre, dphi_pre, d2phi_pre, v, Lambda,
+        epochs=epochs_sde, lr=LR_SDE, batch_size=batch_size,
+        print_interval=max(1, epochs_sde // 5),
+        lambda_smooth=lambda_smooth, aug_sigma=AUG_SIGMA,
+    )
+    drift_net.eval()
+
+    # Stage 3: Diffusion
+    torch.manual_seed(seed + 200)
+    diff_net = DiffusionNet(d).to(DEVICE)
+    pipeline = SDEPipelineTrainer(ae, drift_net, diff_net, device=DEVICE)
+    diff_losses = pipeline.train_stage3_precomputed(
+        z_pre, dphi_pre, Lambda,
+        epochs=epochs_sde, lr=LR_SDE, batch_size=batch_size,
+        print_interval=max(1, epochs_sde // 5),
+    )
+
+    # Evaluate
+    eval_results = evaluate_pipeline(pipeline, ae, sde, seed)
+    return {
+        "drift_loss": drift_losses[-1],
+        "diff_loss": diff_losses[-1],
+        **eval_results,
+    }
+
+
 # ── Main experiment ─────────────────────────────────────────────────────────
 
-def run_single_fork(surface_name, D, seed, n_train=20, epochs_ae=500, epochs_sde=300,
-                    scale_k_with_d=False):
+def run_single_fork(surface_name, D, seed, n_train=20, epochs_ae=500,
+                    epochs_sde=300, lambda_smooth=LAMBDA_SMOOTH):
     """Run shared-checkpoint fork for one (surface, D, seed, n_train).
+
+    Phase 2 AEs are grouped: baseline (T+F) trained once, K (T+F+K) trained
+    once and shared between "K" and "K+S" conditions (which differ only in
+    Stage 2 smoothness).
 
     Returns dict mapping condition_label -> metrics dict.
     """
@@ -202,7 +287,6 @@ def run_single_fork(surface_name, D, seed, n_train=20, epochs_ae=500, epochs_sde
     surface = FourierAugmentedSurface(surface_name, D)
     batch_size = min(n_train, BATCH_SIZE)
 
-    # Sample data numerically (no SymPy)
     train_data = sample_from_highd_manifold(
         surface, local_drift_fn, local_diffusion_fn,
         [(-TRAIN_BOUND, TRAIN_BOUND), (-TRAIN_BOUND, TRAIN_BOUND)],
@@ -235,7 +319,7 @@ def run_single_fork(surface_name, D, seed, n_train=20, epochs_ae=500, epochs_sde
         x_hat_check = trainer.models["ae"].decoder(z_check)
         recon_per_dim = ((x_hat_check - x) ** 2).sum(-1).mean().item() / D
 
-    RECON_THRESHOLD = 0.1  # per-dim MSE
+    RECON_THRESHOLD = 0.1
     phase1_converged = recon_per_dim < RECON_THRESHOLD
     if not phase1_converged:
         print(f"    WARNING: Phase 1 recon_per_dim={recon_per_dim:.4f} > {RECON_THRESHOLD}")
@@ -245,16 +329,29 @@ def run_single_fork(surface_name, D, seed, n_train=20, epochs_ae=500, epochs_sde
     phase1_optim_state = copy.deepcopy(trainer.optimizers["ae"].state_dict())
     phase1_sched_state = copy.deepcopy(trainer.schedulers["ae"].state_dict())
 
-    # Lambdify SDE for evaluation (numeric, no SymPy)
+    # Lambdify SDE for evaluation
     sde = create_highd_lambdified_sde(surface, local_drift_fn, local_diffusion_fn)
 
-    # ── Fork into conditions ──
+    # ── Phase 2 groups ──
+    # Group conditions by Phase 2 loss weights to avoid duplicate AE training.
+    # baseline: Phase 2 with T+F (BASELINE_LW), SDE without smooth
+    # K:        Phase 2 with T+F+K (full_lw),    SDE without smooth
+    # K+S:      Phase 2 with T+F+K (full_lw),    SDE with smooth
+    conditions = make_conditions(D, lambda_smooth)
     phase2_epochs = epochs_ae - phase1_epochs
-    results = {}
-    conditions = make_conditions(D, scale_k_with_d)
 
-    for cond_label, phase2_lw in conditions:
-        print(f"      Condition: {cond_label} (K_weight={phase2_lw.curvature:.4f})")
+    # Build grouped structure: {phase2_lw_id: (phase2_lw, [(label, lam_s)])}
+    groups = {}
+    for label, phase2_lw, lam_s in conditions:
+        key = id(phase2_lw)
+        if key not in groups:
+            groups[key] = (phase2_lw, [])
+        groups[key][1].append((label, lam_s))
+
+    results = {}
+
+    for phase2_lw, sde_conditions in groups.values():
+        print(f"      Phase 2 AE: K_weight={phase2_lw.curvature:.4f}")
 
         # Create fresh trainer, load Phase 1 checkpoint
         t2 = MultiModelTrainer(TrainingConfig(
@@ -264,80 +361,44 @@ def run_single_fork(surface_name, D, seed, n_train=20, epochs_ae=500, epochs_sde
         ))
         mc2 = make_model_config("ae", WARMUP_LW, extrinsic_dim=D, hidden_dims=hdims)
         t2.add_model(mc2)
-        t2._has_local_cov = True  # Match Phase 1 loader layout
+        t2._has_local_cov = True
         t2.models["ae"].load_state_dict(phase1_state)
         t2.optimizers["ae"].load_state_dict(phase1_optim_state)
         t2.schedulers["ae"].load_state_dict(phase1_sched_state)
 
-        if phase2_lw is not None and phase1_converged and phase2_epochs > 0:
-            warmup_frac = 0.2
-            warmup_epochs = max(1, int(phase2_epochs * warmup_frac))
-            for epoch in range(phase2_epochs):
-                if epoch < warmup_epochs:
-                    ramp = (epoch + 1) / warmup_epochs
-                    lw_epoch = LossWeights(
-                        tangent_bundle=phase2_lw.tangent_bundle,
-                        diffeo=phase2_lw.diffeo,
-                        curvature=phase2_lw.curvature * ramp,
-                    )
-                else:
-                    lw_epoch = phase2_lw
-                ep_losses = t2.train_epoch(loader, {mc2.name: lw_epoch})
-                if (epoch + 1) % max(1, phase2_epochs // 5) == 0:
-                    print(f"        Phase2 Epoch {epoch+1}/{phase2_epochs}: "
-                          f"loss={ep_losses['ae']:.6f}")
-        elif phase2_lw is not None:
-            print(f"        Skipping Phase 2 (Phase 1 unconverged)")
+        p2_loss = _train_phase2(t2, loader, mc2, phase2_lw, phase2_epochs,
+                                phase1_converged)
 
         ae = t2.models["ae"]
         ae.eval()
+        ae_loss = p2_loss if p2_loss is not None else losses["ae"]
 
-        # Compute E_mu and E_Sigma (chart-quality coefficient errors)
+        # Chart-quality coefficient errors (shared across SDE conditions)
         torch.manual_seed(seed + 5000)
         eval_uv = (torch.rand(N_EVAL, 2, device=DEVICE) * 2 - 1) * TRAIN_BOUND
         e_mu, e_sigma = compute_coefficient_errors(ae, sde, surface, eval_uv, DEVICE)
         print(f"        E_mu={e_mu:.4f}  E_Sigma={e_sigma:.4f}")
 
-        # Precompute decoder derivatives for SDE stages
-        d = 2
-        dummy = SDEPipelineTrainer(
-            ae, DriftNet(d).to(DEVICE), DiffusionNet(d).to(DEVICE), device=DEVICE,
-        )
-        z_pre, dphi_pre, d2phi_pre = dummy.precompute_decoder_derivatives(x)
+        # Run SDE stages for each condition in this group
+        for cond_label, lam_s in sde_conditions:
+            smooth_tag = f" (smooth={lam_s})" if lam_s > 0 else ""
+            print(f"      → {cond_label}{smooth_tag}")
 
-        # Stage 2: Drift
-        torch.manual_seed(seed + 100)
-        drift_net = DriftNet(d).to(DEVICE)
-        dp = SDEPipelineTrainer(ae, drift_net, DiffusionNet(d).to(DEVICE), device=DEVICE)
-        drift_losses = dp.train_stage2_precomputed(
-            z_pre, dphi_pre, d2phi_pre, v, Lambda,
-            epochs=epochs_sde, lr=LR_SDE, batch_size=batch_size,
-            print_interval=max(1, epochs_sde // 5),
-        )
-        drift_net.eval()
-
-        # Stage 3: Diffusion
-        torch.manual_seed(seed + 200)
-        diff_net = DiffusionNet(d).to(DEVICE)
-        pipeline = SDEPipelineTrainer(ae, drift_net, diff_net, device=DEVICE)
-        diff_losses = pipeline.train_stage3_precomputed(
-            z_pre, dphi_pre, Lambda,
-            epochs=epochs_sde, lr=LR_SDE, batch_size=batch_size,
-            print_interval=max(1, epochs_sde // 5),
-        )
-
-        # Evaluate
-        eval_results = evaluate_pipeline(pipeline, ae, sde, seed)
-        results[cond_label] = {
-            "ae_loss": ep_losses["ae"] if (phase2_lw is not None and phase1_converged and phase2_epochs > 0) else losses["ae"],
-            "drift_loss": drift_losses[-1],
-            "diff_loss": diff_losses[-1],
-            "recon_per_dim": recon_per_dim,
-            "phase1_converged": phase1_converged,
-            "E_mu": e_mu,
-            "E_Sigma": e_sigma,
-            **eval_results,
-        }
+            sde_results = _run_sde_stages(
+                ae, x, v, Lambda, sde, surface, seed, n_train,
+                epochs_sde, lam_s,
+            )
+            results[cond_label] = {
+                "ae_loss": ae_loss,
+                "drift_loss": sde_results["drift_loss"],
+                "diff_loss": sde_results["diff_loss"],
+                "recon_per_dim": recon_per_dim,
+                "phase1_converged": phase1_converged,
+                "E_mu": e_mu,
+                "E_Sigma": e_sigma,
+                **{k: v for k, v in sde_results.items()
+                   if k not in ("drift_loss", "diff_loss")},
+            }
 
     return results
 
@@ -359,7 +420,7 @@ def paired_ttest(vals_a, vals_b):
 
 def print_summary(df):
     """Print grouped summary tables with paired t-tests, grouped by (D, N)."""
-    cond_labels = [c[0] for c in CONDITIONS]
+    cond_labels = sorted(df["condition"].unique())
 
     print(f"\n\n{'='*150}")
     print("N×D SWEEP: TRAINING SET SIZE × AMBIENT DIMENSION INTERACTION")
@@ -378,7 +439,8 @@ def print_summary(df):
             # Mean ± std table
             print(f"\n  {'surface':>25s}  {'condition':>10s}  {'n':>3s}  ", end="")
             for m in METRICS:
-                print(f"{'mean':>8s} {'+-std':>8s}  ", end="")
+                if m in df_dn.columns:
+                    print(f"{'mean':>8s} {'+-std':>8s}  ", end="")
             print()
             print("  " + "-" * 140)
 
@@ -391,44 +453,67 @@ def print_summary(df):
                     n = len(subset)
                     print(f"  {surface_name:>25s}  {cond_label:>10s}  {n:>3d}  ", end="")
                     for m in METRICS:
-                        vals = subset[m].values
-                        print(f"{vals.mean():>8.4f} {vals.std():>8.4f}  ", end="")
+                        if m in subset.columns:
+                            vals = subset[m].values
+                            print(f"{np.nanmean(vals):>8.4f} {np.nanstd(vals):>8.4f}  ", end="")
                     print()
 
-            # Paired comparisons: K(Phat) vs baseline
-            print(f"\n  K(Phat) vs baseline:")
-            print(f"    {'surface':>25s}  ", end="")
-            for m in METRICS:
-                print(f"{'delta':>8s} {'p-val':>8s}  ", end="")
-            print("  win-rate  verdict")
-            print("    " + "-" * 138)
-
-            for surface_name in SURFACES:
-                a = df_dn[
-                    (df_dn["surface"] == surface_name) & (df_dn["condition"] == "K(Phat)")
-                ].sort_values("seed")
-                b = df_dn[
-                    (df_dn["surface"] == surface_name) & (df_dn["condition"] == "baseline")
-                ].sort_values("seed")
-
-                print(f"    {surface_name:>25s}  ", end="")
-                verdicts = []
+            # Paired comparisons
+            comparisons = [
+                ("K vs baseline", "K", "baseline"),
+                ("K+S vs baseline", "K+S", "baseline"),
+                ("K+S vs K", "K+S", "K"),
+            ]
+            for comp_name, cond_a, cond_b in comparisons:
+                print(f"\n  {comp_name}:")
+                print(f"    {'surface':>25s}  ", end="")
                 for m in METRICS:
-                    mean_d, p_val = paired_ttest(a[m].values, b[m].values)
-                    sig = "**" if p_val < 0.01 else "*" if p_val < 0.05 else "+" if p_val < 0.1 else ""
-                    print(f"{mean_d:>+8.4f} {p_val:>7.4f}{sig:<1s} ", end="")
-                    if p_val < 0.05:
-                        verdicts.append(f"{m}: {'worse' if mean_d > 0 else 'better'}")
+                    if m in df_dn.columns:
+                        print(f"{'delta%':>8s} {'p-val':>8s}  ", end="")
+                print("  win-rate  verdict")
+                print("    " + "-" * 138)
 
-                # Win rate on MTE@1.0 (lower is better)
-                a_mte = a["MTE@1.0"].values
-                b_mte = b["MTE@1.0"].values
-                wins = np.sum(a_mte < b_mte)
-                total = len(a_mte)
-                win_str = f"{wins}/{total}"
+                for surface_name in SURFACES:
+                    a = df_dn[
+                        (df_dn["surface"] == surface_name) & (df_dn["condition"] == cond_a)
+                    ].sort_values("seed")
+                    b = df_dn[
+                        (df_dn["surface"] == surface_name) & (df_dn["condition"] == cond_b)
+                    ].sort_values("seed")
 
-                verdict_str = "; ".join(verdicts) if verdicts else "n.s."
-                print(f"  {win_str:>8s}  {verdict_str}")
+                    if len(a) == 0 or len(b) == 0:
+                        continue
+
+                    print(f"    {surface_name:>25s}  ", end="")
+                    verdicts = []
+                    for m in METRICS:
+                        if m not in a.columns:
+                            continue
+                        av, bv = a[m].values, b[m].values
+                        mask = np.isfinite(av) & np.isfinite(bv)
+                        if mask.sum() < 2:
+                            print(f"{'n/a':>8s} {'n/a':>8s}  ", end="")
+                            continue
+                        ac, bc = av[mask], bv[mask]
+                        delta = (ac.mean() - bc.mean()) / bc.mean() * 100
+                        mean_d, p_val = paired_ttest(ac, bc)
+                        sig = "**" if p_val < 0.01 else "*" if p_val < 0.05 else "+" if p_val < 0.1 else ""
+                        print(f"{delta:>+8.1f}% {p_val:>7.4f}{sig:<1s} ", end="")
+                        if p_val < 0.05:
+                            verdicts.append(f"{m}: {'worse' if delta > 0 else 'better'}")
+
+                    # Win rate on W2@1.0
+                    if "W2@1.0" in a.columns:
+                        a_w2 = a["W2@1.0"].values
+                        b_w2 = b["W2@1.0"].values
+                        wins = np.sum(a_w2 < b_w2)
+                        total = len(a_w2)
+                        win_str = f"{wins}/{total}"
+                    else:
+                        win_str = "n/a"
+
+                    verdict_str = "; ".join(verdicts) if verdicts else "n.s."
+                    print(f"  {win_str:>8s}  {verdict_str}")
 
 
 def main():
@@ -443,36 +528,36 @@ def main():
                         help="D values to test (default: 11 201)")
     parser.add_argument("--n-values", type=int, nargs="+", default=None,
                         help="N (training set size) values to test (default: 20 50 100 200)")
-    parser.add_argument("--scale-k-with-d", action="store_true",
-                        help="Scale curvature weight proportionally to D/D_REF")
+    parser.add_argument("--lambda-smooth", type=float, default=LAMBDA_SMOOTH,
+                        help="Jacobian smoothness weight for Stage 2 (default: 0.5)")
+    parser.add_argument("--output", type=str, default="highd_N_D_sweep.csv",
+                        help="Output CSV path")
     args = parser.parse_args()
 
-    # Determine D configs
     if args.d_values is not None:
-        d_configs = [(D - 3) // 2 for D in args.d_values]
-        d_configs = list(zip(d_configs, args.d_values))
+        d_configs = [((D - 3) // 2, D) for D in args.d_values]
     else:
         d_configs = D_CONFIGS
 
     n_values = args.n_values if args.n_values is not None else N_VALUES
 
     seeds = [args.base_seed + i * 1000 for i in range(args.n_seeds)]
-    cond_labels = [c[0] for c in make_conditions(11)]
+    conditions = make_conditions(11, args.lambda_smooth)
 
     print(f"Device: {DEVICE}")
     print(f"Seeds ({len(seeds)}): {seeds}")
     print(f"Surfaces: {SURFACES}")
-    print(f"Conditions: {cond_labels}")
+    print(f"Conditions: {[c[0] for c in conditions]}")
     print(f"D configs: {d_configs}")
     print(f"N values: {n_values}")
-    if args.scale_k_with_d:
-        print(f"Curvature weight scaling: K_weight = {BASE_K_WEIGHT} * D/{D_REF}")
-    else:
-        print(f"Curvature weight: {BASE_K_WEIGHT} (fixed)")
+    print(f"K weight: {BASE_K_WEIGHT} * sqrt(D/{D_REF})")
+    print(f"Smooth: lambda={args.lambda_smooth}, aug_sigma={AUG_SIGMA}")
     print(f"Hidden dims: D-dependent (<=11:[64,64], <=51:[128,128], else:[256,256])")
-    print(f"AE epochs: {args.epochs} (Phase 1: {args.epochs // 2}, Phase 2: {args.epochs - args.epochs // 2})")
+    print(f"AE epochs: {args.epochs} (Phase 1: {args.epochs // 2}, "
+          f"Phase 2: {args.epochs - args.epochs // 2})")
     print(f"SDE epochs: {args.sde_epochs}")
-    expected_rows = len(n_values) * len(d_configs) * len(SURFACES) * len(cond_labels) * len(seeds)
+    expected_rows = (len(n_values) * len(d_configs) * len(SURFACES)
+                     * len(conditions) * len(seeds))
     print(f"Expected rows: {expected_rows}\n")
 
     t0 = time.time()
@@ -490,7 +575,7 @@ def main():
                     fork_results = run_single_fork(
                         surface_name, D_val, seed, n_train=N,
                         epochs_ae=args.epochs, epochs_sde=args.sde_epochs,
-                        scale_k_with_d=args.scale_k_with_d,
+                        lambda_smooth=args.lambda_smooth,
                     )
                     for cond_label, metrics in fork_results.items():
                         all_rows.append({
@@ -511,7 +596,7 @@ def main():
                   f"({elapsed_dn / (len(SURFACES) * len(seeds)):.1f}s per fork)")
 
     df = pd.DataFrame(all_rows)
-    csv_path = "highd_N_D_sweep.csv"
+    csv_path = args.output
     df.to_csv(csv_path, index=False)
     print(f"\nSaved {len(df)} rows to {csv_path}")
 
