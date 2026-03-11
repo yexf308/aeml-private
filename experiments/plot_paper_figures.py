@@ -22,16 +22,15 @@ import pandas as pd
 # Shared style
 # ---------------------------------------------------------------------------
 
-FOCUS = ["baseline", "T+F", "T+F+K"]
+FOCUS = ["baseline", "T+F"]
 COLORS = {
     "baseline": "#999999",
+    "T": "#E8A838",
     "T+F": "#2176AE",
-    "T+F+K": "#D64045",
-    "T+K": "#E8A838",
 }
-LINESTYLES = {"baseline": "--", "T+F": "-", "T+F+K": "-", "T+K": ":"}
-MARKERS = {"baseline": "o", "T+F": "s", "T+F+K": "D", "T+K": "^"}
-LABELS = {"baseline": "Baseline", "T+F": "T+F", "T+F+K": "T+F+K", "T+K": "T+K"}
+LINESTYLES = {"baseline": "--", "T": ":", "T+F": "-"}
+MARKERS = {"baseline": "o", "T": "^", "T+F": "s"}
+LABELS = {"baseline": "Baseline", "T": "T", "T+F": "T+F"}
 
 SURFACE_TITLES = {
     "paraboloid": "Paraboloid",
@@ -91,7 +90,7 @@ def plot_extrapolation():
     assert not missing, f"{csv_path} missing columns: {missing}"
 
     surfaces = ["paraboloid", "hyperbolic_paraboloid", "quartic_dome", "sinusoidal"]
-    conditions = ["baseline", "T+F", "T+F+K", "T+K"]
+    conditions = ["baseline", "T", "T+F"]
 
     fig, axes = plt.subplots(1, 4, figsize=(7.0, 1.9), sharey=False)
 
