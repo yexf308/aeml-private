@@ -26,11 +26,12 @@ FOCUS = ["baseline", "T+F"]
 COLORS = {
     "baseline": "#999999",
     "T": "#E8A838",
+    "F": "#7B2D8E",
     "T+F": "#2176AE",
 }
-LINESTYLES = {"baseline": "--", "T": ":", "T+F": "-"}
-MARKERS = {"baseline": "o", "T": "^", "T+F": "s"}
-LABELS = {"baseline": "Baseline", "T": "T", "T+F": "T+F"}
+LINESTYLES = {"baseline": "--", "T": ":", "F": "-.", "T+F": "-"}
+MARKERS = {"baseline": "o", "T": "^", "F": "v", "T+F": "s"}
+LABELS = {"baseline": "Baseline", "T": "T", "F": "F", "T+F": "T+F"}
 
 SURFACE_TITLES = {
     "paraboloid": "Paraboloid",
@@ -90,7 +91,7 @@ def plot_extrapolation():
     assert not missing, f"{csv_path} missing columns: {missing}"
 
     surfaces = ["paraboloid", "hyperbolic_paraboloid", "quartic_dome", "sinusoidal"]
-    conditions = ["baseline", "T", "T+F"]
+    conditions = ["baseline", "T", "F", "T+F"]
 
     fig, axes = plt.subplots(1, 4, figsize=(7.0, 1.9), sharey=False)
 
