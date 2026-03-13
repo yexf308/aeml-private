@@ -22,13 +22,18 @@ LD_LIBRARY_PATH=/usr/lib/x86_64-linux-gnu git push origin main
 
 Training data should be **very small (20–40 points)** — sparse observations from the manifold. This is the realistic data-driven regime.
 
-### Curvature (K) Regularization
+### Penalty Configuration
 
-**Two-phase AE training is required when using K.** Train Phase 1 with T+F only (warmup), then Phase 2 with T+F+K (fine-tune). Single-phase K training is unstable with sparse data.
+The paper uses **T+F penalties only** (tangent-bundle + inverse-consistency). No curvature (K) or drift smoothness (L_S) penalties in the final paper.
 
-Multi-seed study findings (N=20, 10 seeds, two-phase AE, paired t-test):
+- **T (tangent-bundle)**: aligns decoder Jacobian with observed covariance eigenvectors
+- **F (inverse-consistency)**: ||Dπ·Dφ - I_d||²_F
+- **Encoder-pullback drift**: b_z = Dπ·b + ½⟨Λ, ∇²π⟩ — used for Stage 2 (not decoder-side formula)
 
-- **paraboloid**: K helps MTE by 6.6% (p=0.009**), W2 by 13.8% (p=0.005**). 9/10 seeds show improvement.
-- **hyperbolic_paraboloid**: K helps W2 by 9.5% (p=0.001**), MMD by 12.2% (p=0.011*), MTE by 2.5% (p=0.057+). 9/10 seeds show W2/MMD improvement.
-- **sinusoidal**: K is neutral (no significant effect on any metric). This is because `z = sin(u+v)` is a **developable surface** with zero Gaussian curvature everywhere (`det(H) = 0` since the Hessian is rank-1). There is no intrinsic curvature signal for K to capture.
-- With abundant data (N=2000), K has no significant effect — the geometric inductive bias only matters in the sparse regime.
+### Two-Phase AE Training
+
+Train Phase 1 with T+F (warmup), then Phase 2 continues T+F (fine-tune). Two-phase is used for all conditions including baseline.
+
+### Curvature (K) Regularization (experimental, not in paper)
+
+K was investigated but is **not included in the final SIAM MDS paper**. Multi-seed findings showed modest/mixed effects at trajectory level despite improving coefficient errors.
