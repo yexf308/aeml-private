@@ -82,16 +82,95 @@ def tangential_drift_loss(
     return (tan_res ** 2).sum(-1).mean() / D
 
 
+def encoder_pullback_drift_loss(
+    encoder,
+    decoder,
+    drift_net,
+    z: Tensor,
+    x: Tensor,
+    v: Tensor,
+    Lambda: Tensor,
+    dphi: Tensor = None,
+    d2phi: Tensor = None,
+    dpi: Tensor = None,
+) -> Tensor:
+    """
+    Encoder-pullback drift loss using D²(π∘φ)=0 identity (Stage 2).
+
+    Uses the identity D²(π∘φ) = 0 to avoid the encoder Hessian:
+        b_z_target = Dπ · (v - q_φ)
+    where q_φ = ½ Σ_z : d²φ is the decoder-side Itô correction and
+    Dπ is the encoder Jacobian (not the decoder pseudoinverse).
+
+    NOTE: The identity D²(π∘φ)=0 only holds when π∘φ = id exactly.
+    For learned AEs, ||D²(π∘φ)|| ≈ 0.9-1.3 (first-order but not
+    second-order inverse consistency), so this is a poor approximation.
+    Prefer precompute_enc_pull_target + train_stage2_regression.
+
+    The loss is metric-weighted MSE in latent space:
+        L = (b_z - b_target)^T g (b_z - b_target) / D
+
+    Args:
+        encoder: Frozen encoder network.
+        decoder: Frozen decoder network.
+        drift_net: DriftNet to train.
+        z: Detached latent points, shape (B, d).
+        x: Ambient samples, shape (B, D).
+        v: Observed ambient drift, shape (B, D).
+        Lambda: Observed ambient covariance, shape (B, D, D).
+        dphi: Optional precomputed decoder Jacobian, shape (B, D, d).
+        d2phi: Optional precomputed decoder Hessian, shape (B, D, d, d).
+        dpi: Optional precomputed encoder Jacobian, shape (B, d, D).
+
+    Returns:
+        Scalar loss value.
+    """
+    import torch
+
+    if dphi is None:
+        dphi = decoder.jacobian_network(z)
+    if d2phi is None:
+        d2phi = decoder.hessian_network(z)
+    if dpi is None:
+        dpi = torch.func.vmap(torch.func.jacrev(encoder))(x).detach()
+
+    g = dphi.mT @ dphi                        # (B, d, d)
+    ginv = regularized_metric_inverse(g)       # (B, d, d)
+    pinv = ginv @ dphi.mT                      # (B, d, D)
+
+    # Pull back Lambda to latent via pseudoinverse (required by D²(π∘φ)=0 identity)
+    Sigma_z = pinv @ Lambda @ pinv.mT          # (B, d, d)
+    Sigma_z = 0.5 * (Sigma_z + Sigma_z.mT)
+
+    # Decoder-side Itô correction: q_φ = ½ Σ_z : d²φ
+    q_phi = curvature_drift_explicit_full(d2phi, Sigma_z)  # (B, D), already halved
+
+    # Target: b_z = Dπ · (v - q_φ)
+    b_z_target = (dpi @ (v - q_phi).unsqueeze(-1)).squeeze(-1)  # (B, d)
+
+    b_z = drift_net(z)                         # (B, d)
+    residual = b_z - b_z_target                # (B, d)
+
+    # Metric-weighted MSE: r^T g r / D
+    D = dphi.shape[1]
+    cost = (residual.unsqueeze(-2) @ g @ residual.unsqueeze(-1)).squeeze(-1).squeeze(-1)
+    return cost.mean() / D
+
+
 def latent_drift_regression_loss(
     drift_net,
     z: Tensor,
     b_z_target: Tensor,
     g: Tensor = None,
+    ambient_dim: int = 1,
 ) -> Tensor:
     """
     Metric-weighted latent drift regression loss.
 
-    L = (b_z - b_target)^T g (b_z - b_target) / D
+    L = mean_i [ (b_z - b_target)^T g (b_z - b_target) ] / D
+
+    Normalised by ambient dimension D so that lambda_smooth has consistent
+    effective weight relative to drift_smoothness_loss (which also divides by D).
 
     When g is None, uses plain Euclidean MSE (equivalent to g = I).
 
@@ -100,6 +179,7 @@ def latent_drift_regression_loss(
         z: Detached latent points, shape (B, d).
         b_z_target: Precomputed target latent drift, shape (B, d).
         g: Optional metric tensor, shape (B, d, d). If None, Euclidean MSE.
+        ambient_dim: Ambient dimension D for normalisation (default 1 = no normalisation).
 
     Returns:
         Scalar loss value.
@@ -109,12 +189,11 @@ def latent_drift_regression_loss(
 
     if g is not None:
         # Metric-weighted: r^T g r
-        D_from_g = g.shape[-1]  # Use trace(g) / d as proxy for ambient D
         cost = (residual.unsqueeze(-2) @ g @ residual.unsqueeze(-1)).squeeze(-1).squeeze(-1)
     else:
         cost = (residual ** 2).sum(-1)
 
-    return cost.mean()
+    return cost.mean() / ambient_dim
 
 
 def drift_smoothness_loss(

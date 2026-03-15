@@ -255,8 +255,8 @@ def plot_traj_w2():
 RING_COLORS = ["#2176AE", "#5BA4CF", "#8DC8E8", "#C0DFEE", "#DAE9F2", "#EDF4F8"]
 TRAIN_COLOR = "#D64045"
 TRAIN_BOUND = 1.0
-DIST_STEP = 0.1
-DISTANCES = [0.0, 0.1, 0.2, 0.3, 0.4, 0.5]
+DIST_STEP = 0.05
+DISTANCES = [0.0, 0.05, 0.1, 0.15, 0.2, 0.25, 0.3]
 
 
 def plot_extrap_regions():
@@ -310,7 +310,7 @@ def plot_extrap_regions():
     ax_2d.text(0, 0, "Train", ha="center", va="center", fontsize=8,
                fontweight="bold", color="white")
     # Annotate selected rings with arrows pointing to them
-    for dist, y_off in [(0.2, 0.55), (0.5, -0.55)]:
+    for dist, y_off in [(0.15, 0.55), (0.3, -0.55)]:
         ring_center_x = TRAIN_BOUND + dist - DIST_STEP / 2
         ax_2d.annotate(
             rf"$\delta\!=\!{dist}$",

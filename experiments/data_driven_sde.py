@@ -138,7 +138,23 @@ def evaluate_pipeline(pipeline, autoencoder, sde, seed):
 
     results = {}
 
-    # Pointwise: MTE at multiple horizons
+    # Reference-chart MTE: project learned trajectory to true (u,v) via
+    # first 2 ambient components (all surfaces use φ(u,v) = [u, v, ...]).
+    # Use stopped_alive mask to restrict to trajectories still in the
+    # interior region, avoiding decoder extrapolation artifacts.
+    learned_uv = learned_traj[:, :, :2]  # (B, T+1, 2)
+    for t_val in [0.1, 0.5, 1.0]:
+        step = int(round(t_val / DT))
+        mask = stopped_alive[:, step] & learned_alive[:, step]
+        if mask.sum() >= 5:
+            diff = learned_uv[:, step] - gt_local[:, step]  # (B, 2)
+            rc_mte = diff[mask].norm(dim=-1).mean().item()
+        else:
+            rc_mte = float('nan')
+        results[f"rcMTE@{t_val}"] = rc_mte
+        print(f"  rcMTE@{t_val}: {rc_mte:.4f} ({mask.sum().item()}/{B} in region)")
+
+    # Pointwise: MTE at multiple horizons (ambient space, kept for compatibility)
     for t_val in [0.1, 0.5, 1.0]:
         step = int(round(t_val / DT))
         both_alive = gt_alive[:, step] & learned_alive[:, step]
@@ -146,7 +162,7 @@ def evaluate_pipeline(pipeline, autoencoder, sde, seed):
         results[f"MTE@{t_val}"] = mte
         print(f"  MTE@{t_val}: {mte:.4f}")
 
-    # Distributional: W2 at T=1.0 (standard, full boundary)
+    # Distributional: W2 at T=1.0 (kept for compatibility)
     step_final = int(round(1.0 / DT))
     both_alive_final = gt_alive[:, step_final] & learned_alive[:, step_final]
     w2_full = compute_w2(
@@ -231,9 +247,13 @@ def run_pipeline(
     v = train_data.mu.to(DEVICE)
     Lambda = train_data.cov.to(DEVICE)
 
-    print(f"\n--- Stage 2: Drift net ({epochs_sde} epochs) ---")
-    drift_losses = pipeline.train_stage2(
-        x, v, Lambda, epochs=epochs_sde, lr=LR_SDE,
+    # Precompute encoder-pullback drift target: b_z = Dπ·v + ½Λ:∇²π
+    print(f"\n--- Stage 2: Drift net ({epochs_sde} epochs, encoder pullback) ---")
+    z_pre, dphi_pre, _ = pipeline.precompute_decoder_derivatives(x)
+    b_z_target, g = pipeline.precompute_enc_pull_target(x, v, Lambda, dphi_pre)
+    drift_losses = pipeline.train_stage2_regression(
+        z_pre, b_z_target, g,
+        epochs=epochs_sde, lr=LR_SDE,
         batch_size=BATCH_SIZE, print_interval=max(1, epochs_sde // 5),
     )
 
@@ -311,9 +331,13 @@ def run_ablation(surface_name: str, epochs_ae: int, epochs_sde: int, seed: int =
         drift_pipeline = SDEPipelineTrainer(
             autoencoder, drift_net, diffusion_net_tmp, device=DEVICE,
         )
-        print(f"\n  Stage 2: Drift net ({epochs_sde} epochs)")
-        drift_losses = drift_pipeline.train_stage2_precomputed(
-            z_pre, dphi_pre, d2phi_pre, v, Lambda,
+        print("  Precomputing encoder-pullback target...")
+        b_z_target, g = drift_pipeline.precompute_enc_pull_target(
+            x, v, Lambda, dphi_pre,
+        )
+        print(f"\n  Stage 2: Drift net ({epochs_sde} epochs, encoder pullback)")
+        drift_losses = drift_pipeline.train_stage2_regression(
+            z_pre, b_z_target, g,
             epochs=epochs_sde, lr=LR_SDE,
             batch_size=BATCH_SIZE, print_interval=max(1, epochs_sde // 5),
         )
@@ -403,9 +427,13 @@ def run_ablation_K(surface_name: str, epochs_ae: int, epochs_sde: int, seed: int
     drift_pipeline = SDEPipelineTrainer(
         autoencoder, drift_net, DiffusionNet(d).to(DEVICE), device=DEVICE,
     )
-    print(f"\n  Stage 2: Drift net ({epochs_sde} epochs) — shared")
-    drift_losses = drift_pipeline.train_stage2_precomputed(
-        z_pre, dphi_pre, d2phi_pre, v, Lambda,
+    print("  Precomputing encoder-pullback target...")
+    b_z_target, g = drift_pipeline.precompute_enc_pull_target(
+        x, v, Lambda, dphi_pre,
+    )
+    print(f"\n  Stage 2: Drift net ({epochs_sde} epochs, encoder pullback) — shared")
+    drift_losses = drift_pipeline.train_stage2_regression(
+        z_pre, b_z_target, g,
         epochs=epochs_sde, lr=LR_SDE,
         batch_size=BATCH_SIZE, print_interval=max(1, epochs_sde // 5),
     )

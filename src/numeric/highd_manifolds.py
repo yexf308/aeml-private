@@ -37,10 +37,15 @@ def sinusoidal_f(u, v):
     return torch.sin(u + v)
 
 
+def quartic_dome_f(u, v):
+    return (u ** 2 + v ** 2) - (u ** 4 + v ** 4) / 2
+
+
 BASE_SURFACES = {
     "paraboloid": paraboloid_f,
     "hyperbolic_paraboloid": hyperbolic_paraboloid_f,
     "sinusoidal": sinusoidal_f,
+    "quartic_dome": quartic_dome_f,
 }
 
 

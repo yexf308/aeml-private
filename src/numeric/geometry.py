@@ -41,6 +41,25 @@ def orthogonal_projection_from_jacobian(jacobian: Tensor, eps: float = 1e-6) -> 
     return torch.bmm(jacobian, torch.bmm(g_inv, jacobian.mT))
 
 
+@torch.no_grad()
+def compute_sigma_min(ae, points: Tensor) -> Tensor:
+    """Compute σ_min(Dφ) at each point for post-training immersion diagnostic.
+
+    Args:
+        ae: AutoEncoder with encoder and decoder.
+        points: Ambient-space points, shape (B, D).
+
+    Returns:
+        sigma_mins: Per-sample minimum singular value of Dφ, shape (B,).
+    """
+    z = ae.encoder(points)
+    # jacrev needs grad-enabled parameters; enable temporarily
+    with torch.enable_grad():
+        dphi = vmap(jacrev(ae.decoder))(z)  # (B, D, d)
+    svs = torch.linalg.svdvals(dphi)   # (B, min(D, d))
+    return svs[:, -1]                   # smallest singular value per sample
+
+
 def volume_measure_from_metric(metric: Tensor) -> Tensor:
     return torch.sqrt(torch.linalg.det(metric))
 

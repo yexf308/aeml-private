@@ -1,14 +1,15 @@
 #!/usr/bin/env python3
 """Oracle q ablation: diagnose and fix the decoder Hessian bottleneck.
 
-5-condition fork experiment. Trains AE once per (surface, seed), then
+6-condition fork experiment. Trains AE once per (surface, seed), then
 forks Stage 2 into conditions that vary how the drift target is computed:
 
-  1. no_q:       pinv @ v                     (is learned q helping at all?)
-  2. current:    pinv @ (v - q_learned)        (status quo baseline)
-  3. oracle_q:   pinv @ (v - q_true)           (fixes q, keeps decoder-side)
-  4. enc_pull:   Dπ·v + ½Λ:∇²π                (encoder-side Itô, true oracle)
-  5. direct_1st: D(enc∘chart)·μ_local          (1st-order only, no Itô correction)
+  1. no_q:        pinv @ v                     (is learned q helping at all?)
+  2. current:     pinv @ (v - q_learned)        (status quo baseline)
+  3. oracle_q:    pinv @ (v - q_true)           (fixes q, keeps decoder-side)
+  4. enc_pull:    Dπ·v + ½Λ:∇²π                (encoder-side Itô, true oracle)
+  5. enc_pull_v2: Dπ·(v - q_φ)                 (avoids encoder Hessian via D²(π∘φ)=0)
+  6. direct_1st:  D(enc∘chart)·μ_local          (1st-order only, no Itô correction)
 
 Stage 3 diffusion is trained once per AE and shared across all drift branches.
 
@@ -58,7 +59,7 @@ from experiments.highd_N_D_sweep import (
 
 SURFACES = ["paraboloid", "hyperbolic_paraboloid"]
 D_CONFIGS = {11: 4, 201: 99}
-CONDITION_LABELS = ["no_q", "current", "oracle_q", "enc_pull", "direct_1st"]
+CONDITION_LABELS = ["no_q", "current", "oracle_q", "enc_pull", "enc_pull_v2", "direct_1st"]
 
 
 def precompute_oracle_targets(ae, train_data, surface, z_pre, dphi_pre, device):
@@ -135,7 +136,7 @@ def precompute_oracle_targets(ae, train_data, surface, z_pre, dphi_pre, device):
 
 
 def run_single(surface_name, D, N, seed, ae_epochs, sde_epochs):
-    """Run all 5 conditions for one (surface, D, N, seed)."""
+    """Run all 6 conditions for one (surface, D, N, seed)."""
     torch.manual_seed(seed)
     np.random.seed(seed)
 
@@ -247,6 +248,14 @@ def run_single(surface_name, D, N, seed, ae_epochs, sde_epochs):
             pipeline = SDEPipelineTrainer(ae, drift_net, DiffusionNet(d).to(DEVICE), device=DEVICE)
             pipeline.train_stage2_regression(
                 z_pre, oracle["b_z_enc_pull"], oracle["g"],
+                epochs=sde_epochs, lr=LR_SDE, batch_size=batch_size,
+                print_interval=0,
+                lambda_smooth=LAMBDA_SMOOTH, aug_sigma=AUG_SIGMA,
+            )
+        elif cond == "enc_pull_v2":
+            pipeline = SDEPipelineTrainer(ae, drift_net, DiffusionNet(d).to(DEVICE), device=DEVICE)
+            pipeline.train_stage2_encoder_pullback(
+                x, z_pre, dphi_pre, d2phi_pre, oracle["dpi"], v, Lambda,
                 epochs=sde_epochs, lr=LR_SDE, batch_size=batch_size,
                 print_interval=0,
                 lambda_smooth=LAMBDA_SMOOTH, aug_sigma=AUG_SIGMA,

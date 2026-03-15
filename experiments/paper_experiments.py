@@ -2,7 +2,7 @@
 Unified multi-seed experiment runner for the paper.
 
 Four subcommands:
-  ablation        -- AE ablation across 8 penalty configs (1 surface, default paraboloid)
+  ablation        -- AE ablation across 9 penalty configs (1 surface, default paraboloid)
   extrapolation   -- Reconstruction extrapolation across distances (multiple surfaces)
   dynamics        -- Dynamics extrapolation across distances (1 surface, default paraboloid)
   trajectory      -- Trajectory fidelity via SDE simulation (multiple surfaces, N=20, multi-seed)
@@ -27,6 +27,7 @@ import sympy as sp
 import torch
 
 from src.numeric.datagen import sample_from_manifold
+from src.numeric.geometry import compute_sigma_min
 from src.numeric.losses import LossWeights
 from src.numeric.performance_stats import compute_losses_per_sample
 from src.numeric.training import MultiModelTrainer, TrainingConfig, TrainingPhase
@@ -70,12 +71,16 @@ EPOCHS_AE = 500
 BATCH_SIZE = 32
 LR = 0.005
 
-# 8-config ablation grid (K weight = 0.1)
+# Contractive weight (selected via 3-weight sweep on paraboloid D=3, 3 seeds)
+LAMBDA_C = 0.1
+
+# 9-config ablation grid (K weight = 0.1)
 ABLATION_CONFIGS = {
     "baseline": LossWeights(),
     "T": LossWeights(tangent_bundle=1.0),
     "K": LossWeights(curvature=0.1),
     "F": LossWeights(diffeo=1.0),
+    "C": LossWeights(contractive=LAMBDA_C),
     "T+K": LossWeights(tangent_bundle=1.0, curvature=0.1),
     "T+F": LossWeights(tangent_bundle=1.0, diffeo=1.0),
     "F+K": LossWeights(diffeo=1.0, curvature=0.1),
@@ -193,6 +198,14 @@ def run_ablation_seed(manifold_sde, surface_name, config_name, lw, seed, epochs)
     )
     losses_df = compute_losses_per_sample(model, test_data)
 
+    # σ_min diagnostic (Item 1)
+    sigma_min_vals = compute_sigma_min(model, test_data.samples.to(DEVICE))
+    sigma_min_stats = {
+        "sigma_min_min": sigma_min_vals.min().item(),
+        "sigma_min_p5": sigma_min_vals.quantile(0.05).item(),
+        "sigma_min_median": sigma_min_vals.median().item(),
+    }
+
     return {
         "surface": surface_name,
         "config": config_name,
@@ -200,6 +213,7 @@ def run_ablation_seed(manifold_sde, surface_name, config_name, lw, seed, epochs)
         "reconstruction": losses_df["reconstruction"].mean(),
         "tangent": losses_df["tangent"].mean(),
         "curvature": losses_df["curvature"].mean(),
+        **sigma_min_stats,
     }
 
 
@@ -288,8 +302,8 @@ def run_extrapolation_seed(manifold_sde, surface_name, config_name, lw, seed, ep
 
 def run_extrapolation(surfaces, seeds, epochs, output):
     """Full extrapolation study across surfaces, configs, seeds."""
-    distances = [0.0, 0.1, 0.2, 0.3, 0.4, 0.5]
-    dist_step = 0.1
+    distances = [0.0, 0.05, 0.1, 0.15, 0.2, 0.25, 0.3]
+    dist_step = 0.05
 
     print(f"\n{'='*70}")
     print("EXTRAPOLATION STUDY")
@@ -309,20 +323,20 @@ def run_extrapolation(surfaces, seeds, epochs, output):
                 all_rows.extend(rows)
                 # Print interpolation and max extrapolation
                 r0 = [r for r in rows if r["distance"] == 0.0][0]
-                r5 = [r for r in rows if r["distance"] == 0.5][0]
+                r_max = [r for r in rows if r["distance"] == distances[-1]][0]
                 print(f"    dist=0.0: recon={r0['reconstruction']:.6f}")
-                print(f"    dist=0.5: recon={r5['reconstruction']:.6f}")
+                print(f"    dist={distances[-1]}: recon={r_max['reconstruction']:.6f}")
 
     df = pd.DataFrame(all_rows)
     if output:
         df.to_csv(output, index=False)
         print(f"\nSaved to {output}")
 
-    # Summary at dist=0.0 and dist=0.5
+    # Summary at dist=0.0 and dist=max
     print(f"\n{'='*70}")
     print("EXTRAPOLATION SUMMARY (mean +/- std)")
     print(f"{'='*70}")
-    for dist_val in [0.0, 0.5]:
+    for dist_val in [0.0, distances[-1]]:
         print(f"\n  Distance = {dist_val}")
         sub = df[df["distance"] == dist_val]
         print(f"  {'surface':>25s}  {'config':>8s}  {'n':>3s}  {'reconstruction':>14s}")
@@ -374,8 +388,8 @@ def run_dynamics_extrap_seed(manifold_sde, surface_name, config_name, lw, seed, 
 
 def run_dynamics(surface_name, seeds, epochs, output):
     """Full dynamics extrapolation study across configs and seeds."""
-    distances = [0.0, 0.1, 0.2, 0.3, 0.4, 0.5]
-    dist_step = 0.1
+    distances = [0.0, 0.05, 0.1, 0.15, 0.2, 0.25, 0.3]
+    dist_step = 0.05
 
     print(f"\n{'='*70}")
     print(f"DYNAMICS STUDY: {surface_name}")
@@ -392,9 +406,9 @@ def run_dynamics(surface_name, seeds, epochs, output):
             rows = run_dynamics_extrap_seed(manifold_sde, surface_name, cfg_name, lw, seed, epochs, distances, dist_step)
             all_rows.extend(rows)
             r0 = [r for r in rows if r["distance"] == 0.0][0]
-            r5 = [r for r in rows if r["distance"] == 0.5][0]
+            r_max = [r for r in rows if r["distance"] == distances[-1]][0]
             print(f"    dist=0.0: tangent={r0['tangent']:.6f}  normal_drift={r0['normal_drift_learned']:.6f}")
-            print(f"    dist=0.5: tangent={r5['tangent']:.6f}  normal_drift={r5['normal_drift_learned']:.6f}")
+            print(f"    dist={distances[-1]}: tangent={r_max['tangent']:.6f}  normal_drift={r_max['normal_drift_learned']:.6f}")
 
     df = pd.DataFrame(all_rows)
     if output:
@@ -407,7 +421,7 @@ def run_dynamics(surface_name, seeds, epochs, output):
     print(f"{'='*70}")
     dyn_metrics = ["reconstruction", "tangent", "cov_tangent", "drift_tangent",
                    "normal_drift_learned", "normal_drift_true"]
-    for dist_val in [0.0, 0.5]:
+    for dist_val in [0.0, distances[-1]]:
         print(f"\n  Distance = {dist_val}")
         sub = df[df["distance"] == dist_val]
         print(f"  {'config':>8s}  {'n':>3s}  ", end="")

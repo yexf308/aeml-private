@@ -85,7 +85,7 @@ BASE_K_WEIGHT = 0.1
 D_REF = 11
 
 # Drift smoothness regularisation
-LAMBDA_SMOOTH = 0.5
+LAMBDA_SMOOTH = 0.0
 AUG_SIGMA = 0.1
 
 # Exported for plot_nd_sweep.py compatibility
@@ -237,12 +237,16 @@ def _run_sde_stages(ae, x, v, Lambda, sde, surface, seed, n_train,
     )
     z_pre, dphi_pre, d2phi_pre = dummy.precompute_decoder_derivatives(x)
 
-    # Stage 2: Drift
+    # Precompute encoder-pullback drift target: b_z = Dπ·v + ½Λ:∇²π
+    print("  Precomputing encoder-pullback target...")
+    b_z_target, g = dummy.precompute_enc_pull_target(x, v, Lambda, dphi_pre)
+
+    # Stage 2: Drift (encoder-pullback regression)
     torch.manual_seed(seed + 100)
     drift_net = DriftNet(d).to(DEVICE)
     dp = SDEPipelineTrainer(ae, drift_net, DiffusionNet(d).to(DEVICE), device=DEVICE)
-    drift_losses = dp.train_stage2_precomputed(
-        z_pre, dphi_pre, d2phi_pre, v, Lambda,
+    drift_losses = dp.train_stage2_regression(
+        z_pre, b_z_target, g,
         epochs=epochs_sde, lr=LR_SDE, batch_size=batch_size,
         print_interval=max(1, epochs_sde // 5),
         lambda_smooth=lambda_smooth, aug_sigma=AUG_SIGMA,

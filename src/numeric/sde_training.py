@@ -621,7 +621,7 @@ class SDEPipelineTrainer:
         return losses
 
     @torch.no_grad()
-    def simulate(self, z0, n_steps, dt, dW=None):
+    def simulate(self, z0, n_steps, dt, dW=None, reproject=False):
         """
         Euler-Maruyama simulation in latent space using learned nets.
 
@@ -633,6 +633,8 @@ class SDEPipelineTrainer:
             dt: Time step size.
             dW: Optional pre-generated Brownian increments, shape (B, n_steps, d).
                 If None, generates standard normal increments.
+            reproject: If True, apply encoder(decoder(z)) after each step to
+                keep the trajectory on the learned manifold chart.
 
         Returns:
             z_traj: Latent trajectory, shape (B, n_steps+1, d).
@@ -659,6 +661,8 @@ class SDEPipelineTrainer:
             sigma_z = self.diffusion_net(z)  # (B, d, d)
             noise = (sigma_z @ dW[:, t].unsqueeze(-1)).squeeze(-1)  # (B, d)
             z = z + b_z * dt + noise
+            if reproject:
+                z = self.autoencoder.encoder(self.autoencoder.decoder(z))
             z_traj[:, t + 1] = z
 
         # Decode all at once

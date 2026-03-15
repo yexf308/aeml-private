@@ -44,6 +44,7 @@ GENERAL_CHARTS = {
 PENALTY_CONFIGS = {
     "baseline": LossWeights(),
     "T": LossWeights(tangent_bundle=1.0),
+    "F": LossWeights(diffeo=1.0),
     "K": LossWeights(curvature=0.1),
     "T+K": LossWeights(tangent_bundle=1.0, curvature=0.1),
     "T+F": LossWeights(tangent_bundle=1.0, diffeo=1.0),

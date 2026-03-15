@@ -19,6 +19,7 @@ class LossWeights:
     decoder_contraction: float = 0.
     diffeo: float = 0.
     curvature: float = 0.
+    cycle_hessian: float = 0.
 
 # Pointwise loss functions
 def fro_norm_sq(matrix):
@@ -87,6 +88,31 @@ def diffeomorphism_penalty(dpi: torch.Tensor, dphi: torch.Tensor):
     d = dpi.size(1)
     identity = torch.eye(d, device=dpi.device, dtype=dpi.dtype).unsqueeze(0)
     return fro_distance_sq(torch.bmm(dpi, dphi), identity)
+
+
+def cycle_hessian_penalty(model: 'AutoEncoder', z: torch.Tensor, aug_sigma: float = 0.1):
+    """Penalize ||D²(π∘φ)(z)||²_F to enforce second-order inverse consistency.
+
+    Evaluates at z + noise to constrain a neighborhood, not just training codes.
+    Since d=2, ∇²g has shape (d, d, d) = (2, 2, 2) — 8 entries, very cheap.
+
+    Args:
+        model: AutoEncoder with encoder and decoder.
+        z: Latent codes, shape (B, d). Detached from the encoding step.
+        aug_sigma: Noise std for z augmentation.
+
+    Returns:
+        Per-sample ||D²(π∘φ)||²_F, shape (B,).
+    """
+    z_aug = z.detach() + torch.randn_like(z) * aug_sigma
+
+    def _g(z_single):
+        x_hat = model.decoder(z_single.unsqueeze(0)).squeeze(0)
+        return model.encoder(x_hat.unsqueeze(0)).squeeze(0)
+
+    # D²g has shape (B, d, d, d) — Hessian of the d-dim output w.r.t. d-dim input
+    D2g = torch.func.vmap(torch.func.hessian(_g))(z_aug)  # (B, d, d, d)
+    return (D2g ** 2).flatten(1).sum(1)  # (B,)
 
 
 # Individual losses/penalties
@@ -233,4 +259,6 @@ def autoencoder_loss(model: AutoEncoder,
         total_loss += loss_weights.diffeo * empirical_diffeo_penalty(dpi, dphi)
     if loss_weights.curvature > 0.0:
         total_loss += loss_weights.curvature * empirical_l2_risk(normal_drift_model, normal_drift_true) / D
+    if loss_weights.cycle_hessian > 0.0:
+        total_loss += loss_weights.cycle_hessian * torch.mean(cycle_hessian_penalty(model, z))
     return total_loss
