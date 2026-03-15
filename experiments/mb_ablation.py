@@ -19,7 +19,9 @@ from src.numeric.performance_stats import compute_losses_per_sample
 from src.numeric.highd_manifolds import (
     FourierAugmentedSurface,
     sample_from_highd_manifold,
+    create_highd_lambdified_sde,
 )
+from experiments.highd_N_D_sweep import N_EVAL, compute_coefficient_errors
 
 from experiments.mb_dynamics import (
     mb_local_drift_fn, mb_local_diffusion_fn,
@@ -94,19 +96,27 @@ def main():
             # σ_min diagnostic
             sigma_min_vals = compute_sigma_min(ae, test_data.samples.to(DEVICE))
 
+            # Coefficient errors E_mu, E_Sigma
+            sde = create_highd_lambdified_sde(surface, mb_local_drift_fn, mb_local_diffusion_fn)
+            torch.manual_seed(seed + 5000)
+            eval_uv = (torch.rand(N_EVAL, 2, device=DEVICE) * 2 - 1) * TRAIN_BOUND
+            e_mu, e_sigma = compute_coefficient_errors(ae, sde, surface, eval_uv, DEVICE)
+
             row = {
                 "config": cfg_name,
                 "seed": seed,
                 "reconstruction": losses_df["reconstruction"].mean(),
                 "tangent": losses_df["tangent"].mean(),
                 "curvature": losses_df["curvature"].mean(),
+                "E_mu": e_mu,
+                "E_Sigma": e_sigma,
                 "sigma_min_min": sigma_min_vals.min().item(),
                 "sigma_min_p5": sigma_min_vals.quantile(0.05).item(),
                 "sigma_min_median": sigma_min_vals.median().item(),
             }
             all_rows.append(row)
             print(f"    recon={recon:.6f}  tangent={row['tangent']:.6f}  "
-                  f"σ_min_p5={row['sigma_min_p5']:.3f}")
+                  f"E_mu={e_mu:.4f}  E_Sig={e_sigma:.4f}")
 
         # Save incrementally
         pd.DataFrame(all_rows).to_csv(args.output, index=False)
