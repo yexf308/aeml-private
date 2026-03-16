@@ -64,7 +64,9 @@ ALL_CONDITIONS = {
 D201_CONDITIONS = {k: v for k, v in ALL_CONDITIONS.items() if k != "C"}
 
 SURFACES = ["paraboloid", "hyperbolic_paraboloid", "quartic_dome", "sinusoidal"]
-N_TRAIN = 50
+N_TRAIN = 200
+MB_DRIFT_HIDDEN = [128, 128]
+MB_SDE_EPOCHS = 1000
 
 # Simulation parameters
 LONG_T = 20.0
@@ -97,7 +99,8 @@ def run_one(surface_name, D, seed, cond_label, lw, epochs, sde_epochs,
     print(f"    E_mu={e_mu:.4f}  E_Sigma={e_sigma:.4f}")
 
     # SDE pipeline
-    pipeline = train_pipeline(ae, x, v, Lambda, seed, n_train, sde_epochs)
+    pipeline = train_pipeline(ae, x, v, Lambda, seed, n_train, sde_epochs,
+                              drift_hidden=MB_DRIFT_HIDDEN)
 
     # Initial conditions at well 1 + noise
     torch.manual_seed(seed + 999)
@@ -120,7 +123,8 @@ def run_one(surface_name, D, seed, cond_label, lw, epochs, sde_epochs,
     dW_lr = torch.randn(N_TRAJ, LONG_N_STEPS, 2, device=DEVICE)
     with torch.no_grad():
         z0 = ae.encoder(init_ambient)
-    _, x_traj = pipeline.simulate(z0, LONG_N_STEPS, DT, dW=dW_lr)
+    _, x_traj = pipeline.simulate(z0, LONG_N_STEPS, DT, dW=dW_lr,
+                                    boundary=BOUNDARY * 3)
 
     # Inter-well metrics
     gt_assign = assign_wells_ambient(gt_traj, wells_ambient)
@@ -180,7 +184,7 @@ def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--n-seeds", type=int, default=10)
     parser.add_argument("--epochs", type=int, default=500)
-    parser.add_argument("--sde-epochs", type=int, default=300)
+    parser.add_argument("--sde-epochs", type=int, default=MB_SDE_EPOCHS)
     parser.add_argument("--base-seed", type=int, default=42)
     parser.add_argument("--D", type=int, default=11)
     parser.add_argument("--N", type=int, default=N_TRAIN)
@@ -188,7 +192,15 @@ def main():
     parser.add_argument("--surfaces", type=str, nargs="+", default=None)
     parser.add_argument("--conditions", type=str, nargs="+", default=None,
                         help="Conditions to run (default: all for D=11, drop C for D=201)")
+    parser.add_argument("--n-traj", type=int, default=None,
+                        help="Override N_TRAJ for MFPT simulation (default: from data_driven_sde)")
     args = parser.parse_args()
+
+    if args.n_traj is not None:
+        import experiments.data_driven_sde as _dds
+        _dds.N_TRAJ = args.n_traj
+        global N_TRAJ
+        N_TRAJ = args.n_traj
 
     if args.output is None:
         args.output = f"mb_mfpt_d{args.D}.csv"
