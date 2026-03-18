@@ -621,7 +621,8 @@ class SDEPipelineTrainer:
         return losses
 
     @torch.no_grad()
-    def simulate(self, z0, n_steps, dt, dW=None, reproject=False):
+    def simulate(self, z0, n_steps, dt, dW=None, reproject=False,
+                 boundary=None, reflect=False, decode=True):
         """
         Euler-Maruyama simulation in latent space using learned nets.
 
@@ -635,10 +636,18 @@ class SDEPipelineTrainer:
                 If None, generates standard normal increments.
             reproject: If True, apply encoder(decoder(z)) after each step to
                 keep the trajectory on the learned manifold chart.
+            boundary: If given, freeze trajectories whose latent coords
+                exceed this bound (matching GT simulation behavior).
+            reflect: If True and boundary is set, use reflecting (clamp)
+                instead of absorbing boundary.
+            decode: If True (default), decode z_traj to ambient x_traj.
+                If False, skip decoding and return (z_traj, None). Useful
+                for long simulations where decoding all steps would OOM.
 
         Returns:
             z_traj: Latent trajectory, shape (B, n_steps+1, d).
-            x_traj: Ambient trajectory, shape (B, n_steps+1, D).
+            x_traj: Ambient trajectory, shape (B, n_steps+1, D), or None
+                if decode=False.
         """
         self.drift_net.eval()
         self.diffusion_net.eval()
@@ -655,15 +664,30 @@ class SDEPipelineTrainer:
         z_traj = torch.zeros(B, n_steps + 1, d, device=device)
         z_traj[:, 0] = z0
         z = z0.clone()
+        if boundary is not None:
+            alive = torch.ones(B, dtype=torch.bool, device=device)
 
         for t in range(n_steps):
             b_z = self.drift_net(z)        # (B, d)
             sigma_z = self.diffusion_net(z)  # (B, d, d)
             noise = (sigma_z @ dW[:, t].unsqueeze(-1)).squeeze(-1)  # (B, d)
-            z = z + b_z * dt + noise
+            z_new = z + b_z * dt + noise
+            if boundary is not None:
+                if reflect:
+                    z_new = z_new.clamp(-boundary, boundary)
+                    z = z_new
+                else:
+                    out = (z_new.abs() > boundary).any(dim=-1)
+                    alive = alive & ~out
+                    z = torch.where(alive.unsqueeze(-1), z_new, z)
+            else:
+                z = z_new
             if reproject:
                 z = self.autoencoder.encoder(self.autoencoder.decoder(z))
             z_traj[:, t + 1] = z
+
+        if not decode:
+            return z_traj, None
 
         # Decode all at once
         z_flat = z_traj.reshape(B * (n_steps + 1), d)

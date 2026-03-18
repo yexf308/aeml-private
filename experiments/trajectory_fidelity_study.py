@@ -180,7 +180,8 @@ def simulate_ground_truth(
     n_steps: int,
     dt: float,
     dW: torch.Tensor,
-    boundary: float,
+    boundary: float = None,
+    reflect: bool = False,
 ) -> Tuple[torch.Tensor, torch.Tensor]:
     """Simulate ground-truth trajectories in local coords, map to ambient.
 
@@ -190,7 +191,9 @@ def simulate_ground_truth(
         n_steps: number of Euler-Maruyama steps
         dt: step size
         dW: (B, n_steps, 2) pre-generated Brownian increments
-        boundary: hard boundary in local coordinates
+        boundary: hard boundary in local coordinates. If None, no boundary
+            checking is performed (free diffusion).
+        reflect: if True, use reflecting boundary (clamp) instead of absorbing
 
     Returns:
         ambient_traj: (B, n_steps+1, D) trajectories in ambient space
@@ -220,9 +223,15 @@ def simulate_ground_truth(
             diffusion, noise.unsqueeze(-1)
         ).squeeze(-1) * sqrt_dt
 
-        out = (coords_new.abs() > boundary).any(dim=-1)
-        alive[:, step + 1] = alive[:, step] & ~out
-        coords = torch.where(alive[:, step + 1].unsqueeze(-1), coords_new, coords)
+        if boundary is None:
+            coords = coords_new
+        elif reflect:
+            coords_new = coords_new.clamp(-boundary, boundary)
+            coords = coords_new
+        else:
+            out = (coords_new.abs() > boundary).any(dim=-1)
+            alive[:, step + 1] = alive[:, step] & ~out
+            coords = torch.where(alive[:, step + 1].unsqueeze(-1), coords_new, coords)
         ambient_traj[:, step + 1] = sde.chart(coords)
         local_traj[:, step + 1] = coords
 

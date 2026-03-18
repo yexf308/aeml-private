@@ -30,20 +30,56 @@ _c = torch.tensor([-10., -10., -6.5, 0.7])
 _x0 = torch.tensor([1., 0., -0.5, -1.])
 _y0 = torch.tensor([0., 0.5, 1.5, 1.])
 
-KT = 0.15
+KT = 0.10
 V_SCALE = 200.0
 
-# Three MB wells in (u,v) ∈ [-1,1]² coordinates
+# Three MB wells in (u,v) ∈ [-1,1]² coordinates (rescaling scale=2.25)
+# Original well locations: M1(-0.558,1.442), M2(0.623,0.028), M3(-0.050,0.467)
+# Inverse: u = (x + 0.25)/2.25, v = (y - 1.0)/2.25
 WELLS_UV = torch.tensor([
-    [-0.30,  0.55],   # well 1 (deepest, V≈-0.73)
-    [ 0.57, -0.58],   # well 2 (V≈-0.54)
-    [ 0.07, -0.23],   # well 3 (shallowest, V≈-0.40)
+    [-0.1369,  0.1964],   # well 1 (deepest)
+    [ 0.3880, -0.4320],   # well 2
+    [ 0.0889, -0.2369],   # well 3 (shallowest)
 ])
 
 DEBOUNCE_STEPS = 5
 WELL_NAMES = ["W1", "W2", "W3"]
 
-TRAIN_BOUND = 0.8  # keeps data away from MB potential exponential walls
+TRAIN_BOUND = 0.55  # dynamically relevant region (all wells inside, max drift ~140)
+
+CORE_RADIUS = 0.08  # smaller than well-to-boundary gap (0.118) to avoid reflection artifacts
+CORE_DWELL = 10     # stricter dwell confirmation
+
+# Approximate saddle point between W1 and W2 (in rescaled (u,v) coords)
+SADDLE_UV = torch.tensor([0.022, 0.006])
+
+
+def importance_sample_mb(n_samples, seed=42, device="cpu",
+                         saddle_frac=0.3, saddle_std=0.08):
+    """Sample (u,v) with extra density near the MB saddle region.
+
+    Args:
+        n_samples: total number of points
+        seed: random seed
+        device: torch device
+        saddle_frac: fraction of points to place near the saddle
+        saddle_std: std of Gaussian around the saddle
+
+    Returns:
+        uv: (n_samples, 2) tensor of local coordinates
+    """
+    torch.manual_seed(seed)
+    n_saddle = int(n_samples * saddle_frac)
+    n_uniform = n_samples - n_saddle
+
+    # Uniform points
+    uv_uniform = (torch.rand(n_uniform, 2, device=device) * 2 - 1) * TRAIN_BOUND
+
+    # Saddle-focused points (Gaussian, clamped to training domain)
+    uv_saddle = SADDLE_UV.to(device) + torch.randn(n_saddle, 2, device=device) * saddle_std
+    uv_saddle = uv_saddle.clamp(-TRAIN_BOUND, TRAIN_BOUND)
+
+    return torch.cat([uv_uniform, uv_saddle], dim=0)
 
 
 # ── MB potential and drift ───────────────────────────────────────────────
@@ -58,8 +94,10 @@ def mb_potential(uv: torch.Tensor) -> torch.Tensor:
         V: same leading shape, scalar potential values
     """
     u, v = uv[..., 0], uv[..., 1]
-    x = (2.7 * u - 0.3) / 2
-    y = (2.5 * v + 1.5) / 2
+    # Rescaling: (u,v) ∈ [-1,1]² → original MB coords
+    # scale=2.25 with offset to center wells in domain
+    x = 2.25 * u - 0.25
+    y = 2.25 * v + 1.0
     dev = uv.device
     A, a, b, c = _A.to(dev), _a.to(dev), _b.to(dev), _c.to(dev)
     x0, y0 = _x0.to(dev), _y0.to(dev)
@@ -203,6 +241,226 @@ def compute_transition_rate(assignments: torch.Tensor, dt: float) -> dict:
         "rate": total_transitions / total_time if total_time > 0 else 0,
         "transitions_per_traj": total_transitions / B,
     }
+
+
+# ── Core-set assignment and Markov metrics ─────────────────────────────
+
+def assign_wells_coreset_2d(traj_uv, wells_uv=None, core_radius=CORE_RADIUS):
+    """Core-set assignment: assign trajectory points to nearest well if
+    within core_radius, otherwise -1 (unassigned).
+
+    Args:
+        traj_uv: (B, T+1, 2) trajectory in 2D coordinates
+        wells_uv: (n_wells, 2) well centers. Defaults to WELLS_UV.
+        core_radius: radius threshold for assignment
+
+    Returns:
+        assignments: (B, T+1) integer tensor (0..n_wells-1 or -1)
+    """
+    if wells_uv is None:
+        wells_uv = WELLS_UV
+    wells_uv = wells_uv.to(traj_uv.device)
+    # (B, T+1, n_wells) distances
+    dists = torch.cdist(traj_uv, wells_uv.unsqueeze(0).expand(traj_uv.shape[0], -1, -1))
+    min_dist, nearest = dists.min(dim=-1)  # (B, T+1)
+    assignments = torch.where(min_dist <= core_radius, nearest, torch.tensor(-1, device=traj_uv.device))
+    return assignments
+
+
+def compute_transition_matrix(assignments, lag_steps, n_wells=3):
+    """Compute row-stochastic transition matrix from core-set assignments.
+
+    For each (t, t+lag), if both assignments[t] and assignments[t+lag] are >= 0,
+    increment count[i, j].  Vectorized with bincount (no Python loops).
+
+    Args:
+        assignments: (B, T+1) integer assignments (-1 = unassigned)
+        lag_steps: number of steps for the lag
+        n_wells: number of wells
+
+    Returns:
+        P_tau: (n_wells, n_wells) row-stochastic matrix
+    """
+    B, T1 = assignments.shape
+    # Move to CPU for counting
+    a = assignments.cpu()
+    src = a[:, :-lag_steps].reshape(-1)       # (B * (T1 - lag_steps),)
+    dst = a[:, lag_steps:].reshape(-1)
+    valid = (src >= 0) & (dst >= 0)
+    src_v = src[valid].long()
+    dst_v = dst[valid].long()
+
+    flat_idx = src_v * n_wells + dst_v
+    counts = torch.bincount(flat_idx, minlength=n_wells * n_wells).reshape(n_wells, n_wells).float()
+
+    # Row-normalize
+    row_sums = counts.sum(dim=1, keepdim=True)
+    P_tau = torch.where(row_sums > 0, counts / row_sums.clamp(min=1), torch.zeros_like(counts))
+    return P_tau
+
+
+def compute_implied_timescales(assignments, dt, lag_times=None, n_wells=3):
+    """Compute implied timescales from core-set transition matrices.
+
+    Args:
+        assignments: (B, T+1) integer assignments
+        dt: simulation time step
+        lag_times: list of lag times (seconds). Default [0.05, 0.1, 0.2, 0.5].
+        n_wells: number of wells
+
+    Returns:
+        dict with 't2' and 't3' arrays (implied timescales for 2nd and 3rd
+        eigenvalues), and 'plateau_lag' (best plateau lag time).
+    """
+    if lag_times is None:
+        lag_times = [0.05, 0.1, 0.2, 0.5]
+
+    t2_list, t3_list = [], []
+    for tau in lag_times:
+        lag_steps = max(1, int(round(tau / dt)))
+        P_tau = compute_transition_matrix(assignments, lag_steps, n_wells)
+        eigvals = torch.linalg.eigvals(P_tau).real
+        eigvals_sorted = eigvals[eigvals.abs().sort(descending=True).indices]
+
+        ts = []
+        for k in range(1, min(n_wells, len(eigvals_sorted))):
+            lam_k = eigvals_sorted[k].item()
+            if 0 < abs(lam_k) < 1:
+                t_k = -tau / math.log(abs(lam_k))
+            else:
+                t_k = float('inf')
+            ts.append(t_k)
+
+        t2_list.append(ts[0] if len(ts) >= 1 else float('nan'))
+        t3_list.append(ts[1] if len(ts) >= 2 else float('nan'))
+
+    # Plateau detection with nan/inf safety
+    t2_arr = np.array(t2_list)
+    finite_mask = np.isfinite(t2_arr)
+    if finite_mask.sum() >= 2:
+        # Only consider consecutive finite pairs
+        rel_changes = []
+        for i in range(len(t2_arr) - 1):
+            if finite_mask[i] and finite_mask[i + 1] and abs(t2_arr[i]) > 1e-12:
+                rel_changes.append((abs(t2_arr[i + 1] - t2_arr[i]) / abs(t2_arr[i]), i + 1))
+        if rel_changes:
+            best_idx = min(rel_changes, key=lambda x: x[0])[1]
+        else:
+            best_idx = 0
+    else:
+        best_idx = 0
+
+    return {
+        't2': np.array(t2_list),
+        't3': np.array(t3_list),
+        'lag_times': np.array(lag_times),
+        'plateau_lag': lag_times[best_idx],
+    }
+
+
+def compute_stationary_probabilities(assignments, n_wells=3):
+    """Compute stationary (empirical) probabilities from assignments.
+
+    Counts fraction of time spent in each well, ignoring -1 assignments.
+
+    Args:
+        assignments: (B, T+1) integer assignments
+        n_wells: number of wells
+
+    Returns:
+        pi: (n_wells,) tensor of probabilities
+    """
+    counts = torch.zeros(n_wells, dtype=torch.float64)
+    for w in range(n_wells):
+        counts[w] = (assignments == w).sum().item()
+    total = counts.sum()
+    if total > 0:
+        return (counts / total).float()
+    return torch.zeros(n_wells)
+
+
+def compute_pairwise_mfpt(assignments, dt, n_wells=3, dwell=CORE_DWELL):
+    """Compute pairwise mean first passage times with dwell confirmation.
+
+    For each trajectory, for each (i, j) pair, find first passage from
+    core i to core j: trajectory must start in well i and first reach
+    well j with at least `dwell` consecutive steps.
+
+    Args:
+        assignments: (B, T+1) integer assignments (-1 = unassigned)
+        dt: simulation time step
+        n_wells: number of wells
+        dwell: number of consecutive steps required to confirm arrival
+
+    Returns:
+        mfpt: (n_wells, n_wells) matrix of mean FPTs (nan if no transitions)
+    """
+    B, T1 = assignments.shape
+    # Collect passage times for each (i, j) pair
+    fpt_lists = [[[] for _ in range(n_wells)] for _ in range(n_wells)]
+
+    for b in range(B):
+        traj = assignments[b]  # (T1,)
+        # Find all passages: scan for well visits
+        t = 0
+        while t < T1:
+            start_well = traj[t].item()
+            if start_well < 0:
+                t += 1
+                continue
+            # We are in well start_well at time t; look for first passage to another well
+            t_start = t
+            consecutive = 0
+            candidate = -1
+            found = False
+            for s in range(t + 1, T1):
+                w = traj[s].item()
+                if w >= 0 and w != start_well:
+                    if w == candidate:
+                        consecutive += 1
+                    else:
+                        candidate = w
+                        consecutive = 1
+                    if consecutive >= dwell:
+                        passage_time = (s - dwell + 1 - t_start) * dt
+                        fpt_lists[start_well][candidate].append(passage_time)
+                        t = s  # continue scanning from arrival
+                        found = True
+                        break
+                elif w == start_well:
+                    candidate = -1
+                    consecutive = 0
+                else:
+                    # w == -1 (outside all cores), reset dwell counter
+                    candidate = -1
+                    consecutive = 0
+            if not found:
+                t = T1  # no more passages from this starting point
+            else:
+                t += 1
+
+    mfpt = torch.full((n_wells, n_wells), float('nan'))
+    for i in range(n_wells):
+        for j in range(n_wells):
+            if i != j and len(fpt_lists[i][j]) >= 1:
+                mfpt[i, j] = np.mean(fpt_lists[i][j])
+    return mfpt
+
+
+def compute_exit_fraction(z_traj, train_bound=TRAIN_BOUND):
+    """Fraction of trajectories that ever leave [-train_bound, train_bound]^d.
+
+    Args:
+        z_traj: (B, T+1, d) latent trajectory
+        train_bound: domain boundary
+
+    Returns:
+        float: fraction of trajectories with any step outside the box
+    """
+    B = z_traj.shape[0]
+    outside = (z_traj.abs() > train_bound).any(dim=-1)  # (B, T+1)
+    ever_outside = outside.any(dim=1)  # (B,)
+    return ever_outside.float().mean().item()
 
 
 # ── D-general two-phase AE trainer ──────────────────────────────────────

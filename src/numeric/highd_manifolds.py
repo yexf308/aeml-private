@@ -171,19 +171,25 @@ def sample_from_highd_manifold(
     n_samples: int,
     seed: int = 42,
     device: str = "cpu",
+    uv_override: torch.Tensor = None,
 ) -> DatasetBatch:
     """Sample training data from a Fourier-augmented surface.
 
     All geometric quantities computed numerically (no SymPy).
+    If uv_override is provided, uses those (u,v) points instead of random sampling.
     """
     torch.manual_seed(seed)
     np.random.seed(seed)
 
-    u_lo, u_hi = bounds[0]
-    v_lo, v_hi = bounds[1]
-    uv = torch.rand(n_samples, 2, device=device)
-    uv[:, 0] = uv[:, 0] * (u_hi - u_lo) + u_lo
-    uv[:, 1] = uv[:, 1] * (v_hi - v_lo) + v_lo
+    if uv_override is not None:
+        uv = uv_override.to(device)
+        n_samples = uv.shape[0]
+    else:
+        u_lo, u_hi = bounds[0]
+        v_lo, v_hi = bounds[1]
+        uv = torch.rand(n_samples, 2, device=device)
+        uv[:, 0] = uv[:, 0] * (u_hi - u_lo) + u_lo
+        uv[:, 1] = uv[:, 1] * (v_hi - v_lo) + v_lo
 
     x = surface.chart(uv)  # (B, D)
     J = surface.jacobian(uv)  # (B, D, 2)
