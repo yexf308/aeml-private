@@ -41,15 +41,20 @@ from experiments.mb_dynamics import (
     mb_local_drift_fn, mb_local_diffusion_fn,
     train_ae_highd,
     WELLS_UV, WELL_NAMES, TRAIN_BOUND,
-    assign_wells_coreset_2d, compute_pairwise_mfpt,
+    assign_wells_voronoi_2d, compute_interwell_mfpt,
+    compute_pairwise_mfpt,
     compute_implied_timescales, compute_stationary_probabilities,
-    compute_exit_fraction, importance_sample_mb,
-    CORE_RADIUS, CORE_DWELL,
 )
 from experiments.mb_mfpt import (
-    MB_DRIFT_HIDDEN, MB_SDE_EPOCHS, MB_DT, LONG_T, LONG_N_STEPS,
-    LAG_TIMES, CENSOR_BOUND,
+    MB_DRIFT_HIDDEN, MB_SDE_EPOCHS, MB_DT,
 )
+
+# Simulation parameters — updated per Codex review
+LONG_T = 50.0
+LONG_N_STEPS = int(LONG_T / MB_DT)  # 10000
+CENSOR_BOUND = 1.0
+LAG_TIMES = [0.05, 0.1, 0.2, 0.5]
+MB_N_TRAJ = 2000
 
 
 # ── Oracle drift via GPU grid interpolation ──────────────────────────────
@@ -121,8 +126,9 @@ def build_oracle_fields(ae, surface, grid_res=50, pad=0.15, device=DEVICE,
         ae, DriftNet(2).to(device), DiffusionNet(2).to(device), device=device,
     )
     z_pre, dphi_pre, _ = tmp.precompute_decoder_derivatives(x_exact)
+    hess_bs = 8 if D > 100 else 32  # smaller batches at high D to avoid OOM
     b_z_oracle, g = tmp.precompute_enc_pull_target(
-        x_exact, v_exact, Lambda_exact, dphi_pre, batch_size=32,
+        x_exact, v_exact, Lambda_exact, dphi_pre, batch_size=hess_bs,
     )
 
     # Compute encoder Jacobian for oracle diffusion
@@ -252,7 +258,7 @@ def compute_mfpt_metrics(ae, z_traj, gt_results, n_traj):
     exit_frac = ever_out.float().mean().item()
 
     # Well assignment
-    lr_assign = assign_wells_coreset_2d(lr_uv, WELLS_UV.to(z_traj.device))
+    lr_assign = assign_wells_voronoi_2d(lr_uv, WELLS_UV.to(z_traj.device))
     lr_assign[ever_out] = -1
 
     lr_pairwise_mfpt = compute_pairwise_mfpt(lr_assign, dt=MB_DT)
@@ -359,7 +365,13 @@ def run_one_condition(surface_name, D, seed, cond_label, lw, epochs,
 
     results = []
 
-    for drift_mode in ["learned", "oracle_drift+learned_diff", "oracle_drift+oracle_diff"]:
+    # Oracle modes only for baseline and T+F (T is redundant with T+F oracle)
+    if cond_label in ["baseline", "T+F"]:
+        drift_modes = ["learned", "oracle_drift+learned_diff", "oracle_drift+oracle_diff"]
+    else:
+        drift_modes = ["learned"]
+
+    for drift_mode in drift_modes:
         torch.manual_seed(seed + 5678 + _COND_SEED_OFFSET.get(cond_label, 99))
         dW = torch.randn(n_traj, LONG_N_STEPS, 2, device=DEVICE)
 
@@ -403,6 +415,10 @@ def run_one_condition(surface_name, D, seed, cond_label, lw, epochs,
             'exit_frac': metrics['exit_frac'],
         })
 
+    # Free per-condition GPU tensors
+    del ae, pipeline, bz_img, sigma_img, z_traj
+    torch.cuda.empty_cache()
+
     return results
 
 
@@ -432,6 +448,7 @@ def main():
 
     conditions = {
         "baseline": LossWeights(),
+        "T": LossWeights(tangent_bundle=1.0),
         "T+F": LossWeights(tangent_bundle=1.0, diffeo=1.0),
     }
     seeds = [args.base_seed + i * 1000 for i in range(args.n_seeds)]
@@ -455,12 +472,11 @@ def main():
             np.random.seed(seed)
 
             surface = FourierAugmentedSurface(surface_name, args.D)
-            uv_is = importance_sample_mb(args.N, seed=seed, device=DEVICE)
+            # Uniform sampling (no importance sampling)
             train_data = sample_from_highd_manifold(
                 surface, mb_local_drift_fn, mb_local_diffusion_fn,
                 [(-TRAIN_BOUND, TRAIN_BOUND), (-TRAIN_BOUND, TRAIN_BOUND)],
                 n_samples=args.N, seed=seed, device=DEVICE,
-                uv_override=uv_is,
             )
             x = train_data.samples.to(DEVICE)
             v = train_data.mu.to(DEVICE)
@@ -471,7 +487,7 @@ def main():
 
             # GT simulation (shared across conditions)
             torch.manual_seed(seed + 999)
-            n_traj = N_TRAJ
+            n_traj = MB_N_TRAJ
             init_local = torch.randn(n_traj, 2, device=DEVICE) * 0.1
             init_local[:, 0] += WELLS_UV[0, 0]
             init_local[:, 1] += WELLS_UV[0, 1]
@@ -485,7 +501,7 @@ def main():
                 boundary=None,
             )
             gt_ever_out = (gt_local.abs() > CENSOR_BOUND).any(dim=-1).any(dim=-1)
-            gt_assign = assign_wells_coreset_2d(gt_local, WELLS_UV.to(DEVICE))
+            gt_assign = assign_wells_voronoi_2d(gt_local, WELLS_UV.to(DEVICE))
             gt_assign[gt_ever_out] = -1
             gt_pairwise_mfpt = compute_pairwise_mfpt(gt_assign, dt=MB_DT)
             gt_its = compute_implied_timescales(gt_assign, dt=MB_DT, lag_times=LAG_TIMES)
@@ -510,6 +526,10 @@ def main():
 
             # Save incrementally
             pd.DataFrame(all_rows).to_csv(args.output, index=False)
+
+            # Free GPU memory between seeds to avoid OOM at high D
+            del gt_results, train_data, x, v, Lambda, sde
+            torch.cuda.empty_cache()
 
     elapsed = time.time() - t0
     print(f"\n\nTotal time: {elapsed / 60:.1f} min")
