@@ -75,8 +75,8 @@ MB_SDE_EPOCHS = 3000
 
 # Simulation parameters
 MB_DT = 0.005
-LONG_T = 20.0
-LONG_N_STEPS = int(LONG_T / MB_DT)  # 4000
+LONG_T = 50.0
+LONG_N_STEPS = int(LONG_T / MB_DT)  # 10000
 LAG_TIMES = [0.05, 0.1, 0.2, 0.5]
 CENSOR_BOUND = 1.0  # censor trajectories that leave [-1,1]² in decoded (u,v)
 
@@ -96,6 +96,7 @@ def run_one(surface_name, D, seed, cond_label, lw, epochs, sde_epochs,
         FourierAugmentedSurface(surface_name, D),
         D, seed, n_train, epochs, lw, train_data,
     )
+    torch.cuda.empty_cache()  # free training cache before Hessian computation
     print(f"    recon={recon:.6f}")
 
     # sigma_min
@@ -113,6 +114,7 @@ def run_one(surface_name, D, seed, cond_label, lw, epochs, sde_epochs,
     # SDE pipeline
     pipeline = train_pipeline(ae, x, v, Lambda, seed, n_train, sde_epochs,
                               drift_hidden=MB_DRIFT_HIDDEN)
+    torch.cuda.empty_cache()
 
     # Use precomputed GT results
     init_ambient = gt_results['init_ambient']
@@ -173,6 +175,41 @@ def run_one(surface_name, D, seed, cond_label, lw, epochs, sde_epochs,
     else:
         w2 = float('nan')
 
+    # W0 escape time: first confirmed passage from W0 to any other well
+    def compute_w0_escape(assign, dt, dwell=CORE_DWELL):
+        """Mean first-passage time from W0 to any other well.
+
+        All trajectories start near W0; we use all of them (no core-set
+        filter on the initial frame, since the Gaussian initialization
+        may place some starts outside the tiny core radius).
+        Requires `dwell` consecutive frames in another well to confirm escape.
+        """
+        B = assign.shape[0]
+        escape_times = []
+        for b in range(B):
+            traj = assign[b]
+            consecutive = 0
+            candidate = -1
+            for t in range(1, len(traj)):
+                w = traj[t].item()
+                if w > 0:  # in W1 or W2
+                    if w == candidate:
+                        consecutive += 1
+                    else:
+                        candidate = w
+                        consecutive = 1
+                    if consecutive >= dwell:
+                        escape_times.append((t - dwell + 1) * dt)
+                        break
+                else:
+                    candidate = -1
+                    consecutive = 0
+        return np.mean(escape_times) if escape_times else float('nan')
+
+    gt_w0_escape = compute_w0_escape(gt_assign, MB_DT)
+    lr_w0_escape = compute_w0_escape(lr_assign, MB_DT)
+    w0_escape_err = abs(lr_w0_escape - gt_w0_escape) / gt_w0_escape if gt_w0_escape > 0 else float('nan')
+
     # Pairwise MFPT error (average over all finite pairs)
     pairwise_err_vals = []
     for i in range(3):
@@ -200,7 +237,8 @@ def run_one(surface_name, D, seed, cond_label, lw, epochs, sde_epochs,
     stat_l1_err = (gt_stat - lr_stat).abs().sum().item()
 
     print(f"    Pairwise MFPT err={pairwise_mfpt_err:.1%}  "
-          f"ITS t2 err={its_t2_err:.1%}  stat L1={stat_l1_err:.4f}")
+          f"W0 escape err={w0_escape_err:.1%}  "
+          f"(GT={gt_w0_escape:.2f}, LR={lr_w0_escape:.2f})")
     print(f"    Exit fraction={exit_frac:.1%}")
 
     return {
@@ -212,6 +250,9 @@ def run_one(surface_name, D, seed, cond_label, lw, epochs, sde_epochs,
         "E_Sigma": e_sigma,
         "sigma_min_p5": sigma_min_vals.quantile(0.05).item(),
         "W2@1.0": w2,
+        "gt_w0_escape": gt_w0_escape,
+        "lr_w0_escape": lr_w0_escape,
+        "w0_escape_err": w0_escape_err,
         "pairwise_mfpt_err": pairwise_mfpt_err,
         "gt_mfpt_01": gt_pairwise_mfpt[0, 1].item(),
         "gt_mfpt_02": gt_pairwise_mfpt[0, 2].item(),
@@ -253,6 +294,8 @@ def main():
                         help="Conditions to run (default: all for D=11, drop C for D=201)")
     parser.add_argument("--n-traj", type=int, default=None,
                         help="Override N_TRAJ for MFPT simulation (default: from data_driven_sde)")
+    parser.add_argument("--uniform", action="store_true",
+                        help="Use uniform sampling instead of importance sampling")
     args = parser.parse_args()
 
     if args.n_traj is not None:
@@ -299,14 +342,22 @@ def main():
             np.random.seed(seed)
 
             surface = FourierAugmentedSurface(surface_name, args.D)
-            # Importance-sample training data: 30% near saddle, 70% uniform
-            uv_is = importance_sample_mb(args.N, seed=seed, device=DEVICE)
-            train_data = sample_from_highd_manifold(
-                surface, mb_local_drift_fn, mb_local_diffusion_fn,
-                [(-TRAIN_BOUND, TRAIN_BOUND), (-TRAIN_BOUND, TRAIN_BOUND)],
-                n_samples=args.N, seed=seed, device=DEVICE,
-                uv_override=uv_is,
-            )
+            if args.uniform:
+                # Uniform sampling
+                train_data = sample_from_highd_manifold(
+                    surface, mb_local_drift_fn, mb_local_diffusion_fn,
+                    [(-TRAIN_BOUND, TRAIN_BOUND), (-TRAIN_BOUND, TRAIN_BOUND)],
+                    n_samples=args.N, seed=seed, device=DEVICE,
+                )
+            else:
+                # Importance-sample: 30% near saddle, 70% uniform
+                uv_is = importance_sample_mb(args.N, seed=seed, device=DEVICE)
+                train_data = sample_from_highd_manifold(
+                    surface, mb_local_drift_fn, mb_local_diffusion_fn,
+                    [(-TRAIN_BOUND, TRAIN_BOUND), (-TRAIN_BOUND, TRAIN_BOUND)],
+                    n_samples=args.N, seed=seed, device=DEVICE,
+                    uv_override=uv_is,
+                )
             x = train_data.samples.to(DEVICE)
             v = train_data.mu.to(DEVICE)
             Lambda = train_data.cov.to(DEVICE)

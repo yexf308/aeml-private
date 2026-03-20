@@ -88,9 +88,6 @@ DYNAMICS_CONFIG = {
     },
 }
 
-RECON_GATE = 0.1  # skip Stage 2/3 if recon exceeds this
-
-
 def run_one(surface_name, D, seed, cond_label, lw, dynamics, dyn_cfg,
             train_data, sde, ae_epochs, sde_epochs):
     """Run one (surface, D, seed, condition, dynamics) and return metrics."""
@@ -135,12 +132,7 @@ def run_one(surface_name, D, seed, cond_label, lw, dynamics, dyn_cfg,
         "stage3_loss": float('nan'),
     }
 
-    # Stage 2/3: skip if chart is catastrophic
-    if recon > RECON_GATE:
-        print(f"  recon={recon:.4f} > {RECON_GATE} → skip Stage 2/3")
-        return row
-
-    # Stage 2 + 3
+    # Stage 2 + 3 (always run, even for catastrophic conditions)
     x = train_data.samples.to(DEVICE)
     v = train_data.mu.to(DEVICE)
     Lambda = train_data.cov.to(DEVICE)
@@ -222,7 +214,15 @@ def run_atlas(surface_name, D, seed, dynamics, dyn_cfg, train_data):
     P_Lam_P = P_atlas @ Lambda_eval @ P_atlas
     e_sigma = ((P_Lam_P - Lambda_eval) ** 2).sum((-1, -2)).median().item()
 
-    print(f"  recon={recon:.4f}  tangent={tangent_err:.4f}  E_mu={e_mu:.4f}  E_Sig={e_sigma:.4f}")
+    # Stage 2 equivalent: drift approximation error at training points
+    # (analogous to S2 training loss — how well does blended drift match true drift)
+    _, b_atlas_train, _, Lambda_atlas_train = atlas_weighted_drift_diffusion(x, charts, d=2)
+    stage2_equiv = (b_atlas_train - v).pow(2).sum(-1).mean().item()
+
+    # Stage 3 equivalent: diffusion approximation error at training points
+    stage3_equiv = ((Lambda_atlas_train - Lambda) ** 2).sum((-1, -2)).mean().item()
+
+    print(f"  recon={recon:.4f}  tangent={tangent_err:.4f}  E_mu={e_mu:.4f}  E_Sig={e_sigma:.4f}  S2={stage2_equiv:.6f}")
 
     return {
         "surface": surface_name,
@@ -236,8 +236,8 @@ def run_atlas(surface_name, D, seed, dynamics, dyn_cfg, train_data):
         "E_Sigma": e_sigma,
         "sigma_min_p5": float('nan'),
         "sigma_min_median": float('nan'),
-        "stage2_loss": float('nan'),
-        "stage3_loss": float('nan'),
+        "stage2_loss": stage2_equiv,
+        "stage3_loss": stage3_equiv,
     }
 
 

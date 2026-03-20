@@ -155,7 +155,14 @@ def compute_coefficient_errors(ae, sde, surface, eval_uv, device):
     def decoder_hessian(z_single):
         return torch.func.jacrev(torch.func.jacrev(ae.decoder))(z_single)
 
-    d2phi = torch.func.vmap(decoder_hessian)(z)
+    # Batch Hessian computation to avoid OOM at high D
+    D = dphi.shape[1]
+    hess_bs = 32 if D > 100 else len(z)
+    d2phi_chunks = []
+    for i in range(0, len(z), hess_bs):
+        d2phi_chunks.append(torch.func.vmap(decoder_hessian)(z[i:i+hess_bs]).detach())
+        torch.cuda.empty_cache()
+    d2phi = torch.cat(d2phi_chunks)
 
     dphi = dphi.detach()
     d2phi = d2phi.detach()
@@ -223,7 +230,7 @@ def _train_phase2(trainer, loader, mc, phase2_lw, phase2_epochs, phase1_converge
 
 
 def _run_sde_stages(ae, x, v, Lambda, sde, surface, seed, n_train,
-                    epochs_sde, lambda_smooth):
+                    epochs_sde, lambda_smooth, drift_hidden=None):
     """Train Stage 2 + 3, evaluate full pipeline.
 
     Returns metrics dict.
@@ -243,7 +250,7 @@ def _run_sde_stages(ae, x, v, Lambda, sde, surface, seed, n_train,
 
     # Stage 2: Drift (encoder-pullback regression)
     torch.manual_seed(seed + 100)
-    drift_net = DriftNet(d).to(DEVICE)
+    drift_net = DriftNet(d, hidden_dims=drift_hidden).to(DEVICE)
     dp = SDEPipelineTrainer(ae, drift_net, DiffusionNet(d).to(DEVICE), device=DEVICE)
     drift_losses = dp.train_stage2_regression(
         z_pre, b_z_target, g,
