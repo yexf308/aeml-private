@@ -131,6 +131,8 @@ def run_one(surface_name, D, seed, cond_label, lw, dynamics, dyn_cfg,
         "stage2_loss": float('nan'),
         "stage3_loss": float('nan'),
         "E_drift": float('nan'),
+        "E_b": float('nan'),
+        "E_Lambda": float('nan'),
     }
 
     # Stage 2 + 3 (always run, even for catastrophic conditions)
@@ -198,7 +200,50 @@ def run_one(surface_name, D, seed, cond_label, lw, dynamics, dyn_cfg,
     )
     row["stage3_loss"] = losses3[-1] if losses3 else float('nan')
 
-    print(f"  recon={recon:.4f}  E_mu={e_mu:.4f}  E_drift={row['E_drift']:.6f}  S2={row['stage2_loss']:.6f}  S3={row['stage3_loss']:.6f}")
+    # True end-to-end coefficient errors at eval points
+    with torch.no_grad():
+        x_ev = sde.chart(eval_uv)
+        z_ev = ae.encoder(x_ev)
+    dphi_ev = torch.func.vmap(torch.func.jacrev(ae.decoder))(z_ev).detach()
+
+    # Decoder Hessian (batched to avoid OOM)
+    D_dim = dphi_ev.shape[1]
+    hess_bs2 = 32 if D_dim > 100 else len(z_ev)
+    d2phi_chunks2 = []
+    for i in range(0, len(z_ev), hess_bs2):
+        d2phi_chunks2.append(
+            torch.func.vmap(
+                torch.func.jacrev(torch.func.jacrev(ae.decoder))
+            )(z_ev[i:i+hess_bs2]).detach()
+        )
+        torch.cuda.empty_cache()
+    d2phi_ev = torch.cat(d2phi_chunks2)
+
+    with torch.no_grad():
+        b_true = sde.ambient_drift(eval_uv.detach())
+        Lambda_true = sde.ambient_covariance(eval_uv.detach())
+
+        mu_hat_ev = drift_net(z_ev)
+        sigma_hat_ev = diff_net2(z_ev)
+        Sigma_hat = torch.bmm(sigma_hat_ev, sigma_hat_ev.transpose(-1, -2))
+
+        # E_b: ||Dφ μ̂ + ½q(σ̂σ̂ᵀ) − b||²
+        q_hat = ambient_quadratic_variation_drift(Sigma_hat, d2phi_ev)
+        b_recon = torch.bmm(dphi_ev, mu_hat_ev.unsqueeze(-1)).squeeze(-1) + 0.5 * q_hat
+        e_b_per = (b_recon - b_true).pow(2).sum(-1)
+
+        # E_Lambda: ||Dφ σ̂σ̂ᵀ Dφᵀ − Λ||²_F
+        Lambda_recon = torch.bmm(dphi_ev, torch.bmm(Sigma_hat, dphi_ev.transpose(-1, -2)))
+        e_lam_per = ((Lambda_recon - Lambda_true) ** 2).sum(dim=(-1, -2))
+
+        valid_c = torch.isfinite(e_b_per) & torch.isfinite(e_lam_per)
+        row["E_b"] = e_b_per[valid_c].median().item() if valid_c.sum() >= 2 else float('nan')
+        row["E_Lambda"] = e_lam_per[valid_c].median().item() if valid_c.sum() >= 2 else float('nan')
+
+    del dphi_ev, d2phi_ev, mu_hat_ev, sigma_hat_ev, Sigma_hat, q_hat
+    torch.cuda.empty_cache()
+
+    print(f"  recon={recon:.4f}  E={e_mu:.4f}  E_b={row['E_b']:.6f}  E_Lam={row['E_Lambda']:.6f}")
     return row
 
 
@@ -268,6 +313,8 @@ def run_atlas(surface_name, D, seed, dynamics, dyn_cfg, train_data):
         "stage2_loss": stage2_equiv,
         "stage3_loss": stage3_equiv,
         "E_drift": float('nan'),  # N/A for ATLAS
+        "E_b": float('nan'),
+        "E_Lambda": float('nan'),
     }
 
 
