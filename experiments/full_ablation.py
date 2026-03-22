@@ -297,7 +297,13 @@ def run_atlas(surface_name, D, seed, dynamics, dyn_cfg, train_data):
     # Stage 3 equivalent: diffusion approximation error at training points
     stage3_equiv = ((Lambda_atlas_train - Lambda) ** 2).sum((-1, -2)).mean().item()
 
-    print(f"  recon={recon:.4f}  tangent={tangent_err:.4f}  E_mu={e_mu:.4f}  E_Sig={e_sigma:.4f}  S2={stage2_equiv:.6f}")
+    # E_b and E_Lambda for ATLAS: direct comparison of blended coefficients
+    # ATLAS produces ambient drift and covariance directly (no Itô correction needed)
+    # e_mu (line above) already computes ||b_atlas - b_true||^2, so E_b = e_mu
+    e_b_atlas = e_mu
+    e_lam_atlas = ((Lambda_atlas - Lambda_eval) ** 2).sum((-1, -2)).median().item()
+
+    print(f"  recon={recon:.4f}  tangent={tangent_err:.4f}  E_mu={e_mu:.4f}  E_b={e_b_atlas:.4f}  E_Lam={e_lam_atlas:.4f}")
 
     return {
         "surface": surface_name,
@@ -313,9 +319,9 @@ def run_atlas(surface_name, D, seed, dynamics, dyn_cfg, train_data):
         "sigma_min_median": float('nan'),
         "stage2_loss": stage2_equiv,
         "stage3_loss": stage3_equiv,
-        "E_drift": float('nan'),  # N/A for ATLAS
-        "E_b": float('nan'),
-        "E_Lambda": float('nan'),
+        "E_drift": float('nan'),  # N/A for ATLAS (no drift_net)
+        "E_b": e_b_atlas,
+        "E_Lambda": e_lam_atlas,
     }
 
 
