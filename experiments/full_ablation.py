@@ -23,7 +23,7 @@ import numpy as np
 import pandas as pd
 
 from src.numeric.losses import LossWeights
-from src.numeric.geometry import compute_sigma_min
+from src.numeric.geometry import compute_sigma_min, ambient_quadratic_variation_drift
 from src.numeric.performance_stats import compute_losses_per_sample
 from src.numeric.sde_nets import DriftNet, DiffusionNet
 from src.numeric.sde_training import SDEPipelineTrainer
