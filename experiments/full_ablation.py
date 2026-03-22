@@ -203,7 +203,8 @@ def run_one(surface_name, D, seed, cond_label, lw, dynamics, dyn_cfg,
     # True end-to-end coefficient errors at eval points
     with torch.no_grad():
         x_ev = sde.chart(eval_uv)
-        z_ev = ae.encoder(x_ev)
+        z_ev = ae.encoder(x_ev).detach()
+    z_ev.requires_grad_(True)
     dphi_ev = torch.func.vmap(torch.func.jacrev(ae.decoder))(z_ev).detach()
 
     # Decoder Hessian (batched to avoid OOM)
