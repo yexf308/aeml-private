@@ -220,10 +220,10 @@ def run_one(surface_name, D, seed, cond_label, lw, dynamics, dyn_cfg,
         torch.cuda.empty_cache()
     d2phi_ev = torch.cat(d2phi_chunks2)
 
-    with torch.no_grad():
-        b_true = sde.ambient_drift(eval_uv.detach())
-        Lambda_true = sde.ambient_covariance(eval_uv.detach())
+    b_true = sde.ambient_drift(eval_uv).detach()
+    Lambda_true = sde.ambient_covariance(eval_uv).detach()
 
+    with torch.no_grad():
         mu_hat_ev = drift_net(z_ev)
         sigma_hat_ev = diff_net2(z_ev)
         Sigma_hat = torch.bmm(sigma_hat_ev, sigma_hat_ev.transpose(-1, -2))
