@@ -73,7 +73,7 @@ DYNAMICS_CONFIG = {
         "ae_epochs": 500,
         "sde_epochs": 300,
         "drift_hidden": None,  # default [64, 64]
-        "sampling": "uniform",
+        "sampling": "delta_net",
         "train_bound": ROT_TRAIN_BOUND,
     },
     "mb": {
@@ -83,7 +83,7 @@ DYNAMICS_CONFIG = {
         "ae_epochs": 4000,
         "sde_epochs": 3000,
         "drift_hidden": [256, 256, 256],
-        "sampling": "uniform",
+        "sampling": "delta_net",
         "train_bound": MB_TRAIN_BOUND,
     },
 }
@@ -130,6 +130,7 @@ def run_one(surface_name, D, seed, cond_label, lw, dynamics, dyn_cfg,
         "sigma_min_median": sigma_min_vals.median().item(),
         "stage2_loss": float('nan'),
         "stage3_loss": float('nan'),
+        "E_drift": float('nan'),
     }
 
     # Stage 2 + 3 (always run, even for catastrophic conditions)
@@ -158,6 +159,34 @@ def run_one(surface_name, D, seed, cond_label, lw, dynamics, dyn_cfg,
     )
     row["stage2_loss"] = losses[-1] if losses else float('nan')
 
+    # E_drift: drift-net fit error at eval points (metric-weighted)
+    with torch.no_grad():
+        x_eval = sde.chart(eval_uv)
+        z_eval = ae.encoder(x_eval)
+    dphi_eval = torch.func.vmap(torch.func.jacrev(ae.decoder))(z_eval).detach()
+    g_eval = torch.bmm(dphi_eval.transpose(-1, -2), dphi_eval)
+    tmp_eval = SDEPipelineTrainer(ae, drift_net, diff_net, device=DEVICE)
+    z_e, dphi_e, _ = tmp_eval.precompute_decoder_derivatives(x_eval)
+    b_eval = sde.ambient_drift(eval_uv.detach())
+    Lambda_eval = sde.ambient_covariance(eval_uv.detach())
+    mu_enc_eval, g_enc = tmp_eval.precompute_enc_pull_target(
+        x_eval, b_eval, Lambda_eval, dphi_e,
+    )
+    with torch.no_grad():
+        mu_hat = drift_net(z_eval)
+        residual = mu_hat - mu_enc_eval
+        # ||r||_g^2 = r^T g r = ||Dφ r||^2
+        e_drift_per = torch.bmm(
+            dphi_eval, residual.unsqueeze(-1)
+        ).squeeze(-1).pow(2).sum(-1)
+        valid_d = torch.isfinite(e_drift_per)
+        row["E_drift"] = (
+            e_drift_per[valid_d].median().item()
+            if valid_d.sum() >= 2 else float('nan')
+        )
+    del dphi_eval, g_eval, z_e, dphi_e, mu_enc_eval, g_enc, mu_hat
+    torch.cuda.empty_cache()
+
     # Stage 3: diffusion
     torch.manual_seed(seed + 200)
     diff_net2 = DiffusionNet(d).to(DEVICE)
@@ -169,7 +198,7 @@ def run_one(surface_name, D, seed, cond_label, lw, dynamics, dyn_cfg,
     )
     row["stage3_loss"] = losses3[-1] if losses3 else float('nan')
 
-    print(f"  recon={recon:.4f}  E_mu={e_mu:.4f}  S2={row['stage2_loss']:.6f}  S3={row['stage3_loss']:.6f}")
+    print(f"  recon={recon:.4f}  E_mu={e_mu:.4f}  E_drift={row['E_drift']:.6f}  S2={row['stage2_loss']:.6f}  S3={row['stage3_loss']:.6f}")
     return row
 
 
@@ -238,6 +267,7 @@ def run_atlas(surface_name, D, seed, dynamics, dyn_cfg, train_data):
         "sigma_min_median": float('nan'),
         "stage2_loss": stage2_equiv,
         "stage3_loss": stage3_equiv,
+        "E_drift": float('nan'),  # N/A for ATLAS
     }
 
 
@@ -291,19 +321,30 @@ def main():
             N = dyn_cfg["N_train"]
 
             # Generate training data
-            if dyn_cfg["sampling"] == "importance":
+            bds = [(-dyn_cfg["train_bound"], dyn_cfg["train_bound"])] * 2
+            if dyn_cfg["sampling"] == "delta_net":
+                from src.numeric.highd_manifolds import delta_net_subsample
+                uv_dn = delta_net_subsample(
+                    surface, bds, n_landmarks=N,
+                    n_candidates=max(10000, N * 100),
+                    seed=seed, device=DEVICE,
+                )
+                train_data = sample_from_highd_manifold(
+                    surface, dyn_cfg["local_drift_fn"], dyn_cfg["local_diffusion_fn"],
+                    bds, n_samples=N, seed=seed, device=DEVICE,
+                    uv_override=uv_dn,
+                )
+            elif dyn_cfg["sampling"] == "importance":
                 uv_is = importance_sample_mb(N, seed=seed, device=DEVICE)
                 train_data = sample_from_highd_manifold(
                     surface, dyn_cfg["local_drift_fn"], dyn_cfg["local_diffusion_fn"],
-                    [(-dyn_cfg["train_bound"], dyn_cfg["train_bound"])] * 2,
-                    n_samples=N, seed=seed, device=DEVICE,
+                    bds, n_samples=N, seed=seed, device=DEVICE,
                     uv_override=uv_is,
                 )
             else:
                 train_data = sample_from_highd_manifold(
                     surface, dyn_cfg["local_drift_fn"], dyn_cfg["local_diffusion_fn"],
-                    [(-dyn_cfg["train_bound"], dyn_cfg["train_bound"])] * 2,
-                    n_samples=N, seed=seed, device=DEVICE,
+                    bds, n_samples=N, seed=seed, device=DEVICE,
                 )
 
             sde = create_highd_lambdified_sde(
