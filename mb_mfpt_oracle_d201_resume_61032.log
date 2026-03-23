@@ -1,0 +1,554 @@
+Device: cuda
+D=201, N=200, grid_res=50
+Surfaces: ['paraboloid']
+Seeds (8): [2042, 3042, 4042, 5042, 6042, 7042, 8042, 9042]
+LONG_T=50.0, LONG_N_STEPS=10000, MB_DT=0.005
+
+============================================================
+  paraboloid | seed=2042
+============================================================
+
+  --- baseline ---
+      Epoch 800/4000: loss=0.000006
+      Epoch 1600/4000: loss=0.000001
+      Epoch 2400/4000: loss=0.000001
+      Epoch 3200/4000: loss=0.000000
+      Epoch 4000/4000: loss=0.000000
+    recon=0.000000
+    E_mu=0.0043  E_Sigma=0.0002
+    Building oracle drift on 50×50 grid...
+    R1=62200.85  R2=2910549.25  κ_g=1.341
+    Grid bounds: z0=[-0.769,0.843] z1=[-0.788,0.857]
+  Stage 2 epoch 1000/3000: loss=0.000091
+  Stage 2 epoch 2000/3000: loss=0.000051
+  Stage 2 epoch 3000/3000: loss=0.000043
+  Stage 3 epoch 1000/3000: loss=0.000000
+  Stage 3 epoch 2000/3000: loss=0.000000
+  Stage 3 epoch 3000/3000: loss=0.000000
+  Stage 3 epoch 1000/3000: loss=0.000000
+  Stage 3 epoch 2000/3000: loss=0.000000
+  Stage 3 epoch 3000/3000: loss=0.000000
+                                learned: MFPT=2.1%  ITS=2.9%  exit=3.0%
+              oracle_drift+learned_diff: MFPT=3.4%  ITS=6.4%  exit=0.0%
+               oracle_drift+oracle_diff: MFPT=3.7%  ITS=6.6%  exit=0.0%
+
+  --- T ---
+      Epoch 800/4000: loss=0.000056
+      Epoch 1600/4000: loss=0.000019
+      Epoch 2400/4000: loss=0.000016
+      Epoch 3200/4000: loss=0.000013
+      Epoch 4000/4000: loss=0.000013
+    recon=0.000000
+    E_mu=0.0001  E_Sigma=0.0000
+    Building oracle drift on 50×50 grid...
+    R1=99692.89  R2=12918900.00  κ_g=2.003
+    Grid bounds: z0=[-0.948,0.998] z1=[-0.990,0.986]
+  Stage 2 epoch 1000/3000: loss=0.000087
+  Stage 2 epoch 2000/3000: loss=0.000028
+  Stage 2 epoch 3000/3000: loss=0.000016
+  Stage 3 epoch 1000/3000: loss=0.000000
+  Stage 3 epoch 2000/3000: loss=0.000000
+  Stage 3 epoch 3000/3000: loss=0.000000
+  Stage 3 epoch 1000/3000: loss=0.000000
+  Stage 3 epoch 2000/3000: loss=0.000000
+  Stage 3 epoch 3000/3000: loss=0.000000
+                                learned: MFPT=1.6%  ITS=3.9%  exit=1.2%
+
+  --- T+F ---
+      Epoch 800/4000: loss=0.000836
+      Epoch 1600/4000: loss=0.000478
+      Epoch 2400/4000: loss=0.000419
+      Epoch 3200/4000: loss=0.000382
+      Epoch 4000/4000: loss=0.000401
+    recon=0.000000
+    E_mu=0.0019  E_Sigma=0.0001
+    Building oracle drift on 50×50 grid...
+    R1=285734.91  R2=86720168.00  κ_g=1.796
+    Grid bounds: z0=[-0.714,0.837] z1=[-0.740,0.731]
+  Stage 2 epoch 1000/3000: loss=0.000324
+  Stage 2 epoch 2000/3000: loss=0.000040
+  Stage 2 epoch 3000/3000: loss=0.000029
+  Stage 3 epoch 1000/3000: loss=0.000000
+  Stage 3 epoch 2000/3000: loss=0.000000
+  Stage 3 epoch 3000/3000: loss=0.000000
+  Stage 3 epoch 1000/3000: loss=0.000000
+  Stage 3 epoch 2000/3000: loss=0.000000
+  Stage 3 epoch 3000/3000: loss=0.000000
+                                learned: MFPT=2.9%  ITS=3.3%  exit=3.4%
+              oracle_drift+learned_diff: MFPT=2.1%  ITS=5.1%  exit=0.0%
+               oracle_drift+oracle_diff: MFPT=2.0%  ITS=4.7%  exit=0.0%
+
+============================================================
+  paraboloid | seed=3042
+============================================================
+
+  --- baseline ---
+      Epoch 800/4000: loss=0.000025
+      Epoch 1600/4000: loss=0.000001
+      Epoch 2400/4000: loss=0.000001
+      Epoch 3200/4000: loss=0.000001
+      Epoch 4000/4000: loss=0.000000
+    recon=0.000000
+    E_mu=0.0095  E_Sigma=0.0004
+    Building oracle drift on 50×50 grid...
+    R1=28417.12  R2=2535397.50  κ_g=1.545
+    Grid bounds: z0=[-0.801,0.850] z1=[-1.007,0.725]
+  Stage 2 epoch 1000/3000: loss=0.000325
+  Stage 2 epoch 2000/3000: loss=0.000042
+  Stage 2 epoch 3000/3000: loss=0.000027
+  Stage 3 epoch 1000/3000: loss=0.000000
+  Stage 3 epoch 2000/3000: loss=0.000000
+  Stage 3 epoch 3000/3000: loss=0.000000
+  Stage 3 epoch 1000/3000: loss=0.000000
+  Stage 3 epoch 2000/3000: loss=0.000000
+  Stage 3 epoch 3000/3000: loss=0.000000
+                                learned: MFPT=21.7%  ITS=32.4%  exit=2.2%
+              oracle_drift+learned_diff: MFPT=15.9%  ITS=8.4%  exit=0.0%
+               oracle_drift+oracle_diff: MFPT=3.6%  ITS=3.9%  exit=0.0%
+
+  --- T ---
+      Epoch 800/4000: loss=0.000506
+      Epoch 1600/4000: loss=0.000028
+      Epoch 2400/4000: loss=0.000021
+      Epoch 3200/4000: loss=0.000019
+      Epoch 4000/4000: loss=0.000020
+    recon=0.000000
+    E_mu=0.0001  E_Sigma=0.0000
+    Building oracle drift on 50×50 grid...
+    R1=79818.30  R2=41595944.00  κ_g=2.033
+    Grid bounds: z0=[-0.997,1.013] z1=[-1.021,1.017]
+  Stage 2 epoch 1000/3000: loss=0.000130
+  Stage 2 epoch 2000/3000: loss=0.000027
+  Stage 2 epoch 3000/3000: loss=0.000023
+  Stage 3 epoch 1000/3000: loss=0.000000
+  Stage 3 epoch 2000/3000: loss=0.000000
+  Stage 3 epoch 3000/3000: loss=0.000000
+  Stage 3 epoch 1000/3000: loss=0.000000
+  Stage 3 epoch 2000/3000: loss=0.000000
+  Stage 3 epoch 3000/3000: loss=0.000000
+                                learned: MFPT=16.6%  ITS=23.7%  exit=0.7%
+
+  --- T+F ---
+      Epoch 800/4000: loss=0.001408
+      Epoch 1600/4000: loss=0.000502
+      Epoch 2400/4000: loss=0.000262
+      Epoch 3200/4000: loss=0.000096
+      Epoch 4000/4000: loss=0.000064
+    recon=0.000000
+    E_mu=0.0002  E_Sigma=0.0000
+    Building oracle drift on 50×50 grid...
+    R1=207568.08  R2=31124538.00  κ_g=1.960
+    Grid bounds: z0=[-0.871,0.808] z1=[-0.759,0.726]
+  Stage 2 epoch 1000/3000: loss=0.000179
+  Stage 2 epoch 2000/3000: loss=0.000017
+  Stage 2 epoch 3000/3000: loss=0.000016
+  Stage 3 epoch 1000/3000: loss=0.000000
+  Stage 3 epoch 2000/3000: loss=0.000000
+  Stage 3 epoch 3000/3000: loss=0.000000
+  Stage 3 epoch 1000/3000: loss=0.000000
+  Stage 3 epoch 2000/3000: loss=0.000000
+  Stage 3 epoch 3000/3000: loss=0.000000
+                                learned: MFPT=18.1%  ITS=26.6%  exit=3.5%
+              oracle_drift+learned_diff: MFPT=1.9%  ITS=3.0%  exit=0.0%
+               oracle_drift+oracle_diff: MFPT=2.4%  ITS=3.8%  exit=0.0%
+
+============================================================
+  paraboloid | seed=4042
+============================================================
+
+  --- baseline ---
+      Epoch 800/4000: loss=0.000003
+      Epoch 1600/4000: loss=0.000001
+      Epoch 2400/4000: loss=0.000001
+      Epoch 3200/4000: loss=0.000001
+      Epoch 4000/4000: loss=0.000001
+    recon=0.000001
+    E_mu=0.0156  E_Sigma=0.0015
+    Building oracle drift on 50×50 grid...
+    R1=126159.39  R2=43323308.00  κ_g=1.802
+    Grid bounds: z0=[-0.897,0.720] z1=[-0.685,1.054]
+  Stage 2 epoch 1000/3000: loss=0.000289
+  Stage 2 epoch 2000/3000: loss=0.000130
+  Stage 2 epoch 3000/3000: loss=0.000121
+  Stage 3 epoch 1000/3000: loss=0.000000
+  Stage 3 epoch 2000/3000: loss=0.000000
+  Stage 3 epoch 3000/3000: loss=0.000000
+  Stage 3 epoch 1000/3000: loss=0.000000
+  Stage 3 epoch 2000/3000: loss=0.000000
+  Stage 3 epoch 3000/3000: loss=0.000000
+                                learned: MFPT=7.5%  ITS=0.1%  exit=2.0%
+              oracle_drift+learned_diff: MFPT=2.8%  ITS=6.9%  exit=0.0%
+               oracle_drift+oracle_diff: MFPT=3.4%  ITS=8.9%  exit=0.0%
+
+  --- T ---
+      Epoch 800/4000: loss=0.000165
+      Epoch 1600/4000: loss=0.000051
+      Epoch 2400/4000: loss=0.000024
+      Epoch 3200/4000: loss=0.000022
+      Epoch 4000/4000: loss=0.000021
+    recon=0.000000
+    E_mu=0.0002  E_Sigma=0.0000
+    Building oracle drift on 50×50 grid...
+    R1=82242.96  R2=15877589.00  κ_g=1.945
+    Grid bounds: z0=[-0.927,0.940] z1=[-0.890,0.920]
+  Stage 2 epoch 1000/3000: loss=0.000076
+  Stage 2 epoch 2000/3000: loss=0.000033
+  Stage 2 epoch 3000/3000: loss=0.000029
+  Stage 3 epoch 1000/3000: loss=0.000000
+  Stage 3 epoch 2000/3000: loss=0.000000
+  Stage 3 epoch 3000/3000: loss=0.000000
+  Stage 3 epoch 1000/3000: loss=0.000000
+  Stage 3 epoch 2000/3000: loss=0.000000
+  Stage 3 epoch 3000/3000: loss=0.000000
+                                learned: MFPT=11.8%  ITS=6.5%  exit=2.9%
+
+  --- T+F ---
+      Epoch 800/4000: loss=0.000540
+      Epoch 1600/4000: loss=0.000291
+      Epoch 2400/4000: loss=0.000099
+      Epoch 3200/4000: loss=0.000056
+      Epoch 4000/4000: loss=0.000035
+    recon=0.000000
+    E_mu=0.0002  E_Sigma=0.0000
+    Building oracle drift on 50×50 grid...
+    R1=159263.78  R2=25143358.00  κ_g=1.800
+    Grid bounds: z0=[-0.795,0.774] z1=[-0.786,0.752]
+  Stage 2 epoch 1000/3000: loss=0.000348
+  Stage 2 epoch 2000/3000: loss=0.000107
+  Stage 2 epoch 3000/3000: loss=0.000052
+  Stage 3 epoch 1000/3000: loss=0.000000
+  Stage 3 epoch 2000/3000: loss=0.000000
+  Stage 3 epoch 3000/3000: loss=0.000000
+  Stage 3 epoch 1000/3000: loss=0.000000
+  Stage 3 epoch 2000/3000: loss=0.000000
+  Stage 3 epoch 3000/3000: loss=0.000000
+                                learned: MFPT=4.3%  ITS=7.2%  exit=4.4%
+              oracle_drift+learned_diff: MFPT=3.1%  ITS=3.9%  exit=0.0%
+               oracle_drift+oracle_diff: MFPT=2.3%  ITS=8.0%  exit=0.0%
+
+============================================================
+  paraboloid | seed=5042
+============================================================
+
+  --- baseline ---
+      Epoch 800/4000: loss=0.000013
+      Epoch 1600/4000: loss=0.000000
+      Epoch 2400/4000: loss=0.000000
+      Epoch 3200/4000: loss=0.000000
+      Epoch 4000/4000: loss=0.000000
+    recon=0.000000
+    E_mu=0.0053  E_Sigma=0.0003
+    Building oracle drift on 50×50 grid...
+    R1=190698.16  R2=55800988.00  κ_g=1.563
+    Grid bounds: z0=[-0.805,0.809] z1=[-0.685,0.978]
+  Stage 2 epoch 1000/3000: loss=0.000649
+  Stage 2 epoch 2000/3000: loss=0.000025
+  Stage 2 epoch 3000/3000: loss=0.000015
+  Stage 3 epoch 1000/3000: loss=0.000000
+  Stage 3 epoch 2000/3000: loss=0.000000
+  Stage 3 epoch 3000/3000: loss=0.000000
+  Stage 3 epoch 1000/3000: loss=0.000000
+  Stage 3 epoch 2000/3000: loss=0.000000
+  Stage 3 epoch 3000/3000: loss=0.000000
+                                learned: MFPT=5.0%  ITS=10.1%  exit=3.2%
+              oracle_drift+learned_diff: MFPT=1.0%  ITS=6.0%  exit=0.0%
+               oracle_drift+oracle_diff: MFPT=3.4%  ITS=4.8%  exit=0.0%
+
+  --- T ---
+      Epoch 800/4000: loss=0.000053
+      Epoch 1600/4000: loss=0.000023
+      Epoch 2400/4000: loss=0.000017
+      Epoch 3200/4000: loss=0.000014
+      Epoch 4000/4000: loss=0.000012
+    recon=0.000000
+    E_mu=0.0001  E_Sigma=0.0000
+    Building oracle drift on 50×50 grid...
+    R1=34314.60  R2=4442433.50  κ_g=2.028
+    Grid bounds: z0=[-0.937,0.995] z1=[-0.943,0.928]
+  Stage 2 epoch 1000/3000: loss=0.000203
+  Stage 2 epoch 2000/3000: loss=0.000022
+  Stage 2 epoch 3000/3000: loss=0.000009
+  Stage 3 epoch 1000/3000: loss=0.000000
+  Stage 3 epoch 2000/3000: loss=0.000000
+  Stage 3 epoch 3000/3000: loss=0.000000
+  Stage 3 epoch 1000/3000: loss=0.000000
+  Stage 3 epoch 2000/3000: loss=0.000000
+  Stage 3 epoch 3000/3000: loss=0.000000
+                                learned: MFPT=4.5%  ITS=12.4%  exit=1.7%
+
+  --- T+F ---
+      Epoch 800/4000: loss=0.000906
+      Epoch 1600/4000: loss=0.000810
+      Epoch 2400/4000: loss=0.000670
+      Epoch 3200/4000: loss=0.000698
+      Epoch 4000/4000: loss=0.000680
+    recon=0.000000
+    E_mu=0.0033  E_Sigma=0.0002
+    Building oracle drift on 50×50 grid...
+    R1=238615.06  R2=84187704.00  κ_g=1.794
+    Grid bounds: z0=[-0.752,0.758] z1=[-0.651,0.725]
+  Stage 2 epoch 1000/3000: loss=0.000991
+  Stage 2 epoch 2000/3000: loss=0.000252
+  Stage 2 epoch 3000/3000: loss=0.000032
+  Stage 3 epoch 1000/3000: loss=0.000000
+  Stage 3 epoch 2000/3000: loss=0.000000
+  Stage 3 epoch 3000/3000: loss=0.000000
+  Stage 3 epoch 1000/3000: loss=0.000000
+  Stage 3 epoch 2000/3000: loss=0.000000
+  Stage 3 epoch 3000/3000: loss=0.000000
+                                learned: MFPT=3.9%  ITS=0.0%  exit=3.3%
+              oracle_drift+learned_diff: MFPT=2.5%  ITS=6.4%  exit=0.0%
+               oracle_drift+oracle_diff: MFPT=2.3%  ITS=2.3%  exit=0.0%
+
+============================================================
+  paraboloid | seed=6042
+============================================================
+
+  --- baseline ---
+      Epoch 800/4000: loss=0.000004
+      Epoch 1600/4000: loss=0.000001
+      Epoch 2400/4000: loss=0.000001
+      Epoch 3200/4000: loss=0.000001
+      Epoch 4000/4000: loss=0.000001
+    recon=0.000001
+    E_mu=0.0245  E_Sigma=0.0026
+    Building oracle drift on 50×50 grid...
+    R1=64857.01  R2=12210663.00  κ_g=1.624
+    Grid bounds: z0=[-0.806,0.945] z1=[-0.870,0.804]
+  Stage 2 epoch 1000/3000: loss=0.000486
+  Stage 2 epoch 2000/3000: loss=0.000158
+  Stage 2 epoch 3000/3000: loss=0.000058
+  Stage 3 epoch 1000/3000: loss=0.000000
+  Stage 3 epoch 2000/3000: loss=0.000000
+  Stage 3 epoch 3000/3000: loss=0.000000
+  Stage 3 epoch 1000/3000: loss=0.000000
+  Stage 3 epoch 2000/3000: loss=0.000000
+  Stage 3 epoch 3000/3000: loss=0.000000
+                                learned: MFPT=20.4%  ITS=39.8%  exit=2.3%
+              oracle_drift+learned_diff: MFPT=4.0%  ITS=15.6%  exit=0.0%
+               oracle_drift+oracle_diff: MFPT=14.9%  ITS=5.0%  exit=0.0%
+
+  --- T ---
+      Epoch 800/4000: loss=0.000615
+      Epoch 1600/4000: loss=0.000033
+      Epoch 2400/4000: loss=0.000025
+      Epoch 3200/4000: loss=0.000023
+      Epoch 4000/4000: loss=0.000023
+    recon=0.000000
+    E_mu=0.0002  E_Sigma=0.0000
+    Building oracle drift on 50×50 grid...
+    R1=35310.56  R2=4006406.25  κ_g=1.929
+    Grid bounds: z0=[-0.981,0.965] z1=[-0.981,0.974]
+  Stage 2 epoch 1000/3000: loss=0.000265
+  Stage 2 epoch 2000/3000: loss=0.000134
+  Stage 2 epoch 3000/3000: loss=0.000014
+  Stage 3 epoch 1000/3000: loss=0.000000
+  Stage 3 epoch 2000/3000: loss=0.000000
+  Stage 3 epoch 3000/3000: loss=0.000000
+  Stage 3 epoch 1000/3000: loss=0.000000
+  Stage 3 epoch 2000/3000: loss=0.000000
+  Stage 3 epoch 3000/3000: loss=0.000000
+                                learned: MFPT=16.9%  ITS=23.6%  exit=1.1%
+
+  --- T+F ---
+      Epoch 800/4000: loss=0.000637
+      Epoch 1600/4000: loss=0.000215
+      Epoch 2400/4000: loss=0.000143
+      Epoch 3200/4000: loss=0.000126
+      Epoch 4000/4000: loss=0.000124
+    recon=0.000000
+    E_mu=0.0005  E_Sigma=0.0000
+    Building oracle drift on 50×50 grid...
+    R1=279727.41  R2=103954536.00  κ_g=1.776
+    Grid bounds: z0=[-0.807,0.779] z1=[-0.739,0.842]
+  Stage 2 epoch 1000/3000: loss=0.000535
+  Stage 2 epoch 2000/3000: loss=0.000275
+  Stage 2 epoch 3000/3000: loss=0.000117
+  Stage 3 epoch 1000/3000: loss=0.000000
+  Stage 3 epoch 2000/3000: loss=0.000000
+  Stage 3 epoch 3000/3000: loss=0.000000
+  Stage 3 epoch 1000/3000: loss=0.000000
+  Stage 3 epoch 2000/3000: loss=0.000000
+  Stage 3 epoch 3000/3000: loss=0.000000
+                                learned: MFPT=43.3%  ITS=86.8%  exit=3.0%
+              oracle_drift+learned_diff: MFPT=18.7%  ITS=3.2%  exit=0.0%
+               oracle_drift+oracle_diff: MFPT=3.0%  ITS=2.7%  exit=0.0%
+
+============================================================
+  paraboloid | seed=7042
+============================================================
+
+  --- baseline ---
+      Epoch 800/4000: loss=0.000007
+      Epoch 1600/4000: loss=0.000002
+      Epoch 2400/4000: loss=0.000001
+      Epoch 3200/4000: loss=0.000001
+      Epoch 4000/4000: loss=0.000001
+    recon=0.000001
+    E_mu=0.0225  E_Sigma=0.0013
+    Building oracle drift on 50×50 grid...
+    R1=27185.41  R2=1198001.00  κ_g=1.327
+    Grid bounds: z0=[-0.894,0.938] z1=[-0.912,0.786]
+  Stage 2 epoch 1000/3000: loss=0.000325
+  Stage 2 epoch 2000/3000: loss=0.000113
+  Stage 2 epoch 3000/3000: loss=0.000057
+  Stage 3 epoch 1000/3000: loss=0.000000
+  Stage 3 epoch 2000/3000: loss=0.000000
+  Stage 3 epoch 3000/3000: loss=0.000000
+  Stage 3 epoch 1000/3000: loss=0.000000
+  Stage 3 epoch 2000/3000: loss=0.000000
+  Stage 3 epoch 3000/3000: loss=0.000000
+                                learned: MFPT=37.8%  ITS=4.3%  exit=4.2%
+              oracle_drift+learned_diff: MFPT=7.4%  ITS=6.7%  exit=0.0%
+               oracle_drift+oracle_diff: MFPT=3.7%  ITS=3.2%  exit=0.0%
+
+  --- T ---
+      Epoch 800/4000: loss=0.000116
+      Epoch 1600/4000: loss=0.000033
+      Epoch 2400/4000: loss=0.000024
+      Epoch 3200/4000: loss=0.000023
+      Epoch 4000/4000: loss=0.000023
+    recon=0.000000
+    E_mu=0.0001  E_Sigma=0.0000
+    Building oracle drift on 50×50 grid...
+    R1=46389.20  R2=5471610.50  κ_g=1.988
+    Grid bounds: z0=[-0.954,0.950] z1=[-1.030,0.973]
+  Stage 2 epoch 1000/3000: loss=0.000163
+  Stage 2 epoch 2000/3000: loss=0.000046
+  Stage 2 epoch 3000/3000: loss=0.000020
+  Stage 3 epoch 1000/3000: loss=0.000000
+  Stage 3 epoch 2000/3000: loss=0.000000
+  Stage 3 epoch 3000/3000: loss=0.000000
+  Stage 3 epoch 1000/3000: loss=0.000000
+  Stage 3 epoch 2000/3000: loss=0.000000
+  Stage 3 epoch 3000/3000: loss=0.000000
+                                learned: MFPT=4.2%  ITS=2.6%  exit=5.2%
+
+  --- T+F ---
+      Epoch 800/4000: loss=0.000949
+      Epoch 1600/4000: loss=0.000644
+      Epoch 2400/4000: loss=0.000313
+      Epoch 3200/4000: loss=0.000215
+      Epoch 4000/4000: loss=0.000132
+    recon=0.000000
+    E_mu=0.0006  E_Sigma=0.0000
+    Building oracle drift on 50×50 grid...
+    R1=309462.84  R2=96475552.00  κ_g=1.804
+    Grid bounds: z0=[-0.707,0.780] z1=[-0.788,0.713]
+  Stage 2 epoch 1000/3000: loss=0.000714
+  Stage 2 epoch 2000/3000: loss=0.000267
+  Stage 2 epoch 3000/3000: loss=0.000261
+  Stage 3 epoch 1000/3000: loss=0.000000
+  Stage 3 epoch 2000/3000: loss=0.000000
+  Stage 3 epoch 3000/3000: loss=0.000000
+  Stage 3 epoch 1000/3000: loss=0.000000
+  Stage 3 epoch 2000/3000: loss=0.000000
+  Stage 3 epoch 3000/3000: loss=0.000000
+                                learned: MFPT=7.7%  ITS=9.8%  exit=5.7%
+              oracle_drift+learned_diff: MFPT=1.9%  ITS=0.4%  exit=0.0%
+               oracle_drift+oracle_diff: MFPT=6.0%  ITS=3.2%  exit=0.0%
+
+============================================================
+  paraboloid | seed=8042
+============================================================
+
+  --- baseline ---
+      Epoch 800/4000: loss=0.000018
+      Epoch 1600/4000: loss=0.000001
+      Epoch 2400/4000: loss=0.000001
+      Epoch 3200/4000: loss=0.000001
+      Epoch 4000/4000: loss=0.000001
+    recon=0.000001
+    E_mu=0.0126  E_Sigma=0.0013
+    Building oracle drift on 50×50 grid...
+    R1=255639.61  R2=64460096.00  κ_g=1.423
+    Grid bounds: z0=[-0.816,0.803] z1=[-0.932,0.793]
+  Stage 2 epoch 1000/3000: loss=0.000662
+  Stage 2 epoch 2000/3000: loss=0.000019
+  Stage 2 epoch 3000/3000: loss=0.000011
+  Stage 3 epoch 1000/3000: loss=0.000000
+  Stage 3 epoch 2000/3000: loss=0.000000
+  Stage 3 epoch 3000/3000: loss=0.000000
+  Stage 3 epoch 1000/3000: loss=0.000000
+  Stage 3 epoch 2000/3000: loss=0.000000
+  Stage 3 epoch 3000/3000: loss=0.000000
+                                learned: MFPT=12.6%  ITS=26.9%  exit=4.4%
+              oracle_drift+learned_diff: MFPT=3.7%  ITS=4.3%  exit=0.0%
+               oracle_drift+oracle_diff: MFPT=5.4%  ITS=9.7%  exit=0.0%
+
+  --- T ---
+      Epoch 800/4000: loss=0.001306
+      Epoch 1600/4000: loss=0.000070
+      Epoch 2400/4000: loss=0.000013
+      Epoch 3200/4000: loss=0.000012
+      Epoch 4000/4000: loss=0.000011
+    recon=0.000000
+    E_mu=0.0001  E_Sigma=0.0000
+    Building oracle drift on 50×50 grid...
+    R1=129244.18  R2=20265810.00  κ_g=2.121
+    Grid bounds: z0=[-1.003,1.011] z1=[-0.976,0.992]
+  Stage 2 epoch 1000/3000: loss=0.000189
+  Stage 2 epoch 2000/3000: loss=0.000018
+  Stage 2 epoch 3000/3000: loss=0.000014
+  Stage 3 epoch 1000/3000: loss=0.000000
+  Stage 3 epoch 2000/3000: loss=0.000000
+  Stage 3 epoch 3000/3000: loss=0.000000
+  Stage 3 epoch 1000/3000: loss=0.000000
+  Stage 3 epoch 2000/3000: loss=0.000000
+  Stage 3 epoch 3000/3000: loss=0.000000
+                                learned: MFPT=1.4%  ITS=10.1%  exit=1.4%
+
+  --- T+F ---
+      Epoch 800/4000: loss=0.000701
+      Epoch 1600/4000: loss=0.000484
+      Epoch 2400/4000: loss=0.000217
+      Epoch 3200/4000: loss=0.000067
+      Epoch 4000/4000: loss=0.000039
+    recon=0.000000
+    E_mu=0.0001  E_Sigma=0.0000
+    Building oracle drift on 50×50 grid...
+    R1=225776.00  R2=51132944.00  κ_g=1.781
+    Grid bounds: z0=[-0.669,0.861] z1=[-0.806,0.803]
+  Stage 2 epoch 1000/3000: loss=0.004000
+  Stage 2 epoch 2000/3000: loss=0.004047
+  Stage 2 epoch 3000/3000: loss=0.003726
+  Stage 3 epoch 1000/3000: loss=0.000000
+  Stage 3 epoch 2000/3000: loss=0.000000
+  Stage 3 epoch 3000/3000: loss=0.000000
+  Stage 3 epoch 1000/3000: loss=0.000000
+  Stage 3 epoch 2000/3000: loss=0.000000
+  Stage 3 epoch 3000/3000: loss=0.000000
+                                learned: MFPT=15.0%  ITS=42.6%  exit=7.1%
+              oracle_drift+learned_diff: MFPT=1.7%  ITS=7.1%  exit=0.0%
+               oracle_drift+oracle_diff: MFPT=1.6%  ITS=6.6%  exit=0.0%
+
+============================================================
+  paraboloid | seed=9042
+============================================================
+
+  --- baseline ---
+      Epoch 800/4000: loss=0.000005
+      Epoch 1600/4000: loss=0.000001
+      Epoch 2400/4000: loss=0.000001
+      Epoch 3200/4000: loss=0.000001
+      Epoch 4000/4000: loss=0.000001
+    recon=0.000001
+    E_mu=0.0192  E_Sigma=0.0028
+    Building oracle drift on 50×50 grid...
+    R1=31814.54  R2=2232387.50  κ_g=1.416
+    Grid bounds: z0=[-0.852,0.826] z1=[-0.941,0.809]
+  Stage 2 epoch 1000/3000: loss=0.000161
+  Stage 2 epoch 2000/3000: loss=0.000022
+  Stage 2 epoch 3000/3000: loss=0.000019
+  Stage 3 epoch 1000/3000: loss=0.000000
+  Stage 3 epoch 2000/3000: loss=0.000000
+  Stage 3 epoch 3000/3000: loss=0.000000
+  Stage 3 epoch 1000/3000: loss=0.000000
+  Stage 3 epoch 2000/3000: loss=0.000000
+  Stage 3 epoch 3000/3000: loss=0.000000
+                                learned: MFPT=4.4%  ITS=0.1%  exit=3.8%
+              oracle_drift+learned_diff: MFPT=3.4%  ITS=7.2%  exit=0.0%
+               oracle_drift+oracle_diff: MFPT=5.0%  ITS=1.6%  exit=0.0%
+
+  --- T ---
+slurmstepd: error: *** JOB 61032 ON dgx09 CANCELLED AT 2026-03-19T23:29:30 DUE TO TIME LIMIT ***

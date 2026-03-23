@@ -90,7 +90,8 @@ def compute_mfpt_ambient(traj, radii):
 
 # ── Pipeline ──────────────────────────────────────────────────────────────
 
-def train_pipeline(ae, x, v, Lambda, seed, N, epochs_sde):
+def train_pipeline(ae, x, v, Lambda, seed, N, epochs_sde,
+                    drift_hidden=None):
     """Train Stage 2 + 3, return pipeline."""
     d = 2
     bs = min(N, BATCH_SIZE)
@@ -102,7 +103,7 @@ def train_pipeline(ae, x, v, Lambda, seed, N, epochs_sde):
     b_z_target, g = tmp.precompute_enc_pull_target(x, v, Lambda, dphi_pre)
 
     torch.manual_seed(seed + 100)
-    drift_net = DriftNet(d).to(DEVICE)
+    drift_net = DriftNet(d, hidden_dims=drift_hidden).to(DEVICE)
     diff_net = DiffusionNet(d).to(DEVICE)
     pipe = SDEPipelineTrainer(ae, drift_net, diff_net, device=DEVICE)
     pipe.train_stage2_regression(
@@ -138,7 +139,8 @@ def evaluate_mfpt(pipeline, ae, sde, seed, n_steps):
 
     with torch.no_grad():
         z0 = ae.encoder(init_ambient)
-    _, x_traj = pipeline.simulate(z0, n_steps, DT, dW=dW)
+    _, x_traj = pipeline.simulate(z0, n_steps, DT, dW=dW,
+                                    boundary=BOUNDARY * 2)
 
     # MFPT
     gt_mfpt = compute_mfpt_ambient(gt_traj, RADII)
@@ -177,11 +179,20 @@ def main():
     parser.add_argument("--output", type=str, default="mfpt_ablation.csv")
     parser.add_argument("--surfaces", type=str, nargs="+", default=None,
                         help="Surfaces to run (default: all)")
+    parser.add_argument("--conditions", type=str, nargs="+", default=None,
+                        help="Conditions to run (default: all)")
+    parser.add_argument("--sampling", type=str, default="uniform",
+                        choices=["uniform", "delta_net"],
+                        help="Sampling strategy: uniform or delta_net (ATLAS-style)")
     args = parser.parse_args()
 
     surfaces = args.surfaces if args.surfaces else SURFACES
     seeds = [args.base_seed + i * 1000 for i in range(args.n_seeds)]
-    cond_names = list(CONDITIONS.keys())
+    if args.conditions:
+        selected = {k: v for k, v in CONDITIONS.items() if k in args.conditions}
+    else:
+        selected = CONDITIONS
+    cond_names = list(selected.keys())
     total = len(seeds) * len(surfaces) * len(cond_names)
 
     print(f"Device: {DEVICE}")
@@ -205,17 +216,30 @@ def main():
             np.random.seed(seed)
 
             surface = FourierAugmentedSurface(surface_name, args.D)
-            train_data = sample_from_highd_manifold(
-                surface, local_drift_fn, local_diffusion_fn,
-                [(-TRAIN_BOUND, TRAIN_BOUND), (-TRAIN_BOUND, TRAIN_BOUND)],
-                n_samples=args.N, seed=seed, device=DEVICE,
-            )
+            bds = [(-TRAIN_BOUND, TRAIN_BOUND), (-TRAIN_BOUND, TRAIN_BOUND)]
+            if args.sampling == "delta_net":
+                from src.numeric.highd_manifolds import delta_net_subsample
+                uv_dn = delta_net_subsample(
+                    surface, bds, n_landmarks=args.N,
+                    n_candidates=max(10000, args.N * 100),
+                    seed=seed, device=DEVICE,
+                )
+                train_data = sample_from_highd_manifold(
+                    surface, local_drift_fn, local_diffusion_fn,
+                    bds, n_samples=args.N, seed=seed, device=DEVICE,
+                    uv_override=uv_dn,
+                )
+            else:
+                train_data = sample_from_highd_manifold(
+                    surface, local_drift_fn, local_diffusion_fn,
+                    bds, n_samples=args.N, seed=seed, device=DEVICE,
+                )
             x = train_data.samples.to(DEVICE)
             v = train_data.mu.to(DEVICE)
             Lambda = train_data.cov.to(DEVICE)
             sde = create_highd_lambdified_sde(surface, local_drift_fn, local_diffusion_fn)
 
-            for cond_label, lw in CONDITIONS.items():
+            for cond_label, lw in selected.items():
                 print(f"\n  --- {cond_label} ---")
                 torch.manual_seed(seed)
                 np.random.seed(seed)

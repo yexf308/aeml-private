@@ -1,0 +1,103 @@
+Device: cuda
+D=201, N=200, grid_res=50
+Surfaces: ['paraboloid']
+Seeds (5): [42, 1042, 2042, 3042, 4042]
+LONG_T=20.0, LONG_N_STEPS=4000, MB_DT=0.005
+
+============================================================
+  paraboloid | seed=42
+============================================================
+
+  --- baseline ---
+      Epoch 800/4000: loss=0.000003
+      Epoch 1600/4000: loss=0.000001
+      Epoch 2400/4000: loss=0.000001
+      Epoch 3200/4000: loss=0.000001
+      Epoch 4000/4000: loss=0.000001
+    recon=0.000001
+    E_mu=0.0218  E_Sigma=0.0024
+    Building oracle drift on 50×50 grid...
+    R1=871.95  R2=98309.61  κ_g=1.642
+  Stage 2 epoch 1000/3000: loss=0.001061
+  Stage 2 epoch 2000/3000: loss=0.000444
+  Stage 2 epoch 3000/3000: loss=0.000258
+  Stage 3 epoch 1000/3000: loss=0.000000
+  Stage 3 epoch 2000/3000: loss=0.000000
+  Stage 3 epoch 3000/3000: loss=0.000000
+  Stage 3 epoch 1000/3000: loss=0.000000
+  Stage 3 epoch 2000/3000: loss=0.000000
+  Stage 3 epoch 3000/3000: loss=0.000000
+                                learned: MFPT=11.3%  ITS=9.6%  exit=0.6%
+              oracle_drift+learned_diff: MFPT=39.9%  ITS=82.0%  exit=32.2%
+               oracle_drift+oracle_diff: MFPT=30.1%  ITS=77.7%  exit=31.8%
+
+  --- T+F ---
+      Epoch 800/4000: loss=0.000558
+      Epoch 1600/4000: loss=0.000278
+      Epoch 2400/4000: loss=0.000197
+      Epoch 3200/4000: loss=0.000134
+      Epoch 4000/4000: loss=0.000081
+    recon=0.000000
+    E_mu=0.0005  E_Sigma=0.0000
+    Building oracle drift on 50×50 grid...
+    R1=29854.75  R2=1711136.88  κ_g=1.566
+  Stage 2 epoch 1000/3000: loss=0.000464
+  Stage 2 epoch 2000/3000: loss=0.000057
+  Stage 2 epoch 3000/3000: loss=0.000028
+  Stage 3 epoch 1000/3000: loss=0.000000
+  Stage 3 epoch 2000/3000: loss=0.000000
+  Stage 3 epoch 3000/3000: loss=0.000000
+  Stage 3 epoch 1000/3000: loss=0.000000
+  Stage 3 epoch 2000/3000: loss=0.000000
+  Stage 3 epoch 3000/3000: loss=0.000000
+                                learned: MFPT=10.8%  ITS=4.9%  exit=3.0%
+              oracle_drift+learned_diff: MFPT=7.2%  ITS=19.5%  exit=2.0%
+               oracle_drift+oracle_diff: MFPT=6.5%  ITS=33.5%  exit=1.8%
+
+============================================================
+  paraboloid | seed=1042
+============================================================
+
+  --- baseline ---
+      Epoch 800/4000: loss=0.000012
+      Epoch 1600/4000: loss=0.000002
+      Epoch 2400/4000: loss=0.000001
+      Epoch 3200/4000: loss=0.000001
+      Epoch 4000/4000: loss=0.000001
+    recon=0.000001
+    E_mu=0.0387  E_Sigma=0.0035
+    Building oracle drift on 50×50 grid...
+    R1=2774.89  R2=144852.44  κ_g=1.340
+  Stage 2 epoch 1000/3000: loss=0.000018
+  Stage 2 epoch 2000/3000: loss=0.000006
+  Stage 2 epoch 3000/3000: loss=0.000006
+  Stage 3 epoch 1000/3000: loss=0.000000
+  Stage 3 epoch 2000/3000: loss=0.000000
+  Stage 3 epoch 3000/3000: loss=0.000000
+  Stage 3 epoch 1000/3000: loss=0.000000
+  Stage 3 epoch 2000/3000: loss=0.000000
+  Stage 3 epoch 3000/3000: loss=0.000000
+                                learned: MFPT=12.4%  ITS=86.8%  exit=0.8%
+              oracle_drift+learned_diff: MFPT=10.3%  ITS=41.9%  exit=0.8%
+               oracle_drift+oracle_diff: MFPT=14.2%  ITS=71.7%  exit=0.4%
+
+  --- T+F ---
+      Epoch 800/4000: loss=0.000421
+      Epoch 1600/4000: loss=0.000196
+      Epoch 2400/4000: loss=0.000087
+      Epoch 3200/4000: loss=0.000070
+      Epoch 4000/4000: loss=0.000078
+    recon=0.000000
+    E_mu=0.0005  E_Sigma=0.0000
+    Building oracle drift on 50×50 grid...
+    R1=6652.22  R2=324990.44  κ_g=1.574
+  Stage 2 epoch 1000/3000: loss=0.000022
+  Stage 2 epoch 2000/3000: loss=0.000007
+  Stage 2 epoch 3000/3000: loss=0.000005
+  Stage 3 epoch 1000/3000: loss=0.000000
+  Stage 3 epoch 2000/3000: loss=0.000000
+  Stage 3 epoch 3000/3000: loss=0.000000
+  Stage 3 epoch 1000/3000: loss=0.000000
+  Stage 3 epoch 2000/3000: loss=0.000000
+  Stage 3 epoch 3000/3000: loss=0.000000
+slurmstepd: error: *** JOB 60773 ON dgx07 CANCELLED AT 2026-03-18T11:25:38 ***

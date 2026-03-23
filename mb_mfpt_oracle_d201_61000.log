@@ -1,0 +1,205 @@
+Device: cuda
+D=201, N=200, grid_res=50
+Surfaces: ['paraboloid']
+Seeds (10): [42, 1042, 2042, 3042, 4042, 5042, 6042, 7042, 8042, 9042]
+LONG_T=50.0, LONG_N_STEPS=10000, MB_DT=0.005
+
+============================================================
+  paraboloid | seed=42
+============================================================
+
+  --- baseline ---
+      Epoch 800/4000: loss=0.000003
+      Epoch 1600/4000: loss=0.000001
+      Epoch 2400/4000: loss=0.000001
+      Epoch 3200/4000: loss=0.000001
+      Epoch 4000/4000: loss=0.000001
+    recon=0.000001
+    E_mu=0.0179  E_Sigma=0.0019
+    Building oracle drift on 50×50 grid...
+    R1=79274.47  R2=7033859.00  κ_g=1.443
+    Grid bounds: z0=[-0.853,0.787] z1=[-0.885,0.822]
+  Stage 2 epoch 1000/3000: loss=0.000677
+  Stage 2 epoch 2000/3000: loss=0.000139
+  Stage 2 epoch 3000/3000: loss=0.000053
+  Stage 3 epoch 1000/3000: loss=0.000000
+  Stage 3 epoch 2000/3000: loss=0.000000
+  Stage 3 epoch 3000/3000: loss=0.000000
+  Stage 3 epoch 1000/3000: loss=0.000000
+  Stage 3 epoch 2000/3000: loss=0.000000
+  Stage 3 epoch 3000/3000: loss=0.000000
+                                learned: MFPT=5.8%  ITS=5.2%  exit=1.0%
+              oracle_drift+learned_diff: MFPT=2.0%  ITS=5.8%  exit=0.0%
+               oracle_drift+oracle_diff: MFPT=3.4%  ITS=7.6%  exit=0.0%
+
+  --- T ---
+      Epoch 800/4000: loss=0.000099
+      Epoch 1600/4000: loss=0.000033
+      Epoch 2400/4000: loss=0.000019
+      Epoch 3200/4000: loss=0.000016
+      Epoch 4000/4000: loss=0.000016
+    recon=0.000000
+    E_mu=0.0002  E_Sigma=0.0000
+    Building oracle drift on 50×50 grid...
+    R1=131304.39  R2=25097802.00  κ_g=1.992
+    Grid bounds: z0=[-1.001,0.937] z1=[-0.932,0.947]
+  Stage 2 epoch 1000/3000: loss=0.008823
+  Stage 2 epoch 2000/3000: loss=0.000046
+  Stage 2 epoch 3000/3000: loss=0.000022
+  Stage 3 epoch 1000/3000: loss=0.000000
+  Stage 3 epoch 2000/3000: loss=0.000000
+  Stage 3 epoch 3000/3000: loss=0.000000
+  Stage 3 epoch 1000/3000: loss=0.000000
+  Stage 3 epoch 2000/3000: loss=0.000000
+  Stage 3 epoch 3000/3000: loss=0.000000
+                                learned: MFPT=5.4%  ITS=15.1%  exit=3.8%
+
+  --- T+F ---
+      Epoch 800/4000: loss=0.000762
+      Epoch 1600/4000: loss=0.000589
+      Epoch 2400/4000: loss=0.000570
+      Epoch 3200/4000: loss=0.000556
+      Epoch 4000/4000: loss=0.000561
+    recon=0.000000
+    E_mu=0.0026  E_Sigma=0.0002
+    Building oracle drift on 50×50 grid...
+    R1=224559.36  R2=55868744.00  κ_g=1.819
+    Grid bounds: z0=[-0.735,0.781] z1=[-0.747,0.843]
+  Stage 2 epoch 1000/3000: loss=0.001432
+  Stage 2 epoch 2000/3000: loss=0.000238
+  Stage 2 epoch 3000/3000: loss=0.000227
+  Stage 3 epoch 1000/3000: loss=0.000000
+  Stage 3 epoch 2000/3000: loss=0.000000
+  Stage 3 epoch 3000/3000: loss=0.000000
+  Stage 3 epoch 1000/3000: loss=0.000000
+  Stage 3 epoch 2000/3000: loss=0.000000
+  Stage 3 epoch 3000/3000: loss=0.000000
+                                learned: MFPT=13.9%  ITS=33.2%  exit=3.5%
+              oracle_drift+learned_diff: MFPT=1.6%  ITS=1.8%  exit=0.0%
+               oracle_drift+oracle_diff: MFPT=1.7%  ITS=3.0%  exit=0.0%
+
+============================================================
+  paraboloid | seed=1042
+============================================================
+
+  --- baseline ---
+      Epoch 800/4000: loss=0.000010
+      Epoch 1600/4000: loss=0.000002
+      Epoch 2400/4000: loss=0.000001
+      Epoch 3200/4000: loss=0.000000
+      Epoch 4000/4000: loss=0.000000
+    recon=0.000000
+    E_mu=0.0083  E_Sigma=0.0005
+    Building oracle drift on 50×50 grid...
+    R1=52444.38  R2=4216907.00  κ_g=1.418
+    Grid bounds: z0=[-0.862,0.798] z1=[-0.909,0.776]
+  Stage 2 epoch 1000/3000: loss=0.000068
+  Stage 2 epoch 2000/3000: loss=0.000027
+  Stage 2 epoch 3000/3000: loss=0.000018
+  Stage 3 epoch 1000/3000: loss=0.000000
+  Stage 3 epoch 2000/3000: loss=0.000000
+  Stage 3 epoch 3000/3000: loss=0.000000
+  Stage 3 epoch 1000/3000: loss=0.000000
+  Stage 3 epoch 2000/3000: loss=0.000000
+  Stage 3 epoch 3000/3000: loss=0.000000
+                                learned: MFPT=8.6%  ITS=15.7%  exit=3.5%
+              oracle_drift+learned_diff: MFPT=2.8%  ITS=1.7%  exit=0.0%
+               oracle_drift+oracle_diff: MFPT=4.7%  ITS=5.6%  exit=0.0%
+
+  --- T ---
+      Epoch 800/4000: loss=0.000139
+      Epoch 1600/4000: loss=0.000023
+      Epoch 2400/4000: loss=0.000017
+      Epoch 3200/4000: loss=0.000016
+      Epoch 4000/4000: loss=0.000018
+    recon=0.000000
+    E_mu=0.0001  E_Sigma=0.0000
+    Building oracle drift on 50×50 grid...
+    R1=86181.81  R2=17545654.00  κ_g=2.083
+    Grid bounds: z0=[-1.028,0.960] z1=[-1.001,0.962]
+  Stage 2 epoch 1000/3000: loss=0.000398
+  Stage 2 epoch 2000/3000: loss=0.000404
+  Stage 2 epoch 3000/3000: loss=0.000428
+  Stage 3 epoch 1000/3000: loss=0.000000
+  Stage 3 epoch 2000/3000: loss=0.000000
+  Stage 3 epoch 3000/3000: loss=0.000000
+  Stage 3 epoch 1000/3000: loss=0.000000
+  Stage 3 epoch 2000/3000: loss=0.000000
+  Stage 3 epoch 3000/3000: loss=0.000000
+                                learned: MFPT=19.6%  ITS=15.3%  exit=1.9%
+
+  --- T+F ---
+      Epoch 800/4000: loss=0.000661
+      Epoch 1600/4000: loss=0.000438
+      Epoch 2400/4000: loss=0.000116
+      Epoch 3200/4000: loss=0.000084
+      Epoch 4000/4000: loss=0.000068
+    recon=0.000000
+    E_mu=0.0003  E_Sigma=0.0000
+    Building oracle drift on 50×50 grid...
+    R1=136385.89  R2=30106720.00  κ_g=1.864
+    Grid bounds: z0=[-0.868,0.882] z1=[-0.881,0.888]
+  Stage 2 epoch 1000/3000: loss=0.000035
+  Stage 2 epoch 2000/3000: loss=0.000013
+  Stage 2 epoch 3000/3000: loss=0.000014
+  Stage 3 epoch 1000/3000: loss=0.000000
+  Stage 3 epoch 2000/3000: loss=0.000000
+  Stage 3 epoch 3000/3000: loss=0.000000
+  Stage 3 epoch 1000/3000: loss=0.000000
+  Stage 3 epoch 2000/3000: loss=0.000000
+  Stage 3 epoch 3000/3000: loss=0.000000
+                                learned: MFPT=5.9%  ITS=7.4%  exit=3.4%
+              oracle_drift+learned_diff: MFPT=2.9%  ITS=4.2%  exit=0.0%
+               oracle_drift+oracle_diff: MFPT=2.8%  ITS=3.2%  exit=0.0%
+
+============================================================
+  paraboloid | seed=2042
+============================================================
+
+  --- baseline ---
+      Epoch 800/4000: loss=0.000006
+      Epoch 1600/4000: loss=0.000001
+      Epoch 2400/4000: loss=0.000001
+      Epoch 3200/4000: loss=0.000000
+      Epoch 4000/4000: loss=0.000000
+    recon=0.000000
+Traceback (most recent call last):
+  File "/network/rit/lab/Yelab/anaconda3/lib/python3.9/runpy.py", line 197, in _run_module_as_main
+    return _run_code(code, main_globals, None,
+  File "/network/rit/lab/Yelab/anaconda3/lib/python3.9/runpy.py", line 87, in _run_code
+    exec(code, run_globals)
+  File "/network/rit/lab/Yelab/aeml/experiments/mb_oracle_drift.py", line 557, in <module>
+    main()
+  File "/network/rit/lab/Yelab/aeml/experiments/mb_oracle_drift.py", line 513, in main
+    rows = run_one_condition(
+  File "/network/rit/lab/Yelab/aeml/experiments/mb_oracle_drift.py", line 322, in run_one_condition
+    e_mu, e_sigma = compute_coefficient_errors(
+  File "/network/rit/lab/Yelab/aeml/experiments/highd_N_D_sweep.py", line 158, in compute_coefficient_errors
+    d2phi = torch.func.vmap(decoder_hessian)(z)
+  File "/network/rit/lab/Yelab/anaconda3/lib/python3.9/site-packages/torch/_functorch/apis.py", line 202, in wrapped
+    return vmap_impl(
+  File "/network/rit/lab/Yelab/anaconda3/lib/python3.9/site-packages/torch/_functorch/vmap.py", line 334, in vmap_impl
+    return _flat_vmap(
+  File "/network/rit/lab/Yelab/anaconda3/lib/python3.9/site-packages/torch/_functorch/vmap.py", line 484, in _flat_vmap
+    batched_outputs = func(*batched_inputs, **kwargs)
+  File "/network/rit/lab/Yelab/aeml/experiments/highd_N_D_sweep.py", line 156, in decoder_hessian
+    return torch.func.jacrev(torch.func.jacrev(ae.decoder))(z_single)
+  File "/network/rit/lab/Yelab/anaconda3/lib/python3.9/site-packages/torch/_functorch/eager_transforms.py", line 690, in wrapper_fn
+    flat_jacobians_per_input = compute_jacobian_stacked()
+  File "/network/rit/lab/Yelab/anaconda3/lib/python3.9/site-packages/torch/_functorch/eager_transforms.py", line 612, in compute_jacobian_stacked
+    chunked_result = vmap(vjp_fn)(basis)
+  File "/network/rit/lab/Yelab/anaconda3/lib/python3.9/site-packages/torch/_functorch/apis.py", line 202, in wrapped
+    return vmap_impl(
+  File "/network/rit/lab/Yelab/anaconda3/lib/python3.9/site-packages/torch/_functorch/vmap.py", line 334, in vmap_impl
+    return _flat_vmap(
+  File "/network/rit/lab/Yelab/anaconda3/lib/python3.9/site-packages/torch/_functorch/vmap.py", line 484, in _flat_vmap
+    batched_outputs = func(*batched_inputs, **kwargs)
+  File "/network/rit/lab/Yelab/anaconda3/lib/python3.9/site-packages/torch/_functorch/eager_transforms.py", line 395, in wrapper
+    result = _autograd_grad(
+  File "/network/rit/lab/Yelab/anaconda3/lib/python3.9/site-packages/torch/_functorch/eager_transforms.py", line 142, in _autograd_grad
+    grad_inputs = torch.autograd.grad(
+  File "/network/rit/lab/Yelab/anaconda3/lib/python3.9/site-packages/torch/autograd/__init__.py", line 503, in grad
+    result = _engine_run_backward(
+  File "/network/rit/lab/Yelab/anaconda3/lib/python3.9/site-packages/torch/autograd/graph.py", line 829, in _engine_run_backward
+    return Variable._execution_engine.run_backward(  # Calls into the C++ engine to run the backward pass
+torch.OutOfMemoryError: CUDA out of memory. Tried to allocate 15.41 GiB. GPU 0 has a total capacity of 79.25 GiB of which 1.26 GiB is free. Including non-PyTorch memory, this process has 77.98 GiB memory in use. Of the allocated memory 47.43 GiB is allocated by PyTorch, and 30.02 GiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)

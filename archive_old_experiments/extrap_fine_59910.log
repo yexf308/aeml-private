@@ -1,0 +1,3737 @@
+=== Extrapolation (fine resolution, delta<=0.3) ===
+Host: dgx10
+GPU: NVIDIA A100-SXM4-80GB
+Start: Thu Mar 12 07:26:10 PM EDT 2026
+
+Device: cuda
+N_TRAIN: 20
+Seeds (10): [42, 1042, 2042, 3042, 4042, 5042, 6042, 7042, 8042, 9042]
+Epochs: 500
+
+======================================================================
+EXTRAPOLATION STUDY
+Surfaces: ['paraboloid', 'hyperbolic_paraboloid', 'quartic_dome', 'sinusoidal']
+Seeds: [42, 1042, 2042, 3042, 4042, 5042, 6042, 7042, 8042, 9042]
+Configs: ['baseline', 'T', 'F', 'K', 'T+K', 'T+F', 'T+F+K']
+Distances: [0.0, 0.05, 0.1, 0.15, 0.2, 0.25, 0.3]
+======================================================================
+
+  paraboloid | baseline | seed=42
+  Epoch 100: loss=0.032449
+  Epoch 200: loss=0.028961
+  Epoch 300: loss=0.014075
+  Epoch 400: loss=0.009617
+  Epoch 500: loss=0.005801
+    dist=0.0: recon=0.108133
+    dist=0.3: recon=1.523112
+
+  paraboloid | T | seed=42
+  Epoch 100: loss=0.040463
+  Epoch 200: loss=0.004441
+  Epoch 300: loss=0.000926
+  Epoch 400: loss=0.000864
+  Epoch 500: loss=0.000538
+    dist=0.0: recon=0.059147
+    dist=0.3: recon=1.288792
+
+  paraboloid | F | seed=42
+  Epoch 100: loss=0.030804
+  Epoch 200: loss=0.029124
+  Epoch 300: loss=0.028811
+  Epoch 400: loss=0.028183
+  Epoch 500: loss=0.028068
+    dist=0.0: recon=0.204749
+    dist=0.3: recon=1.998798
+
+  paraboloid | K | seed=42
+
+[K] Starting warmup: 250 epochs
+  Epoch 100 (warmup 100/250): loss = 0.0324
+  Epoch 200 (warmup 200/250): loss = 0.0290
+
+[K] Starting finetune: 250 epochs
+  Epoch 350 (finetune 100/250): loss = 0.0117
+  Epoch 450 (finetune 200/250): loss = 0.0097
+    dist=0.0: recon=0.103476
+    dist=0.3: recon=1.497183
+
+  paraboloid | T+K | seed=42
+
+[T+K] Starting warmup: 250 epochs
+  Epoch 100 (warmup 100/250): loss = 0.0405
+  Epoch 200 (warmup 200/250): loss = 0.0044
+
+[T+K] Starting finetune: 250 epochs
+  Epoch 350 (finetune 100/250): loss = 0.0018
+  Epoch 450 (finetune 200/250): loss = 0.0013
+    dist=0.0: recon=0.064710
+    dist=0.3: recon=1.313257
+
+  paraboloid | T+F | seed=42
+  Epoch 100: loss=0.698158
+  Epoch 200: loss=0.327324
+  Epoch 300: loss=0.028843
+  Epoch 400: loss=0.018808
+  Epoch 500: loss=0.018033
+    dist=0.0: recon=0.059710
+    dist=0.3: recon=1.074810
+
+  paraboloid | T+F+K | seed=42
+
+[T+F+K] Starting warmup: 250 epochs
+  Epoch 100 (warmup 100/250): loss = 0.6982
+  Epoch 200 (warmup 200/250): loss = 0.3273
+
+[T+F+K] Starting finetune: 250 epochs
+  Epoch 350 (finetune 100/250): loss = 0.0425
+  Epoch 450 (finetune 200/250): loss = 0.0119
+    dist=0.0: recon=0.055852
+    dist=0.3: recon=1.135230
+
+  paraboloid | baseline | seed=1042
+  Epoch 100: loss=0.029414
+  Epoch 200: loss=0.029075
+  Epoch 300: loss=0.028563
+  Epoch 400: loss=0.023225
+  Epoch 500: loss=0.010783
+    dist=0.0: recon=0.108824
+    dist=0.3: recon=2.466334
+
+  paraboloid | T | seed=1042
+  Epoch 100: loss=0.079358
+  Epoch 200: loss=0.001593
+  Epoch 300: loss=0.002136
+  Epoch 400: loss=0.006399
+  Epoch 500: loss=0.008076
+    dist=0.0: recon=0.050287
+    dist=0.3: recon=2.248165
+
+  paraboloid | F | seed=1042
+  Epoch 100: loss=0.034917
+  Epoch 200: loss=0.030251
+  Epoch 300: loss=0.029853
+  Epoch 400: loss=0.028838
+  Epoch 500: loss=0.028757
+    dist=0.0: recon=0.192487
+    dist=0.3: recon=2.559263
+
+  paraboloid | K | seed=1042
+
+[K] Starting warmup: 250 epochs
+  Epoch 100 (warmup 100/250): loss = 0.0294
+  Epoch 200 (warmup 200/250): loss = 0.0291
+
+[K] Starting finetune: 250 epochs
+  Epoch 350 (finetune 100/250): loss = 0.0365
+  Epoch 450 (finetune 200/250): loss = 0.0323
+    dist=0.0: recon=0.170321
+    dist=0.3: recon=2.691378
+
+  paraboloid | T+K | seed=1042
+
+[T+K] Starting warmup: 250 epochs
+  Epoch 100 (warmup 100/250): loss = 0.0794
+  Epoch 200 (warmup 200/250): loss = 0.0016
+
+[T+K] Starting finetune: 250 epochs
+  Epoch 350 (finetune 100/250): loss = 0.0025
+  Epoch 450 (finetune 200/250): loss = 0.0007
+    dist=0.0: recon=0.047000
+    dist=0.3: recon=2.661643
+
+  paraboloid | T+F | seed=1042
+  Epoch 100: loss=0.430567
+  Epoch 200: loss=0.086333
+  Epoch 300: loss=0.027231
+  Epoch 400: loss=0.010977
+  Epoch 500: loss=0.011287
+    dist=0.0: recon=0.020258
+    dist=0.3: recon=0.849230
+
+  paraboloid | T+F+K | seed=1042
+
+[T+F+K] Starting warmup: 250 epochs
+  Epoch 100 (warmup 100/250): loss = 0.4306
+  Epoch 200 (warmup 200/250): loss = 0.0863
+
+[T+F+K] Starting finetune: 250 epochs
+  Epoch 350 (finetune 100/250): loss = 0.0155
+  Epoch 450 (finetune 200/250): loss = 0.0094
+    dist=0.0: recon=0.018729
+    dist=0.3: recon=0.868562
+
+  paraboloid | baseline | seed=2042
+  Epoch 100: loss=0.048425
+  Epoch 200: loss=0.028748
+  Epoch 300: loss=0.009360
+  Epoch 400: loss=0.007079
+  Epoch 500: loss=0.000820
+    dist=0.0: recon=0.047421
+    dist=0.3: recon=1.858517
+
+  paraboloid | T | seed=2042
+  Epoch 100: loss=0.027594
+  Epoch 200: loss=0.002057
+  Epoch 300: loss=0.001320
+  Epoch 400: loss=0.002443
+  Epoch 500: loss=0.002068
+    dist=0.0: recon=0.031385
+    dist=0.3: recon=1.639618
+
+  paraboloid | F | seed=2042
+  Epoch 100: loss=0.051502
+  Epoch 200: loss=0.048146
+  Epoch 300: loss=0.047795
+  Epoch 400: loss=0.046931
+  Epoch 500: loss=0.044190
+    dist=0.0: recon=0.183077
+    dist=0.3: recon=2.285642
+
+  paraboloid | K | seed=2042
+
+[K] Starting warmup: 250 epochs
+  Epoch 100 (warmup 100/250): loss = 0.0484
+  Epoch 200 (warmup 200/250): loss = 0.0287
+
+[K] Starting finetune: 250 epochs
+  Epoch 350 (finetune 100/250): loss = 0.0031
+  Epoch 450 (finetune 200/250): loss = 0.0011
+    dist=0.0: recon=0.036254
+    dist=0.3: recon=1.845442
+
+  paraboloid | T+K | seed=2042
+
+[T+K] Starting warmup: 250 epochs
+  Epoch 100 (warmup 100/250): loss = 0.0276
+  Epoch 200 (warmup 200/250): loss = 0.0021
+
+[T+K] Starting finetune: 250 epochs
+  Epoch 350 (finetune 100/250): loss = 0.0014
+  Epoch 450 (finetune 200/250): loss = 0.0006
+    dist=0.0: recon=0.033546
+    dist=0.3: recon=1.697144
+
+  paraboloid | T+F | seed=2042
+  Epoch 100: loss=0.604837
+  Epoch 200: loss=0.128088
+  Epoch 300: loss=0.030871
+  Epoch 400: loss=0.012893
+  Epoch 500: loss=0.009301
+    dist=0.0: recon=0.010232
+    dist=0.3: recon=0.409285
+
+  paraboloid | T+F+K | seed=2042
+
+[T+F+K] Starting warmup: 250 epochs
+  Epoch 100 (warmup 100/250): loss = 0.6048
+  Epoch 200 (warmup 200/250): loss = 0.1281
+
+[T+F+K] Starting finetune: 250 epochs
+  Epoch 350 (finetune 100/250): loss = 0.0205
+  Epoch 450 (finetune 200/250): loss = 0.0100
+    dist=0.0: recon=0.003576
+    dist=0.3: recon=0.442573
+
+  paraboloid | baseline | seed=3042
+  Epoch 100: loss=0.045761
+  Epoch 200: loss=0.037710
+  Epoch 300: loss=0.023171
+  Epoch 400: loss=0.003199
+  Epoch 500: loss=0.002044
+    dist=0.0: recon=0.093093
+    dist=0.3: recon=1.659075
+
+  paraboloid | T | seed=3042
+  Epoch 100: loss=0.029843
+  Epoch 200: loss=0.003034
+  Epoch 300: loss=0.002382
+  Epoch 400: loss=0.001745
+  Epoch 500: loss=0.002640
+    dist=0.0: recon=0.022624
+    dist=0.3: recon=1.921395
+
+  paraboloid | F | seed=3042
+  Epoch 100: loss=0.056853
+  Epoch 200: loss=0.046411
+  Epoch 300: loss=0.046837
+  Epoch 400: loss=0.043415
+  Epoch 500: loss=0.041701
+    dist=0.0: recon=0.177660
+    dist=0.3: recon=2.237562
+
+  paraboloid | K | seed=3042
+
+[K] Starting warmup: 250 epochs
+  Epoch 100 (warmup 100/250): loss = 0.0458
+  Epoch 200 (warmup 200/250): loss = 0.0377
+
+[K] Starting finetune: 250 epochs
+  Epoch 350 (finetune 100/250): loss = 0.0100
+  Epoch 450 (finetune 200/250): loss = 0.0015
+    dist=0.0: recon=0.084800
+    dist=0.3: recon=1.464119
+
+  paraboloid | T+K | seed=3042
+
+[T+K] Starting warmup: 250 epochs
+  Epoch 100 (warmup 100/250): loss = 0.0298
+  Epoch 200 (warmup 200/250): loss = 0.0030
+
+[T+K] Starting finetune: 250 epochs
+  Epoch 350 (finetune 100/250): loss = 0.0035
+  Epoch 450 (finetune 200/250): loss = 0.0023
+    dist=0.0: recon=0.025538
+    dist=0.3: recon=2.054040
+
+  paraboloid | T+F | seed=3042
+  Epoch 100: loss=0.409766
+  Epoch 200: loss=0.092619
+  Epoch 300: loss=0.020118
+  Epoch 400: loss=0.012347
+  Epoch 500: loss=0.009120
+    dist=0.0: recon=0.012494
+    dist=0.3: recon=0.600691
+
+  paraboloid | T+F+K | seed=3042
+
+[T+F+K] Starting warmup: 250 epochs
+  Epoch 100 (warmup 100/250): loss = 0.4098
+  Epoch 200 (warmup 200/250): loss = 0.0926
+
+[T+F+K] Starting finetune: 250 epochs
+  Epoch 350 (finetune 100/250): loss = 0.0201
+  Epoch 450 (finetune 200/250): loss = 0.0119
+    dist=0.0: recon=0.011903
+    dist=0.3: recon=0.596271
+
+  paraboloid | baseline | seed=4042
+  Epoch 100: loss=0.035737
+  Epoch 200: loss=0.016612
+  Epoch 300: loss=0.025106
+  Epoch 400: loss=0.002169
+  Epoch 500: loss=0.001436
+    dist=0.0: recon=0.051941
+    dist=0.3: recon=1.998953
+
+  paraboloid | T | seed=4042
+  Epoch 100: loss=0.020370
+  Epoch 200: loss=0.002807
+  Epoch 300: loss=0.001296
+  Epoch 400: loss=0.003196
+  Epoch 500: loss=0.002963
+    dist=0.0: recon=0.049307
+    dist=0.3: recon=2.138112
+
+  paraboloid | F | seed=4042
+  Epoch 100: loss=0.037804
+  Epoch 200: loss=0.035850
+  Epoch 300: loss=0.034396
+  Epoch 400: loss=0.033212
+  Epoch 500: loss=0.035925
+    dist=0.0: recon=0.224532
+    dist=0.3: recon=2.803650
+
+  paraboloid | K | seed=4042
+
+[K] Starting warmup: 250 epochs
+  Epoch 100 (warmup 100/250): loss = 0.0357
+  Epoch 200 (warmup 200/250): loss = 0.0166
+
+[K] Starting finetune: 250 epochs
+  Epoch 350 (finetune 100/250): loss = 0.0102
+  Epoch 450 (finetune 200/250): loss = 0.0017
+    dist=0.0: recon=0.056346
+    dist=0.3: recon=2.462846
+
+  paraboloid | T+K | seed=4042
+
+[T+K] Starting warmup: 250 epochs
+  Epoch 100 (warmup 100/250): loss = 0.0204
+  Epoch 200 (warmup 200/250): loss = 0.0028
+
+[T+K] Starting finetune: 250 epochs
+  Epoch 350 (finetune 100/250): loss = 0.0008
+  Epoch 450 (finetune 200/250): loss = 0.0005
+    dist=0.0: recon=0.051260
+    dist=0.3: recon=2.171090
+
+  paraboloid | T+F | seed=4042
+  Epoch 100: loss=0.374004
+  Epoch 200: loss=0.044884
+  Epoch 300: loss=0.023724
+  Epoch 400: loss=0.016963
+  Epoch 500: loss=0.011931
+    dist=0.0: recon=0.026106
+    dist=0.3: recon=1.394007
+
+  paraboloid | T+F+K | seed=4042
+
+[T+F+K] Starting warmup: 250 epochs
+  Epoch 100 (warmup 100/250): loss = 0.3740
+  Epoch 200 (warmup 200/250): loss = 0.0449
+
+[T+F+K] Starting finetune: 250 epochs
+  Epoch 350 (finetune 100/250): loss = 0.0233
+  Epoch 450 (finetune 200/250): loss = 0.0114
+    dist=0.0: recon=0.025851
+    dist=0.3: recon=1.335757
+
+  paraboloid | baseline | seed=5042
+  Epoch 100: loss=0.013417
+  Epoch 200: loss=0.011714
+  Epoch 300: loss=0.005447
+  Epoch 400: loss=0.004707
+  Epoch 500: loss=0.043089
+    dist=0.0: recon=0.347182
+    dist=0.3: recon=1.757710
+
+  paraboloid | T | seed=5042
+  Epoch 100: loss=0.021224
+  Epoch 200: loss=0.004880
+  Epoch 300: loss=0.002041
+  Epoch 400: loss=0.000574
+  Epoch 500: loss=0.000470
+    dist=0.0: recon=0.306382
+    dist=0.3: recon=3.179159
+
+  paraboloid | F | seed=5042
+  Epoch 100: loss=0.071738
+  Epoch 200: loss=0.012696
+  Epoch 300: loss=0.012417
+  Epoch 400: loss=0.012378
+  Epoch 500: loss=0.012236
+    dist=0.0: recon=0.539252
+    dist=0.3: recon=2.173486
+
+  paraboloid | K | seed=5042
+
+[K] Starting warmup: 250 epochs
+  Epoch 100 (warmup 100/250): loss = 0.0134
+  Epoch 200 (warmup 200/250): loss = 0.0117
+
+[K] Starting finetune: 250 epochs
+  Epoch 350 (finetune 100/250): loss = 0.0108
+  Epoch 450 (finetune 200/250): loss = 0.0058
+    dist=0.0: recon=0.432386
+    dist=0.3: recon=2.641707
+
+  paraboloid | T+K | seed=5042
+
+[T+K] Starting warmup: 250 epochs
+  Epoch 100 (warmup 100/250): loss = 0.0212
+  Epoch 200 (warmup 200/250): loss = 0.0049
+
+[T+K] Starting finetune: 250 epochs
+  Epoch 350 (finetune 100/250): loss = 0.0024
+  Epoch 450 (finetune 200/250): loss = 0.0026
+    dist=0.0: recon=0.309629
+    dist=0.3: recon=3.161280
+
+  paraboloid | T+F | seed=5042
+  Epoch 100: loss=0.255059
+  Epoch 200: loss=0.071236
+  Epoch 300: loss=0.020724
+  Epoch 400: loss=0.018688
+  Epoch 500: loss=0.014815
+    dist=0.0: recon=0.161218
+    dist=0.3: recon=1.996369
+
+  paraboloid | T+F+K | seed=5042
+
+[T+F+K] Starting warmup: 250 epochs
+  Epoch 100 (warmup 100/250): loss = 0.2551
+  Epoch 200 (warmup 200/250): loss = 0.0712
+
+[T+F+K] Starting finetune: 250 epochs
+  Epoch 350 (finetune 100/250): loss = 0.0313
+  Epoch 450 (finetune 200/250): loss = 0.0081
+    dist=0.0: recon=0.190802
+    dist=0.3: recon=2.191510
+
+  paraboloid | baseline | seed=6042
+  Epoch 100: loss=0.034704
+  Epoch 200: loss=0.036093
+  Epoch 300: loss=0.009773
+  Epoch 400: loss=0.011680
+  Epoch 500: loss=0.003404
+    dist=0.0: recon=0.286055
+    dist=0.3: recon=2.192087
+
+  paraboloid | T | seed=6042
+  Epoch 100: loss=0.182127
+  Epoch 200: loss=0.036811
+  Epoch 300: loss=0.002194
+  Epoch 400: loss=0.010408
+  Epoch 500: loss=0.005052
+    dist=0.0: recon=0.139356
+    dist=0.3: recon=2.147811
+
+  paraboloid | F | seed=6042
+  Epoch 100: loss=0.041864
+  Epoch 200: loss=0.034759
+  Epoch 300: loss=0.037350
+  Epoch 400: loss=0.034621
+  Epoch 500: loss=0.034151
+    dist=0.0: recon=0.269543
+    dist=0.3: recon=2.701173
+
+  paraboloid | K | seed=6042
+
+[K] Starting warmup: 250 epochs
+  Epoch 100 (warmup 100/250): loss = 0.0347
+  Epoch 200 (warmup 200/250): loss = 0.0361
+
+[K] Starting finetune: 250 epochs
+  Epoch 350 (finetune 100/250): loss = 0.0078
+  Epoch 450 (finetune 200/250): loss = 0.0065
+    dist=0.0: recon=0.259587
+    dist=0.3: recon=2.156287
+
+  paraboloid | T+K | seed=6042
+
+[T+K] Starting warmup: 250 epochs
+  Epoch 100 (warmup 100/250): loss = 0.1821
+  Epoch 200 (warmup 200/250): loss = 0.0368
+
+[T+K] Starting finetune: 250 epochs
+  Epoch 350 (finetune 100/250): loss = 0.0894
+  Epoch 450 (finetune 200/250): loss = 0.0006
+    dist=0.0: recon=0.149425
+    dist=0.3: recon=2.199870
+
+  paraboloid | T+F | seed=6042
+  Epoch 100: loss=0.217232
+  Epoch 200: loss=0.127302
+  Epoch 300: loss=0.047220
+  Epoch 400: loss=0.031556
+  Epoch 500: loss=0.011599
+    dist=0.0: recon=0.061524
+    dist=0.3: recon=1.351276
+
+  paraboloid | T+F+K | seed=6042
+
+[T+F+K] Starting warmup: 250 epochs
+  Epoch 100 (warmup 100/250): loss = 0.2172
+  Epoch 200 (warmup 200/250): loss = 0.1273
+
+[T+F+K] Starting finetune: 250 epochs
+  Epoch 350 (finetune 100/250): loss = 0.0406
+  Epoch 450 (finetune 200/250): loss = 0.0148
+    dist=0.0: recon=0.069515
+    dist=0.3: recon=1.308031
+
+  paraboloid | baseline | seed=7042
+  Epoch 100: loss=0.029923
+  Epoch 200: loss=0.028027
+  Epoch 300: loss=0.017422
+  Epoch 400: loss=0.004458
+  Epoch 500: loss=0.001100
+    dist=0.0: recon=0.110900
+    dist=0.3: recon=2.726564
+
+  paraboloid | T | seed=7042
+  Epoch 100: loss=0.022479
+  Epoch 200: loss=0.012029
+  Epoch 300: loss=0.000916
+  Epoch 400: loss=0.000836
+  Epoch 500: loss=0.001522
+    dist=0.0: recon=0.061636
+    dist=0.3: recon=3.065552
+
+  paraboloid | F | seed=7042
+  Epoch 100: loss=0.031280
+  Epoch 200: loss=0.028219
+  Epoch 300: loss=0.029257
+  Epoch 400: loss=0.028071
+  Epoch 500: loss=0.027340
+    dist=0.0: recon=0.258716
+    dist=0.3: recon=2.691951
+
+  paraboloid | K | seed=7042
+
+[K] Starting warmup: 250 epochs
+  Epoch 100 (warmup 100/250): loss = 0.0299
+  Epoch 200 (warmup 200/250): loss = 0.0280
+
+[K] Starting finetune: 250 epochs
+  Epoch 350 (finetune 100/250): loss = 0.0125
+  Epoch 450 (finetune 200/250): loss = 0.0031
+    dist=0.0: recon=0.102076
+    dist=0.3: recon=2.960558
+
+  paraboloid | T+K | seed=7042
+
+[T+K] Starting warmup: 250 epochs
+  Epoch 100 (warmup 100/250): loss = 0.0225
+  Epoch 200 (warmup 200/250): loss = 0.0120
+
+[T+K] Starting finetune: 250 epochs
+  Epoch 350 (finetune 100/250): loss = 0.0009
+  Epoch 450 (finetune 200/250): loss = 0.0027
+    dist=0.0: recon=0.042948
+    dist=0.3: recon=2.929799
+
+  paraboloid | T+F | seed=7042
+  Epoch 100: loss=0.314515
+  Epoch 200: loss=0.060357
+  Epoch 300: loss=0.050441
+  Epoch 400: loss=0.004175
+  Epoch 500: loss=0.009667
+    dist=0.0: recon=0.014999
+    dist=0.3: recon=1.101746
+
+  paraboloid | T+F+K | seed=7042
+
+[T+F+K] Starting warmup: 250 epochs
+  Epoch 100 (warmup 100/250): loss = 0.3145
+  Epoch 200 (warmup 200/250): loss = 0.0604
+
+[T+F+K] Starting finetune: 250 epochs
+  Epoch 350 (finetune 100/250): loss = 0.0243
+  Epoch 450 (finetune 200/250): loss = 0.0055
+    dist=0.0: recon=0.004874
+    dist=0.3: recon=1.113432
+
+  paraboloid | baseline | seed=8042
+  Epoch 100: loss=0.040291
+  Epoch 200: loss=0.025290
+  Epoch 300: loss=0.006269
+  Epoch 400: loss=0.005300
+  Epoch 500: loss=0.004030
+    dist=0.0: recon=0.189394
+    dist=0.3: recon=2.659789
+
+  paraboloid | T | seed=8042
+  Epoch 100: loss=0.023187
+  Epoch 200: loss=0.002381
+  Epoch 300: loss=0.001582
+  Epoch 400: loss=0.001024
+  Epoch 500: loss=0.002130
+    dist=0.0: recon=0.059299
+    dist=0.3: recon=2.171751
+
+  paraboloid | F | seed=8042
+  Epoch 100: loss=0.046610
+  Epoch 200: loss=0.040155
+  Epoch 300: loss=0.040099
+  Epoch 400: loss=0.040190
+  Epoch 500: loss=0.034812
+    dist=0.0: recon=0.253067
+    dist=0.3: recon=2.402320
+
+  paraboloid | K | seed=8042
+
+[K] Starting warmup: 250 epochs
+  Epoch 100 (warmup 100/250): loss = 0.0403
+  Epoch 200 (warmup 200/250): loss = 0.0253
+
+[K] Starting finetune: 250 epochs
+  Epoch 350 (finetune 100/250): loss = 0.0146
+  Epoch 450 (finetune 200/250): loss = 0.0074
+    dist=0.0: recon=0.196077
+    dist=0.3: recon=2.686169
+
+  paraboloid | T+K | seed=8042
+
+[T+K] Starting warmup: 250 epochs
+  Epoch 100 (warmup 100/250): loss = 0.0232
+  Epoch 200 (warmup 200/250): loss = 0.0024
+
+[T+K] Starting finetune: 250 epochs
+  Epoch 350 (finetune 100/250): loss = 0.0021
+  Epoch 450 (finetune 200/250): loss = 0.0008
+    dist=0.0: recon=0.057633
+    dist=0.3: recon=2.147950
+
+  paraboloid | T+F | seed=8042
+  Epoch 100: loss=0.314688
+  Epoch 200: loss=0.050619
+  Epoch 300: loss=0.018098
+  Epoch 400: loss=0.016959
+  Epoch 500: loss=0.002621
+    dist=0.0: recon=0.012320
+    dist=0.3: recon=1.550549
+
+  paraboloid | T+F+K | seed=8042
+
+[T+F+K] Starting warmup: 250 epochs
+  Epoch 100 (warmup 100/250): loss = 0.3147
+  Epoch 200 (warmup 200/250): loss = 0.0506
+
+[T+F+K] Starting finetune: 250 epochs
+  Epoch 350 (finetune 100/250): loss = 0.0125
+  Epoch 450 (finetune 200/250): loss = 0.0116
+    dist=0.0: recon=0.035795
+    dist=0.3: recon=1.524998
+
+  paraboloid | baseline | seed=9042
+  Epoch 100: loss=0.033903
+  Epoch 200: loss=0.030608
+  Epoch 300: loss=0.011199
+  Epoch 400: loss=0.005470
+  Epoch 500: loss=0.003171
+    dist=0.0: recon=0.117279
+    dist=0.3: recon=2.009276
+
+  paraboloid | T | seed=9042
+  Epoch 100: loss=0.036952
+  Epoch 200: loss=0.002642
+  Epoch 300: loss=0.002360
+  Epoch 400: loss=0.001616
+  Epoch 500: loss=0.000773
+    dist=0.0: recon=0.047832
+    dist=0.3: recon=2.172122
+
+  paraboloid | F | seed=9042
+  Epoch 100: loss=0.075746
+  Epoch 200: loss=0.032003
+  Epoch 300: loss=0.030842
+  Epoch 400: loss=0.031158
+  Epoch 500: loss=0.030205
+    dist=0.0: recon=0.234942
+    dist=0.3: recon=2.141930
+
+  paraboloid | K | seed=9042
+
+[K] Starting warmup: 250 epochs
+  Epoch 100 (warmup 100/250): loss = 0.0339
+  Epoch 200 (warmup 200/250): loss = 0.0306
+
+[K] Starting finetune: 250 epochs
+  Epoch 350 (finetune 100/250): loss = 0.0111
+  Epoch 450 (finetune 200/250): loss = 0.0115
+    dist=0.0: recon=0.173576
+    dist=0.3: recon=2.336110
+
+  paraboloid | T+K | seed=9042
+
+[T+K] Starting warmup: 250 epochs
+  Epoch 100 (warmup 100/250): loss = 0.0370
+  Epoch 200 (warmup 200/250): loss = 0.0026
+
+[T+K] Starting finetune: 250 epochs
+  Epoch 350 (finetune 100/250): loss = 0.0083
+  Epoch 450 (finetune 200/250): loss = 0.0011
+    dist=0.0: recon=0.045727
+    dist=0.3: recon=2.142734
+
+  paraboloid | T+F | seed=9042
+  Epoch 100: loss=0.634333
+  Epoch 200: loss=0.235904
+  Epoch 300: loss=0.051707
+  Epoch 400: loss=0.036538
+  Epoch 500: loss=0.031721
+    dist=0.0: recon=0.050499
+    dist=0.3: recon=1.361784
+
+  paraboloid | T+F+K | seed=9042
+
+[T+F+K] Starting warmup: 250 epochs
+  Epoch 100 (warmup 100/250): loss = 0.6343
+  Epoch 200 (warmup 200/250): loss = 0.2359
+
+[T+F+K] Starting finetune: 250 epochs
+  Epoch 350 (finetune 100/250): loss = 0.0271
+  Epoch 450 (finetune 200/250): loss = 0.0059
+    dist=0.0: recon=0.018191
+    dist=0.3: recon=1.199021
+
+  hyperbolic_paraboloid | baseline | seed=42
+  Epoch 100: loss=0.058035
+  Epoch 200: loss=0.008969
+  Epoch 300: loss=0.004773
+  Epoch 400: loss=0.003666
+  Epoch 500: loss=0.002535
+    dist=0.0: recon=0.079223
+    dist=0.3: recon=0.787536
+
+  hyperbolic_paraboloid | T | seed=42
+  Epoch 100: loss=0.285517
+  Epoch 200: loss=0.101854
+  Epoch 300: loss=0.080277
+  Epoch 400: loss=0.073730
+  Epoch 500: loss=0.068392
+    dist=0.0: recon=0.231783
+    dist=0.3: recon=1.578846
+
+  hyperbolic_paraboloid | F | seed=42
+  Epoch 100: loss=0.062547
+  Epoch 200: loss=0.057704
+  Epoch 300: loss=0.057446
+  Epoch 400: loss=0.056666
+  Epoch 500: loss=0.056155
+    dist=0.0: recon=0.176546
+    dist=0.3: recon=1.539732
+
+  hyperbolic_paraboloid | K | seed=42
+
+[K] Starting warmup: 250 epochs
+  Epoch 100 (warmup 100/250): loss = 0.0580
+  Epoch 200 (warmup 200/250): loss = 0.0090
+
+[K] Starting finetune: 250 epochs
+  Epoch 350 (finetune 100/250): loss = 0.0048
+  Epoch 450 (finetune 200/250): loss = 0.0022
+    dist=0.0: recon=0.041152
+    dist=0.3: recon=0.660373
+
+  hyperbolic_paraboloid | T+K | seed=42
+
+[T+K] Starting warmup: 250 epochs
+  Epoch 100 (warmup 100/250): loss = 0.2855
+  Epoch 200 (warmup 200/250): loss = 0.1019
+
+[T+K] Starting finetune: 250 epochs
+  Epoch 350 (finetune 100/250): loss = 0.0794
+  Epoch 450 (finetune 200/250): loss = 0.0611
+    dist=0.0: recon=0.183990
+    dist=0.3: recon=1.348981
+
+  hyperbolic_paraboloid | T+F | seed=42
+  Epoch 100: loss=0.738288
+  Epoch 200: loss=0.596634
+  Epoch 300: loss=0.351177
+  Epoch 400: loss=0.324629
+  Epoch 500: loss=0.277782
+    dist=0.0: recon=0.361667
+    dist=0.3: recon=1.244192
+
+  hyperbolic_paraboloid | T+F+K | seed=42
+
+[T+F+K] Starting warmup: 250 epochs
+  Epoch 100 (warmup 100/250): loss = 0.7383
+  Epoch 200 (warmup 200/250): loss = 0.5966
+
+[T+F+K] Starting finetune: 250 epochs
+  Epoch 350 (finetune 100/250): loss = 0.3425
+  Epoch 450 (finetune 200/250): loss = 0.3087
+    dist=0.0: recon=0.366803
+    dist=0.3: recon=1.173908
+
+  hyperbolic_paraboloid | baseline | seed=1042
+  Epoch 100: loss=0.042781
+  Epoch 200: loss=0.025449
+  Epoch 300: loss=0.004415
+  Epoch 400: loss=0.004482
+  Epoch 500: loss=0.001022
+    dist=0.0: recon=0.037662
+    dist=0.3: recon=0.633753
+
+  hyperbolic_paraboloid | T | seed=1042
+  Epoch 100: loss=0.067786
+  Epoch 200: loss=0.004287
+  Epoch 300: loss=0.001529
+  Epoch 400: loss=0.001652
+  Epoch 500: loss=0.001376
+    dist=0.0: recon=0.037669
+    dist=0.3: recon=0.708079
+
+  hyperbolic_paraboloid | F | seed=1042
+  Epoch 100: loss=0.047132
+  Epoch 200: loss=0.043742
+  Epoch 300: loss=0.043724
+  Epoch 400: loss=0.042820
+  Epoch 500: loss=0.043600
+    dist=0.0: recon=0.195359
+    dist=0.3: recon=1.254021
+
+  hyperbolic_paraboloid | K | seed=1042
+
+[K] Starting warmup: 250 epochs
+  Epoch 100 (warmup 100/250): loss = 0.0428
+  Epoch 200 (warmup 200/250): loss = 0.0254
+
+[K] Starting finetune: 250 epochs
+  Epoch 350 (finetune 100/250): loss = 0.0028
+  Epoch 450 (finetune 200/250): loss = 0.0018
+    dist=0.0: recon=0.030162
+    dist=0.3: recon=0.616194
+
+  hyperbolic_paraboloid | T+K | seed=1042
+
+[T+K] Starting warmup: 250 epochs
+  Epoch 100 (warmup 100/250): loss = 0.0678
+  Epoch 200 (warmup 200/250): loss = 0.0043
+
+[T+K] Starting finetune: 250 epochs
+  Epoch 350 (finetune 100/250): loss = 0.0038
+  Epoch 450 (finetune 200/250): loss = 0.0026
+    dist=0.0: recon=0.032459
+    dist=0.3: recon=0.701679
+
+  hyperbolic_paraboloid | T+F | seed=1042
+  Epoch 100: loss=0.500111
+  Epoch 200: loss=0.058129
+  Epoch 300: loss=0.018877
+  Epoch 400: loss=0.011459
+  Epoch 500: loss=0.001735
+    dist=0.0: recon=0.004643
+    dist=0.3: recon=0.236515
+
+  hyperbolic_paraboloid | T+F+K | seed=1042
+
+[T+F+K] Starting warmup: 250 epochs
+  Epoch 100 (warmup 100/250): loss = 0.5001
+  Epoch 200 (warmup 200/250): loss = 0.0581
+
+[T+F+K] Starting finetune: 250 epochs
+  Epoch 350 (finetune 100/250): loss = 0.0108
+  Epoch 450 (finetune 200/250): loss = 0.0093
+    dist=0.0: recon=0.004268
+    dist=0.3: recon=0.237751
+
+  hyperbolic_paraboloid | baseline | seed=2042
+  Epoch 100: loss=0.055183
+  Epoch 200: loss=0.047124
+  Epoch 300: loss=0.003606
+  Epoch 400: loss=0.001421
+  Epoch 500: loss=0.000698
+    dist=0.0: recon=0.048051
+    dist=0.3: recon=0.659975
+
+  hyperbolic_paraboloid | T | seed=2042
+  Epoch 100: loss=0.020045
+  Epoch 200: loss=0.006481
+  Epoch 300: loss=0.003635
+  Epoch 400: loss=0.002288
+  Epoch 500: loss=0.005320
+    dist=0.0: recon=0.020643
+    dist=0.3: recon=0.604108
+
+  hyperbolic_paraboloid | F | seed=2042
+  Epoch 100: loss=0.054729
+  Epoch 200: loss=0.057072
+  Epoch 300: loss=0.053703
+  Epoch 400: loss=0.053088
+  Epoch 500: loss=0.052497
+    dist=0.0: recon=0.238492
+    dist=0.3: recon=1.276708
+
+  hyperbolic_paraboloid | K | seed=2042
+
+[K] Starting warmup: 250 epochs
+  Epoch 100 (warmup 100/250): loss = 0.0552
+  Epoch 200 (warmup 200/250): loss = 0.0471
+
+[K] Starting finetune: 250 epochs
+  Epoch 350 (finetune 100/250): loss = 0.0042
+  Epoch 450 (finetune 200/250): loss = 0.0023
+    dist=0.0: recon=0.028795
+    dist=0.3: recon=0.645927
+
+  hyperbolic_paraboloid | T+K | seed=2042
+
+[T+K] Starting warmup: 250 epochs
+  Epoch 100 (warmup 100/250): loss = 0.0200
+  Epoch 200 (warmup 200/250): loss = 0.0065
+
+[T+K] Starting finetune: 250 epochs
+  Epoch 350 (finetune 100/250): loss = 0.0042
+  Epoch 450 (finetune 200/250): loss = 0.0020
+    dist=0.0: recon=0.016062
+    dist=0.3: recon=0.595643
+
+  hyperbolic_paraboloid | T+F | seed=2042
+  Epoch 100: loss=0.625622
+  Epoch 200: loss=0.024634
+  Epoch 300: loss=0.011172
+  Epoch 400: loss=0.006893
+  Epoch 500: loss=0.009897
+    dist=0.0: recon=0.015797
+    dist=0.3: recon=0.233941
+
+  hyperbolic_paraboloid | T+F+K | seed=2042
+
+[T+F+K] Starting warmup: 250 epochs
+  Epoch 100 (warmup 100/250): loss = 0.6256
+  Epoch 200 (warmup 200/250): loss = 0.0246
+
+[T+F+K] Starting finetune: 250 epochs
+  Epoch 350 (finetune 100/250): loss = 0.0117
+  Epoch 450 (finetune 200/250): loss = 0.0138
+    dist=0.0: recon=0.005318
+    dist=0.3: recon=0.218209
+
+  hyperbolic_paraboloid | baseline | seed=3042
+  Epoch 100: loss=0.062554
+  Epoch 200: loss=0.047013
+  Epoch 300: loss=0.006137
+  Epoch 400: loss=0.002261
+  Epoch 500: loss=0.001256
+    dist=0.0: recon=0.017748
+    dist=0.3: recon=0.503327
+
+  hyperbolic_paraboloid | T | seed=3042
+  Epoch 100: loss=0.019288
+  Epoch 200: loss=0.008094
+  Epoch 300: loss=0.003064
+  Epoch 400: loss=0.003071
+  Epoch 500: loss=0.003490
+    dist=0.0: recon=0.022441
+    dist=0.3: recon=0.482709
+
+  hyperbolic_paraboloid | F | seed=3042
+  Epoch 100: loss=0.069392
+  Epoch 200: loss=0.061949
+  Epoch 300: loss=0.061464
+  Epoch 400: loss=0.067009
+  Epoch 500: loss=0.059644
+    dist=0.0: recon=0.203440
+    dist=0.3: recon=1.316647
+
+  hyperbolic_paraboloid | K | seed=3042
+
+[K] Starting warmup: 250 epochs
+  Epoch 100 (warmup 100/250): loss = 0.0626
+  Epoch 200 (warmup 200/250): loss = 0.0470
+
+[K] Starting finetune: 250 epochs
+  Epoch 350 (finetune 100/250): loss = 0.0035
+  Epoch 450 (finetune 200/250): loss = 0.0020
+    dist=0.0: recon=0.017678
+    dist=0.3: recon=0.517243
+
+  hyperbolic_paraboloid | T+K | seed=3042
+
+[T+K] Starting warmup: 250 epochs
+  Epoch 100 (warmup 100/250): loss = 0.0193
+  Epoch 200 (warmup 200/250): loss = 0.0081
+
+[T+K] Starting finetune: 250 epochs
+  Epoch 350 (finetune 100/250): loss = 0.0039
+  Epoch 450 (finetune 200/250): loss = 0.0055
+    dist=0.0: recon=0.018063
+    dist=0.3: recon=0.537743
+
+  hyperbolic_paraboloid | T+F | seed=3042
+  Epoch 100: loss=0.632198
+  Epoch 200: loss=0.029200
+  Epoch 300: loss=0.007594
+  Epoch 400: loss=0.019289
+  Epoch 500: loss=0.002007
+    dist=0.0: recon=0.001168
+    dist=0.3: recon=0.078437
+
+  hyperbolic_paraboloid | T+F+K | seed=3042
+
+[T+F+K] Starting warmup: 250 epochs
+  Epoch 100 (warmup 100/250): loss = 0.6322
+  Epoch 200 (warmup 200/250): loss = 0.0292
+
+[T+F+K] Starting finetune: 250 epochs
+  Epoch 350 (finetune 100/250): loss = 0.0078
+  Epoch 450 (finetune 200/250): loss = 0.0025
+    dist=0.0: recon=0.000655
+    dist=0.3: recon=0.082784
+
+  hyperbolic_paraboloid | baseline | seed=4042
+  Epoch 100: loss=0.025480
+  Epoch 200: loss=0.027033
+  Epoch 300: loss=0.007014
+  Epoch 400: loss=0.001648
+  Epoch 500: loss=0.000967
+    dist=0.0: recon=0.066375
+    dist=0.3: recon=1.012991
+
+  hyperbolic_paraboloid | T | seed=4042
+  Epoch 100: loss=0.012182
+  Epoch 200: loss=0.005636
+  Epoch 300: loss=0.004272
+  Epoch 400: loss=0.004428
+  Epoch 500: loss=0.002629
+    dist=0.0: recon=0.084905
+    dist=0.3: recon=1.428012
+
+  hyperbolic_paraboloid | F | seed=4042
+  Epoch 100: loss=0.098968
+  Epoch 200: loss=0.024361
+  Epoch 300: loss=0.024816
+  Epoch 400: loss=0.024323
+  Epoch 500: loss=0.024374
+    dist=0.0: recon=0.233153
+    dist=0.3: recon=1.377012
+
+  hyperbolic_paraboloid | K | seed=4042
+
+[K] Starting warmup: 250 epochs
+  Epoch 100 (warmup 100/250): loss = 0.0255
+  Epoch 200 (warmup 200/250): loss = 0.0270
+
+[K] Starting finetune: 250 epochs
+  Epoch 350 (finetune 100/250): loss = 0.0030
+  Epoch 450 (finetune 200/250): loss = 0.0014
+    dist=0.0: recon=0.059458
+    dist=0.3: recon=1.042705
+
+  hyperbolic_paraboloid | T+K | seed=4042
+
+[T+K] Starting warmup: 250 epochs
+  Epoch 100 (warmup 100/250): loss = 0.0122
+  Epoch 200 (warmup 200/250): loss = 0.0056
+
+[T+K] Starting finetune: 250 epochs
+  Epoch 350 (finetune 100/250): loss = 0.0043
+  Epoch 450 (finetune 200/250): loss = 0.0077
+    dist=0.0: recon=0.086412
+    dist=0.3: recon=1.435692
+
+  hyperbolic_paraboloid | T+F | seed=4042
+  Epoch 100: loss=0.516743
+  Epoch 200: loss=0.023914
+  Epoch 300: loss=0.011076
+  Epoch 400: loss=0.018028
+  Epoch 500: loss=0.002597
+    dist=0.0: recon=0.008386
+    dist=0.3: recon=0.362543
+
+  hyperbolic_paraboloid | T+F+K | seed=4042
+
+[T+F+K] Starting warmup: 250 epochs
+  Epoch 100 (warmup 100/250): loss = 0.5167
+  Epoch 200 (warmup 200/250): loss = 0.0239
+
+[T+F+K] Starting finetune: 250 epochs
+  Epoch 350 (finetune 100/250): loss = 0.0120
+  Epoch 450 (finetune 200/250): loss = 0.0108
+    dist=0.0: recon=0.007979
+    dist=0.3: recon=0.365424
+
+  hyperbolic_paraboloid | baseline | seed=5042
+  Epoch 100: loss=0.016596
+  Epoch 200: loss=0.012350
+  Epoch 300: loss=0.004457
+  Epoch 400: loss=0.002268
+  Epoch 500: loss=0.001924
+    dist=0.0: recon=0.323622
+    dist=0.3: recon=1.451264
+
+  hyperbolic_paraboloid | T | seed=5042
+  Epoch 100: loss=0.018802
+  Epoch 200: loss=0.005250
+  Epoch 300: loss=0.004212
+  Epoch 400: loss=0.002166
+  Epoch 500: loss=0.005699
+    dist=0.0: recon=0.275194
+    dist=0.3: recon=1.822997
+
+  hyperbolic_paraboloid | F | seed=5042
+  Epoch 100: loss=0.058998
+  Epoch 200: loss=0.049937
+  Epoch 300: loss=0.017794
+  Epoch 400: loss=0.019277
+  Epoch 500: loss=0.015337
+    dist=0.0: recon=0.447916
+    dist=0.3: recon=1.442289
+
+  hyperbolic_paraboloid | K | seed=5042
+
+[K] Starting warmup: 250 epochs
+  Epoch 100 (warmup 100/250): loss = 0.0166
+  Epoch 200 (warmup 200/250): loss = 0.0124
+
+[K] Starting finetune: 250 epochs
+  Epoch 350 (finetune 100/250): loss = 0.0055
+  Epoch 450 (finetune 200/250): loss = 0.0033
+    dist=0.0: recon=0.280025
+    dist=0.3: recon=1.463551
+
+  hyperbolic_paraboloid | T+K | seed=5042
+
+[T+K] Starting warmup: 250 epochs
+  Epoch 100 (warmup 100/250): loss = 0.0188
+  Epoch 200 (warmup 200/250): loss = 0.0052
+
+[T+K] Starting finetune: 250 epochs
+  Epoch 350 (finetune 100/250): loss = 0.0028
+  Epoch 450 (finetune 200/250): loss = 0.0036
+    dist=0.0: recon=0.276983
+    dist=0.3: recon=1.853215
+
+  hyperbolic_paraboloid | T+F | seed=5042
+  Epoch 100: loss=0.108207
+  Epoch 200: loss=0.026286
+  Epoch 300: loss=0.009713
+  Epoch 400: loss=0.010652
+  Epoch 500: loss=0.002206
+    dist=0.0: recon=0.069259
+    dist=0.3: recon=0.794719
+
+  hyperbolic_paraboloid | T+F+K | seed=5042
+
+[T+F+K] Starting warmup: 250 epochs
+  Epoch 100 (warmup 100/250): loss = 0.1082
+  Epoch 200 (warmup 200/250): loss = 0.0263
+
+[T+F+K] Starting finetune: 250 epochs
+  Epoch 350 (finetune 100/250): loss = 0.0123
+  Epoch 450 (finetune 200/250): loss = 0.0030
+    dist=0.0: recon=0.069149
+    dist=0.3: recon=0.812180
+
+  hyperbolic_paraboloid | baseline | seed=6042
+  Epoch 100: loss=0.030394
+  Epoch 200: loss=0.024257
+  Epoch 300: loss=0.007304
+  Epoch 400: loss=0.006594
+  Epoch 500: loss=0.001684
+    dist=0.0: recon=0.207636
+    dist=0.3: recon=1.379602
+
+  hyperbolic_paraboloid | T | seed=6042
+  Epoch 100: loss=0.065115
+  Epoch 200: loss=0.008404
+  Epoch 300: loss=0.003223
+  Epoch 400: loss=0.004602
+  Epoch 500: loss=0.004628
+    dist=0.0: recon=0.085210
+    dist=0.3: recon=0.817105
+
+  hyperbolic_paraboloid | F | seed=6042
+  Epoch 100: loss=0.039215
+  Epoch 200: loss=0.031024
+  Epoch 300: loss=0.030497
+  Epoch 400: loss=0.029592
+  Epoch 500: loss=0.029016
+    dist=0.0: recon=0.235050
+    dist=0.3: recon=1.256838
+
+  hyperbolic_paraboloid | K | seed=6042
+
+[K] Starting warmup: 250 epochs
+  Epoch 100 (warmup 100/250): loss = 0.0304
+  Epoch 200 (warmup 200/250): loss = 0.0243
+
+[K] Starting finetune: 250 epochs
+  Epoch 350 (finetune 100/250): loss = 0.0068
+  Epoch 450 (finetune 200/250): loss = 0.0022
+    dist=0.0: recon=0.152006
+    dist=0.3: recon=1.210221
+
+  hyperbolic_paraboloid | T+K | seed=6042
+
+[T+K] Starting warmup: 250 epochs
+  Epoch 100 (warmup 100/250): loss = 0.0651
+  Epoch 200 (warmup 200/250): loss = 0.0084
+
+[T+K] Starting finetune: 250 epochs
+  Epoch 350 (finetune 100/250): loss = 0.0091
+  Epoch 450 (finetune 200/250): loss = 0.0016
+    dist=0.0: recon=0.089483
+    dist=0.3: recon=0.806710
+
+  hyperbolic_paraboloid | T+F | seed=6042
+  Epoch 100: loss=0.196913
+  Epoch 200: loss=0.036889
+  Epoch 300: loss=0.024708
+  Epoch 400: loss=0.015097
+  Epoch 500: loss=0.009922
+    dist=0.0: recon=0.036027
+    dist=0.3: recon=0.405203
+
+  hyperbolic_paraboloid | T+F+K | seed=6042
+
+[T+F+K] Starting warmup: 250 epochs
+  Epoch 100 (warmup 100/250): loss = 0.1969
+  Epoch 200 (warmup 200/250): loss = 0.0369
+
+[T+F+K] Starting finetune: 250 epochs
+  Epoch 350 (finetune 100/250): loss = 0.0175
+  Epoch 450 (finetune 200/250): loss = 0.0114
+    dist=0.0: recon=0.031915
+    dist=0.3: recon=0.382698
+
+  hyperbolic_paraboloid | baseline | seed=7042
+  Epoch 100: loss=0.040400
+  Epoch 200: loss=0.036115
+  Epoch 300: loss=0.010646
+  Epoch 400: loss=0.001518
+  Epoch 500: loss=0.002826
+    dist=0.0: recon=0.021214
+    dist=0.3: recon=0.604443
+
+  hyperbolic_paraboloid | T | seed=7042
+  Epoch 100: loss=0.015602
+  Epoch 200: loss=0.007838
+  Epoch 300: loss=0.006223
+  Epoch 400: loss=0.002493
+  Epoch 500: loss=0.003086
+    dist=0.0: recon=0.055233
+    dist=0.3: recon=0.672987
+
+  hyperbolic_paraboloid | F | seed=7042
+  Epoch 100: loss=0.041470
+  Epoch 200: loss=0.046803
+  Epoch 300: loss=0.040990
+  Epoch 400: loss=0.039123
+  Epoch 500: loss=0.038631
+    dist=0.0: recon=0.207349
+    dist=0.3: recon=1.450749
+
+  hyperbolic_paraboloid | K | seed=7042
+
+[K] Starting warmup: 250 epochs
+  Epoch 100 (warmup 100/250): loss = 0.0404
+  Epoch 200 (warmup 200/250): loss = 0.0361
+
+[K] Starting finetune: 250 epochs
+  Epoch 350 (finetune 100/250): loss = 0.0031
+  Epoch 450 (finetune 200/250): loss = 0.0031
+    dist=0.0: recon=0.021247
+    dist=0.3: recon=0.588936
+
+  hyperbolic_paraboloid | T+K | seed=7042
+
+[T+K] Starting warmup: 250 epochs
+  Epoch 100 (warmup 100/250): loss = 0.0156
+  Epoch 200 (warmup 200/250): loss = 0.0078
+
+[T+K] Starting finetune: 250 epochs
+  Epoch 350 (finetune 100/250): loss = 0.0039
+  Epoch 450 (finetune 200/250): loss = 0.0032
+    dist=0.0: recon=0.052602
+    dist=0.3: recon=0.681648
+
+  hyperbolic_paraboloid | T+F | seed=7042
+  Epoch 100: loss=0.065347
+  Epoch 200: loss=0.026498
+  Epoch 300: loss=0.003669
+  Epoch 400: loss=0.001935
+  Epoch 500: loss=0.001290
+    dist=0.0: recon=0.001659
+    dist=0.3: recon=0.172618
+
+  hyperbolic_paraboloid | T+F+K | seed=7042
+
+[T+F+K] Starting warmup: 250 epochs
+  Epoch 100 (warmup 100/250): loss = 0.0653
+  Epoch 200 (warmup 200/250): loss = 0.0265
+
+[T+F+K] Starting finetune: 250 epochs
+  Epoch 350 (finetune 100/250): loss = 0.0026
+  Epoch 450 (finetune 200/250): loss = 0.0016
+    dist=0.0: recon=0.001609
+    dist=0.3: recon=0.170741
+
+  hyperbolic_paraboloid | baseline | seed=8042
+  Epoch 100: loss=0.035942
+  Epoch 200: loss=0.034823
+  Epoch 300: loss=0.038347
+  Epoch 400: loss=0.041900
+  Epoch 500: loss=0.020525
+    dist=0.0: recon=0.183737
+    dist=0.3: recon=1.616788
+
+  hyperbolic_paraboloid | T | seed=8042
+  Epoch 100: loss=0.064509
+  Epoch 200: loss=0.005668
+  Epoch 300: loss=0.003708
+  Epoch 400: loss=0.001906
+  Epoch 500: loss=0.001092
+    dist=0.0: recon=0.068187
+    dist=0.3: recon=1.400477
+
+  hyperbolic_paraboloid | F | seed=8042
+  Epoch 100: loss=0.035414
+  Epoch 200: loss=0.034637
+  Epoch 300: loss=0.034372
+  Epoch 400: loss=0.033786
+  Epoch 500: loss=0.033666
+    dist=0.0: recon=0.294184
+    dist=0.3: recon=1.551465
+
+  hyperbolic_paraboloid | K | seed=8042
+
+[K] Starting warmup: 250 epochs
+  Epoch 100 (warmup 100/250): loss = 0.0359
+  Epoch 200 (warmup 200/250): loss = 0.0348
+
+[K] Starting finetune: 250 epochs
+  Epoch 350 (finetune 100/250): loss = 0.0343
+  Epoch 450 (finetune 200/250): loss = 0.0315
+    dist=0.0: recon=0.212214
+    dist=0.3: recon=1.585633
+
+  hyperbolic_paraboloid | T+K | seed=8042
+
+[T+K] Starting warmup: 250 epochs
+  Epoch 100 (warmup 100/250): loss = 0.0645
+  Epoch 200 (warmup 200/250): loss = 0.0057
+
+[T+K] Starting finetune: 250 epochs
+  Epoch 350 (finetune 100/250): loss = 0.0014
+  Epoch 450 (finetune 200/250): loss = 0.0008
+    dist=0.0: recon=0.064699
+    dist=0.3: recon=1.377600
+
+  hyperbolic_paraboloid | T+F | seed=8042
+  Epoch 100: loss=0.396986
+  Epoch 200: loss=0.060101
+  Epoch 300: loss=0.003861
+  Epoch 400: loss=0.013672
+  Epoch 500: loss=0.001104
+    dist=0.0: recon=0.006945
+    dist=0.3: recon=0.409244
+
+  hyperbolic_paraboloid | T+F+K | seed=8042
+
+[T+F+K] Starting warmup: 250 epochs
+  Epoch 100 (warmup 100/250): loss = 0.3970
+  Epoch 200 (warmup 200/250): loss = 0.0601
+
+[T+F+K] Starting finetune: 250 epochs
+  Epoch 350 (finetune 100/250): loss = 0.0019
+  Epoch 450 (finetune 200/250): loss = 0.0130
+    dist=0.0: recon=0.007296
+    dist=0.3: recon=0.435480
+
+  hyperbolic_paraboloid | baseline | seed=9042
+  Epoch 100: loss=0.037130
+  Epoch 200: loss=0.028862
+  Epoch 300: loss=0.009269
+  Epoch 400: loss=0.007588
+  Epoch 500: loss=0.006582
+    dist=0.0: recon=0.109719
+    dist=0.3: recon=1.118784
+
+  hyperbolic_paraboloid | T | seed=9042
+  Epoch 100: loss=0.020892
+  Epoch 200: loss=0.015020
+  Epoch 300: loss=0.024868
+  Epoch 400: loss=0.003644
+  Epoch 500: loss=0.006945
+    dist=0.0: recon=0.040409
+    dist=0.3: recon=0.734578
+
+  hyperbolic_paraboloid | F | seed=9042
+  Epoch 100: loss=0.041663
+  Epoch 200: loss=0.035351
+  Epoch 300: loss=0.034227
+  Epoch 400: loss=0.034404
+  Epoch 500: loss=0.031319
+    dist=0.0: recon=0.257739
+    dist=0.3: recon=1.194582
+
+  hyperbolic_paraboloid | K | seed=9042
+
+[K] Starting warmup: 250 epochs
+  Epoch 100 (warmup 100/250): loss = 0.0371
+  Epoch 200 (warmup 200/250): loss = 0.0289
+
+[K] Starting finetune: 250 epochs
+  Epoch 350 (finetune 100/250): loss = 0.0110
+  Epoch 450 (finetune 200/250): loss = 0.0089
+    dist=0.0: recon=0.134436
+    dist=0.3: recon=1.079668
+
+  hyperbolic_paraboloid | T+K | seed=9042
+
+[T+K] Starting warmup: 250 epochs
+  Epoch 100 (warmup 100/250): loss = 0.0209
+  Epoch 200 (warmup 200/250): loss = 0.0150
+
+[T+K] Starting finetune: 250 epochs
+  Epoch 350 (finetune 100/250): loss = 0.0109
+  Epoch 450 (finetune 200/250): loss = 0.0075
+    dist=0.0: recon=0.038064
+    dist=0.3: recon=0.726004
+
+  hyperbolic_paraboloid | T+F | seed=9042
+  Epoch 100: loss=0.603632
+  Epoch 200: loss=0.033963
+  Epoch 300: loss=0.015127
+  Epoch 400: loss=0.011711
+  Epoch 500: loss=0.028142
+    dist=0.0: recon=0.023152
+    dist=0.3: recon=0.235068
+
+  hyperbolic_paraboloid | T+F+K | seed=9042
+
+[T+F+K] Starting warmup: 250 epochs
+  Epoch 100 (warmup 100/250): loss = 0.6036
+  Epoch 200 (warmup 200/250): loss = 0.0340
+
+[T+F+K] Starting finetune: 250 epochs
+  Epoch 350 (finetune 100/250): loss = 0.0115
+  Epoch 450 (finetune 200/250): loss = 0.0476
+    dist=0.0: recon=0.008455
+    dist=0.3: recon=0.259137
+
+  quartic_dome | baseline | seed=42
+  Epoch 100: loss=0.011358
+  Epoch 200: loss=0.012600
+  Epoch 300: loss=0.009357
+  Epoch 400: loss=0.007878
+  Epoch 500: loss=0.005657
+    dist=0.0: recon=0.067163
+    dist=0.3: recon=0.184386
+
+  quartic_dome | T | seed=42
+  Epoch 100: loss=0.046931
+  Epoch 200: loss=0.032711
+  Epoch 300: loss=0.021785
+  Epoch 400: loss=0.016013
+  Epoch 500: loss=0.009467
+    dist=0.0: recon=0.008520
+    dist=0.3: recon=0.137258
+
+  quartic_dome | F | seed=42
+  Epoch 100: loss=0.011766
+  Epoch 200: loss=0.008344
+  Epoch 300: loss=0.008031
+  Epoch 400: loss=0.007888
+  Epoch 500: loss=0.007776
+    dist=0.0: recon=0.072985
+    dist=0.3: recon=0.082174
+
+  quartic_dome | K | seed=42
+
+[K] Starting warmup: 250 epochs
+  Epoch 100 (warmup 100/250): loss = 0.0114
+  Epoch 200 (warmup 200/250): loss = 0.0126
+
+[K] Starting finetune: 250 epochs
+  Epoch 350 (finetune 100/250): loss = 0.0237
+  Epoch 450 (finetune 200/250): loss = 0.0231
+    dist=0.0: recon=0.082117
+    dist=0.3: recon=0.183239
+
+  quartic_dome | T+K | seed=42
+
+[T+K] Starting warmup: 250 epochs
+  Epoch 100 (warmup 100/250): loss = 0.0469
+  Epoch 200 (warmup 200/250): loss = 0.0327
+
+[T+K] Starting finetune: 250 epochs
+  Epoch 350 (finetune 100/250): loss = 0.0270
+  Epoch 450 (finetune 200/250): loss = 0.0229
+    dist=0.0: recon=0.012703
+    dist=0.3: recon=0.172735
+
+  quartic_dome | T+F | seed=42
+  Epoch 100: loss=0.211863
+  Epoch 200: loss=0.062627
+  Epoch 300: loss=0.039767
+  Epoch 400: loss=0.027774
+  Epoch 500: loss=0.016662
+    dist=0.0: recon=0.010411
+    dist=0.3: recon=0.095149
+
+  quartic_dome | T+F+K | seed=42
+
+[T+F+K] Starting warmup: 250 epochs
+  Epoch 100 (warmup 100/250): loss = 0.2119
+  Epoch 200 (warmup 200/250): loss = 0.0626
+
+[T+F+K] Starting finetune: 250 epochs
+  Epoch 350 (finetune 100/250): loss = 0.0358
+  Epoch 450 (finetune 200/250): loss = 0.0298
+    dist=0.0: recon=0.011443
+    dist=0.3: recon=0.090751
+
+  quartic_dome | baseline | seed=1042
+  Epoch 100: loss=0.018802
+  Epoch 200: loss=0.019801
+  Epoch 300: loss=0.010793
+  Epoch 400: loss=0.008873
+  Epoch 500: loss=0.004015
+    dist=0.0: recon=0.069466
+    dist=0.3: recon=0.223676
+
+  quartic_dome | T | seed=1042
+  Epoch 100: loss=0.040730
+  Epoch 200: loss=0.024682
+  Epoch 300: loss=0.015674
+  Epoch 400: loss=0.010708
+  Epoch 500: loss=0.008071
+    dist=0.0: recon=0.042094
+    dist=0.3: recon=0.305022
+
+  quartic_dome | F | seed=1042
+  Epoch 100: loss=0.020004
+  Epoch 200: loss=0.014785
+  Epoch 300: loss=0.014545
+  Epoch 400: loss=0.014122
+  Epoch 500: loss=0.014103
+    dist=0.0: recon=0.067735
+    dist=0.3: recon=0.095728
+
+  quartic_dome | K | seed=1042
+
+[K] Starting warmup: 250 epochs
+  Epoch 100 (warmup 100/250): loss = 0.0188
+  Epoch 200 (warmup 200/250): loss = 0.0198
+
+[K] Starting finetune: 250 epochs
+  Epoch 350 (finetune 100/250): loss = 0.0209
+  Epoch 450 (finetune 200/250): loss = 0.0151
+    dist=0.0: recon=0.086069
+    dist=0.3: recon=0.252427
+
+  quartic_dome | T+K | seed=1042
+
+[T+K] Starting warmup: 250 epochs
+  Epoch 100 (warmup 100/250): loss = 0.0407
+  Epoch 200 (warmup 200/250): loss = 0.0247
+
+[T+K] Starting finetune: 250 epochs
+  Epoch 350 (finetune 100/250): loss = 0.0218
+  Epoch 450 (finetune 200/250): loss = 0.0165
+    dist=0.0: recon=0.041931
+    dist=0.3: recon=0.300436
+
+  quartic_dome | T+F | seed=1042
+  Epoch 100: loss=0.151726
+  Epoch 200: loss=0.043531
+  Epoch 300: loss=0.037870
+  Epoch 400: loss=0.027509
+  Epoch 500: loss=0.024983
+    dist=0.0: recon=0.012156
+    dist=0.3: recon=0.175190
+
+  quartic_dome | T+F+K | seed=1042
+
+[T+F+K] Starting warmup: 250 epochs
+  Epoch 100 (warmup 100/250): loss = 0.1517
+  Epoch 200 (warmup 200/250): loss = 0.0435
+
+[T+F+K] Starting finetune: 250 epochs
+  Epoch 350 (finetune 100/250): loss = 0.0427
+  Epoch 450 (finetune 200/250): loss = 0.0377
+    dist=0.0: recon=0.008723
+    dist=0.3: recon=0.153827
+
+  quartic_dome | baseline | seed=2042
+  Epoch 100: loss=0.019884
+  Epoch 200: loss=0.017013
+  Epoch 300: loss=0.006062
+  Epoch 400: loss=0.004259
+  Epoch 500: loss=0.000618
+    dist=0.0: recon=0.010750
+    dist=0.3: recon=0.177569
+
+  quartic_dome | T | seed=2042
+  Epoch 100: loss=0.052177
+  Epoch 200: loss=0.020316
+  Epoch 300: loss=0.011102
+  Epoch 400: loss=0.006974
+  Epoch 500: loss=0.004238
+    dist=0.0: recon=0.019658
+    dist=0.3: recon=0.223527
+
+  quartic_dome | F | seed=2042
+  Epoch 100: loss=0.047104
+  Epoch 200: loss=0.018363
+  Epoch 300: loss=0.018189
+  Epoch 400: loss=0.020730
+  Epoch 500: loss=0.017885
+    dist=0.0: recon=0.065852
+    dist=0.3: recon=0.075135
+
+  quartic_dome | K | seed=2042
+
+[K] Starting warmup: 250 epochs
+  Epoch 100 (warmup 100/250): loss = 0.0199
+  Epoch 200 (warmup 200/250): loss = 0.0170
+
+[K] Starting finetune: 250 epochs
+  Epoch 350 (finetune 100/250): loss = 0.0240
+  Epoch 450 (finetune 200/250): loss = 0.0074
+    dist=0.0: recon=0.014680
+    dist=0.3: recon=0.178644
+
+  quartic_dome | T+K | seed=2042
+
+[T+K] Starting warmup: 250 epochs
+  Epoch 100 (warmup 100/250): loss = 0.0522
+  Epoch 200 (warmup 200/250): loss = 0.0203
+
+[T+K] Starting finetune: 250 epochs
+  Epoch 350 (finetune 100/250): loss = 0.0129
+  Epoch 450 (finetune 200/250): loss = 0.0117
+    dist=0.0: recon=0.028834
+    dist=0.3: recon=0.216183
+
+  quartic_dome | T+F | seed=2042
+  Epoch 100: loss=0.294127
+  Epoch 200: loss=0.048055
+  Epoch 300: loss=0.042678
+  Epoch 400: loss=0.021009
+  Epoch 500: loss=0.015029
+    dist=0.0: recon=0.001882
+    dist=0.3: recon=0.110417
+
+  quartic_dome | T+F+K | seed=2042
+
+[T+F+K] Starting warmup: 250 epochs
+  Epoch 100 (warmup 100/250): loss = 0.2941
+  Epoch 200 (warmup 200/250): loss = 0.0481
+
+[T+F+K] Starting finetune: 250 epochs
+  Epoch 350 (finetune 100/250): loss = 0.0218
+  Epoch 450 (finetune 200/250): loss = 0.0194
+    dist=0.0: recon=0.000812
+    dist=0.3: recon=0.108719
+
+  quartic_dome | baseline | seed=3042
+  Epoch 100: loss=0.016832
+  Epoch 200: loss=0.013977
+  Epoch 300: loss=0.009375
+  Epoch 400: loss=0.003297
+  Epoch 500: loss=0.004453
+    dist=0.0: recon=0.019106
+    dist=0.3: recon=0.231020
+
+  quartic_dome | T | seed=3042
+  Epoch 100: loss=0.069890
+  Epoch 200: loss=0.025808
+  Epoch 300: loss=0.020609
+  Epoch 400: loss=0.014181
+  Epoch 500: loss=0.009493
+    dist=0.0: recon=0.013293
+    dist=0.3: recon=0.167443
+
+  quartic_dome | F | seed=3042
+  Epoch 100: loss=0.231144
+  Epoch 200: loss=0.014997
+  Epoch 300: loss=0.015027
+  Epoch 400: loss=0.016144
+  Epoch 500: loss=0.014645
+    dist=0.0: recon=0.060959
+    dist=0.3: recon=0.043298
+
+  quartic_dome | K | seed=3042
+
+[K] Starting warmup: 250 epochs
+  Epoch 100 (warmup 100/250): loss = 0.0168
+  Epoch 200 (warmup 200/250): loss = 0.0140
+
+[K] Starting finetune: 250 epochs
+  Epoch 350 (finetune 100/250): loss = 0.0301
+  Epoch 450 (finetune 200/250): loss = 0.0220
+    dist=0.0: recon=0.055995
+    dist=0.3: recon=0.313727
+
+  quartic_dome | T+K | seed=3042
+
+[T+K] Starting warmup: 250 epochs
+  Epoch 100 (warmup 100/250): loss = 0.0699
+  Epoch 200 (warmup 200/250): loss = 0.0258
+
+[T+K] Starting finetune: 250 epochs
+  Epoch 350 (finetune 100/250): loss = 0.0228
+  Epoch 450 (finetune 200/250): loss = 0.0135
+    dist=0.0: recon=0.058065
+    dist=0.3: recon=0.179848
+
+  quartic_dome | T+F | seed=3042
+  Epoch 100: loss=0.175068
+  Epoch 200: loss=0.059617
+  Epoch 300: loss=0.045543
+  Epoch 400: loss=0.052055
+  Epoch 500: loss=0.030653
+    dist=0.0: recon=0.004549
+    dist=0.3: recon=0.087600
+
+  quartic_dome | T+F+K | seed=3042
+
+[T+F+K] Starting warmup: 250 epochs
+  Epoch 100 (warmup 100/250): loss = 0.1751
+  Epoch 200 (warmup 200/250): loss = 0.0596
+
+[T+F+K] Starting finetune: 250 epochs
+  Epoch 350 (finetune 100/250): loss = 0.0641
+  Epoch 450 (finetune 200/250): loss = 0.0577
+    dist=0.0: recon=0.003920
+    dist=0.3: recon=0.080104
+
+  quartic_dome | baseline | seed=4042
+  Epoch 100: loss=0.014192
+  Epoch 200: loss=0.010500
+  Epoch 300: loss=0.003622
+  Epoch 400: loss=0.002539
+  Epoch 500: loss=0.000998
+    dist=0.0: recon=0.021509
+    dist=0.3: recon=0.191610
+
+  quartic_dome | T | seed=4042
+  Epoch 100: loss=0.025664
+  Epoch 200: loss=0.018358
+  Epoch 300: loss=0.013582
+  Epoch 400: loss=0.008650
+  Epoch 500: loss=0.003837
+    dist=0.0: recon=0.019733
+    dist=0.3: recon=0.271718
+
+  quartic_dome | F | seed=4042
+  Epoch 100: loss=0.038365
+  Epoch 200: loss=0.013231
+  Epoch 300: loss=0.013444
+  Epoch 400: loss=0.012705
+  Epoch 500: loss=0.012815
+    dist=0.0: recon=0.069962
+    dist=0.3: recon=0.073816
+
+  quartic_dome | K | seed=4042
+
+[K] Starting warmup: 250 epochs
+  Epoch 100 (warmup 100/250): loss = 0.0142
+  Epoch 200 (warmup 200/250): loss = 0.0105
+
+[K] Starting finetune: 250 epochs
+  Epoch 350 (finetune 100/250): loss = 0.0121
+  Epoch 450 (finetune 200/250): loss = 0.0086
+    dist=0.0: recon=0.036653
+    dist=0.3: recon=0.172107
+
+  quartic_dome | T+K | seed=4042
+
+[T+K] Starting warmup: 250 epochs
+  Epoch 100 (warmup 100/250): loss = 0.0257
+  Epoch 200 (warmup 200/250): loss = 0.0184
+
+[T+K] Starting finetune: 250 epochs
+  Epoch 350 (finetune 100/250): loss = 0.0201
+  Epoch 450 (finetune 200/250): loss = 0.0079
+    dist=0.0: recon=0.018455
+    dist=0.3: recon=0.256067
+
+  quartic_dome | T+F | seed=4042
+  Epoch 100: loss=0.121547
+  Epoch 200: loss=0.050077
+  Epoch 300: loss=0.028231
+  Epoch 400: loss=0.014333
+  Epoch 500: loss=0.017632
+    dist=0.0: recon=0.017339
+    dist=0.3: recon=0.192602
+
+  quartic_dome | T+F+K | seed=4042
+
+[T+F+K] Starting warmup: 250 epochs
+  Epoch 100 (warmup 100/250): loss = 0.1215
+  Epoch 200 (warmup 200/250): loss = 0.0501
+
+[T+F+K] Starting finetune: 250 epochs
+  Epoch 350 (finetune 100/250): loss = 0.0260
+  Epoch 450 (finetune 200/250): loss = 0.0479
+    dist=0.0: recon=0.014308
+    dist=0.3: recon=0.159228
+
+  quartic_dome | baseline | seed=5042
+  Epoch 100: loss=0.011676
+  Epoch 200: loss=0.007729
+  Epoch 300: loss=0.009402
+  Epoch 400: loss=0.007828
+  Epoch 500: loss=0.001243
+    dist=0.0: recon=0.236342
+    dist=0.3: recon=0.529187
+
+  quartic_dome | T | seed=5042
+  Epoch 100: loss=0.088618
+  Epoch 200: loss=0.035202
+  Epoch 300: loss=0.004771
+  Epoch 400: loss=0.002668
+  Epoch 500: loss=0.003567
+    dist=0.0: recon=0.076903
+    dist=0.3: recon=0.333055
+
+  quartic_dome | F | seed=5042
+  Epoch 100: loss=0.031105
+  Epoch 200: loss=0.009240
+  Epoch 300: loss=0.011396
+  Epoch 400: loss=0.009360
+  Epoch 500: loss=0.007823
+    dist=0.0: recon=0.298809
+    dist=0.3: recon=0.550600
+
+  quartic_dome | K | seed=5042
+
+[K] Starting warmup: 250 epochs
+  Epoch 100 (warmup 100/250): loss = 0.0117
+  Epoch 200 (warmup 200/250): loss = 0.0077
+
+[K] Starting finetune: 250 epochs
+  Epoch 350 (finetune 100/250): loss = 0.0166
+  Epoch 450 (finetune 200/250): loss = 0.0147
+    dist=0.0: recon=0.265166
+    dist=0.3: recon=0.619954
+
+  quartic_dome | T+K | seed=5042
+
+[T+K] Starting warmup: 250 epochs
+  Epoch 100 (warmup 100/250): loss = 0.0886
+  Epoch 200 (warmup 200/250): loss = 0.0352
+
+[T+K] Starting finetune: 250 epochs
+  Epoch 350 (finetune 100/250): loss = 0.0057
+  Epoch 450 (finetune 200/250): loss = 0.0043
+    dist=0.0: recon=0.050739
+    dist=0.3: recon=0.325122
+
+  quartic_dome | T+F | seed=5042
+  Epoch 100: loss=0.182201
+  Epoch 200: loss=0.093856
+  Epoch 300: loss=0.088060
+  Epoch 400: loss=0.073905
+  Epoch 500: loss=0.063725
+    dist=0.0: recon=0.143101
+    dist=0.3: recon=0.282279
+
+  quartic_dome | T+F+K | seed=5042
+
+[T+F+K] Starting warmup: 250 epochs
+  Epoch 100 (warmup 100/250): loss = 0.1822
+  Epoch 200 (warmup 200/250): loss = 0.0939
+
+[T+F+K] Starting finetune: 250 epochs
+  Epoch 350 (finetune 100/250): loss = 0.0856
+  Epoch 450 (finetune 200/250): loss = 0.0775
+    dist=0.0: recon=0.162892
+    dist=0.3: recon=0.301043
+
+  quartic_dome | baseline | seed=6042
+  Epoch 100: loss=0.019110
+  Epoch 200: loss=0.019184
+  Epoch 300: loss=0.009052
+  Epoch 400: loss=0.003782
+  Epoch 500: loss=0.006678
+    dist=0.0: recon=0.133782
+    dist=0.3: recon=0.404402
+
+  quartic_dome | T | seed=6042
+  Epoch 100: loss=0.065114
+  Epoch 200: loss=0.015620
+  Epoch 300: loss=0.005414
+  Epoch 400: loss=0.004732
+  Epoch 500: loss=0.001687
+    dist=0.0: recon=0.030242
+    dist=0.3: recon=0.259815
+
+  quartic_dome | F | seed=6042
+  Epoch 100: loss=0.018877
+  Epoch 200: loss=0.016142
+  Epoch 300: loss=0.015923
+  Epoch 400: loss=0.020926
+  Epoch 500: loss=0.018116
+    dist=0.0: recon=0.097530
+    dist=0.3: recon=0.135645
+
+  quartic_dome | K | seed=6042
+
+[K] Starting warmup: 250 epochs
+  Epoch 100 (warmup 100/250): loss = 0.0191
+  Epoch 200 (warmup 200/250): loss = 0.0192
+
+[K] Starting finetune: 250 epochs
+  Epoch 350 (finetune 100/250): loss = 0.0193
+  Epoch 450 (finetune 200/250): loss = 0.0113
+    dist=0.0: recon=0.130732
+    dist=0.3: recon=0.432713
+
+  quartic_dome | T+K | seed=6042
+
+[T+K] Starting warmup: 250 epochs
+  Epoch 100 (warmup 100/250): loss = 0.0651
+  Epoch 200 (warmup 200/250): loss = 0.0156
+
+[T+K] Starting finetune: 250 epochs
+  Epoch 350 (finetune 100/250): loss = 0.0131
+  Epoch 450 (finetune 200/250): loss = 0.0073
+    dist=0.0: recon=0.030866
+    dist=0.3: recon=0.277136
+
+  quartic_dome | T+F | seed=6042
+  Epoch 100: loss=0.117790
+  Epoch 200: loss=0.095640
+  Epoch 300: loss=0.059478
+  Epoch 400: loss=0.022483
+  Epoch 500: loss=0.031739
+    dist=0.0: recon=0.016767
+    dist=0.3: recon=0.166860
+
+  quartic_dome | T+F+K | seed=6042
+
+[T+F+K] Starting warmup: 250 epochs
+  Epoch 100 (warmup 100/250): loss = 0.1178
+  Epoch 200 (warmup 200/250): loss = 0.0956
+
+[T+F+K] Starting finetune: 250 epochs
+  Epoch 350 (finetune 100/250): loss = 0.0644
+  Epoch 450 (finetune 200/250): loss = 0.0371
+    dist=0.0: recon=0.022562
+    dist=0.3: recon=0.127908
+
+  quartic_dome | baseline | seed=7042
+  Epoch 100: loss=0.014571
+  Epoch 200: loss=0.013531
+  Epoch 300: loss=0.014689
+  Epoch 400: loss=0.005810
+  Epoch 500: loss=0.003064
+    dist=0.0: recon=0.061505
+    dist=0.3: recon=0.228419
+
+  quartic_dome | T | seed=7042
+  Epoch 100: loss=0.031273
+  Epoch 200: loss=0.016782
+  Epoch 300: loss=0.008923
+  Epoch 400: loss=0.010511
+  Epoch 500: loss=0.003738
+    dist=0.0: recon=0.025199
+    dist=0.3: recon=0.328795
+
+  quartic_dome | F | seed=7042
+  Epoch 100: loss=0.036166
+  Epoch 200: loss=0.027494
+  Epoch 300: loss=0.013284
+  Epoch 400: loss=0.013104
+  Epoch 500: loss=0.013096
+    dist=0.0: recon=0.097188
+    dist=0.3: recon=0.210643
+
+  quartic_dome | K | seed=7042
+
+[K] Starting warmup: 250 epochs
+  Epoch 100 (warmup 100/250): loss = 0.0146
+  Epoch 200 (warmup 200/250): loss = 0.0135
+
+[K] Starting finetune: 250 epochs
+  Epoch 350 (finetune 100/250): loss = 0.0180
+  Epoch 450 (finetune 200/250): loss = 0.0105
+    dist=0.0: recon=0.091907
+    dist=0.3: recon=0.392325
+
+  quartic_dome | T+K | seed=7042
+
+[T+K] Starting warmup: 250 epochs
+  Epoch 100 (warmup 100/250): loss = 0.0313
+  Epoch 200 (warmup 200/250): loss = 0.0168
+
+[T+K] Starting finetune: 250 epochs
+  Epoch 350 (finetune 100/250): loss = 0.0098
+  Epoch 450 (finetune 200/250): loss = 0.0059
+    dist=0.0: recon=0.024388
+    dist=0.3: recon=0.323143
+
+  quartic_dome | T+F | seed=7042
+  Epoch 100: loss=0.150866
+  Epoch 200: loss=0.036416
+  Epoch 300: loss=0.022926
+  Epoch 400: loss=0.026415
+  Epoch 500: loss=0.011165
+    dist=0.0: recon=0.002322
+    dist=0.3: recon=0.122752
+
+  quartic_dome | T+F+K | seed=7042
+
+[T+F+K] Starting warmup: 250 epochs
+  Epoch 100 (warmup 100/250): loss = 0.1509
+  Epoch 200 (warmup 200/250): loss = 0.0364
+
+[T+F+K] Starting finetune: 250 epochs
+  Epoch 350 (finetune 100/250): loss = 0.0290
+  Epoch 450 (finetune 200/250): loss = 0.0382
+    dist=0.0: recon=0.004969
+    dist=0.3: recon=0.123150
+
+  quartic_dome | baseline | seed=8042
+  Epoch 100: loss=0.018767
+  Epoch 200: loss=0.015935
+  Epoch 300: loss=0.006757
+  Epoch 400: loss=0.015931
+  Epoch 500: loss=0.001228
+    dist=0.0: recon=0.031622
+    dist=0.3: recon=0.216690
+
+  quartic_dome | T | seed=8042
+  Epoch 100: loss=0.058861
+  Epoch 200: loss=0.016418
+  Epoch 300: loss=0.012893
+  Epoch 400: loss=0.017634
+  Epoch 500: loss=0.004562
+    dist=0.0: recon=0.023618
+    dist=0.3: recon=0.272416
+
+  quartic_dome | F | seed=8042
+  Epoch 100: loss=0.025420
+  Epoch 200: loss=0.016804
+  Epoch 300: loss=0.016441
+  Epoch 400: loss=0.017776
+  Epoch 500: loss=0.018315
+    dist=0.0: recon=0.077883
+    dist=0.3: recon=0.113398
+
+  quartic_dome | K | seed=8042
+
+[K] Starting warmup: 250 epochs
+  Epoch 100 (warmup 100/250): loss = 0.0188
+  Epoch 200 (warmup 200/250): loss = 0.0159
+
+[K] Starting finetune: 250 epochs
+  Epoch 350 (finetune 100/250): loss = 0.0157
+  Epoch 450 (finetune 200/250): loss = 0.0130
+    dist=0.0: recon=0.075554
+    dist=0.3: recon=0.287150
+
+  quartic_dome | T+K | seed=8042
+
+[T+K] Starting warmup: 250 epochs
+  Epoch 100 (warmup 100/250): loss = 0.0589
+  Epoch 200 (warmup 200/250): loss = 0.0164
+
+[T+K] Starting finetune: 250 epochs
+  Epoch 350 (finetune 100/250): loss = 0.0098
+  Epoch 450 (finetune 200/250): loss = 0.0088
+    dist=0.0: recon=0.145810
+    dist=0.3: recon=0.469112
+
+  quartic_dome | T+F | seed=8042
+  Epoch 100: loss=0.176601
+  Epoch 200: loss=0.108424
+  Epoch 300: loss=0.061124
+  Epoch 400: loss=0.047261
+  Epoch 500: loss=0.023462
+    dist=0.0: recon=0.016391
+    dist=0.3: recon=0.150934
+
+  quartic_dome | T+F+K | seed=8042
+
+[T+F+K] Starting warmup: 250 epochs
+  Epoch 100 (warmup 100/250): loss = 0.1766
+  Epoch 200 (warmup 200/250): loss = 0.1084
+
+[T+F+K] Starting finetune: 250 epochs
+  Epoch 350 (finetune 100/250): loss = 0.0734
+  Epoch 450 (finetune 200/250): loss = 0.0414
+    dist=0.0: recon=0.014054
+    dist=0.3: recon=0.152579
+
+  quartic_dome | baseline | seed=9042
+  Epoch 100: loss=0.013259
+  Epoch 200: loss=0.012390
+  Epoch 300: loss=0.010520
+  Epoch 400: loss=0.006633
+  Epoch 500: loss=0.003112
+    dist=0.0: recon=0.048391
+    dist=0.3: recon=0.194668
+
+  quartic_dome | T | seed=9042
+  Epoch 100: loss=0.058896
+  Epoch 200: loss=0.021596
+  Epoch 300: loss=0.016824
+  Epoch 400: loss=0.013023
+  Epoch 500: loss=0.016483
+    dist=0.0: recon=0.027711
+    dist=0.3: recon=0.245281
+
+  quartic_dome | F | seed=9042
+  Epoch 100: loss=0.034473
+  Epoch 200: loss=0.011499
+  Epoch 300: loss=0.010876
+  Epoch 400: loss=0.011310
+  Epoch 500: loss=0.014785
+    dist=0.0: recon=0.097072
+    dist=0.3: recon=0.155258
+
+  quartic_dome | K | seed=9042
+
+[K] Starting warmup: 250 epochs
+  Epoch 100 (warmup 100/250): loss = 0.0133
+  Epoch 200 (warmup 200/250): loss = 0.0124
+
+[K] Starting finetune: 250 epochs
+  Epoch 350 (finetune 100/250): loss = 0.0392
+  Epoch 450 (finetune 200/250): loss = 0.0374
+    dist=0.0: recon=0.101060
+    dist=0.3: recon=0.292825
+
+  quartic_dome | T+K | seed=9042
+
+[T+K] Starting warmup: 250 epochs
+  Epoch 100 (warmup 100/250): loss = 0.0589
+  Epoch 200 (warmup 200/250): loss = 0.0216
+
+[T+K] Starting finetune: 250 epochs
+  Epoch 350 (finetune 100/250): loss = 0.0208
+  Epoch 450 (finetune 200/250): loss = 0.0114
+    dist=0.0: recon=0.049846
+    dist=0.3: recon=0.257137
+
+  quartic_dome | T+F | seed=9042
+  Epoch 100: loss=0.186700
+  Epoch 200: loss=0.070528
+  Epoch 300: loss=0.033628
+  Epoch 400: loss=0.023990
+  Epoch 500: loss=0.017943
+    dist=0.0: recon=0.009770
+    dist=0.3: recon=0.103601
+
+  quartic_dome | T+F+K | seed=9042
+
+[T+F+K] Starting warmup: 250 epochs
+  Epoch 100 (warmup 100/250): loss = 0.1867
+  Epoch 200 (warmup 200/250): loss = 0.0705
+
+[T+F+K] Starting finetune: 250 epochs
+  Epoch 350 (finetune 100/250): loss = 0.0276
+  Epoch 450 (finetune 200/250): loss = 0.0303
+    dist=0.0: recon=0.001384
+    dist=0.3: recon=0.100592
+
+  sinusoidal | baseline | seed=42
+  Epoch 100: loss=0.007194
+  Epoch 200: loss=0.004668
+  Epoch 300: loss=0.002004
+  Epoch 400: loss=0.001363
+  Epoch 500: loss=0.001220
+    dist=0.0: recon=0.015771
+    dist=0.3: recon=0.188522
+
+  sinusoidal | T | seed=42
+  Epoch 100: loss=0.037789
+  Epoch 200: loss=0.003603
+  Epoch 300: loss=0.001299
+  Epoch 400: loss=0.000625
+  Epoch 500: loss=0.000411
+    dist=0.0: recon=0.003435
+    dist=0.3: recon=0.094188
+
+  sinusoidal | F | seed=42
+  Epoch 100: loss=0.004502
+  Epoch 200: loss=0.002612
+  Epoch 300: loss=0.003334
+  Epoch 400: loss=0.002312
+  Epoch 500: loss=0.001995
+    dist=0.0: recon=0.008788
+    dist=0.3: recon=0.115423
+
+  sinusoidal | K | seed=42
+
+[K] Starting warmup: 250 epochs
+  Epoch 100 (warmup 100/250): loss = 0.0072
+  Epoch 200 (warmup 200/250): loss = 0.0047
+
+[K] Starting finetune: 250 epochs
+  Epoch 350 (finetune 100/250): loss = 0.0051
+  Epoch 450 (finetune 200/250): loss = 0.0049
+    dist=0.0: recon=0.014068
+    dist=0.3: recon=0.188193
+
+  sinusoidal | T+K | seed=42
+
+[T+K] Starting warmup: 250 epochs
+  Epoch 100 (warmup 100/250): loss = 0.0378
+  Epoch 200 (warmup 200/250): loss = 0.0036
+
+[T+K] Starting finetune: 250 epochs
+  Epoch 350 (finetune 100/250): loss = 0.0015
+  Epoch 450 (finetune 200/250): loss = 0.0017
+    dist=0.0: recon=0.003773
+    dist=0.3: recon=0.095560
+
+  sinusoidal | T+F | seed=42
+  Epoch 100: loss=0.074066
+  Epoch 200: loss=0.050353
+  Epoch 300: loss=0.022393
+  Epoch 400: loss=0.010743
+  Epoch 500: loss=0.002166
+    dist=0.0: recon=0.002044
+    dist=0.3: recon=0.047510
+
+  sinusoidal | T+F+K | seed=42
+
+[T+F+K] Starting warmup: 250 epochs
+  Epoch 100 (warmup 100/250): loss = 0.0741
+  Epoch 200 (warmup 200/250): loss = 0.0504
+
+[T+F+K] Starting finetune: 250 epochs
+  Epoch 350 (finetune 100/250): loss = 0.0053
+  Epoch 450 (finetune 200/250): loss = 0.0069
+    dist=0.0: recon=0.001834
+    dist=0.3: recon=0.044405
+
+  sinusoidal | baseline | seed=1042
+  Epoch 100: loss=0.003428
+  Epoch 200: loss=0.002404
+  Epoch 300: loss=0.001787
+  Epoch 400: loss=0.001832
+  Epoch 500: loss=0.000800
+    dist=0.0: recon=0.012842
+    dist=0.3: recon=0.230322
+
+  sinusoidal | T | seed=1042
+  Epoch 100: loss=0.041005
+  Epoch 200: loss=0.038047
+  Epoch 300: loss=0.011434
+  Epoch 400: loss=0.004501
+  Epoch 500: loss=0.001177
+    dist=0.0: recon=0.010027
+    dist=0.3: recon=0.160363
+
+  sinusoidal | F | seed=1042
+  Epoch 100: loss=0.001731
+  Epoch 200: loss=0.005144
+  Epoch 300: loss=0.000842
+  Epoch 400: loss=0.011433
+  Epoch 500: loss=0.000781
+    dist=0.0: recon=0.007080
+    dist=0.3: recon=0.165541
+
+  sinusoidal | K | seed=1042
+
+[K] Starting warmup: 250 epochs
+  Epoch 100 (warmup 100/250): loss = 0.0034
+  Epoch 200 (warmup 200/250): loss = 0.0024
+
+[K] Starting finetune: 250 epochs
+  Epoch 350 (finetune 100/250): loss = 0.0039
+  Epoch 450 (finetune 200/250): loss = 0.0036
+    dist=0.0: recon=0.015037
+    dist=0.3: recon=0.246573
+
+  sinusoidal | T+K | seed=1042
+
+[T+K] Starting warmup: 250 epochs
+  Epoch 100 (warmup 100/250): loss = 0.0410
+  Epoch 200 (warmup 200/250): loss = 0.0380
+
+[T+K] Starting finetune: 250 epochs
+  Epoch 350 (finetune 100/250): loss = 0.0173
+  Epoch 450 (finetune 200/250): loss = 0.0023
+    dist=0.0: recon=0.012606
+    dist=0.3: recon=0.166016
+
+  sinusoidal | T+F | seed=1042
+  Epoch 100: loss=0.038462
+  Epoch 200: loss=0.040901
+  Epoch 300: loss=0.036163
+  Epoch 400: loss=0.020507
+  Epoch 500: loss=0.005027
+    dist=0.0: recon=0.001564
+    dist=0.3: recon=0.055114
+
+  sinusoidal | T+F+K | seed=1042
+
+[T+F+K] Starting warmup: 250 epochs
+  Epoch 100 (warmup 100/250): loss = 0.0385
+  Epoch 200 (warmup 200/250): loss = 0.0409
+
+[T+F+K] Starting finetune: 250 epochs
+  Epoch 350 (finetune 100/250): loss = 0.0375
+  Epoch 450 (finetune 200/250): loss = 0.0241
+    dist=0.0: recon=0.001495
+    dist=0.3: recon=0.065217
+
+  sinusoidal | baseline | seed=2042
+  Epoch 100: loss=0.006432
+  Epoch 200: loss=0.004008
+  Epoch 300: loss=0.002710
+  Epoch 400: loss=0.005060
+  Epoch 500: loss=0.002043
+    dist=0.0: recon=0.009784
+    dist=0.3: recon=0.177396
+
+  sinusoidal | T | seed=2042
+  Epoch 100: loss=0.087281
+  Epoch 200: loss=0.030788
+  Epoch 300: loss=0.005335
+  Epoch 400: loss=0.001501
+  Epoch 500: loss=0.001601
+    dist=0.0: recon=0.008682
+    dist=0.3: recon=0.106937
+
+  sinusoidal | F | seed=2042
+  Epoch 100: loss=0.005700
+  Epoch 200: loss=0.002551
+  Epoch 300: loss=0.002702
+  Epoch 400: loss=0.002169
+  Epoch 500: loss=0.002634
+    dist=0.0: recon=0.008511
+    dist=0.3: recon=0.118934
+
+  sinusoidal | K | seed=2042
+
+[K] Starting warmup: 250 epochs
+  Epoch 100 (warmup 100/250): loss = 0.0064
+  Epoch 200 (warmup 200/250): loss = 0.0040
+
+[K] Starting finetune: 250 epochs
+  Epoch 350 (finetune 100/250): loss = 0.0118
+  Epoch 450 (finetune 200/250): loss = 0.0054
+    dist=0.0: recon=0.011003
+    dist=0.3: recon=0.191078
+
+  sinusoidal | T+K | seed=2042
+
+[T+K] Starting warmup: 250 epochs
+  Epoch 100 (warmup 100/250): loss = 0.0873
+  Epoch 200 (warmup 200/250): loss = 0.0308
+
+[T+K] Starting finetune: 250 epochs
+  Epoch 350 (finetune 100/250): loss = 0.0129
+  Epoch 450 (finetune 200/250): loss = 0.0038
+    dist=0.0: recon=0.004892
+    dist=0.3: recon=0.104136
+
+  sinusoidal | T+F | seed=2042
+  Epoch 100: loss=0.083719
+  Epoch 200: loss=0.083740
+  Epoch 300: loss=0.070038
+  Epoch 400: loss=0.026599
+  Epoch 500: loss=0.012649
+    dist=0.0: recon=0.013312
+    dist=0.3: recon=0.027956
+
+  sinusoidal | T+F+K | seed=2042
+
+[T+F+K] Starting warmup: 250 epochs
+  Epoch 100 (warmup 100/250): loss = 0.0837
+  Epoch 200 (warmup 200/250): loss = 0.0837
+
+[T+F+K] Starting finetune: 250 epochs
+  Epoch 350 (finetune 100/250): loss = 0.0563
+  Epoch 450 (finetune 200/250): loss = 0.0133
+    dist=0.0: recon=0.000534
+    dist=0.3: recon=0.023374
+
+  sinusoidal | baseline | seed=3042
+  Epoch 100: loss=0.005412
+  Epoch 200: loss=0.003923
+  Epoch 300: loss=0.001832
+  Epoch 400: loss=0.001257
+  Epoch 500: loss=0.001562
+    dist=0.0: recon=0.009882
+    dist=0.3: recon=0.189239
+
+  sinusoidal | T | seed=3042
+  Epoch 100: loss=0.057164
+  Epoch 200: loss=0.011813
+  Epoch 300: loss=0.004166
+  Epoch 400: loss=0.001405
+  Epoch 500: loss=0.001234
+    dist=0.0: recon=0.005208
+    dist=0.3: recon=0.098282
+
+  sinusoidal | F | seed=3042
+  Epoch 100: loss=0.003252
+  Epoch 200: loss=0.001190
+  Epoch 300: loss=0.001071
+  Epoch 400: loss=0.001034
+  Epoch 500: loss=0.000784
+    dist=0.0: recon=0.005418
+    dist=0.3: recon=0.143708
+
+  sinusoidal | K | seed=3042
+
+[K] Starting warmup: 250 epochs
+  Epoch 100 (warmup 100/250): loss = 0.0054
+  Epoch 200 (warmup 200/250): loss = 0.0039
+
+[K] Starting finetune: 250 epochs
+  Epoch 350 (finetune 100/250): loss = 0.0063
+  Epoch 450 (finetune 200/250): loss = 0.0060
+    dist=0.0: recon=0.009753
+    dist=0.3: recon=0.205768
+
+  sinusoidal | T+K | seed=3042
+
+[T+K] Starting warmup: 250 epochs
+  Epoch 100 (warmup 100/250): loss = 0.0572
+  Epoch 200 (warmup 200/250): loss = 0.0118
+
+[T+K] Starting finetune: 250 epochs
+  Epoch 350 (finetune 100/250): loss = 0.0078
+  Epoch 450 (finetune 200/250): loss = 0.0010
+    dist=0.0: recon=0.004597
+    dist=0.3: recon=0.100678
+
+  sinusoidal | T+F | seed=3042
+  Epoch 100: loss=0.056387
+  Epoch 200: loss=0.053260
+  Epoch 300: loss=0.047690
+  Epoch 400: loss=0.007651
+  Epoch 500: loss=0.003093
+    dist=0.0: recon=0.003321
+    dist=0.3: recon=0.041403
+
+  sinusoidal | T+F+K | seed=3042
+
+[T+F+K] Starting warmup: 250 epochs
+  Epoch 100 (warmup 100/250): loss = 0.0564
+  Epoch 200 (warmup 200/250): loss = 0.0533
+
+[T+F+K] Starting finetune: 250 epochs
+  Epoch 350 (finetune 100/250): loss = 0.0127
+  Epoch 450 (finetune 200/250): loss = 0.0051
+    dist=0.0: recon=0.000545
+    dist=0.3: recon=0.038968
+
+  sinusoidal | baseline | seed=4042
+  Epoch 100: loss=0.003620
+  Epoch 200: loss=0.002236
+  Epoch 300: loss=0.001514
+  Epoch 400: loss=0.001232
+  Epoch 500: loss=0.001849
+    dist=0.0: recon=0.018402
+    dist=0.3: recon=0.270927
+
+  sinusoidal | T | seed=4042
+  Epoch 100: loss=0.032254
+  Epoch 200: loss=0.006794
+  Epoch 300: loss=0.002252
+  Epoch 400: loss=0.000965
+  Epoch 500: loss=0.000648
+    dist=0.0: recon=0.011177
+    dist=0.3: recon=0.158159
+
+  sinusoidal | F | seed=4042
+  Epoch 100: loss=0.005884
+  Epoch 200: loss=0.000790
+  Epoch 300: loss=0.000889
+  Epoch 400: loss=0.007628
+  Epoch 500: loss=0.000625
+    dist=0.0: recon=0.009182
+    dist=0.3: recon=0.186586
+
+  sinusoidal | K | seed=4042
+
+[K] Starting warmup: 250 epochs
+  Epoch 100 (warmup 100/250): loss = 0.0036
+  Epoch 200 (warmup 200/250): loss = 0.0022
+
+[K] Starting finetune: 250 epochs
+  Epoch 350 (finetune 100/250): loss = 0.0055
+  Epoch 450 (finetune 200/250): loss = 0.0039
+    dist=0.0: recon=0.022034
+    dist=0.3: recon=0.295889
+
+  sinusoidal | T+K | seed=4042
+
+[T+K] Starting warmup: 250 epochs
+  Epoch 100 (warmup 100/250): loss = 0.0323
+  Epoch 200 (warmup 200/250): loss = 0.0068
+
+[T+K] Starting finetune: 250 epochs
+  Epoch 350 (finetune 100/250): loss = 0.0016
+  Epoch 450 (finetune 200/250): loss = 0.0008
+    dist=0.0: recon=0.011443
+    dist=0.3: recon=0.170736
+
+  sinusoidal | T+F | seed=4042
+  Epoch 100: loss=0.032049
+  Epoch 200: loss=0.032575
+  Epoch 300: loss=0.028604
+  Epoch 400: loss=0.005550
+  Epoch 500: loss=0.003673
+    dist=0.0: recon=0.002455
+    dist=0.3: recon=0.097256
+
+  sinusoidal | T+F+K | seed=4042
+
+[T+F+K] Starting warmup: 250 epochs
+  Epoch 100 (warmup 100/250): loss = 0.0320
+  Epoch 200 (warmup 200/250): loss = 0.0326
+
+[T+F+K] Starting finetune: 250 epochs
+  Epoch 350 (finetune 100/250): loss = 0.0253
+  Epoch 450 (finetune 200/250): loss = 0.0073
+    dist=0.0: recon=0.002093
+    dist=0.3: recon=0.091379
+
+  sinusoidal | baseline | seed=5042
+  Epoch 100: loss=0.003982
+  Epoch 200: loss=0.003377
+  Epoch 300: loss=0.002893
+  Epoch 400: loss=0.001821
+  Epoch 500: loss=0.001277
+    dist=0.0: recon=0.108108
+    dist=0.3: recon=0.466072
+
+  sinusoidal | T | seed=5042
+  Epoch 100: loss=0.036811
+  Epoch 200: loss=0.001361
+  Epoch 300: loss=0.000685
+  Epoch 400: loss=0.000487
+  Epoch 500: loss=0.001101
+    dist=0.0: recon=0.091738
+    dist=0.3: recon=0.372436
+
+  sinusoidal | F | seed=5042
+  Epoch 100: loss=0.004773
+  Epoch 200: loss=0.002176
+  Epoch 300: loss=0.002909
+  Epoch 400: loss=0.002351
+  Epoch 500: loss=0.002513
+    dist=0.0: recon=0.025226
+    dist=0.3: recon=0.208060
+
+  sinusoidal | K | seed=5042
+
+[K] Starting warmup: 250 epochs
+  Epoch 100 (warmup 100/250): loss = 0.0040
+  Epoch 200 (warmup 200/250): loss = 0.0034
+
+[K] Starting finetune: 250 epochs
+  Epoch 350 (finetune 100/250): loss = 0.0048
+  Epoch 450 (finetune 200/250): loss = 0.0026
+    dist=0.0: recon=0.112894
+    dist=0.3: recon=0.479053
+
+  sinusoidal | T+K | seed=5042
+
+[T+K] Starting warmup: 250 epochs
+  Epoch 100 (warmup 100/250): loss = 0.0368
+  Epoch 200 (warmup 200/250): loss = 0.0014
+
+[T+K] Starting finetune: 250 epochs
+  Epoch 350 (finetune 100/250): loss = 0.0007
+  Epoch 450 (finetune 200/250): loss = 0.0005
+    dist=0.0: recon=0.069477
+    dist=0.3: recon=0.320637
+
+  sinusoidal | T+F | seed=5042
+  Epoch 100: loss=0.047009
+  Epoch 200: loss=0.017820
+  Epoch 300: loss=0.001382
+  Epoch 400: loss=0.000857
+  Epoch 500: loss=0.000367
+    dist=0.0: recon=0.021383
+    dist=0.3: recon=0.142155
+
+  sinusoidal | T+F+K | seed=5042
+
+[T+F+K] Starting warmup: 250 epochs
+  Epoch 100 (warmup 100/250): loss = 0.0470
+  Epoch 200 (warmup 200/250): loss = 0.0178
+
+[T+F+K] Starting finetune: 250 epochs
+  Epoch 350 (finetune 100/250): loss = 0.0021
+  Epoch 450 (finetune 200/250): loss = 0.0006
+    dist=0.0: recon=0.025075
+    dist=0.3: recon=0.149973
+
+  sinusoidal | baseline | seed=6042
+  Epoch 100: loss=0.002258
+  Epoch 200: loss=0.001555
+  Epoch 300: loss=0.001208
+  Epoch 400: loss=0.003502
+  Epoch 500: loss=0.000714
+    dist=0.0: recon=0.028668
+    dist=0.3: recon=0.284114
+
+  sinusoidal | T | seed=6042
+  Epoch 100: loss=0.036472
+  Epoch 200: loss=0.008458
+  Epoch 300: loss=0.002387
+  Epoch 400: loss=0.000839
+  Epoch 500: loss=0.002954
+    dist=0.0: recon=0.043517
+    dist=0.3: recon=0.210183
+
+  sinusoidal | F | seed=6042
+  Epoch 100: loss=0.017331
+  Epoch 200: loss=0.002784
+  Epoch 300: loss=0.000665
+  Epoch 400: loss=0.001390
+  Epoch 500: loss=0.000633
+    dist=0.0: recon=0.008492
+    dist=0.3: recon=0.158078
+
+  sinusoidal | K | seed=6042
+
+[K] Starting warmup: 250 epochs
+  Epoch 100 (warmup 100/250): loss = 0.0023
+  Epoch 200 (warmup 200/250): loss = 0.0016
+
+[K] Starting finetune: 250 epochs
+  Epoch 350 (finetune 100/250): loss = 0.0041
+  Epoch 450 (finetune 200/250): loss = 0.0039
+    dist=0.0: recon=0.031321
+    dist=0.3: recon=0.297435
+
+  sinusoidal | T+K | seed=6042
+
+[T+K] Starting warmup: 250 epochs
+  Epoch 100 (warmup 100/250): loss = 0.0365
+  Epoch 200 (warmup 200/250): loss = 0.0085
+
+[T+K] Starting finetune: 250 epochs
+  Epoch 350 (finetune 100/250): loss = 0.0064
+  Epoch 450 (finetune 200/250): loss = 0.0007
+    dist=0.0: recon=0.024866
+    dist=0.3: recon=0.185483
+
+  sinusoidal | T+F | seed=6042
+  Epoch 100: loss=0.040946
+  Epoch 200: loss=0.013596
+  Epoch 300: loss=0.001869
+  Epoch 400: loss=0.001225
+  Epoch 500: loss=0.004602
+    dist=0.0: recon=0.018975
+    dist=0.3: recon=0.096153
+
+  sinusoidal | T+F+K | seed=6042
+
+[T+F+K] Starting warmup: 250 epochs
+  Epoch 100 (warmup 100/250): loss = 0.0409
+  Epoch 200 (warmup 200/250): loss = 0.0136
+
+[T+F+K] Starting finetune: 250 epochs
+  Epoch 350 (finetune 100/250): loss = 0.0045
+  Epoch 450 (finetune 200/250): loss = 0.0055
+    dist=0.0: recon=0.004858
+    dist=0.3: recon=0.082928
+
+  sinusoidal | baseline | seed=7042
+  Epoch 100: loss=0.008026
+  Epoch 200: loss=0.002778
+  Epoch 300: loss=0.002369
+  Epoch 400: loss=0.002692
+  Epoch 500: loss=0.001278
+    dist=0.0: recon=0.010707
+    dist=0.3: recon=0.225789
+
+  sinusoidal | T | seed=7042
+  Epoch 100: loss=0.065085
+  Epoch 200: loss=0.051738
+  Epoch 300: loss=0.010242
+  Epoch 400: loss=0.001852
+  Epoch 500: loss=0.001193
+    dist=0.0: recon=0.006385
+    dist=0.3: recon=0.117893
+
+  sinusoidal | F | seed=7042
+  Epoch 100: loss=0.041996
+  Epoch 200: loss=0.001514
+  Epoch 300: loss=0.002777
+  Epoch 400: loss=0.001036
+  Epoch 500: loss=0.002187
+    dist=0.0: recon=0.007920
+    dist=0.3: recon=0.168456
+
+  sinusoidal | K | seed=7042
+
+[K] Starting warmup: 250 epochs
+  Epoch 100 (warmup 100/250): loss = 0.0080
+  Epoch 200 (warmup 200/250): loss = 0.0028
+
+[K] Starting finetune: 250 epochs
+  Epoch 350 (finetune 100/250): loss = 0.0057
+  Epoch 450 (finetune 200/250): loss = 0.0053
+    dist=0.0: recon=0.013420
+    dist=0.3: recon=0.267958
+
+  sinusoidal | T+K | seed=7042
+
+[T+K] Starting warmup: 250 epochs
+  Epoch 100 (warmup 100/250): loss = 0.0651
+  Epoch 200 (warmup 200/250): loss = 0.0517
+
+[T+K] Starting finetune: 250 epochs
+  Epoch 350 (finetune 100/250): loss = 0.0300
+  Epoch 450 (finetune 200/250): loss = 0.0012
+    dist=0.0: recon=0.094543
+    dist=0.3: recon=0.284484
+
+  sinusoidal | T+F | seed=7042
+  Epoch 100: loss=0.053854
+  Epoch 200: loss=0.050892
+  Epoch 300: loss=0.041338
+  Epoch 400: loss=0.025071
+  Epoch 500: loss=0.006686
+    dist=0.0: recon=0.000678
+    dist=0.3: recon=0.061633
+
+  sinusoidal | T+F+K | seed=7042
+
+[T+F+K] Starting warmup: 250 epochs
+  Epoch 100 (warmup 100/250): loss = 0.0539
+  Epoch 200 (warmup 200/250): loss = 0.0509
+
+[T+F+K] Starting finetune: 250 epochs
+  Epoch 350 (finetune 100/250): loss = 0.0129
+  Epoch 450 (finetune 200/250): loss = 0.0142
+    dist=0.0: recon=0.000793
+    dist=0.3: recon=0.064312
+
+  sinusoidal | baseline | seed=8042
+  Epoch 100: loss=0.003372
+  Epoch 200: loss=0.002486
+  Epoch 300: loss=0.001368
+  Epoch 400: loss=0.000872
+  Epoch 500: loss=0.000683
+    dist=0.0: recon=0.028121
+    dist=0.3: recon=0.286075
+
+  sinusoidal | T | seed=8042
+  Epoch 100: loss=0.025462
+  Epoch 200: loss=0.006224
+  Epoch 300: loss=0.004108
+  Epoch 400: loss=0.002383
+  Epoch 500: loss=0.001374
+    dist=0.0: recon=0.021370
+    dist=0.3: recon=0.242742
+
+  sinusoidal | F | seed=8042
+  Epoch 100: loss=0.001771
+  Epoch 200: loss=0.000833
+  Epoch 300: loss=0.002880
+  Epoch 400: loss=0.000531
+  Epoch 500: loss=0.000595
+    dist=0.0: recon=0.007604
+    dist=0.3: recon=0.161768
+
+  sinusoidal | K | seed=8042
+
+[K] Starting warmup: 250 epochs
+  Epoch 100 (warmup 100/250): loss = 0.0034
+  Epoch 200 (warmup 200/250): loss = 0.0025
+
+[K] Starting finetune: 250 epochs
+  Epoch 350 (finetune 100/250): loss = 0.0040
+  Epoch 450 (finetune 200/250): loss = 0.0031
+    dist=0.0: recon=0.029955
+    dist=0.3: recon=0.297793
+
+  sinusoidal | T+K | seed=8042
+
+[T+K] Starting warmup: 250 epochs
+  Epoch 100 (warmup 100/250): loss = 0.0255
+  Epoch 200 (warmup 200/250): loss = 0.0062
+
+[T+K] Starting finetune: 250 epochs
+  Epoch 350 (finetune 100/250): loss = 0.0027
+  Epoch 450 (finetune 200/250): loss = 0.0014
+    dist=0.0: recon=0.023707
+    dist=0.3: recon=0.249511
+
+  sinusoidal | T+F | seed=8042
+  Epoch 100: loss=0.032709
+  Epoch 200: loss=0.016915
+  Epoch 300: loss=0.006121
+  Epoch 400: loss=0.002569
+  Epoch 500: loss=0.000749
+    dist=0.0: recon=0.006756
+    dist=0.3: recon=0.113382
+
+  sinusoidal | T+F+K | seed=8042
+
+[T+F+K] Starting warmup: 250 epochs
+  Epoch 100 (warmup 100/250): loss = 0.0327
+  Epoch 200 (warmup 200/250): loss = 0.0169
+
+[T+F+K] Starting finetune: 250 epochs
+  Epoch 350 (finetune 100/250): loss = 0.0023
+  Epoch 450 (finetune 200/250): loss = 0.0018
+    dist=0.0: recon=0.015255
+    dist=0.3: recon=0.103582
+
+  sinusoidal | baseline | seed=9042
+  Epoch 100: loss=0.006050
+  Epoch 200: loss=0.003914
+  Epoch 300: loss=0.001688
+  Epoch 400: loss=0.002094
+  Epoch 500: loss=0.002873
+    dist=0.0: recon=0.022570
+    dist=0.3: recon=0.189570
+
+  sinusoidal | T | seed=9042
+  Epoch 100: loss=0.065293
+  Epoch 200: loss=0.011868
+  Epoch 300: loss=0.004094
+  Epoch 400: loss=0.002179
+  Epoch 500: loss=0.007546
+    dist=0.0: recon=0.019110
+    dist=0.3: recon=0.128781
+
+  sinusoidal | F | seed=9042
+  Epoch 100: loss=0.002588
+  Epoch 200: loss=0.007034
+  Epoch 300: loss=0.006988
+  Epoch 400: loss=0.000937
+  Epoch 500: loss=0.000977
+    dist=0.0: recon=0.007037
+    dist=0.3: recon=0.137933
+
+  sinusoidal | K | seed=9042
+
+[K] Starting warmup: 250 epochs
+  Epoch 100 (warmup 100/250): loss = 0.0061
+  Epoch 200 (warmup 200/250): loss = 0.0039
+
+[K] Starting finetune: 250 epochs
+  Epoch 350 (finetune 100/250): loss = 0.0068
+  Epoch 450 (finetune 200/250): loss = 0.0059
+    dist=0.0: recon=0.011850
+    dist=0.3: recon=0.195161
+
+  sinusoidal | T+K | seed=9042
+
+[T+K] Starting warmup: 250 epochs
+  Epoch 100 (warmup 100/250): loss = 0.0653
+  Epoch 200 (warmup 200/250): loss = 0.0119
+
+[T+K] Starting finetune: 250 epochs
+  Epoch 350 (finetune 100/250): loss = 0.0036
+  Epoch 450 (finetune 200/250): loss = 0.0025
+    dist=0.0: recon=0.007646
+    dist=0.3: recon=0.125844
+
+  sinusoidal | T+F | seed=9042
+  Epoch 100: loss=0.063669
+  Epoch 200: loss=0.057276
+  Epoch 300: loss=0.014400
+  Epoch 400: loss=0.006078
+  Epoch 500: loss=0.005071
+    dist=0.0: recon=0.000946
+    dist=0.3: recon=0.068352
+
+  sinusoidal | T+F+K | seed=9042
+
+[T+F+K] Starting warmup: 250 epochs
+  Epoch 100 (warmup 100/250): loss = 0.0637
+  Epoch 200 (warmup 200/250): loss = 0.0573
+
+[T+F+K] Starting finetune: 250 epochs
+  Epoch 350 (finetune 100/250): loss = 0.0186
+  Epoch 450 (finetune 200/250): loss = 0.0073
+    dist=0.0: recon=0.000816
+    dist=0.3: recon=0.062695
+
+Saved to paper_extrapolation.csv
+
+======================================================================
+EXTRAPOLATION SUMMARY (mean +/- std)
+======================================================================
+
+  Distance = 0.0
+                    surface    config    n  reconstruction
+  ------------------------------------------------------------
+                 paraboloid  baseline   10    0.146022 +/-0.099000
+                 paraboloid         T   10    0.082726 +/-0.084599
+                 paraboloid         F   10    0.253803 +/-0.105373
+                 paraboloid         K   10    0.161490 +/-0.117352
+                 paraboloid       T+K   10    0.082742 +/-0.086791
+                 paraboloid       T+F   10    0.042936 +/-0.046172
+                 paraboloid     T+F+K   10    0.043509 +/-0.056012
+      hyperbolic_paraboloid  baseline   10    0.109499 +/-0.099396
+      hyperbolic_paraboloid         T   10    0.092167 +/-0.088605
+      hyperbolic_paraboloid         F   10    0.248923 +/-0.077588
+      hyperbolic_paraboloid         K   10    0.097717 +/-0.092420
+      hyperbolic_paraboloid       T+K   10    0.085882 +/-0.083219
+      hyperbolic_paraboloid       T+F   10    0.052870 +/-0.110491
+      hyperbolic_paraboloid     T+F+K   10    0.050345 +/-0.113155
+               quartic_dome  baseline   10    0.069964 +/-0.068484
+               quartic_dome         T   10    0.028697 +/-0.019296
+               quartic_dome         F   10    0.100598 +/-0.071022
+               quartic_dome         K   10    0.093993 +/-0.068533
+               quartic_dome       T+K   10    0.046164 +/-0.038034
+               quartic_dome       T+F   10    0.023469 +/-0.042429
+               quartic_dome     T+F+K   10    0.024507 +/-0.049090
+                 sinusoidal  baseline   10    0.026486 +/-0.029543
+                 sinusoidal         T   10    0.022065 +/-0.027169
+                 sinusoidal         F   10    0.009526 +/-0.005623
+                 sinusoidal         K   10    0.027134 +/-0.031104
+                 sinusoidal       T+K   10    0.025755 +/-0.031127
+                 sinusoidal       T+F   10    0.007143 +/-0.007852
+                 sinusoidal     T+F+K   10    0.005330 +/-0.008252
+
+  Distance = 0.3
+                    surface    config    n  reconstruction
+  ------------------------------------------------------------
+                 paraboloid  baseline   10    2.085142 +/-0.417340
+                 paraboloid         T   10    2.197248 +/-0.571572
+                 paraboloid         F   10    2.399577 +/-0.275394
+                 paraboloid         K   10    2.274180 +/-0.521435
+                 paraboloid       T+K   10    2.247881 +/-0.549157
+                 paraboloid       T+F   10    1.168975 +/-0.467491
+                 paraboloid     T+F+K   10    1.171539 +/-0.491081
+      hyperbolic_paraboloid  baseline   10    0.976846 +/-0.399323
+      hyperbolic_paraboloid         T   10    1.024990 +/-0.479594
+      hyperbolic_paraboloid         F   10    1.366004 +/-0.125589
+      hyperbolic_paraboloid         K   10    0.941045 +/-0.389516
+      hyperbolic_paraboloid       T+K   10    1.006491 +/-0.454816
+      hyperbolic_paraboloid       T+F   10    0.417248 +/-0.350177
+      hyperbolic_paraboloid     T+F+K   10    0.413831 +/-0.333678
+               quartic_dome  baseline   10    0.258163 +/-0.115359
+               quartic_dome         T   10    0.254433 +/-0.064341
+               quartic_dome         F   10    0.153570 +/-0.147552
+               quartic_dome         K   10    0.312511 +/-0.139175
+               quartic_dome       T+K   10    0.277692 +/-0.086112
+               quartic_dome       T+F   10    0.148738 +/-0.059237
+               quartic_dome     T+F+K   10    0.139790 +/-0.062918
+                 sinusoidal  baseline   10    0.250803 +/-0.086250
+                 sinusoidal         T   10    0.168996 +/-0.086533
+                 sinusoidal         F   10    0.156449 +/-0.028724
+                 sinusoidal         K   10    0.266490 +/-0.087544
+                 sinusoidal       T+K   10    0.180309 +/-0.080242
+                 sinusoidal       T+F   10    0.075091 +/-0.035965
+                 sinusoidal     T+F+K   10    0.072683 +/-0.036479
+
+Total time: 8091.3s
+Done.
+
+=== Dynamics extrapolation (fine resolution, delta<=0.3) ===
+
+Device: cuda
+N_TRAIN: 20
+Seeds (10): [42, 1042, 2042, 3042, 4042, 5042, 6042, 7042, 8042, 9042]
+Epochs: 500
+
+======================================================================
+DYNAMICS STUDY: paraboloid
+Seeds: [42, 1042, 2042, 3042, 4042, 5042, 6042, 7042, 8042, 9042]
+Configs: ['baseline', 'T', 'F', 'K', 'T+K', 'T+F', 'T+F+K']
+Distances: [0.0, 0.05, 0.1, 0.15, 0.2, 0.25, 0.3]
+======================================================================
+
+  paraboloid | baseline | seed=42
+  Epoch 100: loss=0.032449
+  Epoch 200: loss=0.028961
+  Epoch 300: loss=0.014075
+  Epoch 400: loss=0.009617
+  Epoch 500: loss=0.005801
+    dist=0.0: tangent=0.409298  normal_drift=6.489664
+    dist=0.3: tangent=0.553173  normal_drift=13.248712
+
+  paraboloid | T | seed=42
+  Epoch 100: loss=0.040463
+  Epoch 200: loss=0.004441
+  Epoch 300: loss=0.000926
+  Epoch 400: loss=0.000864
+  Epoch 500: loss=0.000538
+    dist=0.0: tangent=0.008163  normal_drift=3.000800
+    dist=0.3: tangent=0.062525  normal_drift=6.979524
+
+  paraboloid | F | seed=42
+  Epoch 100: loss=0.030804
+  Epoch 200: loss=0.029124
+  Epoch 300: loss=0.028811
+  Epoch 400: loss=0.028183
+  Epoch 500: loss=0.028068
+    dist=0.0: tangent=0.658601  normal_drift=8.199660
+    dist=0.3: tangent=0.799448  normal_drift=26.333036
+
+  paraboloid | K | seed=42
+
+[K] Starting warmup: 250 epochs
+  Epoch 100 (warmup 100/250): loss = 0.0324
+  Epoch 200 (warmup 200/250): loss = 0.0290
+
+[K] Starting finetune: 250 epochs
+  Epoch 350 (finetune 100/250): loss = 0.0355
+  Epoch 450 (finetune 200/250): loss = 0.0114
+    dist=0.0: tangent=0.176869  normal_drift=4.970775
+    dist=0.3: tangent=0.254033  normal_drift=9.190013
+
+  paraboloid | T+K | seed=42
+
+[T+K] Starting warmup: 250 epochs
+  Epoch 100 (warmup 100/250): loss = 0.0405
+  Epoch 200 (warmup 200/250): loss = 0.0044
+
+[T+K] Starting finetune: 250 epochs
+  Epoch 350 (finetune 100/250): loss = 0.0736
+  Epoch 450 (finetune 200/250): loss = 0.0005
+    dist=0.0: tangent=0.007920  normal_drift=2.996554
+    dist=0.3: tangent=0.060634  normal_drift=6.933832
+
+  paraboloid | T+F | seed=42
+  Epoch 100: loss=0.698158
+  Epoch 200: loss=0.327324
+  Epoch 300: loss=0.028843
+  Epoch 400: loss=0.018808
+  Epoch 500: loss=0.018033
+    dist=0.0: tangent=0.017882  normal_drift=3.256519
+    dist=0.3: tangent=0.105485  normal_drift=8.615471
+
+  paraboloid | T+F+K | seed=42
+
+[T+F+K] Starting warmup: 250 epochs
+  Epoch 100 (warmup 100/250): loss = 0.6982
+  Epoch 200 (warmup 200/250): loss = 0.3273
+
+[T+F+K] Starting finetune: 250 epochs
+  Epoch 350 (finetune 100/250): loss = 0.0618
+  Epoch 450 (finetune 200/250): loss = 0.0178
+    dist=0.0: tangent=0.015254  normal_drift=3.242686
+    dist=0.3: tangent=0.092173  normal_drift=8.136331
+
+  paraboloid | baseline | seed=1042
+  Epoch 100: loss=0.029414
+  Epoch 200: loss=0.029075
+  Epoch 300: loss=0.028563
+  Epoch 400: loss=0.023225
+  Epoch 500: loss=0.010783
+    dist=0.0: tangent=0.335285  normal_drift=5.557640
+    dist=0.3: tangent=0.484977  normal_drift=17.455378
+
+  paraboloid | T | seed=1042
+  Epoch 100: loss=0.079358
+  Epoch 200: loss=0.001593
+  Epoch 300: loss=0.002136
+  Epoch 400: loss=0.006399
+  Epoch 500: loss=0.008076
+    dist=0.0: tangent=0.011626  normal_drift=2.812346
+    dist=0.3: tangent=0.195537  normal_drift=7.710520
+
+  paraboloid | F | seed=1042
+  Epoch 100: loss=0.034917
+  Epoch 200: loss=0.030251
+  Epoch 300: loss=0.029853
+  Epoch 400: loss=0.028838
+  Epoch 500: loss=0.028757
+    dist=0.0: tangent=0.664739  normal_drift=8.288579
+    dist=0.3: tangent=0.853830  normal_drift=29.277897
+
+  paraboloid | K | seed=1042
+
+[K] Starting warmup: 250 epochs
+  Epoch 100 (warmup 100/250): loss = 0.0294
+  Epoch 200 (warmup 200/250): loss = 0.0291
+
+[K] Starting finetune: 250 epochs
+  Epoch 350 (finetune 100/250): loss = 0.0736
+  Epoch 450 (finetune 200/250): loss = 0.0729
+    dist=0.0: tangent=0.687391  normal_drift=0.303493
+    dist=0.3: tangent=0.574276  normal_drift=0.478757
+
+  paraboloid | T+K | seed=1042
+
+[T+K] Starting warmup: 250 epochs
+  Epoch 100 (warmup 100/250): loss = 0.0794
+  Epoch 200 (warmup 200/250): loss = 0.0016
+
+[T+K] Starting finetune: 250 epochs
+  Epoch 350 (finetune 100/250): loss = 0.0040
+  Epoch 450 (finetune 200/250): loss = 0.0208
+    dist=0.0: tangent=0.011510  normal_drift=2.932407
+    dist=0.3: tangent=0.220088  normal_drift=7.760793
+
+  paraboloid | T+F | seed=1042
+  Epoch 100: loss=0.430567
+  Epoch 200: loss=0.086333
+  Epoch 300: loss=0.027231
+  Epoch 400: loss=0.010977
+  Epoch 500: loss=0.011287
+    dist=0.0: tangent=0.011018  normal_drift=3.103537
+    dist=0.3: tangent=0.055784  normal_drift=6.815042
+
+  paraboloid | T+F+K | seed=1042
+
+[T+F+K] Starting warmup: 250 epochs
+  Epoch 100 (warmup 100/250): loss = 0.4306
+  Epoch 200 (warmup 200/250): loss = 0.0863
+
+[T+F+K] Starting finetune: 250 epochs
+  Epoch 350 (finetune 100/250): loss = 0.0568
+  Epoch 450 (finetune 200/250): loss = 0.0156
+    dist=0.0: tangent=0.003261  normal_drift=2.977876
+    dist=0.3: tangent=0.044850  normal_drift=5.819395
+
+  paraboloid | baseline | seed=2042
+  Epoch 100: loss=0.048425
+  Epoch 200: loss=0.028748
+  Epoch 300: loss=0.009360
+  Epoch 400: loss=0.007079
+  Epoch 500: loss=0.000820
+    dist=0.0: tangent=0.073534  normal_drift=4.039044
+    dist=0.3: tangent=0.196320  normal_drift=10.017025
+
+  paraboloid | T | seed=2042
+  Epoch 100: loss=0.027594
+  Epoch 200: loss=0.002057
+  Epoch 300: loss=0.001320
+  Epoch 400: loss=0.002443
+  Epoch 500: loss=0.002068
+    dist=0.0: tangent=0.003533  normal_drift=2.930654
+    dist=0.3: tangent=0.066972  normal_drift=5.899413
+
+  paraboloid | F | seed=2042
+  Epoch 100: loss=0.051502
+  Epoch 200: loss=0.048146
+  Epoch 300: loss=0.047795
+  Epoch 400: loss=0.046931
+  Epoch 500: loss=0.044190
+    dist=0.0: tangent=0.605392  normal_drift=9.555058
+    dist=0.3: tangent=0.795389  normal_drift=29.768593
+
+  paraboloid | K | seed=2042
+
+[K] Starting warmup: 250 epochs
+  Epoch 100 (warmup 100/250): loss = 0.0484
+  Epoch 200 (warmup 200/250): loss = 0.0287
+
+[K] Starting finetune: 250 epochs
+  Epoch 350 (finetune 100/250): loss = 0.0265
+  Epoch 450 (finetune 200/250): loss = 0.0139
+    dist=0.0: tangent=0.259739  normal_drift=2.718064
+    dist=0.3: tangent=0.335387  normal_drift=2.351602
+
+  paraboloid | T+K | seed=2042
+
+[T+K] Starting warmup: 250 epochs
+  Epoch 100 (warmup 100/250): loss = 0.0276
+  Epoch 200 (warmup 200/250): loss = 0.0021
+
+[T+K] Starting finetune: 250 epochs
+  Epoch 350 (finetune 100/250): loss = 0.0030
+  Epoch 450 (finetune 200/250): loss = 0.0009
+    dist=0.0: tangent=0.003511  normal_drift=2.911563
+    dist=0.3: tangent=0.065064  normal_drift=5.816496
+
+  paraboloid | T+F | seed=2042
+  Epoch 100: loss=0.604837
+  Epoch 200: loss=0.128088
+  Epoch 300: loss=0.030871
+  Epoch 400: loss=0.012893
+  Epoch 500: loss=0.009301
+    dist=0.0: tangent=0.007911  normal_drift=3.130069
+    dist=0.3: tangent=0.059116  normal_drift=6.781452
+
+  paraboloid | T+F+K | seed=2042
+
+[T+F+K] Starting warmup: 250 epochs
+  Epoch 100 (warmup 100/250): loss = 0.6048
+  Epoch 200 (warmup 200/250): loss = 0.1281
+
+[T+F+K] Starting finetune: 250 epochs
+  Epoch 350 (finetune 100/250): loss = 0.0125
+  Epoch 450 (finetune 200/250): loss = 0.0094
+    dist=0.0: tangent=0.002795  normal_drift=2.941100
+    dist=0.3: tangent=0.023832  normal_drift=5.665748
+
+  paraboloid | baseline | seed=3042
+  Epoch 100: loss=0.045761
+  Epoch 200: loss=0.037710
+  Epoch 300: loss=0.023171
+  Epoch 400: loss=0.003199
+  Epoch 500: loss=0.002044
+    dist=0.0: tangent=0.041817  normal_drift=3.304695
+    dist=0.3: tangent=0.178125  normal_drift=12.133060
+
+  paraboloid | T | seed=3042
+  Epoch 100: loss=0.029843
+  Epoch 200: loss=0.003034
+  Epoch 300: loss=0.002382
+  Epoch 400: loss=0.001745
+  Epoch 500: loss=0.002640
+    dist=0.0: tangent=0.006585  normal_drift=2.879638
+    dist=0.3: tangent=0.130918  normal_drift=7.139215
+
+  paraboloid | F | seed=3042
+  Epoch 100: loss=0.056853
+  Epoch 200: loss=0.046411
+  Epoch 300: loss=0.046837
+  Epoch 400: loss=0.043415
+  Epoch 500: loss=0.041701
+    dist=0.0: tangent=0.604641  normal_drift=9.091616
+    dist=0.3: tangent=0.839125  normal_drift=32.495121
+
+  paraboloid | K | seed=3042
+
+[K] Starting warmup: 250 epochs
+  Epoch 100 (warmup 100/250): loss = 0.0458
+  Epoch 200 (warmup 200/250): loss = 0.0377
+
+[K] Starting finetune: 250 epochs
+  Epoch 350 (finetune 100/250): loss = 0.0246
+  Epoch 450 (finetune 200/250): loss = 0.0029
+    dist=0.0: tangent=0.024928  normal_drift=3.174784
+    dist=0.3: tangent=0.139474  normal_drift=9.335957
+
+  paraboloid | T+K | seed=3042
+
+[T+K] Starting warmup: 250 epochs
+  Epoch 100 (warmup 100/250): loss = 0.0298
+  Epoch 200 (warmup 200/250): loss = 0.0030
+
+[T+K] Starting finetune: 250 epochs
+  Epoch 350 (finetune 100/250): loss = 0.0016
+  Epoch 450 (finetune 200/250): loss = 0.0012
+    dist=0.0: tangent=0.005319  normal_drift=2.920968
+    dist=0.3: tangent=0.147734  normal_drift=7.358537
+
+  paraboloid | T+F | seed=3042
+  Epoch 100: loss=0.409766
+  Epoch 200: loss=0.092619
+  Epoch 300: loss=0.020118
+  Epoch 400: loss=0.012347
+  Epoch 500: loss=0.009120
+    dist=0.0: tangent=0.004981  normal_drift=3.016782
+    dist=0.3: tangent=0.046157  normal_drift=8.003164
+
+  paraboloid | T+F+K | seed=3042
+
+[T+F+K] Starting warmup: 250 epochs
+  Epoch 100 (warmup 100/250): loss = 0.4098
+  Epoch 200 (warmup 200/250): loss = 0.0926
+
+[T+F+K] Starting finetune: 250 epochs
+  Epoch 350 (finetune 100/250): loss = 0.0245
+  Epoch 450 (finetune 200/250): loss = 0.0122
+    dist=0.0: tangent=0.005430  normal_drift=2.892532
+    dist=0.3: tangent=0.035416  normal_drift=6.688632
+
+  paraboloid | baseline | seed=4042
+  Epoch 100: loss=0.035737
+  Epoch 200: loss=0.016612
+  Epoch 300: loss=0.025106
+  Epoch 400: loss=0.002169
+  Epoch 500: loss=0.001436
+    dist=0.0: tangent=0.102552  normal_drift=5.256634
+    dist=0.3: tangent=0.269594  normal_drift=14.050184
+
+  paraboloid | T | seed=4042
+  Epoch 100: loss=0.020370
+  Epoch 200: loss=0.002807
+  Epoch 300: loss=0.001296
+  Epoch 400: loss=0.003196
+  Epoch 500: loss=0.002963
+    dist=0.0: tangent=0.009585  normal_drift=2.954188
+    dist=0.3: tangent=0.128819  normal_drift=5.701689
+
+  paraboloid | F | seed=4042
+  Epoch 100: loss=0.037804
+  Epoch 200: loss=0.035850
+  Epoch 300: loss=0.034396
+  Epoch 400: loss=0.033212
+  Epoch 500: loss=0.035925
+    dist=0.0: tangent=0.637982  normal_drift=9.922358
+    dist=0.3: tangent=0.842020  normal_drift=33.328884
+
+  paraboloid | K | seed=4042
+
+[K] Starting warmup: 250 epochs
+  Epoch 100 (warmup 100/250): loss = 0.0357
+  Epoch 200 (warmup 200/250): loss = 0.0166
+
+[K] Starting finetune: 250 epochs
+  Epoch 350 (finetune 100/250): loss = 0.0052
+  Epoch 450 (finetune 200/250): loss = 0.0051
+    dist=0.0: tangent=0.044136  normal_drift=3.637377
+    dist=0.3: tangent=0.236955  normal_drift=8.458961
+
+  paraboloid | T+K | seed=4042
+
+[T+K] Starting warmup: 250 epochs
+  Epoch 100 (warmup 100/250): loss = 0.0204
+  Epoch 200 (warmup 200/250): loss = 0.0028
+
+[T+K] Starting finetune: 250 epochs
+  Epoch 350 (finetune 100/250): loss = 0.0010
+  Epoch 450 (finetune 200/250): loss = 0.0006
+    dist=0.0: tangent=0.008014  normal_drift=2.946975
+    dist=0.3: tangent=0.135056  normal_drift=6.060666
+
+  paraboloid | T+F | seed=4042
+  Epoch 100: loss=0.374004
+  Epoch 200: loss=0.044884
+  Epoch 300: loss=0.023724
+  Epoch 400: loss=0.016963
+  Epoch 500: loss=0.011931
+    dist=0.0: tangent=0.011154  normal_drift=3.306250
+    dist=0.3: tangent=0.072989  normal_drift=8.714184
+
+  paraboloid | T+F+K | seed=4042
+
+[T+F+K] Starting warmup: 250 epochs
+  Epoch 100 (warmup 100/250): loss = 0.3740
+  Epoch 200 (warmup 200/250): loss = 0.0449
+
+[T+F+K] Starting finetune: 250 epochs
+  Epoch 350 (finetune 100/250): loss = 0.0183
+  Epoch 450 (finetune 200/250): loss = 0.0129
+    dist=0.0: tangent=0.008719  normal_drift=3.084145
+    dist=0.3: tangent=0.079766  normal_drift=8.647735
+
+  paraboloid | baseline | seed=5042
+  Epoch 100: loss=0.013417
+  Epoch 200: loss=0.011714
+  Epoch 300: loss=0.005447
+  Epoch 400: loss=0.004707
+  Epoch 500: loss=0.043089
+    dist=0.0: tangent=0.495188  normal_drift=4.395213
+    dist=0.3: tangent=0.608313  normal_drift=7.534408
+
+  paraboloid | T | seed=5042
+  Epoch 100: loss=0.021224
+  Epoch 200: loss=0.004880
+  Epoch 300: loss=0.002041
+  Epoch 400: loss=0.000574
+  Epoch 500: loss=0.000470
+    dist=0.0: tangent=0.081743  normal_drift=4.361856
+    dist=0.3: tangent=0.434824  normal_drift=10.064215
+
+  paraboloid | F | seed=5042
+  Epoch 100: loss=0.071738
+  Epoch 200: loss=0.012696
+  Epoch 300: loss=0.012417
+  Epoch 400: loss=0.012378
+  Epoch 500: loss=0.012236
+    dist=0.0: tangent=0.682732  normal_drift=2.597230
+    dist=0.3: tangent=0.660529  normal_drift=8.081035
+
+  paraboloid | K | seed=5042
+
+[K] Starting warmup: 250 epochs
+  Epoch 100 (warmup 100/250): loss = 0.0134
+  Epoch 200 (warmup 200/250): loss = 0.0117
+
+[K] Starting finetune: 250 epochs
+  Epoch 350 (finetune 100/250): loss = 0.0183
+  Epoch 450 (finetune 200/250): loss = 0.0085
+    dist=0.0: tangent=0.461719  normal_drift=3.597617
+    dist=0.3: tangent=0.425934  normal_drift=6.850452
+
+  paraboloid | T+K | seed=5042
+
+[T+K] Starting warmup: 250 epochs
+  Epoch 100 (warmup 100/250): loss = 0.0212
+  Epoch 200 (warmup 200/250): loss = 0.0049
+
+[T+K] Starting finetune: 250 epochs
+  Epoch 350 (finetune 100/250): loss = 0.0014
+  Epoch 450 (finetune 200/250): loss = 0.0011
+    dist=0.0: tangent=0.084854  normal_drift=4.367505
+    dist=0.3: tangent=0.437124  normal_drift=10.124073
+
+  paraboloid | T+F | seed=5042
+  Epoch 100: loss=0.255059
+  Epoch 200: loss=0.071236
+  Epoch 300: loss=0.020724
+  Epoch 400: loss=0.018688
+  Epoch 500: loss=0.014815
+    dist=0.0: tangent=0.115796  normal_drift=4.903010
+    dist=0.3: tangent=0.272880  normal_drift=13.979490
+
+  paraboloid | T+F+K | seed=5042
+
+[T+F+K] Starting warmup: 250 epochs
+  Epoch 100 (warmup 100/250): loss = 0.2551
+  Epoch 200 (warmup 200/250): loss = 0.0712
+
+[T+F+K] Starting finetune: 250 epochs
+  Epoch 350 (finetune 100/250): loss = 0.0243
+  Epoch 450 (finetune 200/250): loss = 0.0180
+    dist=0.0: tangent=0.116152  normal_drift=4.668605
+    dist=0.3: tangent=0.361499  normal_drift=9.421694
+
+  paraboloid | baseline | seed=6042
+  Epoch 100: loss=0.034704
+  Epoch 200: loss=0.036093
+  Epoch 300: loss=0.009773
+  Epoch 400: loss=0.011680
+  Epoch 500: loss=0.003404
+    dist=0.0: tangent=0.316981  normal_drift=4.469049
+    dist=0.3: tangent=0.342034  normal_drift=15.018161
+
+  paraboloid | T | seed=6042
+  Epoch 100: loss=0.182127
+  Epoch 200: loss=0.036811
+  Epoch 300: loss=0.002194
+  Epoch 400: loss=0.010408
+  Epoch 500: loss=0.005052
+    dist=0.0: tangent=0.034033  normal_drift=3.396535
+    dist=0.3: tangent=0.146704  normal_drift=7.629078
+
+  paraboloid | F | seed=6042
+  Epoch 100: loss=0.041864
+  Epoch 200: loss=0.034759
+  Epoch 300: loss=0.037350
+  Epoch 400: loss=0.034621
+  Epoch 500: loss=0.034151
+    dist=0.0: tangent=0.652647  normal_drift=8.033312
+    dist=0.3: tangent=0.802686  normal_drift=26.993990
+
+  paraboloid | K | seed=6042
+
+[K] Starting warmup: 250 epochs
+  Epoch 100 (warmup 100/250): loss = 0.0347
+  Epoch 200 (warmup 200/250): loss = 0.0361
+
+[K] Starting finetune: 250 epochs
+  Epoch 350 (finetune 100/250): loss = 0.0110
+  Epoch 450 (finetune 200/250): loss = 0.0089
+    dist=0.0: tangent=0.335143  normal_drift=3.580804
+    dist=0.3: tangent=0.339357  normal_drift=8.307997
+
+  paraboloid | T+K | seed=6042
+
+[T+K] Starting warmup: 250 epochs
+  Epoch 100 (warmup 100/250): loss = 0.1821
+  Epoch 200 (warmup 200/250): loss = 0.0368
+
+[T+K] Starting finetune: 250 epochs
+  Epoch 350 (finetune 100/250): loss = 0.0038
+  Epoch 450 (finetune 200/250): loss = 0.0015
+    dist=0.0: tangent=0.036185  normal_drift=3.402089
+    dist=0.3: tangent=0.152079  normal_drift=7.980731
+
+  paraboloid | T+F | seed=6042
+  Epoch 100: loss=0.217232
+  Epoch 200: loss=0.127302
+  Epoch 300: loss=0.047220
+  Epoch 400: loss=0.031556
+  Epoch 500: loss=0.011599
+    dist=0.0: tangent=0.020049  normal_drift=3.854705
+    dist=0.3: tangent=0.133665  normal_drift=8.876296
+
+  paraboloid | T+F+K | seed=6042
+
+[T+F+K] Starting warmup: 250 epochs
+  Epoch 100 (warmup 100/250): loss = 0.2172
+  Epoch 200 (warmup 200/250): loss = 0.1273
+
+[T+F+K] Starting finetune: 250 epochs
+  Epoch 350 (finetune 100/250): loss = 0.0228
+  Epoch 450 (finetune 200/250): loss = 0.0081
+    dist=0.0: tangent=0.012048  normal_drift=3.412819
+    dist=0.3: tangent=0.117429  normal_drift=6.408408
+
+  paraboloid | baseline | seed=7042
+  Epoch 100: loss=0.029923
+  Epoch 200: loss=0.028027
+  Epoch 300: loss=0.017422
+  Epoch 400: loss=0.004458
+  Epoch 500: loss=0.001100
+    dist=0.0: tangent=0.146606  normal_drift=4.590739
+    dist=0.3: tangent=0.501333  normal_drift=20.042309
+
+  paraboloid | T | seed=7042
+  Epoch 100: loss=0.022479
+  Epoch 200: loss=0.012029
+  Epoch 300: loss=0.000916
+  Epoch 400: loss=0.000836
+  Epoch 500: loss=0.001522
+    dist=0.0: tangent=0.009335  normal_drift=3.008595
+    dist=0.3: tangent=0.304011  normal_drift=9.893769
+
+  paraboloid | F | seed=7042
+  Epoch 100: loss=0.031280
+  Epoch 200: loss=0.028219
+  Epoch 300: loss=0.029257
+  Epoch 400: loss=0.028071
+  Epoch 500: loss=0.027340
+    dist=0.0: tangent=0.639998  normal_drift=6.545527
+    dist=0.3: tangent=0.785594  normal_drift=24.299088
+
+  paraboloid | K | seed=7042
+
+[K] Starting warmup: 250 epochs
+  Epoch 100 (warmup 100/250): loss = 0.0299
+  Epoch 200 (warmup 200/250): loss = 0.0280
+
+[K] Starting finetune: 250 epochs
+  Epoch 350 (finetune 100/250): loss = 0.0201
+  Epoch 450 (finetune 200/250): loss = 0.0102
+    dist=0.0: tangent=0.177780  normal_drift=2.889521
+    dist=0.3: tangent=0.324692  normal_drift=8.409513
+
+  paraboloid | T+K | seed=7042
+
+[T+K] Starting warmup: 250 epochs
+  Epoch 100 (warmup 100/250): loss = 0.0225
+  Epoch 200 (warmup 200/250): loss = 0.0120
+
+[T+K] Starting finetune: 250 epochs
+  Epoch 350 (finetune 100/250): loss = 0.0015
+  Epoch 450 (finetune 200/250): loss = 0.0012
+    dist=0.0: tangent=0.004645  normal_drift=2.905417
+    dist=0.3: tangent=0.262557  normal_drift=9.296241
+
+  paraboloid | T+F | seed=7042
+  Epoch 100: loss=0.314515
+  Epoch 200: loss=0.060357
+  Epoch 300: loss=0.050441
+  Epoch 400: loss=0.004175
+  Epoch 500: loss=0.009667
+    dist=0.0: tangent=0.007176  normal_drift=3.093968
+    dist=0.3: tangent=0.063337  normal_drift=7.794534
+
+  paraboloid | T+F+K | seed=7042
+
+[T+F+K] Starting warmup: 250 epochs
+  Epoch 100 (warmup 100/250): loss = 0.3145
+  Epoch 200 (warmup 200/250): loss = 0.0604
+
+[T+F+K] Starting finetune: 250 epochs
+  Epoch 350 (finetune 100/250): loss = 0.0119
+  Epoch 450 (finetune 200/250): loss = 0.0104
+    dist=0.0: tangent=0.002433  normal_drift=2.989934
+    dist=0.3: tangent=0.047761  normal_drift=6.713598
+
+  paraboloid | baseline | seed=8042
+  Epoch 100: loss=0.040291
+  Epoch 200: loss=0.025290
+  Epoch 300: loss=0.006269
+  Epoch 400: loss=0.005300
+  Epoch 500: loss=0.004030
+    dist=0.0: tangent=0.316444  normal_drift=5.566864
+    dist=0.3: tangent=0.415077  normal_drift=16.346651
+
+  paraboloid | T | seed=8042
+  Epoch 100: loss=0.023187
+  Epoch 200: loss=0.002381
+  Epoch 300: loss=0.001582
+  Epoch 400: loss=0.001024
+  Epoch 500: loss=0.002130
+    dist=0.0: tangent=0.018142  normal_drift=3.504076
+    dist=0.3: tangent=0.186845  normal_drift=8.937310
+
+  paraboloid | F | seed=8042
+  Epoch 100: loss=0.046610
+  Epoch 200: loss=0.040155
+  Epoch 300: loss=0.040099
+  Epoch 400: loss=0.040190
+  Epoch 500: loss=0.034812
+    dist=0.0: tangent=0.602926  normal_drift=5.949165
+    dist=0.3: tangent=0.737693  normal_drift=18.699219
+
+  paraboloid | K | seed=8042
+
+[K] Starting warmup: 250 epochs
+  Epoch 100 (warmup 100/250): loss = 0.0403
+  Epoch 200 (warmup 200/250): loss = 0.0253
+
+[K] Starting finetune: 250 epochs
+  Epoch 350 (finetune 100/250): loss = 0.0109
+  Epoch 450 (finetune 200/250): loss = 0.0086
+    dist=0.0: tangent=0.325668  normal_drift=5.124108
+    dist=0.3: tangent=0.398913  normal_drift=17.126951
+
+  paraboloid | T+K | seed=8042
+
+[T+K] Starting warmup: 250 epochs
+  Epoch 100 (warmup 100/250): loss = 0.0232
+  Epoch 200 (warmup 200/250): loss = 0.0024
+
+[T+K] Starting finetune: 250 epochs
+  Epoch 350 (finetune 100/250): loss = 0.0803
+  Epoch 450 (finetune 200/250): loss = 0.0007
+    dist=0.0: tangent=0.018314  normal_drift=3.444186
+    dist=0.3: tangent=0.191927  normal_drift=9.063991
+
+  paraboloid | T+F | seed=8042
+  Epoch 100: loss=0.314688
+  Epoch 200: loss=0.050619
+  Epoch 300: loss=0.018098
+  Epoch 400: loss=0.016959
+  Epoch 500: loss=0.002621
+    dist=0.0: tangent=0.011214  normal_drift=3.563224
+    dist=0.3: tangent=0.106869  normal_drift=12.714431
+
+  paraboloid | T+F+K | seed=8042
+
+[T+F+K] Starting warmup: 250 epochs
+  Epoch 100 (warmup 100/250): loss = 0.3147
+  Epoch 200 (warmup 200/250): loss = 0.0506
+
+[T+F+K] Starting finetune: 250 epochs
+  Epoch 350 (finetune 100/250): loss = 0.0194
+  Epoch 450 (finetune 200/250): loss = 0.0106
+    dist=0.0: tangent=0.008409  normal_drift=3.284417
+    dist=0.3: tangent=0.072275  normal_drift=10.460854
+
+  paraboloid | baseline | seed=9042
+  Epoch 100: loss=0.033903
+  Epoch 200: loss=0.030608
+  Epoch 300: loss=0.011199
+  Epoch 400: loss=0.005470
+  Epoch 500: loss=0.003171
+    dist=0.0: tangent=0.291441  normal_drift=3.780256
+    dist=0.3: tangent=0.400752  normal_drift=6.894414
+
+  paraboloid | T | seed=9042
+  Epoch 100: loss=0.036952
+  Epoch 200: loss=0.002642
+  Epoch 300: loss=0.002360
+  Epoch 400: loss=0.001616
+  Epoch 500: loss=0.000773
+    dist=0.0: tangent=0.011225  normal_drift=2.947531
+    dist=0.3: tangent=0.222968  normal_drift=7.365506
+
+  paraboloid | F | seed=9042
+  Epoch 100: loss=0.075746
+  Epoch 200: loss=0.032003
+  Epoch 300: loss=0.030842
+  Epoch 400: loss=0.031158
+  Epoch 500: loss=0.030205
+    dist=0.0: tangent=0.666961  normal_drift=7.019869
+    dist=0.3: tangent=0.746466  normal_drift=22.852329
+
+  paraboloid | K | seed=9042
+
+[K] Starting warmup: 250 epochs
+  Epoch 100 (warmup 100/250): loss = 0.0339
+  Epoch 200 (warmup 200/250): loss = 0.0306
+
+[K] Starting finetune: 250 epochs
+  Epoch 350 (finetune 100/250): loss = 0.0151
+  Epoch 450 (finetune 200/250): loss = 0.0090
+    dist=0.0: tangent=0.271445  normal_drift=2.502436
+    dist=0.3: tangent=0.362323  normal_drift=3.681604
+
+  paraboloid | T+K | seed=9042
+
+[T+K] Starting warmup: 250 epochs
+  Epoch 100 (warmup 100/250): loss = 0.0370
+  Epoch 200 (warmup 200/250): loss = 0.0026
+
+[T+K] Starting finetune: 250 epochs
+  Epoch 350 (finetune 100/250): loss = 0.0019
+  Epoch 450 (finetune 200/250): loss = 0.0014
+    dist=0.0: tangent=0.009227  normal_drift=2.959676
+    dist=0.3: tangent=0.252206  normal_drift=7.466367
+
+  paraboloid | T+F | seed=9042
+  Epoch 100: loss=0.634333
+  Epoch 200: loss=0.235904
+  Epoch 300: loss=0.051707
+  Epoch 400: loss=0.036538
+  Epoch 500: loss=0.031721
+    dist=0.0: tangent=0.012091  normal_drift=3.286424
+    dist=0.3: tangent=0.089543  normal_drift=6.040732
+
+  paraboloid | T+F+K | seed=9042
+
+[T+F+K] Starting warmup: 250 epochs
+  Epoch 100 (warmup 100/250): loss = 0.6343
+  Epoch 200 (warmup 200/250): loss = 0.2359
+
+[T+F+K] Starting finetune: 250 epochs
+  Epoch 350 (finetune 100/250): loss = 0.0253
+  Epoch 450 (finetune 200/250): loss = 0.0385
+    dist=0.0: tangent=0.011429  normal_drift=3.037110
+    dist=0.3: tangent=0.106815  normal_drift=4.924089
+
+Saved to paper_dynamics.csv
+
+======================================================================
+DYNAMICS SUMMARY (mean +/- std)
+======================================================================
+
+  Distance = 0.0
+    config    n    reconstructi         tangent     cov_tangent    drift_tangen    normal_drift    normal_drift  
+  --------------------------------------------------------------------------------------------------------------
+  baseline   10   0.1460+/-0.0939   0.2529+/-0.1450  21.4249+/-13.7230   1.9417+/-1.1566   4.7450+/-0.9147   2.7839+/-0.0365  
+         T   10   0.0827+/-0.0803   0.0194+/-0.0223   1.4791+/-1.3644   0.1869+/-0.2664   3.1796+/-0.4475   2.7839+/-0.0365  
+         F   10   0.2538+/-0.1000   0.6417+/-0.0273  63.0919+/-17.8600   6.0447+/-0.7771   7.5202+/-2.0396   2.7839+/-0.0365  
+         K   10   0.2080+/-0.1323   0.2765+/-0.1861  11.1226+/-13.3565   1.7325+/-1.0965   3.2499+/-1.2850   2.7839+/-0.0365  
+       T+K   10   0.0812+/-0.0845   0.0189+/-0.0238   1.3327+/-1.2967   0.1875+/-0.2820   3.1787+/-0.4406   2.7839+/-0.0365  
+       T+F   10   0.0429+/-0.0438   0.0219+/-0.0316   2.1656+/-1.8497   0.2377+/-0.3554   3.4514+/-0.5394   2.7839+/-0.0365  
+     T+F+K   10   0.0442+/-0.0564   0.0186+/-0.0328   1.2029+/-1.2679   0.1980+/-0.3534   3.2531+/-0.4978   2.7839+/-0.0365  
+
+  Distance = 0.3
+    config    n    reconstructi         tangent     cov_tangent    drift_tangen    normal_drift    normal_drift  
+  --------------------------------------------------------------------------------------------------------------
+  baseline   10   2.0851+/-0.3959   0.3950+/-0.1398  495.0742+/-350.4365   8.2144+/-3.7710  13.2740+/-4.0241   3.3918+/-0.1147  
+         T   10   2.1972+/-0.5422   0.1880+/-0.1070  130.2709+/-46.1406   3.1974+/-2.0948   7.7320+/-1.4181   3.3918+/-0.1147  
+         F   10   2.3996+/-0.2613   0.7863+/-0.0555  1203.2649+/-301.2679  22.9689+/-5.4117  25.2129+/-7.0918   3.3918+/-0.1147  
+         K   10   2.2566+/-0.4334   0.3391+/-0.1117  217.7315+/-223.0381   4.9946+/-3.1769   7.4192+/-4.3823   3.3918+/-0.1147  
+       T+K   10   2.2373+/-0.5438   0.1924+/-0.1047  131.3154+/-47.8626   3.2386+/-2.0552   7.7862+/-1.3148   3.3918+/-0.1147  
+       T+F   10   1.1690+/-0.4435   0.1006+/-0.0631  172.2328+/-198.1569   2.7614+/-2.2422   8.8335+/-2.4384   3.3918+/-0.1147  
+     T+F+K   10   1.1902+/-0.4604   0.0982+/-0.0926  126.4230+/-181.9153   2.3894+/-2.0479   7.2886+/-1.7037   3.3918+/-0.1147  
+
+Total time: 1098.0s
+Done.
+
+End: Thu Mar 12 10:00:16 PM EDT 2026

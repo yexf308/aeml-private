@@ -1,0 +1,528 @@
+        Phase2 Epoch 40/200: loss=0.140317
+        Phase2 Epoch 80/200: loss=0.079714
+        Phase2 Epoch 120/200: loss=0.047052
+        Phase2 Epoch 160/200: loss=0.044883
+        Phase2 Epoch 200/200: loss=0.035203
+  MTE@0.1: 0.5074
+  MTE@0.5: 1.2000
+  MTE@1.0: 1.7456
+  W2@1.0:  1.4688
+  sW2@0.5: 0.8880 (45/200 in region)
+  sW2@1.0: nan (9/200 in region)
+  MMD@1.0: 0.4273
+  Survival@1.0: 24.0%
+  Stopped@1.0:  4.5%
+                 paraboloid D= 11 N= 20 seed=42      K+S (ambient): W2=1.469  E_Sig=0.1331  (2s)
+  MTE@0.1: 0.5079
+  MTE@0.5: 1.1558
+  MTE@1.0: 1.6550
+  W2@1.0:  1.3853
+  sW2@0.5: 0.8183 (45/200 in region)
+  sW2@1.0: nan (9/200 in region)
+  MMD@1.0: 0.4198
+  Survival@1.0: 24.0%
+  Stopped@1.0:  4.5%
+                 paraboloid D= 11 N= 20 seed=42       K+S (latent): W2=1.385  E_Sig=0.1219  (2s)
+        Phase2 Epoch 40/200: loss=0.066004
+        Phase2 Epoch 80/200: loss=0.034150
+        Phase2 Epoch 120/200: loss=0.023040
+        Phase2 Epoch 160/200: loss=0.010823
+        Phase2 Epoch 200/200: loss=0.012269
+  MTE@0.1: 0.9420
+  MTE@0.5: 1.8097
+  MTE@1.0: 2.1339
+  W2@1.0:  1.5772
+  sW2@0.5: 1.4272 (56/200 in region)
+  sW2@1.0: 1.6375 (24/200 in region)
+  MMD@1.0: 0.3680
+  Survival@1.0: 26.5%
+  Stopped@1.0:  12.0%
+                 paraboloid D= 11 N= 20 seed=1042      K+S (ambient): W2=1.577  E_Sig=0.1088  (1s)
+  MTE@0.1: 0.9388
+  MTE@0.5: 1.7891
+  MTE@1.0: 2.1293
+  W2@1.0:  1.5611
+  sW2@0.5: 1.3867 (56/200 in region)
+  sW2@1.0: 1.6256 (24/200 in region)
+  MMD@1.0: 0.3730
+  Survival@1.0: 26.5%
+  Stopped@1.0:  12.0%
+                 paraboloid D= 11 N= 20 seed=1042       K+S (latent): W2=1.561  E_Sig=0.0841  (1s)
+        Phase2 Epoch 40/200: loss=0.037523
+        Phase2 Epoch 80/200: loss=0.024774
+        Phase2 Epoch 120/200: loss=0.017619
+        Phase2 Epoch 160/200: loss=0.014101
+        Phase2 Epoch 200/200: loss=0.011427
+  MTE@0.1: 1.3637
+  MTE@0.5: 2.4606
+  MTE@1.0: 2.7962
+  W2@1.0:  2.4689
+  sW2@0.5: 2.0990 (45/200 in region)
+  sW2@1.0: 2.4991 (15/200 in region)
+  MMD@1.0: 0.4550
+  Survival@1.0: 23.5%
+  Stopped@1.0:  7.5%
+                 paraboloid D= 11 N= 20 seed=2042      K+S (ambient): W2=2.469  E_Sig=0.1047  (1s)
+  MTE@0.1: 1.3510
+  MTE@0.5: 2.4322
+  MTE@1.0: 2.7071
+  W2@1.0:  2.3522
+  sW2@0.5: 2.0592 (45/200 in region)
+  sW2@1.0: 2.4448 (15/200 in region)
+  MMD@1.0: 0.4401
+  Survival@1.0: 23.5%
+  Stopped@1.0:  7.5%
+                 paraboloid D= 11 N= 20 seed=2042       K+S (latent): W2=2.352  E_Sig=0.0762  (1s)
+        Phase2 Epoch 40/200: loss=0.038829
+        Phase2 Epoch 80/200: loss=0.021269
+        Phase2 Epoch 120/200: loss=0.019769
+        Phase2 Epoch 160/200: loss=0.018607
+        Phase2 Epoch 200/200: loss=0.019283
+  MTE@0.1: 0.8830
+  MTE@0.5: 1.4331
+  MTE@1.0: 2.0053
+  W2@1.0:  1.7805
+  sW2@0.5: 1.3169 (41/200 in region)
+  sW2@1.0: 1.7042 (20/200 in region)
+  MMD@1.0: 0.4234
+  Survival@1.0: 24.0%
+  Stopped@1.0:  10.0%
+                 paraboloid D= 11 N= 20 seed=3042      K+S (ambient): W2=1.780  E_Sig=0.2120  (1s)
+  MTE@0.1: 0.9160
+  MTE@0.5: 1.3782
+  MTE@1.0: 1.6601
+  W2@1.0:  1.3807
+  sW2@0.5: 1.0439 (41/200 in region)
+  sW2@1.0: 1.4557 (20/200 in region)
+  MMD@1.0: 0.3758
+  Survival@1.0: 24.0%
+  Stopped@1.0:  10.0%
+                 paraboloid D= 11 N= 20 seed=3042       K+S (latent): W2=1.381  E_Sig=0.1550  (2s)
+        Phase2 Epoch 40/200: loss=0.182104
+        Phase2 Epoch 80/200: loss=0.078860
+        Phase2 Epoch 120/200: loss=0.046478
+        Phase2 Epoch 160/200: loss=0.028262
+        Phase2 Epoch 200/200: loss=0.047657
+  MTE@0.1: 0.9828
+  MTE@0.5: 1.6145
+  MTE@1.0: 2.1438
+  W2@1.0:  1.8824
+  sW2@0.5: 0.6915 (56/200 in region)
+  sW2@1.0: 1.5943 (26/200 in region)
+  MMD@1.0: 0.3271
+  Survival@1.0: 30.0%
+  Stopped@1.0:  13.0%
+                 paraboloid D= 11 N= 20 seed=4042      K+S (ambient): W2=1.882  E_Sig=0.1740  (1s)
+  MTE@0.1: 0.9277
+  MTE@0.5: 1.5423
+  MTE@1.0: 2.0998
+  W2@1.0:  1.8264
+  sW2@0.5: 0.7032 (56/200 in region)
+  sW2@1.0: 1.6912 (26/200 in region)
+  MMD@1.0: 0.3901
+  Survival@1.0: 30.0%
+  Stopped@1.0:  13.0%
+                 paraboloid D= 11 N= 20 seed=4042       K+S (latent): W2=1.826  E_Sig=0.1159  (1s)
+        Phase2 Epoch 40/200: loss=0.019798
+        Phase2 Epoch 80/200: loss=0.010910
+        Phase2 Epoch 120/200: loss=0.008654
+        Phase2 Epoch 160/200: loss=0.008400
+        Phase2 Epoch 200/200: loss=0.003062
+  MTE@0.1: 0.9214
+  MTE@0.5: 1.7137
+  MTE@1.0: 1.9807
+  W2@1.0:  1.7757
+  sW2@0.5: 1.0548 (45/200 in region)
+  sW2@1.0: nan (9/200 in region)
+  MMD@1.0: 0.3892
+  Survival@1.0: 24.0%
+  Stopped@1.0:  4.5%
+                 paraboloid D= 11 N=100 seed=42      K+S (ambient): W2=1.776  E_Sig=0.0593  (4s)
+  MTE@0.1: 0.9268
+  MTE@0.5: 1.7270
+  MTE@1.0: 1.9951
+  W2@1.0:  1.7989
+  sW2@0.5: 1.0489 (45/200 in region)
+  sW2@1.0: nan (9/200 in region)
+  MMD@1.0: 0.3889
+  Survival@1.0: 24.0%
+  Stopped@1.0:  4.5%
+                 paraboloid D= 11 N=100 seed=42       K+S (latent): W2=1.799  E_Sig=0.0546  (4s)
+        Phase2 Epoch 40/200: loss=0.012040
+        Phase2 Epoch 80/200: loss=0.008693
+        Phase2 Epoch 120/200: loss=0.006076
+        Phase2 Epoch 160/200: loss=0.006220
+        Phase2 Epoch 200/200: loss=0.004114
+  MTE@0.1: 0.8468
+  MTE@0.5: 1.6190
+  MTE@1.0: 1.5827
+  W2@1.0:  0.9486
+  sW2@0.5: 1.0412 (56/200 in region)
+  sW2@1.0: 1.1146 (24/200 in region)
+  MMD@1.0: 0.3124
+  Survival@1.0: 26.5%
+  Stopped@1.0:  12.0%
+                 paraboloid D= 11 N=100 seed=1042      K+S (ambient): W2=0.949  E_Sig=0.1091  (4s)
+  MTE@0.1: 0.8561
+  MTE@0.5: 1.6089
+  MTE@1.0: 1.7297
+  W2@1.0:  1.1291
+  sW2@0.5: 1.1368 (56/200 in region)
+  sW2@1.0: 1.3773 (24/200 in region)
+  MMD@1.0: 0.3796
+  Survival@1.0: 26.5%
+  Stopped@1.0:  12.0%
+                 paraboloid D= 11 N=100 seed=1042       K+S (latent): W2=1.129  E_Sig=0.0557  (4s)
+        Phase2 Epoch 40/200: loss=0.016302
+        Phase2 Epoch 80/200: loss=0.006034
+        Phase2 Epoch 120/200: loss=0.006190
+        Phase2 Epoch 160/200: loss=0.003182
+        Phase2 Epoch 200/200: loss=0.010374
+  MTE@0.1: 1.4050
+  MTE@0.5: 2.4977
+  MTE@1.0: 2.5967
+  W2@1.0:  2.1991
+  sW2@0.5: 2.1952 (45/200 in region)
+  sW2@1.0: 2.2962 (15/200 in region)
+  MMD@1.0: 0.4246
+  Survival@1.0: 23.5%
+  Stopped@1.0:  7.5%
+                 paraboloid D= 11 N=100 seed=2042      K+S (ambient): W2=2.199  E_Sig=0.0858  (4s)
+  MTE@0.1: 1.4042
+  MTE@0.5: 2.4921
+  MTE@1.0: 2.5624
+  W2@1.0:  2.1560
+  sW2@0.5: 2.1726 (45/200 in region)
+  sW2@1.0: 2.2636 (15/200 in region)
+  MMD@1.0: 0.4203
+  Survival@1.0: 23.5%
+  Stopped@1.0:  7.5%
+                 paraboloid D= 11 N=100 seed=2042       K+S (latent): W2=2.156  E_Sig=0.0742  (4s)
+        Phase2 Epoch 40/200: loss=0.013082
+        Phase2 Epoch 80/200: loss=0.006972
+        Phase2 Epoch 120/200: loss=0.012669
+        Phase2 Epoch 160/200: loss=0.003905
+        Phase2 Epoch 200/200: loss=0.004645
+  MTE@0.1: 0.9883
+  MTE@0.5: 1.5564
+  MTE@1.0: 2.0707
+  W2@1.0:  1.6181
+  sW2@0.5: 1.2393 (41/200 in region)
+  sW2@1.0: 1.1139 (20/200 in region)
+  MMD@1.0: 0.4022
+  Survival@1.0: 24.0%
+  Stopped@1.0:  10.0%
+                 paraboloid D= 11 N=100 seed=3042      K+S (ambient): W2=1.618  E_Sig=0.0907  (4s)
+  MTE@0.1: 0.9773
+  MTE@0.5: 1.5333
+  MTE@1.0: 2.0282
+  W2@1.0:  1.5975
+  sW2@0.5: 1.1892 (41/200 in region)
+  sW2@1.0: 1.1170 (20/200 in region)
+  MMD@1.0: 0.3912
+  Survival@1.0: 24.0%
+  Stopped@1.0:  10.0%
+                 paraboloid D= 11 N=100 seed=3042       K+S (latent): W2=1.598  E_Sig=0.0478  (4s)
+        Phase2 Epoch 40/200: loss=0.011254
+        Phase2 Epoch 80/200: loss=0.011537
+        Phase2 Epoch 120/200: loss=0.007820
+        Phase2 Epoch 160/200: loss=0.011287
+        Phase2 Epoch 200/200: loss=0.007175
+  MTE@0.1: 1.0632
+  MTE@0.5: 1.7049
+  MTE@1.0: 1.8357
+  W2@1.0:  1.2686
+  sW2@0.5: 1.2669 (56/200 in region)
+  sW2@1.0: 1.0872 (26/200 in region)
+  MMD@1.0: 0.4150
+  Survival@1.0: 30.0%
+  Stopped@1.0:  13.0%
+                 paraboloid D= 11 N=100 seed=4042      K+S (ambient): W2=1.269  E_Sig=0.0685  (4s)
+  MTE@0.1: 1.1351
+  MTE@0.5: 1.8664
+  MTE@1.0: 2.0793
+  W2@1.0:  1.5543
+  sW2@0.5: 1.0092 (56/200 in region)
+  sW2@1.0: 1.3001 (26/200 in region)
+  MMD@1.0: 0.3717
+  Survival@1.0: 30.0%
+  Stopped@1.0:  13.0%
+                 paraboloid D= 11 N=100 seed=4042       K+S (latent): W2=1.554  E_Sig=0.2035  (4s)
+        Phase2 Epoch 40/200: loss=0.023043
+        Phase2 Epoch 80/200: loss=0.009473
+        Phase2 Epoch 120/200: loss=0.007879
+        Phase2 Epoch 160/200: loss=0.018915
+        Phase2 Epoch 200/200: loss=0.005337
+  MTE@0.1: 0.9508
+  MTE@0.5: 1.8891
+  MTE@1.0: 2.0193
+  W2@1.0:  1.1786
+  sW2@0.5: 1.0478 (45/200 in region)
+  sW2@1.0: nan (9/200 in region)
+  MMD@1.0: 0.3154
+  Survival@1.0: 24.0%
+  Stopped@1.0:  4.5%
+      hyperbolic_paraboloid D= 11 N= 20 seed=42      K+S (ambient): W2=1.179  E_Sig=0.0740  (1s)
+  MTE@0.1: 0.9480
+  MTE@0.5: 1.8768
+  MTE@1.0: 1.9684
+  W2@1.0:  1.1734
+  sW2@0.5: 1.0126 (45/200 in region)
+  sW2@1.0: nan (9/200 in region)
+  MMD@1.0: 0.3091
+  Survival@1.0: 24.0%
+  Stopped@1.0:  4.5%
+      hyperbolic_paraboloid D= 11 N= 20 seed=42       K+S (latent): W2=1.173  E_Sig=0.0562  (1s)
+        Phase2 Epoch 40/200: loss=0.016072
+        Phase2 Epoch 80/200: loss=0.009138
+        Phase2 Epoch 120/200: loss=0.008540
+        Phase2 Epoch 160/200: loss=0.003581
+        Phase2 Epoch 200/200: loss=0.003070
+  MTE@0.1: 0.9233
+  MTE@0.5: 1.6429
+  MTE@1.0: 2.0104
+  W2@1.0:  1.4152
+  sW2@0.5: 1.1409 (56/200 in region)
+  sW2@1.0: 1.5728 (24/200 in region)
+  MMD@1.0: 0.2870
+  Survival@1.0: 26.5%
+  Stopped@1.0:  12.0%
+      hyperbolic_paraboloid D= 11 N= 20 seed=1042      K+S (ambient): W2=1.415  E_Sig=0.0566  (1s)
+  MTE@0.1: 0.9153
+  MTE@0.5: 1.6125
+  MTE@1.0: 1.9605
+  W2@1.0:  1.4025
+  sW2@0.5: 1.1061 (56/200 in region)
+  sW2@1.0: 1.5648 (24/200 in region)
+  MMD@1.0: 0.2800
+  Survival@1.0: 26.5%
+  Stopped@1.0:  12.0%
+      hyperbolic_paraboloid D= 11 N= 20 seed=1042       K+S (latent): W2=1.402  E_Sig=0.0430  (1s)
+        Phase2 Epoch 40/200: loss=0.039381
+        Phase2 Epoch 80/200: loss=0.016820
+        Phase2 Epoch 120/200: loss=0.007119
+        Phase2 Epoch 160/200: loss=0.004980
+        Phase2 Epoch 200/200: loss=0.018864
+  MTE@0.1: 0.8608
+  MTE@0.5: 1.7634
+  MTE@1.0: 2.0529
+  W2@1.0:  1.4378
+  sW2@0.5: 1.2157 (45/200 in region)
+  sW2@1.0: 1.2256 (15/200 in region)
+  MMD@1.0: 0.3351
+  Survival@1.0: 23.5%
+  Stopped@1.0:  7.5%
+      hyperbolic_paraboloid D= 11 N= 20 seed=2042      K+S (ambient): W2=1.438  E_Sig=0.0861  (1s)
+  MTE@0.1: 0.8580
+  MTE@0.5: 1.7063
+  MTE@1.0: 1.9795
+  W2@1.0:  1.3642
+  sW2@0.5: 1.1792 (45/200 in region)
+  sW2@1.0: 1.1469 (15/200 in region)
+  MMD@1.0: 0.3211
+  Survival@1.0: 23.5%
+  Stopped@1.0:  7.5%
+      hyperbolic_paraboloid D= 11 N= 20 seed=2042       K+S (latent): W2=1.364  E_Sig=0.0531  (1s)
+        Phase2 Epoch 40/200: loss=0.144041
+        Phase2 Epoch 80/200: loss=0.026851
+        Phase2 Epoch 120/200: loss=0.022565
+        Phase2 Epoch 160/200: loss=0.020577
+        Phase2 Epoch 200/200: loss=0.019090
+  MTE@0.1: 0.9782
+  MTE@0.5: 1.7643
+  MTE@1.0: 2.2396
+  W2@1.0:  1.3489
+  sW2@0.5: 0.8746 (41/200 in region)
+  sW2@1.0: 1.3455 (20/200 in region)
+  MMD@1.0: 0.2760
+  Survival@1.0: 24.0%
+  Stopped@1.0:  10.0%
+      hyperbolic_paraboloid D= 11 N= 20 seed=3042      K+S (ambient): W2=1.349  E_Sig=0.2221  (1s)
+  MTE@0.1: 1.0021
+  MTE@0.5: 1.6756
+  MTE@1.0: 2.2258
+  W2@1.0:  1.5192
+  sW2@0.5: 1.2492 (41/200 in region)
+  sW2@1.0: 1.3559 (20/200 in region)
+  MMD@1.0: 0.2856
+  Survival@1.0: 24.0%
+  Stopped@1.0:  10.0%
+      hyperbolic_paraboloid D= 11 N= 20 seed=3042       K+S (latent): W2=1.519  E_Sig=0.1358  (1s)
+        Phase2 Epoch 40/200: loss=0.042784
+        Phase2 Epoch 80/200: loss=0.021353
+        Phase2 Epoch 120/200: loss=0.018275
+        Phase2 Epoch 160/200: loss=0.010047
+        Phase2 Epoch 200/200: loss=0.007403
+  MTE@0.1: 1.3799
+  MTE@0.5: 2.1126
+  MTE@1.0: 2.2925
+  W2@1.0:  1.5163
+  sW2@0.5: 1.3136 (56/200 in region)
+  sW2@1.0: 1.3188 (26/200 in region)
+  MMD@1.0: 0.2840
+  Survival@1.0: 30.0%
+  Stopped@1.0:  13.0%
+      hyperbolic_paraboloid D= 11 N= 20 seed=4042      K+S (ambient): W2=1.516  E_Sig=0.0804  (1s)
+  MTE@0.1: 1.3830
+  MTE@0.5: 2.1355
+  MTE@1.0: 2.3647
+  W2@1.0:  1.6114
+  sW2@0.5: 1.3408 (56/200 in region)
+  sW2@1.0: 1.3440 (26/200 in region)
+  MMD@1.0: 0.2794
+  Survival@1.0: 30.0%
+  Stopped@1.0:  13.0%
+      hyperbolic_paraboloid D= 11 N= 20 seed=4042       K+S (latent): W2=1.611  E_Sig=0.0676  (1s)
+        Phase2 Epoch 40/200: loss=0.006806
+        Phase2 Epoch 80/200: loss=0.007208
+        Phase2 Epoch 120/200: loss=0.002444
+        Phase2 Epoch 160/200: loss=0.007407
+        Phase2 Epoch 200/200: loss=0.002050
+  MTE@0.1: 0.7977
+  MTE@0.5: 1.5478
+  MTE@1.0: 1.6425
+  W2@1.0:  0.9560
+  sW2@0.5: 0.5579 (45/200 in region)
+  sW2@1.0: nan (9/200 in region)
+  MMD@1.0: 0.2572
+  Survival@1.0: 24.0%
+  Stopped@1.0:  4.5%
+      hyperbolic_paraboloid D= 11 N=100 seed=42      K+S (ambient): W2=0.956  E_Sig=0.1425  (4s)
+  MTE@0.1: 0.8136
+  MTE@0.5: 1.6494
+  MTE@1.0: 1.8063
+  W2@1.0:  1.0246
+  sW2@0.5: 0.7766 (45/200 in region)
+  sW2@1.0: nan (9/200 in region)
+  MMD@1.0: 0.2715
+  Survival@1.0: 24.0%
+  Stopped@1.0:  4.5%
+      hyperbolic_paraboloid D= 11 N=100 seed=42       K+S (latent): W2=1.025  E_Sig=0.1336  (4s)
+        Phase2 Epoch 40/200: loss=0.006120
+        Phase2 Epoch 80/200: loss=0.004657
+        Phase2 Epoch 120/200: loss=0.002762
+        Phase2 Epoch 160/200: loss=0.002793
+        Phase2 Epoch 200/200: loss=0.003618
+  MTE@0.1: 1.0862
+  MTE@0.5: 1.8785
+  MTE@1.0: 2.2779
+  W2@1.0:  1.3770
+  sW2@0.5: 1.0329 (56/200 in region)
+  sW2@1.0: 1.6219 (24/200 in region)
+  MMD@1.0: 0.2869
+  Survival@1.0: 26.5%
+  Stopped@1.0:  12.0%
+      hyperbolic_paraboloid D= 11 N=100 seed=1042      K+S (ambient): W2=1.377  E_Sig=0.0816  (4s)
+  MTE@0.1: 1.0860
+  MTE@0.5: 1.8854
+  MTE@1.0: 2.2627
+  W2@1.0:  1.3884
+  sW2@0.5: 1.0339 (56/200 in region)
+  sW2@1.0: 1.6305 (24/200 in region)
+  MMD@1.0: 0.2853
+  Survival@1.0: 26.5%
+  Stopped@1.0:  12.0%
+      hyperbolic_paraboloid D= 11 N=100 seed=1042       K+S (latent): W2=1.388  E_Sig=0.0578  (4s)
+        Phase2 Epoch 40/200: loss=0.018685
+        Phase2 Epoch 80/200: loss=0.018463
+        Phase2 Epoch 120/200: loss=0.004749
+        Phase2 Epoch 160/200: loss=0.002134
+        Phase2 Epoch 200/200: loss=0.002222
+  MTE@0.1: 0.8695
+  MTE@0.5: 1.7384
+  MTE@1.0: 2.0720
+  W2@1.0:  1.5830
+  sW2@0.5: 1.2261 (45/200 in region)
+  sW2@1.0: 1.3832 (15/200 in region)
+  MMD@1.0: 0.3228
+  Survival@1.0: 23.5%
+  Stopped@1.0:  7.5%
+      hyperbolic_paraboloid D= 11 N=100 seed=2042      K+S (ambient): W2=1.583  E_Sig=0.0607  (4s)
+  MTE@0.1: 0.8698
+  MTE@0.5: 1.7444
+  MTE@1.0: 2.0909
+  W2@1.0:  1.5790
+  sW2@0.5: 1.2359 (45/200 in region)
+  sW2@1.0: 1.4070 (15/200 in region)
+  MMD@1.0: 0.3242
+  Survival@1.0: 23.5%
+  Stopped@1.0:  7.5%
+      hyperbolic_paraboloid D= 11 N=100 seed=2042       K+S (latent): W2=1.579  E_Sig=0.0550  (4s)
+        Phase2 Epoch 40/200: loss=0.011195
+        Phase2 Epoch 80/200: loss=0.011563
+        Phase2 Epoch 120/200: loss=0.003158
+        Phase2 Epoch 160/200: loss=0.003778
+        Phase2 Epoch 200/200: loss=0.008686
+  MTE@0.1: 1.0089
+  MTE@0.5: 1.6108
+  MTE@1.0: 1.8942
+  W2@1.0:  1.2843
+  sW2@0.5: 0.9835 (41/200 in region)
+  sW2@1.0: 1.1996 (20/200 in region)
+  MMD@1.0: 0.2730
+  Survival@1.0: 24.0%
+  Stopped@1.0:  10.0%
+      hyperbolic_paraboloid D= 11 N=100 seed=3042      K+S (ambient): W2=1.284  E_Sig=0.2055  (4s)
+  MTE@0.1: 0.9241
+  MTE@0.5: 1.5202
+  MTE@1.0: 1.9638
+  W2@1.0:  1.3092
+  sW2@0.5: 0.9781 (41/200 in region)
+  sW2@1.0: 1.3246 (20/200 in region)
+  MMD@1.0: 0.2757
+  Survival@1.0: 24.0%
+  Stopped@1.0:  10.0%
+      hyperbolic_paraboloid D= 11 N=100 seed=3042       K+S (latent): W2=1.309  E_Sig=0.1545  (4s)
+        Phase2 Epoch 40/200: loss=0.020424
+        Phase2 Epoch 80/200: loss=0.008992
+        Phase2 Epoch 120/200: loss=0.006283
+        Phase2 Epoch 160/200: loss=0.004008
+        Phase2 Epoch 200/200: loss=0.002135
+  MTE@0.1: 1.4181
+  MTE@0.5: 2.2562
+  MTE@1.0: 2.5194
+  W2@1.0:  1.9250
+  sW2@0.5: 1.4916 (56/200 in region)
+  sW2@1.0: 1.5101 (26/200 in region)
+  MMD@1.0: 0.2984
+  Survival@1.0: 30.0%
+  Stopped@1.0:  13.0%
+      hyperbolic_paraboloid D= 11 N=100 seed=4042      K+S (ambient): W2=1.925  E_Sig=0.0695  (4s)
+  MTE@0.1: 1.4167
+  MTE@0.5: 2.2443
+  MTE@1.0: 2.4995
+  W2@1.0:  1.9191
+  sW2@0.5: 1.4739 (56/200 in region)
+  sW2@1.0: 1.4607 (26/200 in region)
+  MMD@1.0: 0.2954
+  Survival@1.0: 30.0%
+  Stopped@1.0:  13.0%
+      hyperbolic_paraboloid D= 11 N=100 seed=4042       K+S (latent): W2=1.919  E_Sig=0.0649  (4s)
+
+Saved 40 rows
+
+=== Summary (median over seeds) ===
+
+paraboloid D=11 N=20:
+   ambient: W2=1.780  E_Sig=0.1331
+    latent: W2=1.561  E_Sig=0.1159
+  latent vs ambient: ΔW2=-12.3%  p=0.121
+  latent vs ambient: ΔE_Sig=-12.9%  p=0.018
+
+paraboloid D=11 N=100:
+   ambient: W2=1.618  E_Sig=0.0858
+    latent: W2=1.598  E_Sig=0.0557
+  latent vs ambient: ΔW2=-1.3%  p=0.251
+  latent vs ambient: ΔE_Sig=-35.2%  p=0.901
+
+hyperbolic_paraboloid D=11 N=20:
+   ambient: W2=1.415  E_Sig=0.0804
+    latent: W2=1.402  E_Sig=0.0562
+  latent vs ambient: ΔW2=-0.9%  p=0.467
+  latent vs ambient: ΔE_Sig=-30.2%  p=0.078
+
+hyperbolic_paraboloid D=11 N=100:
+   ambient: W2=1.377  E_Sig=0.0816
+    latent: W2=1.388  E_Sig=0.0649
+  latent vs ambient: ΔW2=+0.8%  p=0.236
+  latent vs ambient: ΔE_Sig=-20.4%  p=0.099

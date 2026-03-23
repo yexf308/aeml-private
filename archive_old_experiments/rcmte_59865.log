@@ -1,0 +1,4018 @@
+=== rcMTE comparison: baseline vs T+F, enc-pull vs dec-side ===
+Host: dgx11
+GPU: NVIDIA A100-SXM4-80GB
+Start: Thu Mar 12 01:47:19 PM EDT 2026
+
+Device: cuda
+D=11, N=20
+Seeds (10): [42, 1042, 2042, 3042, 4042, 5042, 6042, 7042, 8042, 9042]
+Surfaces: ['paraboloid', 'hyperbolic_paraboloid']
+
+
+============================================================
+  paraboloid | D=11 | seed=42
+============================================================
+
+  --- AE: baseline ---
+    E_mu=1.9107  E_Sigma=3.1635
+
+    Drift: enc-pull
+  Stage 2 epoch 100/300: loss=0.572178
+  Stage 2 epoch 200/300: loss=0.554293
+  Stage 2 epoch 300/300: loss=0.507301
+  Stage 3 epoch 100/300: loss=0.073847
+  Stage 3 epoch 200/300: loss=0.054728
+  Stage 3 epoch 300/300: loss=0.052340
+  rcMTE@0.1: 0.6076
+  rcMTE@0.5: 0.9437
+  rcMTE@1.0: 0.9136
+  MTE@0.1: 1.0056
+  MTE@0.5: 1.4193
+  MTE@1.0: 1.3665
+  W2@1.0:  0.9682
+  sW2@0.1: 0.4913 (292/500 in region)
+  sW2@0.2: 0.6276 (214/500 in region)
+  sW2@0.5: 0.7511 (97/500 in region)
+  sW2@1.0: 0.9263 (21/500 in region)
+  MMD@1.0: 0.3035
+  Survival@1.0: 28.0%
+  Stopped@1.0:  4.2%
+
+    Drift: dec-side
+  Stage 2 epoch 100/300: loss=0.068803
+  Stage 2 epoch 200/300: loss=0.057628
+  Stage 2 epoch 300/300: loss=0.043890
+  Stage 3 epoch 100/300: loss=0.073847
+  Stage 3 epoch 200/300: loss=0.054728
+  Stage 3 epoch 300/300: loss=0.052340
+  rcMTE@0.1: 0.6299
+  rcMTE@0.5: 1.1688
+  rcMTE@1.0: 1.4362
+  MTE@0.1: 1.0376
+  MTE@0.5: 1.7265
+  MTE@1.0: 2.0646
+  W2@1.0:  1.2646
+  sW2@0.1: 0.5796 (292/500 in region)
+  sW2@0.2: 0.7822 (214/500 in region)
+  sW2@0.5: 1.0111 (97/500 in region)
+  sW2@1.0: 1.4763 (21/500 in region)
+  MMD@1.0: 0.2674
+  Survival@1.0: 28.0%
+  Stopped@1.0:  4.2%
+
+  --- AE: T+F ---
+    E_mu=0.8798  E_Sigma=0.7426
+
+    Drift: enc-pull
+  Stage 2 epoch 100/300: loss=0.223046
+  Stage 2 epoch 200/300: loss=0.221228
+  Stage 2 epoch 300/300: loss=0.217950
+  Stage 3 epoch 100/300: loss=0.043835
+  Stage 3 epoch 200/300: loss=0.025671
+  Stage 3 epoch 300/300: loss=0.014254
+  rcMTE@0.1: 0.2449
+  rcMTE@0.5: 0.4862
+  rcMTE@1.0: 0.6554
+  MTE@0.1: 0.4531
+  MTE@0.5: 0.8198
+  MTE@1.0: 1.0717
+  W2@1.0:  0.7822
+  sW2@0.1: 0.2715 (292/500 in region)
+  sW2@0.2: 0.3163 (214/500 in region)
+  sW2@0.5: 0.5955 (97/500 in region)
+  sW2@1.0: 0.8637 (21/500 in region)
+  MMD@1.0: 0.3094
+  Survival@1.0: 28.0%
+  Stopped@1.0:  4.2%
+
+    Drift: dec-side
+  Stage 2 epoch 100/300: loss=0.028417
+  Stage 2 epoch 200/300: loss=0.022802
+  Stage 2 epoch 300/300: loss=0.011888
+  Stage 3 epoch 100/300: loss=0.043835
+  Stage 3 epoch 200/300: loss=0.025671
+  Stage 3 epoch 300/300: loss=0.014254
+  rcMTE@0.1: 0.2412
+  rcMTE@0.5: 0.5113
+  rcMTE@1.0: 0.7841
+  MTE@0.1: 0.4555
+  MTE@0.5: 0.9585
+  MTE@1.0: 1.4011
+  W2@1.0:  1.2441
+  sW2@0.1: 0.2836 (292/500 in region)
+  sW2@0.2: 0.3405 (214/500 in region)
+  sW2@0.5: 0.7046 (97/500 in region)
+  sW2@1.0: 1.1039 (21/500 in region)
+  MMD@1.0: 0.4208
+  Survival@1.0: 28.0%
+  Stopped@1.0:  4.2%
+
+============================================================
+  paraboloid | D=11 | seed=1042
+============================================================
+
+  --- AE: baseline ---
+    E_mu=4.3214  E_Sigma=4.8557
+
+    Drift: enc-pull
+  Stage 2 epoch 100/300: loss=0.889986
+  Stage 2 epoch 200/300: loss=0.846124
+  Stage 2 epoch 300/300: loss=0.830028
+  Stage 3 epoch 100/300: loss=0.127173
+  Stage 3 epoch 200/300: loss=0.105553
+  Stage 3 epoch 300/300: loss=0.088853
+  rcMTE@0.1: 0.5369
+  rcMTE@0.5: 0.8709
+  rcMTE@1.0: 0.8956
+  MTE@0.1: 0.9118
+  MTE@0.5: 1.3033
+  MTE@1.0: 1.3372
+  W2@1.0:  1.1122
+  sW2@0.1: 0.3907 (285/500 in region)
+  sW2@0.2: 0.4585 (204/500 in region)
+  sW2@0.5: 0.5144 (98/500 in region)
+  sW2@1.0: 0.7311 (31/500 in region)
+  MMD@1.0: 0.3900
+  Survival@1.0: 29.8%
+  Stopped@1.0:  6.2%
+
+    Drift: dec-side
+  Stage 2 epoch 100/300: loss=0.096271
+  Stage 2 epoch 200/300: loss=0.068420
+  Stage 2 epoch 300/300: loss=0.050279
+  Stage 3 epoch 100/300: loss=0.127173
+  Stage 3 epoch 200/300: loss=0.105553
+  Stage 3 epoch 300/300: loss=0.088853
+  rcMTE@0.1: 0.5606
+  rcMTE@0.5: 1.1452
+  rcMTE@1.0: 1.3440
+  MTE@0.1: 0.9581
+  MTE@0.5: 1.7380
+  MTE@1.0: 1.9618
+  W2@1.0:  1.3380
+  sW2@0.1: 0.5191 (285/500 in region)
+  sW2@0.2: 0.7495 (204/500 in region)
+  sW2@0.5: 1.0713 (98/500 in region)
+  sW2@1.0: 1.1903 (31/500 in region)
+  MMD@1.0: 0.2361
+  Survival@1.0: 29.8%
+  Stopped@1.0:  6.2%
+
+  --- AE: T+F ---
+    E_mu=0.3883  E_Sigma=0.5206
+
+    Drift: enc-pull
+  Stage 2 epoch 100/300: loss=0.139913
+  Stage 2 epoch 200/300: loss=0.132882
+  Stage 2 epoch 300/300: loss=0.132252
+  Stage 3 epoch 100/300: loss=0.027363
+  Stage 3 epoch 200/300: loss=0.022612
+  Stage 3 epoch 300/300: loss=0.013479
+  rcMTE@0.1: 0.5775
+  rcMTE@0.5: 1.0697
+  rcMTE@1.0: 1.1835
+  MTE@0.1: 0.9360
+  MTE@0.5: 1.5967
+  MTE@1.0: 1.6908
+  W2@1.0:  0.8062
+  sW2@0.1: 0.5055 (285/500 in region)
+  sW2@0.2: 0.7328 (204/500 in region)
+  sW2@0.5: 0.9327 (98/500 in region)
+  sW2@1.0: 1.0549 (31/500 in region)
+  MMD@1.0: 0.2224
+  Survival@1.0: 29.8%
+  Stopped@1.0:  6.2%
+
+    Drift: dec-side
+  Stage 2 epoch 100/300: loss=0.009264
+  Stage 2 epoch 200/300: loss=0.007456
+  Stage 2 epoch 300/300: loss=0.005937
+  Stage 3 epoch 100/300: loss=0.027363
+  Stage 3 epoch 200/300: loss=0.022612
+  Stage 3 epoch 300/300: loss=0.013479
+  rcMTE@0.1: 0.5852
+  rcMTE@0.5: 1.2201
+  rcMTE@1.0: 1.5300
+  MTE@0.1: 0.9605
+  MTE@0.5: 1.8963
+  MTE@1.0: 2.2845
+  W2@1.0:  1.6514
+  sW2@0.1: 0.5781 (285/500 in region)
+  sW2@0.2: 0.9023 (204/500 in region)
+  sW2@0.5: 1.3874 (98/500 in region)
+  sW2@1.0: 1.6100 (31/500 in region)
+  MMD@1.0: 0.3653
+  Survival@1.0: 29.8%
+  Stopped@1.0:  6.2%
+
+============================================================
+  paraboloid | D=11 | seed=2042
+============================================================
+
+  --- AE: baseline ---
+    E_mu=1.8715  E_Sigma=2.3751
+
+    Drift: enc-pull
+  Stage 2 epoch 100/300: loss=0.712099
+  Stage 2 epoch 200/300: loss=0.590438
+  Stage 2 epoch 300/300: loss=0.537603
+  Stage 3 epoch 100/300: loss=0.141146
+  Stage 3 epoch 200/300: loss=0.112097
+  Stage 3 epoch 300/300: loss=0.102023
+  rcMTE@0.1: 0.7993
+  rcMTE@0.5: 1.3572
+  rcMTE@1.0: 1.2831
+  MTE@0.1: 1.2792
+  MTE@0.5: 1.8689
+  MTE@1.0: 1.6610
+  W2@1.0:  0.6499
+  sW2@0.1: 0.6088 (293/500 in region)
+  sW2@0.2: 0.7635 (212/500 in region)
+  sW2@0.5: 0.8947 (88/500 in region)
+  sW2@1.0: 0.5649 (24/500 in region)
+  MMD@1.0: 0.1122
+  Survival@1.0: 26.6%
+  Stopped@1.0:  4.8%
+
+    Drift: dec-side
+  Stage 2 epoch 100/300: loss=0.040644
+  Stage 2 epoch 200/300: loss=0.037109
+  Stage 2 epoch 300/300: loss=0.032658
+  Stage 3 epoch 100/300: loss=0.141146
+  Stage 3 epoch 200/300: loss=0.112097
+  Stage 3 epoch 300/300: loss=0.102023
+  rcMTE@0.1: 0.8362
+  rcMTE@0.5: 1.6684
+  rcMTE@1.0: 1.8297
+  MTE@0.1: 1.3914
+  MTE@0.5: 2.5302
+  MTE@1.0: 2.7771
+  W2@1.0:  2.0467
+  sW2@0.1: 0.9338 (293/500 in region)
+  sW2@0.2: 1.3371 (212/500 in region)
+  sW2@0.5: 2.0578 (88/500 in region)
+  sW2@1.0: 2.7060 (24/500 in region)
+  MMD@1.0: 0.3858
+  Survival@1.0: 26.6%
+  Stopped@1.0:  4.8%
+
+  --- AE: T+F ---
+    E_mu=0.1822  E_Sigma=0.1364
+
+    Drift: enc-pull
+  Stage 2 epoch 100/300: loss=0.158099
+  Stage 2 epoch 200/300: loss=0.143569
+  Stage 2 epoch 300/300: loss=0.136360
+  Stage 3 epoch 100/300: loss=0.022239
+  Stage 3 epoch 200/300: loss=0.013788
+  Stage 3 epoch 300/300: loss=0.009325
+  rcMTE@0.1: 0.8321
+  rcMTE@0.5: 1.5706
+  rcMTE@1.0: 1.5535
+  MTE@0.1: 1.3549
+  MTE@0.5: 2.2744
+  MTE@1.0: 2.1197
+  W2@1.0:  1.3036
+  sW2@0.1: 0.8643 (293/500 in region)
+  sW2@0.2: 1.2227 (212/500 in region)
+  sW2@0.5: 1.6967 (88/500 in region)
+  sW2@1.0: 1.5334 (24/500 in region)
+  MMD@1.0: 0.3237
+  Survival@1.0: 26.6%
+  Stopped@1.0:  4.8%
+
+    Drift: dec-side
+  Stage 2 epoch 100/300: loss=0.008881
+  Stage 2 epoch 200/300: loss=0.006951
+  Stage 2 epoch 300/300: loss=0.005038
+  Stage 3 epoch 100/300: loss=0.022239
+  Stage 3 epoch 200/300: loss=0.013788
+  Stage 3 epoch 300/300: loss=0.009325
+  rcMTE@0.1: 0.8496
+  rcMTE@0.5: 1.7136
+  rcMTE@1.0: 1.8119
+  MTE@0.1: 1.4036
+  MTE@0.5: 2.6186
+  MTE@1.0: 2.7324
+  W2@1.0:  2.1441
+  sW2@0.1: 0.9763 (293/500 in region)
+  sW2@0.2: 1.4425 (212/500 in region)
+  sW2@0.5: 2.2396 (88/500 in region)
+  sW2@1.0: 2.6944 (24/500 in region)
+  MMD@1.0: 0.4406
+  Survival@1.0: 26.6%
+  Stopped@1.0:  4.8%
+
+============================================================
+  paraboloid | D=11 | seed=3042
+============================================================
+
+  --- AE: baseline ---
+    E_mu=1.7477  E_Sigma=1.9207
+
+    Drift: enc-pull
+  Stage 2 epoch 100/300: loss=0.834478
+  Stage 2 epoch 200/300: loss=0.750611
+  Stage 2 epoch 300/300: loss=0.637382
+  Stage 3 epoch 100/300: loss=0.168146
+  Stage 3 epoch 200/300: loss=0.150165
+  Stage 3 epoch 300/300: loss=0.144848
+  rcMTE@0.1: 0.4859
+  rcMTE@0.5: 0.8401
+  rcMTE@1.0: 1.0107
+  MTE@0.1: 0.8534
+  MTE@0.5: 1.2194
+  MTE@1.0: 1.3924
+  W2@1.0:  0.8251
+  sW2@0.1: 0.3808 (275/500 in region)
+  sW2@0.2: 0.4280 (204/500 in region)
+  sW2@0.5: 0.6483 (78/500 in region)
+  sW2@1.0: 1.0884 (25/500 in region)
+  MMD@1.0: 0.2292
+  Survival@1.0: 27.2%
+  Stopped@1.0:  5.0%
+
+    Drift: dec-side
+  Stage 2 epoch 100/300: loss=0.071867
+  Stage 2 epoch 200/300: loss=0.035494
+  Stage 2 epoch 300/300: loss=0.022944
+  Stage 3 epoch 100/300: loss=0.168146
+  Stage 3 epoch 200/300: loss=0.150165
+  Stage 3 epoch 300/300: loss=0.144848
+  rcMTE@0.1: 0.5140
+  rcMTE@0.5: 1.0847
+  rcMTE@1.0: 1.7088
+  MTE@0.1: 0.8948
+  MTE@0.5: 1.5733
+  MTE@1.0: 2.3782
+  W2@1.0:  1.7816
+  sW2@0.1: 0.5644 (275/500 in region)
+  sW2@0.2: 0.7092 (204/500 in region)
+  sW2@0.5: 1.2631 (78/500 in region)
+  sW2@1.0: 2.2105 (25/500 in region)
+  MMD@1.0: 0.3536
+  Survival@1.0: 27.2%
+  Stopped@1.0:  5.0%
+
+  --- AE: T+F ---
+    E_mu=0.1531  E_Sigma=0.1478
+
+    Drift: enc-pull
+  Stage 2 epoch 100/300: loss=0.155611
+  Stage 2 epoch 200/300: loss=0.144106
+  Stage 2 epoch 300/300: loss=0.129896
+  Stage 3 epoch 100/300: loss=0.067258
+  Stage 3 epoch 200/300: loss=0.057715
+  Stage 3 epoch 300/300: loss=0.044810
+  rcMTE@0.1: 0.4906
+  rcMTE@0.5: 0.8302
+  rcMTE@1.0: 1.0017
+  MTE@0.1: 0.8319
+  MTE@0.5: 1.2913
+  MTE@1.0: 1.5495
+  W2@1.0:  1.1824
+  sW2@0.1: 0.5092 (275/500 in region)
+  sW2@0.2: 0.5922 (204/500 in region)
+  sW2@0.5: 1.0690 (78/500 in region)
+  sW2@1.0: 1.6349 (25/500 in region)
+  MMD@1.0: 0.2983
+  Survival@1.0: 27.2%
+  Stopped@1.0:  5.0%
+
+    Drift: dec-side
+  Stage 2 epoch 100/300: loss=0.007068
+  Stage 2 epoch 200/300: loss=0.003842
+  Stage 2 epoch 300/300: loss=0.002652
+  Stage 3 epoch 100/300: loss=0.067258
+  Stage 3 epoch 200/300: loss=0.057715
+  Stage 3 epoch 300/300: loss=0.044810
+  rcMTE@0.1: 0.4997
+  rcMTE@0.5: 0.9461
+  rcMTE@1.0: 1.3218
+  MTE@0.1: 0.8526
+  MTE@0.5: 1.5335
+  MTE@1.0: 2.2322
+  W2@1.0:  2.0625
+  sW2@0.1: 0.5922 (275/500 in region)
+  sW2@0.2: 0.7466 (204/500 in region)
+  sW2@0.5: 1.4813 (78/500 in region)
+  sW2@1.0: 2.6812 (25/500 in region)
+  MMD@1.0: 0.4284
+  Survival@1.0: 27.2%
+  Stopped@1.0:  5.0%
+
+============================================================
+  paraboloid | D=11 | seed=4042
+============================================================
+
+  --- AE: baseline ---
+    E_mu=1.9254  E_Sigma=4.3061
+
+    Drift: enc-pull
+  Stage 2 epoch 100/300: loss=1.050346
+  Stage 2 epoch 200/300: loss=0.847881
+  Stage 2 epoch 300/300: loss=0.625267
+  Stage 3 epoch 100/300: loss=0.138640
+  Stage 3 epoch 200/300: loss=0.101078
+  Stage 3 epoch 300/300: loss=0.091392
+  rcMTE@0.1: 0.6429
+  rcMTE@0.5: 0.9995
+  rcMTE@1.0: 1.0259
+  MTE@0.1: 1.0220
+  MTE@0.5: 1.3768
+  MTE@1.0: 1.3444
+  W2@1.0:  0.4727
+  sW2@0.1: 0.3614 (287/500 in region)
+  sW2@0.2: 0.4961 (207/500 in region)
+  sW2@0.5: 0.5695 (102/500 in region)
+  sW2@1.0: 0.6706 (30/500 in region)
+  MMD@1.0: 0.1664
+  Survival@1.0: 28.2%
+  Stopped@1.0:  6.0%
+
+    Drift: dec-side
+  Stage 2 epoch 100/300: loss=0.272233
+  Stage 2 epoch 200/300: loss=0.039525
+  Stage 2 epoch 300/300: loss=0.016617
+  Stage 3 epoch 100/300: loss=0.138640
+  Stage 3 epoch 200/300: loss=0.101078
+  Stage 3 epoch 300/300: loss=0.091392
+  rcMTE@0.1: 0.6813
+  rcMTE@0.5: 1.3038
+  rcMTE@1.0: 1.7868
+  MTE@0.1: 1.0839
+  MTE@0.5: 1.8674
+  MTE@1.0: 2.5205
+  W2@1.0:  2.0018
+  sW2@0.1: 0.5767 (287/500 in region)
+  sW2@0.2: 0.8459 (207/500 in region)
+  sW2@0.5: 1.3563 (102/500 in region)
+  sW2@1.0: 1.8867 (30/500 in region)
+  MMD@1.0: 0.3854
+  Survival@1.0: 28.2%
+  Stopped@1.0:  6.0%
+
+  --- AE: T+F ---
+    E_mu=0.4286  E_Sigma=0.6807
+
+    Drift: enc-pull
+  Stage 2 epoch 100/300: loss=0.389821
+  Stage 2 epoch 200/300: loss=0.351857
+  Stage 2 epoch 300/300: loss=0.291842
+  Stage 3 epoch 100/300: loss=0.101719
+  Stage 3 epoch 200/300: loss=0.051202
+  Stage 3 epoch 300/300: loss=0.045675
+  rcMTE@0.1: 0.4969
+  rcMTE@0.5: 0.9608
+  rcMTE@1.0: 1.2476
+  MTE@0.1: 0.7978
+  MTE@0.5: 1.4239
+  MTE@1.0: 1.8665
+  W2@1.0:  1.6744
+  sW2@0.1: 0.4353 (287/500 in region)
+  sW2@0.2: 0.6169 (207/500 in region)
+  sW2@0.5: 1.1241 (102/500 in region)
+  sW2@1.0: 2.3301 (30/500 in region)
+  MMD@1.0: 0.3505
+  Survival@1.0: 28.2%
+  Stopped@1.0:  6.0%
+
+    Drift: dec-side
+  Stage 2 epoch 100/300: loss=0.062376
+  Stage 2 epoch 200/300: loss=0.025827
+  Stage 2 epoch 300/300: loss=0.007001
+  Stage 3 epoch 100/300: loss=0.101719
+  Stage 3 epoch 200/300: loss=0.051202
+  Stage 3 epoch 300/300: loss=0.045675
+  rcMTE@0.1: 0.5137
+  rcMTE@0.5: 1.0736
+  rcMTE@1.0: 1.4004
+  MTE@0.1: 0.8278
+  MTE@0.5: 1.6564
+  MTE@1.0: 2.2868
+  W2@1.0:  2.0800
+  sW2@0.1: 0.4798 (287/500 in region)
+  sW2@0.2: 0.7253 (207/500 in region)
+  sW2@0.5: 1.3757 (102/500 in region)
+  sW2@1.0: 2.8104 (30/500 in region)
+  MMD@1.0: 0.4317
+  Survival@1.0: 28.2%
+  Stopped@1.0:  6.0%
+
+============================================================
+  paraboloid | D=11 | seed=5042
+============================================================
+
+  --- AE: baseline ---
+    E_mu=1.9575  E_Sigma=2.3940
+
+    Drift: enc-pull
+  Stage 2 epoch 100/300: loss=0.644239
+  Stage 2 epoch 200/300: loss=0.500193
+  Stage 2 epoch 300/300: loss=0.377705
+  Stage 3 epoch 100/300: loss=0.130238
+  Stage 3 epoch 200/300: loss=0.086472
+  Stage 3 epoch 300/300: loss=0.066652
+  rcMTE@0.1: 0.7855
+  rcMTE@0.5: 1.2729
+  rcMTE@1.0: 1.1827
+  MTE@0.1: 1.2278
+  MTE@0.5: 1.7096
+  MTE@1.0: 1.5407
+  W2@1.0:  0.5158
+  sW2@0.1: 0.4626 (285/500 in region)
+  sW2@0.2: 0.5512 (216/500 in region)
+  sW2@0.5: 0.5348 (93/500 in region)
+  sW2@1.0: 0.7747 (33/500 in region)
+  MMD@1.0: 0.1469
+  Survival@1.0: 25.8%
+  Stopped@1.0:  6.6%
+
+    Drift: dec-side
+  Stage 2 epoch 100/300: loss=0.168204
+  Stage 2 epoch 200/300: loss=0.065355
+  Stage 2 epoch 300/300: loss=0.022720
+  Stage 3 epoch 100/300: loss=0.130238
+  Stage 3 epoch 200/300: loss=0.086472
+  Stage 3 epoch 300/300: loss=0.066652
+  rcMTE@0.1: 0.8502
+  rcMTE@0.5: 1.7078
+  rcMTE@1.0: 2.0751
+  MTE@0.1: 1.3528
+  MTE@0.5: 2.4486
+  MTE@1.0: 3.0812
+  W2@1.0:  2.5162
+  sW2@0.1: 0.8081 (285/500 in region)
+  sW2@0.2: 1.2042 (216/500 in region)
+  sW2@0.5: 1.8755 (93/500 in region)
+  sW2@1.0: 2.5636 (33/500 in region)
+  MMD@1.0: 0.4739
+  Survival@1.0: 25.8%
+  Stopped@1.0:  6.6%
+
+  --- AE: T+F ---
+    E_mu=0.3291  E_Sigma=0.4415
+
+    Drift: enc-pull
+  Stage 2 epoch 100/300: loss=0.198561
+  Stage 2 epoch 200/300: loss=0.174478
+  Stage 2 epoch 300/300: loss=0.151728
+  Stage 3 epoch 100/300: loss=0.047559
+  Stage 3 epoch 200/300: loss=0.015922
+  Stage 3 epoch 300/300: loss=0.011261
+  rcMTE@0.1: 0.8195
+  rcMTE@0.5: 1.4094
+  rcMTE@1.0: 1.3704
+  MTE@0.1: 1.2963
+  MTE@0.5: 1.9309
+  MTE@1.0: 1.8140
+  W2@1.0:  0.8997
+  sW2@0.1: 0.6831 (285/500 in region)
+  sW2@0.2: 0.8843 (216/500 in region)
+  sW2@0.5: 0.9673 (93/500 in region)
+  sW2@1.0: 1.1676 (33/500 in region)
+  MMD@1.0: 0.2851
+  Survival@1.0: 25.8%
+  Stopped@1.0:  6.6%
+
+    Drift: dec-side
+  Stage 2 epoch 100/300: loss=0.024456
+  Stage 2 epoch 200/300: loss=0.008805
+  Stage 2 epoch 300/300: loss=0.004075
+  Stage 3 epoch 100/300: loss=0.047559
+  Stage 3 epoch 200/300: loss=0.015922
+  Stage 3 epoch 300/300: loss=0.011261
+  rcMTE@0.1: 0.8545
+  rcMTE@0.5: 1.6796
+  rcMTE@1.0: 1.9083
+  MTE@0.1: 1.3729
+  MTE@0.5: 2.3973
+  MTE@1.0: 2.7809
+  W2@1.0:  2.1857
+  sW2@0.1: 0.8862 (285/500 in region)
+  sW2@0.2: 1.2807 (216/500 in region)
+  sW2@0.5: 1.7910 (93/500 in region)
+  sW2@1.0: 2.2209 (33/500 in region)
+  MMD@1.0: 0.4760
+  Survival@1.0: 25.8%
+  Stopped@1.0:  6.6%
+
+============================================================
+  paraboloid | D=11 | seed=6042
+============================================================
+
+  --- AE: baseline ---
+    E_mu=2.8725  E_Sigma=9.5000
+
+    Drift: enc-pull
+  Stage 2 epoch 100/300: loss=0.457953
+  Stage 2 epoch 200/300: loss=0.399321
+  Stage 2 epoch 300/300: loss=0.356573
+  Stage 3 epoch 100/300: loss=0.123734
+  Stage 3 epoch 200/300: loss=0.112465
+  Stage 3 epoch 300/300: loss=0.106149
+  rcMTE@0.1: 0.5317
+  rcMTE@0.5: 0.8615
+  rcMTE@1.0: 0.9324
+  MTE@0.1: 0.8326
+  MTE@0.5: 1.2601
+  MTE@1.0: 1.3056
+  W2@1.0:  1.0503
+  sW2@0.1: 0.4510 (290/500 in region)
+  sW2@0.2: 0.5305 (208/500 in region)
+  sW2@0.5: 0.6742 (89/500 in region)
+  sW2@1.0: 0.8948 (30/500 in region)
+  MMD@1.0: 0.3399
+  Survival@1.0: 27.2%
+  Stopped@1.0:  6.0%
+
+    Drift: dec-side
+  Stage 2 epoch 100/300: loss=0.070562
+  Stage 2 epoch 200/300: loss=0.037674
+  Stage 2 epoch 300/300: loss=0.017435
+  Stage 3 epoch 100/300: loss=0.123734
+  Stage 3 epoch 200/300: loss=0.112465
+  Stage 3 epoch 300/300: loss=0.106149
+  rcMTE@0.1: 0.5222
+  rcMTE@0.5: 1.1458
+  rcMTE@1.0: 1.5429
+  MTE@0.1: 0.8431
+  MTE@0.5: 1.6825
+  MTE@1.0: 2.1367
+  W2@1.0:  1.7197
+  sW2@0.1: 0.4322 (290/500 in region)
+  sW2@0.2: 0.5953 (208/500 in region)
+  sW2@0.5: 0.9264 (89/500 in region)
+  sW2@1.0: 1.6650 (30/500 in region)
+  MMD@1.0: 0.3615
+  Survival@1.0: 27.2%
+  Stopped@1.0:  6.0%
+
+  --- AE: T+F ---
+    E_mu=0.3636  E_Sigma=0.2886
+
+    Drift: enc-pull
+  Stage 2 epoch 100/300: loss=0.074136
+  Stage 2 epoch 200/300: loss=0.069047
+  Stage 2 epoch 300/300: loss=0.055700
+  Stage 3 epoch 100/300: loss=0.029990
+  Stage 3 epoch 200/300: loss=0.019577
+  Stage 3 epoch 300/300: loss=0.016756
+  rcMTE@0.1: 0.4212
+  rcMTE@0.5: 0.7020
+  rcMTE@1.0: 0.7128
+  MTE@0.1: 0.6768
+  MTE@0.5: 1.0777
+  MTE@1.0: 1.0669
+  W2@1.0:  0.7736
+  sW2@0.1: 0.3194 (290/500 in region)
+  sW2@0.2: 0.3810 (208/500 in region)
+  sW2@0.5: 0.4442 (89/500 in region)
+  sW2@1.0: 0.7210 (30/500 in region)
+  MMD@1.0: 0.2588
+  Survival@1.0: 27.2%
+  Stopped@1.0:  6.0%
+
+    Drift: dec-side
+  Stage 2 epoch 100/300: loss=0.008310
+  Stage 2 epoch 200/300: loss=0.006996
+  Stage 2 epoch 300/300: loss=0.005989
+  Stage 3 epoch 100/300: loss=0.029990
+  Stage 3 epoch 200/300: loss=0.019577
+  Stage 3 epoch 300/300: loss=0.016756
+  rcMTE@0.1: 0.4232
+  rcMTE@0.5: 0.7844
+  rcMTE@1.0: 0.8521
+  MTE@0.1: 0.6791
+  MTE@0.5: 1.2152
+  MTE@1.0: 1.2949
+  W2@1.0:  0.8474
+  sW2@0.1: 0.3232 (290/500 in region)
+  sW2@0.2: 0.4165 (208/500 in region)
+  sW2@0.5: 0.5259 (89/500 in region)
+  sW2@1.0: 0.7998 (30/500 in region)
+  MMD@1.0: 0.3242
+  Survival@1.0: 27.2%
+  Stopped@1.0:  6.0%
+
+============================================================
+  paraboloid | D=11 | seed=7042
+============================================================
+
+  --- AE: baseline ---
+    E_mu=1.5091  E_Sigma=2.6716
+
+    Drift: enc-pull
+  Stage 2 epoch 100/300: loss=2.054101
+  Stage 2 epoch 200/300: loss=1.679497
+  Stage 2 epoch 300/300: loss=1.760424
+  Stage 3 epoch 100/300: loss=0.329400
+  Stage 3 epoch 200/300: loss=0.301826
+  Stage 3 epoch 300/300: loss=0.281666
+  rcMTE@0.1: 0.5286
+  rcMTE@0.5: 0.8953
+  rcMTE@1.0: 0.9845
+  MTE@0.1: 0.8807
+  MTE@0.5: 1.3074
+  MTE@1.0: 1.4203
+  W2@1.0:  0.6467
+  sW2@0.1: 0.4420 (316/500 in region)
+  sW2@0.2: 0.4671 (232/500 in region)
+  sW2@0.5: 0.3686 (109/500 in region)
+  sW2@1.0: 0.5622 (29/500 in region)
+  MMD@1.0: 0.0958
+  Survival@1.0: 28.8%
+  Stopped@1.0:  5.8%
+
+    Drift: dec-side
+  Stage 2 epoch 100/300: loss=0.373412
+  Stage 2 epoch 200/300: loss=0.106506
+  Stage 2 epoch 300/300: loss=0.033825
+  Stage 3 epoch 100/300: loss=0.329400
+  Stage 3 epoch 200/300: loss=0.301826
+  Stage 3 epoch 300/300: loss=0.281666
+  rcMTE@0.1: 0.5876
+  rcMTE@0.5: 1.3471
+  rcMTE@1.0: 1.7368
+  MTE@0.1: 0.9623
+  MTE@0.5: 1.8607
+  MTE@1.0: 2.3027
+  W2@1.0:  1.7242
+  sW2@0.1: 0.7483 (316/500 in region)
+  sW2@0.2: 1.1337 (232/500 in region)
+  sW2@0.5: 1.4817 (109/500 in region)
+  sW2@1.0: 1.4911 (29/500 in region)
+  MMD@1.0: 0.3842
+  Survival@1.0: 28.8%
+  Stopped@1.0:  5.8%
+
+  --- AE: T+F ---
+    E_mu=0.1908  E_Sigma=0.3101
+
+    Drift: enc-pull
+  Stage 2 epoch 100/300: loss=0.299307
+  Stage 2 epoch 200/300: loss=0.283433
+  Stage 2 epoch 300/300: loss=0.270040
+  Stage 3 epoch 100/300: loss=0.054453
+  Stage 3 epoch 200/300: loss=0.044169
+  Stage 3 epoch 300/300: loss=0.037441
+  rcMTE@0.1: 0.5469
+  rcMTE@0.5: 1.0533
+  rcMTE@1.0: 1.1722
+  MTE@0.1: 0.9230
+  MTE@0.5: 1.5523
+  MTE@1.0: 1.6752
+  W2@1.0:  0.8056
+  sW2@0.1: 0.6660 (316/500 in region)
+  sW2@0.2: 0.9213 (232/500 in region)
+  sW2@0.5: 0.9188 (109/500 in region)
+  sW2@1.0: 0.8648 (29/500 in region)
+  MMD@1.0: 0.3013
+  Survival@1.0: 28.8%
+  Stopped@1.0:  5.8%
+
+    Drift: dec-side
+  Stage 2 epoch 100/300: loss=0.033314
+  Stage 2 epoch 200/300: loss=0.024538
+  Stage 2 epoch 300/300: loss=0.012589
+  Stage 3 epoch 100/300: loss=0.054453
+  Stage 3 epoch 200/300: loss=0.044169
+  Stage 3 epoch 300/300: loss=0.037441
+  rcMTE@0.1: 0.5570
+  rcMTE@0.5: 1.1500
+  rcMTE@1.0: 1.3841
+  MTE@0.1: 0.9422
+  MTE@0.5: 1.7491
+  MTE@1.0: 2.1071
+  W2@1.0:  1.4019
+  sW2@0.1: 0.7219 (316/500 in region)
+  sW2@0.2: 1.0646 (232/500 in region)
+  sW2@0.5: 1.2802 (109/500 in region)
+  sW2@1.0: 1.3691 (29/500 in region)
+  MMD@1.0: 0.4029
+  Survival@1.0: 28.8%
+  Stopped@1.0:  5.8%
+
+============================================================
+  paraboloid | D=11 | seed=8042
+============================================================
+
+  --- AE: baseline ---
+    E_mu=3.4693  E_Sigma=12.6826
+
+    Drift: enc-pull
+  Stage 2 epoch 100/300: loss=1.140784
+  Stage 2 epoch 200/300: loss=0.751225
+  Stage 2 epoch 300/300: loss=0.576957
+  Stage 3 epoch 100/300: loss=0.550194
+  Stage 3 epoch 200/300: loss=0.499195
+  Stage 3 epoch 300/300: loss=0.484179
+  rcMTE@0.1: 0.5623
+  rcMTE@0.5: 0.9528
+  rcMTE@1.0: 1.0535
+  MTE@0.1: 0.8998
+  MTE@0.5: 1.2660
+  MTE@1.0: 1.3807
+  W2@1.0:  0.7830
+  sW2@0.1: 0.4803 (269/500 in region)
+  sW2@0.2: 0.4504 (192/500 in region)
+  sW2@0.5: 0.5931 (84/500 in region)
+  sW2@1.0: 0.7320 (29/500 in region)
+  MMD@1.0: 0.1265
+  Survival@1.0: 27.0%
+  Stopped@1.0:  5.8%
+
+    Drift: dec-side
+  Stage 2 epoch 100/300: loss=0.103496
+  Stage 2 epoch 200/300: loss=0.041631
+  Stage 2 epoch 300/300: loss=0.032630
+  Stage 3 epoch 100/300: loss=0.550194
+  Stage 3 epoch 200/300: loss=0.499195
+  Stage 3 epoch 300/300: loss=0.484179
+  rcMTE@0.1: 0.5876
+  rcMTE@0.5: 1.3697
+  rcMTE@1.0: 2.0060
+  MTE@0.1: 0.9342
+  MTE@0.5: 1.8688
+  MTE@1.0: 2.6994
+  W2@1.0:  1.9509
+  sW2@0.1: 0.5899 (269/500 in region)
+  sW2@0.2: 0.6790 (192/500 in region)
+  sW2@0.5: 1.2172 (84/500 in region)
+  sW2@1.0: 1.8181 (29/500 in region)
+  MMD@1.0: 0.3644
+  Survival@1.0: 27.0%
+  Stopped@1.0:  5.8%
+
+  --- AE: T+F ---
+    E_mu=0.2905  E_Sigma=0.4359
+
+    Drift: enc-pull
+  Stage 2 epoch 100/300: loss=2.278682
+  Stage 2 epoch 200/300: loss=2.027099
+  Stage 2 epoch 300/300: loss=1.980720
+  Stage 3 epoch 100/300: loss=0.065388
+  Stage 3 epoch 200/300: loss=0.058238
+  Stage 3 epoch 300/300: loss=0.053050
+  rcMTE@0.1: 0.4270
+  rcMTE@0.5: 0.7813
+  rcMTE@1.0: 0.8742
+  MTE@0.1: 0.7471
+  MTE@0.5: 1.1997
+  MTE@1.0: 1.3315
+  W2@1.0:  0.8627
+  sW2@0.1: 0.4441 (269/500 in region)
+  sW2@0.2: 0.5541 (192/500 in region)
+  sW2@0.5: 0.9731 (84/500 in region)
+  sW2@1.0: 1.6547 (29/500 in region)
+  MMD@1.0: 0.1868
+  Survival@1.0: 27.0%
+  Stopped@1.0:  5.8%
+
+    Drift: dec-side
+  Stage 2 epoch 100/300: loss=0.033494
+  Stage 2 epoch 200/300: loss=0.015469
+  Stage 2 epoch 300/300: loss=0.009956
+  Stage 3 epoch 100/300: loss=0.065388
+  Stage 3 epoch 200/300: loss=0.058238
+  Stage 3 epoch 300/300: loss=0.053050
+  rcMTE@0.1: 0.4408
+  rcMTE@0.5: 0.8841
+  rcMTE@1.0: 1.0186
+  MTE@0.1: 0.7718
+  MTE@0.5: 1.3931
+  MTE@1.0: 1.5355
+  W2@1.0:  1.0008
+  sW2@0.1: 0.5416 (269/500 in region)
+  sW2@0.2: 0.6820 (192/500 in region)
+  sW2@0.5: 1.3160 (84/500 in region)
+  sW2@1.0: 2.0088 (29/500 in region)
+  MMD@1.0: 0.2536
+  Survival@1.0: 27.0%
+  Stopped@1.0:  5.8%
+
+============================================================
+  paraboloid | D=11 | seed=9042
+============================================================
+
+  --- AE: baseline ---
+    E_mu=1.9858  E_Sigma=4.4374
+
+    Drift: enc-pull
+  Stage 2 epoch 100/300: loss=0.941130
+  Stage 2 epoch 200/300: loss=0.513074
+  Stage 2 epoch 300/300: loss=0.400211
+  Stage 3 epoch 100/300: loss=0.110596
+  Stage 3 epoch 200/300: loss=0.094288
+  Stage 3 epoch 300/300: loss=0.090262
+  rcMTE@0.1: 0.5463
+  rcMTE@0.5: 0.8056
+  rcMTE@1.0: 0.8056
+  MTE@0.1: 0.9597
+  MTE@0.5: 1.2234
+  MTE@1.0: 1.2119
+  W2@1.0:  0.8290
+  sW2@0.1: 0.5872 (280/500 in region)
+  sW2@0.2: 0.7155 (205/500 in region)
+  sW2@0.5: 0.8202 (85/500 in region)
+  sW2@1.0: 0.5668 (22/500 in region)
+  MMD@1.0: 0.2340
+  Survival@1.0: 28.2%
+  Stopped@1.0:  4.4%
+
+    Drift: dec-side
+  Stage 2 epoch 100/300: loss=0.074073
+  Stage 2 epoch 200/300: loss=0.049777
+  Stage 2 epoch 300/300: loss=0.026023
+  Stage 3 epoch 100/300: loss=0.110596
+  Stage 3 epoch 200/300: loss=0.094288
+  Stage 3 epoch 300/300: loss=0.090262
+  rcMTE@0.1: 0.5541
+  rcMTE@0.5: 1.0157
+  rcMTE@1.0: 1.3026
+  MTE@0.1: 0.9886
+  MTE@0.5: 1.6372
+  MTE@1.0: 2.0875
+  W2@1.0:  1.7210
+  sW2@0.1: 0.7366 (280/500 in region)
+  sW2@0.2: 1.1164 (205/500 in region)
+  sW2@0.5: 1.6674 (85/500 in region)
+  sW2@1.0: 1.7400 (22/500 in region)
+  MMD@1.0: 0.3324
+  Survival@1.0: 28.2%
+  Stopped@1.0:  4.4%
+
+  --- AE: T+F ---
+    E_mu=0.2835  E_Sigma=0.3230
+
+    Drift: enc-pull
+  Stage 2 epoch 100/300: loss=0.547567
+  Stage 2 epoch 200/300: loss=0.375077
+  Stage 2 epoch 300/300: loss=0.235136
+  Stage 3 epoch 100/300: loss=0.044297
+  Stage 3 epoch 200/300: loss=0.029580
+  Stage 3 epoch 300/300: loss=0.023657
+  rcMTE@0.1: 0.2437
+  rcMTE@0.5: 0.4635
+  rcMTE@1.0: 0.6271
+  MTE@0.1: 0.4350
+  MTE@0.5: 0.7539
+  MTE@1.0: 1.0215
+  W2@1.0:  0.7969
+  sW2@0.1: 0.3439 (280/500 in region)
+  sW2@0.2: 0.2801 (205/500 in region)
+  sW2@0.5: 0.4059 (85/500 in region)
+  sW2@1.0: 0.5830 (22/500 in region)
+  MMD@1.0: 0.3031
+  Survival@1.0: 28.2%
+  Stopped@1.0:  4.4%
+
+    Drift: dec-side
+  Stage 2 epoch 100/300: loss=0.028254
+  Stage 2 epoch 200/300: loss=0.014359
+  Stage 2 epoch 300/300: loss=0.004390
+  Stage 3 epoch 100/300: loss=0.044297
+  Stage 3 epoch 200/300: loss=0.029580
+  Stage 3 epoch 300/300: loss=0.023657
+  rcMTE@0.1: 0.2361
+  rcMTE@0.5: 0.4798
+  rcMTE@1.0: 0.7890
+  MTE@0.1: 0.4435
+  MTE@0.5: 0.8920
+  MTE@1.0: 1.5192
+  W2@1.0:  1.6519
+  sW2@0.1: 0.4519 (280/500 in region)
+  sW2@0.2: 0.4982 (205/500 in region)
+  sW2@0.5: 0.7444 (85/500 in region)
+  sW2@1.0: 1.0356 (22/500 in region)
+  MMD@1.0: 0.3914
+  Survival@1.0: 28.2%
+  Stopped@1.0:  4.4%
+
+============================================================
+  hyperbolic_paraboloid | D=11 | seed=42
+============================================================
+
+  --- AE: baseline ---
+    E_mu=1.4941  E_Sigma=1.8200
+
+    Drift: enc-pull
+  Stage 2 epoch 100/300: loss=0.346181
+  Stage 2 epoch 200/300: loss=0.308933
+  Stage 2 epoch 300/300: loss=0.281607
+  Stage 3 epoch 100/300: loss=0.135096
+  Stage 3 epoch 200/300: loss=0.115721
+  Stage 3 epoch 300/300: loss=0.099897
+  rcMTE@0.1: 0.5135
+  rcMTE@0.5: 0.8327
+  rcMTE@1.0: 0.8783
+  MTE@0.1: 0.8471
+  MTE@0.5: 1.2805
+  MTE@1.0: 1.2937
+  W2@1.0:  0.8264
+  sW2@0.1: 0.3426 (292/500 in region)
+  sW2@0.2: 0.4381 (214/500 in region)
+  sW2@0.5: 0.5827 (97/500 in region)
+  sW2@1.0: 1.0242 (21/500 in region)
+  MMD@1.0: 0.1985
+  Survival@1.0: 28.0%
+  Stopped@1.0:  4.2%
+
+    Drift: dec-side
+  Stage 2 epoch 100/300: loss=0.064243
+  Stage 2 epoch 200/300: loss=0.049855
+  Stage 2 epoch 300/300: loss=0.028992
+  Stage 3 epoch 100/300: loss=0.135096
+  Stage 3 epoch 200/300: loss=0.115721
+  Stage 3 epoch 300/300: loss=0.099897
+  rcMTE@0.1: 0.5388
+  rcMTE@0.5: 1.1728
+  rcMTE@1.0: 1.5891
+  MTE@0.1: 0.8936
+  MTE@0.5: 1.8356
+  MTE@1.0: 2.2775
+  W2@1.0:  1.6902
+  sW2@0.1: 0.4375 (292/500 in region)
+  sW2@0.2: 0.6266 (214/500 in region)
+  sW2@0.5: 1.1275 (97/500 in region)
+  sW2@1.0: 2.1216 (21/500 in region)
+  MMD@1.0: 0.3463
+  Survival@1.0: 28.0%
+  Stopped@1.0:  4.2%
+
+  --- AE: T+F ---
+    E_mu=0.1320  E_Sigma=0.2031
+
+    Drift: enc-pull
+  Stage 2 epoch 100/300: loss=0.179045
+  Stage 2 epoch 200/300: loss=0.150097
+  Stage 2 epoch 300/300: loss=0.132560
+  Stage 3 epoch 100/300: loss=0.012078
+  Stage 3 epoch 200/300: loss=0.006898
+  Stage 3 epoch 300/300: loss=0.005743
+  rcMTE@0.1: 0.5805
+  rcMTE@0.5: 1.0829
+  rcMTE@1.0: 1.1553
+  MTE@0.1: 0.9157
+  MTE@0.5: 1.6538
+  MTE@1.0: 1.7173
+  W2@1.0:  0.8998
+  sW2@0.1: 0.4375 (292/500 in region)
+  sW2@0.2: 0.5502 (214/500 in region)
+  sW2@0.5: 0.7279 (97/500 in region)
+  sW2@1.0: 0.5745 (21/500 in region)
+  MMD@1.0: 0.2799
+  Survival@1.0: 28.0%
+  Stopped@1.0:  4.2%
+
+    Drift: dec-side
+  Stage 2 epoch 100/300: loss=0.022503
+  Stage 2 epoch 200/300: loss=0.012593
+  Stage 2 epoch 300/300: loss=0.004434
+  Stage 3 epoch 100/300: loss=0.012078
+  Stage 3 epoch 200/300: loss=0.006898
+  Stage 3 epoch 300/300: loss=0.005743
+  rcMTE@0.1: 0.5911
+  rcMTE@0.5: 1.1931
+  rcMTE@1.0: 1.4971
+  MTE@0.1: 0.9366
+  MTE@0.5: 1.8457
+  MTE@1.0: 2.2257
+  W2@1.0:  1.4768
+  sW2@0.1: 0.4723 (292/500 in region)
+  sW2@0.2: 0.6363 (214/500 in region)
+  sW2@0.5: 1.0025 (97/500 in region)
+  sW2@1.0: 1.2946 (21/500 in region)
+  MMD@1.0: 0.3536
+  Survival@1.0: 28.0%
+  Stopped@1.0:  4.2%
+
+============================================================
+  hyperbolic_paraboloid | D=11 | seed=1042
+============================================================
+
+  --- AE: baseline ---
+    E_mu=1.5255  E_Sigma=2.4347
+
+    Drift: enc-pull
+  Stage 2 epoch 100/300: loss=0.483516
+  Stage 2 epoch 200/300: loss=0.449456
+  Stage 2 epoch 300/300: loss=0.434869
+  Stage 3 epoch 100/300: loss=0.056911
+  Stage 3 epoch 200/300: loss=0.053111
+  Stage 3 epoch 300/300: loss=0.049611
+  rcMTE@0.1: 0.1922
+  rcMTE@0.5: 0.3790
+  rcMTE@1.0: 0.4324
+  MTE@0.1: 0.3703
+  MTE@0.5: 0.6616
+  MTE@1.0: 0.7408
+  W2@1.0:  0.4830
+  sW2@0.1: 0.2049 (285/500 in region)
+  sW2@0.2: 0.2220 (204/500 in region)
+  sW2@0.5: 0.2789 (98/500 in region)
+  sW2@1.0: 0.3878 (31/500 in region)
+  MMD@1.0: 0.1607
+  Survival@1.0: 29.8%
+  Stopped@1.0:  6.2%
+
+    Drift: dec-side
+  Stage 2 epoch 100/300: loss=0.028377
+  Stage 2 epoch 200/300: loss=0.016739
+  Stage 2 epoch 300/300: loss=0.012501
+  Stage 3 epoch 100/300: loss=0.056911
+  Stage 3 epoch 200/300: loss=0.053111
+  Stage 3 epoch 300/300: loss=0.049611
+  rcMTE@0.1: 0.1764
+  rcMTE@0.5: 0.4173
+  rcMTE@1.0: 0.6389
+  MTE@0.1: 0.3548
+  MTE@0.5: 0.7432
+  MTE@1.0: 1.0718
+  W2@1.0:  0.8383
+  sW2@0.1: 0.2252 (285/500 in region)
+  sW2@0.2: 0.3099 (204/500 in region)
+  sW2@0.5: 0.5184 (98/500 in region)
+  sW2@1.0: 0.8780 (31/500 in region)
+  MMD@1.0: 0.2642
+  Survival@1.0: 29.8%
+  Stopped@1.0:  6.2%
+
+  --- AE: T+F ---
+    E_mu=0.1331  E_Sigma=0.1415
+
+    Drift: enc-pull
+  Stage 2 epoch 100/300: loss=0.145074
+  Stage 2 epoch 200/300: loss=0.134598
+  Stage 2 epoch 300/300: loss=0.131372
+  Stage 3 epoch 100/300: loss=0.013103
+  Stage 3 epoch 200/300: loss=0.006148
+  Stage 3 epoch 300/300: loss=0.003342
+  rcMTE@0.1: 0.5516
+  rcMTE@0.5: 1.0300
+  rcMTE@1.0: 1.1528
+  MTE@0.1: 0.9417
+  MTE@0.5: 1.5917
+  MTE@1.0: 1.7125
+  W2@1.0:  0.8839
+  sW2@0.1: 0.4944 (285/500 in region)
+  sW2@0.2: 0.6888 (204/500 in region)
+  sW2@0.5: 0.7936 (98/500 in region)
+  sW2@1.0: 1.0226 (31/500 in region)
+  MMD@1.0: 0.2254
+  Survival@1.0: 29.8%
+  Stopped@1.0:  6.2%
+
+    Drift: dec-side
+  Stage 2 epoch 100/300: loss=0.012453
+  Stage 2 epoch 200/300: loss=0.009137
+  Stage 2 epoch 300/300: loss=0.004976
+  Stage 3 epoch 100/300: loss=0.013103
+  Stage 3 epoch 200/300: loss=0.006148
+  Stage 3 epoch 300/300: loss=0.003342
+  rcMTE@0.1: 0.5548
+  rcMTE@0.5: 1.0917
+  rcMTE@1.0: 1.2824
+  MTE@0.1: 0.9561
+  MTE@0.5: 1.7488
+  MTE@1.0: 1.9513
+  W2@1.0:  1.1439
+  sW2@0.1: 0.5163 (285/500 in region)
+  sW2@0.2: 0.7583 (204/500 in region)
+  sW2@0.5: 0.9288 (98/500 in region)
+  sW2@1.0: 1.1828 (31/500 in region)
+  MMD@1.0: 0.2769
+  Survival@1.0: 29.8%
+  Stopped@1.0:  6.2%
+
+============================================================
+  hyperbolic_paraboloid | D=11 | seed=2042
+============================================================
+
+  --- AE: baseline ---
+    E_mu=1.0742  E_Sigma=2.6294
+
+    Drift: enc-pull
+  Stage 2 epoch 100/300: loss=0.272377
+  Stage 2 epoch 200/300: loss=0.229485
+  Stage 2 epoch 300/300: loss=0.214713
+  Stage 3 epoch 100/300: loss=0.075214
+  Stage 3 epoch 200/300: loss=0.067581
+  Stage 3 epoch 300/300: loss=0.063380
+  rcMTE@0.1: 0.7945
+  rcMTE@0.5: 1.3906
+  rcMTE@1.0: 1.3180
+  MTE@0.1: 1.2580
+  MTE@0.5: 1.8905
+  MTE@1.0: 1.7059
+  W2@1.0:  0.5620
+  sW2@0.1: 0.5088 (293/500 in region)
+  sW2@0.2: 0.6799 (212/500 in region)
+  sW2@0.5: 0.8704 (88/500 in region)
+  sW2@1.0: 0.6711 (24/500 in region)
+  MMD@1.0: 0.1673
+  Survival@1.0: 26.6%
+  Stopped@1.0:  4.8%
+
+    Drift: dec-side
+  Stage 2 epoch 100/300: loss=0.038107
+  Stage 2 epoch 200/300: loss=0.031276
+  Stage 2 epoch 300/300: loss=0.022706
+  Stage 3 epoch 100/300: loss=0.075214
+  Stage 3 epoch 200/300: loss=0.067581
+  Stage 3 epoch 300/300: loss=0.063380
+  rcMTE@0.1: 0.8229
+  rcMTE@0.5: 1.6247
+  rcMTE@1.0: 1.7211
+  MTE@0.1: 1.3121
+  MTE@0.5: 2.2672
+  MTE@1.0: 2.3551
+  W2@1.0:  1.5483
+  sW2@0.1: 0.6547 (293/500 in region)
+  sW2@0.2: 0.9456 (212/500 in region)
+  sW2@0.5: 1.4576 (88/500 in region)
+  sW2@1.0: 1.9621 (24/500 in region)
+  MMD@1.0: 0.3521
+  Survival@1.0: 26.6%
+  Stopped@1.0:  4.8%
+
+  --- AE: T+F ---
+    E_mu=0.0860  E_Sigma=0.2186
+
+    Drift: enc-pull
+  Stage 2 epoch 100/300: loss=0.127364
+  Stage 2 epoch 200/300: loss=0.119168
+  Stage 2 epoch 300/300: loss=0.107731
+  Stage 3 epoch 100/300: loss=0.016707
+  Stage 3 epoch 200/300: loss=0.011433
+  Stage 3 epoch 300/300: loss=0.006999
+  rcMTE@0.1: 0.5534
+  rcMTE@0.5: 1.1334
+  rcMTE@1.0: 1.2512
+  MTE@0.1: 0.8789
+  MTE@0.5: 1.6438
+  MTE@1.0: 1.7738
+  W2@1.0:  0.9445
+  sW2@0.1: 0.4488 (293/500 in region)
+  sW2@0.2: 0.7456 (212/500 in region)
+  sW2@0.5: 1.1190 (88/500 in region)
+  sW2@1.0: 0.9893 (24/500 in region)
+  MMD@1.0: 0.2887
+  Survival@1.0: 26.6%
+  Stopped@1.0:  4.8%
+
+    Drift: dec-side
+  Stage 2 epoch 100/300: loss=0.008130
+  Stage 2 epoch 200/300: loss=0.006336
+  Stage 2 epoch 300/300: loss=0.004028
+  Stage 3 epoch 100/300: loss=0.016707
+  Stage 3 epoch 200/300: loss=0.011433
+  Stage 3 epoch 300/300: loss=0.006999
+  rcMTE@0.1: 0.5544
+  rcMTE@0.5: 1.1665
+  rcMTE@1.0: 1.4107
+  MTE@0.1: 0.8741
+  MTE@0.5: 1.6740
+  MTE@1.0: 2.0930
+  W2@1.0:  1.3127
+  sW2@0.1: 0.4576 (293/500 in region)
+  sW2@0.2: 0.7620 (212/500 in region)
+  sW2@0.5: 1.1502 (88/500 in region)
+  sW2@1.0: 1.3280 (24/500 in region)
+  MMD@1.0: 0.3285
+  Survival@1.0: 26.6%
+  Stopped@1.0:  4.8%
+
+============================================================
+  hyperbolic_paraboloid | D=11 | seed=3042
+============================================================
+
+  --- AE: baseline ---
+    E_mu=0.4576  E_Sigma=0.6648
+
+    Drift: enc-pull
+  Stage 2 epoch 100/300: loss=0.510415
+  Stage 2 epoch 200/300: loss=0.461513
+  Stage 2 epoch 300/300: loss=0.451517
+  Stage 3 epoch 100/300: loss=0.232458
+  Stage 3 epoch 200/300: loss=0.189952
+  Stage 3 epoch 300/300: loss=0.156636
+  rcMTE@0.1: 0.5901
+  rcMTE@0.5: 0.9712
+  rcMTE@1.0: 0.9591
+  MTE@0.1: 0.9152
+  MTE@0.5: 1.3870
+  MTE@1.0: 1.3744
+  W2@1.0:  0.5966
+  sW2@0.1: 0.3336 (275/500 in region)
+  sW2@0.2: 0.4931 (204/500 in region)
+  sW2@0.5: 0.5023 (78/500 in region)
+  sW2@1.0: 0.5444 (25/500 in region)
+  MMD@1.0: 0.1584
+  Survival@1.0: 27.2%
+  Stopped@1.0:  5.0%
+
+    Drift: dec-side
+  Stage 2 epoch 100/300: loss=0.031150
+  Stage 2 epoch 200/300: loss=0.018926
+  Stage 2 epoch 300/300: loss=0.007447
+  Stage 3 epoch 100/300: loss=0.232458
+  Stage 3 epoch 200/300: loss=0.189952
+  Stage 3 epoch 300/300: loss=0.156636
+  rcMTE@0.1: 0.6091
+  rcMTE@0.5: 1.2075
+  rcMTE@1.0: 1.6141
+  MTE@0.1: 0.9516
+  MTE@0.5: 1.7801
+  MTE@1.0: 2.2995
+  W2@1.0:  1.6476
+  sW2@0.1: 0.4345 (275/500 in region)
+  sW2@0.2: 0.7082 (204/500 in region)
+  sW2@0.5: 0.9630 (78/500 in region)
+  sW2@1.0: 1.6215 (25/500 in region)
+  MMD@1.0: 0.2918
+  Survival@1.0: 27.2%
+  Stopped@1.0:  5.0%
+
+  --- AE: T+F ---
+    E_mu=0.1540  E_Sigma=0.1299
+
+    Drift: enc-pull
+  Stage 2 epoch 100/300: loss=0.267518
+  Stage 2 epoch 200/300: loss=0.233699
+  Stage 2 epoch 300/300: loss=0.216129
+  Stage 3 epoch 100/300: loss=0.138989
+  Stage 3 epoch 200/300: loss=0.091765
+  Stage 3 epoch 300/300: loss=0.046113
+  rcMTE@0.1: 0.5889
+  rcMTE@0.5: 1.1049
+  rcMTE@1.0: 1.3500
+  MTE@0.1: 0.9801
+  MTE@0.5: 1.7181
+  MTE@1.0: 2.0933
+  W2@1.0:  1.4265
+  sW2@0.1: 0.4922 (275/500 in region)
+  sW2@0.2: 0.5820 (204/500 in region)
+  sW2@0.5: 0.9798 (78/500 in region)
+  sW2@1.0: 1.3982 (25/500 in region)
+  MMD@1.0: 0.2678
+  Survival@1.0: 27.2%
+  Stopped@1.0:  5.0%
+
+    Drift: dec-side
+  Stage 2 epoch 100/300: loss=0.010916
+  Stage 2 epoch 200/300: loss=0.007806
+  Stage 2 epoch 300/300: loss=0.005799
+  Stage 3 epoch 100/300: loss=0.138989
+  Stage 3 epoch 200/300: loss=0.091765
+  Stage 3 epoch 300/300: loss=0.046113
+  rcMTE@0.1: 0.5913
+  rcMTE@0.5: 1.1443
+  rcMTE@1.0: 1.4667
+  MTE@0.1: 0.9888
+  MTE@0.5: 1.7753
+  MTE@1.0: 2.2477
+  W2@1.0:  1.6687
+  sW2@0.1: 0.5182 (275/500 in region)
+  sW2@0.2: 0.6325 (204/500 in region)
+  sW2@0.5: 1.1493 (78/500 in region)
+  sW2@1.0: 1.6753 (25/500 in region)
+  MMD@1.0: 0.2958
+  Survival@1.0: 27.2%
+  Stopped@1.0:  5.0%
+
+============================================================
+  hyperbolic_paraboloid | D=11 | seed=4042
+============================================================
+
+  --- AE: baseline ---
+    E_mu=1.2871  E_Sigma=2.2173
+
+    Drift: enc-pull
+  Stage 2 epoch 100/300: loss=0.457538
+  Stage 2 epoch 200/300: loss=0.410231
+  Stage 2 epoch 300/300: loss=0.378102
+  Stage 3 epoch 100/300: loss=0.103254
+  Stage 3 epoch 200/300: loss=0.077041
+  Stage 3 epoch 300/300: loss=0.071434
+  rcMTE@0.1: 0.5591
+  rcMTE@0.5: 0.8559
+  rcMTE@1.0: 0.8305
+  MTE@0.1: 0.9279
+  MTE@0.5: 1.2433
+  MTE@1.0: 1.1452
+  W2@1.0:  0.5381
+  sW2@0.1: 0.3262 (287/500 in region)
+  sW2@0.2: 0.4300 (207/500 in region)
+  sW2@0.5: 0.4203 (102/500 in region)
+  sW2@1.0: 0.9370 (30/500 in region)
+  MMD@1.0: 0.1842
+  Survival@1.0: 28.2%
+  Stopped@1.0:  6.0%
+
+    Drift: dec-side
+  Stage 2 epoch 100/300: loss=0.053735
+  Stage 2 epoch 200/300: loss=0.021007
+  Stage 2 epoch 300/300: loss=0.008423
+  Stage 3 epoch 100/300: loss=0.103254
+  Stage 3 epoch 200/300: loss=0.077041
+  Stage 3 epoch 300/300: loss=0.071434
+  rcMTE@0.1: 0.5841
+  rcMTE@0.5: 1.0871
+  rcMTE@1.0: 1.3696
+  MTE@0.1: 0.9817
+  MTE@0.5: 1.6287
+  MTE@1.0: 2.0017
+  W2@1.0:  1.5281
+  sW2@0.1: 0.4543 (287/500 in region)
+  sW2@0.2: 0.7446 (207/500 in region)
+  sW2@0.5: 1.0386 (102/500 in region)
+  sW2@1.0: 1.8147 (30/500 in region)
+  MMD@1.0: 0.3218
+  Survival@1.0: 28.2%
+  Stopped@1.0:  6.0%
+
+  --- AE: T+F ---
+    E_mu=0.1378  E_Sigma=0.1515
+
+    Drift: enc-pull
+  Stage 2 epoch 100/300: loss=0.197312
+  Stage 2 epoch 200/300: loss=0.186444
+  Stage 2 epoch 300/300: loss=0.177058
+  Stage 3 epoch 100/300: loss=0.041668
+  Stage 3 epoch 200/300: loss=0.013320
+  Stage 3 epoch 300/300: loss=0.008399
+  rcMTE@0.1: 0.7882
+  rcMTE@0.5: 1.4082
+  rcMTE@1.0: 1.6274
+  MTE@0.1: 1.2801
+  MTE@0.5: 1.9837
+  MTE@1.0: 2.2010
+  W2@1.0:  1.3779
+  sW2@0.1: 0.5138 (287/500 in region)
+  sW2@0.2: 0.8202 (207/500 in region)
+  sW2@0.5: 1.0991 (102/500 in region)
+  sW2@1.0: 1.9129 (30/500 in region)
+  MMD@1.0: 0.2779
+  Survival@1.0: 28.2%
+  Stopped@1.0:  6.0%
+
+    Drift: dec-side
+  Stage 2 epoch 100/300: loss=0.028535
+  Stage 2 epoch 200/300: loss=0.013652
+  Stage 2 epoch 300/300: loss=0.005891
+  Stage 3 epoch 100/300: loss=0.041668
+  Stage 3 epoch 200/300: loss=0.013320
+  Stage 3 epoch 300/300: loss=0.008399
+  rcMTE@0.1: 0.8032
+  rcMTE@0.5: 1.5095
+  rcMTE@1.0: 1.8150
+  MTE@0.1: 1.3088
+  MTE@0.5: 2.1532
+  MTE@1.0: 2.5274
+  W2@1.0:  1.8996
+  sW2@0.1: 0.5755 (287/500 in region)
+  sW2@0.2: 0.9734 (207/500 in region)
+  sW2@0.5: 1.3482 (102/500 in region)
+  sW2@1.0: 2.4238 (30/500 in region)
+  MMD@1.0: 0.3432
+  Survival@1.0: 28.2%
+  Stopped@1.0:  6.0%
+
+============================================================
+  hyperbolic_paraboloid | D=11 | seed=5042
+============================================================
+
+  --- AE: baseline ---
+    E_mu=1.2115  E_Sigma=1.5179
+
+    Drift: enc-pull
+  Stage 2 epoch 100/300: loss=0.498399
+  Stage 2 epoch 200/300: loss=0.467317
+  Stage 2 epoch 300/300: loss=0.408806
+  Stage 3 epoch 100/300: loss=0.121177
+  Stage 3 epoch 200/300: loss=0.103699
+  Stage 3 epoch 300/300: loss=0.091603
+  rcMTE@0.1: 0.8117
+  rcMTE@0.5: 1.3438
+  rcMTE@1.0: 1.2714
+  MTE@0.1: 1.2718
+  MTE@0.5: 1.7922
+  MTE@1.0: 1.6657
+  W2@1.0:  0.5278
+  sW2@0.1: 0.4821 (285/500 in region)
+  sW2@0.2: 0.6247 (216/500 in region)
+  sW2@0.5: 0.6110 (93/500 in region)
+  sW2@1.0: 0.6835 (33/500 in region)
+  MMD@1.0: 0.2025
+  Survival@1.0: 25.8%
+  Stopped@1.0:  6.6%
+
+    Drift: dec-side
+  Stage 2 epoch 100/300: loss=0.032908
+  Stage 2 epoch 200/300: loss=0.023263
+  Stage 2 epoch 300/300: loss=0.010068
+  Stage 3 epoch 100/300: loss=0.121177
+  Stage 3 epoch 200/300: loss=0.103699
+  Stage 3 epoch 300/300: loss=0.091603
+  rcMTE@0.1: 0.8437
+  rcMTE@0.5: 1.5656
+  rcMTE@1.0: 1.7195
+  MTE@0.1: 1.3428
+  MTE@0.5: 2.2391
+  MTE@1.0: 2.4664
+  W2@1.0:  1.5489
+  sW2@0.1: 0.6594 (285/500 in region)
+  sW2@0.2: 0.9784 (216/500 in region)
+  sW2@0.5: 1.3038 (93/500 in region)
+  sW2@1.0: 1.6799 (33/500 in region)
+  MMD@1.0: 0.3238
+  Survival@1.0: 25.8%
+  Stopped@1.0:  6.6%
+
+  --- AE: T+F ---
+    E_mu=0.1526  E_Sigma=0.2384
+
+    Drift: enc-pull
+  Stage 2 epoch 100/300: loss=0.216489
+  Stage 2 epoch 200/300: loss=0.195996
+  Stage 2 epoch 300/300: loss=0.159849
+  Stage 3 epoch 100/300: loss=0.026879
+  Stage 3 epoch 200/300: loss=0.010344
+  Stage 3 epoch 300/300: loss=0.006899
+  rcMTE@0.1: 0.8141
+  rcMTE@0.5: 1.4215
+  rcMTE@1.0: 1.4102
+  MTE@0.1: 1.3054
+  MTE@0.5: 1.9683
+  MTE@1.0: 1.9446
+  W2@1.0:  0.9287
+  sW2@0.1: 0.5709 (285/500 in region)
+  sW2@0.2: 0.8042 (216/500 in region)
+  sW2@0.5: 0.8991 (93/500 in region)
+  sW2@1.0: 1.0946 (33/500 in region)
+  MMD@1.0: 0.2534
+  Survival@1.0: 25.8%
+  Stopped@1.0:  6.6%
+
+    Drift: dec-side
+  Stage 2 epoch 100/300: loss=0.003729
+  Stage 2 epoch 200/300: loss=0.002898
+  Stage 2 epoch 300/300: loss=0.002427
+  Stage 3 epoch 100/300: loss=0.026879
+  Stage 3 epoch 200/300: loss=0.010344
+  Stage 3 epoch 300/300: loss=0.006899
+  rcMTE@0.1: 0.8372
+  rcMTE@0.5: 1.5371
+  rcMTE@1.0: 1.5927
+  MTE@0.1: 1.3493
+  MTE@0.5: 2.1851
+  MTE@1.0: 2.2538
+  W2@1.0:  1.3161
+  sW2@0.1: 0.6853 (285/500 in region)
+  sW2@0.2: 0.9831 (216/500 in region)
+  sW2@0.5: 1.2254 (93/500 in region)
+  sW2@1.0: 1.4505 (33/500 in region)
+  MMD@1.0: 0.3030
+  Survival@1.0: 25.8%
+  Stopped@1.0:  6.6%
+
+============================================================
+  hyperbolic_paraboloid | D=11 | seed=6042
+============================================================
+
+  --- AE: baseline ---
+    E_mu=2.3002  E_Sigma=4.6190
+
+    Drift: enc-pull
+  Stage 2 epoch 100/300: loss=0.554007
+  Stage 2 epoch 200/300: loss=0.476528
+  Stage 2 epoch 300/300: loss=0.406694
+  Stage 3 epoch 100/300: loss=0.119852
+  Stage 3 epoch 200/300: loss=0.104199
+  Stage 3 epoch 300/300: loss=0.094891
+  rcMTE@0.1: 0.4302
+  rcMTE@0.5: 0.6200
+  rcMTE@1.0: 0.6236
+  MTE@0.1: 0.7213
+  MTE@0.5: 1.0105
+  MTE@1.0: 0.9715
+  W2@1.0:  0.8164
+  sW2@0.1: 0.4167 (290/500 in region)
+  sW2@0.2: 0.4525 (208/500 in region)
+  sW2@0.5: 0.5220 (89/500 in region)
+  sW2@1.0: 0.5984 (30/500 in region)
+  MMD@1.0: 0.2032
+  Survival@1.0: 27.2%
+  Stopped@1.0:  6.0%
+
+    Drift: dec-side
+  Stage 2 epoch 100/300: loss=0.031954
+  Stage 2 epoch 200/300: loss=0.017427
+  Stage 2 epoch 300/300: loss=0.012548
+  Stage 3 epoch 100/300: loss=0.119852
+  Stage 3 epoch 200/300: loss=0.104199
+  Stage 3 epoch 300/300: loss=0.094891
+  rcMTE@0.1: 0.4207
+  rcMTE@0.5: 0.7114
+  rcMTE@1.0: 0.7354
+  MTE@0.1: 0.7113
+  MTE@0.5: 1.1775
+  MTE@1.0: 1.1501
+  W2@1.0:  0.8496
+  sW2@0.1: 0.4061 (290/500 in region)
+  sW2@0.2: 0.4649 (208/500 in region)
+  sW2@0.5: 0.5058 (89/500 in region)
+  sW2@1.0: 0.5180 (30/500 in region)
+  MMD@1.0: 0.2454
+  Survival@1.0: 27.2%
+  Stopped@1.0:  6.0%
+
+  --- AE: T+F ---
+    E_mu=0.2056  E_Sigma=0.1326
+
+    Drift: enc-pull
+  Stage 2 epoch 100/300: loss=0.141060
+  Stage 2 epoch 200/300: loss=0.133000
+  Stage 2 epoch 300/300: loss=0.120797
+  Stage 3 epoch 100/300: loss=0.019987
+  Stage 3 epoch 200/300: loss=0.011814
+  Stage 3 epoch 300/300: loss=0.007104
+  rcMTE@0.1: 0.2303
+  rcMTE@0.5: 0.5128
+  rcMTE@1.0: 0.7686
+  MTE@0.1: 0.4132
+  MTE@0.5: 0.8388
+  MTE@1.0: 1.1444
+  W2@1.0:  0.9770
+  sW2@0.1: 0.2265 (290/500 in region)
+  sW2@0.2: 0.3391 (208/500 in region)
+  sW2@0.5: 0.6654 (89/500 in region)
+  sW2@1.0: 1.0035 (30/500 in region)
+  MMD@1.0: 0.2868
+  Survival@1.0: 27.2%
+  Stopped@1.0:  6.0%
+
+    Drift: dec-side
+  Stage 2 epoch 100/300: loss=0.005549
+  Stage 2 epoch 200/300: loss=0.004262
+  Stage 2 epoch 300/300: loss=0.003787
+  Stage 3 epoch 100/300: loss=0.019987
+  Stage 3 epoch 200/300: loss=0.011814
+  Stage 3 epoch 300/300: loss=0.007104
+  rcMTE@0.1: 0.2289
+  rcMTE@0.5: 0.5155
+  rcMTE@1.0: 0.7447
+  MTE@0.1: 0.4120
+  MTE@0.5: 0.8602
+  MTE@1.0: 1.1724
+  W2@1.0:  1.0262
+  sW2@0.1: 0.2265 (290/500 in region)
+  sW2@0.2: 0.3372 (208/500 in region)
+  sW2@0.5: 0.6602 (89/500 in region)
+  sW2@1.0: 1.0236 (30/500 in region)
+  MMD@1.0: 0.3026
+  Survival@1.0: 27.2%
+  Stopped@1.0:  6.0%
+
+============================================================
+  hyperbolic_paraboloid | D=11 | seed=7042
+============================================================
+
+  --- AE: baseline ---
+    E_mu=0.9161  E_Sigma=1.1966
+
+    Drift: enc-pull
+  Stage 2 epoch 100/300: loss=0.775578
+  Stage 2 epoch 200/300: loss=0.690820
+  Stage 2 epoch 300/300: loss=0.657087
+  Stage 3 epoch 100/300: loss=0.114939
+  Stage 3 epoch 200/300: loss=0.107471
+  Stage 3 epoch 300/300: loss=0.101483
+  rcMTE@0.1: 0.5485
+  rcMTE@0.5: 0.9371
+  rcMTE@1.0: 1.0150
+  MTE@0.1: 0.9362
+  MTE@0.5: 1.4256
+  MTE@1.0: 1.4888
+  W2@1.0:  0.5282
+  sW2@0.1: 0.4327 (316/500 in region)
+  sW2@0.2: 0.5084 (232/500 in region)
+  sW2@0.5: 0.4125 (109/500 in region)
+  sW2@1.0: 0.4976 (29/500 in region)
+  MMD@1.0: 0.0950
+  Survival@1.0: 28.8%
+  Stopped@1.0:  5.8%
+
+    Drift: dec-side
+  Stage 2 epoch 100/300: loss=0.142478
+  Stage 2 epoch 200/300: loss=0.053533
+  Stage 2 epoch 300/300: loss=0.025072
+  Stage 3 epoch 100/300: loss=0.114939
+  Stage 3 epoch 200/300: loss=0.107471
+  Stage 3 epoch 300/300: loss=0.101483
+  rcMTE@0.1: 0.5811
+  rcMTE@0.5: 1.1784
+  rcMTE@1.0: 1.3601
+  MTE@0.1: 1.0038
+  MTE@0.5: 1.7684
+  MTE@1.0: 1.9631
+  W2@1.0:  1.0453
+  sW2@0.1: 0.6004 (316/500 in region)
+  sW2@0.2: 0.8628 (232/500 in region)
+  sW2@0.5: 1.1105 (109/500 in region)
+  sW2@1.0: 0.9498 (29/500 in region)
+  MMD@1.0: 0.3015
+  Survival@1.0: 28.8%
+  Stopped@1.0:  5.8%
+
+  --- AE: T+F ---
+    E_mu=0.0911  E_Sigma=0.1381
+
+    Drift: enc-pull
+  Stage 2 epoch 100/300: loss=0.341610
+  Stage 2 epoch 200/300: loss=0.290620
+  Stage 2 epoch 300/300: loss=0.273848
+  Stage 3 epoch 100/300: loss=0.026440
+  Stage 3 epoch 200/300: loss=0.021797
+  Stage 3 epoch 300/300: loss=0.020353
+  rcMTE@0.1: 0.5489
+  rcMTE@0.5: 1.0702
+  rcMTE@1.0: 1.1433
+  MTE@0.1: 0.9427
+  MTE@0.5: 1.6286
+  MTE@1.0: 1.7435
+  W2@1.0:  0.8544
+  sW2@0.1: 0.4919 (316/500 in region)
+  sW2@0.2: 0.6425 (232/500 in region)
+  sW2@0.5: 0.6242 (109/500 in region)
+  sW2@1.0: 0.8311 (29/500 in region)
+  MMD@1.0: 0.2026
+  Survival@1.0: 28.8%
+  Stopped@1.0:  5.8%
+
+    Drift: dec-side
+  Stage 2 epoch 100/300: loss=0.015034
+  Stage 2 epoch 200/300: loss=0.010728
+  Stage 2 epoch 300/300: loss=0.006636
+  Stage 3 epoch 100/300: loss=0.026440
+  Stage 3 epoch 200/300: loss=0.021797
+  Stage 3 epoch 300/300: loss=0.020353
+  rcMTE@0.1: 0.5587
+  rcMTE@0.5: 1.1577
+  rcMTE@1.0: 1.3334
+  MTE@0.1: 0.9675
+  MTE@0.5: 1.7535
+  MTE@1.0: 1.9416
+  W2@1.0:  1.1193
+  sW2@0.1: 0.5509 (316/500 in region)
+  sW2@0.2: 0.7816 (232/500 in region)
+  sW2@0.5: 0.8249 (109/500 in region)
+  sW2@1.0: 1.2241 (29/500 in region)
+  MMD@1.0: 0.2692
+  Survival@1.0: 28.8%
+  Stopped@1.0:  5.8%
+
+============================================================
+  hyperbolic_paraboloid | D=11 | seed=8042
+============================================================
+
+  --- AE: baseline ---
+    E_mu=2.4715  E_Sigma=2.9938
+
+    Drift: enc-pull
+  Stage 2 epoch 100/300: loss=0.523033
+  Stage 2 epoch 200/300: loss=0.482322
+  Stage 2 epoch 300/300: loss=0.413408
+  Stage 3 epoch 100/300: loss=0.196019
+  Stage 3 epoch 200/300: loss=0.180985
+  Stage 3 epoch 300/300: loss=0.165665
+  rcMTE@0.1: 0.5895
+  rcMTE@0.5: 0.9489
+  rcMTE@1.0: 1.0425
+  MTE@0.1: 0.9320
+  MTE@0.5: 1.3977
+  MTE@1.0: 1.4892
+  W2@1.0:  0.6815
+  sW2@0.1: 0.3833 (269/500 in region)
+  sW2@0.2: 0.4357 (192/500 in region)
+  sW2@0.5: 0.6210 (84/500 in region)
+  sW2@1.0: 0.9898 (29/500 in region)
+  MMD@1.0: 0.1438
+  Survival@1.0: 27.0%
+  Stopped@1.0:  5.8%
+
+    Drift: dec-side
+  Stage 2 epoch 100/300: loss=0.056684
+  Stage 2 epoch 200/300: loss=0.023583
+  Stage 2 epoch 300/300: loss=0.007640
+  Stage 3 epoch 100/300: loss=0.196019
+  Stage 3 epoch 200/300: loss=0.180985
+  Stage 3 epoch 300/300: loss=0.165665
+  rcMTE@0.1: 0.6187
+  rcMTE@0.5: 1.2796
+  rcMTE@1.0: 1.7073
+  MTE@0.1: 0.9730
+  MTE@0.5: 1.7813
+  MTE@1.0: 2.2222
+  W2@1.0:  1.4695
+  sW2@0.1: 0.4634 (269/500 in region)
+  sW2@0.2: 0.5721 (192/500 in region)
+  sW2@0.5: 1.1074 (84/500 in region)
+  sW2@1.0: 1.9970 (29/500 in region)
+  MMD@1.0: 0.3122
+  Survival@1.0: 27.0%
+  Stopped@1.0:  5.8%
+
+  --- AE: T+F ---
+    E_mu=0.1436  E_Sigma=0.1364
+
+    Drift: enc-pull
+  Stage 2 epoch 100/300: loss=0.214390
+  Stage 2 epoch 200/300: loss=0.196191
+  Stage 2 epoch 300/300: loss=0.193178
+  Stage 3 epoch 100/300: loss=0.010737
+  Stage 3 epoch 200/300: loss=0.008179
+  Stage 3 epoch 300/300: loss=0.006567
+  rcMTE@0.1: 0.5620
+  rcMTE@0.5: 1.0295
+  rcMTE@1.0: 1.2283
+  MTE@0.1: 0.9379
+  MTE@0.5: 1.6228
+  MTE@1.0: 1.8588
+  W2@1.0:  1.1298
+  sW2@0.1: 0.4353 (269/500 in region)
+  sW2@0.2: 0.5114 (192/500 in region)
+  sW2@0.5: 1.0286 (84/500 in region)
+  sW2@1.0: 1.7612 (29/500 in region)
+  MMD@1.0: 0.2556
+  Survival@1.0: 27.0%
+  Stopped@1.0:  5.8%
+
+    Drift: dec-side
+  Stage 2 epoch 100/300: loss=0.021530
+  Stage 2 epoch 200/300: loss=0.006847
+  Stage 2 epoch 300/300: loss=0.003180
+  Stage 3 epoch 100/300: loss=0.010737
+  Stage 3 epoch 200/300: loss=0.008179
+  Stage 3 epoch 300/300: loss=0.006567
+  rcMTE@0.1: 0.5680
+  rcMTE@0.5: 1.0657
+  rcMTE@1.0: 1.2126
+  MTE@0.1: 0.9488
+  MTE@0.5: 1.6838
+  MTE@1.0: 1.8393
+  W2@1.0:  1.1104
+  sW2@0.1: 0.4531 (269/500 in region)
+  sW2@0.2: 0.5347 (192/500 in region)
+  sW2@0.5: 0.8981 (84/500 in region)
+  sW2@1.0: 1.5478 (29/500 in region)
+  MMD@1.0: 0.2771
+  Survival@1.0: 27.0%
+  Stopped@1.0:  5.8%
+
+============================================================
+  hyperbolic_paraboloid | D=11 | seed=9042
+============================================================
+
+  --- AE: baseline ---
+    E_mu=1.1303  E_Sigma=4.9246
+
+    Drift: enc-pull
+  Stage 2 epoch 100/300: loss=0.420217
+  Stage 2 epoch 200/300: loss=0.377554
+  Stage 2 epoch 300/300: loss=0.340083
+  Stage 3 epoch 100/300: loss=0.207161
+  Stage 3 epoch 200/300: loss=0.130536
+  Stage 3 epoch 300/300: loss=0.121318
+  rcMTE@0.1: 0.2650
+  rcMTE@0.5: 0.4661
+  rcMTE@1.0: 0.5440
+  MTE@0.1: 0.4853
+  MTE@0.5: 0.7396
+  MTE@1.0: 0.8704
+  W2@1.0:  0.5584
+  sW2@0.1: 0.3169 (280/500 in region)
+  sW2@0.2: 0.2855 (205/500 in region)
+  sW2@0.5: 0.3439 (85/500 in region)
+  sW2@1.0: 0.6408 (22/500 in region)
+  MMD@1.0: 0.2093
+  Survival@1.0: 28.2%
+  Stopped@1.0:  4.4%
+
+    Drift: dec-side
+  Stage 2 epoch 100/300: loss=0.022778
+  Stage 2 epoch 200/300: loss=0.011800
+  Stage 2 epoch 300/300: loss=0.005605
+  Stage 3 epoch 100/300: loss=0.207161
+  Stage 3 epoch 200/300: loss=0.130536
+  Stage 3 epoch 300/300: loss=0.121318
+  rcMTE@0.1: 0.2824
+  rcMTE@0.5: 0.6499
+  rcMTE@1.0: 1.0446
+  MTE@0.1: 0.5122
+  MTE@0.5: 0.9996
+  MTE@1.0: 1.5744
+  W2@1.0:  1.3994
+  sW2@0.1: 0.3720 (280/500 in region)
+  sW2@0.2: 0.4351 (205/500 in region)
+  sW2@0.5: 0.6556 (85/500 in region)
+  sW2@1.0: 1.4121 (22/500 in region)
+  MMD@1.0: 0.3006
+  Survival@1.0: 28.2%
+  Stopped@1.0:  4.4%
+
+  --- AE: T+F ---
+    E_mu=0.1882  E_Sigma=0.1682
+
+    Drift: enc-pull
+  Stage 2 epoch 100/300: loss=0.402756
+  Stage 2 epoch 200/300: loss=0.323084
+  Stage 2 epoch 300/300: loss=0.237130
+  Stage 3 epoch 100/300: loss=0.028849
+  Stage 3 epoch 200/300: loss=0.008652
+  Stage 3 epoch 300/300: loss=0.008015
+  rcMTE@0.1: 0.2256
+  rcMTE@0.5: 0.4049
+  rcMTE@1.0: 0.4827
+  MTE@0.1: 0.4031
+  MTE@0.5: 0.6958
+  MTE@1.0: 0.8079
+  W2@1.0:  0.4461
+  sW2@0.1: 0.2777 (280/500 in region)
+  sW2@0.2: 0.2629 (205/500 in region)
+  sW2@0.5: 0.3810 (85/500 in region)
+  sW2@1.0: 0.5436 (22/500 in region)
+  MMD@1.0: 0.2422
+  Survival@1.0: 28.2%
+  Stopped@1.0:  4.4%
+
+    Drift: dec-side
+  Stage 2 epoch 100/300: loss=0.007287
+  Stage 2 epoch 200/300: loss=0.006257
+  Stage 2 epoch 300/300: loss=0.004496
+  Stage 3 epoch 100/300: loss=0.028849
+  Stage 3 epoch 200/300: loss=0.008652
+  Stage 3 epoch 300/300: loss=0.008015
+  rcMTE@0.1: 0.2325
+  rcMTE@0.5: 0.4450
+  rcMTE@1.0: 0.5695
+  MTE@0.1: 0.4119
+  MTE@0.5: 0.7548
+  MTE@1.0: 0.9502
+  W2@1.0:  0.7611
+  sW2@0.1: 0.3389 (280/500 in region)
+  sW2@0.2: 0.3421 (205/500 in region)
+  sW2@0.5: 0.5112 (85/500 in region)
+  sW2@1.0: 0.7819 (22/500 in region)
+  MMD@1.0: 0.2639
+  Survival@1.0: 28.2%
+  Stopped@1.0:  4.4%
+
+
+Total time: 9.2 min
+Saved 80 rows to rcmte_D11.csv
+
+
+================================================================================
+rcMTE COMPARISON SUMMARY
+================================================================================
+
+  paraboloid:
+          ae       drift     rcMTE@1.0       MTE@1.0        W2@1.0          E_mu
+    baseline    enc-pull  1.0088±0.140  1.3961±0.125  0.7853±0.216  2.3571±0.905
+    baseline    dec-side  1.6769±0.265  2.4010±0.364  1.8065±0.358  2.3571±0.905
+         T+F    enc-pull  1.0398±0.318  1.5207±0.382  0.9887±0.302  0.3490±0.208
+         T+F    dec-side  1.2800±0.409  2.0175±0.545  1.6270±0.491  0.3490±0.208
+
+    Paired comparisons (negative = first is better):
+      T+F vs baseline (enc-pull)    rcMTE@1.0: Δ=+3.1%  p=0.669
+      T+F vs baseline (enc-pull)      MTE@1.0: Δ=+8.9%  p=0.219
+      T+F vs baseline (enc-pull)       W2@1.0: Δ=+25.9%  p=0.202
+      enc-pull vs dec-side (T+F)    rcMTE@1.0: Δ=-18.8%  p=0.000**
+      enc-pull vs dec-side (T+F)      MTE@1.0: Δ=-24.6%  p=0.000**
+      enc-pull vs dec-side (T+F)       W2@1.0: Δ=-39.2%  p=0.000**
+
+  hyperbolic_paraboloid:
+          ae       drift     rcMTE@1.0       MTE@1.0        W2@1.0          E_mu
+    baseline    enc-pull  0.8915±0.294  1.2746±0.333  0.6118±0.122  1.3868±0.608
+    baseline    dec-side  1.3500±0.409  1.9382±0.504  1.3565±0.323  1.3868±0.608
+         T+F    enc-pull  1.1570±0.324  1.6997±0.422  0.9869±0.279  0.1424±0.037
+         T+F    dec-side  1.2925±0.377  1.9202±0.496  1.2835±0.330  0.1424±0.037
+
+    Paired comparisons (negative = first is better):
+      T+F vs baseline (enc-pull)    rcMTE@1.0: Δ=+29.8%  p=0.019*
+      T+F vs baseline (enc-pull)      MTE@1.0: Δ=+33.4%  p=0.006**
+      T+F vs baseline (enc-pull)       W2@1.0: Δ=+61.3%  p=0.003**
+      enc-pull vs dec-side (T+F)    rcMTE@1.0: Δ=-10.5%  p=0.003**
+      enc-pull vs dec-side (T+F)      MTE@1.0: Δ=-11.5%  p=0.002**
+      enc-pull vs dec-side (T+F)       W2@1.0: Δ=-23.1%  p=0.001**
+
+=== D=201 ===
+
+Device: cuda
+D=201, N=20
+Seeds (10): [42, 1042, 2042, 3042, 4042, 5042, 6042, 7042, 8042, 9042]
+Surfaces: ['paraboloid', 'hyperbolic_paraboloid']
+
+
+============================================================
+  paraboloid | D=201 | seed=42
+============================================================
+
+  --- AE: baseline ---
+    E_mu=5.5763  E_Sigma=21.4822
+
+    Drift: enc-pull
+  Stage 2 epoch 100/300: loss=0.020595
+  Stage 2 epoch 200/300: loss=0.019722
+  Stage 2 epoch 300/300: loss=0.018877
+  Stage 3 epoch 100/300: loss=0.000760
+  Stage 3 epoch 200/300: loss=0.000731
+  Stage 3 epoch 300/300: loss=0.000711
+  rcMTE@0.1: 0.3848
+  rcMTE@0.5: 0.7131
+  rcMTE@1.0: 0.8018
+  MTE@0.1: 0.7446
+  MTE@0.5: 1.1298
+  MTE@1.0: 1.2564
+  W2@1.0:  1.1907
+  sW2@0.1: 0.4485 (292/500 in region)
+  sW2@0.2: 0.5084 (214/500 in region)
+  sW2@0.5: 0.7666 (97/500 in region)
+  sW2@1.0: 1.0574 (21/500 in region)
+  MMD@1.0: 0.3667
+  Survival@1.0: 28.0%
+  Stopped@1.0:  4.2%
+
+    Drift: dec-side
+  Stage 2 epoch 100/300: loss=0.001750
+  Stage 2 epoch 200/300: loss=0.000620
+  Stage 2 epoch 300/300: loss=0.000360
+  Stage 3 epoch 100/300: loss=0.000760
+  Stage 3 epoch 200/300: loss=0.000731
+  Stage 3 epoch 300/300: loss=0.000711
+  rcMTE@0.1: 0.3873
+  rcMTE@0.5: 0.8881
+  rcMTE@1.0: 1.1718
+  MTE@0.1: 0.7527
+  MTE@0.5: 1.3819
+  MTE@1.0: 1.7709
+  W2@1.0:  1.4193
+  sW2@0.1: 0.4421 (292/500 in region)
+  sW2@0.2: 0.4885 (214/500 in region)
+  sW2@0.5: 0.7776 (97/500 in region)
+  sW2@1.0: 1.1738 (21/500 in region)
+  MMD@1.0: 0.3363
+  Survival@1.0: 28.0%
+  Stopped@1.0:  4.2%
+
+  --- AE: T+F ---
+    E_mu=1.9701  E_Sigma=7.4623
+
+    Drift: enc-pull
+  Stage 2 epoch 100/300: loss=0.009162
+  Stage 2 epoch 200/300: loss=0.007933
+  Stage 2 epoch 300/300: loss=0.007512
+  Stage 3 epoch 100/300: loss=0.000329
+  Stage 3 epoch 200/300: loss=0.000256
+  Stage 3 epoch 300/300: loss=0.000206
+  rcMTE@0.1: 0.7699
+  rcMTE@0.5: 1.3263
+  rcMTE@1.0: 1.5401
+  MTE@0.1: 1.3284
+  MTE@0.5: 2.0325
+  MTE@1.0: 2.3871
+  W2@1.0:  1.5354
+  sW2@0.1: 0.7731 (292/500 in region)
+  sW2@0.2: 1.0097 (214/500 in region)
+  sW2@0.5: 1.3866 (97/500 in region)
+  sW2@1.0: 2.0237 (21/500 in region)
+  MMD@1.0: 0.4089
+  Survival@1.0: 28.0%
+  Stopped@1.0:  4.2%
+
+    Drift: dec-side
+  Stage 2 epoch 100/300: loss=0.001663
+  Stage 2 epoch 200/300: loss=0.001097
+  Stage 2 epoch 300/300: loss=0.000444
+  Stage 3 epoch 100/300: loss=0.000329
+  Stage 3 epoch 200/300: loss=0.000256
+  Stage 3 epoch 300/300: loss=0.000206
+  rcMTE@0.1: 0.7841
+  rcMTE@0.5: 1.4937
+  rcMTE@1.0: 1.7677
+  MTE@0.1: 1.3685
+  MTE@0.5: 2.3478
+  MTE@1.0: 2.9563
+  W2@1.0:  2.2559
+  sW2@0.1: 0.8484 (292/500 in region)
+  sW2@0.2: 1.1904 (214/500 in region)
+  sW2@0.5: 1.8035 (97/500 in region)
+  sW2@1.0: 2.9753 (21/500 in region)
+  MMD@1.0: 0.4422
+  Survival@1.0: 28.0%
+  Stopped@1.0:  4.2%
+
+============================================================
+  paraboloid | D=201 | seed=1042
+============================================================
+
+  --- AE: baseline ---
+    E_mu=9.3355  E_Sigma=31.2330
+
+    Drift: enc-pull
+  Stage 2 epoch 100/300: loss=0.014559
+  Stage 2 epoch 200/300: loss=0.011752
+  Stage 2 epoch 300/300: loss=0.010457
+  Stage 3 epoch 100/300: loss=0.000989
+  Stage 3 epoch 200/300: loss=0.000976
+  Stage 3 epoch 300/300: loss=0.000958
+  rcMTE@0.1: 0.7959
+  rcMTE@0.5: 1.3143
+  rcMTE@1.0: 1.5048
+  MTE@0.1: 1.1999
+  MTE@0.5: 1.7779
+  MTE@1.0: 1.9862
+  W2@1.0:  1.1324
+  sW2@0.1: 0.5298 (285/500 in region)
+  sW2@0.2: 0.6688 (204/500 in region)
+  sW2@0.5: 0.6743 (98/500 in region)
+  sW2@1.0: 0.9063 (31/500 in region)
+  MMD@1.0: 0.2659
+  Survival@1.0: 29.8%
+  Stopped@1.0:  6.2%
+
+    Drift: dec-side
+  Stage 2 epoch 100/300: loss=0.000524
+  Stage 2 epoch 200/300: loss=0.000380
+  Stage 2 epoch 300/300: loss=0.000155
+  Stage 3 epoch 100/300: loss=0.000989
+  Stage 3 epoch 200/300: loss=0.000976
+  Stage 3 epoch 300/300: loss=0.000958
+  rcMTE@0.1: 0.8115
+  rcMTE@0.5: 1.4992
+  rcMTE@1.0: 1.7697
+  MTE@0.1: 1.2336
+  MTE@0.5: 2.0833
+  MTE@1.0: 2.4099
+  W2@1.0:  1.4069
+  sW2@0.1: 0.6237 (285/500 in region)
+  sW2@0.2: 0.8857 (204/500 in region)
+  sW2@0.5: 1.2133 (98/500 in region)
+  sW2@1.0: 1.4105 (31/500 in region)
+  MMD@1.0: 0.2954
+  Survival@1.0: 29.8%
+  Stopped@1.0:  6.2%
+
+  --- AE: T+F ---
+    E_mu=1.4755  E_Sigma=2.5421
+
+    Drift: enc-pull
+  Stage 2 epoch 100/300: loss=0.027556
+  Stage 2 epoch 200/300: loss=0.026416
+  Stage 2 epoch 300/300: loss=0.024994
+  Stage 3 epoch 100/300: loss=0.000261
+  Stage 3 epoch 200/300: loss=0.000193
+  Stage 3 epoch 300/300: loss=0.000150
+  rcMTE@0.1: 0.5305
+  rcMTE@0.5: 0.9690
+  rcMTE@1.0: 1.1633
+  MTE@0.1: 0.9351
+  MTE@0.5: 1.5165
+  MTE@1.0: 1.7695
+  W2@1.0:  1.1864
+  sW2@0.1: 0.6952 (285/500 in region)
+  sW2@0.2: 1.0661 (204/500 in region)
+  sW2@0.5: 1.1689 (98/500 in region)
+  sW2@1.0: 1.7697 (31/500 in region)
+  MMD@1.0: 0.2015
+  Survival@1.0: 29.8%
+  Stopped@1.0:  6.2%
+
+    Drift: dec-side
+  Stage 2 epoch 100/300: loss=0.000745
+  Stage 2 epoch 200/300: loss=0.000610
+  Stage 2 epoch 300/300: loss=0.000453
+  Stage 3 epoch 100/300: loss=0.000261
+  Stage 3 epoch 200/300: loss=0.000193
+  Stage 3 epoch 300/300: loss=0.000150
+  rcMTE@0.1: 0.5366
+  rcMTE@0.5: 1.0852
+  rcMTE@1.0: 1.4890
+  MTE@0.1: 0.9589
+  MTE@0.5: 1.7318
+  MTE@1.0: 2.3558
+  W2@1.0:  2.0195
+  sW2@0.1: 0.7705 (285/500 in region)
+  sW2@0.2: 1.2369 (204/500 in region)
+  sW2@0.5: 1.5605 (98/500 in region)
+  sW2@1.0: 2.6828 (31/500 in region)
+  MMD@1.0: 0.3362
+  Survival@1.0: 29.8%
+  Stopped@1.0:  6.2%
+
+============================================================
+  paraboloid | D=201 | seed=2042
+============================================================
+
+  --- AE: baseline ---
+    E_mu=4.9225  E_Sigma=13.5760
+
+    Drift: enc-pull
+  Stage 2 epoch 100/300: loss=0.032907
+  Stage 2 epoch 200/300: loss=0.028911
+  Stage 2 epoch 300/300: loss=0.025815
+  Stage 3 epoch 100/300: loss=0.001473
+  Stage 3 epoch 200/300: loss=0.001425
+  Stage 3 epoch 300/300: loss=0.001394
+  rcMTE@0.1: 0.4056
+  rcMTE@0.5: 0.7502
+  rcMTE@1.0: 0.8520
+  MTE@0.1: 0.7244
+  MTE@0.5: 1.1533
+  MTE@1.0: 1.2958
+  W2@1.0:  1.0704
+  sW2@0.1: 0.4498 (293/500 in region)
+  sW2@0.2: 0.4847 (212/500 in region)
+  sW2@0.5: 0.7112 (88/500 in region)
+  sW2@1.0: 1.0542 (24/500 in region)
+  MMD@1.0: 0.1835
+  Survival@1.0: 26.6%
+  Stopped@1.0:  4.8%
+
+    Drift: dec-side
+  Stage 2 epoch 100/300: loss=0.000520
+  Stage 2 epoch 200/300: loss=0.000422
+  Stage 2 epoch 300/300: loss=0.000283
+  Stage 3 epoch 100/300: loss=0.001473
+  Stage 3 epoch 200/300: loss=0.001425
+  Stage 3 epoch 300/300: loss=0.001394
+  rcMTE@0.1: 0.3973
+  rcMTE@0.5: 0.7383
+  rcMTE@1.0: 0.9693
+  MTE@0.1: 0.7149
+  MTE@0.5: 1.1412
+  MTE@1.0: 1.5013
+  W2@1.0:  1.2284
+  sW2@0.1: 0.4473 (293/500 in region)
+  sW2@0.2: 0.4659 (212/500 in region)
+  sW2@0.5: 0.7422 (88/500 in region)
+  sW2@1.0: 1.0921 (24/500 in region)
+  MMD@1.0: 0.3494
+  Survival@1.0: 26.6%
+  Stopped@1.0:  4.8%
+
+  --- AE: T+F ---
+    E_mu=0.9860  E_Sigma=1.6160
+
+    Drift: enc-pull
+  Stage 2 epoch 100/300: loss=0.042962
+  Stage 2 epoch 200/300: loss=0.040195
+  Stage 2 epoch 300/300: loss=0.037998
+  Stage 3 epoch 100/300: loss=0.000211
+  Stage 3 epoch 200/300: loss=0.000144
+  Stage 3 epoch 300/300: loss=0.000126
+  rcMTE@0.1: 0.2756
+  rcMTE@0.5: 0.5188
+  rcMTE@1.0: 0.6418
+  MTE@0.1: 0.5584
+  MTE@0.5: 0.9344
+  MTE@1.0: 1.0815
+  W2@1.0:  0.9780
+  sW2@0.1: 0.3597 (293/500 in region)
+  sW2@0.2: 0.4358 (212/500 in region)
+  sW2@0.5: 0.8173 (88/500 in region)
+  sW2@1.0: 1.0090 (24/500 in region)
+  MMD@1.0: 0.2403
+  Survival@1.0: 26.6%
+  Stopped@1.0:  4.8%
+
+    Drift: dec-side
+  Stage 2 epoch 100/300: loss=0.000989
+  Stage 2 epoch 200/300: loss=0.000809
+  Stage 2 epoch 300/300: loss=0.000504
+  Stage 3 epoch 100/300: loss=0.000211
+  Stage 3 epoch 200/300: loss=0.000144
+  Stage 3 epoch 300/300: loss=0.000126
+  rcMTE@0.1: 0.2765
+  rcMTE@0.5: 0.6086
+  rcMTE@1.0: 0.8869
+  MTE@0.1: 0.5568
+  MTE@0.5: 1.1262
+  MTE@1.0: 1.5254
+  W2@1.0:  1.5934
+  sW2@0.1: 0.3935 (293/500 in region)
+  sW2@0.2: 0.5162 (212/500 in region)
+  sW2@0.5: 1.0799 (88/500 in region)
+  sW2@1.0: 1.8392 (24/500 in region)
+  MMD@1.0: 0.4155
+  Survival@1.0: 26.6%
+  Stopped@1.0:  4.8%
+
+============================================================
+  paraboloid | D=201 | seed=3042
+============================================================
+
+  --- AE: baseline ---
+    E_mu=6.6313  E_Sigma=13.1140
+
+    Drift: enc-pull
+  Stage 2 epoch 100/300: loss=0.022797
+  Stage 2 epoch 200/300: loss=0.021071
+  Stage 2 epoch 300/300: loss=0.019224
+  Stage 3 epoch 100/300: loss=0.001242
+  Stage 3 epoch 200/300: loss=0.001157
+  Stage 3 epoch 300/300: loss=0.001128
+  rcMTE@0.1: 0.2885
+  rcMTE@0.5: 0.4487
+  rcMTE@1.0: 0.5412
+  MTE@0.1: 0.6383
+  MTE@0.5: 0.7900
+  MTE@1.0: 0.9220
+  W2@1.0:  0.7973
+  sW2@0.1: 0.4047 (275/500 in region)
+  sW2@0.2: 0.4195 (204/500 in region)
+  sW2@0.5: 0.4394 (78/500 in region)
+  sW2@1.0: 0.7759 (25/500 in region)
+  MMD@1.0: 0.2787
+  Survival@1.0: 27.2%
+  Stopped@1.0:  5.0%
+
+    Drift: dec-side
+  Stage 2 epoch 100/300: loss=0.002493
+  Stage 2 epoch 200/300: loss=0.001153
+  Stage 2 epoch 300/300: loss=0.000490
+  Stage 3 epoch 100/300: loss=0.001242
+  Stage 3 epoch 200/300: loss=0.001157
+  Stage 3 epoch 300/300: loss=0.001128
+  rcMTE@0.1: 0.3030
+  rcMTE@0.5: 0.7171
+  rcMTE@1.0: 1.3324
+  MTE@0.1: 0.6875
+  MTE@0.5: 1.2465
+  MTE@1.0: 2.0760
+  W2@1.0:  2.0211
+  sW2@0.1: 0.5119 (275/500 in region)
+  sW2@0.2: 0.5978 (204/500 in region)
+  sW2@0.5: 0.9939 (78/500 in region)
+  sW2@1.0: 1.8506 (25/500 in region)
+  MMD@1.0: 0.3991
+  Survival@1.0: 27.2%
+  Stopped@1.0:  5.0%
+
+  --- AE: T+F ---
+    E_mu=0.7000  E_Sigma=0.9106
+
+    Drift: enc-pull
+  Stage 2 epoch 100/300: loss=0.025999
+  Stage 2 epoch 200/300: loss=0.025275
+  Stage 2 epoch 300/300: loss=0.024961
+  Stage 3 epoch 100/300: loss=0.000220
+  Stage 3 epoch 200/300: loss=0.000139
+  Stage 3 epoch 300/300: loss=0.000094
+  rcMTE@0.1: 0.2322
+  rcMTE@0.5: 0.4400
+  rcMTE@1.0: 0.5640
+  MTE@0.1: 0.5950
+  MTE@0.5: 0.8509
+  MTE@1.0: 0.9971
+  W2@1.0:  0.7807
+  sW2@0.1: 0.4047 (275/500 in region)
+  sW2@0.2: 0.4223 (204/500 in region)
+  sW2@0.5: 0.6511 (78/500 in region)
+  sW2@1.0: 1.0856 (25/500 in region)
+  MMD@1.0: 0.2927
+  Survival@1.0: 27.2%
+  Stopped@1.0:  5.0%
+
+    Drift: dec-side
+  Stage 2 epoch 100/300: loss=0.001561
+  Stage 2 epoch 200/300: loss=0.001008
+  Stage 2 epoch 300/300: loss=0.000231
+  Stage 3 epoch 100/300: loss=0.000220
+  Stage 3 epoch 200/300: loss=0.000139
+  Stage 3 epoch 300/300: loss=0.000094
+  rcMTE@0.1: 0.2379
+  rcMTE@0.5: 0.5802
+  rcMTE@1.0: 0.9772
+  MTE@0.1: 0.5910
+  MTE@0.5: 1.0923
+  MTE@1.0: 1.7591
+  W2@1.0:  1.9086
+  sW2@0.1: 0.4420 (275/500 in region)
+  sW2@0.2: 0.4931 (204/500 in region)
+  sW2@0.5: 1.0674 (78/500 in region)
+  sW2@1.0: 1.9471 (25/500 in region)
+  MMD@1.0: 0.4589
+  Survival@1.0: 27.2%
+  Stopped@1.0:  5.0%
+
+============================================================
+  paraboloid | D=201 | seed=4042
+============================================================
+
+  --- AE: baseline ---
+    E_mu=7.8973  E_Sigma=32.7622
+
+    Drift: enc-pull
+  Stage 2 epoch 100/300: loss=0.012356
+  Stage 2 epoch 200/300: loss=0.010007
+  Stage 2 epoch 300/300: loss=0.008240
+  Stage 3 epoch 100/300: loss=0.002417
+  Stage 3 epoch 200/300: loss=0.002414
+  Stage 3 epoch 300/300: loss=0.002411
+  rcMTE@0.1: 0.5823
+  rcMTE@0.5: 0.8814
+  rcMTE@1.0: 0.7862
+  MTE@0.1: 0.9762
+  MTE@0.5: 1.2908
+  MTE@1.0: 1.1630
+  W2@1.0:  0.7120
+  sW2@0.1: 0.5006 (287/500 in region)
+  sW2@0.2: 0.5958 (207/500 in region)
+  sW2@0.5: 0.5473 (102/500 in region)
+  sW2@1.0: 0.7238 (30/500 in region)
+  MMD@1.0: 0.1656
+  Survival@1.0: 28.2%
+  Stopped@1.0:  6.0%
+
+    Drift: dec-side
+  Stage 2 epoch 100/300: loss=0.000132
+  Stage 2 epoch 200/300: loss=0.000096
+  Stage 2 epoch 300/300: loss=0.000080
+  Stage 3 epoch 100/300: loss=0.002417
+  Stage 3 epoch 200/300: loss=0.002414
+  Stage 3 epoch 300/300: loss=0.002411
+  rcMTE@0.1: 0.5908
+  rcMTE@0.5: 1.0845
+  rcMTE@1.0: 1.1347
+  MTE@0.1: 0.9933
+  MTE@0.5: 1.5396
+  MTE@1.0: 1.5776
+  W2@1.0:  1.0598
+  sW2@0.1: 0.5590 (287/500 in region)
+  sW2@0.2: 0.7619 (207/500 in region)
+  sW2@0.5: 0.7515 (102/500 in region)
+  sW2@1.0: 0.9291 (30/500 in region)
+  MMD@1.0: 0.2621
+  Survival@1.0: 28.2%
+  Stopped@1.0:  6.0%
+
+  --- AE: T+F ---
+    E_mu=1.3312  E_Sigma=2.2489
+
+    Drift: enc-pull
+  Stage 2 epoch 100/300: loss=0.013791
+  Stage 2 epoch 200/300: loss=0.013341
+  Stage 2 epoch 300/300: loss=0.013113
+  Stage 3 epoch 100/300: loss=0.000429
+  Stage 3 epoch 200/300: loss=0.000421
+  Stage 3 epoch 300/300: loss=0.000414
+  rcMTE@0.1: 0.5616
+  rcMTE@0.5: 0.9102
+  rcMTE@1.0: 0.8981
+  MTE@0.1: 0.8974
+  MTE@0.5: 1.3422
+  MTE@1.0: 1.3731
+  W2@1.0:  0.5707
+  sW2@0.1: 0.4467 (287/500 in region)
+  sW2@0.2: 0.6421 (207/500 in region)
+  sW2@0.5: 0.3982 (102/500 in region)
+  sW2@1.0: 0.9948 (30/500 in region)
+  MMD@1.0: 0.2560
+  Survival@1.0: 28.2%
+  Stopped@1.0:  6.0%
+
+    Drift: dec-side
+  Stage 2 epoch 100/300: loss=0.000854
+  Stage 2 epoch 200/300: loss=0.000631
+  Stage 2 epoch 300/300: loss=0.000402
+  Stage 3 epoch 100/300: loss=0.000429
+  Stage 3 epoch 200/300: loss=0.000421
+  Stage 3 epoch 300/300: loss=0.000414
+  rcMTE@0.1: 0.5780
+  rcMTE@0.5: 1.0351
+  rcMTE@1.0: 1.1928
+  MTE@0.1: 0.9201
+  MTE@0.5: 1.5577
+  MTE@1.0: 1.8683
+  W2@1.0:  1.2798
+  sW2@0.1: 0.5196 (287/500 in region)
+  sW2@0.2: 0.8462 (207/500 in region)
+  sW2@0.5: 0.6355 (102/500 in region)
+  sW2@1.0: 1.4837 (30/500 in region)
+  MMD@1.0: 0.4098
+  Survival@1.0: 28.2%
+  Stopped@1.0:  6.0%
+
+============================================================
+  paraboloid | D=201 | seed=5042
+============================================================
+
+  --- AE: baseline ---
+    E_mu=7.4937  E_Sigma=30.1587
+
+    Drift: enc-pull
+  Stage 2 epoch 100/300: loss=0.012880
+  Stage 2 epoch 200/300: loss=0.011033
+  Stage 2 epoch 300/300: loss=0.008829
+  Stage 3 epoch 100/300: loss=0.001372
+  Stage 3 epoch 200/300: loss=0.001353
+  Stage 3 epoch 300/300: loss=0.001325
+  rcMTE@0.1: 0.5804
+  rcMTE@0.5: 1.0097
+  rcMTE@1.0: 0.9840
+  MTE@0.1: 0.9372
+  MTE@0.5: 1.4484
+  MTE@1.0: 1.3592
+  W2@1.0:  0.8431
+  sW2@0.1: 0.4672 (285/500 in region)
+  sW2@0.2: 0.5601 (216/500 in region)
+  sW2@0.5: 0.5693 (93/500 in region)
+  sW2@1.0: 0.8435 (33/500 in region)
+  MMD@1.0: 0.2416
+  Survival@1.0: 25.8%
+  Stopped@1.0:  6.6%
+
+    Drift: dec-side
+  Stage 2 epoch 100/300: loss=0.000641
+  Stage 2 epoch 200/300: loss=0.000408
+  Stage 2 epoch 300/300: loss=0.000203
+  Stage 3 epoch 100/300: loss=0.001372
+  Stage 3 epoch 200/300: loss=0.001353
+  Stage 3 epoch 300/300: loss=0.001325
+  rcMTE@0.1: 0.5961
+  rcMTE@0.5: 1.1678
+  rcMTE@1.0: 1.3531
+  MTE@0.1: 0.9616
+  MTE@0.5: 1.6901
+  MTE@1.0: 1.8767
+  W2@1.0:  1.4084
+  sW2@0.1: 0.5319 (285/500 in region)
+  sW2@0.2: 0.7156 (216/500 in region)
+  sW2@0.5: 0.9498 (93/500 in region)
+  sW2@1.0: 1.3724 (33/500 in region)
+  MMD@1.0: 0.3638
+  Survival@1.0: 25.8%
+  Stopped@1.0:  6.6%
+
+  --- AE: T+F ---
+    E_mu=1.2219  E_Sigma=2.6563
+
+    Drift: enc-pull
+  Stage 2 epoch 100/300: loss=0.019483
+  Stage 2 epoch 200/300: loss=0.018067
+  Stage 2 epoch 300/300: loss=0.016828
+  Stage 3 epoch 100/300: loss=0.000141
+  Stage 3 epoch 200/300: loss=0.000132
+  Stage 3 epoch 300/300: loss=0.000128
+  rcMTE@0.1: 0.6514
+  rcMTE@0.5: 1.0779
+  rcMTE@1.0: 1.0422
+  MTE@0.1: 1.0582
+  MTE@0.5: 1.5533
+  MTE@1.0: 1.4528
+  W2@1.0:  0.7906
+  sW2@0.1: 0.6437 (285/500 in region)
+  sW2@0.2: 0.8068 (216/500 in region)
+  sW2@0.5: 0.7485 (93/500 in region)
+  sW2@1.0: 0.7556 (33/500 in region)
+  MMD@1.0: 0.2706
+  Survival@1.0: 25.8%
+  Stopped@1.0:  6.6%
+
+    Drift: dec-side
+  Stage 2 epoch 100/300: loss=0.000774
+  Stage 2 epoch 200/300: loss=0.000370
+  Stage 2 epoch 300/300: loss=0.000216
+  Stage 3 epoch 100/300: loss=0.000141
+  Stage 3 epoch 200/300: loss=0.000132
+  Stage 3 epoch 300/300: loss=0.000128
+  rcMTE@0.1: 0.6730
+  rcMTE@0.5: 1.2553
+  rcMTE@1.0: 1.3492
+  MTE@0.1: 1.1216
+  MTE@0.5: 1.9602
+  MTE@1.0: 2.0875
+  W2@1.0:  1.8993
+  sW2@0.1: 0.8253 (285/500 in region)
+  sW2@0.2: 1.1947 (216/500 in region)
+  sW2@0.5: 1.5574 (93/500 in region)
+  sW2@1.0: 1.4642 (33/500 in region)
+  MMD@1.0: 0.4301
+  Survival@1.0: 25.8%
+  Stopped@1.0:  6.6%
+
+============================================================
+  paraboloid | D=201 | seed=6042
+============================================================
+
+  --- AE: baseline ---
+    E_mu=5.2916  E_Sigma=20.1098
+
+    Drift: enc-pull
+  Stage 2 epoch 100/300: loss=0.040389
+  Stage 2 epoch 200/300: loss=0.037294
+  Stage 2 epoch 300/300: loss=0.035333
+  Stage 3 epoch 100/300: loss=0.000713
+  Stage 3 epoch 200/300: loss=0.000688
+  Stage 3 epoch 300/300: loss=0.000671
+  rcMTE@0.1: 0.2785
+  rcMTE@0.5: 0.4608
+  rcMTE@1.0: 0.4958
+  MTE@0.1: 0.5621
+  MTE@0.5: 0.8555
+  MTE@1.0: 0.8239
+  W2@1.0:  0.7192
+  sW2@0.1: 0.4084 (290/500 in region)
+  sW2@0.2: 0.4055 (208/500 in region)
+  sW2@0.5: 0.4796 (89/500 in region)
+  sW2@1.0: 0.4659 (30/500 in region)
+  MMD@1.0: 0.1492
+  Survival@1.0: 27.2%
+  Stopped@1.0:  6.0%
+
+    Drift: dec-side
+  Stage 2 epoch 100/300: loss=0.001482
+  Stage 2 epoch 200/300: loss=0.000453
+  Stage 2 epoch 300/300: loss=0.000219
+  Stage 3 epoch 100/300: loss=0.000713
+  Stage 3 epoch 200/300: loss=0.000688
+  Stage 3 epoch 300/300: loss=0.000671
+  rcMTE@0.1: 0.2742
+  rcMTE@0.5: 0.5764
+  rcMTE@1.0: 0.9044
+  MTE@0.1: 0.5703
+  MTE@0.5: 1.1213
+  MTE@1.0: 1.7086
+  W2@1.0:  1.6462
+  sW2@0.1: 0.3880 (290/500 in region)
+  sW2@0.2: 0.4042 (208/500 in region)
+  sW2@0.5: 0.7328 (89/500 in region)
+  sW2@1.0: 1.3298 (30/500 in region)
+  MMD@1.0: 0.4090
+  Survival@1.0: 27.2%
+  Stopped@1.0:  6.0%
+
+  --- AE: T+F ---
+    E_mu=1.4105  E_Sigma=1.8134
+
+    Drift: enc-pull
+  Stage 2 epoch 100/300: loss=0.014978
+  Stage 2 epoch 200/300: loss=0.013937
+  Stage 2 epoch 300/300: loss=0.013153
+  Stage 3 epoch 100/300: loss=0.000083
+  Stage 3 epoch 200/300: loss=0.000057
+  Stage 3 epoch 300/300: loss=0.000043
+  rcMTE@0.1: 0.2416
+  rcMTE@0.5: 0.4218
+  rcMTE@1.0: 0.5832
+  MTE@0.1: 0.4477
+  MTE@0.5: 0.7539
+  MTE@1.0: 0.9690
+  W2@1.0:  0.8961
+  sW2@0.1: 0.2780 (290/500 in region)
+  sW2@0.2: 0.3261 (208/500 in region)
+  sW2@0.5: 0.5527 (89/500 in region)
+  sW2@1.0: 0.7178 (30/500 in region)
+  MMD@1.0: 0.2424
+  Survival@1.0: 27.2%
+  Stopped@1.0:  6.0%
+
+    Drift: dec-side
+  Stage 2 epoch 100/300: loss=0.000318
+  Stage 2 epoch 200/300: loss=0.000219
+  Stage 2 epoch 300/300: loss=0.000156
+  Stage 3 epoch 100/300: loss=0.000083
+  Stage 3 epoch 200/300: loss=0.000057
+  Stage 3 epoch 300/300: loss=0.000043
+  rcMTE@0.1: 0.2313
+  rcMTE@0.5: 0.5110
+  rcMTE@1.0: 0.8468
+  MTE@0.1: 0.4244
+  MTE@0.5: 0.9385
+  MTE@1.0: 1.4825
+  W2@1.0:  1.4992
+  sW2@0.1: 0.2839 (290/500 in region)
+  sW2@0.2: 0.3802 (208/500 in region)
+  sW2@0.5: 0.7916 (89/500 in region)
+  sW2@1.0: 1.2029 (30/500 in region)
+  MMD@1.0: 0.4252
+  Survival@1.0: 27.2%
+  Stopped@1.0:  6.0%
+
+============================================================
+  paraboloid | D=201 | seed=7042
+============================================================
+
+  --- AE: baseline ---
+    E_mu=3.6763  E_Sigma=9.6695
+
+    Drift: enc-pull
+  Stage 2 epoch 100/300: loss=0.075098
+  Stage 2 epoch 200/300: loss=0.065225
+  Stage 2 epoch 300/300: loss=0.057888
+  Stage 3 epoch 100/300: loss=0.003218
+  Stage 3 epoch 200/300: loss=0.003047
+  Stage 3 epoch 300/300: loss=0.003023
+  rcMTE@0.1: 0.4768
+  rcMTE@0.5: 0.8484
+  rcMTE@1.0: 0.9373
+  MTE@0.1: 0.8047
+  MTE@0.5: 1.2751
+  MTE@1.0: 1.3715
+  W2@1.0:  1.0979
+  sW2@0.1: 0.3904 (316/500 in region)
+  sW2@0.2: 0.4926 (232/500 in region)
+  sW2@0.5: 1.0031 (109/500 in region)
+  sW2@1.0: 0.6835 (29/500 in region)
+  MMD@1.0: 0.1200
+  Survival@1.0: 28.8%
+  Stopped@1.0:  5.8%
+
+    Drift: dec-side
+  Stage 2 epoch 100/300: loss=0.047657
+  Stage 2 epoch 200/300: loss=0.008980
+  Stage 2 epoch 300/300: loss=0.001354
+  Stage 3 epoch 100/300: loss=0.003218
+  Stage 3 epoch 200/300: loss=0.003047
+  Stage 3 epoch 300/300: loss=0.003023
+  rcMTE@0.1: 0.5654
+  rcMTE@0.5: 1.4715
+  rcMTE@1.0: 2.5574
+  MTE@0.1: 0.9266
+  MTE@0.5: 2.2808
+  MTE@1.0: 4.1144
+  W2@1.0:  4.8946
+  sW2@0.1: 0.6085 (316/500 in region)
+  sW2@0.2: 1.1519 (232/500 in region)
+  sW2@0.5: 2.6234 (109/500 in region)
+  sW2@1.0: 4.2079 (29/500 in region)
+  MMD@1.0: 0.4003
+  Survival@1.0: 28.8%
+  Stopped@1.0:  5.8%
+
+  --- AE: T+F ---
+    E_mu=0.7164  E_Sigma=1.4224
+
+    Drift: enc-pull
+  Stage 2 epoch 100/300: loss=0.548476
+  Stage 2 epoch 200/300: loss=0.510283
+  Stage 2 epoch 300/300: loss=0.490350
+  Stage 3 epoch 100/300: loss=0.000512
+  Stage 3 epoch 200/300: loss=0.000400
+  Stage 3 epoch 300/300: loss=0.000335
+  rcMTE@0.1: 0.5013
+  rcMTE@0.5: 0.7849
+  rcMTE@1.0: 0.7873
+  MTE@0.1: 0.9307
+  MTE@0.5: 1.2458
+  MTE@1.0: 1.2666
+  W2@1.0:  1.0161
+  sW2@0.1: 0.4925 (316/500 in region)
+  sW2@0.2: 0.4797 (232/500 in region)
+  sW2@0.5: 0.5998 (109/500 in region)
+  sW2@1.0: 0.6996 (29/500 in region)
+  MMD@1.0: 0.2781
+  Survival@1.0: 28.8%
+  Stopped@1.0:  5.8%
+
+    Drift: dec-side
+  Stage 2 epoch 100/300: loss=0.005260
+  Stage 2 epoch 200/300: loss=0.002245
+  Stage 2 epoch 300/300: loss=0.000501
+  Stage 3 epoch 100/300: loss=0.000512
+  Stage 3 epoch 200/300: loss=0.000400
+  Stage 3 epoch 300/300: loss=0.000335
+  rcMTE@0.1: 0.5296
+  rcMTE@0.5: 1.0939
+  rcMTE@1.0: 1.2569
+  MTE@0.1: 1.0070
+  MTE@0.5: 1.7943
+  MTE@1.0: 2.1033
+  W2@1.0:  1.9906
+  sW2@0.1: 0.7369 (316/500 in region)
+  sW2@0.2: 1.1077 (232/500 in region)
+  sW2@0.5: 1.2418 (109/500 in region)
+  sW2@1.0: 1.4419 (29/500 in region)
+  MMD@1.0: 0.2272
+  Survival@1.0: 28.8%
+  Stopped@1.0:  5.8%
+
+============================================================
+  paraboloid | D=201 | seed=8042
+============================================================
+
+  --- AE: baseline ---
+    E_mu=7.4864  E_Sigma=32.6455
+
+    Drift: enc-pull
+  Stage 2 epoch 100/300: loss=0.020353
+  Stage 2 epoch 200/300: loss=0.011591
+  Stage 2 epoch 300/300: loss=0.008841
+  Stage 3 epoch 100/300: loss=0.003562
+  Stage 3 epoch 200/300: loss=0.003512
+  Stage 3 epoch 300/300: loss=0.003498
+  rcMTE@0.1: 0.5099
+  rcMTE@0.5: 0.8431
+  rcMTE@1.0: 0.9918
+  MTE@0.1: 0.9363
+  MTE@0.5: 1.2566
+  MTE@1.0: 1.4414
+  W2@1.0:  1.1113
+  sW2@0.1: 0.5345 (269/500 in region)
+  sW2@0.2: 0.5945 (192/500 in region)
+  sW2@0.5: 0.7660 (84/500 in region)
+  sW2@1.0: 1.0463 (29/500 in region)
+  MMD@1.0: 0.2665
+  Survival@1.0: 27.0%
+  Stopped@1.0:  5.8%
+
+    Drift: dec-side
+  Stage 2 epoch 100/300: loss=0.003033
+  Stage 2 epoch 200/300: loss=0.000571
+  Stage 2 epoch 300/300: loss=0.000277
+  Stage 3 epoch 100/300: loss=0.003562
+  Stage 3 epoch 200/300: loss=0.003512
+  Stage 3 epoch 300/300: loss=0.003498
+  rcMTE@0.1: 0.5429
+  rcMTE@0.5: 1.0640
+  rcMTE@1.0: 1.4857
+  MTE@0.1: 0.9746
+  MTE@0.5: 1.5425
+  MTE@1.0: 2.1072
+  W2@1.0:  1.9073
+  sW2@0.1: 0.6261 (269/500 in region)
+  sW2@0.2: 0.7623 (192/500 in region)
+  sW2@0.5: 1.3100 (84/500 in region)
+  sW2@1.0: 2.4627 (29/500 in region)
+  MMD@1.0: 0.3051
+  Survival@1.0: 27.0%
+  Stopped@1.0:  5.8%
+
+  --- AE: T+F ---
+    E_mu=1.1267  E_Sigma=2.3869
+
+    Drift: enc-pull
+  Stage 2 epoch 100/300: loss=0.285873
+  Stage 2 epoch 200/300: loss=0.271689
+  Stage 2 epoch 300/300: loss=0.261497
+  Stage 3 epoch 100/300: loss=0.000649
+  Stage 3 epoch 200/300: loss=0.000442
+  Stage 3 epoch 300/300: loss=0.000361
+  rcMTE@0.1: 0.5138
+  rcMTE@0.5: 1.0746
+  rcMTE@1.0: 1.6238
+  MTE@0.1: 0.9364
+  MTE@0.5: 1.8382
+  MTE@1.0: 2.7025
+  W2@1.0:  2.5420
+  sW2@0.1: 0.6464 (269/500 in region)
+  sW2@0.2: 0.8779 (192/500 in region)
+  sW2@0.5: 1.5094 (84/500 in region)
+  sW2@1.0: 2.5205 (29/500 in region)
+  MMD@1.0: 0.6027
+  Survival@1.0: 27.0%
+  Stopped@1.0:  5.8%
+
+    Drift: dec-side
+  Stage 2 epoch 100/300: loss=0.000871
+  Stage 2 epoch 200/300: loss=0.000359
+  Stage 2 epoch 300/300: loss=0.000227
+  Stage 3 epoch 100/300: loss=0.000649
+  Stage 3 epoch 200/300: loss=0.000442
+  Stage 3 epoch 300/300: loss=0.000361
+  rcMTE@0.1: 0.5036
+  rcMTE@0.5: 0.9269
+  rcMTE@1.0: 1.2431
+  MTE@0.1: 0.9471
+  MTE@0.5: 1.6044
+  MTE@1.0: 2.0930
+  W2@1.0:  1.8708
+  sW2@0.1: 0.6910 (269/500 in region)
+  sW2@0.2: 0.8935 (192/500 in region)
+  sW2@0.5: 1.5157 (84/500 in region)
+  sW2@1.0: 2.2508 (29/500 in region)
+  MMD@1.0: 0.2615
+  Survival@1.0: 27.0%
+  Stopped@1.0:  5.8%
+
+============================================================
+  paraboloid | D=201 | seed=9042
+============================================================
+
+  --- AE: baseline ---
+    E_mu=4.6374  E_Sigma=14.6653
+
+    Drift: enc-pull
+  Stage 2 epoch 100/300: loss=0.034529
+  Stage 2 epoch 200/300: loss=0.014234
+  Stage 2 epoch 300/300: loss=0.015519
+  Stage 3 epoch 100/300: loss=0.000811
+  Stage 3 epoch 200/300: loss=0.000782
+  Stage 3 epoch 300/300: loss=0.000771
+  rcMTE@0.1: 0.6113
+  rcMTE@0.5: 0.9261
+  rcMTE@1.0: 1.1316
+  MTE@0.1: 1.0526
+  MTE@0.5: 1.4270
+  MTE@1.0: 1.6311
+  W2@1.0:  0.8566
+  sW2@0.1: 0.5519 (280/500 in region)
+  sW2@0.2: 0.5696 (205/500 in region)
+  sW2@0.5: 0.6816 (85/500 in region)
+  sW2@1.0: 0.8021 (22/500 in region)
+  MMD@1.0: 0.1618
+  Survival@1.0: 28.2%
+  Stopped@1.0:  4.4%
+
+    Drift: dec-side
+  Stage 2 epoch 100/300: loss=0.001373
+  Stage 2 epoch 200/300: loss=0.001182
+  Stage 2 epoch 300/300: loss=0.000910
+  Stage 3 epoch 100/300: loss=0.000811
+  Stage 3 epoch 200/300: loss=0.000782
+  Stage 3 epoch 300/300: loss=0.000771
+  rcMTE@0.1: 0.6306
+  rcMTE@0.5: 1.1478
+  rcMTE@1.0: 1.7015
+  MTE@0.1: 1.1008
+  MTE@0.5: 1.8827
+  MTE@1.0: 2.6983
+  W2@1.0:  2.1839
+  sW2@0.1: 0.7022 (280/500 in region)
+  sW2@0.2: 0.8905 (205/500 in region)
+  sW2@0.5: 1.4539 (85/500 in region)
+  sW2@1.0: 2.2092 (22/500 in region)
+  MMD@1.0: 0.3289
+  Survival@1.0: 28.2%
+  Stopped@1.0:  4.4%
+
+  --- AE: T+F ---
+    E_mu=1.0513  E_Sigma=1.4338
+
+    Drift: enc-pull
+  Stage 2 epoch 100/300: loss=0.065796
+  Stage 2 epoch 200/300: loss=0.051200
+  Stage 2 epoch 300/300: loss=0.033537
+  Stage 3 epoch 100/300: loss=0.000347
+  Stage 3 epoch 200/300: loss=0.000239
+  Stage 3 epoch 300/300: loss=0.000159
+  rcMTE@0.1: 0.8382
+  rcMTE@0.5: 1.2376
+  rcMTE@1.0: 1.3360
+  MTE@0.1: 1.3764
+  MTE@0.5: 1.7675
+  MTE@1.0: 1.8192
+  W2@1.0:  0.5087
+  sW2@0.1: 0.7013 (280/500 in region)
+  sW2@0.2: 0.8530 (205/500 in region)
+  sW2@0.5: 0.9175 (85/500 in region)
+  sW2@1.0: 0.8109 (22/500 in region)
+  MMD@1.0: 0.1393
+  Survival@1.0: 28.2%
+  Stopped@1.0:  4.4%
+
+    Drift: dec-side
+  Stage 2 epoch 100/300: loss=0.001694
+  Stage 2 epoch 200/300: loss=0.000348
+  Stage 2 epoch 300/300: loss=0.000115
+  Stage 3 epoch 100/300: loss=0.000347
+  Stage 3 epoch 200/300: loss=0.000239
+  Stage 3 epoch 300/300: loss=0.000159
+  rcMTE@0.1: 0.8827
+  rcMTE@0.5: 1.6216
+  rcMTE@1.0: 2.0329
+  MTE@0.1: 1.4670
+  MTE@0.5: 2.4350
+  MTE@1.0: 2.9384
+  W2@1.0:  2.2601
+  sW2@0.1: 0.9750 (280/500 in region)
+  sW2@0.2: 1.4658 (205/500 in region)
+  sW2@0.5: 2.1937 (85/500 in region)
+  sW2@1.0: 2.6366 (22/500 in region)
+  MMD@1.0: 0.3717
+  Survival@1.0: 28.2%
+  Stopped@1.0:  4.4%
+
+============================================================
+  hyperbolic_paraboloid | D=201 | seed=42
+============================================================
+
+  --- AE: baseline ---
+    E_mu=4.6102  E_Sigma=29.4003
+
+    Drift: enc-pull
+  Stage 2 epoch 100/300: loss=0.020503
+  Stage 2 epoch 200/300: loss=0.018148
+  Stage 2 epoch 300/300: loss=0.017056
+  Stage 3 epoch 100/300: loss=0.001554
+  Stage 3 epoch 200/300: loss=0.001456
+  Stage 3 epoch 300/300: loss=0.001388
+  rcMTE@0.1: 0.6083
+  rcMTE@0.5: 1.0586
+  rcMTE@1.0: 1.2272
+  MTE@0.1: 1.0389
+  MTE@0.5: 1.5617
+  MTE@1.0: 1.6974
+  W2@1.0:  1.0348
+  sW2@0.1: 0.5593 (292/500 in region)
+  sW2@0.2: 0.7221 (214/500 in region)
+  sW2@0.5: 0.8333 (97/500 in region)
+  sW2@1.0: 1.3732 (21/500 in region)
+  MMD@1.0: 0.2253
+  Survival@1.0: 28.0%
+  Stopped@1.0:  4.2%
+
+    Drift: dec-side
+  Stage 2 epoch 100/300: loss=0.015205
+  Stage 2 epoch 200/300: loss=0.007896
+  Stage 2 epoch 300/300: loss=0.002322
+  Stage 3 epoch 100/300: loss=0.001554
+  Stage 3 epoch 200/300: loss=0.001456
+  Stage 3 epoch 300/300: loss=0.001388
+  rcMTE@0.1: 0.6187
+  rcMTE@0.5: 1.1561
+  rcMTE@1.0: 1.3397
+  MTE@0.1: 1.0553
+  MTE@0.5: 1.7104
+  MTE@1.0: 1.8763
+  W2@1.0:  1.1451
+  sW2@0.1: 0.5826 (292/500 in region)
+  sW2@0.2: 0.7810 (214/500 in region)
+  sW2@0.5: 0.9982 (97/500 in region)
+  sW2@1.0: 1.6099 (21/500 in region)
+  MMD@1.0: 0.2722
+  Survival@1.0: 28.0%
+  Stopped@1.0:  4.2%
+
+  --- AE: T+F ---
+    E_mu=1.7294  E_Sigma=4.9787
+
+    Drift: enc-pull
+  Stage 2 epoch 100/300: loss=0.026618
+  Stage 2 epoch 200/300: loss=0.025489
+  Stage 2 epoch 300/300: loss=0.023886
+  Stage 3 epoch 100/300: loss=0.000324
+  Stage 3 epoch 200/300: loss=0.000263
+  Stage 3 epoch 300/300: loss=0.000239
+  rcMTE@0.1: 0.5655
+  rcMTE@0.5: 1.0708
+  rcMTE@1.0: 1.1995
+  MTE@0.1: 1.0776
+  MTE@0.5: 1.7574
+  MTE@1.0: 1.8195
+  W2@1.0:  1.1072
+  sW2@0.1: 0.6969 (292/500 in region)
+  sW2@0.2: 0.9391 (214/500 in region)
+  sW2@0.5: 1.2477 (97/500 in region)
+  sW2@1.0: 1.3315 (21/500 in region)
+  MMD@1.0: 0.2998
+  Survival@1.0: 28.0%
+  Stopped@1.0:  4.2%
+
+    Drift: dec-side
+  Stage 2 epoch 100/300: loss=0.001553
+  Stage 2 epoch 200/300: loss=0.001092
+  Stage 2 epoch 300/300: loss=0.000768
+  Stage 3 epoch 100/300: loss=0.000324
+  Stage 3 epoch 200/300: loss=0.000263
+  Stage 3 epoch 300/300: loss=0.000239
+  rcMTE@0.1: 0.5831
+  rcMTE@0.5: 1.2395
+  rcMTE@1.0: 1.6034
+  MTE@0.1: 1.1259
+  MTE@0.5: 2.0943
+  MTE@1.0: 2.5533
+  W2@1.0:  2.0671
+  sW2@0.1: 0.7840 (292/500 in region)
+  sW2@0.2: 1.1427 (214/500 in region)
+  sW2@0.5: 1.8045 (97/500 in region)
+  sW2@1.0: 2.5153 (21/500 in region)
+  MMD@1.0: 0.3794
+  Survival@1.0: 28.0%
+  Stopped@1.0:  4.2%
+
+============================================================
+  hyperbolic_paraboloid | D=201 | seed=1042
+============================================================
+
+  --- AE: baseline ---
+    E_mu=3.3386  E_Sigma=38.7772
+
+    Drift: enc-pull
+  Stage 2 epoch 100/300: loss=0.017565
+  Stage 2 epoch 200/300: loss=0.015610
+  Stage 2 epoch 300/300: loss=0.013849
+  Stage 3 epoch 100/300: loss=0.000775
+  Stage 3 epoch 200/300: loss=0.000772
+  Stage 3 epoch 300/300: loss=0.000769
+  rcMTE@0.1: 0.5783
+  rcMTE@0.5: 0.8827
+  rcMTE@1.0: 1.0734
+  MTE@0.1: 0.9550
+  MTE@0.5: 1.3264
+  MTE@1.0: 1.5689
+  W2@1.0:  1.1973
+  sW2@0.1: 0.5179 (285/500 in region)
+  sW2@0.2: 0.6114 (204/500 in region)
+  sW2@0.5: 0.7173 (98/500 in region)
+  sW2@1.0: 1.0805 (31/500 in region)
+  MMD@1.0: 0.2708
+  Survival@1.0: 29.8%
+  Stopped@1.0:  6.2%
+
+    Drift: dec-side
+  Stage 2 epoch 100/300: loss=0.001376
+  Stage 2 epoch 200/300: loss=0.000878
+  Stage 2 epoch 300/300: loss=0.000819
+  Stage 3 epoch 100/300: loss=0.000775
+  Stage 3 epoch 200/300: loss=0.000772
+  Stage 3 epoch 300/300: loss=0.000769
+  rcMTE@0.1: 0.5823
+  rcMTE@0.5: 0.9357
+  rcMTE@1.0: 1.0975
+  MTE@0.1: 0.9683
+  MTE@0.5: 1.4152
+  MTE@1.0: 1.6199
+  W2@1.0:  1.1972
+  sW2@0.1: 0.5389 (285/500 in region)
+  sW2@0.2: 0.6649 (204/500 in region)
+  sW2@0.5: 0.7731 (98/500 in region)
+  sW2@1.0: 1.0512 (31/500 in region)
+  MMD@1.0: 0.2379
+  Survival@1.0: 29.8%
+  Stopped@1.0:  6.2%
+
+  --- AE: T+F ---
+    E_mu=0.8041  E_Sigma=2.0364
+
+    Drift: enc-pull
+  Stage 2 epoch 100/300: loss=0.012188
+  Stage 2 epoch 200/300: loss=0.011659
+  Stage 2 epoch 300/300: loss=0.011167
+  Stage 3 epoch 100/300: loss=0.000086
+  Stage 3 epoch 200/300: loss=0.000077
+  Stage 3 epoch 300/300: loss=0.000065
+  rcMTE@0.1: 0.8141
+  rcMTE@0.5: 1.4597
+  rcMTE@1.0: 1.6559
+  MTE@0.1: 1.3087
+  MTE@0.5: 2.0624
+  MTE@1.0: 2.2439
+  W2@1.0:  1.1123
+  sW2@0.1: 0.5302 (285/500 in region)
+  sW2@0.2: 0.7887 (204/500 in region)
+  sW2@0.5: 0.9077 (98/500 in region)
+  sW2@1.0: 1.2319 (31/500 in region)
+  MMD@1.0: 0.2337
+  Survival@1.0: 29.8%
+  Stopped@1.0:  6.2%
+
+    Drift: dec-side
+  Stage 2 epoch 100/300: loss=0.000668
+  Stage 2 epoch 200/300: loss=0.000489
+  Stage 2 epoch 300/300: loss=0.000311
+  Stage 3 epoch 100/300: loss=0.000086
+  Stage 3 epoch 200/300: loss=0.000077
+  Stage 3 epoch 300/300: loss=0.000065
+  rcMTE@0.1: 0.8176
+  rcMTE@0.5: 1.4829
+  rcMTE@1.0: 1.6694
+  MTE@0.1: 1.3181
+  MTE@0.5: 2.1366
+  MTE@1.0: 2.3527
+  W2@1.0:  1.2037
+  sW2@0.1: 0.5540 (285/500 in region)
+  sW2@0.2: 0.8535 (204/500 in region)
+  sW2@0.5: 1.0662 (98/500 in region)
+  sW2@1.0: 1.3733 (31/500 in region)
+  MMD@1.0: 0.2524
+  Survival@1.0: 29.8%
+  Stopped@1.0:  6.2%
+
+============================================================
+  hyperbolic_paraboloid | D=201 | seed=2042
+============================================================
+
+  --- AE: baseline ---
+    E_mu=3.6767  E_Sigma=11.1659
+
+    Drift: enc-pull
+  Stage 2 epoch 100/300: loss=0.015666
+  Stage 2 epoch 200/300: loss=0.012850
+  Stage 2 epoch 300/300: loss=0.010802
+  Stage 3 epoch 100/300: loss=0.000630
+  Stage 3 epoch 200/300: loss=0.000613
+  Stage 3 epoch 300/300: loss=0.000609
+  rcMTE@0.1: 0.4432
+  rcMTE@0.5: 0.7858
+  rcMTE@1.0: 0.7606
+  MTE@0.1: 0.7525
+  MTE@0.5: 1.1600
+  MTE@1.0: 1.1468
+  W2@1.0:  0.9134
+  sW2@0.1: 0.3760 (293/500 in region)
+  sW2@0.2: 0.4597 (212/500 in region)
+  sW2@0.5: 0.6549 (88/500 in region)
+  sW2@1.0: 0.6288 (24/500 in region)
+  MMD@1.0: 0.2208
+  Survival@1.0: 26.6%
+  Stopped@1.0:  4.8%
+
+    Drift: dec-side
+  Stage 2 epoch 100/300: loss=0.003556
+  Stage 2 epoch 200/300: loss=0.002122
+  Stage 2 epoch 300/300: loss=0.001172
+  Stage 3 epoch 100/300: loss=0.000630
+  Stage 3 epoch 200/300: loss=0.000613
+  Stage 3 epoch 300/300: loss=0.000609
+  rcMTE@0.1: 0.4686
+  rcMTE@0.5: 1.0139
+  rcMTE@1.0: 1.1295
+  MTE@0.1: 0.7858
+  MTE@0.5: 1.4644
+  MTE@1.0: 1.6480
+  W2@1.0:  1.3855
+  sW2@0.1: 0.4627 (293/500 in region)
+  sW2@0.2: 0.6010 (212/500 in region)
+  sW2@0.5: 1.0100 (88/500 in region)
+  sW2@1.0: 1.2777 (24/500 in region)
+  MMD@1.0: 0.2814
+  Survival@1.0: 26.6%
+  Stopped@1.0:  4.8%
+
+  --- AE: T+F ---
+    E_mu=0.8403  E_Sigma=1.9630
+
+    Drift: enc-pull
+  Stage 2 epoch 100/300: loss=0.013356
+  Stage 2 epoch 200/300: loss=0.011980
+  Stage 2 epoch 300/300: loss=0.011532
+  Stage 3 epoch 100/300: loss=0.000098
+  Stage 3 epoch 200/300: loss=0.000081
+  Stage 3 epoch 300/300: loss=0.000074
+  rcMTE@0.1: 0.2767
+  rcMTE@0.5: 0.5302
+  rcMTE@1.0: 0.6140
+  MTE@0.1: 0.4891
+  MTE@0.5: 0.8874
+  MTE@1.0: 1.0327
+  W2@1.0:  0.8416
+  sW2@0.1: 0.3355 (293/500 in region)
+  sW2@0.2: 0.3997 (212/500 in region)
+  sW2@0.5: 0.6224 (88/500 in region)
+  sW2@1.0: 0.7458 (24/500 in region)
+  MMD@1.0: 0.2445
+  Survival@1.0: 26.6%
+  Stopped@1.0:  4.8%
+
+    Drift: dec-side
+  Stage 2 epoch 100/300: loss=0.000483
+  Stage 2 epoch 200/300: loss=0.000408
+  Stage 2 epoch 300/300: loss=0.000328
+  Stage 3 epoch 100/300: loss=0.000098
+  Stage 3 epoch 200/300: loss=0.000081
+  Stage 3 epoch 300/300: loss=0.000074
+  rcMTE@0.1: 0.2855
+  rcMTE@0.5: 0.5855
+  rcMTE@1.0: 0.7498
+  MTE@0.1: 0.4995
+  MTE@0.5: 0.9620
+  MTE@1.0: 1.1689
+  W2@1.0:  1.0496
+  sW2@0.1: 0.3731 (293/500 in region)
+  sW2@0.2: 0.4986 (212/500 in region)
+  sW2@0.5: 0.8111 (88/500 in region)
+  sW2@1.0: 0.9980 (24/500 in region)
+  MMD@1.0: 0.2784
+  Survival@1.0: 26.6%
+  Stopped@1.0:  4.8%
+
+============================================================
+  hyperbolic_paraboloid | D=201 | seed=3042
+============================================================
+
+  --- AE: baseline ---
+    E_mu=3.6251  E_Sigma=15.4243
+
+    Drift: enc-pull
+  Stage 2 epoch 100/300: loss=0.013635
+  Stage 2 epoch 200/300: loss=0.012193
+  Stage 2 epoch 300/300: loss=0.012513
+  Stage 3 epoch 100/300: loss=0.002452
+  Stage 3 epoch 200/300: loss=0.002391
+  Stage 3 epoch 300/300: loss=0.002344
+  rcMTE@0.1: 0.3505
+  rcMTE@0.5: 0.4915
+  rcMTE@1.0: 0.5590
+  MTE@0.1: 0.7006
+  MTE@0.5: 0.8748
+  MTE@1.0: 0.9404
+  W2@1.0:  0.6867
+  sW2@0.1: 0.4147 (275/500 in region)
+  sW2@0.2: 0.4239 (204/500 in region)
+  sW2@0.5: 0.4902 (78/500 in region)
+  sW2@1.0: 0.7294 (25/500 in region)
+  MMD@1.0: 0.2134
+  Survival@1.0: 27.2%
+  Stopped@1.0:  5.0%
+
+    Drift: dec-side
+  Stage 2 epoch 100/300: loss=0.004518
+  Stage 2 epoch 200/300: loss=0.003192
+  Stage 2 epoch 300/300: loss=0.001247
+  Stage 3 epoch 100/300: loss=0.002452
+  Stage 3 epoch 200/300: loss=0.002391
+  Stage 3 epoch 300/300: loss=0.002344
+  rcMTE@0.1: 0.3614
+  rcMTE@0.5: 0.6439
+  rcMTE@1.0: 1.0252
+  MTE@0.1: 0.7177
+  MTE@0.5: 1.1124
+  MTE@1.0: 1.6536
+  W2@1.0:  1.4885
+  sW2@0.1: 0.4499 (275/500 in region)
+  sW2@0.2: 0.4890 (204/500 in region)
+  sW2@0.5: 0.7825 (78/500 in region)
+  sW2@1.0: 1.6422 (25/500 in region)
+  MMD@1.0: 0.3205
+  Survival@1.0: 27.2%
+  Stopped@1.0:  5.0%
+
+  --- AE: T+F ---
+    E_mu=0.6201  E_Sigma=1.9532
+
+    Drift: enc-pull
+  Stage 2 epoch 100/300: loss=0.031612
+  Stage 2 epoch 200/300: loss=0.026804
+  Stage 2 epoch 300/300: loss=0.028088
+  Stage 3 epoch 100/300: loss=0.000285
+  Stage 3 epoch 200/300: loss=0.000243
+  Stage 3 epoch 300/300: loss=0.000224
+  rcMTE@0.1: 0.7295
+  rcMTE@0.5: 1.2228
+  rcMTE@1.0: 1.2832
+  MTE@0.1: 1.3108
+  MTE@0.5: 1.9305
+  MTE@1.0: 2.0542
+  W2@1.0:  1.6102
+  sW2@0.1: 0.8121 (275/500 in region)
+  sW2@0.2: 0.9785 (204/500 in region)
+  sW2@0.5: 1.5333 (78/500 in region)
+  sW2@1.0: 2.2439 (25/500 in region)
+  MMD@1.0: 0.2423
+  Survival@1.0: 27.2%
+  Stopped@1.0:  5.0%
+
+    Drift: dec-side
+  Stage 2 epoch 100/300: loss=0.001154
+  Stage 2 epoch 200/300: loss=0.000731
+  Stage 2 epoch 300/300: loss=0.000267
+  Stage 3 epoch 100/300: loss=0.000285
+  Stage 3 epoch 200/300: loss=0.000243
+  Stage 3 epoch 300/300: loss=0.000224
+  rcMTE@0.1: 0.7471
+  rcMTE@0.5: 1.3550
+  rcMTE@1.0: 1.4827
+  MTE@0.1: 1.3485
+  MTE@0.5: 2.1354
+  MTE@1.0: 2.3613
+  W2@1.0:  1.9235
+  sW2@0.1: 0.8858 (275/500 in region)
+  sW2@0.2: 1.1301 (204/500 in region)
+  sW2@0.5: 1.6749 (78/500 in region)
+  sW2@1.0: 2.2825 (25/500 in region)
+  MMD@1.0: 0.3373
+  Survival@1.0: 27.2%
+  Stopped@1.0:  5.0%
+
+============================================================
+  hyperbolic_paraboloid | D=201 | seed=4042
+============================================================
+
+  --- AE: baseline ---
+    E_mu=3.2141  E_Sigma=11.7761
+
+    Drift: enc-pull
+  Stage 2 epoch 100/300: loss=0.018268
+  Stage 2 epoch 200/300: loss=0.015381
+  Stage 2 epoch 300/300: loss=0.012945
+  Stage 3 epoch 100/300: loss=0.000561
+  Stage 3 epoch 200/300: loss=0.000551
+  Stage 3 epoch 300/300: loss=0.000475
+  rcMTE@0.1: 0.5812
+  rcMTE@0.5: 0.9085
+  rcMTE@1.0: 0.8348
+  MTE@0.1: 0.9655
+  MTE@0.5: 1.3428
+  MTE@1.0: 1.2499
+  W2@1.0:  0.4929
+  sW2@0.1: 0.3844 (287/500 in region)
+  sW2@0.2: 0.5133 (207/500 in region)
+  sW2@0.5: 0.4835 (102/500 in region)
+  sW2@1.0: 0.7606 (30/500 in region)
+  MMD@1.0: 0.1756
+  Survival@1.0: 28.2%
+  Stopped@1.0:  6.0%
+
+    Drift: dec-side
+  Stage 2 epoch 100/300: loss=0.002570
+  Stage 2 epoch 200/300: loss=0.000663
+  Stage 2 epoch 300/300: loss=0.000266
+  Stage 3 epoch 100/300: loss=0.000561
+  Stage 3 epoch 200/300: loss=0.000551
+  Stage 3 epoch 300/300: loss=0.000475
+  rcMTE@0.1: 0.5948
+  rcMTE@0.5: 1.1515
+  rcMTE@1.0: 1.4328
+  MTE@0.1: 0.9922
+  MTE@0.5: 1.6928
+  MTE@1.0: 2.0086
+  W2@1.0:  1.4330
+  sW2@0.1: 0.4614 (287/500 in region)
+  sW2@0.2: 0.7383 (207/500 in region)
+  sW2@0.5: 0.9557 (102/500 in region)
+  sW2@1.0: 1.2858 (30/500 in region)
+  MMD@1.0: 0.3452
+  Survival@1.0: 28.2%
+  Stopped@1.0:  6.0%
+
+  --- AE: T+F ---
+    E_mu=0.6116  E_Sigma=0.8715
+
+    Drift: enc-pull
+  Stage 2 epoch 100/300: loss=0.017726
+  Stage 2 epoch 200/300: loss=0.016777
+  Stage 2 epoch 300/300: loss=0.017048
+  Stage 3 epoch 100/300: loss=0.000041
+  Stage 3 epoch 200/300: loss=0.000035
+  Stage 3 epoch 300/300: loss=0.000031
+  rcMTE@0.1: 0.5667
+  rcMTE@0.5: 0.9330
+  rcMTE@1.0: 0.9997
+  MTE@0.1: 0.9657
+  MTE@0.5: 1.4750
+  MTE@1.0: 1.5625
+  W2@1.0:  0.7916
+  sW2@0.1: 0.4747 (287/500 in region)
+  sW2@0.2: 0.6752 (207/500 in region)
+  sW2@0.5: 0.5808 (102/500 in region)
+  sW2@1.0: 1.1211 (30/500 in region)
+  MMD@1.0: 0.2962
+  Survival@1.0: 28.2%
+  Stopped@1.0:  6.0%
+
+    Drift: dec-side
+  Stage 2 epoch 100/300: loss=0.000478
+  Stage 2 epoch 200/300: loss=0.000356
+  Stage 2 epoch 300/300: loss=0.000249
+  Stage 3 epoch 100/300: loss=0.000041
+  Stage 3 epoch 200/300: loss=0.000035
+  Stage 3 epoch 300/300: loss=0.000031
+  rcMTE@0.1: 0.5811
+  rcMTE@0.5: 1.0211
+  rcMTE@1.0: 1.0667
+  MTE@0.1: 0.9899
+  MTE@0.5: 1.5760
+  MTE@1.0: 1.6528
+  W2@1.0:  0.9103
+  sW2@0.1: 0.5619 (287/500 in region)
+  sW2@0.2: 0.8870 (207/500 in region)
+  sW2@0.5: 0.7821 (102/500 in region)
+  sW2@1.0: 0.9790 (30/500 in region)
+  MMD@1.0: 0.3100
+  Survival@1.0: 28.2%
+  Stopped@1.0:  6.0%
+
+============================================================
+  hyperbolic_paraboloid | D=201 | seed=5042
+============================================================
+
+  --- AE: baseline ---
+    E_mu=3.9382  E_Sigma=27.9704
+
+    Drift: enc-pull
+  Stage 2 epoch 100/300: loss=0.023785
+  Stage 2 epoch 200/300: loss=0.020455
+  Stage 2 epoch 300/300: loss=0.019037
+  Stage 3 epoch 100/300: loss=0.001504
+  Stage 3 epoch 200/300: loss=0.001464
+  Stage 3 epoch 300/300: loss=0.001453
+  rcMTE@0.1: 0.5596
+  rcMTE@0.5: 0.8674
+  rcMTE@1.0: 0.8624
+  MTE@0.1: 0.9352
+  MTE@0.5: 1.2828
+  MTE@1.0: 1.2110
+  W2@1.0:  1.0688
+  sW2@0.1: 0.4277 (285/500 in region)
+  sW2@0.2: 0.5551 (216/500 in region)
+  sW2@0.5: 0.7447 (93/500 in region)
+  sW2@1.0: 1.0407 (33/500 in region)
+  MMD@1.0: 0.3054
+  Survival@1.0: 25.8%
+  Stopped@1.0:  6.6%
+
+    Drift: dec-side
+  Stage 2 epoch 100/300: loss=0.003007
+  Stage 2 epoch 200/300: loss=0.000562
+  Stage 2 epoch 300/300: loss=0.000165
+  Stage 3 epoch 100/300: loss=0.001504
+  Stage 3 epoch 200/300: loss=0.001464
+  Stage 3 epoch 300/300: loss=0.001453
+  rcMTE@0.1: 0.5725
+  rcMTE@0.5: 1.0826
+  rcMTE@1.0: 1.3174
+  MTE@0.1: 0.9466
+  MTE@0.5: 1.5522
+  MTE@1.0: 1.8200
+  W2@1.0:  1.7070
+  sW2@0.1: 0.4622 (285/500 in region)
+  sW2@0.2: 0.6414 (216/500 in region)
+  sW2@0.5: 1.0199 (93/500 in region)
+  sW2@1.0: 1.6665 (33/500 in region)
+  MMD@1.0: 0.2856
+  Survival@1.0: 25.8%
+  Stopped@1.0:  6.6%
+
+  --- AE: T+F ---
+    E_mu=0.8713  E_Sigma=2.4047
+
+    Drift: enc-pull
+  Stage 2 epoch 100/300: loss=0.014763
+  Stage 2 epoch 200/300: loss=0.014488
+  Stage 2 epoch 300/300: loss=0.013396
+  Stage 3 epoch 100/300: loss=0.000096
+  Stage 3 epoch 200/300: loss=0.000089
+  Stage 3 epoch 300/300: loss=0.000084
+  rcMTE@0.1: 0.6580
+  rcMTE@0.5: 1.1426
+  rcMTE@1.0: 1.0939
+  MTE@0.1: 1.1140
+  MTE@0.5: 1.7268
+  MTE@1.0: 1.5928
+  W2@1.0:  0.6804
+  sW2@0.1: 0.5254 (285/500 in region)
+  sW2@0.2: 0.7031 (216/500 in region)
+  sW2@0.5: 0.6820 (93/500 in region)
+  sW2@1.0: 0.7754 (33/500 in region)
+  MMD@1.0: 0.2423
+  Survival@1.0: 25.8%
+  Stopped@1.0:  6.6%
+
+    Drift: dec-side
+  Stage 2 epoch 100/300: loss=0.000525
+  Stage 2 epoch 200/300: loss=0.000390
+  Stage 2 epoch 300/300: loss=0.000304
+  Stage 3 epoch 100/300: loss=0.000096
+  Stage 3 epoch 200/300: loss=0.000089
+  Stage 3 epoch 300/300: loss=0.000084
+  rcMTE@0.1: 0.6619
+  rcMTE@0.5: 1.2025
+  rcMTE@1.0: 1.2154
+  MTE@0.1: 1.1269
+  MTE@0.5: 1.8837
+  MTE@1.0: 1.8702
+  W2@1.0:  1.2043
+  sW2@0.1: 0.5563 (285/500 in region)
+  sW2@0.2: 0.7765 (216/500 in region)
+  sW2@0.5: 0.8647 (93/500 in region)
+  sW2@1.0: 1.3646 (33/500 in region)
+  MMD@1.0: 0.2941
+  Survival@1.0: 25.8%
+  Stopped@1.0:  6.6%
+
+============================================================
+  hyperbolic_paraboloid | D=201 | seed=6042
+============================================================
+
+  --- AE: baseline ---
+    E_mu=3.2098  E_Sigma=22.4202
+
+    Drift: enc-pull
+  Stage 2 epoch 100/300: loss=0.031879
+  Stage 2 epoch 200/300: loss=0.023461
+  Stage 2 epoch 300/300: loss=0.023951
+  Stage 3 epoch 100/300: loss=0.001927
+  Stage 3 epoch 200/300: loss=0.001897
+  Stage 3 epoch 300/300: loss=0.001872
+  rcMTE@0.1: 0.5736
+  rcMTE@0.5: 0.9742
+  rcMTE@1.0: 0.9942
+  MTE@0.1: 0.9557
+  MTE@0.5: 1.4523
+  MTE@1.0: 1.4268
+  W2@1.0:  0.8703
+  sW2@0.1: 0.4402 (290/500 in region)
+  sW2@0.2: 0.4767 (208/500 in region)
+  sW2@0.5: 0.5165 (89/500 in region)
+  sW2@1.0: 0.6595 (30/500 in region)
+  MMD@1.0: 0.2076
+  Survival@1.0: 27.2%
+  Stopped@1.0:  6.0%
+
+    Drift: dec-side
+  Stage 2 epoch 100/300: loss=0.000985
+  Stage 2 epoch 200/300: loss=0.000674
+  Stage 2 epoch 300/300: loss=0.000404
+  Stage 3 epoch 100/300: loss=0.001927
+  Stage 3 epoch 200/300: loss=0.001897
+  Stage 3 epoch 300/300: loss=0.001872
+  rcMTE@0.1: 0.5764
+  rcMTE@0.5: 1.1082
+  rcMTE@1.0: 1.3147
+  MTE@0.1: 0.9667
+  MTE@0.5: 1.6602
+  MTE@1.0: 1.8554
+  W2@1.0:  1.1095
+  sW2@0.1: 0.4656 (290/500 in region)
+  sW2@0.2: 0.5639 (208/500 in region)
+  sW2@0.5: 0.7429 (89/500 in region)
+  sW2@1.0: 1.0331 (30/500 in region)
+  MMD@1.0: 0.2650
+  Survival@1.0: 27.2%
+  Stopped@1.0:  6.0%
+
+  --- AE: T+F ---
+    E_mu=1.0139  E_Sigma=1.7937
+
+    Drift: enc-pull
+  Stage 2 epoch 100/300: loss=0.012646
+  Stage 2 epoch 200/300: loss=0.009977
+  Stage 2 epoch 300/300: loss=0.009972
+  Stage 3 epoch 100/300: loss=0.000074
+  Stage 3 epoch 200/300: loss=0.000064
+  Stage 3 epoch 300/300: loss=0.000062
+  rcMTE@0.1: 0.5920
+  rcMTE@0.5: 1.0811
+  rcMTE@1.0: 1.0747
+  MTE@0.1: 1.0686
+  MTE@0.5: 1.7260
+  MTE@1.0: 1.7056
+  W2@1.0:  1.2176
+  sW2@0.1: 0.6066 (290/500 in region)
+  sW2@0.2: 0.7498 (208/500 in region)
+  sW2@0.5: 1.0463 (89/500 in region)
+  sW2@1.0: 1.0412 (30/500 in region)
+  MMD@1.0: 0.2532
+  Survival@1.0: 27.2%
+  Stopped@1.0:  6.0%
+
+    Drift: dec-side
+  Stage 2 epoch 100/300: loss=0.000626
+  Stage 2 epoch 200/300: loss=0.000431
+  Stage 2 epoch 300/300: loss=0.000275
+  Stage 3 epoch 100/300: loss=0.000074
+  Stage 3 epoch 200/300: loss=0.000064
+  Stage 3 epoch 300/300: loss=0.000062
+  rcMTE@0.1: 0.6052
+  rcMTE@0.5: 1.1643
+  rcMTE@1.0: 1.2680
+  MTE@0.1: 1.1019
+  MTE@0.5: 1.9073
+  MTE@1.0: 2.1328
+  W2@1.0:  1.7514
+  sW2@0.1: 0.6606 (290/500 in region)
+  sW2@0.2: 0.8671 (208/500 in region)
+  sW2@0.5: 1.3332 (89/500 in region)
+  sW2@1.0: 2.0671 (30/500 in region)
+  MMD@1.0: 0.2971
+  Survival@1.0: 27.2%
+  Stopped@1.0:  6.0%
+
+============================================================
+  hyperbolic_paraboloid | D=201 | seed=7042
+============================================================
+
+  --- AE: baseline ---
+    E_mu=3.4886  E_Sigma=7.7597
+
+    Drift: enc-pull
+  Stage 2 epoch 100/300: loss=0.026615
+  Stage 2 epoch 200/300: loss=0.024606
+  Stage 2 epoch 300/300: loss=0.022977
+  Stage 3 epoch 100/300: loss=0.001269
+  Stage 3 epoch 200/300: loss=0.001218
+  Stage 3 epoch 300/300: loss=0.001173
+  rcMTE@0.1: 0.5293
+  rcMTE@0.5: 0.9363
+  rcMTE@1.0: 1.1451
+  MTE@0.1: 0.8729
+  MTE@0.5: 1.4366
+  MTE@1.0: 1.7474
+  W2@1.0:  1.0421
+  sW2@0.1: 0.4423 (316/500 in region)
+  sW2@0.2: 0.5748 (232/500 in region)
+  sW2@0.5: 0.7928 (109/500 in region)
+  sW2@1.0: 1.0635 (29/500 in region)
+  MMD@1.0: 0.1239
+  Survival@1.0: 28.8%
+  Stopped@1.0:  5.8%
+
+    Drift: dec-side
+  Stage 2 epoch 100/300: loss=0.014046
+  Stage 2 epoch 200/300: loss=0.005293
+  Stage 2 epoch 300/300: loss=0.002193
+  Stage 3 epoch 100/300: loss=0.001269
+  Stage 3 epoch 200/300: loss=0.001218
+  Stage 3 epoch 300/300: loss=0.001173
+  rcMTE@0.1: 0.5841
+  rcMTE@0.5: 1.2564
+  rcMTE@1.0: 1.8827
+  MTE@0.1: 0.9509
+  MTE@0.5: 1.9391
+  MTE@1.0: 2.9348
+  W2@1.0:  2.5309
+  sW2@0.1: 0.5662 (316/500 in region)
+  sW2@0.2: 0.8121 (232/500 in region)
+  sW2@0.5: 1.5839 (109/500 in region)
+  sW2@1.0: 2.6572 (29/500 in region)
+  MMD@1.0: 0.3606
+  Survival@1.0: 28.8%
+  Stopped@1.0:  5.8%
+
+  --- AE: T+F ---
+    E_mu=0.7348  E_Sigma=1.2153
+
+    Drift: enc-pull
+  Stage 2 epoch 100/300: loss=0.232889
+  Stage 2 epoch 200/300: loss=0.224006
+  Stage 2 epoch 300/300: loss=0.215786
+  Stage 3 epoch 100/300: loss=0.000388
+  Stage 3 epoch 200/300: loss=0.000201
+  Stage 3 epoch 300/300: loss=0.000174
+  rcMTE@0.1: 0.4820
+  rcMTE@0.5: 0.8509
+  rcMTE@1.0: 1.0437
+  MTE@0.1: 0.8720
+  MTE@0.5: 1.4005
+  MTE@1.0: 1.6542
+  W2@1.0:  1.6066
+  sW2@0.1: 0.4445 (316/500 in region)
+  sW2@0.2: 0.6067 (232/500 in region)
+  sW2@0.5: 1.2147 (109/500 in region)
+  sW2@1.0: 1.5227 (29/500 in region)
+  MMD@1.0: 0.1761
+  Survival@1.0: 28.8%
+  Stopped@1.0:  5.8%
+
+    Drift: dec-side
+  Stage 2 epoch 100/300: loss=0.001482
+  Stage 2 epoch 200/300: loss=0.001208
+  Stage 2 epoch 300/300: loss=0.000946
+  Stage 3 epoch 100/300: loss=0.000388
+  Stage 3 epoch 200/300: loss=0.000201
+  Stage 3 epoch 300/300: loss=0.000174
+  rcMTE@0.1: 0.4874
+  rcMTE@0.5: 0.9074
+  rcMTE@1.0: 1.0797
+  MTE@0.1: 0.8852
+  MTE@0.5: 1.5162
+  MTE@1.0: 1.7211
+  W2@1.0:  1.2408
+  sW2@0.1: 0.4684 (316/500 in region)
+  sW2@0.2: 0.6172 (232/500 in region)
+  sW2@0.5: 1.1204 (109/500 in region)
+  sW2@1.0: 1.2561 (29/500 in region)
+  MMD@1.0: 0.1991
+  Survival@1.0: 28.8%
+  Stopped@1.0:  5.8%
+
+============================================================
+  hyperbolic_paraboloid | D=201 | seed=8042
+============================================================
+
+  --- AE: baseline ---
+    E_mu=3.3017  E_Sigma=20.2016
+
+    Drift: enc-pull
+  Stage 2 epoch 100/300: loss=0.024970
+  Stage 2 epoch 200/300: loss=0.020622
+  Stage 2 epoch 300/300: loss=0.022244
+  Stage 3 epoch 100/300: loss=0.000851
+  Stage 3 epoch 200/300: loss=0.000812
+  Stage 3 epoch 300/300: loss=0.000791
+  rcMTE@0.1: 0.5639
+  rcMTE@0.5: 0.8291
+  rcMTE@1.0: 0.9021
+  MTE@0.1: 0.9574
+  MTE@0.5: 1.2313
+  MTE@1.0: 1.2884
+  W2@1.0:  0.9363
+  sW2@0.1: 0.4779 (269/500 in region)
+  sW2@0.2: 0.5749 (192/500 in region)
+  sW2@0.5: 0.6377 (84/500 in region)
+  sW2@1.0: 0.9745 (29/500 in region)
+  MMD@1.0: 0.2249
+  Survival@1.0: 27.0%
+  Stopped@1.0:  5.8%
+
+    Drift: dec-side
+  Stage 2 epoch 100/300: loss=0.000896
+  Stage 2 epoch 200/300: loss=0.000410
+  Stage 2 epoch 300/300: loss=0.000143
+  Stage 3 epoch 100/300: loss=0.000851
+  Stage 3 epoch 200/300: loss=0.000812
+  Stage 3 epoch 300/300: loss=0.000791
+  rcMTE@0.1: 0.5816
+  rcMTE@0.5: 0.9705
+  rcMTE@1.0: 1.0940
+  MTE@0.1: 0.9791
+  MTE@0.5: 1.4111
+  MTE@1.0: 1.5219
+  W2@1.0:  1.1184
+  sW2@0.1: 0.5174 (269/500 in region)
+  sW2@0.2: 0.6792 (192/500 in region)
+  sW2@0.5: 0.8291 (84/500 in region)
+  sW2@1.0: 1.2617 (29/500 in region)
+  MMD@1.0: 0.1996
+  Survival@1.0: 27.0%
+  Stopped@1.0:  5.8%
+
+  --- AE: T+F ---
+    E_mu=0.9249  E_Sigma=2.0049
+
+    Drift: enc-pull
+  Stage 2 epoch 100/300: loss=0.024103
+  Stage 2 epoch 200/300: loss=0.022299
+  Stage 2 epoch 300/300: loss=0.020575
+  Stage 3 epoch 100/300: loss=0.000232
+  Stage 3 epoch 200/300: loss=0.000175
+  Stage 3 epoch 300/300: loss=0.000155
+  rcMTE@0.1: 0.4936
+  rcMTE@0.5: 0.7712
+  rcMTE@1.0: 0.8214
+  MTE@0.1: 0.8568
+  MTE@0.5: 1.2220
+  MTE@1.0: 1.2480
+  W2@1.0:  0.8927
+  sW2@0.1: 0.4270 (269/500 in region)
+  sW2@0.2: 0.4895 (192/500 in region)
+  sW2@0.5: 0.6057 (84/500 in region)
+  sW2@1.0: 1.0613 (29/500 in region)
+  MMD@1.0: 0.2140
+  Survival@1.0: 27.0%
+  Stopped@1.0:  5.8%
+
+    Drift: dec-side
+  Stage 2 epoch 100/300: loss=0.000471
+  Stage 2 epoch 200/300: loss=0.000289
+  Stage 2 epoch 300/300: loss=0.000114
+  Stage 3 epoch 100/300: loss=0.000232
+  Stage 3 epoch 200/300: loss=0.000175
+  Stage 3 epoch 300/300: loss=0.000155
+  rcMTE@0.1: 0.5038
+  rcMTE@0.5: 0.8777
+  rcMTE@1.0: 0.9865
+  MTE@0.1: 0.8745
+  MTE@0.5: 1.3988
+  MTE@1.0: 1.5670
+  W2@1.0:  1.1857
+  sW2@0.1: 0.4932 (269/500 in region)
+  sW2@0.2: 0.5986 (192/500 in region)
+  sW2@0.5: 0.8820 (84/500 in region)
+  sW2@1.0: 1.2724 (29/500 in region)
+  MMD@1.0: 0.2526
+  Survival@1.0: 27.0%
+  Stopped@1.0:  5.8%
+
+============================================================
+  hyperbolic_paraboloid | D=201 | seed=9042
+============================================================
+
+  --- AE: baseline ---
+    E_mu=3.2990  E_Sigma=39.1155
+
+    Drift: enc-pull
+  Stage 2 epoch 100/300: loss=0.012190
+  Stage 2 epoch 200/300: loss=0.010623
+  Stage 2 epoch 300/300: loss=0.009850
+  Stage 3 epoch 100/300: loss=0.001363
+  Stage 3 epoch 200/300: loss=0.001338
+  Stage 3 epoch 300/300: loss=0.001333
+  rcMTE@0.1: 0.5335
+  rcMTE@0.5: 0.8945
+  rcMTE@1.0: 1.1085
+  MTE@0.1: 0.9128
+  MTE@0.5: 1.3003
+  MTE@1.0: 1.5638
+  W2@1.0:  1.1431
+  sW2@0.1: 0.5447 (280/500 in region)
+  sW2@0.2: 0.6207 (205/500 in region)
+  sW2@0.5: 0.7640 (85/500 in region)
+  sW2@1.0: 1.2309 (22/500 in region)
+  MMD@1.0: 0.2882
+  Survival@1.0: 28.2%
+  Stopped@1.0:  4.4%
+
+    Drift: dec-side
+  Stage 2 epoch 100/300: loss=0.000445
+  Stage 2 epoch 200/300: loss=0.000156
+  Stage 2 epoch 300/300: loss=0.000096
+  Stage 3 epoch 100/300: loss=0.001363
+  Stage 3 epoch 200/300: loss=0.001338
+  Stage 3 epoch 300/300: loss=0.001333
+  rcMTE@0.1: 0.5285
+  rcMTE@0.5: 0.8717
+  rcMTE@1.0: 1.0553
+  MTE@0.1: 0.9020
+  MTE@0.5: 1.2698
+  MTE@1.0: 1.4982
+  W2@1.0:  1.0316
+  sW2@0.1: 0.5371 (280/500 in region)
+  sW2@0.2: 0.6122 (205/500 in region)
+  sW2@0.5: 0.7532 (85/500 in region)
+  sW2@1.0: 0.9441 (22/500 in region)
+  MMD@1.0: 0.1854
+  Survival@1.0: 28.2%
+  Stopped@1.0:  4.4%
+
+  --- AE: T+F ---
+    E_mu=0.8601  E_Sigma=1.6292
+
+    Drift: enc-pull
+  Stage 2 epoch 100/300: loss=0.032265
+  Stage 2 epoch 200/300: loss=0.028204
+  Stage 2 epoch 300/300: loss=0.021309
+  Stage 3 epoch 100/300: loss=0.000178
+  Stage 3 epoch 200/300: loss=0.000089
+  Stage 3 epoch 300/300: loss=0.000080
+  rcMTE@0.1: 0.8640
+  rcMTE@0.5: 1.3637
+  rcMTE@1.0: 1.5443
+  MTE@0.1: 1.3926
+  MTE@0.5: 1.9196
+  MTE@1.0: 2.1269
+  W2@1.0:  1.1662
+  sW2@0.1: 0.6537 (280/500 in region)
+  sW2@0.2: 0.8593 (205/500 in region)
+  sW2@0.5: 1.1029 (85/500 in region)
+  sW2@1.0: 1.2775 (22/500 in region)
+  MMD@1.0: 0.2262
+  Survival@1.0: 28.2%
+  Stopped@1.0:  4.4%
+
+    Drift: dec-side
+  Stage 2 epoch 100/300: loss=0.000690
+  Stage 2 epoch 200/300: loss=0.000277
+  Stage 2 epoch 300/300: loss=0.000056
+  Stage 3 epoch 100/300: loss=0.000178
+  Stage 3 epoch 200/300: loss=0.000089
+  Stage 3 epoch 300/300: loss=0.000080
+  rcMTE@0.1: 0.8721
+  rcMTE@0.5: 1.4676
+  rcMTE@1.0: 1.7098
+  MTE@0.1: 1.4148
+  MTE@0.5: 2.0995
+  MTE@1.0: 2.4081
+  W2@1.0:  1.4727
+  sW2@0.1: 0.7165 (280/500 in region)
+  sW2@0.2: 1.0084 (205/500 in region)
+  sW2@0.5: 1.3839 (85/500 in region)
+  sW2@1.0: 1.3554 (22/500 in region)
+  MMD@1.0: 0.2440
+  Survival@1.0: 28.2%
+  Stopped@1.0:  4.4%
+
+
+Total time: 9.1 min
+Saved 80 rows to rcmte_D201.csv
+
+
+================================================================================
+rcMTE COMPARISON SUMMARY
+================================================================================
+
+  paraboloid:
+          ae       drift     rcMTE@1.0       MTE@1.0        W2@1.0          E_mu
+    baseline    enc-pull  0.9027±0.289  1.3250±0.332  0.9531±0.185  6.2948±1.757
+    baseline    dec-side  1.4380±0.485  2.1841±0.773  1.9176±1.105  6.2948±1.757
+         T+F    enc-pull  1.0180±0.390  1.5818±0.589  1.0805±0.593  1.1990±0.378
+         T+F    dec-side  1.3043±0.379  2.1170±0.514  1.8577±0.316  1.1990±0.378
+
+    Paired comparisons (negative = first is better):
+      T+F vs baseline (enc-pull)    rcMTE@1.0: Δ=+12.8%  p=0.316
+      T+F vs baseline (enc-pull)      MTE@1.0: Δ=+19.4%  p=0.152
+      T+F vs baseline (enc-pull)       W2@1.0: Δ=+13.4%  p=0.436
+      enc-pull vs dec-side (T+F)    rcMTE@1.0: Δ=-21.9%  p=0.009**
+      enc-pull vs dec-side (T+F)      MTE@1.0: Δ=-25.3%  p=0.004**
+      enc-pull vs dec-side (T+F)       W2@1.0: Δ=-41.8%  p=0.003**
+
+  hyperbolic_paraboloid:
+          ae       drift     rcMTE@1.0       MTE@1.0        W2@1.0          E_mu
+    baseline    enc-pull  0.9467±0.203  1.3841±0.260  0.9386±0.214  3.5702±0.434
+    baseline    dec-side  1.2689±0.258  1.8437±0.417  1.4147±0.445  3.5702±0.434
+         T+F    enc-pull  1.1330±0.310  1.7040±0.380  1.1026±0.319  0.9010±0.317
+         T+F    dec-side  1.2831±0.323  1.9788±0.451  1.4009±0.389  0.9010±0.317
+
+    Paired comparisons (negative = first is better):
+      T+F vs baseline (enc-pull)    rcMTE@1.0: Δ=+19.7%  p=0.085+
+      T+F vs baseline (enc-pull)      MTE@1.0: Δ=+23.1%  p=0.028*
+      T+F vs baseline (enc-pull)       W2@1.0: Δ=+17.5%  p=0.203
+      enc-pull vs dec-side (T+F)    rcMTE@1.0: Δ=-11.7%  p=0.002**
+      enc-pull vs dec-side (T+F)      MTE@1.0: Δ=-13.9%  p=0.002**
+      enc-pull vs dec-side (T+F)       W2@1.0: Δ=-21.3%  p=0.023*
+
+End: Thu Mar 12 02:05:51 PM EDT 2026

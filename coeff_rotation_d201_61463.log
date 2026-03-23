@@ -1,0 +1,235 @@
+Full ablation: rotation dynamics, D=201
+Surfaces: ['paraboloid', 'hyperbolic_paraboloid', 'quartic_dome', 'sinusoidal']
+Conditions: ['baseline', 'T', 'F', 'C', 'T+F'] + ATLAS
+Seeds (10): [42, 1042, 2042, 3042, 4042, 5042, 6042, 7042, 8042, 9042]
+AE epochs: 500, SDE epochs: 300
+N_train: 50
+
+============================================================
+  paraboloid | seed=42 | rotation | D=201
+============================================================
+    ATLAS  recon=0.0001  tangent=0.1475  E_mu=0.1729  E_Sig=1.2178  S2=0.006828
+    baseline      Epoch 100/500: loss=0.001971
+      Epoch 200/500: loss=0.001878
+      Epoch 300/500: loss=0.001219
+      Epoch 400/500: loss=0.000149
+      Epoch 500/500: loss=0.000124
+  recon=0.0002  E=1.4606  E_b=5.860614  E_Lam=5.256037
+    T      Epoch 100/500: loss=0.075998
+      Epoch 200/500: loss=0.029163
+      Epoch 300/500: loss=0.044008
+      Epoch 400/500: loss=0.003925
+      Epoch 500/500: loss=0.004782
+  recon=0.0002  E=0.3105  E_b=6.795996  E_Lam=1.773284
+    F      Epoch 100/500: loss=0.008110
+      Epoch 200/500: loss=0.008004
+      Epoch 300/500: loss=0.008541
+      Epoch 400/500: loss=0.008004
+      Epoch 500/500: loss=0.008436
+  recon=0.0080  E=12.2814  E_b=12.283307  E_Lam=56.813850
+    C      Epoch 100/500: loss=0.007844
+      Epoch 200/500: loss=0.006071
+      Epoch 300/500: loss=0.005069
+      Epoch 400/500: loss=0.005072
+      Epoch 500/500: loss=0.005048
+  recon=0.0048  E=7.3092  E_b=12.180187  E_Lam=50.821907
+    T+F      Epoch 100/500: loss=0.819869
+      Epoch 200/500: loss=0.672177
+      Epoch 300/500: loss=0.566944
+      Epoch 400/500: loss=0.255099
+      Epoch 500/500: loss=0.205608
+  recon=0.0029  E=0.9270  E_b=2.072321  E_Lam=6.030038
+
+============================================================
+  paraboloid | seed=1042 | rotation | D=201
+============================================================
+    ATLAS  recon=0.0002  tangent=0.1203  E_mu=0.1416  E_Sig=0.9648  S2=0.015280
+    baseline      Epoch 100/500: loss=0.001647
+      Epoch 200/500: loss=0.001752
+      Epoch 300/500: loss=0.001295
+      Epoch 400/500: loss=0.000410
+      Epoch 500/500: loss=0.000198
+  recon=0.0001  E=1.7088  E_b=7.128300  E_Lam=8.034191
+    T      Epoch 100/500: loss=0.091987
+      Epoch 200/500: loss=0.045293
+      Epoch 300/500: loss=0.024982
+      Epoch 400/500: loss=0.017863
+      Epoch 500/500: loss=0.006339
+  recon=0.0002  E=0.3254  E_b=10.336118  E_Lam=2.703538
+    F      Epoch 100/500: loss=0.010485
+      Epoch 200/500: loss=0.007964
+      Epoch 300/500: loss=0.008714
+      Epoch 400/500: loss=0.007474
+      Epoch 500/500: loss=0.007192
+  recon=0.0073  E=11.9474  E_b=11.949180  E_Lam=60.510384
+    C      Epoch 100/500: loss=0.007192
+      Epoch 200/500: loss=0.007367
+      Epoch 300/500: loss=0.007307
+      Epoch 400/500: loss=0.007445
+      Epoch 500/500: loss=0.007184
+  recon=0.0073  E=11.6623  E_b=12.000671  E_Lam=60.363762
+    T+F      Epoch 100/500: loss=0.809191
+      Epoch 200/500: loss=0.652920
+      Epoch 300/500: loss=0.443675
+      Epoch 400/500: loss=0.128800
+      Epoch 500/500: loss=0.050851
+  recon=0.0005  E=0.2987  E_b=1.322833  E_Lam=1.427634
+
+============================================================
+  paraboloid | seed=2042 | rotation | D=201
+============================================================
+    ATLAS  recon=0.0001  tangent=0.1548  E_mu=0.1541  E_Sig=1.3236  S2=0.002328
+    baseline      Epoch 100/500: loss=0.001887
+      Epoch 200/500: loss=0.001759
+      Epoch 300/500: loss=0.000489
+      Epoch 400/500: loss=0.000121
+      Epoch 500/500: loss=0.000245
+  recon=0.0003  E=1.6341  E_b=5.056567  E_Lam=5.223683
+    T      Epoch 100/500: loss=0.058793
+      Epoch 200/500: loss=0.043799
+      Epoch 300/500: loss=0.025744
+      Epoch 400/500: loss=0.015462
+      Epoch 500/500: loss=0.003479
+  recon=0.0002  E=0.3888  E_b=7.774549  E_Lam=2.072049
+    F      Epoch 100/500: loss=0.010564
+      Epoch 200/500: loss=0.008401
+      Epoch 300/500: loss=0.007867
+      Epoch 400/500: loss=0.007789
+      Epoch 500/500: loss=0.007434
+  recon=0.0077  E=11.4839  E_b=11.485054  E_Lam=55.885521
+    C      Epoch 100/500: loss=0.007752
+      Epoch 200/500: loss=0.007740
+      Epoch 300/500: loss=0.005045
+      Epoch 400/500: loss=0.004941
+      Epoch 500/500: loss=0.004714
+  recon=0.0047  E=8.6442  E_b=12.185736  E_Lam=46.331799
+    T+F      Epoch 100/500: loss=0.851674
+      Epoch 200/500: loss=0.743163
+      Epoch 300/500: loss=0.497217
+      Epoch 400/500: loss=0.089074
+      Epoch 500/500: loss=0.164868
+  recon=0.0181  E=1.0101  E_b=3.341599  E_Lam=5.873603
+
+============================================================
+  paraboloid | seed=3042 | rotation | D=201
+============================================================
+    ATLAS  recon=0.0002  tangent=0.1377  E_mu=0.1338  E_Sig=1.1690  S2=0.006743
+    baseline      Epoch 100/500: loss=0.002136
+      Epoch 200/500: loss=0.001719
+      Epoch 300/500: loss=0.001428
+      Epoch 400/500: loss=0.000364
+      Epoch 500/500: loss=0.000220
+  recon=0.0002  E=1.5301  E_b=7.949680  E_Lam=8.427661
+    T      Epoch 100/500: loss=0.047540
+      Epoch 200/500: loss=0.026511
+      Epoch 300/500: loss=0.027337
+      Epoch 400/500: loss=0.019060
+      Epoch 500/500: loss=0.003265
+  recon=0.0002  E=0.2015  E_b=8.714298  E_Lam=3.810623
+    F      Epoch 100/500: loss=0.008452
+      Epoch 200/500: loss=0.009624
+      Epoch 300/500: loss=0.007756
+      Epoch 400/500: loss=0.007916
+      Epoch 500/500: loss=0.007336
+  recon=0.0075  E=11.0358  E_b=11.037782  E_Lam=41.272953
+    C      Epoch 100/500: loss=0.007911
+      Epoch 200/500: loss=0.007831
+      Epoch 300/500: loss=0.007756
+      Epoch 400/500: loss=0.007809
+      Epoch 500/500: loss=0.007369
+  recon=0.0076  E=10.4162  E_b=11.074956  E_Lam=41.332649
+    T+F      Epoch 100/500: loss=0.862644
+      Epoch 200/500: loss=0.733071
+      Epoch 300/500: loss=0.456014
+      Epoch 400/500: loss=0.081571
+      Epoch 500/500: loss=0.028268
+  recon=0.0010  E=0.2903  E_b=2.186378  E_Lam=4.502576
+
+============================================================
+  paraboloid | seed=4042 | rotation | D=201
+============================================================
+    ATLAS  recon=0.0001  tangent=0.1643  E_mu=0.1896  E_Sig=1.3833  S2=0.001885
+    baseline      Epoch 100/500: loss=0.001919
+      Epoch 200/500: loss=0.001638
+      Epoch 300/500: loss=0.001510
+      Epoch 400/500: loss=0.000317
+      Epoch 500/500: loss=0.000157
+  recon=0.0002  E=1.5215  E_b=9.776479  E_Lam=4.664406
+    T      Epoch 100/500: loss=0.082756
+      Epoch 200/500: loss=0.029554
+      Epoch 300/500: loss=0.017761
+      Epoch 400/500: loss=0.015116
+      Epoch 500/500: loss=0.011105
+  recon=0.0004  E=0.2034  E_b=10.563995  E_Lam=2.609953
+    F      Epoch 100/500: loss=0.010358
+      Epoch 200/500: loss=0.008161
+      Epoch 300/500: loss=0.007914
+      Epoch 400/500: loss=0.007643
+      Epoch 500/500: loss=0.007842
+  recon=0.0077  E=11.2339  E_b=11.239486  E_Lam=50.171276
+    C      Epoch 100/500: loss=0.007289
+      Epoch 200/500: loss=0.005029
+      Epoch 300/500: loss=0.004630
+      Epoch 400/500: loss=0.004478
+      Epoch 500/500: loss=0.004343
+  recon=0.0044  E=6.0792  E_b=12.511544  E_Lam=38.581036
+    T+F      Epoch 100/500: loss=0.818056
+      Epoch 200/500: loss=0.697057
+      Epoch 300/500: loss=0.638242
+      Epoch 400/500: loss=0.136574
+      Epoch 500/500: loss=0.047071
+  recon=0.0031  E=0.6357  E_b=3.327040  E_Lam=4.774833
+
+============================================================
+  paraboloid | seed=5042 | rotation | D=201
+============================================================
+    ATLAS  recon=0.0002  tangent=0.1363  E_mu=0.1378  E_Sig=0.9610  S2=0.019155
+    baseline      Epoch 100/500: loss=0.001973
+      Epoch 200/500: loss=0.002077
+      Epoch 300/500: loss=0.001519
+      Epoch 400/500: loss=0.000668
+      Epoch 500/500: loss=0.000166
+  recon=0.0002  E=1.9297  E_b=5.453091  E_Lam=5.868656
+    T      Epoch 100/500: loss=0.076194
+      Epoch 200/500: loss=0.030328
+      Epoch 300/500: loss=0.014022
+      Epoch 400/500: loss=0.033062
+      Epoch 500/500: loss=0.003408
+  recon=0.0001  E=0.2814  E_b=8.022369  E_Lam=1.689345
+    F      Epoch 100/500: loss=0.008056
+      Epoch 200/500: loss=0.008668
+      Epoch 300/500: loss=0.007756
+      Epoch 400/500: loss=0.007625
+      Epoch 500/500: loss=0.007733
+  recon=0.0076  E=11.9350  E_b=11.936775  E_Lam=51.929565
+    C      Epoch 100/500: loss=0.007664
+      Epoch 200/500: loss=0.007643
+      Epoch 300/500: loss=0.007803
+      Epoch 400/500: loss=0.007610
+      Epoch 500/500: loss=0.007716
+  recon=0.0076  E=5.6072  E_b=12.333240  E_Lam=53.524944
+    T+F      Epoch 100/500: loss=0.799878
+      Epoch 200/500: loss=0.747861
+      Epoch 300/500: loss=0.587213
+      Epoch 400/500: loss=0.086952
+      Epoch 500/500: loss=0.031565
+  recon=0.0002  E=0.5294  E_b=1.444973  E_Lam=2.344584
+
+============================================================
+  paraboloid | seed=6042 | rotation | D=201
+============================================================
+    ATLAS  recon=0.0002  tangent=0.1408  E_mu=0.1639  E_Sig=1.2182  S2=0.002485
+    baseline      Epoch 100/500: loss=0.001977
+      Epoch 200/500: loss=0.002014
+      Epoch 300/500: loss=0.000472
+      Epoch 400/500: loss=0.000209
+      Epoch 500/500: loss=0.000257
+  recon=0.0002  E=1.8628  E_b=10.358109  E_Lam=8.031763
+    T      Epoch 100/500: loss=0.097178
+      Epoch 200/500: loss=0.043886
+      Epoch 300/500: loss=0.014851
+      Epoch 400/500: loss=0.021470
+      Epoch 500/500: loss=0.004801
+  recon=0.0002  E=0.2240  E_b=9.989793  E_Lam=1.813029
+    F      Epoch 100/500: loss=0.007981
+slurmstepd: error: *** JOB 61463 ON dgx18 CANCELLED AT 2026-03-22T19:59:18 ***

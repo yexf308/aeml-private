@@ -181,7 +181,7 @@ def run_single_fork(surface_name, D, seed, n_train=20, epochs_ae=500,
 
             sde_results = _run_sde_stages(
                 ae, x, v, Lambda, sde, surface, seed, n_train,
-                epochs_sde, lam_s,
+                epochs_sde, lam_s, drift_hidden=[128, 128],
             )
             results[cond_label] = {
                 "ae_loss": ae_loss,
@@ -276,7 +276,7 @@ def main():
     )
     parser.add_argument("--n-seeds", type=int, default=10)
     parser.add_argument("--epochs", type=int, default=500)
-    parser.add_argument("--sde-epochs", type=int, default=300)
+    parser.add_argument("--sde-epochs", type=int, default=1000)
     parser.add_argument("--base-seed", type=int, default=42)
     parser.add_argument("--d-values", type=int, nargs="+", default=None)
     parser.add_argument("--n-values", type=int, nargs="+", default=None)

@@ -1,0 +1,668 @@
+Device: cuda
+D=11, N=50
+Surfaces: ['paraboloid', 'hyperbolic_paraboloid', 'quartic_dome', 'sinusoidal']
+Conditions: ['baseline', 'T', 'T+F']
+Seeds (10): [42, 1042, 2042, 3042, 4042, 5042, 6042, 7042, 8042, 9042]
+LONG_T=50.0, LONG_N_STEPS=10000, MB_DT=0.005
+Total runs: 120
+
+
+============================================================
+  paraboloid | seed=42
+============================================================
+  GT exit fraction: 2.9%
+
+  --- baseline ---
+      Epoch 800/4000: loss=0.000260
+      Epoch 1600/4000: loss=0.000034
+      Epoch 2400/4000: loss=0.000031
+      Epoch 3200/4000: loss=0.000032
+      Epoch 4000/4000: loss=0.000031
+    recon=0.000032
+    E_mu=0.0427  E_Sigma=0.0033
+  Stage 2 epoch 1000/3000: loss=0.000114
+  Stage 2 epoch 2000/3000: loss=0.000034
+  Stage 2 epoch 3000/3000: loss=0.000019
+  Stage 3 epoch 1000/3000: loss=0.000065
+  Stage 3 epoch 2000/3000: loss=0.000063
+  Stage 3 epoch 3000/3000: loss=0.000061
+    Pairwise MFPT err=421.0%  W0 escape err=95.6%  (GT=19.54, LR=0.85)
+    Exit fraction=22.9%
+
+  --- T ---
+      Epoch 800/4000: loss=0.000322
+      Epoch 1600/4000: loss=0.000152
+      Epoch 2400/4000: loss=0.000150
+      Epoch 3200/4000: loss=0.000136
+      Epoch 4000/4000: loss=0.000148
+    recon=0.000030
+    E_mu=0.0009  E_Sigma=0.0000
+  Stage 2 epoch 1000/3000: loss=0.000176
+  Stage 2 epoch 2000/3000: loss=0.000026
+  Stage 2 epoch 3000/3000: loss=0.000014
+  Stage 3 epoch 1000/3000: loss=0.000001
+  Stage 3 epoch 2000/3000: loss=0.000001
+  Stage 3 epoch 3000/3000: loss=0.000001
+    Pairwise MFPT err=247.7%  W0 escape err=91.9%  (GT=19.54, LR=1.57)
+    Exit fraction=19.1%
+
+  --- T+F ---
+      Epoch 800/4000: loss=0.000445
+      Epoch 1600/4000: loss=0.000202
+      Epoch 2400/4000: loss=0.000195
+      Epoch 3200/4000: loss=0.000177
+      Epoch 4000/4000: loss=0.000198
+    recon=0.000000
+    E_mu=0.0007  E_Sigma=0.0000
+  Stage 2 epoch 1000/3000: loss=0.000580
+  Stage 2 epoch 2000/3000: loss=0.000062
+  Stage 2 epoch 3000/3000: loss=0.000024
+  Stage 3 epoch 1000/3000: loss=0.000001
+  Stage 3 epoch 2000/3000: loss=0.000001
+  Stage 3 epoch 3000/3000: loss=0.000001
+    Pairwise MFPT err=385.5%  W0 escape err=95.6%  (GT=19.54, LR=0.86)
+    Exit fraction=25.9%
+
+============================================================
+  paraboloid | seed=1042
+============================================================
+  GT exit fraction: 2.9%
+
+  --- baseline ---
+      Epoch 800/4000: loss=0.000147
+      Epoch 1600/4000: loss=0.000030
+      Epoch 2400/4000: loss=0.000017
+      Epoch 3200/4000: loss=0.000015
+      Epoch 4000/4000: loss=0.000015
+    recon=0.000014
+    E_mu=0.0278  E_Sigma=0.0027
+  Stage 2 epoch 1000/3000: loss=0.000201
+  Stage 2 epoch 2000/3000: loss=0.000062
+  Stage 2 epoch 3000/3000: loss=0.000047
+  Stage 3 epoch 1000/3000: loss=0.000042
+  Stage 3 epoch 2000/3000: loss=0.000039
+  Stage 3 epoch 3000/3000: loss=0.000042
+    Pairwise MFPT err=nan%  W0 escape err=nan%  (GT=19.53, LR=nan)
+    Exit fraction=100.0%
+
+  --- T ---
+      Epoch 800/4000: loss=0.000200
+      Epoch 1600/4000: loss=0.000152
+      Epoch 2400/4000: loss=0.000150
+      Epoch 3200/4000: loss=0.000157
+      Epoch 4000/4000: loss=0.000162
+    recon=0.000031
+    E_mu=0.0016  E_Sigma=0.0000
+  Stage 2 epoch 1000/3000: loss=0.000189
+  Stage 2 epoch 2000/3000: loss=0.000006
+  Stage 2 epoch 3000/3000: loss=0.000005
+  Stage 3 epoch 1000/3000: loss=0.000001
+  Stage 3 epoch 2000/3000: loss=0.000001
+  Stage 3 epoch 3000/3000: loss=0.000001
+    Pairwise MFPT err=27.6%  W0 escape err=45.9%  (GT=19.53, LR=10.57)
+    Exit fraction=71.4%
+
+  --- T+F ---
+      Epoch 800/4000: loss=0.000444
+      Epoch 1600/4000: loss=0.000138
+      Epoch 2400/4000: loss=0.000089
+      Epoch 3200/4000: loss=0.000090
+      Epoch 4000/4000: loss=0.000091
+    recon=0.000000
+    E_mu=0.0007  E_Sigma=0.0000
+  Stage 2 epoch 1000/3000: loss=0.000373
+  Stage 2 epoch 2000/3000: loss=0.000018
+  Stage 2 epoch 3000/3000: loss=0.000016
+  Stage 3 epoch 1000/3000: loss=0.000000
+  Stage 3 epoch 2000/3000: loss=0.000000
+  Stage 3 epoch 3000/3000: loss=0.000000
+    Pairwise MFPT err=26.3%  W0 escape err=50.0%  (GT=19.53, LR=9.77)
+    Exit fraction=50.7%
+
+============================================================
+  paraboloid | seed=2042
+============================================================
+  GT exit fraction: 2.9%
+
+  --- baseline ---
+      Epoch 800/4000: loss=0.000051
+      Epoch 1600/4000: loss=0.000027
+      Epoch 2400/4000: loss=0.000024
+      Epoch 3200/4000: loss=0.000025
+      Epoch 4000/4000: loss=0.000025
+    recon=0.000024
+    E_mu=0.0314  E_Sigma=0.0021
+  Stage 2 epoch 1000/3000: loss=0.000286
+  Stage 2 epoch 2000/3000: loss=0.000031
+  Stage 2 epoch 3000/3000: loss=0.000011
+  Stage 3 epoch 1000/3000: loss=0.000068
+  Stage 3 epoch 2000/3000: loss=0.000066
+  Stage 3 epoch 3000/3000: loss=0.000071
+    Pairwise MFPT err=22.5%  W0 escape err=0.7%  (GT=19.88, LR=19.74)
+    Exit fraction=0.9%
+
+  --- T ---
+      Epoch 800/4000: loss=0.000330
+      Epoch 1600/4000: loss=0.000163
+      Epoch 2400/4000: loss=0.000123
+      Epoch 3200/4000: loss=0.000127
+      Epoch 4000/4000: loss=0.000119
+    recon=0.000023
+    E_mu=0.0012  E_Sigma=0.0000
+  Stage 2 epoch 1000/3000: loss=0.000838
+  Stage 2 epoch 2000/3000: loss=0.000241
+  Stage 2 epoch 3000/3000: loss=0.000368
+  Stage 3 epoch 1000/3000: loss=0.000001
+  Stage 3 epoch 2000/3000: loss=0.000001
+  Stage 3 epoch 3000/3000: loss=0.000001
+    Pairwise MFPT err=21.9%  W0 escape err=2.5%  (GT=19.88, LR=19.39)
+    Exit fraction=0.5%
+
+  --- T+F ---
+      Epoch 800/4000: loss=0.000513
+      Epoch 1600/4000: loss=0.000293
+      Epoch 2400/4000: loss=0.000251
+      Epoch 3200/4000: loss=0.000272
+      Epoch 4000/4000: loss=0.000253
+    recon=0.000001
+    E_mu=0.0012  E_Sigma=0.0001
+  Stage 2 epoch 1000/3000: loss=0.000867
+  Stage 2 epoch 2000/3000: loss=0.000048
+  Stage 2 epoch 3000/3000: loss=0.000032
+  Stage 3 epoch 1000/3000: loss=0.000001
+  Stage 3 epoch 2000/3000: loss=0.000001
+  Stage 3 epoch 3000/3000: loss=0.000001
+    Pairwise MFPT err=18.3%  W0 escape err=7.8%  (GT=19.88, LR=18.33)
+    Exit fraction=2.8%
+
+============================================================
+  paraboloid | seed=3042
+============================================================
+  GT exit fraction: 2.7%
+
+  --- baseline ---
+      Epoch 800/4000: loss=0.000075
+      Epoch 1600/4000: loss=0.000037
+      Epoch 2400/4000: loss=0.000030
+      Epoch 3200/4000: loss=0.000028
+      Epoch 4000/4000: loss=0.000026
+    recon=0.000028
+    E_mu=0.0254  E_Sigma=0.0021
+  Stage 2 epoch 1000/3000: loss=0.004723
+  Stage 2 epoch 2000/3000: loss=0.000742
+  Stage 2 epoch 3000/3000: loss=0.000708
+  Stage 3 epoch 1000/3000: loss=0.000063
+  Stage 3 epoch 2000/3000: loss=0.000063
+  Stage 3 epoch 3000/3000: loss=0.000058
+    Pairwise MFPT err=89.3%  W0 escape err=50.7%  (GT=19.93, LR=9.82)
+    Exit fraction=1.1%
+
+  --- T ---
+      Epoch 800/4000: loss=0.000271
+      Epoch 1600/4000: loss=0.000160
+      Epoch 2400/4000: loss=0.000092
+      Epoch 3200/4000: loss=0.000085
+      Epoch 4000/4000: loss=0.000080
+    recon=0.000013
+    E_mu=0.0004  E_Sigma=0.0000
+  Stage 2 epoch 1000/3000: loss=0.005663
+  Stage 2 epoch 2000/3000: loss=0.000482
+  Stage 2 epoch 3000/3000: loss=0.000182
+  Stage 3 epoch 1000/3000: loss=0.000001
+  Stage 3 epoch 2000/3000: loss=0.000001
+  Stage 3 epoch 3000/3000: loss=0.000001
+    Pairwise MFPT err=86.5%  W0 escape err=33.7%  (GT=19.93, LR=13.22)
+    Exit fraction=0.5%
+
+  --- T+F ---
+      Epoch 800/4000: loss=0.000469
+      Epoch 1600/4000: loss=0.000233
+      Epoch 2400/4000: loss=0.000167
+      Epoch 3200/4000: loss=0.000154
+      Epoch 4000/4000: loss=0.000147
+    recon=0.000000
+    E_mu=0.0005  E_Sigma=0.0000
+  Stage 2 epoch 1000/3000: loss=0.014566
+  Stage 2 epoch 2000/3000: loss=0.001713
+  Stage 2 epoch 3000/3000: loss=0.001662
+  Stage 3 epoch 1000/3000: loss=0.000001
+  Stage 3 epoch 2000/3000: loss=0.000001
+  Stage 3 epoch 3000/3000: loss=0.000001
+    Pairwise MFPT err=124.2%  W0 escape err=64.2%  (GT=19.93, LR=7.13)
+    Exit fraction=1.4%
+
+============================================================
+  paraboloid | seed=4042
+============================================================
+  GT exit fraction: 2.6%
+
+  --- baseline ---
+      Epoch 800/4000: loss=0.000074
+      Epoch 1600/4000: loss=0.000027
+      Epoch 2400/4000: loss=0.000015
+      Epoch 3200/4000: loss=0.000008
+      Epoch 4000/4000: loss=0.000006
+    recon=0.000006
+    E_mu=0.0064  E_Sigma=0.0007
+  Stage 2 epoch 1000/3000: loss=0.000823
+  Stage 2 epoch 2000/3000: loss=0.000076
+  Stage 2 epoch 3000/3000: loss=0.000065
+  Stage 3 epoch 1000/3000: loss=0.000013
+  Stage 3 epoch 2000/3000: loss=0.000015
+  Stage 3 epoch 3000/3000: loss=0.000015
+    Pairwise MFPT err=43.6%  W0 escape err=32.4%  (GT=20.24, LR=26.80)
+    Exit fraction=78.0%
+
+  --- T ---
+      Epoch 800/4000: loss=0.001067
+      Epoch 1600/4000: loss=0.000173
+      Epoch 2400/4000: loss=0.000080
+      Epoch 3200/4000: loss=0.000065
+      Epoch 4000/4000: loss=0.000043
+    recon=0.000006
+    E_mu=0.0003  E_Sigma=0.0000
+  Stage 2 epoch 1000/3000: loss=0.002011
+  Stage 2 epoch 2000/3000: loss=0.000087
+  Stage 2 epoch 3000/3000: loss=0.000071
+  Stage 3 epoch 1000/3000: loss=0.000000
+  Stage 3 epoch 2000/3000: loss=0.000000
+  Stage 3 epoch 3000/3000: loss=0.000000
+    Pairwise MFPT err=52.3%  W0 escape err=35.5%  (GT=20.24, LR=27.43)
+    Exit fraction=88.9%
+
+  --- T+F ---
+      Epoch 800/4000: loss=0.000644
+      Epoch 1600/4000: loss=0.000390
+      Epoch 2400/4000: loss=0.000258
+      Epoch 3200/4000: loss=0.000251
+      Epoch 4000/4000: loss=0.000249
+    recon=0.000001
+    E_mu=0.0011  E_Sigma=0.0001
+  Stage 2 epoch 1000/3000: loss=0.002531
+  Stage 2 epoch 2000/3000: loss=0.000198
+  Stage 2 epoch 3000/3000: loss=0.000200
+  Stage 3 epoch 1000/3000: loss=0.000001
+  Stage 3 epoch 2000/3000: loss=0.000001
+  Stage 3 epoch 3000/3000: loss=0.000001
+    Pairwise MFPT err=54.1%  W0 escape err=28.0%  (GT=20.24, LR=25.91)
+    Exit fraction=69.8%
+
+============================================================
+  paraboloid | seed=5042
+============================================================
+  GT exit fraction: 3.3%
+
+  --- baseline ---
+      Epoch 800/4000: loss=0.000249
+      Epoch 1600/4000: loss=0.000031
+      Epoch 2400/4000: loss=0.000019
+      Epoch 3200/4000: loss=0.000011
+      Epoch 4000/4000: loss=0.000012
+    recon=0.000011
+    E_mu=0.0172  E_Sigma=0.0014
+  Stage 2 epoch 1000/3000: loss=0.000244
+  Stage 2 epoch 2000/3000: loss=0.000029
+  Stage 2 epoch 3000/3000: loss=0.000012
+  Stage 3 epoch 1000/3000: loss=0.000028
+  Stage 3 epoch 2000/3000: loss=0.000029
+  Stage 3 epoch 3000/3000: loss=0.000032
+    Pairwise MFPT err=41.0%  W0 escape err=16.5%  (GT=19.15, LR=15.99)
+    Exit fraction=3.2%
+
+  --- T ---
+      Epoch 800/4000: loss=0.000260
+      Epoch 1600/4000: loss=0.000122
+      Epoch 2400/4000: loss=0.000094
+      Epoch 3200/4000: loss=0.000084
+      Epoch 4000/4000: loss=0.000095
+    recon=0.000018
+    E_mu=0.0008  E_Sigma=0.0000
+  Stage 2 epoch 1000/3000: loss=0.001450
+  Stage 2 epoch 2000/3000: loss=0.000015
+  Stage 2 epoch 3000/3000: loss=0.000004
+  Stage 3 epoch 1000/3000: loss=0.000001
+  Stage 3 epoch 2000/3000: loss=0.000001
+  Stage 3 epoch 3000/3000: loss=0.000001
+    Pairwise MFPT err=56.1%  W0 escape err=42.3%  (GT=19.15, LR=11.06)
+    Exit fraction=9.9%
+
+  --- T+F ---
+      Epoch 800/4000: loss=0.000872
+      Epoch 1600/4000: loss=0.000172
+      Epoch 2400/4000: loss=0.000103
+      Epoch 3200/4000: loss=0.000083
+      Epoch 4000/4000: loss=0.000090
+    recon=0.000000
+    E_mu=0.0003  E_Sigma=0.0000
+  Stage 2 epoch 1000/3000: loss=0.000558
+  Stage 2 epoch 2000/3000: loss=0.000012
+  Stage 2 epoch 3000/3000: loss=0.000009
+  Stage 3 epoch 1000/3000: loss=0.000000
+  Stage 3 epoch 2000/3000: loss=0.000000
+  Stage 3 epoch 3000/3000: loss=0.000000
+    Pairwise MFPT err=38.6%  W0 escape err=24.8%  (GT=19.15, LR=14.41)
+    Exit fraction=11.8%
+
+============================================================
+  paraboloid | seed=6042
+============================================================
+  GT exit fraction: 2.1%
+
+  --- baseline ---
+      Epoch 800/4000: loss=0.000113
+      Epoch 1600/4000: loss=0.000026
+      Epoch 2400/4000: loss=0.000019
+      Epoch 3200/4000: loss=0.000017
+      Epoch 4000/4000: loss=0.000018
+    recon=0.000018
+    E_mu=0.0189  E_Sigma=0.0017
+  Stage 2 epoch 1000/3000: loss=0.001808
+  Stage 2 epoch 2000/3000: loss=0.000054
+  Stage 2 epoch 3000/3000: loss=0.000043
+  Stage 3 epoch 1000/3000: loss=0.000033
+  Stage 3 epoch 2000/3000: loss=0.000034
+  Stage 3 epoch 3000/3000: loss=0.000033
+    Pairwise MFPT err=33.9%  W0 escape err=53.9%  (GT=19.45, LR=8.97)
+    Exit fraction=2.9%
+
+  --- T ---
+      Epoch 800/4000: loss=0.000340
+      Epoch 1600/4000: loss=0.000140
+      Epoch 2400/4000: loss=0.000090
+      Epoch 3200/4000: loss=0.000064
+      Epoch 4000/4000: loss=0.000061
+    recon=0.000012
+    E_mu=0.0005  E_Sigma=0.0000
+  Stage 2 epoch 1000/3000: loss=0.003689
+  Stage 2 epoch 2000/3000: loss=0.000246
+  Stage 2 epoch 3000/3000: loss=0.000194
+  Stage 3 epoch 1000/3000: loss=0.000006
+  Stage 3 epoch 2000/3000: loss=0.000002
+  Stage 3 epoch 3000/3000: loss=0.000002
+    Pairwise MFPT err=45.2%  W0 escape err=69.1%  (GT=19.45, LR=6.01)
+    Exit fraction=1.1%
+
+  --- T+F ---
+      Epoch 800/4000: loss=0.015221
+      Epoch 1600/4000: loss=0.000233
+      Epoch 2400/4000: loss=0.000134
+      Epoch 3200/4000: loss=0.000126
+      Epoch 4000/4000: loss=0.000124
+    recon=0.000001
+    E_mu=0.0006  E_Sigma=0.0000
+  Stage 2 epoch 1000/3000: loss=0.001919
+  Stage 2 epoch 2000/3000: loss=0.000233
+  Stage 2 epoch 3000/3000: loss=0.000206
+  Stage 3 epoch 1000/3000: loss=0.000001
+  Stage 3 epoch 2000/3000: loss=0.000001
+  Stage 3 epoch 3000/3000: loss=0.000001
+    Pairwise MFPT err=65.8%  W0 escape err=55.3%  (GT=19.45, LR=8.70)
+    Exit fraction=2.4%
+
+============================================================
+  paraboloid | seed=7042
+============================================================
+  GT exit fraction: 2.9%
+
+  --- baseline ---
+      Epoch 800/4000: loss=0.000084
+      Epoch 1600/4000: loss=0.000042
+      Epoch 2400/4000: loss=0.000020
+      Epoch 3200/4000: loss=0.000018
+      Epoch 4000/4000: loss=0.000019
+    recon=0.000019
+    E_mu=0.0207  E_Sigma=0.0013
+  Stage 2 epoch 1000/3000: loss=0.001245
+  Stage 2 epoch 2000/3000: loss=0.000622
+  Stage 2 epoch 3000/3000: loss=0.000529
+  Stage 3 epoch 1000/3000: loss=0.000044
+  Stage 3 epoch 2000/3000: loss=0.000040
+  Stage 3 epoch 3000/3000: loss=0.000046
+    Pairwise MFPT err=164.0%  W0 escape err=30.1%  (GT=19.51, LR=13.63)
+    Exit fraction=20.2%
+
+  --- T ---
+      Epoch 800/4000: loss=0.000582
+      Epoch 1600/4000: loss=0.000226
+      Epoch 2400/4000: loss=0.000158
+      Epoch 3200/4000: loss=0.000083
+      Epoch 4000/4000: loss=0.000068
+    recon=0.000010
+    E_mu=0.0005  E_Sigma=0.0000
+  Stage 2 epoch 1000/3000: loss=0.001281
+  Stage 2 epoch 2000/3000: loss=0.000102
+  Stage 2 epoch 3000/3000: loss=0.000045
+  Stage 3 epoch 1000/3000: loss=0.000001
+  Stage 3 epoch 2000/3000: loss=0.000001
+  Stage 3 epoch 3000/3000: loss=0.000001
+    Pairwise MFPT err=173.6%  W0 escape err=18.7%  (GT=19.51, LR=15.86)
+    Exit fraction=10.4%
+
+  --- T+F ---
+      Epoch 800/4000: loss=0.000652
+      Epoch 1600/4000: loss=0.000314
+      Epoch 2400/4000: loss=0.000188
+      Epoch 3200/4000: loss=0.000140
+      Epoch 4000/4000: loss=0.000136
+    recon=0.000000
+    E_mu=0.0005  E_Sigma=0.0000
+  Stage 2 epoch 1000/3000: loss=0.003843
+  Stage 2 epoch 2000/3000: loss=0.000128
+  Stage 2 epoch 3000/3000: loss=0.000051
+  Stage 3 epoch 1000/3000: loss=0.000001
+  Stage 3 epoch 2000/3000: loss=0.000001
+  Stage 3 epoch 3000/3000: loss=0.000001
+    Pairwise MFPT err=168.3%  W0 escape err=28.1%  (GT=19.51, LR=14.02)
+    Exit fraction=8.0%
+
+============================================================
+  paraboloid | seed=8042
+============================================================
+  GT exit fraction: 2.7%
+
+  --- baseline ---
+      Epoch 800/4000: loss=0.000207
+      Epoch 1600/4000: loss=0.000032
+      Epoch 2400/4000: loss=0.000013
+      Epoch 3200/4000: loss=0.000012
+      Epoch 4000/4000: loss=0.000011
+    recon=0.000012
+    E_mu=0.0166  E_Sigma=0.0019
+  Stage 2 epoch 1000/3000: loss=0.017050
+  Stage 2 epoch 2000/3000: loss=0.001495
+  Stage 2 epoch 3000/3000: loss=0.000439
+  Stage 3 epoch 1000/3000: loss=0.000051
+  Stage 3 epoch 2000/3000: loss=0.000037
+  Stage 3 epoch 3000/3000: loss=0.000035
+    Pairwise MFPT err=12.7%  W0 escape err=18.9%  (GT=19.63, LR=23.34)
+    Exit fraction=5.1%
+
+  --- T ---
+      Epoch 800/4000: loss=0.000301
+      Epoch 1600/4000: loss=0.000124
+      Epoch 2400/4000: loss=0.000083
+      Epoch 3200/4000: loss=0.000068
+      Epoch 4000/4000: loss=0.000056
+    recon=0.000013
+    E_mu=0.0005  E_Sigma=0.0000
+  Stage 2 epoch 1000/3000: loss=0.013274
+  Stage 2 epoch 2000/3000: loss=0.001548
+  Stage 2 epoch 3000/3000: loss=0.000195
+  Stage 3 epoch 1000/3000: loss=0.000001
+  Stage 3 epoch 2000/3000: loss=0.000001
+  Stage 3 epoch 3000/3000: loss=0.000001
+    Pairwise MFPT err=7.4%  W0 escape err=6.4%  (GT=19.63, LR=20.89)
+    Exit fraction=1.2%
+
+  --- T+F ---
+      Epoch 800/4000: loss=0.000549
+      Epoch 1600/4000: loss=0.000253
+      Epoch 2400/4000: loss=0.000145
+      Epoch 3200/4000: loss=0.000143
+      Epoch 4000/4000: loss=0.000132
+    recon=0.000001
+    E_mu=0.0006  E_Sigma=0.0000
+  Stage 2 epoch 1000/3000: loss=0.052074
+  Stage 2 epoch 2000/3000: loss=0.000801
+  Stage 2 epoch 3000/3000: loss=0.000242
+  Stage 3 epoch 1000/3000: loss=0.000001
+  Stage 3 epoch 2000/3000: loss=0.000001
+  Stage 3 epoch 3000/3000: loss=0.000001
+    Pairwise MFPT err=7.7%  W0 escape err=3.6%  (GT=19.63, LR=20.33)
+    Exit fraction=4.8%
+
+============================================================
+  paraboloid | seed=9042
+============================================================
+  GT exit fraction: 2.6%
+
+  --- baseline ---
+      Epoch 800/4000: loss=0.000072
+      Epoch 1600/4000: loss=0.000038
+      Epoch 2400/4000: loss=0.000025
+      Epoch 3200/4000: loss=0.000014
+      Epoch 4000/4000: loss=0.000012
+    recon=0.000013
+    E_mu=0.0118  E_Sigma=0.0011
+  Stage 2 epoch 1000/3000: loss=0.026665
+  Stage 2 epoch 2000/3000: loss=0.002016
+  Stage 2 epoch 3000/3000: loss=0.000467
+  Stage 3 epoch 1000/3000: loss=0.000029
+  Stage 3 epoch 2000/3000: loss=0.000027
+  Stage 3 epoch 3000/3000: loss=0.000028
+    Pairwise MFPT err=nan%  W0 escape err=nan%  (GT=19.98, LR=nan)
+    Exit fraction=100.0%
+
+  --- T ---
+      Epoch 800/4000: loss=0.000381
+      Epoch 1600/4000: loss=0.000150
+      Epoch 2400/4000: loss=0.000089
+      Epoch 3200/4000: loss=0.000071
+      Epoch 4000/4000: loss=0.000071
+    recon=0.000013
+    E_mu=0.0004  E_Sigma=0.0000
+  Stage 2 epoch 1000/3000: loss=0.014026
+  Stage 2 epoch 2000/3000: loss=0.001940
+  Stage 2 epoch 3000/3000: loss=0.000304
+  Stage 3 epoch 1000/3000: loss=0.000001
+  Stage 3 epoch 2000/3000: loss=0.000001
+  Stage 3 epoch 3000/3000: loss=0.000001
+    Pairwise MFPT err=nan%  W0 escape err=nan%  (GT=19.98, LR=nan)
+    Exit fraction=100.0%
+
+  --- T+F ---
+      Epoch 800/4000: loss=0.000482
+      Epoch 1600/4000: loss=0.000272
+      Epoch 2400/4000: loss=0.000213
+      Epoch 3200/4000: loss=0.000153
+      Epoch 4000/4000: loss=0.000144
+    recon=0.000001
+    E_mu=0.0006  E_Sigma=0.0000
+  Stage 2 epoch 1000/3000: loss=0.051833
+  Stage 2 epoch 2000/3000: loss=0.004630
+  Stage 2 epoch 3000/3000: loss=0.003596
+  Stage 3 epoch 1000/3000: loss=0.000001
+  Stage 3 epoch 2000/3000: loss=0.000001
+  Stage 3 epoch 3000/3000: loss=0.000001
+    Pairwise MFPT err=nan%  W0 escape err=nan%  (GT=19.98, LR=nan)
+    Exit fraction=100.0%
+
+============================================================
+  hyperbolic_paraboloid | seed=42
+============================================================
+  GT exit fraction: 2.9%
+
+  --- baseline ---
+      Epoch 800/4000: loss=0.000324
+      Epoch 1600/4000: loss=0.000062
+      Epoch 2400/4000: loss=0.000046
+      Epoch 3200/4000: loss=0.000025
+      Epoch 4000/4000: loss=0.000025
+    recon=0.000023
+    E_mu=0.0182  E_Sigma=0.0022
+  Stage 2 epoch 1000/3000: loss=0.000163
+  Stage 2 epoch 2000/3000: loss=0.000052
+  Stage 2 epoch 3000/3000: loss=0.000057
+  Stage 3 epoch 1000/3000: loss=0.000047
+  Stage 3 epoch 2000/3000: loss=0.000047
+  Stage 3 epoch 3000/3000: loss=0.000047
+    Pairwise MFPT err=668.0%  W0 escape err=95.8%  (GT=19.54, LR=0.83)
+    Exit fraction=24.4%
+
+  --- T ---
+      Epoch 800/4000: loss=0.002028
+      Epoch 1600/4000: loss=0.000332
+      Epoch 2400/4000: loss=0.000201
+      Epoch 3200/4000: loss=0.000089
+      Epoch 4000/4000: loss=0.000073
+    recon=0.000010
+    E_mu=0.0005  E_Sigma=0.0000
+  Stage 2 epoch 1000/3000: loss=0.000547
+  Stage 2 epoch 2000/3000: loss=0.000118
+  Stage 2 epoch 3000/3000: loss=0.000154
+  Stage 3 epoch 1000/3000: loss=0.000001
+  Stage 3 epoch 2000/3000: loss=0.000001
+  Stage 3 epoch 3000/3000: loss=0.000001
+    Pairwise MFPT err=429.8%  W0 escape err=95.8%  (GT=19.54, LR=0.81)
+    Exit fraction=14.4%
+
+  --- T+F ---
+      Epoch 800/4000: loss=0.000396
+      Epoch 1600/4000: loss=0.000185
+      Epoch 2400/4000: loss=0.000169
+      Epoch 3200/4000: loss=0.000153
+      Epoch 4000/4000: loss=0.000164
+    recon=0.000000
+    E_mu=0.0008  E_Sigma=0.0001
+  Stage 2 epoch 1000/3000: loss=0.000327
+  Stage 2 epoch 2000/3000: loss=0.000064
+  Stage 2 epoch 3000/3000: loss=0.000070
+  Stage 3 epoch 1000/3000: loss=0.000001
+  Stage 3 epoch 2000/3000: loss=0.000001
+  Stage 3 epoch 3000/3000: loss=0.000001
+    Pairwise MFPT err=465.7%  W0 escape err=95.7%  (GT=19.54, LR=0.84)
+    Exit fraction=32.9%
+
+============================================================
+  hyperbolic_paraboloid | seed=1042
+============================================================
+  GT exit fraction: 2.9%
+
+  --- baseline ---
+      Epoch 800/4000: loss=0.000099
+      Epoch 1600/4000: loss=0.000043
+      Epoch 2400/4000: loss=0.000034
+      Epoch 3200/4000: loss=0.000035
+      Epoch 4000/4000: loss=0.000034
+    recon=0.000033
+    E_mu=0.0386  E_Sigma=0.0030
+  Stage 2 epoch 1000/3000: loss=0.000473
+  Stage 2 epoch 2000/3000: loss=0.000047
+  Stage 2 epoch 3000/3000: loss=0.000041
+  Stage 3 epoch 1000/3000: loss=0.000044
+  Stage 3 epoch 2000/3000: loss=0.000039
+  Stage 3 epoch 3000/3000: loss=0.000044
+    Pairwise MFPT err=52.3%  W0 escape err=62.5%  (GT=19.53, LR=7.32)
+    Exit fraction=99.4%
+
+  --- T ---
+      Epoch 800/4000: loss=0.000570
+      Epoch 1600/4000: loss=0.000187
+      Epoch 2400/4000: loss=0.000140
+      Epoch 3200/4000: loss=0.000110
+      Epoch 4000/4000: loss=0.000105
+    recon=0.000013
+    E_mu=0.0010  E_Sigma=0.0001
+  Stage 2 epoch 1000/3000: loss=0.000251
+  Stage 2 epoch 2000/3000: loss=0.000025
+  Stage 2 epoch 3000/3000: loss=0.000019
+  Stage 3 epoch 1000/3000: loss=0.000001
+  Stage 3 epoch 2000/3000: loss=0.000001
+  Stage 3 epoch 3000/3000: loss=0.000001
+    Pairwise MFPT err=26.0%  W0 escape err=49.8%  (GT=19.53, LR=9.81)
+    Exit fraction=43.0%
+
+  --- T+F ---
+      Epoch 800/4000: loss=0.000265
+      Epoch 1600/4000: loss=0.000114
+slurmstepd: error: *** JOB 10800385 ON uagpu-01 CANCELLED AT 2026-03-20T14:35:23 ***

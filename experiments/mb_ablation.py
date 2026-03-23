@@ -43,7 +43,7 @@ ABLATION_CONFIGS = {
     "T+F+K": LossWeights(tangent_bundle=1.0, diffeo=1.0, curvature=0.1),
 }
 
-N_TRAIN = 50
+N_TRAIN = 200
 
 
 def main():

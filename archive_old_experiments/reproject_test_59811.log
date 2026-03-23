@@ -1,0 +1,249 @@
+Device: cuda
+D=11, N=50, surface=paraboloid
+Seeds: [42, 1042, 2042, 3042, 4042]
+
+
+============================================================
+  SEED 42
+============================================================
+
+  --- no_penalty ---
+      Epoch 100/500: loss=0.018654
+      Epoch 200/500: loss=0.010097
+      Epoch 300/500: loss=0.001782
+      Epoch 400/500: loss=0.000742
+      Epoch 500/500: loss=0.000952
+    recon_per_dim=0.001680
+  Stage 2 epoch 100/300: loss=0.865202
+  Stage 2 epoch 200/300: loss=0.927466
+  Stage 2 epoch 300/300: loss=0.820563
+  Stage 3 epoch 100/300: loss=0.108442
+  Stage 3 epoch 200/300: loss=0.087675
+  Stage 3 epoch 300/300: loss=0.071471
+
+    Eval (standard):
+      W2=0.7055  MMD=0.1494  MTE@0.5=1.2306  MTE@1.0=1.1833
+
+    Eval (reproject):
+      W2=1.5153  MMD=0.7388  MTE@0.5=1.5976  MTE@1.0=1.5571
+
+  --- T+F ---
+      Epoch 100/500: loss=0.468872
+      Epoch 200/500: loss=0.038427
+      Epoch 300/500: loss=0.008950
+      Epoch 400/500: loss=0.011219
+      Epoch 500/500: loss=0.008317
+    recon_per_dim=0.000845
+  Stage 2 epoch 100/300: loss=0.129158
+  Stage 2 epoch 200/300: loss=0.145481
+  Stage 2 epoch 300/300: loss=0.128316
+  Stage 3 epoch 100/300: loss=0.057886
+  Stage 3 epoch 200/300: loss=0.022937
+  Stage 3 epoch 300/300: loss=0.013271
+
+    Eval (standard):
+      W2=0.5460  MMD=0.3173  MTE@0.5=0.6845  MTE@1.0=0.8648
+
+    Eval (reproject):
+      W2=1.8180  MMD=0.8013  MTE@0.5=1.8565  MTE@1.0=1.8519
+
+============================================================
+  SEED 1042
+============================================================
+
+  --- no_penalty ---
+      Epoch 100/500: loss=0.016204
+      Epoch 200/500: loss=0.006816
+      Epoch 300/500: loss=0.001513
+      Epoch 400/500: loss=0.000929
+      Epoch 500/500: loss=0.000691
+    recon_per_dim=0.000629
+  Stage 2 epoch 100/300: loss=1.160705
+  Stage 2 epoch 200/300: loss=1.112936
+  Stage 2 epoch 300/300: loss=1.057657
+  Stage 3 epoch 100/300: loss=0.122786
+  Stage 3 epoch 200/300: loss=0.092578
+  Stage 3 epoch 300/300: loss=0.079633
+
+    Eval (standard):
+      W2=0.7976  MMD=0.2189  MTE@0.5=1.3468  MTE@1.0=1.3841
+
+    Eval (reproject):
+      W2=1.9877  MMD=0.9035  MTE@0.5=1.7870  MTE@1.0=1.9219
+
+  --- T+F ---
+      Epoch 100/500: loss=0.312612
+      Epoch 200/500: loss=0.030504
+      Epoch 300/500: loss=0.026756
+      Epoch 400/500: loss=0.008413
+      Epoch 500/500: loss=0.002478
+    recon_per_dim=0.000031
+  Stage 2 epoch 100/300: loss=0.103950
+  Stage 2 epoch 200/300: loss=0.104582
+  Stage 2 epoch 300/300: loss=0.107198
+  Stage 3 epoch 100/300: loss=0.028943
+  Stage 3 epoch 200/300: loss=0.013142
+  Stage 3 epoch 300/300: loss=0.009912
+
+    Eval (standard):
+      W2=1.2918  MMD=0.3240  MTE@0.5=1.7147  MTE@1.0=1.9738
+
+    Eval (reproject):
+      W2=0.5388  MMD=0.1716  MTE@0.5=1.3104  MTE@1.0=1.4039
+
+============================================================
+  SEED 2042
+============================================================
+
+  --- no_penalty ---
+      Epoch 100/500: loss=0.026320
+      Epoch 200/500: loss=0.009942
+      Epoch 300/500: loss=0.001677
+      Epoch 400/500: loss=0.000502
+      Epoch 500/500: loss=0.001295
+    recon_per_dim=0.000881
+  Stage 2 epoch 100/300: loss=0.976530
+  Stage 2 epoch 200/300: loss=0.889628
+  Stage 2 epoch 300/300: loss=0.881544
+  Stage 3 epoch 100/300: loss=0.110404
+  Stage 3 epoch 200/300: loss=0.059707
+  Stage 3 epoch 300/300: loss=0.045744
+
+    Eval (standard):
+      W2=0.7161  MMD=0.1488  MTE@0.5=1.8933  MTE@1.0=1.6533
+
+    Eval (reproject):
+      W2=0.9350  MMD=0.2962  MTE@0.5=1.5101  MTE@1.0=1.4298
+
+  --- T+F ---
+      Epoch 100/500: loss=0.412362
+      Epoch 200/500: loss=0.031087
+      Epoch 300/500: loss=0.013758
+      Epoch 400/500: loss=0.006283
+      Epoch 500/500: loss=0.009002
+    recon_per_dim=0.001124
+  Stage 2 epoch 100/300: loss=0.151981
+  Stage 2 epoch 200/300: loss=0.133348
+  Stage 2 epoch 300/300: loss=0.117311
+  Stage 3 epoch 100/300: loss=0.055884
+  Stage 3 epoch 200/300: loss=0.023083
+  Stage 3 epoch 300/300: loss=0.009827
+
+    Eval (standard):
+      W2=1.0583  MMD=0.3217  MTE@0.5=1.6260  MTE@1.0=1.6996
+
+    Eval (reproject):
+      W2=1.5876  MMD=0.6331  MTE@0.5=1.8419  MTE@1.0=1.8955
+
+============================================================
+  SEED 3042
+============================================================
+
+  --- no_penalty ---
+      Epoch 100/500: loss=0.025698
+      Epoch 200/500: loss=0.005883
+      Epoch 300/500: loss=0.001166
+      Epoch 400/500: loss=0.000477
+      Epoch 500/500: loss=0.000326
+    recon_per_dim=0.000264
+  Stage 2 epoch 100/300: loss=1.213607
+  Stage 2 epoch 200/300: loss=1.230408
+  Stage 2 epoch 300/300: loss=1.168980
+  Stage 3 epoch 100/300: loss=0.090829
+  Stage 3 epoch 200/300: loss=0.076414
+  Stage 3 epoch 300/300: loss=0.064192
+
+    Eval (standard):
+      W2=0.7129  MMD=0.1580  MTE@0.5=1.2105  MTE@1.0=1.3205
+
+    Eval (reproject):
+      W2=0.6824  MMD=0.1661  MTE@0.5=1.1118  MTE@1.0=1.0662
+
+  --- T+F ---
+      Epoch 100/500: loss=0.548769
+      Epoch 200/500: loss=0.035259
+      Epoch 300/500: loss=0.008464
+      Epoch 400/500: loss=0.009393
+      Epoch 500/500: loss=0.002442
+    recon_per_dim=0.000028
+  Stage 2 epoch 100/300: loss=0.149733
+  Stage 2 epoch 200/300: loss=0.170209
+  Stage 2 epoch 300/300: loss=0.149244
+  Stage 3 epoch 100/300: loss=0.056798
+  Stage 3 epoch 200/300: loss=0.041647
+  Stage 3 epoch 300/300: loss=0.031334
+
+    Eval (standard):
+      W2=1.2070  MMD=0.2301  MTE@0.5=1.3711  MTE@1.0=1.7118
+
+    Eval (reproject):
+      W2=0.7148  MMD=0.2173  MTE@0.5=1.1565  MTE@1.0=1.2189
+
+============================================================
+  SEED 4042
+============================================================
+
+  --- no_penalty ---
+      Epoch 100/500: loss=0.015158
+      Epoch 200/500: loss=0.007542
+      Epoch 300/500: loss=0.001608
+      Epoch 400/500: loss=0.000527
+      Epoch 500/500: loss=0.000659
+    recon_per_dim=0.000584
+  Stage 2 epoch 100/300: loss=1.013804
+  Stage 2 epoch 200/300: loss=1.183145
+  Stage 2 epoch 300/300: loss=1.223061
+  Stage 3 epoch 100/300: loss=0.123368
+  Stage 3 epoch 200/300: loss=0.066873
+  Stage 3 epoch 300/300: loss=0.064848
+
+    Eval (standard):
+      W2=0.5846  MMD=0.2415  MTE@0.5=1.4096  MTE@1.0=1.4389
+
+    Eval (reproject):
+      W2=1.1705  MMD=0.5241  MTE@0.5=1.4797  MTE@1.0=1.3810
+
+  --- T+F ---
+      Epoch 100/500: loss=0.312504
+      Epoch 200/500: loss=0.052106
+      Epoch 300/500: loss=0.019672
+      Epoch 400/500: loss=0.016793
+      Epoch 500/500: loss=0.005687
+    recon_per_dim=0.000089
+  Stage 2 epoch 100/300: loss=0.145866
+  Stage 2 epoch 200/300: loss=0.187866
+  Stage 2 epoch 300/300: loss=0.190612
+  Stage 3 epoch 100/300: loss=0.068710
+  Stage 3 epoch 200/300: loss=0.038147
+  Stage 3 epoch 300/300: loss=0.035078
+
+    Eval (standard):
+      W2=1.5547  MMD=0.3674  MTE@0.5=1.4466  MTE@1.0=1.8806
+
+    Eval (reproject):
+      W2=0.9057  MMD=0.2636  MTE@0.5=1.1779  MTE@1.0=1.3981
+
+
+================================================================================
+SUMMARY (mean ± std across seeds)
+================================================================================
+
+     condition  reproject          W2@1.0         MMD@1.0         MTE@1.0
+  ------------ ----------  --------------  --------------  --------------
+    no_penalty         no  0.7033±0.0682  0.1833±0.0391  1.3960±0.1544
+    no_penalty        yes  1.2582±0.4565  0.5257±0.2721  1.4712±0.2773
+           T+F         no  1.1316±0.3343  0.3121±0.0448  1.6261±0.3945
+           T+F        yes  1.1130±0.5007  0.4174±0.2522  1.5537±0.2700
+
+  Effect of reprojection (Δ% vs standard, negative = better):
+      no_penalty W2@1.0: +78.1%
+      no_penalty MMD@1.0: +185.7%
+      no_penalty MTE@1.0: +6.7%
+             T+F W2@1.0: +28.4%
+             T+F MMD@1.0: +33.7%
+             T+F MTE@1.0: +8.5%
+
+  T+F(reproject) vs no_penalty(standard):
+    W2@1.0: +58.2%
+    MMD@1.0: +127.7%
+    MTE@1.0: +11.3%

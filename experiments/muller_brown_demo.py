@@ -341,7 +341,8 @@ def main():
             dW_lr = torch.randn(N_TRAJ, LONG_N_STEPS, 2, device=DEVICE)
             with torch.no_grad():
                 z0 = ae.encoder(init_ambient)
-            _, x_traj = pipeline.simulate(z0, LONG_N_STEPS, DT, dW=dW_lr)
+            _, x_traj = pipeline.simulate(z0, LONG_N_STEPS, DT, dW=dW_lr,
+                                            boundary=BOUNDARY * 3)
 
             # Inter-well MFPT
             lr_assign = assign_wells_ambient(x_traj, wells_ambient)

@@ -243,6 +243,24 @@ def compute_transition_rate(assignments: torch.Tensor, dt: float) -> dict:
     }
 
 
+def assign_wells_voronoi_2d(traj_uv, wells_uv=None):
+    """Voronoi assignment in 2D (u,v) coordinates: assign each trajectory
+    point to the nearest well center.
+
+    Args:
+        traj_uv: (B, T+1, 2) trajectory in 2D coordinates
+        wells_uv: (n_wells, 2) well centers. Defaults to WELLS_UV.
+
+    Returns:
+        assignments: (B, T+1) integer tensor (0..n_wells-1)
+    """
+    if wells_uv is None:
+        wells_uv = WELLS_UV
+    wells_uv = wells_uv.to(traj_uv.device)
+    dists = torch.cdist(traj_uv, wells_uv.unsqueeze(0).expand(traj_uv.shape[0], -1, -1))
+    return dists.argmin(dim=-1)
+
+
 # ── Core-set assignment and Markov metrics ─────────────────────────────
 
 def assign_wells_coreset_2d(traj_uv, wells_uv=None, core_radius=CORE_RADIUS):

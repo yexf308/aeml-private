@@ -232,6 +232,70 @@ def sample_from_highd_manifold(
     )
 
 
+def delta_net_subsample(
+    surface: FourierAugmentedSurface,
+    bounds: list,
+    n_landmarks: int,
+    n_candidates: int = 10000,
+    seed: int = 42,
+    device: str = "cpu",
+) -> torch.Tensor:
+    """Select well-distributed landmarks via greedy delta-net (ATLAS-style).
+
+    Returns (n_landmarks, 2) tensor of local coordinates.
+    Uses the Riemannian metric for distance computation.
+    """
+    rng = np.random.default_rng(seed)
+    u_lo, u_hi = bounds[0]
+    v_lo, v_hi = bounds[1]
+    cands = np.column_stack([
+        rng.uniform(u_lo, u_hi, n_candidates),
+        rng.uniform(v_lo, v_hi, n_candidates),
+    ])
+    # Precompute metric at all candidates (batched)
+    cands_t = torch.tensor(cands, dtype=torch.float32, device=device)
+    J = surface.jacobian(cands_t)  # (N, D, 2)
+    g_all = torch.bmm(J.transpose(-1, -2), J).cpu().numpy()  # (N, 2, 2)
+
+    # Greedy delta-net with binary search for delta
+    domain_diag = np.sqrt((u_hi - u_lo)**2 + (v_hi - v_lo)**2)
+    delta_lo, delta_hi = 0.0, domain_diag
+    best_sel = None
+
+    for _ in range(30):
+        delta_mid = 0.5 * (delta_lo + delta_hi)
+        order = rng.permutation(n_candidates)
+        sel = []       # original indices into cands
+        sel_pts = []   # coordinates
+        sel_g = []     # metric tensors
+        for idx in order:
+            pt = cands[idx]
+            ok = True
+            for j, sp_ in enumerate(sel_pts):
+                diff = pt - sp_
+                mid_g = 0.5 * (g_all[idx] + sel_g[j])
+                if diff @ mid_g @ diff < delta_mid * delta_mid:
+                    ok = False
+                    break
+            if ok:
+                sel.append(int(idx))
+                sel_pts.append(pt)
+                sel_g.append(g_all[idx])
+        if len(sel) < n_landmarks:
+            delta_hi = delta_mid
+        else:
+            delta_lo = delta_mid
+            best_sel = sel
+
+    if best_sel is None:
+        best_sel = list(range(min(n_landmarks, n_candidates)))
+
+    if len(best_sel) > n_landmarks:
+        best_sel = list(rng.choice(best_sel, n_landmarks, replace=False))
+
+    return torch.tensor(cands[best_sel], dtype=torch.float32, device=device)
+
+
 def create_highd_lambdified_sde(
     surface: FourierAugmentedSurface,
     local_drift_fn: Callable,  # (B, 2) -> (B, 2) batched

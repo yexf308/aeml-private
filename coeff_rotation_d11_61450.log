@@ -1,0 +1,36 @@
+Full ablation: rotation dynamics, D=11
+Surfaces: ['paraboloid', 'hyperbolic_paraboloid', 'quartic_dome', 'sinusoidal']
+Conditions: ['baseline', 'T', 'F', 'C', 'T+F'] + ATLAS
+Seeds (10): [42, 1042, 2042, 3042, 4042, 5042, 6042, 7042, 8042, 9042]
+AE epochs: 500, SDE epochs: 300
+N_train: 50
+
+============================================================
+  paraboloid | seed=42 | rotation | D=11
+============================================================
+    ATLAS  recon=0.0098  tangent=0.1696  E_mu=0.1099  E_Sig=0.7910  S2=0.016082
+    baseline      Epoch 100/500: loss=0.031162
+      Epoch 200/500: loss=0.009491
+      Epoch 300/500: loss=0.002091
+      Epoch 400/500: loss=0.000871
+      Epoch 500/500: loss=0.000623
+Traceback (most recent call last):
+  File "/network/rit/lab/Yelab/anaconda3/lib/python3.9/runpy.py", line 197, in _run_module_as_main
+    return _run_code(code, main_globals, None,
+  File "/network/rit/lab/Yelab/anaconda3/lib/python3.9/runpy.py", line 87, in _run_code
+    exec(code, run_globals)
+  File "/network/rit/lab/Yelab/aeml/experiments/full_ablation.py", line 453, in <module>
+    main()
+  File "/network/rit/lab/Yelab/aeml/experiments/full_ablation.py", line 408, in main
+    row = run_one(
+  File "/network/rit/lab/Yelab/aeml/experiments/full_ablation.py", line 223, in run_one
+    b_true = sde.ambient_drift(eval_uv.detach())
+  File "/network/rit/lab/Yelab/aeml/src/numeric/highd_manifolds.py", line 316, in ambient_drift_batch
+    J = surface.jacobian(uv)  # (B, D, 2)
+  File "/network/rit/lab/Yelab/aeml/src/numeric/highd_manifolds.py", line 100, in jacobian
+    grad_f = torch.autograd.grad(f_val.sum(), uv_ad, create_graph=False)[0]
+  File "/network/rit/lab/Yelab/anaconda3/lib/python3.9/site-packages/torch/autograd/__init__.py", line 503, in grad
+    result = _engine_run_backward(
+  File "/network/rit/lab/Yelab/anaconda3/lib/python3.9/site-packages/torch/autograd/graph.py", line 829, in _engine_run_backward
+    return Variable._execution_engine.run_backward(  # Calls into the C++ engine to run the backward pass
+RuntimeError: element 0 of tensors does not require grad and does not have a grad_fn

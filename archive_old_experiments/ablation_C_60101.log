@@ -1,0 +1,870 @@
+Device: cuda
+N_TRAIN: 20
+Seeds (10): [42, 1042, 2042, 3042, 4042, 5042, 6042, 7042, 8042, 9042]
+Epochs: 500
+
+======================================================================
+ABLATION STUDY: paraboloid
+Seeds: [42, 1042, 2042, 3042, 4042, 5042, 6042, 7042, 8042, 9042]
+Configs: ['baseline', 'T', 'K', 'F', 'C', 'T+K', 'T+F', 'F+K', 'T+F+K']
+======================================================================
+
+  paraboloid | baseline | seed=42
+  Epoch 100: loss=0.032449
+  Epoch 200: loss=0.028961
+  Epoch 300: loss=0.014075
+  Epoch 400: loss=0.009617
+  Epoch 500: loss=0.005801
+    recon=0.100520  tangent=0.396159  curvature=3.483954
+
+  paraboloid | T | seed=42
+  Epoch 100: loss=0.040463
+  Epoch 200: loss=0.004441
+  Epoch 300: loss=0.000926
+  Epoch 400: loss=0.000864
+  Epoch 500: loss=0.000538
+    recon=0.058343  tangent=0.008652  curvature=0.100466
+
+  paraboloid | K | seed=42
+
+[K] Starting warmup: 250 epochs
+  Epoch 100 (warmup 100/250): loss = 0.0324
+  Epoch 200 (warmup 200/250): loss = 0.0290
+
+[K] Starting finetune: 250 epochs
+  Epoch 350 (finetune 100/250): loss = 0.0355
+  Epoch 450 (finetune 200/250): loss = 0.0114
+    recon=0.158621  tangent=0.171706  curvature=1.812610
+
+  paraboloid | F | seed=42
+  Epoch 100: loss=0.030804
+  Epoch 200: loss=0.029124
+  Epoch 300: loss=0.028811
+  Epoch 400: loss=0.028183
+  Epoch 500: loss=0.028068
+    recon=0.189785  tangent=0.636664  curvature=2.698438
+
+  paraboloid | C | seed=42
+  Epoch 100: loss=0.259443
+  Epoch 200: loss=0.159083
+  Epoch 300: loss=0.113220
+  Epoch 400: loss=0.047131
+  Epoch 500: loss=0.051944
+    recon=0.252841  tangent=0.648931  curvature=2.786573
+
+  paraboloid | T+K | seed=42
+
+[T+K] Starting warmup: 250 epochs
+  Epoch 100 (warmup 100/250): loss = 0.0405
+  Epoch 200 (warmup 200/250): loss = 0.0044
+
+[T+K] Starting finetune: 250 epochs
+  Epoch 350 (finetune 100/250): loss = 0.0736
+  Epoch 450 (finetune 200/250): loss = 0.0005
+    recon=0.056876  tangent=0.008284  curvature=0.089463
+
+  paraboloid | T+F | seed=42
+  Epoch 100: loss=0.698158
+  Epoch 200: loss=0.327324
+  Epoch 300: loss=0.028843
+  Epoch 400: loss=0.018808
+  Epoch 500: loss=0.018033
+    recon=0.074882  tangent=0.018287  curvature=0.538697
+
+  paraboloid | F+K | seed=42
+
+[F+K] Starting warmup: 250 epochs
+  Epoch 100 (warmup 100/250): loss = 0.0308
+  Epoch 200 (warmup 200/250): loss = 0.0291
+
+[F+K] Starting finetune: 250 epochs
+  Epoch 350 (finetune 100/250): loss = 0.1104
+  Epoch 450 (finetune 200/250): loss = 0.1080
+    recon=0.323887  tangent=0.674952  curvature=2.780560
+
+  paraboloid | T+F+K | seed=42
+
+[T+F+K] Starting warmup: 250 epochs
+  Epoch 100 (warmup 100/250): loss = 0.6982
+  Epoch 200 (warmup 200/250): loss = 0.3273
+
+[T+F+K] Starting finetune: 250 epochs
+  Epoch 350 (finetune 100/250): loss = 0.0618
+  Epoch 450 (finetune 200/250): loss = 0.0178
+    recon=0.069169  tangent=0.015868  curvature=0.281289
+
+  paraboloid | baseline | seed=1042
+  Epoch 100: loss=0.029414
+  Epoch 200: loss=0.029075
+  Epoch 300: loss=0.028563
+  Epoch 400: loss=0.023225
+  Epoch 500: loss=0.010783
+    recon=0.091480  tangent=0.324645  curvature=1.627663
+
+  paraboloid | T | seed=1042
+  Epoch 100: loss=0.079358
+  Epoch 200: loss=0.001593
+  Epoch 300: loss=0.002136
+  Epoch 400: loss=0.006399
+  Epoch 500: loss=0.008076
+    recon=0.041114  tangent=0.010350  curvature=0.586789
+
+  paraboloid | K | seed=1042
+
+[K] Starting warmup: 250 epochs
+  Epoch 100 (warmup 100/250): loss = 0.0294
+  Epoch 200 (warmup 200/250): loss = 0.0291
+
+[K] Starting finetune: 250 epochs
+  Epoch 350 (finetune 100/250): loss = 0.0736
+  Epoch 450 (finetune 200/250): loss = 0.0729
+    recon=0.315366  tangent=0.696251  curvature=3.294885
+
+  paraboloid | F | seed=1042
+  Epoch 100: loss=0.034917
+  Epoch 200: loss=0.030251
+  Epoch 300: loss=0.029853
+  Epoch 400: loss=0.028838
+  Epoch 500: loss=0.028757
+    recon=0.191053  tangent=0.616657  curvature=2.722745
+
+  paraboloid | C | seed=1042
+  Epoch 100: loss=0.769551
+  Epoch 200: loss=0.107351
+  Epoch 300: loss=0.119610
+  Epoch 400: loss=0.104803
+  Epoch 500: loss=0.103336
+    recon=0.504179  tangent=0.619411  curvature=3.052475
+
+  paraboloid | T+K | seed=1042
+
+[T+K] Starting warmup: 250 epochs
+  Epoch 100 (warmup 100/250): loss = 0.0794
+  Epoch 200 (warmup 200/250): loss = 0.0016
+
+[T+K] Starting finetune: 250 epochs
+  Epoch 350 (finetune 100/250): loss = 0.0040
+  Epoch 450 (finetune 200/250): loss = 0.0208
+    recon=0.039757  tangent=0.010262  curvature=0.271274
+
+  paraboloid | T+F | seed=1042
+  Epoch 100: loss=0.430567
+  Epoch 200: loss=0.086333
+  Epoch 300: loss=0.027231
+  Epoch 400: loss=0.010977
+  Epoch 500: loss=0.011287
+    recon=0.016207  tangent=0.010549  curvature=0.207706
+
+  paraboloid | F+K | seed=1042
+
+[F+K] Starting warmup: 250 epochs
+  Epoch 100 (warmup 100/250): loss = 0.0349
+  Epoch 200 (warmup 200/250): loss = 0.0303
+
+[F+K] Starting finetune: 250 epochs
+  Epoch 350 (finetune 100/250): loss = 0.0825
+  Epoch 450 (finetune 200/250): loss = 0.0793
+    recon=0.312318  tangent=0.698032  curvature=2.826345
+
+  paraboloid | T+F+K | seed=1042
+
+[T+F+K] Starting warmup: 250 epochs
+  Epoch 100 (warmup 100/250): loss = 0.4306
+  Epoch 200 (warmup 200/250): loss = 0.0863
+
+[T+F+K] Starting finetune: 250 epochs
+  Epoch 350 (finetune 100/250): loss = 0.0568
+  Epoch 450 (finetune 200/250): loss = 0.0156
+    recon=0.009420  tangent=0.003648  curvature=0.046366
+
+  paraboloid | baseline | seed=2042
+  Epoch 100: loss=0.048425
+  Epoch 200: loss=0.028748
+  Epoch 300: loss=0.009360
+  Epoch 400: loss=0.007079
+  Epoch 500: loss=0.000820
+    recon=0.041625  tangent=0.065252  curvature=38.825897
+
+  paraboloid | T | seed=2042
+  Epoch 100: loss=0.027594
+  Epoch 200: loss=0.002057
+  Epoch 300: loss=0.001320
+  Epoch 400: loss=0.002443
+  Epoch 500: loss=0.002068
+    recon=0.026332  tangent=0.003322  curvature=0.051237
+
+  paraboloid | K | seed=2042
+
+[K] Starting warmup: 250 epochs
+  Epoch 100 (warmup 100/250): loss = 0.0484
+  Epoch 200 (warmup 200/250): loss = 0.0287
+
+[K] Starting finetune: 250 epochs
+  Epoch 350 (finetune 100/250): loss = 0.0265
+  Epoch 450 (finetune 200/250): loss = 0.0139
+    recon=0.141613  tangent=0.261104  curvature=1.292879
+
+  paraboloid | F | seed=2042
+  Epoch 100: loss=0.051502
+  Epoch 200: loss=0.048146
+  Epoch 300: loss=0.047795
+  Epoch 400: loss=0.046931
+  Epoch 500: loss=0.044190
+    recon=0.178361  tangent=0.605465  curvature=2.350279
+
+  paraboloid | C | seed=2042
+  Epoch 100: loss=0.255799
+  Epoch 200: loss=0.153002
+  Epoch 300: loss=0.110837
+  Epoch 400: loss=0.079100
+  Epoch 500: loss=0.099599
+    recon=0.258955  tangent=0.660267  curvature=2.757672
+
+  paraboloid | T+K | seed=2042
+
+[T+K] Starting warmup: 250 epochs
+  Epoch 100 (warmup 100/250): loss = 0.0276
+  Epoch 200 (warmup 200/250): loss = 0.0021
+
+[T+K] Starting finetune: 250 epochs
+  Epoch 350 (finetune 100/250): loss = 0.0030
+  Epoch 450 (finetune 200/250): loss = 0.0009
+    recon=0.022806  tangent=0.003250  curvature=0.034673
+
+  paraboloid | T+F | seed=2042
+  Epoch 100: loss=0.604837
+  Epoch 200: loss=0.128088
+  Epoch 300: loss=0.030871
+  Epoch 400: loss=0.012893
+  Epoch 500: loss=0.009301
+    recon=0.009814  tangent=0.007234  curvature=0.199324
+
+  paraboloid | F+K | seed=2042
+
+[F+K] Starting warmup: 250 epochs
+  Epoch 100 (warmup 100/250): loss = 0.0515
+  Epoch 200 (warmup 200/250): loss = 0.0481
+
+[F+K] Starting finetune: 250 epochs
+  Epoch 350 (finetune 100/250): loss = 0.1001
+  Epoch 450 (finetune 200/250): loss = 0.0941
+    recon=0.354186  tangent=0.669239  curvature=2.715561
+
+  paraboloid | T+F+K | seed=2042
+
+[T+F+K] Starting warmup: 250 epochs
+  Epoch 100 (warmup 100/250): loss = 0.6048
+  Epoch 200 (warmup 200/250): loss = 0.1281
+
+[T+F+K] Starting finetune: 250 epochs
+  Epoch 350 (finetune 100/250): loss = 0.0125
+  Epoch 450 (finetune 200/250): loss = 0.0094
+    recon=0.008913  tangent=0.002695  curvature=0.046286
+
+  paraboloid | baseline | seed=3042
+  Epoch 100: loss=0.045761
+  Epoch 200: loss=0.037710
+  Epoch 300: loss=0.023171
+  Epoch 400: loss=0.003199
+  Epoch 500: loss=0.002044
+    recon=0.102242  tangent=0.045579  curvature=2.125507
+
+  paraboloid | T | seed=3042
+  Epoch 100: loss=0.029843
+  Epoch 200: loss=0.003034
+  Epoch 300: loss=0.002382
+  Epoch 400: loss=0.001745
+  Epoch 500: loss=0.002640
+    recon=0.030016  tangent=0.008572  curvature=0.176463
+
+  paraboloid | K | seed=3042
+
+[K] Starting warmup: 250 epochs
+  Epoch 100 (warmup 100/250): loss = 0.0458
+  Epoch 200 (warmup 200/250): loss = 0.0377
+
+[K] Starting finetune: 250 epochs
+  Epoch 350 (finetune 100/250): loss = 0.0246
+  Epoch 450 (finetune 200/250): loss = 0.0029
+    recon=0.042925  tangent=0.027001  curvature=0.242266
+
+  paraboloid | F | seed=3042
+  Epoch 100: loss=0.056853
+  Epoch 200: loss=0.046411
+  Epoch 300: loss=0.046837
+  Epoch 400: loss=0.043415
+  Epoch 500: loss=0.041701
+    recon=0.182133  tangent=0.626454  curvature=2.672433
+
+  paraboloid | C | seed=3042
+  Epoch 100: loss=0.284840
+  Epoch 200: loss=0.247446
+  Epoch 300: loss=0.076546
+  Epoch 400: loss=0.063444
+  Epoch 500: loss=0.058218
+    recon=0.216368  tangent=0.645693  curvature=2.765428
+
+  paraboloid | T+K | seed=3042
+
+[T+K] Starting warmup: 250 epochs
+  Epoch 100 (warmup 100/250): loss = 0.0298
+  Epoch 200 (warmup 200/250): loss = 0.0030
+
+[T+K] Starting finetune: 250 epochs
+  Epoch 350 (finetune 100/250): loss = 0.0016
+  Epoch 450 (finetune 200/250): loss = 0.0012
+    recon=0.025226  tangent=0.007227  curvature=0.101220
+
+  paraboloid | T+F | seed=3042
+  Epoch 100: loss=0.409766
+  Epoch 200: loss=0.092619
+  Epoch 300: loss=0.020118
+  Epoch 400: loss=0.012347
+  Epoch 500: loss=0.009120
+    recon=0.012469  tangent=0.005352  curvature=0.146041
+
+  paraboloid | F+K | seed=3042
+
+[F+K] Starting warmup: 250 epochs
+  Epoch 100 (warmup 100/250): loss = 0.0569
+  Epoch 200 (warmup 200/250): loss = 0.0464
+
+[F+K] Starting finetune: 250 epochs
+  Epoch 350 (finetune 100/250): loss = 0.1327
+  Epoch 450 (finetune 200/250): loss = 0.1215
+    recon=0.348700  tangent=0.660690  curvature=2.828614
+
+  paraboloid | T+F+K | seed=3042
+
+[T+F+K] Starting warmup: 250 epochs
+  Epoch 100 (warmup 100/250): loss = 0.4098
+  Epoch 200 (warmup 200/250): loss = 0.0926
+
+[T+F+K] Starting finetune: 250 epochs
+  Epoch 350 (finetune 100/250): loss = 0.0245
+  Epoch 450 (finetune 200/250): loss = 0.0122
+    recon=0.013962  tangent=0.005293  curvature=0.046325
+
+  paraboloid | baseline | seed=4042
+  Epoch 100: loss=0.035737
+  Epoch 200: loss=0.016612
+  Epoch 300: loss=0.025106
+  Epoch 400: loss=0.002169
+  Epoch 500: loss=0.001436
+    recon=0.048401  tangent=0.095331  curvature=0.786279
+
+  paraboloid | T | seed=4042
+  Epoch 100: loss=0.020370
+  Epoch 200: loss=0.002807
+  Epoch 300: loss=0.001296
+  Epoch 400: loss=0.003196
+  Epoch 500: loss=0.002963
+    recon=0.043575  tangent=0.009637  curvature=0.155025
+
+  paraboloid | K | seed=4042
+
+[K] Starting warmup: 250 epochs
+  Epoch 100 (warmup 100/250): loss = 0.0357
+  Epoch 200 (warmup 200/250): loss = 0.0166
+
+[K] Starting finetune: 250 epochs
+  Epoch 350 (finetune 100/250): loss = 0.0052
+  Epoch 450 (finetune 200/250): loss = 0.0051
+    recon=0.069943  tangent=0.042717  curvature=0.592525
+
+  paraboloid | F | seed=4042
+  Epoch 100: loss=0.037804
+  Epoch 200: loss=0.035850
+  Epoch 300: loss=0.034396
+  Epoch 400: loss=0.033212
+  Epoch 500: loss=0.035925
+    recon=0.203127  tangent=0.629253  curvature=2.661429
+
+  paraboloid | C | seed=4042
+  Epoch 100: loss=0.228432
+  Epoch 200: loss=0.127564
+  Epoch 300: loss=0.081415
+  Epoch 400: loss=0.082291
+  Epoch 500: loss=0.052643
+    recon=0.237197  tangent=0.653553  curvature=2.764423
+
+  paraboloid | T+K | seed=4042
+
+[T+K] Starting warmup: 250 epochs
+  Epoch 100 (warmup 100/250): loss = 0.0204
+  Epoch 200 (warmup 200/250): loss = 0.0028
+
+[T+K] Starting finetune: 250 epochs
+  Epoch 350 (finetune 100/250): loss = 0.0010
+  Epoch 450 (finetune 200/250): loss = 0.0006
+    recon=0.040287  tangent=0.007860  curvature=0.087910
+
+  paraboloid | T+F | seed=4042
+  Epoch 100: loss=0.374004
+  Epoch 200: loss=0.044884
+  Epoch 300: loss=0.023724
+  Epoch 400: loss=0.016963
+  Epoch 500: loss=0.011931
+    recon=0.025680  tangent=0.011541  curvature=0.174814
+
+  paraboloid | F+K | seed=4042
+
+[F+K] Starting warmup: 250 epochs
+  Epoch 100 (warmup 100/250): loss = 0.0378
+  Epoch 200 (warmup 200/250): loss = 0.0358
+
+[F+K] Starting finetune: 250 epochs
+  Epoch 350 (finetune 100/250): loss = 0.0976
+  Epoch 450 (finetune 200/250): loss = 0.0906
+    recon=0.351930  tangent=0.693298  curvature=2.790365
+
+  paraboloid | T+F+K | seed=4042
+
+[T+F+K] Starting warmup: 250 epochs
+  Epoch 100 (warmup 100/250): loss = 0.3740
+  Epoch 200 (warmup 200/250): loss = 0.0449
+
+[T+F+K] Starting finetune: 250 epochs
+  Epoch 350 (finetune 100/250): loss = 0.0183
+  Epoch 450 (finetune 200/250): loss = 0.0129
+    recon=0.025556  tangent=0.008688  curvature=0.150444
+
+  paraboloid | baseline | seed=5042
+  Epoch 100: loss=0.013417
+  Epoch 200: loss=0.011714
+  Epoch 300: loss=0.005447
+  Epoch 400: loss=0.004707
+  Epoch 500: loss=0.043089
+    recon=0.332465  tangent=0.464861  curvature=3.157644
+
+  paraboloid | T | seed=5042
+  Epoch 100: loss=0.021224
+  Epoch 200: loss=0.004880
+  Epoch 300: loss=0.002041
+  Epoch 400: loss=0.000574
+  Epoch 500: loss=0.000470
+    recon=0.252294  tangent=0.065781  curvature=0.985089
+
+  paraboloid | K | seed=5042
+
+[K] Starting warmup: 250 epochs
+  Epoch 100 (warmup 100/250): loss = 0.0134
+  Epoch 200 (warmup 200/250): loss = 0.0117
+
+[K] Starting finetune: 250 epochs
+  Epoch 350 (finetune 100/250): loss = 0.0183
+  Epoch 450 (finetune 200/250): loss = 0.0085
+    recon=0.424487  tangent=0.404267  curvature=2.148511
+
+  paraboloid | F | seed=5042
+  Epoch 100: loss=0.071738
+  Epoch 200: loss=0.012696
+  Epoch 300: loss=0.012417
+  Epoch 400: loss=0.012378
+  Epoch 500: loss=0.012236
+    recon=0.450545  tangent=0.670448  curvature=2.811003
+
+  paraboloid | C | seed=5042
+  Epoch 100: loss=0.450022
+  Epoch 200: loss=0.098324
+  Epoch 300: loss=0.054682
+  Epoch 400: loss=0.041893
+  Epoch 500: loss=0.035491
+    recon=0.513660  tangent=0.673870  curvature=2.804522
+
+  paraboloid | T+K | seed=5042
+
+[T+K] Starting warmup: 250 epochs
+  Epoch 100 (warmup 100/250): loss = 0.0212
+  Epoch 200 (warmup 200/250): loss = 0.0049
+
+[T+K] Starting finetune: 250 epochs
+  Epoch 350 (finetune 100/250): loss = 0.0014
+  Epoch 450 (finetune 200/250): loss = 0.0011
+    recon=0.258121  tangent=0.068677  curvature=1.114586
+
+  paraboloid | T+F | seed=5042
+  Epoch 100: loss=0.255059
+  Epoch 200: loss=0.071236
+  Epoch 300: loss=0.020724
+  Epoch 400: loss=0.018688
+  Epoch 500: loss=0.014815
+    recon=0.145176  tangent=0.097268  curvature=1.041783
+
+  paraboloid | F+K | seed=5042
+
+[F+K] Starting warmup: 250 epochs
+  Epoch 100 (warmup 100/250): loss = 0.0717
+  Epoch 200 (warmup 200/250): loss = 0.0127
+
+[F+K] Starting finetune: 250 epochs
+  Epoch 350 (finetune 100/250): loss = 0.0330
+  Epoch 450 (finetune 200/250): loss = 0.0265
+    recon=0.490346  tangent=0.674777  curvature=2.966054
+
+  paraboloid | T+F+K | seed=5042
+
+[T+F+K] Starting warmup: 250 epochs
+  Epoch 100 (warmup 100/250): loss = 0.2551
+  Epoch 200 (warmup 200/250): loss = 0.0712
+
+[T+F+K] Starting finetune: 250 epochs
+  Epoch 350 (finetune 100/250): loss = 0.0243
+  Epoch 450 (finetune 200/250): loss = 0.0180
+    recon=0.176246  tangent=0.098030  curvature=0.654762
+
+  paraboloid | baseline | seed=6042
+  Epoch 100: loss=0.034704
+  Epoch 200: loss=0.036093
+  Epoch 300: loss=0.009773
+  Epoch 400: loss=0.011680
+  Epoch 500: loss=0.003404
+    recon=0.314274  tangent=0.337387  curvature=8.117001
+
+  paraboloid | T | seed=6042
+  Epoch 100: loss=0.182127
+  Epoch 200: loss=0.036811
+  Epoch 300: loss=0.002194
+  Epoch 400: loss=0.010408
+  Epoch 500: loss=0.005052
+    recon=0.142598  tangent=0.034419  curvature=1.264519
+
+  paraboloid | K | seed=6042
+
+[K] Starting warmup: 250 epochs
+  Epoch 100 (warmup 100/250): loss = 0.0347
+  Epoch 200 (warmup 200/250): loss = 0.0361
+
+[K] Starting finetune: 250 epochs
+  Epoch 350 (finetune 100/250): loss = 0.0110
+  Epoch 450 (finetune 200/250): loss = 0.0089
+    recon=0.285193  tangent=0.364444  curvature=3.249901
+
+  paraboloid | F | seed=6042
+  Epoch 100: loss=0.041864
+  Epoch 200: loss=0.034759
+  Epoch 300: loss=0.037350
+  Epoch 400: loss=0.034621
+  Epoch 500: loss=0.034151
+    recon=0.273835  tangent=0.671701  curvature=2.729439
+
+  paraboloid | C | seed=6042
+  Epoch 100: loss=0.192989
+  Epoch 200: loss=0.124370
+  Epoch 300: loss=0.083885
+  Epoch 400: loss=0.051200
+  Epoch 500: loss=0.047072
+    recon=0.348499  tangent=0.671039  curvature=2.735524
+
+  paraboloid | T+K | seed=6042
+
+[T+K] Starting warmup: 250 epochs
+  Epoch 100 (warmup 100/250): loss = 0.1821
+  Epoch 200 (warmup 200/250): loss = 0.0368
+
+[T+K] Starting finetune: 250 epochs
+  Epoch 350 (finetune 100/250): loss = 0.0038
+  Epoch 450 (finetune 200/250): loss = 0.0015
+    recon=0.146910  tangent=0.036091  curvature=0.766466
+
+  paraboloid | T+F | seed=6042
+  Epoch 100: loss=0.217232
+  Epoch 200: loss=0.127302
+  Epoch 300: loss=0.047220
+  Epoch 400: loss=0.031556
+  Epoch 500: loss=0.011599
+    recon=0.061140  tangent=0.019824  curvature=0.518517
+
+  paraboloid | F+K | seed=6042
+
+[F+K] Starting warmup: 250 epochs
+  Epoch 100 (warmup 100/250): loss = 0.0419
+  Epoch 200 (warmup 200/250): loss = 0.0348
+
+[F+K] Starting finetune: 250 epochs
+  Epoch 350 (finetune 100/250): loss = 0.0779
+  Epoch 450 (finetune 200/250): loss = 0.0768
+    recon=0.461829  tangent=0.677889  curvature=2.762898
+
+  paraboloid | T+F+K | seed=6042
+
+[T+F+K] Starting warmup: 250 epochs
+  Epoch 100 (warmup 100/250): loss = 0.2172
+  Epoch 200 (warmup 200/250): loss = 0.1273
+
+[T+F+K] Starting finetune: 250 epochs
+  Epoch 350 (finetune 100/250): loss = 0.0228
+  Epoch 450 (finetune 200/250): loss = 0.0081
+    recon=0.073758  tangent=0.012696  curvature=0.270034
+
+  paraboloid | baseline | seed=7042
+  Epoch 100: loss=0.029923
+  Epoch 200: loss=0.028027
+  Epoch 300: loss=0.017422
+  Epoch 400: loss=0.004458
+  Epoch 500: loss=0.001100
+    recon=0.140369  tangent=0.165247  curvature=2.027557
+
+  paraboloid | T | seed=7042
+  Epoch 100: loss=0.022479
+  Epoch 200: loss=0.012029
+  Epoch 300: loss=0.000916
+  Epoch 400: loss=0.000836
+  Epoch 500: loss=0.001522
+    recon=0.082595  tangent=0.012080  curvature=0.194204
+
+  paraboloid | K | seed=7042
+
+[K] Starting warmup: 250 epochs
+  Epoch 100 (warmup 100/250): loss = 0.0299
+  Epoch 200 (warmup 200/250): loss = 0.0280
+
+[K] Starting finetune: 250 epochs
+  Epoch 350 (finetune 100/250): loss = 0.0201
+  Epoch 450 (finetune 200/250): loss = 0.0102
+    recon=0.237636  tangent=0.205435  curvature=1.929341
+
+  paraboloid | F | seed=7042
+  Epoch 100: loss=0.031280
+  Epoch 200: loss=0.028219
+  Epoch 300: loss=0.029257
+  Epoch 400: loss=0.028071
+  Epoch 500: loss=0.027340
+    recon=0.321474  tangent=0.666389  curvature=2.700150
+
+  paraboloid | C | seed=7042
+  Epoch 100: loss=0.235794
+  Epoch 200: loss=0.084359
+  Epoch 300: loss=0.074021
+  Epoch 400: loss=0.051660
+  Epoch 500: loss=0.054497
+    recon=0.357800  tangent=0.674608  curvature=2.758610
+
+  paraboloid | T+K | seed=7042
+
+[T+K] Starting warmup: 250 epochs
+  Epoch 100 (warmup 100/250): loss = 0.0225
+  Epoch 200 (warmup 200/250): loss = 0.0120
+
+[T+K] Starting finetune: 250 epochs
+  Epoch 350 (finetune 100/250): loss = 0.0015
+  Epoch 450 (finetune 200/250): loss = 0.0012
+    recon=0.065797  tangent=0.005859  curvature=0.135203
+
+  paraboloid | T+F | seed=7042
+  Epoch 100: loss=0.314515
+  Epoch 200: loss=0.060357
+  Epoch 300: loss=0.050441
+  Epoch 400: loss=0.004175
+  Epoch 500: loss=0.009667
+    recon=0.016791  tangent=0.008226  curvature=0.143798
+
+  paraboloid | F+K | seed=7042
+
+[F+K] Starting warmup: 250 epochs
+  Epoch 100 (warmup 100/250): loss = 0.0313
+  Epoch 200 (warmup 200/250): loss = 0.0282
+
+[F+K] Starting finetune: 250 epochs
+  Epoch 350 (finetune 100/250): loss = 0.0882
+  Epoch 450 (finetune 200/250): loss = 0.0812
+    recon=0.438400  tangent=0.671490  curvature=2.739480
+
+  paraboloid | T+F+K | seed=7042
+
+[T+F+K] Starting warmup: 250 epochs
+  Epoch 100 (warmup 100/250): loss = 0.3145
+  Epoch 200 (warmup 200/250): loss = 0.0604
+
+[T+F+K] Starting finetune: 250 epochs
+  Epoch 350 (finetune 100/250): loss = 0.0119
+  Epoch 450 (finetune 200/250): loss = 0.0104
+    recon=0.007222  tangent=0.003010  curvature=0.048073
+
+  paraboloid | baseline | seed=8042
+  Epoch 100: loss=0.040291
+  Epoch 200: loss=0.025290
+  Epoch 300: loss=0.006269
+  Epoch 400: loss=0.005300
+  Epoch 500: loss=0.004030
+    recon=0.182424  tangent=0.307327  curvature=1.685054
+
+  paraboloid | T | seed=8042
+  Epoch 100: loss=0.023187
+  Epoch 200: loss=0.002381
+  Epoch 300: loss=0.001582
+  Epoch 400: loss=0.001024
+  Epoch 500: loss=0.002130
+    recon=0.062911  tangent=0.017415  curvature=0.206004
+
+  paraboloid | K | seed=8042
+
+[K] Starting warmup: 250 epochs
+  Epoch 100 (warmup 100/250): loss = 0.0403
+  Epoch 200 (warmup 200/250): loss = 0.0253
+
+[K] Starting finetune: 250 epochs
+  Epoch 350 (finetune 100/250): loss = 0.0109
+  Epoch 450 (finetune 200/250): loss = 0.0086
+    recon=0.208247  tangent=0.319597  curvature=2.963880
+
+  paraboloid | F | seed=8042
+  Epoch 100: loss=0.046610
+  Epoch 200: loss=0.040155
+  Epoch 300: loss=0.040099
+  Epoch 400: loss=0.040190
+  Epoch 500: loss=0.034812
+    recon=0.245780  tangent=0.604744  curvature=2.574604
+
+  paraboloid | C | seed=8042
+  Epoch 100: loss=0.237283
+  Epoch 200: loss=0.120487
+  Epoch 300: loss=0.106963
+  Epoch 400: loss=0.082104
+  Epoch 500: loss=0.127920
+    recon=0.280913  tangent=0.645292  curvature=2.800874
+
+  paraboloid | T+K | seed=8042
+
+[T+K] Starting warmup: 250 epochs
+  Epoch 100 (warmup 100/250): loss = 0.0232
+  Epoch 200 (warmup 200/250): loss = 0.0024
+
+[T+K] Starting finetune: 250 epochs
+  Epoch 350 (finetune 100/250): loss = 0.0803
+  Epoch 450 (finetune 200/250): loss = 0.0007
+    recon=0.055742  tangent=0.017370  curvature=0.252761
+
+  paraboloid | T+F | seed=8042
+  Epoch 100: loss=0.314688
+  Epoch 200: loss=0.050619
+  Epoch 300: loss=0.018098
+  Epoch 400: loss=0.016959
+  Epoch 500: loss=0.002621
+    recon=0.014228  tangent=0.010455  curvature=0.237499
+
+  paraboloid | F+K | seed=8042
+
+[F+K] Starting warmup: 250 epochs
+  Epoch 100 (warmup 100/250): loss = 0.0466
+  Epoch 200 (warmup 200/250): loss = 0.0402
+
+[F+K] Starting finetune: 250 epochs
+  Epoch 350 (finetune 100/250): loss = 0.0678
+  Epoch 450 (finetune 200/250): loss = 0.0612
+    recon=0.350908  tangent=0.673836  curvature=2.887197
+
+  paraboloid | T+F+K | seed=8042
+
+[T+F+K] Starting warmup: 250 epochs
+  Epoch 100 (warmup 100/250): loss = 0.3147
+  Epoch 200 (warmup 200/250): loss = 0.0506
+
+[T+F+K] Starting finetune: 250 epochs
+  Epoch 350 (finetune 100/250): loss = 0.0194
+  Epoch 450 (finetune 200/250): loss = 0.0106
+    recon=0.020073  tangent=0.007837  curvature=0.097196
+
+  paraboloid | baseline | seed=9042
+  Epoch 100: loss=0.033903
+  Epoch 200: loss=0.030608
+  Epoch 300: loss=0.011199
+  Epoch 400: loss=0.005470
+  Epoch 500: loss=0.003171
+    recon=0.108023  tangent=0.283713  curvature=2.336541
+
+  paraboloid | T | seed=9042
+  Epoch 100: loss=0.036952
+  Epoch 200: loss=0.002642
+  Epoch 300: loss=0.002360
+  Epoch 400: loss=0.001616
+  Epoch 500: loss=0.000773
+    recon=0.040273  tangent=0.011606  curvature=0.204266
+
+  paraboloid | K | seed=9042
+
+[K] Starting warmup: 250 epochs
+  Epoch 100 (warmup 100/250): loss = 0.0339
+  Epoch 200 (warmup 200/250): loss = 0.0306
+
+[K] Starting finetune: 250 epochs
+  Epoch 350 (finetune 100/250): loss = 0.0151
+  Epoch 450 (finetune 200/250): loss = 0.0090
+    recon=0.121544  tangent=0.249898  curvature=1.504129
+
+  paraboloid | F | seed=9042
+  Epoch 100: loss=0.075746
+  Epoch 200: loss=0.032003
+  Epoch 300: loss=0.030842
+  Epoch 400: loss=0.031158
+  Epoch 500: loss=0.030205
+    recon=0.218484  tangent=0.628327  curvature=2.802421
+
+  paraboloid | C | seed=9042
+  Epoch 100: loss=0.129490
+  Epoch 200: loss=0.080811
+  Epoch 300: loss=0.067118
+  Epoch 400: loss=0.073370
+  Epoch 500: loss=0.045199
+    recon=0.241264  tangent=0.636166  curvature=2.840163
+
+  paraboloid | T+K | seed=9042
+
+[T+K] Starting warmup: 250 epochs
+  Epoch 100 (warmup 100/250): loss = 0.0370
+  Epoch 200 (warmup 200/250): loss = 0.0026
+
+[T+K] Starting finetune: 250 epochs
+  Epoch 350 (finetune 100/250): loss = 0.0019
+  Epoch 450 (finetune 200/250): loss = 0.0014
+    recon=0.043652  tangent=0.009882  curvature=0.151995
+
+  paraboloid | T+F | seed=9042
+  Epoch 100: loss=0.634333
+  Epoch 200: loss=0.235904
+  Epoch 300: loss=0.051707
+  Epoch 400: loss=0.036538
+  Epoch 500: loss=0.031721
+    recon=0.048579  tangent=0.013277  curvature=0.174248
+
+  paraboloid | F+K | seed=9042
+
+[F+K] Starting warmup: 250 epochs
+  Epoch 100 (warmup 100/250): loss = 0.0757
+  Epoch 200 (warmup 200/250): loss = 0.0320
+
+[F+K] Starting finetune: 250 epochs
+  Epoch 350 (finetune 100/250): loss = 0.0805
+  Epoch 450 (finetune 200/250): loss = 0.0776
+    recon=0.344647  tangent=0.684874  curvature=2.770778
+
+  paraboloid | T+F+K | seed=9042
+
+[T+F+K] Starting warmup: 250 epochs
+  Epoch 100 (warmup 100/250): loss = 0.6343
+  Epoch 200 (warmup 200/250): loss = 0.2359
+
+[T+F+K] Starting finetune: 250 epochs
+  Epoch 350 (finetune 100/250): loss = 0.0253
+  Epoch 450 (finetune 200/250): loss = 0.0385
+    recon=0.026932  tangent=0.011858  curvature=0.112574
+
+Saved to paper_ablation_C.csv
+
+======================================================================
+ABLATION SUMMARY (mean +/- std)
+======================================================================
+    config    n  reconstruction                        tangent                      curvature                 
+----------------------------------------------------------------------------------------------------
+  baseline   10        0.146182 +/-  0.096572        0.248550 +/-  0.138623        6.417310 +/- 10.971879  
+         T   10        0.078005 +/-  0.066428        0.018183 +/-  0.017745        0.392406 +/-  0.395433  
+         K   10        0.200558 +/-  0.111941        0.274242 +/-  0.183286        1.903093 +/-  0.997638  
+         F   10        0.245458 +/-  0.081077        0.635610 +/-  0.024213        2.672294 +/-  0.125219  
+         C   10        0.321168 +/-  0.103544        0.652883 +/-  0.016798        2.806626 +/-  0.086742  
+       T+K   10        0.075517 +/-  0.069367        0.017476 +/-  0.019228        0.300555 +/-  0.336523  
+       T+F   10        0.042497 +/-  0.040472        0.020201 +/-  0.026050        0.338243 +/-  0.272487  
+       F+K   10        0.377715 +/-  0.058728        0.677908 +/-  0.010669        2.806785 +/-  0.070515  
+     T+F+K   10        0.043125 +/-  0.049886        0.016962 +/-  0.027351        0.175335 +/-  0.180786  
+
+Total time: 955.6s
+Done.

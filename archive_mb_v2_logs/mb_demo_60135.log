@@ -1,0 +1,283 @@
+Device: cuda
+D=11, N=50, kT=0.15
+Surface: paraboloid (Fourier-augmented)
+Dynamics: Müller-Brown overdamped Langevin
+Conditions: ['baseline', 'T+F']
+Seeds (5): [42, 1042, 2042, 3042, 4042]
+TRAIN_BOUND=0.8
+
+
+============================================================
+  seed=42
+============================================================
+
+  --- baseline ---
+      Epoch 100/500: loss=0.008187
+      Epoch 200/500: loss=0.005612
+      Epoch 300/500: loss=0.001544
+      Epoch 400/500: loss=0.000496
+      Epoch 500/500: loss=0.000341
+    recon=0.000323
+    σ_min: min=1.096 med=1.217
+    tangent_err=0.046609
+    E_mu=0.0700  E_Sigma=0.0321
+  Stage 2 epoch 100/300: loss=0.268098
+  Stage 2 epoch 200/300: loss=0.216508
+  Stage 2 epoch 300/300: loss=0.164679
+  Stage 3 epoch 100/300: loss=0.000925
+  Stage 3 epoch 200/300: loss=0.000801
+  Stage 3 epoch 300/300: loss=0.000717
+    r=0.5: GT=0.245 learned=0.272 err=10.7% exit=100%
+    r=1.0: GT=0.951 learned=0.905 err=4.8% exit=79%
+    r=2.0: GT=1.216 learned=1.568 err=28.9% exit=4%
+    r=3.0: GT=1.114 learned=nan err=nan% exit=0%
+    W2@1.0=0.5581
+
+  --- T+F ---
+      Epoch 100/500: loss=0.037554
+      Epoch 200/500: loss=0.012276
+      Epoch 300/500: loss=0.012429
+      Epoch 400/500: loss=0.003717
+      Epoch 500/500: loss=0.001720
+    recon=0.000021
+    σ_min: min=1.361 med=1.489
+    tangent_err=0.003020
+    E_mu=0.0063  E_Sigma=0.0014
+  Stage 2 epoch 100/300: loss=0.300975
+  Stage 2 epoch 200/300: loss=0.255355
+  Stage 2 epoch 300/300: loss=0.244511
+  Stage 3 epoch 100/300: loss=0.000164
+  Stage 3 epoch 200/300: loss=0.000083
+  Stage 3 epoch 300/300: loss=0.000048
+    r=0.5: GT=0.245 learned=0.195 err=20.7% exit=100%
+    r=1.0: GT=0.951 learned=0.724 err=23.9% exit=94%
+    r=2.0: GT=1.216 learned=1.501 err=23.4% exit=8%
+    r=3.0: GT=1.114 learned=nan err=nan% exit=0%
+    W2@1.0=0.8068
+
+============================================================
+  seed=1042
+============================================================
+
+  --- baseline ---
+      Epoch 100/500: loss=0.006755
+      Epoch 200/500: loss=0.004123
+      Epoch 300/500: loss=0.001506
+      Epoch 400/500: loss=0.000474
+      Epoch 500/500: loss=0.000265
+    recon=0.000278
+    σ_min: min=0.980 med=1.229
+    tangent_err=0.064195
+    E_mu=0.0653  E_Sigma=0.0477
+  Stage 2 epoch 100/300: loss=0.326206
+  Stage 2 epoch 200/300: loss=0.261252
+  Stage 2 epoch 300/300: loss=0.178957
+  Stage 3 epoch 100/300: loss=0.000803
+  Stage 3 epoch 200/300: loss=0.000642
+  Stage 3 epoch 300/300: loss=0.000641
+    r=0.5: GT=0.259 learned=0.219 err=15.4% exit=100%
+    r=1.0: GT=0.892 learned=0.803 err=10.0% exit=82%
+    r=2.0: GT=1.154 learned=1.425 err=23.5% exit=6%
+    r=3.0: GT=1.334 learned=nan err=nan% exit=0%
+    W2@1.0=0.3982
+
+  --- T+F ---
+      Epoch 100/500: loss=0.047919
+      Epoch 200/500: loss=0.010305
+      Epoch 300/500: loss=0.018092
+      Epoch 400/500: loss=0.002879
+      Epoch 500/500: loss=0.003392
+    recon=0.000108
+    σ_min: min=1.444 med=1.518
+    tangent_err=0.007930
+    E_mu=0.0056  E_Sigma=0.0024
+  Stage 2 epoch 100/300: loss=0.375933
+  Stage 2 epoch 200/300: loss=0.301719
+  Stage 2 epoch 300/300: loss=0.248199
+  Stage 3 epoch 100/300: loss=0.000053
+  Stage 3 epoch 200/300: loss=0.000044
+  Stage 3 epoch 300/300: loss=0.000037
+    r=0.5: GT=0.259 learned=0.222 err=14.2% exit=100%
+    r=1.0: GT=0.892 learned=0.766 err=14.1% exit=88%
+    r=2.0: GT=1.154 learned=1.282 err=11.1% exit=8%
+    r=3.0: GT=1.334 learned=nan err=nan% exit=1%
+    W2@1.0=0.4918
+
+============================================================
+  seed=2042
+============================================================
+
+  --- baseline ---
+      Epoch 100/500: loss=0.012149
+      Epoch 200/500: loss=0.005326
+      Epoch 300/500: loss=0.000724
+      Epoch 400/500: loss=0.000465
+      Epoch 500/500: loss=0.001091
+    recon=0.001501
+    σ_min: min=1.138 med=1.224
+    tangent_err=0.049686
+    E_mu=0.0717  E_Sigma=0.0263
+  Stage 2 epoch 100/300: loss=0.233424
+  Stage 2 epoch 200/300: loss=0.224586
+  Stage 2 epoch 300/300: loss=0.229393
+  Stage 3 epoch 100/300: loss=0.000933
+  Stage 3 epoch 200/300: loss=0.000837
+  Stage 3 epoch 300/300: loss=0.000832
+    r=0.5: GT=0.258 learned=0.212 err=17.6% exit=100%
+    r=1.0: GT=0.932 learned=0.716 err=23.1% exit=90%
+    r=2.0: GT=1.044 learned=1.277 err=22.3% exit=10%
+    r=3.0: GT=nan learned=nan err=nan% exit=0%
+    W2@1.0=0.6398
+
+  --- T+F ---
+      Epoch 100/500: loss=0.032624
+      Epoch 200/500: loss=0.013448
+      Epoch 300/500: loss=0.005602
+      Epoch 400/500: loss=0.004783
+      Epoch 500/500: loss=0.004112
+    recon=0.000171
+    σ_min: min=1.354 med=1.479
+    tangent_err=0.002707
+    E_mu=0.0053  E_Sigma=0.0019
+  Stage 2 epoch 100/300: loss=0.252344
+  Stage 2 epoch 200/300: loss=0.208830
+  Stage 2 epoch 300/300: loss=0.190035
+  Stage 3 epoch 100/300: loss=0.000095
+  Stage 3 epoch 200/300: loss=0.000062
+  Stage 3 epoch 300/300: loss=0.000049
+    r=0.5: GT=0.258 learned=0.205 err=20.4% exit=100%
+    r=1.0: GT=0.932 learned=0.729 err=21.7% exit=92%
+    r=2.0: GT=1.044 learned=1.105 err=5.9% exit=28%
+    r=3.0: GT=nan learned=1.252 err=nan% exit=7%
+    W2@1.0=0.7191
+
+============================================================
+  seed=3042
+============================================================
+
+  --- baseline ---
+      Epoch 100/500: loss=0.011676
+      Epoch 200/500: loss=0.004252
+      Epoch 300/500: loss=0.000619
+      Epoch 400/500: loss=0.000524
+      Epoch 500/500: loss=0.000301
+    recon=0.000313
+    σ_min: min=1.096 med=1.261
+    tangent_err=0.033663
+    E_mu=0.0376  E_Sigma=0.0165
+  Stage 2 epoch 100/300: loss=0.419801
+  Stage 2 epoch 200/300: loss=0.328728
+  Stage 2 epoch 300/300: loss=0.237672
+  Stage 3 epoch 100/300: loss=0.000795
+  Stage 3 epoch 200/300: loss=0.000693
+  Stage 3 epoch 300/300: loss=0.000572
+    r=0.5: GT=0.252 learned=0.223 err=11.5% exit=100%
+    r=1.0: GT=0.939 learned=0.885 err=5.7% exit=82%
+    r=2.0: GT=1.241 learned=1.524 err=22.9% exit=4%
+    r=3.0: GT=1.460 learned=nan err=nan% exit=0%
+    W2@1.0=0.4356
+
+  --- T+F ---
+      Epoch 100/500: loss=0.055468
+      Epoch 200/500: loss=0.009857
+      Epoch 300/500: loss=0.004375
+      Epoch 400/500: loss=0.008451
+      Epoch 500/500: loss=0.002090
+    recon=0.000019
+    σ_min: min=1.348 med=1.480
+    tangent_err=0.001806
+    E_mu=0.0040  E_Sigma=0.0012
+  Stage 2 epoch 100/300: loss=0.588680
+  Stage 2 epoch 200/300: loss=0.397812
+  Stage 2 epoch 300/300: loss=0.329318
+  Stage 3 epoch 100/300: loss=0.000100
+  Stage 3 epoch 200/300: loss=0.000063
+  Stage 3 epoch 300/300: loss=0.000040
+    r=0.5: GT=0.252 learned=0.221 err=12.3% exit=100%
+    r=1.0: GT=0.939 learned=0.828 err=11.7% exit=87%
+    r=2.0: GT=1.241 learned=1.405 err=13.3% exit=6%
+    r=3.0: GT=1.460 learned=nan err=nan% exit=0%
+    W2@1.0=0.5005
+
+============================================================
+  seed=4042
+============================================================
+
+  --- baseline ---
+      Epoch 100/500: loss=0.007033
+      Epoch 200/500: loss=0.004010
+      Epoch 300/500: loss=0.002757
+      Epoch 400/500: loss=0.000793
+      Epoch 500/500: loss=0.000392
+    recon=0.000383
+    σ_min: min=1.051 med=1.196
+    tangent_err=0.050063
+    E_mu=0.0569  E_Sigma=0.0290
+  Stage 2 epoch 100/300: loss=0.266312
+  Stage 2 epoch 200/300: loss=0.119535
+  Stage 2 epoch 300/300: loss=0.083208
+  Stage 3 epoch 100/300: loss=0.000974
+  Stage 3 epoch 200/300: loss=0.000794
+  Stage 3 epoch 300/300: loss=0.000885
+    r=0.5: GT=0.267 learned=0.254 err=5.0% exit=100%
+    r=1.0: GT=0.951 learned=0.969 err=1.9% exit=61%
+    r=2.0: GT=1.274 learned=1.529 err=20.0% exit=2%
+    r=3.0: GT=1.236 learned=nan err=nan% exit=0%
+    W2@1.0=0.2309
+
+  --- T+F ---
+      Epoch 100/500: loss=0.061375
+      Epoch 200/500: loss=0.016247
+      Epoch 300/500: loss=0.006712
+      Epoch 400/500: loss=0.003641
+      Epoch 500/500: loss=0.002336
+    recon=0.000027
+    σ_min: min=1.349 med=1.494
+    tangent_err=0.003408
+    E_mu=0.0072  E_Sigma=0.0022
+  Stage 2 epoch 100/300: loss=0.434950
+  Stage 2 epoch 200/300: loss=0.293931
+  Stage 2 epoch 300/300: loss=0.177281
+  Stage 3 epoch 100/300: loss=0.000130
+  Stage 3 epoch 200/300: loss=0.000066
+  Stage 3 epoch 300/300: loss=0.000051
+    r=0.5: GT=0.267 learned=0.231 err=13.6% exit=100%
+    r=1.0: GT=0.951 learned=0.852 err=10.4% exit=74%
+    r=2.0: GT=1.274 learned=1.423 err=11.7% exit=5%
+    r=3.0: GT=1.236 learned=nan err=nan% exit=1%
+    W2@1.0=0.3093
+
+
+Total time: 3.1 min
+Saved 10 rows to muller_brown_demo.csv
+
+
+======================================================================
+MÜLLER-BROWN DEMO SUMMARY (paraboloid, D=11)
+======================================================================
+
+  baseline:
+    recon: 0.000560 ± 0.000528
+    tangent: 0.048843 ± 0.010878
+    E_mu: 0.0603 ± 0.0139
+    E_Sigma: 0.0303 ± 0.0113
+    W2@1.0: 0.4525 ± 0.1570
+    MFPT_err r=0.5: 12.0% ± 4.3%
+    MFPT_err r=1.0: 9.1% ± 7.5%
+    MFPT_err r=2.0: 23.5% ± 2.9%
+/network/rit/lab/Yelab/aeml/experiments/muller_brown_demo.py:274: RuntimeWarning: Mean of empty slice
+  print(f"    MFPT_err r={r}: {np.nanmean(err):.1%} ± {np.nanstd(err):.1%}")
+/network/rit/lab/Yelab/anaconda3/lib/python3.9/site-packages/numpy/lib/nanfunctions.py:1879: RuntimeWarning: Degrees of freedom <= 0 for slice.
+  var = nanvar(a, axis=axis, dtype=dtype, out=out, ddof=ddof,
+    MFPT_err r=3.0: nan% ± nan%
+
+  T+F:
+    recon: 0.000069 ± 0.000068
+    tangent: 0.003774 ± 0.002397
+    E_mu: 0.0057 ± 0.0012
+    E_Sigma: 0.0018 ± 0.0005
+    W2@1.0: 0.5655 ± 0.1982
+    MFPT_err r=0.5: 16.2% ± 3.6%
+    MFPT_err r=1.0: 16.4% ± 5.4%
+    MFPT_err r=2.0: 13.1% ± 5.7%
+    MFPT_err r=3.0: nan% ± nan%

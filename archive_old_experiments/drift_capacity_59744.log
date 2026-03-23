@@ -1,0 +1,1070 @@
+
+============================================================
+paraboloid D=11 N=20 seed=42 K=0.0 drift=small
+============================================================
+        Phase2 Epoch 50/250: loss=0.050953
+        Phase2 Epoch 100/250: loss=0.046505
+        Phase2 Epoch 150/250: loss=0.031477
+        Phase2 Epoch 200/250: loss=0.026885
+        Phase2 Epoch 250/250: loss=0.019147
+  Stage 2 epoch 60/300: loss=0.196985
+  Stage 2 epoch 120/300: loss=0.194251
+  Stage 2 epoch 180/300: loss=0.195237
+  Stage 2 epoch 240/300: loss=0.192233
+  Stage 2 epoch 300/300: loss=0.187428
+  MTE@0.1: 0.4951
+  MTE@0.5: 0.8781
+  MTE@1.0: 1.1144
+  W2@1.0:  0.7647
+  sW2@0.1: 0.3001 (292/500 in region)
+  sW2@0.2: 0.3339 (214/500 in region)
+  sW2@0.5: 0.6051 (97/500 in region)
+  sW2@1.0: 0.8201 (21/500 in region)
+  MMD@1.0: 0.3129
+  Survival@1.0: 28.0%
+  Stopped@1.0:  4.2%
+  K=0.0 drift=small: W2=0.7647  fit_err=53.55%  final_loss=0.187428
+
+============================================================
+paraboloid D=11 N=20 seed=42 K=0.0 drift=large
+============================================================
+        Phase2 Epoch 50/250: loss=0.056991
+        Phase2 Epoch 100/250: loss=0.034885
+        Phase2 Epoch 150/250: loss=0.022426
+        Phase2 Epoch 200/250: loss=0.014570
+        Phase2 Epoch 250/250: loss=0.018613
+  Stage 2 epoch 60/300: loss=0.223702
+  Stage 2 epoch 120/300: loss=0.220015
+  Stage 2 epoch 180/300: loss=0.216108
+  Stage 2 epoch 240/300: loss=0.208005
+  Stage 2 epoch 300/300: loss=0.206722
+  MTE@0.1: 0.4526
+  MTE@0.5: 0.8223
+  MTE@1.0: 1.0949
+  W2@1.0:  0.8227
+  sW2@0.1: 0.2703 (292/500 in region)
+  sW2@0.2: 0.3195 (214/500 in region)
+  sW2@0.5: 0.5968 (97/500 in region)
+  sW2@1.0: 0.8312 (21/500 in region)
+  MMD@1.0: 0.3164
+  Survival@1.0: 28.0%
+  Stopped@1.0:  4.2%
+  K=0.0 drift=large: W2=0.8227  fit_err=52.46%  final_loss=0.206722
+
+============================================================
+paraboloid D=11 N=20 seed=42 K=0.1 drift=small
+============================================================
+        Phase2 Epoch 50/250: loss=0.069460
+        Phase2 Epoch 100/250: loss=0.042398
+        Phase2 Epoch 150/250: loss=0.034963
+        Phase2 Epoch 200/250: loss=0.025099
+        Phase2 Epoch 250/250: loss=0.018672
+  Stage 2 epoch 60/300: loss=0.207604
+  Stage 2 epoch 120/300: loss=0.206959
+  Stage 2 epoch 180/300: loss=0.206522
+  Stage 2 epoch 240/300: loss=0.204634
+  Stage 2 epoch 300/300: loss=0.200518
+  MTE@0.1: 0.4252
+  MTE@0.5: 0.7778
+  MTE@1.0: 1.0192
+  W2@1.0:  0.7354
+  sW2@0.1: 0.2535 (292/500 in region)
+  sW2@0.2: 0.2819 (214/500 in region)
+  sW2@0.5: 0.5424 (97/500 in region)
+  sW2@1.0: 0.8092 (21/500 in region)
+  MMD@1.0: 0.3128
+  Survival@1.0: 28.0%
+  Stopped@1.0:  4.2%
+  K=0.1 drift=small: W2=0.7354  fit_err=59.10%  final_loss=0.200518
+
+============================================================
+paraboloid D=11 N=20 seed=42 K=0.1 drift=large
+============================================================
+        Phase2 Epoch 50/250: loss=0.069460
+        Phase2 Epoch 100/250: loss=0.042398
+        Phase2 Epoch 150/250: loss=0.034963
+        Phase2 Epoch 200/250: loss=0.025099
+        Phase2 Epoch 250/250: loss=0.018672
+  Stage 2 epoch 60/300: loss=0.206230
+  Stage 2 epoch 120/300: loss=0.201721
+  Stage 2 epoch 180/300: loss=0.197335
+  Stage 2 epoch 240/300: loss=0.191609
+  Stage 2 epoch 300/300: loss=0.187948
+  MTE@0.1: 0.4246
+  MTE@0.5: 0.7982
+  MTE@1.0: 1.0864
+  W2@1.0:  0.8367
+  sW2@0.1: 0.2538 (292/500 in region)
+  sW2@0.2: 0.2949 (214/500 in region)
+  sW2@0.5: 0.5753 (97/500 in region)
+  sW2@1.0: 0.8584 (21/500 in region)
+  MMD@1.0: 0.3219
+  Survival@1.0: 28.0%
+  Stopped@1.0:  4.2%
+  K=0.1 drift=large: W2=0.8367  fit_err=52.65%  final_loss=0.187948
+
+============================================================
+paraboloid D=11 N=20 seed=1042 K=0.0 drift=small
+============================================================
+        Phase2 Epoch 50/250: loss=0.028491
+        Phase2 Epoch 100/250: loss=0.017368
+        Phase2 Epoch 150/250: loss=0.019587
+        Phase2 Epoch 200/250: loss=0.011197
+        Phase2 Epoch 250/250: loss=0.009158
+  Stage 2 epoch 60/300: loss=0.138863
+  Stage 2 epoch 120/300: loss=0.137002
+  Stage 2 epoch 180/300: loss=0.134114
+  Stage 2 epoch 240/300: loss=0.130895
+  Stage 2 epoch 300/300: loss=0.132251
+  MTE@0.1: 0.9360
+  MTE@0.5: 1.5967
+  MTE@1.0: 1.6908
+  W2@1.0:  0.8062
+  sW2@0.1: 0.5055 (285/500 in region)
+  sW2@0.2: 0.7328 (204/500 in region)
+  sW2@0.5: 0.9327 (98/500 in region)
+  sW2@1.0: 1.0549 (31/500 in region)
+  MMD@1.0: 0.2224
+  Survival@1.0: 29.8%
+  Stopped@1.0:  6.2%
+  K=0.0 drift=small: W2=0.8062  fit_err=57.55%  final_loss=0.132251
+
+============================================================
+paraboloid D=11 N=20 seed=1042 K=0.0 drift=large
+============================================================
+        Phase2 Epoch 50/250: loss=0.028491
+        Phase2 Epoch 100/250: loss=0.017368
+        Phase2 Epoch 150/250: loss=0.019587
+        Phase2 Epoch 200/250: loss=0.011197
+        Phase2 Epoch 250/250: loss=0.009158
+  Stage 2 epoch 60/300: loss=0.133846
+  Stage 2 epoch 120/300: loss=0.130229
+  Stage 2 epoch 180/300: loss=0.131011
+  Stage 2 epoch 240/300: loss=0.112713
+  Stage 2 epoch 300/300: loss=0.123345
+  MTE@0.1: 0.9377
+  MTE@0.5: 1.5917
+  MTE@1.0: 1.6808
+  W2@1.0:  0.7769
+  sW2@0.1: 0.5074 (285/500 in region)
+  sW2@0.2: 0.7316 (204/500 in region)
+  sW2@0.5: 0.9309 (98/500 in region)
+  sW2@1.0: 1.0516 (31/500 in region)
+  MMD@1.0: 0.2170
+  Survival@1.0: 29.8%
+  Stopped@1.0:  6.2%
+  K=0.0 drift=large: W2=0.7769  fit_err=50.57%  final_loss=0.123345
+
+============================================================
+paraboloid D=11 N=20 seed=1042 K=0.1 drift=small
+============================================================
+        Phase2 Epoch 50/250: loss=0.037163
+        Phase2 Epoch 100/250: loss=0.019578
+        Phase2 Epoch 150/250: loss=0.017596
+        Phase2 Epoch 200/250: loss=0.011530
+        Phase2 Epoch 250/250: loss=0.015276
+  Stage 2 epoch 60/300: loss=0.130313
+  Stage 2 epoch 120/300: loss=0.128525
+  Stage 2 epoch 180/300: loss=0.124692
+  Stage 2 epoch 240/300: loss=0.118982
+  Stage 2 epoch 300/300: loss=0.121963
+  MTE@0.1: 0.9374
+  MTE@0.5: 1.6410
+  MTE@1.0: 1.7757
+  W2@1.0:  0.9615
+  sW2@0.1: 0.4961 (285/500 in region)
+  sW2@0.2: 0.7427 (204/500 in region)
+  sW2@0.5: 1.0210 (98/500 in region)
+  sW2@1.0: 1.1869 (31/500 in region)
+  MMD@1.0: 0.2547
+  Survival@1.0: 29.8%
+  Stopped@1.0:  6.2%
+  K=0.1 drift=small: W2=0.9615  fit_err=56.85%  final_loss=0.121963
+
+============================================================
+paraboloid D=11 N=20 seed=1042 K=0.1 drift=large
+============================================================
+        Phase2 Epoch 50/250: loss=0.037163
+        Phase2 Epoch 100/250: loss=0.019578
+        Phase2 Epoch 150/250: loss=0.017596
+        Phase2 Epoch 200/250: loss=0.011530
+        Phase2 Epoch 250/250: loss=0.015276
+  Stage 2 epoch 60/300: loss=0.125841
+  Stage 2 epoch 120/300: loss=0.122129
+  Stage 2 epoch 180/300: loss=0.118691
+  Stage 2 epoch 240/300: loss=0.113354
+  Stage 2 epoch 300/300: loss=0.115175
+  MTE@0.1: 0.9376
+  MTE@0.5: 1.6265
+  MTE@1.0: 1.7560
+  W2@1.0:  0.9222
+  sW2@0.1: 0.4972 (285/500 in region)
+  sW2@0.2: 0.7394 (204/500 in region)
+  sW2@0.5: 1.0071 (98/500 in region)
+  sW2@1.0: 1.1862 (31/500 in region)
+  MMD@1.0: 0.2454
+  Survival@1.0: 29.8%
+  Stopped@1.0:  6.2%
+  K=0.1 drift=large: W2=0.9222  fit_err=55.94%  final_loss=0.115175
+
+============================================================
+paraboloid D=11 N=20 seed=2042 K=0.0 drift=small
+============================================================
+        Phase2 Epoch 50/250: loss=0.019885
+        Phase2 Epoch 100/250: loss=0.011542
+        Phase2 Epoch 150/250: loss=0.012333
+        Phase2 Epoch 200/250: loss=0.008820
+        Phase2 Epoch 250/250: loss=0.004340
+  Stage 2 epoch 60/300: loss=0.165410
+  Stage 2 epoch 120/300: loss=0.152927
+  Stage 2 epoch 180/300: loss=0.152750
+  Stage 2 epoch 240/300: loss=0.142088
+  Stage 2 epoch 300/300: loss=0.136360
+  MTE@0.1: 1.3549
+  MTE@0.5: 2.2744
+  MTE@1.0: 2.1197
+  W2@1.0:  1.3036
+  sW2@0.1: 0.8643 (293/500 in region)
+  sW2@0.2: 1.2227 (212/500 in region)
+  sW2@0.5: 1.6967 (88/500 in region)
+  sW2@1.0: 1.5334 (24/500 in region)
+  MMD@1.0: 0.3237
+  Survival@1.0: 26.6%
+  Stopped@1.0:  4.8%
+  K=0.0 drift=small: W2=1.3036  fit_err=70.96%  final_loss=0.136360
+
+============================================================
+paraboloid D=11 N=20 seed=2042 K=0.0 drift=large
+============================================================
+        Phase2 Epoch 50/250: loss=0.019885
+        Phase2 Epoch 100/250: loss=0.011542
+        Phase2 Epoch 150/250: loss=0.012333
+        Phase2 Epoch 200/250: loss=0.008820
+        Phase2 Epoch 250/250: loss=0.004340
+  Stage 2 epoch 60/300: loss=0.156337
+  Stage 2 epoch 120/300: loss=0.143648
+  Stage 2 epoch 180/300: loss=0.136246
+  Stage 2 epoch 240/300: loss=0.128501
+  Stage 2 epoch 300/300: loss=0.108695
+  MTE@0.1: 1.3535
+  MTE@0.5: 2.2622
+  MTE@1.0: 2.0861
+  W2@1.0:  1.2331
+  sW2@0.1: 0.8621 (293/500 in region)
+  sW2@0.2: 1.2181 (212/500 in region)
+  sW2@0.5: 1.6702 (88/500 in region)
+  sW2@1.0: 1.4900 (24/500 in region)
+  MMD@1.0: 0.3205
+  Survival@1.0: 26.6%
+  Stopped@1.0:  4.8%
+  K=0.0 drift=large: W2=1.2331  fit_err=66.47%  final_loss=0.108695
+
+============================================================
+paraboloid D=11 N=20 seed=2042 K=0.1 drift=small
+============================================================
+        Phase2 Epoch 50/250: loss=0.023675
+        Phase2 Epoch 100/250: loss=0.013950
+        Phase2 Epoch 150/250: loss=0.015308
+        Phase2 Epoch 200/250: loss=0.012343
+        Phase2 Epoch 250/250: loss=0.004664
+  Stage 2 epoch 60/300: loss=0.188506
+  Stage 2 epoch 120/300: loss=0.176319
+  Stage 2 epoch 180/300: loss=0.177924
+  Stage 2 epoch 240/300: loss=0.168932
+  Stage 2 epoch 300/300: loss=0.165191
+  MTE@0.1: 1.3564
+  MTE@0.5: 2.2721
+  MTE@1.0: 2.1371
+  W2@1.0:  1.3368
+  sW2@0.1: 0.8652 (293/500 in region)
+  sW2@0.2: 1.2255 (212/500 in region)
+  sW2@0.5: 1.7279 (88/500 in region)
+  sW2@1.0: 1.5979 (24/500 in region)
+  MMD@1.0: 0.3356
+  Survival@1.0: 26.6%
+  Stopped@1.0:  4.8%
+  K=0.1 drift=small: W2=1.3368  fit_err=75.36%  final_loss=0.165191
+
+============================================================
+paraboloid D=11 N=20 seed=2042 K=0.1 drift=large
+============================================================
+        Phase2 Epoch 50/250: loss=0.023675
+        Phase2 Epoch 100/250: loss=0.013950
+        Phase2 Epoch 150/250: loss=0.015308
+        Phase2 Epoch 200/250: loss=0.012343
+        Phase2 Epoch 250/250: loss=0.004664
+  Stage 2 epoch 60/300: loss=0.180372
+  Stage 2 epoch 120/300: loss=0.167910
+  Stage 2 epoch 180/300: loss=0.159795
+  Stage 2 epoch 240/300: loss=0.152792
+  Stage 2 epoch 300/300: loss=0.143287
+  MTE@0.1: 1.3567
+  MTE@0.5: 2.2712
+  MTE@1.0: 2.1226
+  W2@1.0:  1.2822
+  sW2@0.1: 0.8685 (293/500 in region)
+  sW2@0.2: 1.2305 (212/500 in region)
+  sW2@0.5: 1.7261 (88/500 in region)
+  sW2@1.0: 1.5813 (24/500 in region)
+  MMD@1.0: 0.3377
+  Survival@1.0: 26.6%
+  Stopped@1.0:  4.8%
+  K=0.1 drift=large: W2=1.2822  fit_err=66.58%  final_loss=0.143287
+
+============================================================
+paraboloid D=11 N=20 seed=3042 K=0.0 drift=small
+============================================================
+        Phase2 Epoch 50/250: loss=0.015868
+        Phase2 Epoch 100/250: loss=0.013903
+        Phase2 Epoch 150/250: loss=0.008269
+        Phase2 Epoch 200/250: loss=0.013575
+        Phase2 Epoch 250/250: loss=0.009705
+  Stage 2 epoch 60/300: loss=0.162325
+  Stage 2 epoch 120/300: loss=0.149740
+  Stage 2 epoch 180/300: loss=0.144321
+  Stage 2 epoch 240/300: loss=0.137913
+  Stage 2 epoch 300/300: loss=0.129896
+  MTE@0.1: 0.8319
+  MTE@0.5: 1.2913
+  MTE@1.0: 1.5495
+  W2@1.0:  1.1824
+  sW2@0.1: 0.5092 (275/500 in region)
+  sW2@0.2: 0.5922 (204/500 in region)
+  sW2@0.5: 1.0690 (78/500 in region)
+  sW2@1.0: 1.6349 (25/500 in region)
+  MMD@1.0: 0.2983
+  Survival@1.0: 27.2%
+  Stopped@1.0:  5.0%
+  K=0.0 drift=small: W2=1.1824  fit_err=59.67%  final_loss=0.129896
+
+============================================================
+paraboloid D=11 N=20 seed=3042 K=0.0 drift=large
+============================================================
+        Phase2 Epoch 50/250: loss=0.015868
+        Phase2 Epoch 100/250: loss=0.013903
+        Phase2 Epoch 150/250: loss=0.008269
+        Phase2 Epoch 200/250: loss=0.013575
+        Phase2 Epoch 250/250: loss=0.009705
+  Stage 2 epoch 60/300: loss=0.140565
+  Stage 2 epoch 120/300: loss=0.133673
+  Stage 2 epoch 180/300: loss=0.132950
+  Stage 2 epoch 240/300: loss=0.124884
+  Stage 2 epoch 300/300: loss=0.110401
+  MTE@0.1: 0.8314
+  MTE@0.5: 1.2924
+  MTE@1.0: 1.5597
+  W2@1.0:  1.1957
+  sW2@0.1: 0.5052 (275/500 in region)
+  sW2@0.2: 0.5863 (204/500 in region)
+  sW2@0.5: 1.0613 (78/500 in region)
+  sW2@1.0: 1.6602 (25/500 in region)
+  MMD@1.0: 0.3003
+  Survival@1.0: 27.2%
+  Stopped@1.0:  5.0%
+  K=0.0 drift=large: W2=1.1957  fit_err=55.15%  final_loss=0.110401
+
+============================================================
+paraboloid D=11 N=20 seed=3042 K=0.1 drift=small
+============================================================
+        Phase2 Epoch 50/250: loss=0.023432
+        Phase2 Epoch 100/250: loss=0.075114
+        Phase2 Epoch 150/250: loss=0.019538
+        Phase2 Epoch 200/250: loss=0.016499
+        Phase2 Epoch 250/250: loss=0.009664
+  Stage 2 epoch 60/300: loss=0.199220
+  Stage 2 epoch 120/300: loss=0.176918
+  Stage 2 epoch 180/300: loss=0.165370
+  Stage 2 epoch 240/300: loss=0.156714
+  Stage 2 epoch 300/300: loss=0.144261
+  MTE@0.1: 0.8289
+  MTE@0.5: 1.3127
+  MTE@1.0: 1.6635
+  W2@1.0:  1.4132
+  sW2@0.1: 0.5264 (275/500 in region)
+  sW2@0.2: 0.6170 (204/500 in region)
+  sW2@0.5: 1.1946 (78/500 in region)
+  sW2@1.0: 1.9265 (25/500 in region)
+  MMD@1.0: 0.3153
+  Survival@1.0: 27.2%
+  Stopped@1.0:  5.0%
+  K=0.1 drift=small: W2=1.4132  fit_err=69.78%  final_loss=0.144261
+
+============================================================
+paraboloid D=11 N=20 seed=3042 K=0.1 drift=large
+============================================================
+        Phase2 Epoch 50/250: loss=0.023432
+        Phase2 Epoch 100/250: loss=0.075114
+        Phase2 Epoch 150/250: loss=0.019538
+        Phase2 Epoch 200/250: loss=0.016499
+        Phase2 Epoch 250/250: loss=0.009664
+  Stage 2 epoch 60/300: loss=0.159584
+  Stage 2 epoch 120/300: loss=0.153228
+  Stage 2 epoch 180/300: loss=0.155711
+  Stage 2 epoch 240/300: loss=0.137847
+  Stage 2 epoch 300/300: loss=0.129359
+  MTE@0.1: 0.8288
+  MTE@0.5: 1.3114
+  MTE@1.0: 1.6555
+  W2@1.0:  1.4066
+  sW2@0.1: 0.5226 (275/500 in region)
+  sW2@0.2: 0.6109 (204/500 in region)
+  sW2@0.5: 1.1860 (78/500 in region)
+  sW2@1.0: 1.9229 (25/500 in region)
+  MMD@1.0: 0.3095
+  Survival@1.0: 27.2%
+  Stopped@1.0:  5.0%
+  K=0.1 drift=large: W2=1.4066  fit_err=61.83%  final_loss=0.129359
+
+============================================================
+paraboloid D=11 N=20 seed=4042 K=0.0 drift=small
+============================================================
+        Phase2 Epoch 50/250: loss=0.053690
+        Phase2 Epoch 100/250: loss=0.030642
+        Phase2 Epoch 150/250: loss=0.023322
+        Phase2 Epoch 200/250: loss=0.018960
+        Phase2 Epoch 250/250: loss=0.017297
+  Stage 2 epoch 60/300: loss=0.411668
+  Stage 2 epoch 120/300: loss=0.369502
+  Stage 2 epoch 180/300: loss=0.342486
+  Stage 2 epoch 240/300: loss=0.330685
+  Stage 2 epoch 300/300: loss=0.291842
+  MTE@0.1: 0.7978
+  MTE@0.5: 1.4239
+  MTE@1.0: 1.8665
+  W2@1.0:  1.6744
+  sW2@0.1: 0.4353 (287/500 in region)
+  sW2@0.2: 0.6169 (207/500 in region)
+  sW2@0.5: 1.1241 (102/500 in region)
+  sW2@1.0: 2.3301 (30/500 in region)
+  MMD@1.0: 0.3505
+  Survival@1.0: 28.2%
+  Stopped@1.0:  6.0%
+  K=0.0 drift=small: W2=1.6744  fit_err=80.42%  final_loss=0.291842
+
+============================================================
+paraboloid D=11 N=20 seed=4042 K=0.0 drift=large
+============================================================
+        Phase2 Epoch 50/250: loss=0.053690
+        Phase2 Epoch 100/250: loss=0.030642
+        Phase2 Epoch 150/250: loss=0.023322
+        Phase2 Epoch 200/250: loss=0.018960
+        Phase2 Epoch 250/250: loss=0.017297
+  Stage 2 epoch 60/300: loss=0.361047
+  Stage 2 epoch 120/300: loss=0.311117
+  Stage 2 epoch 180/300: loss=0.207277
+  Stage 2 epoch 240/300: loss=0.341512
+  Stage 2 epoch 300/300: loss=0.322584
+  MTE@0.1: 0.7967
+  MTE@0.5: 1.4177
+  MTE@1.0: 1.8471
+  W2@1.0:  1.6458
+  sW2@0.1: 0.4312 (287/500 in region)
+  sW2@0.2: 0.6088 (207/500 in region)
+  sW2@0.5: 1.1138 (102/500 in region)
+  sW2@1.0: 2.2972 (30/500 in region)
+  MMD@1.0: 0.3375
+  Survival@1.0: 28.2%
+  Stopped@1.0:  6.0%
+  K=0.0 drift=large: W2=1.6458  fit_err=81.86%  final_loss=0.322584
+
+============================================================
+paraboloid D=11 N=20 seed=4042 K=0.1 drift=small
+============================================================
+        Phase2 Epoch 50/250: loss=0.061785
+        Phase2 Epoch 100/250: loss=0.044278
+        Phase2 Epoch 150/250: loss=0.051196
+        Phase2 Epoch 200/250: loss=0.038588
+        Phase2 Epoch 250/250: loss=0.018513
+  Stage 2 epoch 60/300: loss=0.474074
+  Stage 2 epoch 120/300: loss=0.416480
+  Stage 2 epoch 180/300: loss=0.393193
+  Stage 2 epoch 240/300: loss=0.384078
+  Stage 2 epoch 300/300: loss=0.346607
+  MTE@0.1: 0.8376
+  MTE@0.5: 1.4587
+  MTE@1.0: 1.8806
+  W2@1.0:  1.7114
+  sW2@0.1: 0.4051 (287/500 in region)
+  sW2@0.2: 0.5925 (207/500 in region)
+  sW2@0.5: 1.1057 (102/500 in region)
+  sW2@1.0: 2.3452 (30/500 in region)
+  MMD@1.0: 0.3609
+  Survival@1.0: 28.2%
+  Stopped@1.0:  6.0%
+  K=0.1 drift=small: W2=1.7114  fit_err=83.63%  final_loss=0.346607
+
+============================================================
+paraboloid D=11 N=20 seed=4042 K=0.1 drift=large
+============================================================
+        Phase2 Epoch 50/250: loss=0.061785
+        Phase2 Epoch 100/250: loss=0.044278
+        Phase2 Epoch 150/250: loss=0.051196
+        Phase2 Epoch 200/250: loss=0.038588
+        Phase2 Epoch 250/250: loss=0.018513
+  Stage 2 epoch 60/300: loss=0.417930
+  Stage 2 epoch 120/300: loss=0.361717
+  Stage 2 epoch 180/300: loss=0.250200
+  Stage 2 epoch 240/300: loss=0.536174
+  Stage 2 epoch 300/300: loss=0.321443
+  MTE@0.1: 0.8359
+  MTE@0.5: 1.4639
+  MTE@1.0: 1.9019
+  W2@1.0:  1.7427
+  sW2@0.1: 0.4050 (287/500 in region)
+  sW2@0.2: 0.5956 (207/500 in region)
+  sW2@0.5: 1.1209 (102/500 in region)
+  sW2@1.0: 2.3760 (30/500 in region)
+  MMD@1.0: 0.3625
+  Survival@1.0: 28.2%
+  Stopped@1.0:  6.0%
+  K=0.1 drift=large: W2=1.7427  fit_err=81.90%  final_loss=0.321443
+
+============================================================
+hyperbolic_paraboloid D=11 N=20 seed=42 K=0.0 drift=small
+============================================================
+        Phase2 Epoch 50/250: loss=0.005523
+        Phase2 Epoch 100/250: loss=0.004183
+        Phase2 Epoch 150/250: loss=0.002675
+        Phase2 Epoch 200/250: loss=0.004389
+        Phase2 Epoch 250/250: loss=0.004350
+  Stage 2 epoch 60/300: loss=0.197911
+  Stage 2 epoch 120/300: loss=0.174266
+  Stage 2 epoch 180/300: loss=0.161878
+  Stage 2 epoch 240/300: loss=0.137695
+  Stage 2 epoch 300/300: loss=0.132560
+  MTE@0.1: 0.9157
+  MTE@0.5: 1.6538
+  MTE@1.0: 1.7173
+  W2@1.0:  0.8998
+  sW2@0.1: 0.4375 (292/500 in region)
+  sW2@0.2: 0.5502 (214/500 in region)
+  sW2@0.5: 0.7279 (97/500 in region)
+  sW2@1.0: 0.5745 (21/500 in region)
+  MMD@1.0: 0.2799
+  Survival@1.0: 28.0%
+  Stopped@1.0:  4.2%
+  K=0.0 drift=small: W2=0.8998  fit_err=52.13%  final_loss=0.132560
+
+============================================================
+hyperbolic_paraboloid D=11 N=20 seed=42 K=0.0 drift=large
+============================================================
+        Phase2 Epoch 50/250: loss=0.005523
+        Phase2 Epoch 100/250: loss=0.004183
+        Phase2 Epoch 150/250: loss=0.002675
+        Phase2 Epoch 200/250: loss=0.004389
+        Phase2 Epoch 250/250: loss=0.004350
+  Stage 2 epoch 60/300: loss=0.159554
+  Stage 2 epoch 120/300: loss=0.140622
+  Stage 2 epoch 180/300: loss=0.130305
+  Stage 2 epoch 240/300: loss=0.113967
+  Stage 2 epoch 300/300: loss=0.119801
+  MTE@0.1: 0.9176
+  MTE@0.5: 1.6591
+  MTE@1.0: 1.7125
+  W2@1.0:  0.8950
+  sW2@0.1: 0.4406 (292/500 in region)
+  sW2@0.2: 0.5551 (214/500 in region)
+  sW2@0.5: 0.7436 (97/500 in region)
+  sW2@1.0: 0.6792 (21/500 in region)
+  MMD@1.0: 0.2854
+  Survival@1.0: 28.0%
+  Stopped@1.0:  4.2%
+  K=0.0 drift=large: W2=0.8950  fit_err=46.76%  final_loss=0.119801
+
+============================================================
+hyperbolic_paraboloid D=11 N=20 seed=42 K=0.1 drift=small
+============================================================
+        Phase2 Epoch 50/250: loss=0.014587
+        Phase2 Epoch 100/250: loss=0.009654
+        Phase2 Epoch 150/250: loss=0.007027
+        Phase2 Epoch 200/250: loss=0.004519
+        Phase2 Epoch 250/250: loss=0.003938
+  Stage 2 epoch 60/300: loss=0.205521
+  Stage 2 epoch 120/300: loss=0.179876
+  Stage 2 epoch 180/300: loss=0.167625
+  Stage 2 epoch 240/300: loss=0.141277
+  Stage 2 epoch 300/300: loss=0.136319
+  MTE@0.1: 0.9150
+  MTE@0.5: 1.6719
+  MTE@1.0: 1.7401
+  W2@1.0:  0.9425
+  sW2@0.1: 0.4587 (292/500 in region)
+  sW2@0.2: 0.5789 (214/500 in region)
+  sW2@0.5: 0.7535 (97/500 in region)
+  sW2@1.0: 0.5755 (21/500 in region)
+  MMD@1.0: 0.2828
+  Survival@1.0: 28.0%
+  Stopped@1.0:  4.2%
+  K=0.1 drift=small: W2=0.9425  fit_err=42.61%  final_loss=0.136319
+
+============================================================
+hyperbolic_paraboloid D=11 N=20 seed=42 K=0.1 drift=large
+============================================================
+        Phase2 Epoch 50/250: loss=0.014587
+        Phase2 Epoch 100/250: loss=0.009654
+        Phase2 Epoch 150/250: loss=0.007027
+        Phase2 Epoch 200/250: loss=0.004519
+        Phase2 Epoch 250/250: loss=0.003938
+  Stage 2 epoch 60/300: loss=0.160125
+  Stage 2 epoch 120/300: loss=0.145118
+  Stage 2 epoch 180/300: loss=0.133041
+  Stage 2 epoch 240/300: loss=0.116005
+  Stage 2 epoch 300/300: loss=0.120701
+  MTE@0.1: 0.9158
+  MTE@0.5: 1.6811
+  MTE@1.0: 1.7454
+  W2@1.0:  0.9420
+  sW2@0.1: 0.4600 (292/500 in region)
+  sW2@0.2: 0.5808 (214/500 in region)
+  sW2@0.5: 0.7729 (97/500 in region)
+  sW2@1.0: 0.6883 (21/500 in region)
+  MMD@1.0: 0.2900
+  Survival@1.0: 28.0%
+  Stopped@1.0:  4.2%
+  K=0.1 drift=large: W2=0.9420  fit_err=37.53%  final_loss=0.120701
+
+============================================================
+hyperbolic_paraboloid D=11 N=20 seed=1042 K=0.0 drift=small
+============================================================
+        Phase2 Epoch 50/250: loss=0.003977
+        Phase2 Epoch 100/250: loss=0.002283
+        Phase2 Epoch 150/250: loss=0.001649
+        Phase2 Epoch 200/250: loss=0.002307
+        Phase2 Epoch 250/250: loss=0.001208
+  Stage 2 epoch 60/300: loss=0.150038
+  Stage 2 epoch 120/300: loss=0.142792
+  Stage 2 epoch 180/300: loss=0.135979
+  Stage 2 epoch 240/300: loss=0.131917
+  Stage 2 epoch 300/300: loss=0.131373
+  MTE@0.1: 0.9417
+  MTE@0.5: 1.5917
+  MTE@1.0: 1.7125
+  W2@1.0:  0.8839
+  sW2@0.1: 0.4944 (285/500 in region)
+  sW2@0.2: 0.6888 (204/500 in region)
+  sW2@0.5: 0.7936 (98/500 in region)
+  sW2@1.0: 1.0226 (31/500 in region)
+  MMD@1.0: 0.2254
+  Survival@1.0: 29.8%
+  Stopped@1.0:  6.2%
+  K=0.0 drift=small: W2=0.8839  fit_err=51.97%  final_loss=0.131373
+
+============================================================
+hyperbolic_paraboloid D=11 N=20 seed=1042 K=0.0 drift=large
+============================================================
+        Phase2 Epoch 50/250: loss=0.003977
+        Phase2 Epoch 100/250: loss=0.002283
+        Phase2 Epoch 150/250: loss=0.001649
+        Phase2 Epoch 200/250: loss=0.002307
+        Phase2 Epoch 250/250: loss=0.001208
+  Stage 2 epoch 60/300: loss=0.136511
+  Stage 2 epoch 120/300: loss=0.127484
+  Stage 2 epoch 180/300: loss=0.125596
+  Stage 2 epoch 240/300: loss=0.121747
+  Stage 2 epoch 300/300: loss=0.127136
+  MTE@0.1: 0.9430
+  MTE@0.5: 1.5952
+  MTE@1.0: 1.7440
+  W2@1.0:  0.9296
+  sW2@0.1: 0.4951 (285/500 in region)
+  sW2@0.2: 0.6874 (204/500 in region)
+  sW2@0.5: 0.7930 (98/500 in region)
+  sW2@1.0: 1.0634 (31/500 in region)
+  MMD@1.0: 0.2284
+  Survival@1.0: 29.8%
+  Stopped@1.0:  6.2%
+  K=0.0 drift=large: W2=0.9296  fit_err=41.00%  final_loss=0.127136
+
+============================================================
+hyperbolic_paraboloid D=11 N=20 seed=1042 K=0.1 drift=small
+============================================================
+        Phase2 Epoch 50/250: loss=0.006181
+        Phase2 Epoch 100/250: loss=0.003666
+        Phase2 Epoch 150/250: loss=0.002763
+        Phase2 Epoch 200/250: loss=0.003662
+        Phase2 Epoch 250/250: loss=0.004353
+  Stage 2 epoch 60/300: loss=0.149594
+  Stage 2 epoch 120/300: loss=0.142976
+  Stage 2 epoch 180/300: loss=0.136579
+  Stage 2 epoch 240/300: loss=0.132079
+  Stage 2 epoch 300/300: loss=0.130121
+  MTE@0.1: 0.9418
+  MTE@0.5: 1.6019
+  MTE@1.0: 1.7355
+  W2@1.0:  0.9418
+  sW2@0.1: 0.4783 (285/500 in region)
+  sW2@0.2: 0.6782 (204/500 in region)
+  sW2@0.5: 0.8008 (98/500 in region)
+  sW2@1.0: 1.0684 (31/500 in region)
+  MMD@1.0: 0.2286
+  Survival@1.0: 29.8%
+  Stopped@1.0:  6.2%
+  K=0.1 drift=small: W2=0.9418  fit_err=49.66%  final_loss=0.130121
+
+============================================================
+hyperbolic_paraboloid D=11 N=20 seed=1042 K=0.1 drift=large
+============================================================
+        Phase2 Epoch 50/250: loss=0.006181
+        Phase2 Epoch 100/250: loss=0.003666
+        Phase2 Epoch 150/250: loss=0.002763
+        Phase2 Epoch 200/250: loss=0.003662
+        Phase2 Epoch 250/250: loss=0.004353
+  Stage 2 epoch 60/300: loss=0.137767
+  Stage 2 epoch 120/300: loss=0.127730
+  Stage 2 epoch 180/300: loss=0.122477
+  Stage 2 epoch 240/300: loss=0.121719
+  Stage 2 epoch 300/300: loss=0.124330
+  MTE@0.1: 0.9456
+  MTE@0.5: 1.6159
+  MTE@1.0: 1.7762
+  W2@1.0:  0.9844
+  sW2@0.1: 0.4855 (285/500 in region)
+  sW2@0.2: 0.6887 (204/500 in region)
+  sW2@0.5: 0.8264 (98/500 in region)
+  sW2@1.0: 1.1191 (31/500 in region)
+  MMD@1.0: 0.2361
+  Survival@1.0: 29.8%
+  Stopped@1.0:  6.2%
+  K=0.1 drift=large: W2=0.9844  fit_err=41.83%  final_loss=0.124330
+
+============================================================
+hyperbolic_paraboloid D=11 N=20 seed=2042 K=0.0 drift=small
+============================================================
+        Phase2 Epoch 50/250: loss=0.006601
+        Phase2 Epoch 100/250: loss=0.004888
+        Phase2 Epoch 150/250: loss=0.003376
+        Phase2 Epoch 200/250: loss=0.002098
+        Phase2 Epoch 250/250: loss=0.003943
+  Stage 2 epoch 60/300: loss=0.128576
+  Stage 2 epoch 120/300: loss=0.123349
+  Stage 2 epoch 180/300: loss=0.120033
+  Stage 2 epoch 240/300: loss=0.112502
+  Stage 2 epoch 300/300: loss=0.107731
+  MTE@0.1: 0.8789
+  MTE@0.5: 1.6438
+  MTE@1.0: 1.7738
+  W2@1.0:  0.9445
+  sW2@0.1: 0.4488 (293/500 in region)
+  sW2@0.2: 0.7456 (212/500 in region)
+  sW2@0.5: 1.1190 (88/500 in region)
+  sW2@1.0: 0.9893 (24/500 in region)
+  MMD@1.0: 0.2887
+  Survival@1.0: 26.6%
+  Stopped@1.0:  4.8%
+  K=0.0 drift=small: W2=0.9445  fit_err=34.12%  final_loss=0.107731
+
+============================================================
+hyperbolic_paraboloid D=11 N=20 seed=2042 K=0.0 drift=large
+============================================================
+        Phase2 Epoch 50/250: loss=0.006601
+        Phase2 Epoch 100/250: loss=0.004888
+        Phase2 Epoch 150/250: loss=0.003376
+        Phase2 Epoch 200/250: loss=0.002098
+        Phase2 Epoch 250/250: loss=0.003943
+  Stage 2 epoch 60/300: loss=0.119716
+  Stage 2 epoch 120/300: loss=0.107749
+  Stage 2 epoch 180/300: loss=0.105846
+  Stage 2 epoch 240/300: loss=0.104651
+  Stage 2 epoch 300/300: loss=0.107833
+  MTE@0.1: 0.8826
+  MTE@0.5: 1.6760
+  MTE@1.0: 1.8225
+  W2@1.0:  1.0397
+  sW2@0.1: 0.4578 (293/500 in region)
+  sW2@0.2: 0.7709 (212/500 in region)
+  sW2@0.5: 1.1956 (88/500 in region)
+  sW2@1.0: 1.0841 (24/500 in region)
+  MMD@1.0: 0.2865
+  Survival@1.0: 26.6%
+  Stopped@1.0:  4.8%
+  K=0.0 drift=large: W2=1.0397  fit_err=34.98%  final_loss=0.107833
+
+============================================================
+hyperbolic_paraboloid D=11 N=20 seed=2042 K=0.1 drift=small
+============================================================
+        Phase2 Epoch 50/250: loss=0.035884
+        Phase2 Epoch 100/250: loss=0.013395
+        Phase2 Epoch 150/250: loss=0.008716
+        Phase2 Epoch 200/250: loss=0.003861
+        Phase2 Epoch 250/250: loss=0.003759
+  Stage 2 epoch 60/300: loss=0.121725
+  Stage 2 epoch 120/300: loss=0.118049
+  Stage 2 epoch 180/300: loss=0.113829
+  Stage 2 epoch 240/300: loss=0.107739
+  Stage 2 epoch 300/300: loss=0.105788
+  MTE@0.1: 0.8736
+  MTE@0.5: 1.6318
+  MTE@1.0: 1.7611
+  W2@1.0:  0.9656
+  sW2@0.1: 0.4258 (293/500 in region)
+  sW2@0.2: 0.7115 (212/500 in region)
+  sW2@0.5: 1.1107 (88/500 in region)
+  sW2@1.0: 0.9648 (24/500 in region)
+  MMD@1.0: 0.2840
+  Survival@1.0: 26.6%
+  Stopped@1.0:  4.8%
+  K=0.1 drift=small: W2=0.9656  fit_err=36.41%  final_loss=0.105788
+
+============================================================
+hyperbolic_paraboloid D=11 N=20 seed=2042 K=0.1 drift=large
+============================================================
+        Phase2 Epoch 50/250: loss=0.035884
+        Phase2 Epoch 100/250: loss=0.013395
+        Phase2 Epoch 150/250: loss=0.008716
+        Phase2 Epoch 200/250: loss=0.003861
+        Phase2 Epoch 250/250: loss=0.003759
+  Stage 2 epoch 60/300: loss=0.114289
+  Stage 2 epoch 120/300: loss=0.103173
+  Stage 2 epoch 180/300: loss=0.098650
+  Stage 2 epoch 240/300: loss=0.102802
+  Stage 2 epoch 300/300: loss=0.102176
+  MTE@0.1: 0.8761
+  MTE@0.5: 1.6594
+  MTE@1.0: 1.8033
+  W2@1.0:  1.0396
+  sW2@0.1: 0.4316 (293/500 in region)
+  sW2@0.2: 0.7300 (212/500 in region)
+  sW2@0.5: 1.1699 (88/500 in region)
+  sW2@1.0: 1.0370 (24/500 in region)
+  MMD@1.0: 0.2839
+  Survival@1.0: 26.6%
+  Stopped@1.0:  4.8%
+  K=0.1 drift=large: W2=1.0396  fit_err=39.91%  final_loss=0.102176
+
+============================================================
+hyperbolic_paraboloid D=11 N=20 seed=3042 K=0.0 drift=small
+============================================================
+        Phase2 Epoch 50/250: loss=0.016307
+        Phase2 Epoch 100/250: loss=0.017819
+        Phase2 Epoch 150/250: loss=0.011810
+        Phase2 Epoch 200/250: loss=0.010047
+        Phase2 Epoch 250/250: loss=0.003346
+  Stage 2 epoch 60/300: loss=0.283495
+  Stage 2 epoch 120/300: loss=0.255058
+  Stage 2 epoch 180/300: loss=0.230894
+  Stage 2 epoch 240/300: loss=0.221753
+  Stage 2 epoch 300/300: loss=0.216129
+  MTE@0.1: 0.9801
+  MTE@0.5: 1.7181
+  MTE@1.0: 2.0933
+  W2@1.0:  1.4265
+  sW2@0.1: 0.4922 (275/500 in region)
+  sW2@0.2: 0.5820 (204/500 in region)
+  sW2@0.5: 0.9798 (78/500 in region)
+  sW2@1.0: 1.3982 (25/500 in region)
+  MMD@1.0: 0.2678
+  Survival@1.0: 27.2%
+  Stopped@1.0:  5.0%
+  K=0.0 drift=small: W2=1.4265  fit_err=68.07%  final_loss=0.216129
+
+============================================================
+hyperbolic_paraboloid D=11 N=20 seed=3042 K=0.0 drift=large
+============================================================
+        Phase2 Epoch 50/250: loss=0.016307
+        Phase2 Epoch 100/250: loss=0.017819
+        Phase2 Epoch 150/250: loss=0.011810
+        Phase2 Epoch 200/250: loss=0.010047
+        Phase2 Epoch 250/250: loss=0.003346
+  Stage 2 epoch 60/300: loss=0.251206
+  Stage 2 epoch 120/300: loss=0.223917
+  Stage 2 epoch 180/300: loss=0.201295
+  Stage 2 epoch 240/300: loss=0.189681
+  Stage 2 epoch 300/300: loss=0.181172
+  MTE@0.1: 0.9787
+  MTE@0.5: 1.7236
+  MTE@1.0: 2.1214
+  W2@1.0:  1.4395
+  sW2@0.1: 0.4880 (275/500 in region)
+  sW2@0.2: 0.5758 (204/500 in region)
+  sW2@0.5: 0.9631 (78/500 in region)
+  sW2@1.0: 1.3513 (25/500 in region)
+  MMD@1.0: 0.2703
+  Survival@1.0: 27.2%
+  Stopped@1.0:  5.0%
+  K=0.0 drift=large: W2=1.4395  fit_err=55.80%  final_loss=0.181172
+
+============================================================
+hyperbolic_paraboloid D=11 N=20 seed=3042 K=0.1 drift=small
+============================================================
+        Phase2 Epoch 50/250: loss=0.020195
+        Phase2 Epoch 100/250: loss=0.015129
+        Phase2 Epoch 150/250: loss=0.012430
+        Phase2 Epoch 200/250: loss=0.012042
+        Phase2 Epoch 250/250: loss=0.008729
+  Stage 2 epoch 60/300: loss=0.295260
+  Stage 2 epoch 120/300: loss=0.264530
+  Stage 2 epoch 180/300: loss=0.240765
+  Stage 2 epoch 240/300: loss=0.230142
+  Stage 2 epoch 300/300: loss=0.222162
+  MTE@0.1: 0.9548
+  MTE@0.5: 1.7167
+  MTE@1.0: 1.9848
+  W2@1.0:  1.2009
+  sW2@0.1: 0.4081 (275/500 in region)
+  sW2@0.2: 0.5038 (204/500 in region)
+  sW2@0.5: 0.8421 (78/500 in region)
+  sW2@1.0: 1.1030 (25/500 in region)
+  MMD@1.0: 0.2677
+  Survival@1.0: 27.2%
+  Stopped@1.0:  5.0%
+  K=0.1 drift=small: W2=1.2009  fit_err=61.71%  final_loss=0.222162
+
+============================================================
+hyperbolic_paraboloid D=11 N=20 seed=3042 K=0.1 drift=large
+============================================================
+        Phase2 Epoch 50/250: loss=0.020195
+        Phase2 Epoch 100/250: loss=0.015129
+        Phase2 Epoch 150/250: loss=0.012430
+        Phase2 Epoch 200/250: loss=0.012042
+        Phase2 Epoch 250/250: loss=0.008729
+  Stage 2 epoch 60/300: loss=0.261942
+  Stage 2 epoch 120/300: loss=0.233452
+  Stage 2 epoch 180/300: loss=0.209705
+  Stage 2 epoch 240/300: loss=0.191473
+  Stage 2 epoch 300/300: loss=0.214824
+  MTE@0.1: 0.9549
+  MTE@0.5: 1.7349
+  MTE@1.0: 2.0400
+  W2@1.0:  1.2623
+  sW2@0.1: 0.4110 (275/500 in region)
+  sW2@0.2: 0.5087 (204/500 in region)
+  sW2@0.5: 0.8530 (78/500 in region)
+  sW2@1.0: 1.1006 (25/500 in region)
+  MMD@1.0: 0.2667
+  Survival@1.0: 27.2%
+  Stopped@1.0:  5.0%
+  K=0.1 drift=large: W2=1.2623  fit_err=48.18%  final_loss=0.214824
+
+============================================================
+hyperbolic_paraboloid D=11 N=20 seed=4042 K=0.0 drift=small
+============================================================
+        Phase2 Epoch 50/250: loss=0.029072
+        Phase2 Epoch 100/250: loss=0.015936
+        Phase2 Epoch 150/250: loss=0.006950
+        Phase2 Epoch 200/250: loss=0.004684
+        Phase2 Epoch 250/250: loss=0.004116
+  Stage 2 epoch 60/300: loss=0.203982
+  Stage 2 epoch 120/300: loss=0.194806
+  Stage 2 epoch 180/300: loss=0.180548
+  Stage 2 epoch 240/300: loss=0.174211
+  Stage 2 epoch 300/300: loss=0.177058
+  MTE@0.1: 1.2801
+  MTE@0.5: 1.9837
+  MTE@1.0: 2.2010
+  W2@1.0:  1.3779
+  sW2@0.1: 0.5138 (287/500 in region)
+  sW2@0.2: 0.8202 (207/500 in region)
+  sW2@0.5: 1.0991 (102/500 in region)
+  sW2@1.0: 1.9129 (30/500 in region)
+  MMD@1.0: 0.2779
+  Survival@1.0: 28.2%
+  Stopped@1.0:  6.0%
+  K=0.0 drift=small: W2=1.3779  fit_err=41.54%  final_loss=0.177058
+
+============================================================
+hyperbolic_paraboloid D=11 N=20 seed=4042 K=0.0 drift=large
+============================================================
+        Phase2 Epoch 50/250: loss=0.029072
+        Phase2 Epoch 100/250: loss=0.015936
+        Phase2 Epoch 150/250: loss=0.006950
+        Phase2 Epoch 200/250: loss=0.004684
+        Phase2 Epoch 250/250: loss=0.004116
+  Stage 2 epoch 60/300: loss=0.191041
+  Stage 2 epoch 120/300: loss=0.174051
+  Stage 2 epoch 180/300: loss=0.170552
+  Stage 2 epoch 240/300: loss=0.175346
+  Stage 2 epoch 300/300: loss=0.183496
+  MTE@0.1: 1.2810
+  MTE@0.5: 1.9844
+  MTE@1.0: 2.1872
+  W2@1.0:  1.3445
+  sW2@0.1: 0.5139 (287/500 in region)
+  sW2@0.2: 0.8245 (207/500 in region)
+  sW2@0.5: 1.0892 (102/500 in region)
+  sW2@1.0: 1.8816 (30/500 in region)
+  MMD@1.0: 0.2766
+  Survival@1.0: 28.2%
+  Stopped@1.0:  6.0%
+  K=0.0 drift=large: W2=1.3445  fit_err=41.54%  final_loss=0.183496
+
+============================================================
+hyperbolic_paraboloid D=11 N=20 seed=4042 K=0.1 drift=small
+============================================================
+        Phase2 Epoch 50/250: loss=0.015655
+        Phase2 Epoch 100/250: loss=0.009614
+        Phase2 Epoch 150/250: loss=0.022469
+        Phase2 Epoch 200/250: loss=0.006169
+        Phase2 Epoch 250/250: loss=0.003426
+  Stage 2 epoch 60/300: loss=0.193879
+  Stage 2 epoch 120/300: loss=0.180517
+  Stage 2 epoch 180/300: loss=0.161977
+  Stage 2 epoch 240/300: loss=0.154114
+  Stage 2 epoch 300/300: loss=0.158142
+  MTE@0.1: 1.2881
+  MTE@0.5: 2.0152
+  MTE@1.0: 2.2879
+  W2@1.0:  1.5360
+  sW2@0.1: 0.5456 (287/500 in region)
+  sW2@0.2: 0.8598 (207/500 in region)
+  sW2@0.5: 1.1685 (102/500 in region)
+  sW2@1.0: 2.0787 (30/500 in region)
+  MMD@1.0: 0.2936
+  Survival@1.0: 28.2%
+  Stopped@1.0:  6.0%
+  K=0.1 drift=small: W2=1.5360  fit_err=49.20%  final_loss=0.158142
+
+============================================================
+hyperbolic_paraboloid D=11 N=20 seed=4042 K=0.1 drift=large
+============================================================
+        Phase2 Epoch 50/250: loss=0.015655
+        Phase2 Epoch 100/250: loss=0.009614
+        Phase2 Epoch 150/250: loss=0.022469
+        Phase2 Epoch 200/250: loss=0.006169
+        Phase2 Epoch 250/250: loss=0.003426
+  Stage 2 epoch 60/300: loss=0.175052
+  Stage 2 epoch 120/300: loss=0.155078
+  Stage 2 epoch 180/300: loss=0.152377
+  Stage 2 epoch 240/300: loss=0.156515
+  Stage 2 epoch 300/300: loss=0.167706
+  MTE@0.1: 1.2892
+  MTE@0.5: 2.0125
+  MTE@1.0: 2.2636
+  W2@1.0:  1.4849
+  sW2@0.1: 0.5454 (287/500 in region)
+  sW2@0.2: 0.8654 (207/500 in region)
+  sW2@0.5: 1.1494 (102/500 in region)
+  sW2@1.0: 2.0481 (30/500 in region)
+  MMD@1.0: 0.2892
+  Survival@1.0: 28.2%
+  Stopped@1.0:  6.0%
+  K=0.1 drift=large: W2=1.4849  fit_err=48.89%  final_loss=0.167706
+
+Saved 40 rows to drift_capacity_test.csv
+
+================================================================================
+SUMMARY: Does larger drift network close the K gap?
+================================================================================
+
+paraboloid:
+      K  drift    W2@1.0  fit_err drift_loss
+  --------------------------------------------------
+    0.0  small    1.1824   59.67%   0.136360
+    0.0  large    1.1957   55.15%   0.123345
+    0.1  small    1.3368   69.78%   0.165191
+    0.1  large    1.2822   61.83%   0.143287
+
+  K effect (K - baseline) on W2:
+     small: median delta = +0.0370  (K worse in 4/5 seeds)
+     large: median delta = +0.0970  (K worse in 5/5 seeds)
+
+hyperbolic_paraboloid:
+      K  drift    W2@1.0  fit_err drift_loss
+  --------------------------------------------------
+    0.0  small    0.9445   51.97%   0.132560
+    0.0  large    1.0397   41.54%   0.127136
+    0.1  small    0.9656   49.20%   0.136319
+    0.1  large    1.0396   41.83%   0.124330
+
+  K effect (K - baseline) on W2:
+     small: median delta = +0.0427  (K worse in 4/5 seeds)
+     large: median delta = +0.0470  (K worse in 3/5 seeds)

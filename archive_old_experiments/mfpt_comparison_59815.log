@@ -1,0 +1,320 @@
+Device: cuda
+D=11, N=50, surface=paraboloid
+Seeds: [42, 1042, 2042, 3042, 4042]
+MFPT horizon: T=2.0
+
+
+============================================================
+  SEED 42
+============================================================
+
+  --- no_penalty ---
+      Epoch 100/500: loss=0.018654
+      Epoch 200/500: loss=0.010097
+      Epoch 300/500: loss=0.001782
+      Epoch 400/500: loss=0.000742
+      Epoch 500/500: loss=0.000952
+    recon_per_dim=0.001680
+  Stage 2 epoch 100/300: loss=0.865202
+  Stage 2 epoch 200/300: loss=0.927466
+  Stage 2 epoch 300/300: loss=0.820563
+  Stage 3 epoch 100/300: loss=0.108442
+  Stage 3 epoch 200/300: loss=0.087675
+  Stage 3 epoch 300/300: loss=0.071471
+
+    Computing MFPT...
+
+    Ambient ball MFPT:
+      r=0.5: GT=0.075  learned=0.155  err=108.2%  exit_frac=1.00
+      r=1.0: GT=0.236  learned=0.501  err=112.0%  exit_frac=0.98
+      r=2.0: GT=0.600  learned=1.006  err=67.6%  exit_frac=0.66
+      r=3.0: GT=0.773  learned=1.086  err=40.4%  exit_frac=0.32
+
+    Local box MFPT:
+      L=0.5: GT=0.095  learned=0.288  err=202.8%  exit_frac=1.00
+      L=1.0: GT=0.483  learned=nan  err=nan%  exit_frac=0.00
+      L=1.5: GT=0.793  learned=nan  err=nan%  exit_frac=0.00
+
+  --- T+F ---
+      Epoch 100/500: loss=0.468872
+      Epoch 200/500: loss=0.038427
+      Epoch 300/500: loss=0.008950
+      Epoch 400/500: loss=0.011219
+      Epoch 500/500: loss=0.008317
+    recon_per_dim=0.000845
+  Stage 2 epoch 100/300: loss=0.129158
+  Stage 2 epoch 200/300: loss=0.145481
+  Stage 2 epoch 300/300: loss=0.128316
+  Stage 3 epoch 100/300: loss=0.057886
+  Stage 3 epoch 200/300: loss=0.022937
+  Stage 3 epoch 300/300: loss=0.013271
+
+    Computing MFPT...
+
+    Ambient ball MFPT:
+      r=0.5: GT=0.075  learned=0.076  err=2.2%  exit_frac=1.00
+      r=1.0: GT=0.236  learned=0.244  err=3.3%  exit_frac=1.00
+      r=2.0: GT=0.600  learned=0.657  err=9.4%  exit_frac=0.97
+      r=3.0: GT=0.773  learned=0.939  err=21.4%  exit_frac=0.83
+
+    Local box MFPT:
+      L=0.5: GT=0.095  learned=0.214  err=125.6%  exit_frac=1.00
+      L=1.0: GT=0.483  learned=nan  err=nan%  exit_frac=0.00
+      L=1.5: GT=0.793  learned=nan  err=nan%  exit_frac=0.00
+
+============================================================
+  SEED 1042
+============================================================
+
+  --- no_penalty ---
+      Epoch 100/500: loss=0.016204
+      Epoch 200/500: loss=0.006816
+      Epoch 300/500: loss=0.001513
+      Epoch 400/500: loss=0.000929
+      Epoch 500/500: loss=0.000691
+    recon_per_dim=0.000629
+  Stage 2 epoch 100/300: loss=1.160705
+  Stage 2 epoch 200/300: loss=1.112936
+  Stage 2 epoch 300/300: loss=1.057657
+  Stage 3 epoch 100/300: loss=0.122786
+  Stage 3 epoch 200/300: loss=0.092578
+  Stage 3 epoch 300/300: loss=0.079633
+
+    Computing MFPT...
+
+    Ambient ball MFPT:
+      r=0.5: GT=0.083  learned=0.183  err=120.9%  exit_frac=1.00
+      r=1.0: GT=0.251  learned=0.570  err=127.0%  exit_frac=0.98
+      r=2.0: GT=0.588  learned=1.001  err=70.1%  exit_frac=0.59
+      r=3.0: GT=0.777  learned=1.128  err=45.2%  exit_frac=0.21
+
+    Local box MFPT:
+      L=0.5: GT=0.110  learned=0.344  err=211.7%  exit_frac=1.00
+      L=1.0: GT=0.523  learned=nan  err=nan%  exit_frac=0.00
+      L=1.5: GT=0.800  learned=nan  err=nan%  exit_frac=0.00
+
+  --- T+F ---
+      Epoch 100/500: loss=0.312612
+      Epoch 200/500: loss=0.030504
+      Epoch 300/500: loss=0.026756
+      Epoch 400/500: loss=0.008413
+      Epoch 500/500: loss=0.002478
+    recon_per_dim=0.000031
+  Stage 2 epoch 100/300: loss=0.103950
+  Stage 2 epoch 200/300: loss=0.104582
+  Stage 2 epoch 300/300: loss=0.107198
+  Stage 3 epoch 100/300: loss=0.028943
+  Stage 3 epoch 200/300: loss=0.013142
+  Stage 3 epoch 300/300: loss=0.009912
+
+    Computing MFPT...
+
+    Ambient ball MFPT:
+      r=0.5: GT=0.083  learned=0.067  err=19.2%  exit_frac=1.00
+      r=1.0: GT=0.251  learned=0.211  err=15.8%  exit_frac=1.00
+      r=2.0: GT=0.588  learned=0.562  err=4.5%  exit_frac=0.98
+      r=3.0: GT=0.777  learned=0.836  err=7.6%  exit_frac=0.86
+
+    Local box MFPT:
+      L=0.5: GT=0.110  learned=0.154  err=39.1%  exit_frac=1.00
+      L=1.0: GT=0.523  learned=nan  err=nan%  exit_frac=0.00
+      L=1.5: GT=0.800  learned=nan  err=nan%  exit_frac=0.00
+
+============================================================
+  SEED 2042
+============================================================
+
+  --- no_penalty ---
+      Epoch 100/500: loss=0.026320
+      Epoch 200/500: loss=0.009942
+      Epoch 300/500: loss=0.001677
+      Epoch 400/500: loss=0.000502
+      Epoch 500/500: loss=0.001295
+    recon_per_dim=0.000881
+  Stage 2 epoch 100/300: loss=0.976530
+  Stage 2 epoch 200/300: loss=0.889628
+  Stage 2 epoch 300/300: loss=0.881544
+  Stage 3 epoch 100/300: loss=0.110404
+  Stage 3 epoch 200/300: loss=0.059707
+  Stage 3 epoch 300/300: loss=0.045744
+
+    Computing MFPT...
+
+    Ambient ball MFPT:
+      r=0.5: GT=0.073  learned=0.089  err=21.4%  exit_frac=1.00
+      r=1.0: GT=0.229  learned=0.305  err=32.9%  exit_frac=1.00
+      r=2.0: GT=0.579  learned=0.858  err=48.1%  exit_frac=0.84
+      r=3.0: GT=0.776  learned=1.095  err=41.2%  exit_frac=0.42
+
+    Local box MFPT:
+      L=0.5: GT=0.097  learned=0.146  err=50.6%  exit_frac=1.00
+      L=1.0: GT=0.485  learned=nan  err=nan%  exit_frac=0.00
+      L=1.5: GT=0.801  learned=nan  err=nan%  exit_frac=0.00
+
+  --- T+F ---
+      Epoch 100/500: loss=0.412362
+      Epoch 200/500: loss=0.031087
+      Epoch 300/500: loss=0.013758
+      Epoch 400/500: loss=0.006283
+      Epoch 500/500: loss=0.009002
+    recon_per_dim=0.001124
+  Stage 2 epoch 100/300: loss=0.151981
+  Stage 2 epoch 200/300: loss=0.133348
+  Stage 2 epoch 300/300: loss=0.117311
+  Stage 3 epoch 100/300: loss=0.055884
+  Stage 3 epoch 200/300: loss=0.023083
+  Stage 3 epoch 300/300: loss=0.009827
+
+    Computing MFPT...
+
+    Ambient ball MFPT:
+      r=0.5: GT=0.073  learned=0.076  err=3.8%  exit_frac=1.00
+      r=1.0: GT=0.229  learned=0.238  err=3.9%  exit_frac=1.00
+      r=2.0: GT=0.579  learned=0.640  err=10.6%  exit_frac=0.96
+      r=3.0: GT=0.776  learned=0.894  err=15.3%  exit_frac=0.79
+
+    Local box MFPT:
+      L=0.5: GT=0.097  learned=0.214  err=121.4%  exit_frac=1.00
+      L=1.0: GT=0.485  learned=nan  err=nan%  exit_frac=0.00
+      L=1.5: GT=0.801  learned=nan  err=nan%  exit_frac=0.00
+
+============================================================
+  SEED 3042
+============================================================
+
+  --- no_penalty ---
+      Epoch 100/500: loss=0.025698
+      Epoch 200/500: loss=0.005883
+      Epoch 300/500: loss=0.001166
+      Epoch 400/500: loss=0.000477
+      Epoch 500/500: loss=0.000326
+    recon_per_dim=0.000264
+  Stage 2 epoch 100/300: loss=1.213607
+  Stage 2 epoch 200/300: loss=1.230408
+  Stage 2 epoch 300/300: loss=1.168980
+  Stage 3 epoch 100/300: loss=0.090829
+  Stage 3 epoch 200/300: loss=0.076414
+  Stage 3 epoch 300/300: loss=0.064192
+
+    Computing MFPT...
+
+    Ambient ball MFPT:
+      r=0.5: GT=0.079  learned=0.120  err=52.2%  exit_frac=1.00
+      r=1.0: GT=0.233  learned=0.377  err=62.0%  exit_frac=1.00
+      r=2.0: GT=0.584  learned=0.916  err=56.9%  exit_frac=0.78
+      r=3.0: GT=0.779  learned=1.071  err=37.4%  exit_frac=0.33
+
+    Local box MFPT:
+      L=0.5: GT=0.108  learned=0.243  err=125.0%  exit_frac=1.00
+      L=1.0: GT=0.477  learned=nan  err=nan%  exit_frac=0.00
+      L=1.5: GT=0.820  learned=nan  err=nan%  exit_frac=0.00
+
+  --- T+F ---
+      Epoch 100/500: loss=0.548769
+      Epoch 200/500: loss=0.035259
+      Epoch 300/500: loss=0.008464
+      Epoch 400/500: loss=0.009393
+      Epoch 500/500: loss=0.002442
+    recon_per_dim=0.000028
+  Stage 2 epoch 100/300: loss=0.149733
+  Stage 2 epoch 200/300: loss=0.170209
+  Stage 2 epoch 300/300: loss=0.149244
+  Stage 3 epoch 100/300: loss=0.056798
+  Stage 3 epoch 200/300: loss=0.041647
+  Stage 3 epoch 300/300: loss=0.031334
+
+    Computing MFPT...
+
+    Ambient ball MFPT:
+      r=0.5: GT=0.079  learned=0.125  err=58.7%  exit_frac=1.00
+      r=1.0: GT=0.233  learned=0.375  err=60.9%  exit_frac=1.00
+      r=2.0: GT=0.584  learned=0.782  err=33.9%  exit_frac=0.86
+      r=3.0: GT=0.779  learned=0.919  err=17.9%  exit_frac=0.63
+
+    Local box MFPT:
+      L=0.5: GT=0.108  learned=0.326  err=201.8%  exit_frac=1.00
+      L=1.0: GT=0.477  learned=nan  err=nan%  exit_frac=0.00
+      L=1.5: GT=0.820  learned=nan  err=nan%  exit_frac=0.00
+
+============================================================
+  SEED 4042
+============================================================
+
+  --- no_penalty ---
+      Epoch 100/500: loss=0.015158
+      Epoch 200/500: loss=0.007542
+      Epoch 300/500: loss=0.001608
+      Epoch 400/500: loss=0.000527
+      Epoch 500/500: loss=0.000659
+    recon_per_dim=0.000584
+  Stage 2 epoch 100/300: loss=1.013804
+  Stage 2 epoch 200/300: loss=1.183145
+  Stage 2 epoch 300/300: loss=1.223061
+  Stage 3 epoch 100/300: loss=0.123368
+  Stage 3 epoch 200/300: loss=0.066873
+  Stage 3 epoch 300/300: loss=0.064848
+
+    Computing MFPT...
+
+    Ambient ball MFPT:
+      r=0.5: GT=0.075  learned=0.075  err=0.8%  exit_frac=1.00
+      r=1.0: GT=0.239  learned=0.238  err=0.4%  exit_frac=1.00
+      r=2.0: GT=0.562  learned=0.718  err=27.8%  exit_frac=0.94
+      r=3.0: GT=0.779  learned=1.122  err=44.1%  exit_frac=0.39
+
+    Local box MFPT:
+      L=0.5: GT=0.107  learned=0.146  err=36.4%  exit_frac=1.00
+      L=1.0: GT=0.457  learned=nan  err=nan%  exit_frac=0.00
+      L=1.5: GT=0.813  learned=nan  err=nan%  exit_frac=0.00
+
+  --- T+F ---
+      Epoch 100/500: loss=0.312504
+      Epoch 200/500: loss=0.052106
+      Epoch 300/500: loss=0.019672
+      Epoch 400/500: loss=0.016793
+      Epoch 500/500: loss=0.005687
+    recon_per_dim=0.000089
+  Stage 2 epoch 100/300: loss=0.145866
+  Stage 2 epoch 200/300: loss=0.187866
+  Stage 2 epoch 300/300: loss=0.190612
+  Stage 3 epoch 100/300: loss=0.068710
+  Stage 3 epoch 200/300: loss=0.038147
+  Stage 3 epoch 300/300: loss=0.035078
+
+    Computing MFPT...
+
+    Ambient ball MFPT:
+      r=0.5: GT=0.075  learned=0.081  err=7.7%  exit_frac=1.00
+      r=1.0: GT=0.239  learned=0.250  err=4.8%  exit_frac=1.00
+      r=2.0: GT=0.562  learned=0.635  err=13.1%  exit_frac=0.98
+      r=3.0: GT=0.779  learned=0.963  err=23.7%  exit_frac=0.82
+
+    Local box MFPT:
+      L=0.5: GT=0.107  learned=0.244  err=127.7%  exit_frac=1.00
+      L=1.0: GT=0.457  learned=nan  err=nan%  exit_frac=0.00
+      L=1.5: GT=0.813  learned=nan  err=nan%  exit_frac=0.00
+
+
+================================================================================
+MFPT SUMMARY (mean across seeds)
+================================================================================
+
+  Ambient ball MFPT relative error |learned - GT| / GT:
+    radius      no_penalty             T+F
+  r=  0.5          60.7%          18.3%
+  r=  1.0          66.9%          17.7%
+  r=  2.0          54.1%          14.3%
+  r=  3.0          41.7%          17.2%
+
+  Local box MFPT relative error |learned - GT| / GT:
+     bound      no_penalty             T+F
+  L=  0.5         125.3%         123.1%
+  L=  1.0           nan%           nan%
+  L=  1.5           nan%           nan%
+
+  Raw ambient MFPT values (mean across seeds):
+    radius          GT    no_penalty           T+F
+  r=  0.5       0.077         0.124         0.085
+  r=  1.0       0.238         0.398         0.264
+  r=  2.0       0.583         0.900         0.655
+  r=  3.0       0.777         1.100         0.910

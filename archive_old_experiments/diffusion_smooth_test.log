@@ -1,0 +1,472 @@
+        Phase2 Epoch 40/200: loss=0.140317
+        Phase2 Epoch 80/200: loss=0.079714
+        Phase2 Epoch 120/200: loss=0.047052
+        Phase2 Epoch 160/200: loss=0.044883
+        Phase2 Epoch 200/200: loss=0.035203
+  MTE@0.1: 0.6448
+  MTE@0.5: 1.5911
+  MTE@1.0: 2.3531
+  W2@1.0:  1.7065
+  sW2@0.5: 1.0026 (96/200 in region)
+  sW2@1.0: 1.4688 (48/200 in region)
+  MMD@1.0: 0.2151
+  Survival@1.0: 76.5%
+  Stopped@1.0:  24.0%
+                 paraboloid seed=42             K+S: W2=1.707  E_Sig_chart=1.5585  E_Sig_diff=0.1331  (2s)
+  MTE@0.1: 0.6522
+  MTE@0.5: 1.6108
+  MTE@1.0: 2.3825
+  W2@1.0:  1.7614
+  sW2@0.5: 1.0727 (96/200 in region)
+  sW2@1.0: 1.5683 (48/200 in region)
+  MMD@1.0: 0.2303
+  Survival@1.0: 76.5%
+  Stopped@1.0:  24.0%
+                 paraboloid seed=42     K+S+Sd(0.5): W2=1.761  E_Sig_chart=1.5585  E_Sig_diff=0.1517  (5s)
+  MTE@0.1: 0.6566
+  MTE@0.5: 1.6231
+  MTE@1.0: 2.3994
+  W2@1.0:  1.7941
+  sW2@0.5: 1.1094 (96/200 in region)
+  sW2@1.0: 1.6215 (48/200 in region)
+  MMD@1.0: 0.2388
+  Survival@1.0: 76.5%
+  Stopped@1.0:  24.0%
+                 paraboloid seed=42     K+S+Sd(1.0): W2=1.794  E_Sig_chart=1.5585  E_Sig_diff=0.1683  (5s)
+  MTE@0.1: 0.6611
+  MTE@0.5: 1.6372
+  MTE@1.0: 2.4166
+  W2@1.0:  1.8317
+  sW2@0.5: 1.1480 (96/200 in region)
+  sW2@1.0: 1.6812 (48/200 in region)
+  MMD@1.0: 0.2484
+  Survival@1.0: 76.5%
+  Stopped@1.0:  24.0%
+                 paraboloid seed=42     K+S+Sd(2.0): W2=1.832  E_Sig_chart=1.5585  E_Sig_diff=0.1907  (4s)
+        Phase2 Epoch 40/200: loss=0.066004
+        Phase2 Epoch 80/200: loss=0.034150
+        Phase2 Epoch 120/200: loss=0.023040
+        Phase2 Epoch 160/200: loss=0.010823
+        Phase2 Epoch 200/200: loss=0.012269
+  MTE@0.1: 1.1915
+  MTE@0.5: 2.0999
+  MTE@1.0: 2.6760
+  W2@1.0:  1.5184
+  sW2@0.5: 1.1998 (100/200 in region)
+  sW2@1.0: 1.5772 (53/200 in region)
+  MMD@1.0: 0.1838
+  Survival@1.0: 72.0%
+  Stopped@1.0:  26.5%
+                 paraboloid seed=1042             K+S: W2=1.518  E_Sig_chart=0.3435  E_Sig_diff=0.1088  (2s)
+  MTE@0.1: 1.2016
+  MTE@0.5: 2.1310
+  MTE@1.0: 2.7110
+  W2@1.0:  1.5675
+  sW2@0.5: 1.2645 (100/200 in region)
+  sW2@1.0: 1.6409 (53/200 in region)
+  MMD@1.0: 0.2024
+  Survival@1.0: 72.0%
+  Stopped@1.0:  26.5%
+                 paraboloid seed=1042     K+S+Sd(0.5): W2=1.567  E_Sig_chart=0.3435  E_Sig_diff=0.1102  (4s)
+  MTE@0.1: 1.2050
+  MTE@0.5: 2.1410
+  MTE@1.0: 2.7217
+  W2@1.0:  1.5936
+  sW2@0.5: 1.2863 (100/200 in region)
+  sW2@1.0: 1.6709 (53/200 in region)
+  MMD@1.0: 0.2089
+  Survival@1.0: 72.0%
+  Stopped@1.0:  26.5%
+                 paraboloid seed=1042     K+S+Sd(1.0): W2=1.594  E_Sig_chart=0.3435  E_Sig_diff=0.1356  (4s)
+  MTE@0.1: 1.2086
+  MTE@0.5: 2.1544
+  MTE@1.0: 2.7364
+  W2@1.0:  1.6329
+  sW2@0.5: 1.3172 (100/200 in region)
+  sW2@1.0: 1.7173 (53/200 in region)
+  MMD@1.0: 0.2203
+  Survival@1.0: 72.0%
+  Stopped@1.0:  26.5%
+                 paraboloid seed=1042     K+S+Sd(2.0): W2=1.633  E_Sig_chart=0.3435  E_Sig_diff=0.1842  (4s)
+        Phase2 Epoch 40/200: loss=0.037523
+        Phase2 Epoch 80/200: loss=0.024774
+        Phase2 Epoch 120/200: loss=0.017619
+        Phase2 Epoch 160/200: loss=0.014101
+        Phase2 Epoch 200/200: loss=0.011427
+  MTE@0.1: 1.5135
+  MTE@0.5: 2.9020
+  MTE@1.0: 3.2431
+  W2@1.0:  1.5629
+  sW2@0.5: 1.6631 (95/200 in region)
+  sW2@1.0: 2.4689 (47/200 in region)
+  MMD@1.0: 0.2246
+  Survival@1.0: 78.5%
+  Stopped@1.0:  23.5%
+                 paraboloid seed=2042             K+S: W2=1.563  E_Sig_chart=0.1781  E_Sig_diff=0.1047  (2s)
+  MTE@0.1: 1.5263
+  MTE@0.5: 2.9106
+  MTE@1.0: 3.2635
+  W2@1.0:  1.6152
+  sW2@0.5: 1.6771 (95/200 in region)
+  sW2@1.0: 2.4886 (47/200 in region)
+  MMD@1.0: 0.2382
+  Survival@1.0: 78.5%
+  Stopped@1.0:  23.5%
+                 paraboloid seed=2042     K+S+Sd(0.5): W2=1.615  E_Sig_chart=0.1781  E_Sig_diff=0.1235  (5s)
+  MTE@0.1: 1.5374
+  MTE@0.5: 2.9251
+  MTE@1.0: 3.2753
+  W2@1.0:  1.6486
+  sW2@0.5: 1.6928 (95/200 in region)
+  sW2@1.0: 2.5092 (47/200 in region)
+  MMD@1.0: 0.2458
+  Survival@1.0: 78.5%
+  Stopped@1.0:  23.5%
+                 paraboloid seed=2042     K+S+Sd(1.0): W2=1.649  E_Sig_chart=0.1781  E_Sig_diff=0.1391  (5s)
+  MTE@0.1: 1.5507
+  MTE@0.5: 2.9511
+  MTE@1.0: 3.2919
+  W2@1.0:  1.6972
+  sW2@0.5: 1.7102 (95/200 in region)
+  sW2@1.0: 2.5237 (47/200 in region)
+  MMD@1.0: 0.2550
+  Survival@1.0: 78.5%
+  Stopped@1.0:  23.5%
+                 paraboloid seed=2042     K+S+Sd(2.0): W2=1.697  E_Sig_chart=0.1781  E_Sig_diff=0.1591  (5s)
+        Phase2 Epoch 40/200: loss=0.038829
+        Phase2 Epoch 80/200: loss=0.021269
+        Phase2 Epoch 120/200: loss=0.019769
+        Phase2 Epoch 160/200: loss=0.018607
+        Phase2 Epoch 200/200: loss=0.019283
+  MTE@0.1: 1.0255
+  MTE@0.5: 1.9139
+  MTE@1.0: 2.5384
+  W2@1.0:  1.5100
+  sW2@0.5: 0.9404 (99/200 in region)
+  sW2@1.0: 1.7805 (48/200 in region)
+  MMD@1.0: 0.2283
+  Survival@1.0: 74.5%
+  Stopped@1.0:  24.0%
+                 paraboloid seed=3042             K+S: W2=1.510  E_Sig_chart=0.2129  E_Sig_diff=0.2120  (2s)
+  MTE@0.1: 1.0591
+  MTE@0.5: 2.0254
+  MTE@1.0: 2.7127
+  W2@1.0:  1.5059
+  sW2@0.5: 0.8565 (99/200 in region)
+  sW2@1.0: 1.6489 (48/200 in region)
+  MMD@1.0: 0.2004
+  Survival@1.0: 74.5%
+  Stopped@1.0:  24.0%
+                 paraboloid seed=3042     K+S+Sd(0.5): W2=1.506  E_Sig_chart=0.2129  E_Sig_diff=0.1983  (4s)
+  MTE@0.1: 1.1408
+  MTE@0.5: 2.2474
+  MTE@1.0: 2.9186
+  W2@1.0:  1.6330
+  sW2@0.5: 1.1872 (99/200 in region)
+  sW2@1.0: 2.2050 (48/200 in region)
+  MMD@1.0: 0.2576
+  Survival@1.0: 74.5%
+  Stopped@1.0:  24.0%
+                 paraboloid seed=3042     K+S+Sd(1.0): W2=1.633  E_Sig_chart=0.2129  E_Sig_diff=0.1421  (4s)
+  MTE@0.1: 1.1326
+  MTE@0.5: 2.2404
+  MTE@1.0: 2.9146
+  W2@1.0:  1.6720
+  sW2@0.5: 1.1864 (99/200 in region)
+  sW2@1.0: 2.1901 (48/200 in region)
+  MMD@1.0: 0.2648
+  Survival@1.0: 74.5%
+  Stopped@1.0:  24.0%
+                 paraboloid seed=3042     K+S+Sd(2.0): W2=1.672  E_Sig_chart=0.2129  E_Sig_diff=0.1690  (4s)
+        Phase2 Epoch 40/200: loss=0.182104
+        Phase2 Epoch 80/200: loss=0.078860
+        Phase2 Epoch 120/200: loss=0.046478
+        Phase2 Epoch 160/200: loss=0.028262
+        Phase2 Epoch 200/200: loss=0.047657
+  MTE@0.1: 1.1145
+  MTE@0.5: 2.2230
+  MTE@1.0: 2.5530
+  W2@1.0:  1.2705
+  sW2@0.5: 0.8892 (107/200 in region)
+  sW2@1.0: 1.8824 (60/200 in region)
+  MMD@1.0: 0.1171
+  Survival@1.0: 76.0%
+  Stopped@1.0:  30.0%
+                 paraboloid seed=4042             K+S: W2=1.271  E_Sig_chart=0.6206  E_Sig_diff=0.1740  (2s)
+  MTE@0.1: 1.0451
+  MTE@0.5: 2.1239
+  MTE@1.0: 2.4242
+  W2@1.0:  1.2374
+  sW2@0.5: 0.8057 (107/200 in region)
+  sW2@1.0: 1.7624 (60/200 in region)
+  MMD@1.0: 0.1650
+  Survival@1.0: 76.0%
+  Stopped@1.0:  30.0%
+                 paraboloid seed=4042     K+S+Sd(0.5): W2=1.237  E_Sig_chart=0.6206  E_Sig_diff=0.1543  (4s)
+  MTE@0.1: 1.0424
+  MTE@0.5: 2.1134
+  MTE@1.0: 2.4133
+  W2@1.0:  1.2638
+  sW2@0.5: 0.7903 (107/200 in region)
+  sW2@1.0: 1.7470 (60/200 in region)
+  MMD@1.0: 0.1735
+  Survival@1.0: 76.0%
+  Stopped@1.0:  30.0%
+                 paraboloid seed=4042     K+S+Sd(1.0): W2=1.264  E_Sig_chart=0.6206  E_Sig_diff=0.1890  (4s)
+  MTE@0.1: 1.0301
+  MTE@0.5: 2.0869
+  MTE@1.0: 2.4131
+  W2@1.0:  1.3136
+  sW2@0.5: 0.7824 (107/200 in region)
+  sW2@1.0: 1.7370 (60/200 in region)
+  MMD@1.0: 0.1883
+  Survival@1.0: 76.0%
+  Stopped@1.0:  30.0%
+                 paraboloid seed=4042     K+S+Sd(2.0): W2=1.314  E_Sig_chart=0.6206  E_Sig_diff=0.2547  (4s)
+        Phase2 Epoch 40/200: loss=0.023043
+        Phase2 Epoch 80/200: loss=0.009473
+        Phase2 Epoch 120/200: loss=0.007879
+        Phase2 Epoch 160/200: loss=0.018915
+        Phase2 Epoch 200/200: loss=0.005337
+  MTE@0.1: 1.0483
+  MTE@0.5: 2.5022
+  MTE@1.0: 2.9593
+  W2@1.0:  1.7454
+  sW2@0.5: 1.2160 (96/200 in region)
+  sW2@1.0: 1.1786 (48/200 in region)
+  MMD@1.0: 0.1986
+  Survival@1.0: 76.5%
+  Stopped@1.0:  24.0%
+      hyperbolic_paraboloid seed=42             K+S: W2=1.745  E_Sig_chart=0.1151  E_Sig_diff=0.0740  (2s)
+  MTE@0.1: 1.0485
+  MTE@0.5: 2.5087
+  MTE@1.0: 2.9511
+  W2@1.0:  1.7304
+  sW2@0.5: 1.2384 (96/200 in region)
+  sW2@1.0: 1.2300 (48/200 in region)
+  MMD@1.0: 0.2021
+  Survival@1.0: 76.5%
+  Stopped@1.0:  24.0%
+      hyperbolic_paraboloid seed=42     K+S+Sd(0.5): W2=1.730  E_Sig_chart=0.1151  E_Sig_diff=0.0859  (4s)
+  MTE@0.1: 1.0480
+  MTE@0.5: 2.5146
+  MTE@1.0: 2.9465
+  W2@1.0:  1.7155
+  sW2@0.5: 1.2516 (96/200 in region)
+  sW2@1.0: 1.2538 (48/200 in region)
+  MMD@1.0: 0.2035
+  Survival@1.0: 76.5%
+  Stopped@1.0:  24.0%
+      hyperbolic_paraboloid seed=42     K+S+Sd(1.0): W2=1.715  E_Sig_chart=0.1151  E_Sig_diff=0.1017  (5s)
+  MTE@0.1: 1.0485
+  MTE@0.5: 2.5297
+  MTE@1.0: 2.9503
+  W2@1.0:  1.6997
+  sW2@0.5: 1.2749 (96/200 in region)
+  sW2@1.0: 1.3009 (48/200 in region)
+  MMD@1.0: 0.2042
+  Survival@1.0: 76.5%
+  Stopped@1.0:  24.0%
+      hyperbolic_paraboloid seed=42     K+S+Sd(2.0): W2=1.700  E_Sig_chart=0.1151  E_Sig_diff=0.1303  (5s)
+        Phase2 Epoch 40/200: loss=0.016072
+        Phase2 Epoch 80/200: loss=0.009138
+        Phase2 Epoch 120/200: loss=0.008540
+        Phase2 Epoch 160/200: loss=0.003581
+        Phase2 Epoch 200/200: loss=0.003070
+  MTE@0.1: 1.1417
+  MTE@0.5: 1.9568
+  MTE@1.0: 2.3994
+  W2@1.0:  1.3152
+  sW2@0.5: 1.1055 (100/200 in region)
+  sW2@1.0: 1.4152 (53/200 in region)
+  MMD@1.0: 0.1627
+  Survival@1.0: 72.0%
+  Stopped@1.0:  26.5%
+      hyperbolic_paraboloid seed=1042             K+S: W2=1.315  E_Sig_chart=0.1062  E_Sig_diff=0.0566  (2s)
+  MTE@0.1: 1.1437
+  MTE@0.5: 1.9879
+  MTE@1.0: 2.4423
+  W2@1.0:  1.3478
+  sW2@0.5: 1.1453 (100/200 in region)
+  sW2@1.0: 1.4688 (53/200 in region)
+  MMD@1.0: 0.1747
+  Survival@1.0: 72.0%
+  Stopped@1.0:  26.5%
+      hyperbolic_paraboloid seed=1042     K+S+Sd(0.5): W2=1.348  E_Sig_chart=0.1062  E_Sig_diff=0.0949  (4s)
+  MTE@0.1: 1.1445
+  MTE@0.5: 2.0047
+  MTE@1.0: 2.4667
+  W2@1.0:  1.3691
+  sW2@0.5: 1.1654 (100/200 in region)
+  sW2@1.0: 1.5007 (53/200 in region)
+  MMD@1.0: 0.1803
+  Survival@1.0: 72.0%
+  Stopped@1.0:  26.5%
+      hyperbolic_paraboloid seed=1042     K+S+Sd(1.0): W2=1.369  E_Sig_chart=0.1062  E_Sig_diff=0.1302  (4s)
+  MTE@0.1: 1.1445
+  MTE@0.5: 2.0210
+  MTE@1.0: 2.4932
+  W2@1.0:  1.4028
+  sW2@0.5: 1.1820 (100/200 in region)
+  sW2@1.0: 1.5341 (53/200 in region)
+  MMD@1.0: 0.1846
+  Survival@1.0: 72.0%
+  Stopped@1.0:  26.5%
+      hyperbolic_paraboloid seed=1042     K+S+Sd(2.0): W2=1.403  E_Sig_chart=0.1062  E_Sig_diff=0.1784  (4s)
+        Phase2 Epoch 40/200: loss=0.039381
+        Phase2 Epoch 80/200: loss=0.016820
+        Phase2 Epoch 120/200: loss=0.007119
+        Phase2 Epoch 160/200: loss=0.004980
+        Phase2 Epoch 200/200: loss=0.018864
+  MTE@0.1: 0.9519
+  MTE@0.5: 2.2767
+  MTE@1.0: 2.7089
+  W2@1.0:  1.2949
+  sW2@0.5: 0.9532 (95/200 in region)
+  sW2@1.0: 1.4378 (47/200 in region)
+  MMD@1.0: 0.1812
+  Survival@1.0: 78.5%
+  Stopped@1.0:  23.5%
+      hyperbolic_paraboloid seed=2042             K+S: W2=1.295  E_Sig_chart=0.2587  E_Sig_diff=0.0861  (2s)
+  MTE@0.1: 0.9604
+  MTE@0.5: 2.2906
+  MTE@1.0: 2.7370
+  W2@1.0:  1.3245
+  sW2@0.5: 0.9593 (95/200 in region)
+  sW2@1.0: 1.4630 (47/200 in region)
+  MMD@1.0: 0.1882
+  Survival@1.0: 78.5%
+  Stopped@1.0:  23.5%
+      hyperbolic_paraboloid seed=2042     K+S+Sd(0.5): W2=1.325  E_Sig_chart=0.2587  E_Sig_diff=0.0947  (4s)
+  MTE@0.1: 0.9663
+  MTE@0.5: 2.2982
+  MTE@1.0: 2.7572
+  W2@1.0:  1.3462
+  sW2@0.5: 0.9579 (95/200 in region)
+  sW2@1.0: 1.4852 (47/200 in region)
+  MMD@1.0: 0.1935
+  Survival@1.0: 78.5%
+  Stopped@1.0:  23.5%
+      hyperbolic_paraboloid seed=2042     K+S+Sd(1.0): W2=1.346  E_Sig_chart=0.2587  E_Sig_diff=0.1049  (4s)
+  MTE@0.1: 0.9745
+  MTE@0.5: 2.3046
+  MTE@1.0: 2.7866
+  W2@1.0:  1.3902
+  sW2@0.5: 0.9524 (95/200 in region)
+  sW2@1.0: 1.5162 (47/200 in region)
+  MMD@1.0: 0.2010
+  Survival@1.0: 78.5%
+  Stopped@1.0:  23.5%
+      hyperbolic_paraboloid seed=2042     K+S+Sd(2.0): W2=1.390  E_Sig_chart=0.2587  E_Sig_diff=0.1227  (4s)
+        Phase2 Epoch 40/200: loss=0.144041
+        Phase2 Epoch 80/200: loss=0.026851
+        Phase2 Epoch 120/200: loss=0.022565
+        Phase2 Epoch 160/200: loss=0.020577
+        Phase2 Epoch 200/200: loss=0.019090
+  MTE@0.1: 1.1455
+  MTE@0.5: 2.3509
+  MTE@1.0: 2.9679
+  W2@1.0:  1.1691
+  sW2@0.5: 0.8972 (99/200 in region)
+  sW2@1.0: 1.3489 (48/200 in region)
+  MMD@1.0: 0.1567
+  Survival@1.0: 74.5%
+  Stopped@1.0:  24.0%
+      hyperbolic_paraboloid seed=3042             K+S: W2=1.169  E_Sig_chart=0.3201  E_Sig_diff=0.2221  (2s)
+  MTE@0.1: 1.3622
+  MTE@0.5: 2.6042
+  MTE@1.0: 3.0478
+  W2@1.0:  1.2348
+  sW2@0.5: 0.9312 (99/200 in region)
+  sW2@1.0: 1.0814 (48/200 in region)
+  MMD@1.0: 0.1425
+  Survival@1.0: 74.5%
+  Stopped@1.0:  24.0%
+      hyperbolic_paraboloid seed=3042     K+S+Sd(0.5): W2=1.235  E_Sig_chart=0.3201  E_Sig_diff=0.1541  (4s)
+  MTE@0.1: 1.3737
+  MTE@0.5: 2.6406
+  MTE@1.0: 3.1054
+  W2@1.0:  1.2522
+  sW2@0.5: 0.9776 (99/200 in region)
+  sW2@1.0: 1.1313 (48/200 in region)
+  MMD@1.0: 0.1554
+  Survival@1.0: 74.5%
+  Stopped@1.0:  24.0%
+      hyperbolic_paraboloid seed=3042     K+S+Sd(1.0): W2=1.252  E_Sig_chart=0.3201  E_Sig_diff=0.1759  (4s)
+  MTE@0.1: 1.3842
+  MTE@0.5: 2.6734
+  MTE@1.0: 3.1622
+  W2@1.0:  1.2579
+  sW2@0.5: 1.0215 (99/200 in region)
+  sW2@1.0: 1.1935 (48/200 in region)
+  MMD@1.0: 0.1671
+  Survival@1.0: 74.5%
+  Stopped@1.0:  24.0%
+      hyperbolic_paraboloid seed=3042     K+S+Sd(2.0): W2=1.258  E_Sig_chart=0.3201  E_Sig_diff=0.2074  (4s)
+        Phase2 Epoch 40/200: loss=0.042784
+        Phase2 Epoch 80/200: loss=0.021353
+        Phase2 Epoch 120/200: loss=0.018275
+        Phase2 Epoch 160/200: loss=0.010047
+        Phase2 Epoch 200/200: loss=0.007403
+  MTE@0.1: 1.5076
+  MTE@0.5: 2.7338
+  MTE@1.0: 2.9056
+  W2@1.0:  1.2561
+  sW2@0.5: 1.0550 (107/200 in region)
+  sW2@1.0: 1.5163 (60/200 in region)
+  MMD@1.0: 0.1342
+  Survival@1.0: 76.0%
+  Stopped@1.0:  30.0%
+      hyperbolic_paraboloid seed=4042             K+S: W2=1.256  E_Sig_chart=0.1721  E_Sig_diff=0.0804  (2s)
+  MTE@0.1: 1.5232
+  MTE@0.5: 2.7629
+  MTE@1.0: 2.9280
+  W2@1.0:  1.2701
+  sW2@0.5: 1.0925 (107/200 in region)
+  sW2@1.0: 1.5405 (60/200 in region)
+  MMD@1.0: 0.1390
+  Survival@1.0: 76.0%
+  Stopped@1.0:  30.0%
+      hyperbolic_paraboloid seed=4042     K+S+Sd(0.5): W2=1.270  E_Sig_chart=0.1721  E_Sig_diff=0.0907  (4s)
+  MTE@0.1: 1.5312
+  MTE@0.5: 2.7768
+  MTE@1.0: 2.9378
+  W2@1.0:  1.2803
+  sW2@0.5: 1.1101 (107/200 in region)
+  sW2@1.0: 1.5541 (60/200 in region)
+  MMD@1.0: 0.1437
+  Survival@1.0: 76.0%
+  Stopped@1.0:  30.0%
+      hyperbolic_paraboloid seed=4042     K+S+Sd(1.0): W2=1.280  E_Sig_chart=0.1721  E_Sig_diff=0.1072  (4s)
+  MTE@0.1: 1.5426
+  MTE@0.5: 2.7971
+  MTE@1.0: 2.9527
+  W2@1.0:  1.3011
+  sW2@0.5: 1.1405 (107/200 in region)
+  sW2@1.0: 1.5848 (60/200 in region)
+  MMD@1.0: 0.1515
+  Survival@1.0: 76.0%
+  Stopped@1.0:  30.0%
+      hyperbolic_paraboloid seed=4042     K+S+Sd(2.0): W2=1.301  E_Sig_chart=0.1721  E_Sig_diff=0.1347  (4s)
+
+Saved 40 rows
+
+=== Summary (median over seeds) ===
+
+paraboloid:
+              K+S: W2=1.518  E_Sig_diff=0.1331
+      K+S+Sd(0.5): W2=1.567  E_Sig_diff=0.1517
+      K+S+Sd(1.0): W2=1.633  E_Sig_diff=0.1421
+      K+S+Sd(2.0): W2=1.672  E_Sig_diff=0.1842
+    Sd(0.5) vs K+S: ΔW2=+3.2%  p=0.255
+    Sd(1.0) vs K+S: ΔW2=+7.5%  p=0.027
+    Sd(2.0) vs K+S: ΔW2=+10.1%  p=0.004
+
+hyperbolic_paraboloid:
+              K+S: W2=1.295  E_Sig_diff=0.0804
+      K+S+Sd(0.5): W2=1.325  E_Sig_diff=0.0947
+      K+S+Sd(1.0): W2=1.346  E_Sig_diff=0.1072
+      K+S+Sd(2.0): W2=1.390  E_Sig_diff=0.1347
+    Sd(0.5) vs K+S: ΔW2=+2.3%  p=0.126
+    Sd(1.0) vs K+S: ΔW2=+4.0%  p=0.128
+    Sd(2.0) vs K+S: ΔW2=+7.4%  p=0.111

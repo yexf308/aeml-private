@@ -1,0 +1,863 @@
+Device: cuda
+D=11, N=50
+Configs: ['baseline', 'T', 'K', 'F', 'C', 'T+K', 'T+F', 'F+K', 'T+F+K']
+Seeds (10): [42, 1042, 2042, 3042, 4042, 5042, 6042, 7042, 8042, 9042]
+
+
+  baseline | seed=42
+      Epoch 100/500: loss=0.008187
+      Epoch 200/500: loss=0.005612
+      Epoch 300/500: loss=0.001544
+      Epoch 400/500: loss=0.000496
+      Epoch 500/500: loss=0.000341
+    recon=0.000323  tangent=0.046611  σ_min_p5=1.124
+
+  T | seed=42
+      Epoch 100/500: loss=0.012694
+      Epoch 200/500: loss=0.003477
+      Epoch 300/500: loss=0.002493
+      Epoch 400/500: loss=0.001302
+      Epoch 500/500: loss=0.002768
+    recon=0.001100  tangent=0.004771  σ_min_p5=1.057
+
+  K | seed=42
+
+[ae] Starting warmup: 250 epochs
+  Epoch 100 (warmup 100/250): loss = 0.0082
+  Epoch 200 (warmup 200/250): loss = 0.0056
+
+[ae] Starting finetune: 250 epochs
+  Epoch 350 (finetune 100/250): loss = 0.0014
+  Epoch 450 (finetune 200/250): loss = 0.0007
+    recon=0.000207  tangent=0.010078  σ_min_p5=1.090
+
+  F | seed=42
+      Epoch 100/500: loss=0.048684
+      Epoch 200/500: loss=0.008582
+      Epoch 300/500: loss=0.008309
+      Epoch 400/500: loss=0.008114
+      Epoch 500/500: loss=0.007793
+    recon=0.007397  tangent=0.639807  σ_min_p5=1.811
+
+  C | seed=42
+      Epoch 100/500: loss=0.064772
+      Epoch 200/500: loss=0.065116
+      Epoch 300/500: loss=0.035296
+      Epoch 400/500: loss=0.033986
+      Epoch 500/500: loss=0.031858
+    recon=0.032362  tangent=1.196455  σ_min_p5=0.024
+
+  T+K | seed=42
+
+[ae] Starting warmup: 250 epochs
+  Epoch 100 (warmup 100/250): loss = 0.0127
+  Epoch 200 (warmup 200/250): loss = 0.0035
+
+[ae] Starting finetune: 250 epochs
+  Epoch 350 (finetune 100/250): loss = 0.0020
+  Epoch 450 (finetune 200/250): loss = 0.0013
+    recon=0.000185  tangent=0.001884  σ_min_p5=1.156
+
+  T+F | seed=42
+      Epoch 100/500: loss=0.037554
+      Epoch 200/500: loss=0.012276
+      Epoch 300/500: loss=0.012429
+      Epoch 400/500: loss=0.003717
+      Epoch 500/500: loss=0.001720
+    recon=0.000021  tangent=0.002868  σ_min_p5=1.399
+
+  F+K | seed=42
+
+[ae] Starting warmup: 250 epochs
+  Epoch 100 (warmup 100/250): loss = 0.0487
+  Epoch 200 (warmup 200/250): loss = 0.0086
+
+[ae] Starting finetune: 250 epochs
+  Epoch 350 (finetune 100/250): loss = 0.0395
+  Epoch 450 (finetune 200/250): loss = 0.0360
+    recon=0.015652  tangent=0.658892  σ_min_p5=1.484
+
+  T+F+K | seed=42
+
+[ae] Starting warmup: 250 epochs
+  Epoch 100 (warmup 100/250): loss = 0.0376
+  Epoch 200 (warmup 200/250): loss = 0.0123
+
+[ae] Starting finetune: 250 epochs
+  Epoch 350 (finetune 100/250): loss = 0.0110
+  Epoch 450 (finetune 200/250): loss = 0.0033
+    recon=0.000528  tangent=0.005460  σ_min_p5=1.420
+
+  baseline | seed=1042
+      Epoch 100/500: loss=0.006755
+      Epoch 200/500: loss=0.004123
+      Epoch 300/500: loss=0.001506
+      Epoch 400/500: loss=0.000474
+      Epoch 500/500: loss=0.000265
+    recon=0.000278  tangent=0.064946  σ_min_p5=1.128
+
+  T | seed=1042
+      Epoch 100/500: loss=0.011639
+      Epoch 200/500: loss=0.002621
+      Epoch 300/500: loss=0.003399
+      Epoch 400/500: loss=0.004507
+      Epoch 500/500: loss=0.000823
+    recon=0.000162  tangent=0.007420  σ_min_p5=1.054
+
+  K | seed=1042
+
+[ae] Starting warmup: 250 epochs
+  Epoch 100 (warmup 100/250): loss = 0.0068
+  Epoch 200 (warmup 200/250): loss = 0.0041
+
+[ae] Starting finetune: 250 epochs
+  Epoch 350 (finetune 100/250): loss = 0.0012
+  Epoch 450 (finetune 200/250): loss = 0.0006
+    recon=0.000203  tangent=0.017606  σ_min_p5=1.027
+
+  F | seed=1042
+      Epoch 100/500: loss=0.054039
+      Epoch 200/500: loss=0.021111
+      Epoch 300/500: loss=0.006686
+      Epoch 400/500: loss=0.007053
+      Epoch 500/500: loss=0.006417
+    recon=0.006281  tangent=0.645880  σ_min_p5=1.650
+
+  C | seed=1042
+      Epoch 100/500: loss=0.060242
+      Epoch 200/500: loss=0.032523
+      Epoch 300/500: loss=0.026612
+      Epoch 400/500: loss=0.016027
+      Epoch 500/500: loss=0.007970
+    recon=0.006549  tangent=0.658795  σ_min_p5=9.381
+
+  T+K | seed=1042
+
+[ae] Starting warmup: 250 epochs
+  Epoch 100 (warmup 100/250): loss = 0.0116
+  Epoch 200 (warmup 200/250): loss = 0.0026
+
+[ae] Starting finetune: 250 epochs
+  Epoch 350 (finetune 100/250): loss = 0.0018
+  Epoch 450 (finetune 200/250): loss = 0.0012
+    recon=0.000142  tangent=0.006578  σ_min_p5=1.089
+
+  T+F | seed=1042
+      Epoch 100/500: loss=0.047919
+      Epoch 200/500: loss=0.010305
+      Epoch 300/500: loss=0.018092
+      Epoch 400/500: loss=0.002879
+      Epoch 500/500: loss=0.003392
+    recon=0.000108  tangent=0.008401  σ_min_p5=1.456
+
+  F+K | seed=1042
+
+[ae] Starting warmup: 250 epochs
+  Epoch 100 (warmup 100/250): loss = 0.0540
+  Epoch 200 (warmup 200/250): loss = 0.0211
+
+[ae] Starting finetune: 250 epochs
+  Epoch 350 (finetune 100/250): loss = 0.0497
+  Epoch 450 (finetune 200/250): loss = 0.0459
+    recon=0.024780  tangent=0.781364  σ_min_p5=1.355
+
+  T+F+K | seed=1042
+
+[ae] Starting warmup: 250 epochs
+  Epoch 100 (warmup 100/250): loss = 0.0479
+  Epoch 200 (warmup 200/250): loss = 0.0103
+
+[ae] Starting finetune: 250 epochs
+  Epoch 350 (finetune 100/250): loss = 0.0044
+  Epoch 450 (finetune 200/250): loss = 0.0022
+    recon=0.000023  tangent=0.007964  σ_min_p5=1.426
+
+  baseline | seed=2042
+      Epoch 100/500: loss=0.012149
+      Epoch 200/500: loss=0.005326
+      Epoch 300/500: loss=0.000724
+      Epoch 400/500: loss=0.000465
+      Epoch 500/500: loss=0.001091
+    recon=0.001501  tangent=0.047373  σ_min_p5=1.160
+
+  T | seed=2042
+      Epoch 100/500: loss=0.012494
+      Epoch 200/500: loss=0.007008
+      Epoch 300/500: loss=0.004108
+      Epoch 400/500: loss=0.001503
+      Epoch 500/500: loss=0.001317
+    recon=0.000225  tangent=0.001961  σ_min_p5=1.049
+
+  K | seed=2042
+
+[ae] Starting warmup: 250 epochs
+  Epoch 100 (warmup 100/250): loss = 0.0121
+  Epoch 200 (warmup 200/250): loss = 0.0053
+
+[ae] Starting finetune: 250 epochs
+  Epoch 350 (finetune 100/250): loss = 0.0008
+  Epoch 450 (finetune 200/250): loss = 0.0012
+    recon=0.000360  tangent=0.009913  σ_min_p5=1.068
+
+  F | seed=2042
+      Epoch 100/500: loss=0.049287
+      Epoch 200/500: loss=0.010323
+      Epoch 300/500: loss=0.010899
+      Epoch 400/500: loss=0.009561
+      Epoch 500/500: loss=0.009705
+    recon=0.008550  tangent=0.567521  σ_min_p5=1.514
+
+  C | seed=2042
+      Epoch 100/500: loss=0.073462
+      Epoch 200/500: loss=0.036918
+      Epoch 300/500: loss=0.015593
+      Epoch 400/500: loss=0.012269
+      Epoch 500/500: loss=0.014776
+    recon=0.014424  tangent=0.660965  σ_min_p5=10.095
+
+  T+K | seed=2042
+
+[ae] Starting warmup: 250 epochs
+  Epoch 100 (warmup 100/250): loss = 0.0125
+  Epoch 200 (warmup 200/250): loss = 0.0070
+
+[ae] Starting finetune: 250 epochs
+  Epoch 350 (finetune 100/250): loss = 0.0033
+  Epoch 450 (finetune 200/250): loss = 0.0014
+    recon=0.000103  tangent=0.001729  σ_min_p5=1.109
+
+  T+F | seed=2042
+      Epoch 100/500: loss=0.032624
+      Epoch 200/500: loss=0.013448
+      Epoch 300/500: loss=0.005602
+      Epoch 400/500: loss=0.004783
+      Epoch 500/500: loss=0.004112
+    recon=0.000171  tangent=0.002501  σ_min_p5=1.374
+
+  F+K | seed=2042
+
+[ae] Starting warmup: 250 epochs
+  Epoch 100 (warmup 100/250): loss = 0.0493
+  Epoch 200 (warmup 200/250): loss = 0.0103
+
+[ae] Starting finetune: 250 epochs
+  Epoch 350 (finetune 100/250): loss = 0.0361
+  Epoch 450 (finetune 200/250): loss = 0.0353
+    recon=0.023835  tangent=0.784032  σ_min_p5=1.412
+
+  T+F+K | seed=2042
+
+[ae] Starting warmup: 250 epochs
+  Epoch 100 (warmup 100/250): loss = 0.0326
+  Epoch 200 (warmup 200/250): loss = 0.0134
+
+[ae] Starting finetune: 250 epochs
+  Epoch 350 (finetune 100/250): loss = 0.0073
+  Epoch 450 (finetune 200/250): loss = 0.0143
+    recon=0.000558  tangent=0.004363  σ_min_p5=1.352
+
+  baseline | seed=3042
+      Epoch 100/500: loss=0.011676
+      Epoch 200/500: loss=0.004252
+      Epoch 300/500: loss=0.000619
+      Epoch 400/500: loss=0.000524
+      Epoch 500/500: loss=0.000301
+    recon=0.000313  tangent=0.037323  σ_min_p5=1.155
+
+  T | seed=3042
+      Epoch 100/500: loss=0.011417
+      Epoch 200/500: loss=0.004018
+      Epoch 300/500: loss=0.001830
+      Epoch 400/500: loss=0.003562
+      Epoch 500/500: loss=0.001576
+    recon=0.000266  tangent=0.002133  σ_min_p5=0.986
+
+  K | seed=3042
+
+[ae] Starting warmup: 250 epochs
+  Epoch 100 (warmup 100/250): loss = 0.0117
+  Epoch 200 (warmup 200/250): loss = 0.0043
+
+[ae] Starting finetune: 250 epochs
+  Epoch 350 (finetune 100/250): loss = 0.0017
+  Epoch 450 (finetune 200/250): loss = 0.0005
+    recon=0.000706  tangent=0.008080  σ_min_p5=1.167
+
+  F | seed=3042
+      Epoch 100/500: loss=0.048176
+      Epoch 200/500: loss=0.009672
+      Epoch 300/500: loss=0.010788
+      Epoch 400/500: loss=0.009752
+      Epoch 500/500: loss=0.010792
+    recon=0.009063  tangent=0.598114  σ_min_p5=1.709
+
+  C | seed=3042
+      Epoch 100/500: loss=0.060162
+      Epoch 200/500: loss=0.035724
+      Epoch 300/500: loss=0.035905
+      Epoch 400/500: loss=0.036078
+      Epoch 500/500: loss=0.036051
+    recon=0.033240  tangent=1.023589  σ_min_p5=0.864
+
+  T+K | seed=3042
+
+[ae] Starting warmup: 250 epochs
+  Epoch 100 (warmup 100/250): loss = 0.0114
+  Epoch 200 (warmup 200/250): loss = 0.0040
+
+[ae] Starting finetune: 250 epochs
+  Epoch 350 (finetune 100/250): loss = 0.0031
+  Epoch 450 (finetune 200/250): loss = 0.0015
+    recon=0.000255  tangent=0.002463  σ_min_p5=1.033
+
+  T+F | seed=3042
+      Epoch 100/500: loss=0.055468
+      Epoch 200/500: loss=0.009857
+      Epoch 300/500: loss=0.004375
+      Epoch 400/500: loss=0.008451
+      Epoch 500/500: loss=0.002090
+    recon=0.000019  tangent=0.002251  σ_min_p5=1.358
+
+  F+K | seed=3042
+
+[ae] Starting warmup: 250 epochs
+  Epoch 100 (warmup 100/250): loss = 0.0482
+  Epoch 200 (warmup 200/250): loss = 0.0097
+
+[ae] Starting finetune: 250 epochs
+  Epoch 350 (finetune 100/250): loss = 0.0515
+  Epoch 450 (finetune 200/250): loss = 0.0453
+    recon=0.025589  tangent=0.804860  σ_min_p5=1.619
+
+  T+F+K | seed=3042
+
+[ae] Starting warmup: 250 epochs
+  Epoch 100 (warmup 100/250): loss = 0.0555
+  Epoch 200 (warmup 200/250): loss = 0.0099
+
+[ae] Starting finetune: 250 epochs
+  Epoch 350 (finetune 100/250): loss = 0.0095
+  Epoch 450 (finetune 200/250): loss = 0.0022
+    recon=0.000011  tangent=0.001699  σ_min_p5=1.437
+
+  baseline | seed=4042
+      Epoch 100/500: loss=0.007033
+      Epoch 200/500: loss=0.004010
+      Epoch 300/500: loss=0.002757
+      Epoch 400/500: loss=0.000793
+      Epoch 500/500: loss=0.000392
+    recon=0.000383  tangent=0.050312  σ_min_p5=1.086
+
+  T | seed=4042
+      Epoch 100/500: loss=0.015290
+      Epoch 200/500: loss=0.004627
+      Epoch 300/500: loss=0.003810
+      Epoch 400/500: loss=0.002169
+      Epoch 500/500: loss=0.001905
+    recon=0.000351  tangent=0.003930  σ_min_p5=1.055
+
+  K | seed=4042
+
+[ae] Starting warmup: 250 epochs
+  Epoch 100 (warmup 100/250): loss = 0.0070
+  Epoch 200 (warmup 200/250): loss = 0.0040
+
+[ae] Starting finetune: 250 epochs
+  Epoch 350 (finetune 100/250): loss = 0.0009
+  Epoch 450 (finetune 200/250): loss = 0.0003
+    recon=0.000173  tangent=0.012075  σ_min_p5=1.135
+
+  F | seed=4042
+      Epoch 100/500: loss=0.047386
+      Epoch 200/500: loss=0.007599
+      Epoch 300/500: loss=0.007374
+      Epoch 400/500: loss=0.007512
+      Epoch 500/500: loss=0.006304
+    recon=0.006186  tangent=0.627642  σ_min_p5=1.689
+
+  C | seed=4042
+      Epoch 100/500: loss=0.063781
+      Epoch 200/500: loss=0.059787
+      Epoch 300/500: loss=0.033072
+      Epoch 400/500: loss=0.028774
+      Epoch 500/500: loss=0.029700
+    recon=0.026381  tangent=1.136620  σ_min_p5=0.064
+
+  T+K | seed=4042
+
+[ae] Starting warmup: 250 epochs
+  Epoch 100 (warmup 100/250): loss = 0.0153
+  Epoch 200 (warmup 200/250): loss = 0.0046
+
+[ae] Starting finetune: 250 epochs
+  Epoch 350 (finetune 100/250): loss = 0.0033
+  Epoch 450 (finetune 200/250): loss = 0.0021
+    recon=0.000447  tangent=0.004650  σ_min_p5=1.057
+
+  T+F | seed=4042
+      Epoch 100/500: loss=0.061375
+      Epoch 200/500: loss=0.016247
+      Epoch 300/500: loss=0.006712
+      Epoch 400/500: loss=0.003641
+      Epoch 500/500: loss=0.002336
+    recon=0.000027  tangent=0.003136  σ_min_p5=1.369
+
+  F+K | seed=4042
+
+[ae] Starting warmup: 250 epochs
+  Epoch 100 (warmup 100/250): loss = 0.0474
+  Epoch 200 (warmup 200/250): loss = 0.0076
+
+[ae] Starting finetune: 250 epochs
+  Epoch 350 (finetune 100/250): loss = 0.0296
+  Epoch 450 (finetune 200/250): loss = 0.0256
+    recon=0.012738  tangent=0.646528  σ_min_p5=1.447
+
+  T+F+K | seed=4042
+
+[ae] Starting warmup: 250 epochs
+  Epoch 100 (warmup 100/250): loss = 0.0614
+  Epoch 200 (warmup 200/250): loss = 0.0162
+
+[ae] Starting finetune: 250 epochs
+  Epoch 350 (finetune 100/250): loss = 0.0149
+  Epoch 450 (finetune 200/250): loss = 0.0071
+    recon=0.000086  tangent=0.003061  σ_min_p5=1.341
+
+  baseline | seed=5042
+      Epoch 100/500: loss=0.010789
+      Epoch 200/500: loss=0.005088
+      Epoch 300/500: loss=0.002424
+      Epoch 400/500: loss=0.000528
+      Epoch 500/500: loss=0.000277
+    recon=0.000261  tangent=0.044252  σ_min_p5=1.167
+
+  T | seed=5042
+      Epoch 100/500: loss=0.012887
+      Epoch 200/500: loss=0.002533
+      Epoch 300/500: loss=0.001862
+      Epoch 400/500: loss=0.001387
+      Epoch 500/500: loss=0.001623
+    recon=0.000234  tangent=0.002380  σ_min_p5=0.951
+
+  K | seed=5042
+
+[ae] Starting warmup: 250 epochs
+  Epoch 100 (warmup 100/250): loss = 0.0108
+  Epoch 200 (warmup 200/250): loss = 0.0051
+
+[ae] Starting finetune: 250 epochs
+  Epoch 350 (finetune 100/250): loss = 0.0016
+  Epoch 450 (finetune 200/250): loss = 0.0005
+    recon=0.000276  tangent=0.008295  σ_min_p5=1.006
+
+  F | seed=5042
+      Epoch 100/500: loss=0.045642
+      Epoch 200/500: loss=0.010058
+      Epoch 300/500: loss=0.009653
+      Epoch 400/500: loss=0.010257
+      Epoch 500/500: loss=0.009475
+    recon=0.009241  tangent=0.681356  σ_min_p5=1.838
+
+  C | seed=5042
+      Epoch 100/500: loss=0.060077
+      Epoch 200/500: loss=0.015128
+      Epoch 300/500: loss=0.011661
+      Epoch 400/500: loss=0.012686
+      Epoch 500/500: loss=0.012104
+    recon=0.010687  tangent=0.695302  σ_min_p5=10.157
+
+  T+K | seed=5042
+
+[ae] Starting warmup: 250 epochs
+  Epoch 100 (warmup 100/250): loss = 0.0129
+  Epoch 200 (warmup 200/250): loss = 0.0025
+
+[ae] Starting finetune: 250 epochs
+  Epoch 350 (finetune 100/250): loss = 0.0015
+  Epoch 450 (finetune 200/250): loss = 0.0012
+    recon=0.000133  tangent=0.002050  σ_min_p5=0.978
+
+  T+F | seed=5042
+      Epoch 100/500: loss=0.045165
+      Epoch 200/500: loss=0.008258
+      Epoch 300/500: loss=0.008021
+      Epoch 400/500: loss=0.002389
+      Epoch 500/500: loss=0.002393
+    recon=0.000113  tangent=0.002474  σ_min_p5=1.258
+
+  F+K | seed=5042
+
+[ae] Starting warmup: 250 epochs
+  Epoch 100 (warmup 100/250): loss = 0.0456
+  Epoch 200 (warmup 200/250): loss = 0.0101
+
+[ae] Starting finetune: 250 epochs
+  Epoch 350 (finetune 100/250): loss = 0.0432
+  Epoch 450 (finetune 200/250): loss = 0.0299
+    recon=0.013651  tangent=0.653260  σ_min_p5=1.380
+
+  T+F+K | seed=5042
+
+[ae] Starting warmup: 250 epochs
+  Epoch 100 (warmup 100/250): loss = 0.0452
+  Epoch 200 (warmup 200/250): loss = 0.0083
+
+[ae] Starting finetune: 250 epochs
+  Epoch 350 (finetune 100/250): loss = 0.0060
+  Epoch 450 (finetune 200/250): loss = 0.0020
+    recon=0.000121  tangent=0.001208  σ_min_p5=1.237
+
+  baseline | seed=6042
+      Epoch 100/500: loss=0.011447
+      Epoch 200/500: loss=0.005471
+      Epoch 300/500: loss=0.000885
+      Epoch 400/500: loss=0.000353
+      Epoch 500/500: loss=0.000202
+    recon=0.000160  tangent=0.032516  σ_min_p5=1.154
+
+  T | seed=6042
+      Epoch 100/500: loss=0.015974
+      Epoch 200/500: loss=0.005304
+      Epoch 300/500: loss=0.002800
+      Epoch 400/500: loss=0.007536
+      Epoch 500/500: loss=0.002643
+    recon=0.000512  tangent=0.003800  σ_min_p5=1.064
+
+  K | seed=6042
+
+[ae] Starting warmup: 250 epochs
+  Epoch 100 (warmup 100/250): loss = 0.0114
+  Epoch 200 (warmup 200/250): loss = 0.0055
+
+[ae] Starting finetune: 250 epochs
+  Epoch 350 (finetune 100/250): loss = 0.0010
+  Epoch 450 (finetune 200/250): loss = 0.0004
+    recon=0.000553  tangent=0.012216  σ_min_p5=1.061
+
+  F | seed=6042
+      Epoch 100/500: loss=0.037533
+      Epoch 200/500: loss=0.032798
+      Epoch 300/500: loss=0.022361
+      Epoch 400/500: loss=0.011839
+      Epoch 500/500: loss=0.010980
+    recon=0.010050  tangent=0.619634  σ_min_p5=1.572
+
+  C | seed=6042
+      Epoch 100/500: loss=0.071329
+      Epoch 200/500: loss=0.045551
+      Epoch 300/500: loss=0.034623
+      Epoch 400/500: loss=0.034288
+      Epoch 500/500: loss=0.032920
+    recon=0.032978  tangent=0.966592  σ_min_p5=0.570
+
+  T+K | seed=6042
+
+[ae] Starting warmup: 250 epochs
+  Epoch 100 (warmup 100/250): loss = 0.0160
+  Epoch 200 (warmup 200/250): loss = 0.0053
+
+[ae] Starting finetune: 250 epochs
+  Epoch 350 (finetune 100/250): loss = 0.0080
+  Epoch 450 (finetune 200/250): loss = 0.0023
+    recon=0.000233  tangent=0.001682  σ_min_p5=1.089
+
+  T+F | seed=6042
+      Epoch 100/500: loss=0.068786
+      Epoch 200/500: loss=0.010875
+      Epoch 300/500: loss=0.006130
+      Epoch 400/500: loss=0.007463
+      Epoch 500/500: loss=0.001657
+    recon=0.000027  tangent=0.001579  σ_min_p5=1.420
+
+  F+K | seed=6042
+
+[ae] Starting warmup: 250 epochs
+  Epoch 100 (warmup 100/250): loss = 0.0375
+  Epoch 200 (warmup 200/250): loss = 0.0328
+
+[ae] Starting finetune: 250 epochs
+  Epoch 350 (finetune 100/250): loss = 0.0403
+  Epoch 450 (finetune 200/250): loss = 0.0385
+    recon=0.020124  tangent=0.717015  σ_min_p5=1.614
+
+  T+F+K | seed=6042
+
+[ae] Starting warmup: 250 epochs
+  Epoch 100 (warmup 100/250): loss = 0.0688
+  Epoch 200 (warmup 200/250): loss = 0.0109
+
+[ae] Starting finetune: 250 epochs
+  Epoch 350 (finetune 100/250): loss = 0.0124
+  Epoch 450 (finetune 200/250): loss = 0.0028
+    recon=0.000350  tangent=0.003426  σ_min_p5=1.426
+
+  baseline | seed=7042
+      Epoch 100/500: loss=0.010754
+      Epoch 200/500: loss=0.003307
+      Epoch 300/500: loss=0.000741
+      Epoch 400/500: loss=0.000758
+      Epoch 500/500: loss=0.000269
+    recon=0.000325  tangent=0.031771  σ_min_p5=1.144
+
+  T | seed=7042
+      Epoch 100/500: loss=0.012395
+      Epoch 200/500: loss=0.005540
+      Epoch 300/500: loss=0.007244
+      Epoch 400/500: loss=0.003885
+      Epoch 500/500: loss=0.001738
+    recon=0.000248  tangent=0.001760  σ_min_p5=1.094
+
+  K | seed=7042
+
+[ae] Starting warmup: 250 epochs
+  Epoch 100 (warmup 100/250): loss = 0.0108
+  Epoch 200 (warmup 200/250): loss = 0.0033
+
+[ae] Starting finetune: 250 epochs
+  Epoch 350 (finetune 100/250): loss = 0.0010
+  Epoch 450 (finetune 200/250): loss = 0.0005
+    recon=0.000254  tangent=0.010009  σ_min_p5=1.080
+
+  F | seed=7042
+      Epoch 100/500: loss=0.045633
+      Epoch 200/500: loss=0.029599
+      Epoch 300/500: loss=0.015569
+      Epoch 400/500: loss=0.013625
+      Epoch 500/500: loss=0.011080
+    recon=0.010838  tangent=0.574896  σ_min_p5=1.808
+
+  C | seed=7042
+      Epoch 100/500: loss=0.035071
+      Epoch 200/500: loss=0.033395
+      Epoch 300/500: loss=0.035783
+      Epoch 400/500: loss=0.017709
+      Epoch 500/500: loss=0.017090
+    recon=0.014996  tangent=0.686042  σ_min_p5=8.579
+
+  T+K | seed=7042
+
+[ae] Starting warmup: 250 epochs
+  Epoch 100 (warmup 100/250): loss = 0.0124
+  Epoch 200 (warmup 200/250): loss = 0.0055
+
+[ae] Starting finetune: 250 epochs
+  Epoch 350 (finetune 100/250): loss = 0.0033
+  Epoch 450 (finetune 200/250): loss = 0.0024
+    recon=0.000352  tangent=0.002705  σ_min_p5=1.099
+
+  T+F | seed=7042
+      Epoch 100/500: loss=0.058356
+      Epoch 200/500: loss=0.026212
+      Epoch 300/500: loss=0.011029
+      Epoch 400/500: loss=0.019755
+      Epoch 500/500: loss=0.003224
+    recon=0.000184  tangent=0.002396  σ_min_p5=1.370
+
+  F+K | seed=7042
+
+[ae] Starting warmup: 250 epochs
+  Epoch 100 (warmup 100/250): loss = 0.0456
+  Epoch 200 (warmup 200/250): loss = 0.0296
+
+[ae] Starting finetune: 250 epochs
+  Epoch 350 (finetune 100/250): loss = 0.0428
+  Epoch 450 (finetune 200/250): loss = 0.0310
+    recon=0.019590  tangent=0.760186  σ_min_p5=1.447
+
+  T+F+K | seed=7042
+
+[ae] Starting warmup: 250 epochs
+  Epoch 100 (warmup 100/250): loss = 0.0584
+  Epoch 200 (warmup 200/250): loss = 0.0262
+
+[ae] Starting finetune: 250 epochs
+  Epoch 350 (finetune 100/250): loss = 0.0068
+  Epoch 450 (finetune 200/250): loss = 0.0082
+    recon=0.000019  tangent=0.001452  σ_min_p5=1.357
+
+  baseline | seed=8042
+      Epoch 100/500: loss=0.011664
+      Epoch 200/500: loss=0.004548
+      Epoch 300/500: loss=0.002089
+      Epoch 400/500: loss=0.000658
+      Epoch 500/500: loss=0.000404
+    recon=0.000399  tangent=0.048974  σ_min_p5=1.185
+
+  T | seed=8042
+      Epoch 100/500: loss=0.012471
+      Epoch 200/500: loss=0.004475
+      Epoch 300/500: loss=0.002267
+      Epoch 400/500: loss=0.001724
+      Epoch 500/500: loss=0.000832
+    recon=0.000167  tangent=0.001399  σ_min_p5=1.094
+
+  K | seed=8042
+
+[ae] Starting warmup: 250 epochs
+  Epoch 100 (warmup 100/250): loss = 0.0117
+  Epoch 200 (warmup 200/250): loss = 0.0045
+
+[ae] Starting finetune: 250 epochs
+  Epoch 350 (finetune 100/250): loss = 0.0018
+  Epoch 450 (finetune 200/250): loss = 0.0014
+    recon=0.000429  tangent=0.034565  σ_min_p5=1.125
+
+  F | seed=8042
+      Epoch 100/500: loss=0.036822
+      Epoch 200/500: loss=0.013069
+      Epoch 300/500: loss=0.010757
+      Epoch 400/500: loss=0.007499
+      Epoch 500/500: loss=0.005314
+    recon=0.004273  tangent=0.458794  σ_min_p5=1.392
+
+  C | seed=8042
+      Epoch 100/500: loss=0.038144
+      Epoch 200/500: loss=0.028509
+      Epoch 300/500: loss=0.016954
+      Epoch 400/500: loss=0.012690
+      Epoch 500/500: loss=0.012554
+    recon=0.011911  tangent=0.718339  σ_min_p5=11.470
+
+  T+K | seed=8042
+
+[ae] Starting warmup: 250 epochs
+  Epoch 100 (warmup 100/250): loss = 0.0125
+  Epoch 200 (warmup 200/250): loss = 0.0045
+
+[ae] Starting finetune: 250 epochs
+  Epoch 350 (finetune 100/250): loss = 0.0019
+  Epoch 450 (finetune 200/250): loss = 0.0068
+    recon=0.000214  tangent=0.001574  σ_min_p5=1.090
+
+  T+F | seed=8042
+      Epoch 100/500: loss=0.059242
+      Epoch 200/500: loss=0.014563
+      Epoch 300/500: loss=0.014210
+      Epoch 400/500: loss=0.005940
+      Epoch 500/500: loss=0.002410
+    recon=0.000059  tangent=0.002646  σ_min_p5=1.436
+
+  F+K | seed=8042
+
+[ae] Starting warmup: 250 epochs
+  Epoch 100 (warmup 100/250): loss = 0.0368
+  Epoch 200 (warmup 200/250): loss = 0.0131
+
+[ae] Starting finetune: 250 epochs
+  Epoch 350 (finetune 100/250): loss = 0.0386
+  Epoch 450 (finetune 200/250): loss = 0.0325
+    recon=0.018030  tangent=0.794904  σ_min_p5=1.517
+
+  T+F+K | seed=8042
+
+[ae] Starting warmup: 250 epochs
+  Epoch 100 (warmup 100/250): loss = 0.0592
+  Epoch 200 (warmup 200/250): loss = 0.0146
+
+[ae] Starting finetune: 250 epochs
+  Epoch 350 (finetune 100/250): loss = 0.0055
+  Epoch 450 (finetune 200/250): loss = 0.0037
+    recon=0.000061  tangent=0.002803  σ_min_p5=1.484
+
+  baseline | seed=9042
+      Epoch 100/500: loss=0.011563
+      Epoch 200/500: loss=0.003615
+      Epoch 300/500: loss=0.001065
+      Epoch 400/500: loss=0.000585
+      Epoch 500/500: loss=0.000235
+    recon=0.000316  tangent=0.026090  σ_min_p5=1.095
+
+  T | seed=9042
+      Epoch 100/500: loss=0.009558
+      Epoch 200/500: loss=0.002863
+      Epoch 300/500: loss=0.002046
+      Epoch 400/500: loss=0.001582
+      Epoch 500/500: loss=0.001841
+    recon=0.000585  tangent=0.003259  σ_min_p5=1.017
+
+  K | seed=9042
+
+[ae] Starting warmup: 250 epochs
+  Epoch 100 (warmup 100/250): loss = 0.0116
+  Epoch 200 (warmup 200/250): loss = 0.0036
+
+[ae] Starting finetune: 250 epochs
+  Epoch 350 (finetune 100/250): loss = 0.0012
+  Epoch 450 (finetune 200/250): loss = 0.0007
+    recon=0.000221  tangent=0.014375  σ_min_p5=1.058
+
+  F | seed=9042
+      Epoch 100/500: loss=0.064674
+      Epoch 200/500: loss=0.022451
+      Epoch 300/500: loss=0.011869
+      Epoch 400/500: loss=0.009511
+      Epoch 500/500: loss=0.007223
+    recon=0.005871  tangent=0.428201  σ_min_p5=1.613
+
+  C | seed=9042
+      Epoch 100/500: loss=0.052046
+      Epoch 200/500: loss=0.033106
+      Epoch 300/500: loss=0.015758
+      Epoch 400/500: loss=0.015084
+      Epoch 500/500: loss=0.013959
+    recon=0.012818  tangent=0.656958  σ_min_p5=9.089
+
+  T+K | seed=9042
+
+[ae] Starting warmup: 250 epochs
+  Epoch 100 (warmup 100/250): loss = 0.0096
+  Epoch 200 (warmup 200/250): loss = 0.0029
+
+[ae] Starting finetune: 250 epochs
+  Epoch 350 (finetune 100/250): loss = 0.0041
+  Epoch 450 (finetune 200/250): loss = 0.0014
+    recon=0.000140  tangent=0.001224  σ_min_p5=1.071
+
+  T+F | seed=9042
+      Epoch 100/500: loss=0.051639
+      Epoch 200/500: loss=0.016004
+      Epoch 300/500: loss=0.011000
+      Epoch 400/500: loss=0.003288
+      Epoch 500/500: loss=0.007466
+    recon=0.001180  tangent=0.004513  σ_min_p5=1.259
+
+  F+K | seed=9042
+
+[ae] Starting warmup: 250 epochs
+  Epoch 100 (warmup 100/250): loss = 0.0647
+  Epoch 200 (warmup 200/250): loss = 0.0225
+
+[ae] Starting finetune: 250 epochs
+  Epoch 350 (finetune 100/250): loss = 0.0303
+  Epoch 450 (finetune 200/250): loss = 0.0275
+    recon=0.014683  tangent=0.613851  σ_min_p5=1.420
+
+  T+F+K | seed=9042
+
+[ae] Starting warmup: 250 epochs
+  Epoch 100 (warmup 100/250): loss = 0.0516
+  Epoch 200 (warmup 200/250): loss = 0.0160
+
+[ae] Starting finetune: 250 epochs
+  Epoch 350 (finetune 100/250): loss = 0.0117
+  Epoch 450 (finetune 200/250): loss = 0.0024
+    recon=0.000013  tangent=0.001109  σ_min_p5=1.307
+
+Saved 90 rows to mb_ablation.csv
+
+======================================================================
+MB ABLATION SUMMARY (mean ± std)
+======================================================================
+    config    n  reconstruction                        tangent                      curvature                 
+  baseline   10        0.009616 +/-  0.005934        0.043017 +/-  0.010764        1.466550 +/-  0.390426  
+         T   10        0.009215 +/-  0.004702        0.003281 +/-  0.001725        0.227423 +/-  0.134904  
+         K   10        0.008042 +/-  0.004910        0.013721 +/-  0.007469        0.133614 +/-  0.074899  
+         F   10        0.108632 +/-  0.021586        0.584185 +/-  0.077524        5.421601 +/-  0.745177  
+         C   10        0.251530 +/-  0.124664        0.839966 +/-  0.205575        6.466661 +/-  0.581286  
+       T+K   10        0.006330 +/-  0.004021        0.002654 +/-  0.001594        0.084566 +/-  0.040077  
+       T+F   10        0.002465 +/-  0.003698        0.003277 +/-  0.001853        0.242246 +/-  0.077463  
+       F+K   10        0.244305 +/-  0.037744        0.721489 +/-  0.068654        5.189455 +/-  0.376330  
+     T+F+K   10        0.002302 +/-  0.002145        0.003255 +/-  0.002074        0.119510 +/-  0.042611  
+
+Total time: 1602.0s

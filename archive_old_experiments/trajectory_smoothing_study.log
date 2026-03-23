@@ -1,0 +1,1300 @@
+
+######################################################################
+  Surface: paraboloid
+######################################################################
+
+--- Stage 1: Autoencoder (recon + T+F) ---
+  Epoch 100: loss=0.734580
+  Epoch 200: loss=0.331667
+  Epoch 300: loss=0.048390
+  Epoch 400: loss=0.036269
+  Epoch 500: loss=0.008697
+
+  paraboloid seed=42 T+F (lambda=0.0)
+  MTE@0.1: 0.8662
+  MTE@0.5: 2.2203
+  MTE@1.0: 3.2884
+  W2@1.0:  2.1201
+  sW2@0.5: 1.5141 (96/200 in region)
+  sW2@1.0: 2.5000 (48/200 in region)
+  MMD@1.0: 0.3178
+  Survival@1.0: 76.5%
+  Stopped@1.0:  24.0%
+    E_mu_held=0.0879  W2=2.1201  sW2=2.5000  MTE=3.2884  (5s)
+
+  paraboloid seed=42 T+F+S (lambda=0.5)
+  MTE@0.1: 0.8703
+  MTE@0.5: 2.0623
+  MTE@1.0: 2.8492
+  W2@1.0:  1.7075
+  sW2@0.5: 1.2999 (96/200 in region)
+  sW2@1.0: 2.0828 (48/200 in region)
+  MMD@1.0: 0.2605
+  Survival@1.0: 76.5%
+  Stopped@1.0:  24.0%
+    E_mu_held=0.2722  W2=1.7075  sW2=2.0828  MTE=2.8492  (6s)
+
+--- Stage 1: Autoencoder (recon + T+F) ---
+  Epoch 100: loss=0.430567
+  Epoch 200: loss=0.086333
+  Epoch 300: loss=0.027231
+  Epoch 400: loss=0.010977
+  Epoch 500: loss=0.011287
+
+  paraboloid seed=1042 T+F (lambda=0.0)
+  MTE@0.1: 0.8075
+  MTE@0.5: 1.6543
+  MTE@1.0: 2.3190
+  W2@1.0:  1.2977
+  sW2@0.5: 0.7574 (100/200 in region)
+  sW2@1.0: 1.4982 (53/200 in region)
+  MMD@1.0: 0.2365
+  Survival@1.0: 72.0%
+  Stopped@1.0:  26.5%
+    E_mu_held=0.1165  W2=1.2977  sW2=1.4982  MTE=2.3190  (5s)
+
+  paraboloid seed=1042 T+F+S (lambda=0.5)
+  MTE@0.1: 0.8093
+  MTE@0.5: 1.6052
+  MTE@1.0: 2.0854
+  W2@1.0:  1.1645
+  sW2@0.5: 0.6740 (100/200 in region)
+  sW2@1.0: 1.0693 (53/200 in region)
+  MMD@1.0: 0.1820
+  Survival@1.0: 72.0%
+  Stopped@1.0:  26.5%
+    E_mu_held=0.1788  W2=1.1645  sW2=1.0693  MTE=2.0854  (5s)
+
+--- Stage 1: Autoencoder (recon + T+F) ---
+  Epoch 100: loss=0.604837
+  Epoch 200: loss=0.128088
+  Epoch 300: loss=0.030871
+  Epoch 400: loss=0.012893
+  Epoch 500: loss=0.009301
+
+  paraboloid seed=2042 T+F (lambda=0.0)
+  MTE@0.1: 0.7430
+  MTE@0.5: 1.8436
+  MTE@1.0: 2.4580
+  W2@1.0:  1.5507
+  sW2@0.5: 1.1822 (95/200 in region)
+  sW2@1.0: 2.3006 (47/200 in region)
+  MMD@1.0: 0.1479
+  Survival@1.0: 78.5%
+  Stopped@1.0:  23.5%
+    E_mu_held=0.0916  W2=1.5507  sW2=2.3006  MTE=2.4580  (4s)
+
+  paraboloid seed=2042 T+F+S (lambda=0.5)
+  MTE@0.1: 0.7382
+  MTE@0.5: 1.7316
+  MTE@1.0: 2.2224
+  W2@1.0:  1.3475
+  sW2@0.5: 0.8826 (95/200 in region)
+  sW2@1.0: 1.7138 (47/200 in region)
+  MMD@1.0: 0.1317
+  Survival@1.0: 78.5%
+  Stopped@1.0:  23.5%
+    E_mu_held=0.1849  W2=1.3475  sW2=1.7138  MTE=2.2224  (7s)
+
+--- Stage 1: Autoencoder (recon + T+F) ---
+  Epoch 100: loss=0.409766
+  Epoch 200: loss=0.092619
+  Epoch 300: loss=0.020118
+  Epoch 400: loss=0.012347
+  Epoch 500: loss=0.009120
+
+  paraboloid seed=3042 T+F (lambda=0.0)
+  MTE@0.1: 1.0442
+  MTE@0.5: 2.1909
+  MTE@1.0: 2.8704
+  W2@1.0:  1.6481
+  sW2@0.5: 1.3821 (99/200 in region)
+  sW2@1.0: 2.2458 (48/200 in region)
+  MMD@1.0: 0.2264
+  Survival@1.0: 74.5%
+  Stopped@1.0:  24.0%
+    E_mu_held=0.0890  W2=1.6481  sW2=2.2458  MTE=2.8704  (5s)
+
+  paraboloid seed=3042 T+F+S (lambda=0.5)
+  MTE@0.1: 1.0360
+  MTE@0.5: 2.0221
+  MTE@1.0: 2.4577
+  W2@1.0:  1.1900
+  sW2@0.5: 1.0614 (99/200 in region)
+  sW2@1.0: 1.5560 (48/200 in region)
+  MMD@1.0: 0.1767
+  Survival@1.0: 74.5%
+  Stopped@1.0:  24.0%
+    E_mu_held=0.2061  W2=1.1900  sW2=1.5560  MTE=2.4577  (5s)
+
+--- Stage 1: Autoencoder (recon + T+F) ---
+  Epoch 100: loss=0.374004
+  Epoch 200: loss=0.044884
+  Epoch 300: loss=0.023724
+  Epoch 400: loss=0.016963
+  Epoch 500: loss=0.011931
+
+  paraboloid seed=4042 T+F (lambda=0.0)
+  MTE@0.1: 0.9869
+  MTE@0.5: 2.0825
+  MTE@1.0: 2.4820
+  W2@1.0:  1.1041
+  sW2@0.5: 0.9515 (107/200 in region)
+  sW2@1.0: 1.9726 (60/200 in region)
+  MMD@1.0: 0.1789
+  Survival@1.0: 76.0%
+  Stopped@1.0:  30.0%
+    E_mu_held=0.0952  W2=1.1041  sW2=1.9726  MTE=2.4820  (5s)
+
+  paraboloid seed=4042 T+F+S (lambda=0.5)
+  MTE@0.1: 0.9810
+  MTE@0.5: 2.0222
+  MTE@1.0: 2.2563
+  W2@1.0:  0.8273
+  sW2@0.5: 0.7178 (107/200 in region)
+  sW2@1.0: 1.6229 (60/200 in region)
+  MMD@1.0: 0.0879
+  Survival@1.0: 76.0%
+  Stopped@1.0:  30.0%
+    E_mu_held=0.1695  W2=0.8273  sW2=1.6229  MTE=2.2563  (6s)
+
+--- Stage 1: Autoencoder (recon + T+F) ---
+  Epoch 100: loss=0.255059
+  Epoch 200: loss=0.071236
+  Epoch 300: loss=0.020724
+  Epoch 400: loss=0.018688
+  Epoch 500: loss=0.014815
+
+  paraboloid seed=5042 T+F (lambda=0.0)
+  MTE@0.1: 1.1147
+  MTE@0.5: 2.1522
+  MTE@1.0: 2.8231
+  W2@1.0:  2.0930
+  sW2@0.5: 1.3257 (110/200 in region)
+  sW2@1.0: 2.0131 (53/200 in region)
+  MMD@1.0: 0.2493
+  Survival@1.0: 76.5%
+  Stopped@1.0:  26.5%
+    E_mu_held=0.1794  W2=2.0930  sW2=2.0131  MTE=2.8231  (6s)
+
+  paraboloid seed=5042 T+F+S (lambda=0.5)
+  MTE@0.1: 1.1062
+  MTE@0.5: 2.0787
+  MTE@1.0: 2.5599
+  W2@1.0:  1.9302
+  sW2@0.5: 1.0565 (110/200 in region)
+  sW2@1.0: 1.7283 (53/200 in region)
+  MMD@1.0: 0.2425
+  Survival@1.0: 76.5%
+  Stopped@1.0:  26.5%
+    E_mu_held=0.3887  W2=1.9302  sW2=1.7283  MTE=2.5599  (6s)
+
+--- Stage 1: Autoencoder (recon + T+F) ---
+  Epoch 100: loss=0.217232
+  Epoch 200: loss=0.127302
+  Epoch 300: loss=0.047220
+  Epoch 400: loss=0.031556
+  Epoch 500: loss=0.011599
+
+  paraboloid seed=6042 T+F (lambda=0.0)
+  MTE@0.1: 1.0122
+  MTE@0.5: 2.0137
+  MTE@1.0: 2.3487
+  W2@1.0:  1.3114
+  sW2@0.5: 0.7941 (103/200 in region)
+  sW2@1.0: 1.2089 (61/200 in region)
+  MMD@1.0: 0.1646
+  Survival@1.0: 73.0%
+  Stopped@1.0:  30.5%
+    E_mu_held=0.1097  W2=1.3114  sW2=1.2089  MTE=2.3487  (5s)
+
+  paraboloid seed=6042 T+F+S (lambda=0.5)
+  MTE@0.1: 0.9900
+  MTE@0.5: 1.9398
+  MTE@1.0: 2.1690
+  W2@1.0:  1.5022
+  sW2@0.5: 0.7012 (103/200 in region)
+  sW2@1.0: 1.0953 (61/200 in region)
+  MMD@1.0: 0.2356
+  Survival@1.0: 73.0%
+  Stopped@1.0:  30.5%
+    E_mu_held=0.3371  W2=1.5022  sW2=1.0953  MTE=2.1690  (6s)
+
+--- Stage 1: Autoencoder (recon + T+F) ---
+  Epoch 100: loss=0.314515
+  Epoch 200: loss=0.060357
+  Epoch 300: loss=0.050441
+  Epoch 400: loss=0.004175
+  Epoch 500: loss=0.009667
+
+  paraboloid seed=7042 T+F (lambda=0.0)
+  MTE@0.1: 1.1278
+  MTE@0.5: 1.9400
+  MTE@1.0: 2.5069
+  W2@1.0:  1.2111
+  sW2@0.5: 0.7951 (103/200 in region)
+  sW2@1.0: 1.5308 (54/200 in region)
+  MMD@1.0: 0.1188
+  Survival@1.0: 76.5%
+  Stopped@1.0:  27.0%
+    E_mu_held=0.0499  W2=1.2111  sW2=1.5308  MTE=2.5069  (6s)
+
+  paraboloid seed=7042 T+F+S (lambda=0.5)
+  MTE@0.1: 1.1228
+  MTE@0.5: 1.9129
+  MTE@1.0: 2.3587
+  W2@1.0:  1.0814
+  sW2@0.5: 0.6678 (103/200 in region)
+  sW2@1.0: 1.3096 (54/200 in region)
+  MMD@1.0: 0.0916
+  Survival@1.0: 76.5%
+  Stopped@1.0:  27.0%
+    E_mu_held=0.1247  W2=1.0814  sW2=1.3096  MTE=2.3587  (5s)
+
+--- Stage 1: Autoencoder (recon + T+F) ---
+  Epoch 100: loss=0.314688
+  Epoch 200: loss=0.050619
+  Epoch 300: loss=0.018098
+  Epoch 400: loss=0.016959
+  Epoch 500: loss=0.002621
+
+  paraboloid seed=8042 T+F (lambda=0.0)
+  MTE@0.1: 0.8478
+  MTE@0.5: 1.6075
+  MTE@1.0: 1.9912
+  W2@1.0:  1.0768
+  sW2@0.5: 0.9169 (101/200 in region)
+  sW2@1.0: 0.8902 (60/200 in region)
+  MMD@1.0: 0.1331
+  Survival@1.0: 79.5%
+  Stopped@1.0:  30.0%
+    E_mu_held=0.0709  W2=1.0768  sW2=0.8902  MTE=1.9912  (6s)
+
+  paraboloid seed=8042 T+F+S (lambda=0.5)
+  MTE@0.1: 0.8478
+  MTE@0.5: 1.5620
+  MTE@1.0: 1.9585
+  W2@1.0:  0.9835
+  sW2@0.5: 0.8165 (101/200 in region)
+  sW2@1.0: 0.8655 (60/200 in region)
+  MMD@1.0: 0.1087
+  Survival@1.0: 79.5%
+  Stopped@1.0:  30.0%
+    E_mu_held=0.2121  W2=0.9835  sW2=0.8655  MTE=1.9585  (6s)
+
+--- Stage 1: Autoencoder (recon + T+F) ---
+  Epoch 100: loss=0.634333
+  Epoch 200: loss=0.235904
+  Epoch 300: loss=0.051707
+  Epoch 400: loss=0.036538
+  Epoch 500: loss=0.031721
+
+  paraboloid seed=9042 T+F (lambda=0.0)
+  MTE@0.1: 1.1068
+  MTE@0.5: 2.1100
+  MTE@1.0: 2.7722
+  W2@1.0:  1.7349
+  sW2@0.5: 1.5249 (105/200 in region)
+  sW2@1.0: 2.3472 (64/200 in region)
+  MMD@1.0: 0.2936
+  Survival@1.0: 76.0%
+  Stopped@1.0:  32.0%
+    E_mu_held=0.0759  W2=1.7349  sW2=2.3472  MTE=2.7722  (4s)
+
+  paraboloid seed=9042 T+F+S (lambda=0.5)
+  MTE@0.1: 1.0954
+  MTE@0.5: 1.9411
+  MTE@1.0: 2.3989
+  W2@1.0:  1.2614
+  sW2@0.5: 1.2040 (105/200 in region)
+  sW2@1.0: 1.7440 (64/200 in region)
+  MMD@1.0: 0.2088
+  Survival@1.0: 76.0%
+  Stopped@1.0:  32.0%
+    E_mu_held=0.1744  W2=1.2614  sW2=1.7440  MTE=2.3989  (6s)
+
+######################################################################
+  Surface: hyperbolic_paraboloid
+######################################################################
+
+--- Stage 1: Autoencoder (recon + T+F) ---
+  Epoch 100: loss=0.738288
+  Epoch 200: loss=0.596634
+  Epoch 300: loss=0.351177
+  Epoch 400: loss=0.324629
+  Epoch 500: loss=0.277782
+
+  hyperbolic_paraboloid seed=42 T+F (lambda=0.0)
+  MTE@0.1: 0.9899
+  MTE@0.5: 2.5830
+  MTE@1.0: 3.9599
+  W2@1.0:  2.7639
+  sW2@0.5: 1.7666 (96/200 in region)
+  sW2@1.0: 2.9304 (48/200 in region)
+  MMD@1.0: 0.3260
+  Survival@1.0: 76.5%
+  Stopped@1.0:  24.0%
+    E_mu_held=1.1046  W2=2.7639  sW2=2.9304  MTE=3.9599  (5s)
+
+  hyperbolic_paraboloid seed=42 T+F+S (lambda=0.5)
+  MTE@0.1: 0.8479
+  MTE@0.5: 1.8913
+  MTE@1.0: 2.8592
+  W2@1.0:  1.7637
+  sW2@0.5: 1.0801 (96/200 in region)
+  sW2@1.0: 1.8735 (48/200 in region)
+  MMD@1.0: 0.2911
+  Survival@1.0: 76.5%
+  Stopped@1.0:  24.0%
+    E_mu_held=1.1806  W2=1.7637  sW2=1.8735  MTE=2.8592  (6s)
+
+--- Stage 1: Autoencoder (recon + T+F) ---
+  Epoch 100: loss=0.500111
+  Epoch 200: loss=0.058129
+  Epoch 300: loss=0.018877
+  Epoch 400: loss=0.011459
+  Epoch 500: loss=0.001735
+
+  hyperbolic_paraboloid seed=1042 T+F (lambda=0.0)
+  MTE@0.1: 0.9942
+  MTE@0.5: 1.8431
+  MTE@1.0: 2.4271
+  W2@1.0:  1.1211
+  sW2@0.5: 0.8245 (100/200 in region)
+  sW2@1.0: 1.4316 (53/200 in region)
+  MMD@1.0: 0.1696
+  Survival@1.0: 72.0%
+  Stopped@1.0:  26.5%
+    E_mu_held=0.0230  W2=1.1211  sW2=1.4316  MTE=2.4271  (5s)
+
+  hyperbolic_paraboloid seed=1042 T+F+S (lambda=0.5)
+  MTE@0.1: 0.9892
+  MTE@0.5: 1.8226
+  MTE@1.0: 2.4254
+  W2@1.0:  1.1600
+  sW2@0.5: 0.8450 (100/200 in region)
+  sW2@1.0: 1.2958 (53/200 in region)
+  MMD@1.0: 0.1887
+  Survival@1.0: 72.0%
+  Stopped@1.0:  26.5%
+    E_mu_held=0.0895  W2=1.1600  sW2=1.2958  MTE=2.4254  (6s)
+
+--- Stage 1: Autoencoder (recon + T+F) ---
+  Epoch 100: loss=0.625622
+  Epoch 200: loss=0.024634
+  Epoch 300: loss=0.011172
+  Epoch 400: loss=0.006893
+  Epoch 500: loss=0.009897
+
+  hyperbolic_paraboloid seed=2042 T+F (lambda=0.0)
+  MTE@0.1: 0.8987
+  MTE@0.5: 2.2103
+  MTE@1.0: 2.8470
+  W2@1.0:  1.4886
+  sW2@0.5: 1.0362 (95/200 in region)
+  sW2@1.0: 1.8037 (47/200 in region)
+  MMD@1.0: 0.1808
+  Survival@1.0: 78.5%
+  Stopped@1.0:  23.5%
+    E_mu_held=0.0429  W2=1.4886  sW2=1.8037  MTE=2.8470  (5s)
+
+  hyperbolic_paraboloid seed=2042 T+F+S (lambda=0.5)
+  MTE@0.1: 0.8986
+  MTE@0.5: 2.1826
+  MTE@1.0: 2.8606
+  W2@1.0:  1.5226
+  sW2@0.5: 0.9338 (95/200 in region)
+  sW2@1.0: 1.7047 (47/200 in region)
+  MMD@1.0: 0.1958
+  Survival@1.0: 78.5%
+  Stopped@1.0:  23.5%
+    E_mu_held=0.1050  W2=1.5226  sW2=1.7047  MTE=2.8606  (6s)
+
+--- Stage 1: Autoencoder (recon + T+F) ---
+  Epoch 100: loss=0.632198
+  Epoch 200: loss=0.029200
+  Epoch 300: loss=0.007594
+  Epoch 400: loss=0.019289
+  Epoch 500: loss=0.002007
+
+  hyperbolic_paraboloid seed=3042 T+F (lambda=0.0)
+  MTE@0.1: 0.4788
+  MTE@0.5: 1.0504
+  MTE@1.0: 1.5897
+  W2@1.0:  1.0398
+  sW2@0.5: 0.4707 (99/200 in region)
+  sW2@1.0: 0.7791 (48/200 in region)
+  MMD@1.0: 0.1671
+  Survival@1.0: 74.5%
+  Stopped@1.0:  24.0%
+    E_mu_held=0.0170  W2=1.0398  sW2=0.7791  MTE=1.5897  (4s)
+
+  hyperbolic_paraboloid seed=3042 T+F+S (lambda=0.5)
+  MTE@0.1: 0.4774
+  MTE@0.5: 1.1216
+  MTE@1.0: 1.8197
+  W2@1.0:  1.0548
+  sW2@0.5: 0.4555 (99/200 in region)
+  sW2@1.0: 0.8810 (48/200 in region)
+  MMD@1.0: 0.1862
+  Survival@1.0: 74.5%
+  Stopped@1.0:  24.0%
+    E_mu_held=0.0611  W2=1.0548  sW2=0.8810  MTE=1.8197  (7s)
+
+--- Stage 1: Autoencoder (recon + T+F) ---
+  Epoch 100: loss=0.516743
+  Epoch 200: loss=0.023914
+  Epoch 300: loss=0.011076
+  Epoch 400: loss=0.018028
+  Epoch 500: loss=0.002597
+
+  hyperbolic_paraboloid seed=4042 T+F (lambda=0.0)
+  MTE@0.1: 0.9194
+  MTE@0.5: 1.8817
+  MTE@1.0: 2.3198
+  W2@1.0:  0.9858
+  sW2@0.5: 0.6965 (107/200 in region)
+  sW2@1.0: 1.3259 (60/200 in region)
+  MMD@1.0: 0.1532
+  Survival@1.0: 76.0%
+  Stopped@1.0:  30.0%
+    E_mu_held=0.0491  W2=0.9858  sW2=1.3259  MTE=2.3198  (6s)
+
+  hyperbolic_paraboloid seed=4042 T+F+S (lambda=0.5)
+  MTE@0.1: 0.9169
+  MTE@0.5: 1.8311
+  MTE@1.0: 2.2487
+  W2@1.0:  0.9818
+  sW2@0.5: 0.6571 (107/200 in region)
+  sW2@1.0: 1.2761 (60/200 in region)
+  MMD@1.0: 0.1331
+  Survival@1.0: 76.0%
+  Stopped@1.0:  30.0%
+    E_mu_held=0.1187  W2=0.9818  sW2=1.2761  MTE=2.2487  (7s)
+
+--- Stage 1: Autoencoder (recon + T+F) ---
+  Epoch 100: loss=0.108207
+  Epoch 200: loss=0.026286
+  Epoch 300: loss=0.009713
+  Epoch 400: loss=0.010652
+  Epoch 500: loss=0.002206
+
+  hyperbolic_paraboloid seed=5042 T+F (lambda=0.0)
+  MTE@0.1: 0.8342
+  MTE@0.5: 1.8935
+  MTE@1.0: 2.5749
+  W2@1.0:  1.2615
+  sW2@0.5: 0.7804 (110/200 in region)
+  sW2@1.0: 1.3682 (53/200 in region)
+  MMD@1.0: 0.1709
+  Survival@1.0: 76.5%
+  Stopped@1.0:  26.5%
+    E_mu_held=0.0496  W2=1.2615  sW2=1.3682  MTE=2.5749  (5s)
+
+  hyperbolic_paraboloid seed=5042 T+F+S (lambda=0.5)
+  MTE@0.1: 0.8400
+  MTE@0.5: 1.8945
+  MTE@1.0: 2.6860
+  W2@1.0:  1.4756
+  sW2@0.5: 0.8471 (110/200 in region)
+  sW2@1.0: 1.4960 (53/200 in region)
+  MMD@1.0: 0.1509
+  Survival@1.0: 76.5%
+  Stopped@1.0:  26.5%
+    E_mu_held=0.3116  W2=1.4756  sW2=1.4960  MTE=2.6860  (7s)
+
+--- Stage 1: Autoencoder (recon + T+F) ---
+  Epoch 100: loss=0.196913
+  Epoch 200: loss=0.036889
+  Epoch 300: loss=0.024708
+  Epoch 400: loss=0.015097
+  Epoch 500: loss=0.009922
+
+  hyperbolic_paraboloid seed=6042 T+F (lambda=0.0)
+  MTE@0.1: 0.8961
+  MTE@0.5: 2.0477
+  MTE@1.0: 2.8156
+  W2@1.0:  1.4690
+  sW2@0.5: 0.9772 (103/200 in region)
+  sW2@1.0: 1.7309 (61/200 in region)
+  MMD@1.0: 0.2509
+  Survival@1.0: 73.0%
+  Stopped@1.0:  30.5%
+    E_mu_held=0.0407  W2=1.4690  sW2=1.7309  MTE=2.8156  (7s)
+
+  hyperbolic_paraboloid seed=6042 T+F+S (lambda=0.5)
+  MTE@0.1: 0.8980
+  MTE@0.5: 1.9644
+  MTE@1.0: 2.6931
+  W2@1.0:  1.2837
+  sW2@0.5: 0.8596 (103/200 in region)
+  sW2@1.0: 1.4671 (61/200 in region)
+  MMD@1.0: 0.2122
+  Survival@1.0: 73.0%
+  Stopped@1.0:  30.5%
+    E_mu_held=0.2022  W2=1.2837  sW2=1.4671  MTE=2.6931  (7s)
+
+--- Stage 1: Autoencoder (recon + T+F) ---
+  Epoch 100: loss=0.065347
+  Epoch 200: loss=0.026498
+  Epoch 300: loss=0.003669
+  Epoch 400: loss=0.001935
+  Epoch 500: loss=0.001290
+
+  hyperbolic_paraboloid seed=7042 T+F (lambda=0.0)
+  MTE@0.1: 1.0134
+  MTE@0.5: 2.0228
+  MTE@1.0: 2.6019
+  W2@1.0:  1.3132
+  sW2@0.5: 0.8707 (103/200 in region)
+  sW2@1.0: 1.3022 (54/200 in region)
+  MMD@1.0: 0.2148
+  Survival@1.0: 76.5%
+  Stopped@1.0:  27.0%
+    E_mu_held=0.0165  W2=1.3132  sW2=1.3022  MTE=2.6019  (6s)
+
+  hyperbolic_paraboloid seed=7042 T+F+S (lambda=0.5)
+  MTE@0.1: 0.9950
+  MTE@0.5: 1.9351
+  MTE@1.0: 2.4447
+  W2@1.0:  1.1158
+  sW2@0.5: 0.7152 (103/200 in region)
+  sW2@1.0: 1.0226 (54/200 in region)
+  MMD@1.0: 0.1753
+  Survival@1.0: 76.5%
+  Stopped@1.0:  27.0%
+    E_mu_held=0.1527  W2=1.1158  sW2=1.0226  MTE=2.4447  (5s)
+
+--- Stage 1: Autoencoder (recon + T+F) ---
+  Epoch 100: loss=0.396986
+  Epoch 200: loss=0.060101
+  Epoch 300: loss=0.003861
+  Epoch 400: loss=0.013672
+  Epoch 500: loss=0.001104
+
+  hyperbolic_paraboloid seed=8042 T+F (lambda=0.0)
+  MTE@0.1: 0.8731
+  MTE@0.5: 1.7278
+  MTE@1.0: 2.2711
+  W2@1.0:  1.2026
+  sW2@0.5: 0.8680 (101/200 in region)
+  sW2@1.0: 1.3796 (60/200 in region)
+  MMD@1.0: 0.1990
+  Survival@1.0: 79.5%
+  Stopped@1.0:  30.0%
+    E_mu_held=0.0261  W2=1.2026  sW2=1.3796  MTE=2.2711  (5s)
+
+  hyperbolic_paraboloid seed=8042 T+F+S (lambda=0.5)
+  MTE@0.1: 0.8774
+  MTE@0.5: 1.7335
+  MTE@1.0: 2.3032
+  W2@1.0:  1.1827
+  sW2@0.5: 0.8593 (101/200 in region)
+  sW2@1.0: 1.4329 (60/200 in region)
+  MMD@1.0: 0.2123
+  Survival@1.0: 79.5%
+  Stopped@1.0:  30.0%
+    E_mu_held=0.1099  W2=1.1827  sW2=1.4329  MTE=2.3032  (6s)
+
+--- Stage 1: Autoencoder (recon + T+F) ---
+  Epoch 100: loss=0.603632
+  Epoch 200: loss=0.033963
+  Epoch 300: loss=0.015127
+  Epoch 400: loss=0.011711
+  Epoch 500: loss=0.028142
+
+  hyperbolic_paraboloid seed=9042 T+F (lambda=0.0)
+  MTE@0.1: 0.8927
+  MTE@0.5: 1.7462
+  MTE@1.0: 2.3121
+  W2@1.0:  1.1664
+  sW2@0.5: 1.1744 (105/200 in region)
+  sW2@1.0: 1.3541 (64/200 in region)
+  MMD@1.0: 0.1679
+  Survival@1.0: 76.0%
+  Stopped@1.0:  32.0%
+    E_mu_held=0.0396  W2=1.1664  sW2=1.3541  MTE=2.3121  (4s)
+
+  hyperbolic_paraboloid seed=9042 T+F+S (lambda=0.5)
+  MTE@0.1: 0.8967
+  MTE@0.5: 1.6736
+  MTE@1.0: 2.1381
+  W2@1.0:  1.1705
+  sW2@0.5: 1.0487 (105/200 in region)
+  sW2@1.0: 1.1334 (64/200 in region)
+  MMD@1.0: 0.1702
+  Survival@1.0: 76.0%
+  Stopped@1.0:  32.0%
+    E_mu_held=0.0742  W2=1.1705  sW2=1.1334  MTE=2.1381  (7s)
+
+######################################################################
+  Surface: sinusoidal
+######################################################################
+
+--- Stage 1: Autoencoder (recon + T+F) ---
+  Epoch 100: loss=0.074066
+  Epoch 200: loss=0.050353
+  Epoch 300: loss=0.022393
+  Epoch 400: loss=0.010743
+  Epoch 500: loss=0.002166
+
+  sinusoidal seed=42 T+F (lambda=0.0)
+  MTE@0.1: 0.6813
+  MTE@0.5: 1.4338
+  MTE@1.0: 1.9412
+  W2@1.0:  0.7997
+  sW2@0.5: 0.6134 (96/200 in region)
+  sW2@1.0: 0.6413 (48/200 in region)
+  MMD@1.0: 0.1988
+  Survival@1.0: 76.5%
+  Stopped@1.0:  24.0%
+    E_mu_held=0.0201  W2=0.7997  sW2=0.6413  MTE=1.9412  (5s)
+
+  sinusoidal seed=42 T+F+S (lambda=0.5)
+  MTE@0.1: 0.6962
+  MTE@0.5: 1.4914
+  MTE@1.0: 2.0456
+  W2@1.0:  0.9197
+  sW2@0.5: 0.7188 (96/200 in region)
+  sW2@1.0: 0.8964 (48/200 in region)
+  MMD@1.0: 0.2056
+  Survival@1.0: 76.5%
+  Stopped@1.0:  24.0%
+    E_mu_held=0.1534  W2=0.9197  sW2=0.8964  MTE=2.0456  (6s)
+
+--- Stage 1: Autoencoder (recon + T+F) ---
+  Epoch 100: loss=0.038462
+  Epoch 200: loss=0.040901
+  Epoch 300: loss=0.036163
+  Epoch 400: loss=0.020507
+  Epoch 500: loss=0.005027
+
+  sinusoidal seed=1042 T+F (lambda=0.0)
+  MTE@0.1: 0.7410
+  MTE@0.5: 1.3765
+  MTE@1.0: 1.7239
+  W2@1.0:  0.7401
+  sW2@0.5: 0.6617 (100/200 in region)
+  sW2@1.0: 0.6185 (53/200 in region)
+  MMD@1.0: 0.1696
+  Survival@1.0: 72.0%
+  Stopped@1.0:  26.5%
+    E_mu_held=0.0141  W2=0.7401  sW2=0.6185  MTE=1.7239  (5s)
+
+  sinusoidal seed=1042 T+F+S (lambda=0.5)
+  MTE@0.1: 0.7420
+  MTE@0.5: 1.4042
+  MTE@1.0: 1.6805
+  W2@1.0:  0.7195
+  sW2@0.5: 0.6861 (100/200 in region)
+  sW2@1.0: 0.8490 (53/200 in region)
+  MMD@1.0: 0.2010
+  Survival@1.0: 72.0%
+  Stopped@1.0:  26.5%
+    E_mu_held=0.1799  W2=0.7195  sW2=0.8490  MTE=1.6805  (7s)
+
+--- Stage 1: Autoencoder (recon + T+F) ---
+  Epoch 100: loss=0.083719
+  Epoch 200: loss=0.083740
+  Epoch 300: loss=0.070038
+  Epoch 400: loss=0.026599
+  Epoch 500: loss=0.012649
+
+  sinusoidal seed=2042 T+F (lambda=0.0)
+  MTE@0.1: 0.6702
+  MTE@0.5: 1.6471
+  MTE@1.0: 2.1299
+  W2@1.0:  0.9454
+  sW2@0.5: 0.6538 (95/200 in region)
+  sW2@1.0: 1.3687 (47/200 in region)
+  MMD@1.0: 0.1760
+  Survival@1.0: 78.5%
+  Stopped@1.0:  23.5%
+    E_mu_held=0.0231  W2=0.9454  sW2=1.3687  MTE=2.1299  (5s)
+
+  sinusoidal seed=2042 T+F+S (lambda=0.5)
+  MTE@0.1: 0.6752
+  MTE@0.5: 1.6618
+  MTE@1.0: 2.1723
+  W2@1.0:  0.9478
+  sW2@0.5: 0.6504 (95/200 in region)
+  sW2@1.0: 1.3992 (47/200 in region)
+  MMD@1.0: 0.1788
+  Survival@1.0: 78.5%
+  Stopped@1.0:  23.5%
+    E_mu_held=0.1520  W2=0.9478  sW2=1.3992  MTE=2.1723  (6s)
+
+--- Stage 1: Autoencoder (recon + T+F) ---
+  Epoch 100: loss=0.056387
+  Epoch 200: loss=0.053260
+  Epoch 300: loss=0.047690
+  Epoch 400: loss=0.007651
+  Epoch 500: loss=0.003093
+
+  sinusoidal seed=3042 T+F (lambda=0.0)
+  MTE@0.1: 0.8226
+  MTE@0.5: 1.5136
+  MTE@1.0: 2.0174
+  W2@1.0:  0.7057
+  sW2@0.5: 0.5266 (99/200 in region)
+  sW2@1.0: 0.6812 (48/200 in region)
+  MMD@1.0: 0.1172
+  Survival@1.0: 74.5%
+  Stopped@1.0:  24.0%
+    E_mu_held=0.0112  W2=0.7057  sW2=0.6812  MTE=2.0174  (4s)
+
+  sinusoidal seed=3042 T+F+S (lambda=0.5)
+  MTE@0.1: 0.8234
+  MTE@0.5: 1.5288
+  MTE@1.0: 1.9666
+  W2@1.0:  0.6741
+  sW2@0.5: 0.4940 (99/200 in region)
+  sW2@1.0: 0.6607 (48/200 in region)
+  MMD@1.0: 0.1508
+  Survival@1.0: 74.5%
+  Stopped@1.0:  24.0%
+    E_mu_held=0.1277  W2=0.6741  sW2=0.6607  MTE=1.9666  (7s)
+
+--- Stage 1: Autoencoder (recon + T+F) ---
+  Epoch 100: loss=0.032049
+  Epoch 200: loss=0.032575
+  Epoch 300: loss=0.028604
+  Epoch 400: loss=0.005550
+  Epoch 500: loss=0.003673
+
+  sinusoidal seed=4042 T+F (lambda=0.0)
+  MTE@0.1: 0.9332
+  MTE@0.5: 1.7354
+  MTE@1.0: 1.9707
+  W2@1.0:  0.7754
+  sW2@0.5: 0.5997 (107/200 in region)
+  sW2@1.0: 0.7045 (60/200 in region)
+  MMD@1.0: 0.1803
+  Survival@1.0: 76.0%
+  Stopped@1.0:  30.0%
+    E_mu_held=0.0248  W2=0.7754  sW2=0.7045  MTE=1.9707  (5s)
+
+  sinusoidal seed=4042 T+F+S (lambda=0.5)
+  MTE@0.1: 0.9421
+  MTE@0.5: 1.8231
+  MTE@1.0: 2.1594
+  W2@1.0:  0.7351
+  sW2@0.5: 0.5783 (107/200 in region)
+  sW2@1.0: 0.7429 (60/200 in region)
+  MMD@1.0: 0.1864
+  Survival@1.0: 76.0%
+  Stopped@1.0:  30.0%
+    E_mu_held=0.1480  W2=0.7351  sW2=0.7429  MTE=2.1594  (7s)
+
+--- Stage 1: Autoencoder (recon + T+F) ---
+  Epoch 100: loss=0.047009
+  Epoch 200: loss=0.017820
+  Epoch 300: loss=0.001382
+  Epoch 400: loss=0.000857
+  Epoch 500: loss=0.000367
+
+  sinusoidal seed=5042 T+F (lambda=0.0)
+  MTE@0.1: 0.6140
+  MTE@0.5: 1.3028
+  MTE@1.0: 1.7262
+  W2@1.0:  0.7469
+  sW2@0.5: 0.4532 (110/200 in region)
+  sW2@1.0: 0.9836 (53/200 in region)
+  MMD@1.0: 0.1226
+  Survival@1.0: 76.5%
+  Stopped@1.0:  26.5%
+    E_mu_held=0.0079  W2=0.7469  sW2=0.9836  MTE=1.7262  (5s)
+
+  sinusoidal seed=5042 T+F+S (lambda=0.5)
+  MTE@0.1: 0.6241
+  MTE@0.5: 1.3785
+  MTE@1.0: 1.8633
+  W2@1.0:  0.8280
+  sW2@0.5: 0.5204 (110/200 in region)
+  sW2@1.0: 1.0433 (53/200 in region)
+  MMD@1.0: 0.1944
+  Survival@1.0: 76.5%
+  Stopped@1.0:  26.5%
+    E_mu_held=0.3536  W2=0.8280  sW2=1.0433  MTE=1.8633  (7s)
+
+--- Stage 1: Autoencoder (recon + T+F) ---
+  Epoch 100: loss=0.040946
+  Epoch 200: loss=0.013596
+  Epoch 300: loss=0.001869
+  Epoch 400: loss=0.001225
+  Epoch 500: loss=0.004602
+
+  sinusoidal seed=6042 T+F (lambda=0.0)
+  MTE@0.1: 0.6660
+  MTE@0.5: 1.3582
+  MTE@1.0: 1.7440
+  W2@1.0:  0.7176
+  sW2@0.5: 0.5648 (103/200 in region)
+  sW2@1.0: 0.9167 (61/200 in region)
+  MMD@1.0: 0.1643
+  Survival@1.0: 73.0%
+  Stopped@1.0:  30.5%
+    E_mu_held=0.0268  W2=0.7176  sW2=0.9167  MTE=1.7440  (6s)
+
+  sinusoidal seed=6042 T+F+S (lambda=0.5)
+  MTE@0.1: 0.6734
+  MTE@0.5: 1.4384
+  MTE@1.0: 1.9728
+  W2@1.0:  0.9594
+  sW2@0.5: 0.6568 (103/200 in region)
+  sW2@1.0: 1.1771 (61/200 in region)
+  MMD@1.0: 0.2267
+  Survival@1.0: 73.0%
+  Stopped@1.0:  30.5%
+    E_mu_held=0.1910  W2=0.9594  sW2=1.1771  MTE=1.9728  (7s)
+
+--- Stage 1: Autoencoder (recon + T+F) ---
+  Epoch 100: loss=0.053854
+  Epoch 200: loss=0.050892
+  Epoch 300: loss=0.041338
+  Epoch 400: loss=0.025071
+  Epoch 500: loss=0.006686
+
+  sinusoidal seed=7042 T+F (lambda=0.0)
+  MTE@0.1: 0.8048
+  MTE@0.5: 1.5758
+  MTE@1.0: 1.8592
+  W2@1.0:  0.6183
+  sW2@0.5: 0.4250 (103/200 in region)
+  sW2@1.0: 0.6272 (54/200 in region)
+  MMD@1.0: 0.1304
+  Survival@1.0: 76.5%
+  Stopped@1.0:  27.0%
+    E_mu_held=0.0263  W2=0.6183  sW2=0.6272  MTE=1.8592  (6s)
+
+  sinusoidal seed=7042 T+F+S (lambda=0.5)
+  MTE@0.1: 0.8013
+  MTE@0.5: 1.5862
+  MTE@1.0: 1.8984
+  W2@1.0:  0.6011
+  sW2@0.5: 0.4367 (103/200 in region)
+  sW2@1.0: 0.6742 (54/200 in region)
+  MMD@1.0: 0.1338
+  Survival@1.0: 76.5%
+  Stopped@1.0:  27.0%
+    E_mu_held=0.2315  W2=0.6011  sW2=0.6742  MTE=1.8984  (5s)
+
+--- Stage 1: Autoencoder (recon + T+F) ---
+  Epoch 100: loss=0.032709
+  Epoch 200: loss=0.016915
+  Epoch 300: loss=0.006121
+  Epoch 400: loss=0.002569
+  Epoch 500: loss=0.000749
+
+  sinusoidal seed=8042 T+F (lambda=0.0)
+  MTE@0.1: 0.5162
+  MTE@0.5: 0.9704
+  MTE@1.0: 1.3640
+  W2@1.0:  0.7306
+  sW2@0.5: 0.4611 (101/200 in region)
+  sW2@1.0: 1.0055 (60/200 in region)
+  MMD@1.0: 0.1518
+  Survival@1.0: 79.5%
+  Stopped@1.0:  30.0%
+    E_mu_held=0.0072  W2=0.7306  sW2=1.0055  MTE=1.3640  (4s)
+
+  sinusoidal seed=8042 T+F+S (lambda=0.5)
+  MTE@0.1: 0.5274
+  MTE@0.5: 1.0544
+  MTE@1.0: 1.5560
+  W2@1.0:  0.6399
+  sW2@0.5: 0.4934 (101/200 in region)
+  sW2@1.0: 0.7881 (60/200 in region)
+  MMD@1.0: 0.1345
+  Survival@1.0: 79.5%
+  Stopped@1.0:  30.0%
+    E_mu_held=0.1634  W2=0.6399  sW2=0.7881  MTE=1.5560  (7s)
+
+--- Stage 1: Autoencoder (recon + T+F) ---
+  Epoch 100: loss=0.063669
+  Epoch 200: loss=0.057276
+  Epoch 300: loss=0.014400
+  Epoch 400: loss=0.006078
+  Epoch 500: loss=0.005071
+
+  sinusoidal seed=9042 T+F (lambda=0.0)
+  MTE@0.1: 0.7579
+  MTE@0.5: 1.5675
+  MTE@1.0: 1.9217
+  W2@1.0:  0.6526
+  sW2@0.5: 0.7582 (105/200 in region)
+  sW2@1.0: 0.9278 (64/200 in region)
+  MMD@1.0: 0.1353
+  Survival@1.0: 76.0%
+  Stopped@1.0:  32.0%
+    E_mu_held=0.0332  W2=0.6526  sW2=0.9278  MTE=1.9217  (5s)
+
+  sinusoidal seed=9042 T+F+S (lambda=0.5)
+  MTE@0.1: 0.7629
+  MTE@0.5: 1.5887
+  MTE@1.0: 1.9450
+  W2@1.0:  0.6623
+  sW2@0.5: 0.7856 (105/200 in region)
+  sW2@1.0: 0.9697 (64/200 in region)
+  MMD@1.0: 0.1453
+  Survival@1.0: 76.0%
+  Stopped@1.0:  32.0%
+    E_mu_held=0.1489  W2=0.6623  sW2=0.9697  MTE=1.9450  (7s)
+
+######################################################################
+  Surface: quartic_dome
+######################################################################
+
+--- Stage 1: Autoencoder (recon + T+F) ---
+  Epoch 100: loss=0.211863
+  Epoch 200: loss=0.062627
+  Epoch 300: loss=0.039767
+  Epoch 400: loss=0.027774
+  Epoch 500: loss=0.016662
+
+  quartic_dome seed=42 T+F (lambda=0.0)
+  MTE@0.1: 0.7263
+  MTE@0.5: 1.8475
+  MTE@1.0: 2.1773
+  W2@1.0:  3.6148
+  sW2@0.5: 0.4427 (96/200 in region)
+  sW2@1.0: 0.6032 (48/200 in region)
+  MMD@1.0: 0.1493
+  Survival@1.0: 76.5%
+  Stopped@1.0:  24.0%
+    E_mu_held=0.0876  W2=3.6148  sW2=0.6032  MTE=2.1773  (5s)
+
+  quartic_dome seed=42 T+F+S (lambda=0.5)
+  MTE@0.1: 0.7360
+  MTE@0.5: 1.9096
+  MTE@1.0: 2.4113
+  W2@1.0:  3.7110
+  sW2@0.5: 0.5198 (96/200 in region)
+  sW2@1.0: 0.8639 (48/200 in region)
+  MMD@1.0: 0.1886
+  Survival@1.0: 76.5%
+  Stopped@1.0:  24.0%
+    E_mu_held=0.2050  W2=3.7110  sW2=0.8639  MTE=2.4113  (6s)
+
+--- Stage 1: Autoencoder (recon + T+F) ---
+  Epoch 100: loss=0.151726
+  Epoch 200: loss=0.043531
+  Epoch 300: loss=0.037870
+  Epoch 400: loss=0.027509
+  Epoch 500: loss=0.024983
+
+  quartic_dome seed=1042 T+F (lambda=0.0)
+  MTE@0.1: 0.8454
+  MTE@0.5: 1.5155
+  MTE@1.0: 1.8623
+  W2@1.0:  3.5297
+  sW2@0.5: 0.4157 (100/200 in region)
+  sW2@1.0: 0.5691 (53/200 in region)
+  MMD@1.0: 0.1489
+  Survival@1.0: 72.0%
+  Stopped@1.0:  26.5%
+    E_mu_held=0.3825  W2=3.5297  sW2=0.5691  MTE=1.8623  (5s)
+
+  quartic_dome seed=1042 T+F+S (lambda=0.5)
+  MTE@0.1: 0.8466
+  MTE@0.5: 1.5991
+  MTE@1.0: 2.0862
+  W2@1.0:  3.5459
+  sW2@0.5: 0.4966 (100/200 in region)
+  sW2@1.0: 0.6299 (53/200 in region)
+  MMD@1.0: 0.1421
+  Survival@1.0: 72.0%
+  Stopped@1.0:  26.5%
+    E_mu_held=0.2951  W2=3.5459  sW2=0.6299  MTE=2.0862  (6s)
+
+--- Stage 1: Autoencoder (recon + T+F) ---
+  Epoch 100: loss=0.294127
+  Epoch 200: loss=0.048055
+  Epoch 300: loss=0.042678
+  Epoch 400: loss=0.021009
+  Epoch 500: loss=0.015029
+
+  quartic_dome seed=2042 T+F (lambda=0.0)
+  MTE@0.1: 0.7643
+  MTE@0.5: 2.2741
+  MTE@1.0: 2.6529
+  W2@1.0:  3.4713
+  sW2@0.5: 0.5214 (95/200 in region)
+  sW2@1.0: 1.1514 (47/200 in region)
+  MMD@1.0: 0.2174
+  Survival@1.0: 78.5%
+  Stopped@1.0:  23.5%
+    E_mu_held=0.1869  W2=3.4713  sW2=1.1514  MTE=2.6529  (5s)
+
+  quartic_dome seed=2042 T+F+S (lambda=0.5)
+  MTE@0.1: 0.7775
+  MTE@0.5: 2.3816
+  MTE@1.0: 2.8865
+  W2@1.0:  3.4930
+  sW2@0.5: 0.6612 (95/200 in region)
+  sW2@1.0: 1.3491 (47/200 in region)
+  MMD@1.0: 0.2249
+  Survival@1.0: 78.5%
+  Stopped@1.0:  23.5%
+    E_mu_held=0.2420  W2=3.4930  sW2=1.3491  MTE=2.8865  (6s)
+
+--- Stage 1: Autoencoder (recon + T+F) ---
+  Epoch 100: loss=0.175068
+  Epoch 200: loss=0.059617
+  Epoch 300: loss=0.045543
+  Epoch 400: loss=0.052055
+  Epoch 500: loss=0.030653
+
+  quartic_dome seed=3042 T+F (lambda=0.0)
+  MTE@0.1: 0.8206
+  MTE@0.5: 2.0340
+  MTE@1.0: 2.1549
+  W2@1.0:  3.4094
+  sW2@0.5: 0.3340 (99/200 in region)
+  sW2@1.0: 0.3600 (48/200 in region)
+  MMD@1.0: 0.1251
+  Survival@1.0: 74.5%
+  Stopped@1.0:  24.0%
+    E_mu_held=0.3699  W2=3.4094  sW2=0.3600  MTE=2.1549  (4s)
+
+  quartic_dome seed=3042 T+F+S (lambda=0.5)
+  MTE@0.1: 0.8290
+  MTE@0.5: 2.1148
+  MTE@1.0: 2.2589
+  W2@1.0:  3.4311
+  sW2@0.5: 0.4017 (99/200 in region)
+  sW2@1.0: 0.5216 (48/200 in region)
+  MMD@1.0: 0.1544
+  Survival@1.0: 74.5%
+  Stopped@1.0:  24.0%
+    E_mu_held=0.3489  W2=3.4311  sW2=0.5216  MTE=2.2589  (7s)
+
+--- Stage 1: Autoencoder (recon + T+F) ---
+  Epoch 100: loss=0.121547
+  Epoch 200: loss=0.050077
+  Epoch 300: loss=0.028231
+  Epoch 400: loss=0.014333
+  Epoch 500: loss=0.017632
+
+  quartic_dome seed=4042 T+F (lambda=0.0)
+  MTE@0.1: 0.7947
+  MTE@0.5: 2.2471
+  MTE@1.0: 2.1054
+  W2@1.0:  2.9913
+  sW2@0.5: 0.7066 (107/200 in region)
+  sW2@1.0: 1.0222 (60/200 in region)
+  MMD@1.0: 0.1987
+  Survival@1.0: 76.0%
+  Stopped@1.0:  30.0%
+    E_mu_held=0.1487  W2=2.9913  sW2=1.0222  MTE=2.1054  (6s)
+
+  quartic_dome seed=4042 T+F+S (lambda=0.5)
+  MTE@0.1: 0.8073
+  MTE@0.5: 2.3223
+  MTE@1.0: 2.3088
+  W2@1.0:  3.0740
+  sW2@0.5: 0.8098 (107/200 in region)
+  sW2@1.0: 1.3451 (60/200 in region)
+  MMD@1.0: 0.2180
+  Survival@1.0: 76.0%
+  Stopped@1.0:  30.0%
+    E_mu_held=0.2238  W2=3.0740  sW2=1.3451  MTE=2.3088  (7s)
+
+--- Stage 1: Autoencoder (recon + T+F) ---
+  Epoch 100: loss=0.182201
+  Epoch 200: loss=0.093856
+  Epoch 300: loss=0.088060
+  Epoch 400: loss=0.073905
+  Epoch 500: loss=0.063725
+
+  quartic_dome seed=5042 T+F (lambda=0.0)
+  MTE@0.1: 1.0574
+  MTE@0.5: 2.1434
+  MTE@1.0: 2.8401
+  W2@1.0:  3.8572
+  sW2@0.5: 0.6233 (110/200 in region)
+  sW2@1.0: 0.9590 (53/200 in region)
+  MMD@1.0: 0.1873
+  Survival@1.0: 76.5%
+  Stopped@1.0:  26.5%
+    E_mu_held=0.3140  W2=3.8572  sW2=0.9590  MTE=2.8401  (5s)
+
+  quartic_dome seed=5042 T+F+S (lambda=0.5)
+  MTE@0.1: 1.0765
+  MTE@0.5: 2.1828
+  MTE@1.0: 2.8436
+  W2@1.0:  3.9608
+  sW2@0.5: 0.6497 (110/200 in region)
+  sW2@1.0: 0.9309 (53/200 in region)
+  MMD@1.0: 0.2345
+  Survival@1.0: 76.5%
+  Stopped@1.0:  26.5%
+    E_mu_held=0.4880  W2=3.9608  sW2=0.9309  MTE=2.8436  (5s)
+
+--- Stage 1: Autoencoder (recon + T+F) ---
+  Epoch 100: loss=0.117790
+  Epoch 200: loss=0.095640
+  Epoch 300: loss=0.059478
+  Epoch 400: loss=0.022483
+  Epoch 500: loss=0.031739
+
+  quartic_dome seed=6042 T+F (lambda=0.0)
+  MTE@0.1: 1.1087
+  MTE@0.5: 2.3110
+  MTE@1.0: 2.5408
+  W2@1.0:  2.4090
+  sW2@0.5: 0.6541 (103/200 in region)
+  sW2@1.0: 0.7539 (61/200 in region)
+  MMD@1.0: 0.1709
+  Survival@1.0: 73.0%
+  Stopped@1.0:  30.5%
+    E_mu_held=0.1643  W2=2.4090  sW2=0.7539  MTE=2.5408  (5s)
+
+  quartic_dome seed=6042 T+F+S (lambda=0.5)
+  MTE@0.1: 1.1151
+  MTE@0.5: 2.3961
+  MTE@1.0: 2.6994
+  W2@1.0:  2.4528
+  sW2@0.5: 0.8106 (103/200 in region)
+  sW2@1.0: 1.1242 (61/200 in region)
+  MMD@1.0: 0.2286
+  Survival@1.0: 73.0%
+  Stopped@1.0:  30.5%
+    E_mu_held=0.3002  W2=2.4528  sW2=1.1242  MTE=2.6994  (6s)
+
+--- Stage 1: Autoencoder (recon + T+F) ---
+  Epoch 100: loss=0.150866
+  Epoch 200: loss=0.036416
+  Epoch 300: loss=0.022926
+  Epoch 400: loss=0.026415
+  Epoch 500: loss=0.011165
+
+  quartic_dome seed=7042 T+F (lambda=0.0)
+  MTE@0.1: 0.8403
+  MTE@0.5: 1.8855
+  MTE@1.0: 2.5005
+  W2@1.0:  3.5089
+  sW2@0.5: 0.5605 (103/200 in region)
+  sW2@1.0: 0.7144 (54/200 in region)
+  MMD@1.0: 0.2316
+  Survival@1.0: 76.5%
+  Stopped@1.0:  27.0%
+    E_mu_held=0.1095  W2=3.5089  sW2=0.7144  MTE=2.5005  (6s)
+
+  quartic_dome seed=7042 T+F+S (lambda=0.5)
+  MTE@0.1: 0.8448
+  MTE@0.5: 1.9262
+  MTE@1.0: 2.5089
+  W2@1.0:  3.4613
+  sW2@0.5: 0.6144 (103/200 in region)
+  sW2@1.0: 0.8367 (54/200 in region)
+  MMD@1.0: 0.2299
+  Survival@1.0: 76.5%
+  Stopped@1.0:  27.0%
+    E_mu_held=0.2193  W2=3.4613  sW2=0.8367  MTE=2.5089  (5s)
+
+--- Stage 1: Autoencoder (recon + T+F) ---
+  Epoch 100: loss=0.176601
+  Epoch 200: loss=0.108424
+  Epoch 300: loss=0.061124
+  Epoch 400: loss=0.047261
+  Epoch 500: loss=0.023462
+
+  quartic_dome seed=8042 T+F (lambda=0.0)
+  MTE@0.1: 0.8728
+  MTE@0.5: 1.8419
+  MTE@1.0: 2.2665
+  W2@1.0:  3.1552
+  sW2@0.5: 0.6136 (101/200 in region)
+  sW2@1.0: 0.7067 (60/200 in region)
+  MMD@1.0: 0.1652
+  Survival@1.0: 79.5%
+  Stopped@1.0:  30.0%
+    E_mu_held=0.1526  W2=3.1552  sW2=0.7067  MTE=2.2665  (6s)
+
+  quartic_dome seed=8042 T+F+S (lambda=0.5)
+  MTE@0.1: 0.8796
+  MTE@0.5: 1.9259
+  MTE@1.0: 2.4207
+  W2@1.0:  3.2410
+  sW2@0.5: 0.7896 (101/200 in region)
+  sW2@1.0: 1.1475 (60/200 in region)
+  MMD@1.0: 0.1919
+  Survival@1.0: 79.5%
+  Stopped@1.0:  30.0%
+    E_mu_held=0.2962  W2=3.2410  sW2=1.1475  MTE=2.4207  (5s)
+
+--- Stage 1: Autoencoder (recon + T+F) ---
+  Epoch 100: loss=0.186700
+  Epoch 200: loss=0.070528
+  Epoch 300: loss=0.033628
+  Epoch 400: loss=0.023990
+  Epoch 500: loss=0.017943
+
+  quartic_dome seed=9042 T+F (lambda=0.0)
+  MTE@0.1: 1.2427
+  MTE@0.5: 2.0395
+  MTE@1.0: 2.6386
+  W2@1.0:  3.4483
+  sW2@0.5: 0.7558 (105/200 in region)
+  sW2@1.0: 0.7340 (64/200 in region)
+  MMD@1.0: 0.1328
+  Survival@1.0: 76.0%
+  Stopped@1.0:  32.0%
+    E_mu_held=0.1271  W2=3.4483  sW2=0.7340  MTE=2.6386  (5s)
+
+  quartic_dome seed=9042 T+F+S (lambda=0.5)
+  MTE@0.1: 1.2565
+  MTE@0.5: 2.1492
+  MTE@1.0: 2.8625
+  W2@1.0:  3.5266
+  sW2@0.5: 0.9443 (105/200 in region)
+  sW2@1.0: 1.1848 (64/200 in region)
+  MMD@1.0: 0.2037
+  Survival@1.0: 76.0%
+  Stopped@1.0:  32.0%
+    E_mu_held=0.1719  W2=3.5266  sW2=1.1848  MTE=2.8625  (6s)
+
+Saved 80 rows to paper_trajectory_smoothing.csv
+
+======================================================================
+  paraboloid
+======================================================================
+
+  T+F+S vs T+F:
+    E_mu_held    mean: 0.097 → 0.225   +132.8%  0/10 wins  p=0.0001 **
+    W2@1.0       mean: 1.515 → 1.300    -14.2%  9/10 wins  p=0.0081 **
+    sW2@1.0      mean: 1.851 → 1.479    -20.1%  10/10 wins  p=0.0004 **
+    MTE@1.0      mean: 2.586 → 2.332     -9.8%  10/10 wins  p=0.0001 **
+
+======================================================================
+  hyperbolic_paraboloid
+======================================================================
+
+  T+F+S vs T+F:
+    E_mu_held    mean: 0.141 → 0.241    +70.7%  0/10 wins  p=0.0014 **
+    W2@1.0       mean: 1.381 → 1.271     -8.0%  5/10 wins  p=0.3240 
+    sW2@1.0      mean: 1.541 → 1.358    -11.8%  7/10 wins  p=0.1244 
+    MTE@1.0      mean: 2.572 → 2.448     -4.8%  6/10 wins  p=0.3106 
+
+======================================================================
+  sinusoidal
+======================================================================
+
+  T+F+S vs T+F:
+    E_mu_held    mean: 0.019 → 0.185   +849.7%  0/10 wins  p=0.0000 **
+    W2@1.0       mean: 0.743 → 0.769     +3.4%  5/10 wins  p=0.4281 
+    sW2@1.0      mean: 0.848 → 0.920     +8.6%  2/10 wins  p=0.1497 
+    MTE@1.0      mean: 1.840 → 1.926     +4.7%  2/10 wins  p=0.0226 *
+
+======================================================================
+  quartic_dome
+======================================================================
+
+  T+F+S vs T+F:
+    E_mu_held    mean: 0.204 → 0.279    +36.6%  2/10 wins  p=0.0164 *
+    W2@1.0       mean: 3.339 → 3.390     +1.5%  1/10 wins  p=0.0088 **
+    sW2@1.0      mean: 0.757 → 0.993    +31.2%  1/10 wins  p=0.0013 **
+    MTE@1.0      mean: 2.374 → 2.529     +6.5%  0/10 wins  p=0.0004 **
+
+Total time: 952.7s

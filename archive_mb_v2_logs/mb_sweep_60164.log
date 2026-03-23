@@ -1,0 +1,115 @@
+Device: cuda
+D=11, N=50
+λ_C values: [0.01, 0.05, 0.1, 0.5]
+Seeds: [42, 1042, 2042]
+
+
+  seed=42, λ_C=0.01
+      Epoch 100/500: loss=0.012250
+      Epoch 200/500: loss=0.009644
+      Epoch 300/500: loss=0.009234
+      Epoch 400/500: loss=0.008711
+      Epoch 500/500: loss=0.008111
+    recon=0.007412  tangent=0.632427  combined=0.639839
+
+  seed=42, λ_C=0.05
+      Epoch 100/500: loss=0.015033
+      Epoch 200/500: loss=0.012583
+      Epoch 300/500: loss=0.009709
+      Epoch 400/500: loss=0.010910
+      Epoch 500/500: loss=0.009486
+    recon=0.008074  tangent=0.646624  combined=0.654698
+
+  seed=42, λ_C=0.1
+      Epoch 100/500: loss=0.064772
+      Epoch 200/500: loss=0.065116
+      Epoch 300/500: loss=0.035296
+      Epoch 400/500: loss=0.033986
+      Epoch 500/500: loss=0.031858
+    recon=0.032362  tangent=1.198081  combined=1.230444
+
+  seed=42, λ_C=0.5
+      Epoch 100/500: loss=0.064697
+      Epoch 200/500: loss=0.064693
+      Epoch 300/500: loss=0.062740
+      Epoch 400/500: loss=0.065831
+      Epoch 500/500: loss=0.061785
+    recon=0.064525  tangent=1.802337  combined=1.866862
+
+  seed=1042, λ_C=0.01
+      Epoch 100/500: loss=0.011492
+      Epoch 200/500: loss=0.008550
+      Epoch 300/500: loss=0.007266
+      Epoch 400/500: loss=0.007637
+      Epoch 500/500: loss=0.006845
+    recon=0.006418  tangent=0.679214  combined=0.685632
+
+  seed=1042, λ_C=0.05
+      Epoch 100/500: loss=0.012813
+      Epoch 200/500: loss=0.009972
+      Epoch 300/500: loss=0.008127
+      Epoch 400/500: loss=0.007991
+      Epoch 500/500: loss=0.007634
+    recon=0.006536  tangent=0.681410  combined=0.687946
+
+  seed=1042, λ_C=0.1
+      Epoch 100/500: loss=0.060242
+      Epoch 200/500: loss=0.032523
+      Epoch 300/500: loss=0.026612
+      Epoch 400/500: loss=0.016027
+      Epoch 500/500: loss=0.007970
+    recon=0.006549  tangent=0.681752  combined=0.688302
+
+  seed=1042, λ_C=0.5
+      Epoch 100/500: loss=0.060312
+      Epoch 200/500: loss=0.057600
+      Epoch 300/500: loss=0.059090
+      Epoch 400/500: loss=0.060340
+      Epoch 500/500: loss=0.059137
+    recon=0.059106  tangent=1.840058  combined=1.899164
+
+  seed=2042, λ_C=0.01
+      Epoch 100/500: loss=0.015235
+      Epoch 200/500: loss=0.011633
+      Epoch 300/500: loss=0.012294
+      Epoch 400/500: loss=0.011165
+      Epoch 500/500: loss=0.011471
+    recon=0.010287  tangent=0.656650  combined=0.666938
+
+  seed=2042, λ_C=0.05
+      Epoch 100/500: loss=0.019123
+      Epoch 200/500: loss=0.012090
+      Epoch 300/500: loss=0.015422
+      Epoch 400/500: loss=0.012881
+      Epoch 500/500: loss=0.014990
+    recon=0.021056  tangent=0.660739  combined=0.681794
+
+  seed=2042, λ_C=0.1
+      Epoch 100/500: loss=0.073462
+      Epoch 200/500: loss=0.036918
+      Epoch 300/500: loss=0.015593
+      Epoch 400/500: loss=0.012269
+      Epoch 500/500: loss=0.014776
+    recon=0.014424  tangent=0.660994  combined=0.675418
+
+  seed=2042, λ_C=0.5
+      Epoch 100/500: loss=0.073816
+      Epoch 200/500: loss=0.070511
+      Epoch 300/500: loss=0.070858
+      Epoch 400/500: loss=0.070133
+      Epoch 500/500: loss=0.070857
+    recon=0.070100  tangent=1.555343  combined=1.625444
+
+Saved 12 rows to mb_contractive_sweep.csv
+
+============================================================
+CONTRACTIVE SWEEP SUMMARY
+============================================================
+  λ_C=0.01: combined=0.6641±0.0230  recon=0.0080  tangent=0.6561
+  λ_C=0.05: combined=0.6748±0.0177  recon=0.0119  tangent=0.6629
+  λ_C=0.1: combined=0.8647±0.3168  recon=0.0178  tangent=0.8469
+  λ_C=0.5: combined=1.7972±0.1496  recon=0.0646  tangent=1.7326
+
+  Best: λ_C=0.01
+
+Total time: 140.6s

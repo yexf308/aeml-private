@@ -1,0 +1,2713 @@
+Device: cuda
+Seeds (10): [42, 1042, 2042, 3042, 4042, 5042, 6042, 7042, 8042, 9042]
+Surfaces: ['paraboloid', 'hyperbolic_paraboloid']
+Conditions: ['baseline', 'K(Phat)']
+D configs: [(99, 201)]
+N values: [20, 50, 100, 200]
+Curvature weight scaling: K_weight = 0.1 * D/11
+Hidden dims: D-dependent (<=11:[64,64], <=51:[128,128], else:[256,256])
+AE epochs: 500 (Phase 1: 250, Phase 2: 250)
+SDE epochs: 300
+Expected rows: 160
+
+
+============================================================
+  N=20 | D=201 (K=99) | paraboloid | seed=42
+============================================================
+    Phase1 Epoch 50/250: loss=0.725477
+    Phase1 Epoch 100/250: loss=0.702167
+    Phase1 Epoch 150/250: loss=0.621317
+    Phase1 Epoch 200/250: loss=0.534895
+    Phase1 Epoch 250/250: loss=0.436679
+      Condition: baseline (K_weight=0.0000)
+        Phase2 Epoch 50/250: loss=0.278614
+        Phase2 Epoch 100/250: loss=0.218198
+        Phase2 Epoch 150/250: loss=0.157585
+        Phase2 Epoch 200/250: loss=0.155454
+        Phase2 Epoch 250/250: loss=0.098176
+        E_mu=2.0872  E_Sigma=5.7190
+  Stage 2 epoch 60/300: loss=0.002484
+  Stage 2 epoch 120/300: loss=0.002239
+  Stage 2 epoch 180/300: loss=0.001898
+  Stage 2 epoch 240/300: loss=0.001322
+  Stage 2 epoch 300/300: loss=0.000748
+  Stage 3 epoch 60/300: loss=0.000335
+  Stage 3 epoch 120/300: loss=0.000301
+  Stage 3 epoch 180/300: loss=0.000257
+  Stage 3 epoch 240/300: loss=0.000204
+  Stage 3 epoch 300/300: loss=0.000175
+  MTE@0.1: 1.4568
+  MTE@0.5: 2.7768
+  MTE@1.0: 3.4751
+  W2@0.1:  0.9442
+  W2@0.5:  1.3808
+  W2@1.0:  1.9175
+  MMD@1.0: 0.1739
+  Survival@1.0: 76.5%
+      Condition: K(Phat) (K_weight=0.4275)
+        Phase2 Epoch 50/250: loss=0.327316
+        Phase2 Epoch 100/250: loss=0.233214
+        Phase2 Epoch 150/250: loss=0.180983
+        Phase2 Epoch 200/250: loss=0.252530
+        Phase2 Epoch 250/250: loss=0.137131
+        E_mu=1.6060  E_Sigma=4.9372
+  Stage 2 epoch 60/300: loss=0.001517
+  Stage 2 epoch 120/300: loss=0.001357
+  Stage 2 epoch 180/300: loss=0.001165
+  Stage 2 epoch 240/300: loss=0.000880
+  Stage 2 epoch 300/300: loss=0.000528
+  Stage 3 epoch 60/300: loss=0.000293
+  Stage 3 epoch 120/300: loss=0.000264
+  Stage 3 epoch 180/300: loss=0.000227
+  Stage 3 epoch 240/300: loss=0.000182
+  Stage 3 epoch 300/300: loss=0.000153
+  MTE@0.1: 1.5457
+  MTE@0.5: 2.8247
+  MTE@1.0: 3.4784
+  W2@0.1:  1.0435
+  W2@0.5:  1.4195
+  W2@1.0:  1.9093
+  MMD@1.0: 0.2021
+  Survival@1.0: 76.5%
+      baseline: W2=1.9175  E_mu=2.0872  E_Sig=5.7190
+       K(Phat): W2=1.9093  E_mu=1.6060  E_Sig=4.9372
+
+============================================================
+  N=20 | D=201 (K=99) | paraboloid | seed=1042
+============================================================
+    Phase1 Epoch 50/250: loss=0.688328
+    Phase1 Epoch 100/250: loss=0.677658
+    Phase1 Epoch 150/250: loss=0.632955
+    Phase1 Epoch 200/250: loss=0.445422
+    Phase1 Epoch 250/250: loss=0.271688
+      Condition: baseline (K_weight=0.0000)
+        Phase2 Epoch 50/250: loss=0.206052
+        Phase2 Epoch 100/250: loss=0.281004
+        Phase2 Epoch 150/250: loss=0.161826
+        Phase2 Epoch 200/250: loss=0.085904
+        Phase2 Epoch 250/250: loss=0.110611
+        E_mu=1.5579  E_Sigma=3.2787
+  Stage 2 epoch 60/300: loss=0.000716
+  Stage 2 epoch 120/300: loss=0.000670
+  Stage 2 epoch 180/300: loss=0.000617
+  Stage 2 epoch 240/300: loss=0.000540
+  Stage 2 epoch 300/300: loss=0.000440
+  Stage 3 epoch 60/300: loss=0.000317
+  Stage 3 epoch 120/300: loss=0.000279
+  Stage 3 epoch 180/300: loss=0.000231
+  Stage 3 epoch 240/300: loss=0.000182
+  Stage 3 epoch 300/300: loss=0.000163
+  MTE@0.1: 1.1730
+  MTE@0.5: 2.0026
+  MTE@1.0: 2.7531
+  W2@0.1:  0.9900
+  W2@0.5:  1.2667
+  W2@1.0:  1.7572
+  MMD@1.0: 0.1850
+  Survival@1.0: 72.0%
+      Condition: K(Phat) (K_weight=0.4275)
+        Phase2 Epoch 50/250: loss=0.256907
+        Phase2 Epoch 100/250: loss=0.154976
+        Phase2 Epoch 150/250: loss=0.119453
+        Phase2 Epoch 200/250: loss=0.265253
+        Phase2 Epoch 250/250: loss=0.098216
+        E_mu=1.2939  E_Sigma=3.4546
+  Stage 2 epoch 60/300: loss=0.000575
+  Stage 2 epoch 120/300: loss=0.000539
+  Stage 2 epoch 180/300: loss=0.000494
+  Stage 2 epoch 240/300: loss=0.000438
+  Stage 2 epoch 300/300: loss=0.000361
+  Stage 3 epoch 60/300: loss=0.000332
+  Stage 3 epoch 120/300: loss=0.000279
+  Stage 3 epoch 180/300: loss=0.000227
+  Stage 3 epoch 240/300: loss=0.000173
+  Stage 3 epoch 300/300: loss=0.000156
+  MTE@0.1: 1.1946
+  MTE@0.5: 2.0060
+  MTE@1.0: 2.7096
+  W2@0.1:  1.0030
+  W2@0.5:  1.2368
+  W2@1.0:  1.7095
+  MMD@1.0: 0.1658
+  Survival@1.0: 72.0%
+      baseline: W2=1.7572  E_mu=1.5579  E_Sig=3.2787
+       K(Phat): W2=1.7095  E_mu=1.2939  E_Sig=3.4546
+
+============================================================
+  N=20 | D=201 (K=99) | paraboloid | seed=2042
+============================================================
+    Phase1 Epoch 50/250: loss=0.928143
+    Phase1 Epoch 100/250: loss=0.862178
+    Phase1 Epoch 150/250: loss=0.804693
+    Phase1 Epoch 200/250: loss=0.689583
+    Phase1 Epoch 250/250: loss=0.562841
+      Condition: baseline (K_weight=0.0000)
+        Phase2 Epoch 50/250: loss=0.293230
+        Phase2 Epoch 100/250: loss=0.146833
+        Phase2 Epoch 150/250: loss=0.158979
+        Phase2 Epoch 200/250: loss=0.085848
+        Phase2 Epoch 250/250: loss=0.108520
+        E_mu=0.8384  E_Sigma=2.0063
+  Stage 2 epoch 60/300: loss=0.000810
+  Stage 2 epoch 120/300: loss=0.000666
+  Stage 2 epoch 180/300: loss=0.000560
+  Stage 2 epoch 240/300: loss=0.000482
+  Stage 2 epoch 300/300: loss=0.000408
+  Stage 3 epoch 60/300: loss=0.000263
+  Stage 3 epoch 120/300: loss=0.000238
+  Stage 3 epoch 180/300: loss=0.000191
+  Stage 3 epoch 240/300: loss=0.000170
+  Stage 3 epoch 300/300: loss=0.000156
+  MTE@0.1: 0.6619
+  MTE@0.5: 1.6016
+  MTE@1.0: 2.0892
+  W2@0.1:  0.5897
+  W2@0.5:  1.2715
+  W2@1.0:  1.7225
+  MMD@1.0: 0.2245
+  Survival@1.0: 78.5%
+      Condition: K(Phat) (K_weight=0.4275)
+        Phase2 Epoch 50/250: loss=0.322822
+        Phase2 Epoch 100/250: loss=0.257662
+        Phase2 Epoch 150/250: loss=0.112907
+        Phase2 Epoch 200/250: loss=0.079101
+        Phase2 Epoch 250/250: loss=0.061606
+        E_mu=0.6866  E_Sigma=1.4535
+  Stage 2 epoch 60/300: loss=0.000776
+  Stage 2 epoch 120/300: loss=0.000603
+  Stage 2 epoch 180/300: loss=0.000479
+  Stage 2 epoch 240/300: loss=0.000380
+  Stage 2 epoch 300/300: loss=0.000255
+  Stage 3 epoch 60/300: loss=0.000231
+  Stage 3 epoch 120/300: loss=0.000174
+  Stage 3 epoch 180/300: loss=0.000155
+  Stage 3 epoch 240/300: loss=0.000140
+  Stage 3 epoch 300/300: loss=0.000129
+  MTE@0.1: 0.6052
+  MTE@0.5: 1.5869
+  MTE@1.0: 2.1117
+  W2@0.1:  0.5486
+  W2@0.5:  1.1798
+  W2@1.0:  1.6124
+  MMD@1.0: 0.2155
+  Survival@1.0: 78.5%
+      baseline: W2=1.7225  E_mu=0.8384  E_Sig=2.0063
+       K(Phat): W2=1.6124  E_mu=0.6866  E_Sig=1.4535
+
+============================================================
+  N=20 | D=201 (K=99) | paraboloid | seed=3042
+============================================================
+    Phase1 Epoch 50/250: loss=0.807089
+    Phase1 Epoch 100/250: loss=0.770404
+    Phase1 Epoch 150/250: loss=0.724763
+    Phase1 Epoch 200/250: loss=0.555004
+    Phase1 Epoch 250/250: loss=0.433112
+      Condition: baseline (K_weight=0.0000)
+        Phase2 Epoch 50/250: loss=0.312052
+        Phase2 Epoch 100/250: loss=0.180825
+        Phase2 Epoch 150/250: loss=0.110715
+        Phase2 Epoch 200/250: loss=0.089999
+        Phase2 Epoch 250/250: loss=0.050416
+        E_mu=0.7570  E_Sigma=1.1851
+  Stage 2 epoch 60/300: loss=0.001547
+  Stage 2 epoch 120/300: loss=0.001257
+  Stage 2 epoch 180/300: loss=0.000855
+  Stage 2 epoch 240/300: loss=0.000382
+  Stage 2 epoch 300/300: loss=0.000201
+  Stage 3 epoch 60/300: loss=0.000275
+  Stage 3 epoch 120/300: loss=0.000224
+  Stage 3 epoch 180/300: loss=0.000167
+  Stage 3 epoch 240/300: loss=0.000119
+  Stage 3 epoch 300/300: loss=0.000105
+  MTE@0.1: 0.7087
+  MTE@0.5: 1.5498
+  MTE@1.0: 2.4499
+  W2@0.1:  0.5934
+  W2@0.5:  1.3696
+  W2@1.0:  2.0693
+  MMD@1.0: 0.2947
+  Survival@1.0: 74.5%
+      Condition: K(Phat) (K_weight=0.4275)
+        Phase2 Epoch 50/250: loss=0.325804
+        Phase2 Epoch 100/250: loss=0.195499
+        Phase2 Epoch 150/250: loss=0.116005
+        Phase2 Epoch 200/250: loss=0.064393
+        Phase2 Epoch 250/250: loss=0.094176
+        E_mu=0.6908  E_Sigma=2.0074
+  Stage 2 epoch 60/300: loss=0.000825
+  Stage 2 epoch 120/300: loss=0.000562
+  Stage 2 epoch 180/300: loss=0.000314
+  Stage 2 epoch 240/300: loss=0.000192
+  Stage 2 epoch 300/300: loss=0.000133
+  Stage 3 epoch 60/300: loss=0.000312
+  Stage 3 epoch 120/300: loss=0.000273
+  Stage 3 epoch 180/300: loss=0.000224
+  Stage 3 epoch 240/300: loss=0.000164
+  Stage 3 epoch 300/300: loss=0.000144
+  MTE@0.1: 0.8298
+  MTE@0.5: 1.5896
+  MTE@1.0: 2.3449
+  W2@0.1:  0.7010
+  W2@0.5:  1.3347
+  W2@1.0:  1.7192
+  MMD@1.0: 0.2757
+  Survival@1.0: 74.5%
+      baseline: W2=2.0693  E_mu=0.7570  E_Sig=1.1851
+       K(Phat): W2=1.7192  E_mu=0.6908  E_Sig=2.0074
+
+============================================================
+  N=20 | D=201 (K=99) | paraboloid | seed=4042
+============================================================
+    Phase1 Epoch 50/250: loss=0.820676
+    Phase1 Epoch 100/250: loss=0.745430
+    Phase1 Epoch 150/250: loss=0.606428
+    Phase1 Epoch 200/250: loss=0.428950
+    Phase1 Epoch 250/250: loss=0.259851
+      Condition: baseline (K_weight=0.0000)
+        Phase2 Epoch 50/250: loss=0.169571
+        Phase2 Epoch 100/250: loss=0.156538
+        Phase2 Epoch 150/250: loss=0.082959
+        Phase2 Epoch 200/250: loss=0.080602
+        Phase2 Epoch 250/250: loss=0.058646
+        E_mu=1.2875  E_Sigma=2.0539
+  Stage 2 epoch 60/300: loss=0.000990
+  Stage 2 epoch 120/300: loss=0.000847
+  Stage 2 epoch 180/300: loss=0.000705
+  Stage 2 epoch 240/300: loss=0.000545
+  Stage 2 epoch 300/300: loss=0.000377
+  Stage 3 epoch 60/300: loss=0.000374
+  Stage 3 epoch 120/300: loss=0.000363
+  Stage 3 epoch 180/300: loss=0.000358
+  Stage 3 epoch 240/300: loss=0.000353
+  Stage 3 epoch 300/300: loss=0.000349
+  MTE@0.1: 1.1072
+  MTE@0.5: 2.1556
+  MTE@1.0: 2.5051
+  W2@0.1:  0.8226
+  W2@0.5:  1.5073
+  W2@1.0:  1.5188
+  MMD@1.0: 0.2070
+  Survival@1.0: 76.0%
+      Condition: K(Phat) (K_weight=0.4275)
+        Phase2 Epoch 50/250: loss=0.161895
+        Phase2 Epoch 100/250: loss=0.124101
+        Phase2 Epoch 150/250: loss=0.142093
+        Phase2 Epoch 200/250: loss=0.058893
+        Phase2 Epoch 250/250: loss=0.055895
+        E_mu=1.0035  E_Sigma=2.4858
+  Stage 2 epoch 60/300: loss=0.000755
+  Stage 2 epoch 120/300: loss=0.000626
+  Stage 2 epoch 180/300: loss=0.000492
+  Stage 2 epoch 240/300: loss=0.000369
+  Stage 2 epoch 300/300: loss=0.000290
+  Stage 3 epoch 60/300: loss=0.000340
+  Stage 3 epoch 120/300: loss=0.000327
+  Stage 3 epoch 180/300: loss=0.000323
+  Stage 3 epoch 240/300: loss=0.000318
+  Stage 3 epoch 300/300: loss=0.000313
+  MTE@0.1: 1.1297
+  MTE@0.5: 2.1073
+  MTE@1.0: 2.4471
+  W2@0.1:  0.8530
+  W2@0.5:  1.4890
+  W2@1.0:  1.4430
+  MMD@1.0: 0.2108
+  Survival@1.0: 76.0%
+      baseline: W2=1.5188  E_mu=1.2875  E_Sig=2.0539
+       K(Phat): W2=1.4430  E_mu=1.0035  E_Sig=2.4858
+
+============================================================
+  N=20 | D=201 (K=99) | paraboloid | seed=5042
+============================================================
+    Phase1 Epoch 50/250: loss=0.833598
+    Phase1 Epoch 100/250: loss=0.693876
+    Phase1 Epoch 150/250: loss=0.504687
+    Phase1 Epoch 200/250: loss=0.277524
+    Phase1 Epoch 250/250: loss=0.183317
+      Condition: baseline (K_weight=0.0000)
+        Phase2 Epoch 50/250: loss=0.137238
+        Phase2 Epoch 100/250: loss=0.113516
+        Phase2 Epoch 150/250: loss=0.286991
+        Phase2 Epoch 200/250: loss=0.075937
+        Phase2 Epoch 250/250: loss=0.053715
+        E_mu=1.1380  E_Sigma=2.3864
+  Stage 2 epoch 60/300: loss=0.000722
+  Stage 2 epoch 120/300: loss=0.000422
+  Stage 2 epoch 180/300: loss=0.000339
+  Stage 2 epoch 240/300: loss=0.000244
+  Stage 2 epoch 300/300: loss=0.000159
+  Stage 3 epoch 60/300: loss=0.000156
+  Stage 3 epoch 120/300: loss=0.000144
+  Stage 3 epoch 180/300: loss=0.000139
+  Stage 3 epoch 240/300: loss=0.000135
+  Stage 3 epoch 300/300: loss=0.000133
+  MTE@0.1: 1.2025
+  MTE@0.5: 2.2930
+  MTE@1.0: 2.8038
+  W2@0.1:  0.7308
+  W2@0.5:  1.1174
+  W2@1.0:  1.5424
+  MMD@1.0: 0.2171
+  Survival@1.0: 76.5%
+      Condition: K(Phat) (K_weight=0.4275)
+        Phase2 Epoch 50/250: loss=0.136750
+        Phase2 Epoch 100/250: loss=0.115554
+        Phase2 Epoch 150/250: loss=0.100402
+        Phase2 Epoch 200/250: loss=0.112100
+        Phase2 Epoch 250/250: loss=0.080312
+        E_mu=1.1168  E_Sigma=2.2372
+  Stage 2 epoch 60/300: loss=0.000713
+  Stage 2 epoch 120/300: loss=0.000412
+  Stage 2 epoch 180/300: loss=0.000354
+  Stage 2 epoch 240/300: loss=0.000282
+  Stage 2 epoch 300/300: loss=0.000207
+  Stage 3 epoch 60/300: loss=0.000154
+  Stage 3 epoch 120/300: loss=0.000139
+  Stage 3 epoch 180/300: loss=0.000133
+  Stage 3 epoch 240/300: loss=0.000130
+  Stage 3 epoch 300/300: loss=0.000127
+  MTE@0.1: 1.2587
+  MTE@0.5: 2.2726
+  MTE@1.0: 2.6948
+  W2@0.1:  0.7909
+  W2@0.5:  1.1129
+  W2@1.0:  1.4408
+  MMD@1.0: 0.2091
+  Survival@1.0: 76.5%
+      baseline: W2=1.5424  E_mu=1.1380  E_Sig=2.3864
+       K(Phat): W2=1.4408  E_mu=1.1168  E_Sig=2.2372
+
+============================================================
+  N=20 | D=201 (K=99) | paraboloid | seed=6042
+============================================================
+    Phase1 Epoch 50/250: loss=0.922522
+    Phase1 Epoch 100/250: loss=0.761401
+    Phase1 Epoch 150/250: loss=0.623874
+    Phase1 Epoch 200/250: loss=0.346233
+    Phase1 Epoch 250/250: loss=0.129847
+      Condition: baseline (K_weight=0.0000)
+        Phase2 Epoch 50/250: loss=0.107006
+        Phase2 Epoch 100/250: loss=0.077234
+        Phase2 Epoch 150/250: loss=0.088640
+        Phase2 Epoch 200/250: loss=0.046625
+        Phase2 Epoch 250/250: loss=0.034784
+        E_mu=1.4572  E_Sigma=1.6103
+  Stage 2 epoch 60/300: loss=0.000388
+  Stage 2 epoch 120/300: loss=0.000270
+  Stage 2 epoch 180/300: loss=0.000223
+  Stage 2 epoch 240/300: loss=0.000178
+  Stage 2 epoch 300/300: loss=0.000123
+  Stage 3 epoch 60/300: loss=0.000095
+  Stage 3 epoch 120/300: loss=0.000073
+  Stage 3 epoch 180/300: loss=0.000057
+  Stage 3 epoch 240/300: loss=0.000045
+  Stage 3 epoch 300/300: loss=0.000040
+  MTE@0.1: 0.6018
+  MTE@0.5: 1.3587
+  MTE@1.0: 1.8429
+  W2@0.1:  0.9032
+  W2@0.5:  1.2383
+  W2@1.0:  1.4282
+  MMD@1.0: 0.2397
+  Survival@1.0: 73.0%
+      Condition: K(Phat) (K_weight=0.4275)
+        Phase2 Epoch 50/250: loss=0.097937
+        Phase2 Epoch 100/250: loss=0.068584
+        Phase2 Epoch 150/250: loss=0.079906
+        Phase2 Epoch 200/250: loss=0.025914
+        Phase2 Epoch 250/250: loss=0.045748
+        E_mu=1.3145  E_Sigma=2.0134
+  Stage 2 epoch 60/300: loss=0.000365
+  Stage 2 epoch 120/300: loss=0.000290
+  Stage 2 epoch 180/300: loss=0.000241
+  Stage 2 epoch 240/300: loss=0.000181
+  Stage 2 epoch 300/300: loss=0.000137
+  Stage 3 epoch 60/300: loss=0.000134
+  Stage 3 epoch 120/300: loss=0.000099
+  Stage 3 epoch 180/300: loss=0.000079
+  Stage 3 epoch 240/300: loss=0.000061
+  Stage 3 epoch 300/300: loss=0.000055
+  MTE@0.1: 0.8665
+  MTE@0.5: 1.5174
+  MTE@1.0: 2.0227
+  W2@0.1:  1.0246
+  W2@0.5:  1.2823
+  W2@1.0:  1.4943
+  MMD@1.0: 0.2577
+  Survival@1.0: 73.0%
+      baseline: W2=1.4282  E_mu=1.4572  E_Sig=1.6103
+       K(Phat): W2=1.4943  E_mu=1.3145  E_Sig=2.0134
+
+============================================================
+  N=20 | D=201 (K=99) | paraboloid | seed=7042
+============================================================
+    Phase1 Epoch 50/250: loss=1.040448
+    Phase1 Epoch 100/250: loss=0.771802
+    Phase1 Epoch 150/250: loss=0.835846
+    Phase1 Epoch 200/250: loss=0.554967
+    Phase1 Epoch 250/250: loss=0.459994
+      Condition: baseline (K_weight=0.0000)
+        Phase2 Epoch 50/250: loss=0.408489
+        Phase2 Epoch 100/250: loss=0.259443
+        Phase2 Epoch 150/250: loss=0.170664
+        Phase2 Epoch 200/250: loss=0.125893
+        Phase2 Epoch 250/250: loss=0.132001
+        E_mu=0.6717  E_Sigma=1.3781
+  Stage 2 epoch 60/300: loss=0.005549
+  Stage 2 epoch 120/300: loss=0.004736
+  Stage 2 epoch 180/300: loss=0.003122
+  Stage 2 epoch 240/300: loss=0.001394
+  Stage 2 epoch 300/300: loss=0.000629
+  Stage 3 epoch 60/300: loss=0.000607
+  Stage 3 epoch 120/300: loss=0.000386
+  Stage 3 epoch 180/300: loss=0.000354
+  Stage 3 epoch 240/300: loss=0.000325
+  Stage 3 epoch 300/300: loss=0.000302
+  MTE@0.1: 1.2561
+  MTE@0.5: 2.5459
+  MTE@1.0: 3.2140
+  W2@0.1:  0.7365
+  W2@0.5:  1.4624
+  W2@1.0:  2.1811
+  MMD@1.0: 0.2060
+  Survival@1.0: 76.5%
+      Condition: K(Phat) (K_weight=0.4275)
+        Phase2 Epoch 50/250: loss=0.415002
+        Phase2 Epoch 100/250: loss=0.340417
+        Phase2 Epoch 150/250: loss=0.264094
+        Phase2 Epoch 200/250: loss=0.131893
+        Phase2 Epoch 250/250: loss=0.101866
+        E_mu=0.8278  E_Sigma=3.3480
+  Stage 2 epoch 60/300: loss=0.002045
+  Stage 2 epoch 120/300: loss=0.001627
+  Stage 2 epoch 180/300: loss=0.001119
+  Stage 2 epoch 240/300: loss=0.000771
+  Stage 2 epoch 300/300: loss=0.000458
+  Stage 3 epoch 60/300: loss=0.000578
+  Stage 3 epoch 120/300: loss=0.000482
+  Stage 3 epoch 180/300: loss=0.000418
+  Stage 3 epoch 240/300: loss=0.000405
+  Stage 3 epoch 300/300: loss=0.000399
+  MTE@0.1: 1.2029
+  MTE@0.5: 2.4117
+  MTE@1.0: 2.8365
+  W2@0.1:  0.8166
+  W2@0.5:  1.3212
+  W2@1.0:  1.6304
+  MMD@1.0: 0.1742
+  Survival@1.0: 76.5%
+      baseline: W2=2.1811  E_mu=0.6717  E_Sig=1.3781
+       K(Phat): W2=1.6304  E_mu=0.8278  E_Sig=3.3480
+
+============================================================
+  N=20 | D=201 (K=99) | paraboloid | seed=8042
+============================================================
+    Phase1 Epoch 50/250: loss=0.874910
+    Phase1 Epoch 100/250: loss=0.741039
+    Phase1 Epoch 150/250: loss=0.691437
+    Phase1 Epoch 200/250: loss=0.622271
+    Phase1 Epoch 250/250: loss=0.366253
+      Condition: baseline (K_weight=0.0000)
+        Phase2 Epoch 50/250: loss=0.210692
+        Phase2 Epoch 100/250: loss=0.093198
+        Phase2 Epoch 150/250: loss=0.068507
+        Phase2 Epoch 200/250: loss=0.064757
+        Phase2 Epoch 250/250: loss=0.048503
+        E_mu=1.1370  E_Sigma=1.7478
+  Stage 2 epoch 60/300: loss=0.000829
+  Stage 2 epoch 120/300: loss=0.000643
+  Stage 2 epoch 180/300: loss=0.000407
+  Stage 2 epoch 240/300: loss=0.000291
+  Stage 2 epoch 300/300: loss=0.000233
+  Stage 3 epoch 60/300: loss=0.000696
+  Stage 3 epoch 120/300: loss=0.000609
+  Stage 3 epoch 180/300: loss=0.000489
+  Stage 3 epoch 240/300: loss=0.000464
+  Stage 3 epoch 300/300: loss=0.000451
+  MTE@0.1: 0.7837
+  MTE@0.5: 1.6406
+  MTE@1.0: 2.1629
+  W2@0.1:  0.6788
+  W2@0.5:  1.3420
+  W2@1.0:  1.4283
+  MMD@1.0: 0.1444
+  Survival@1.0: 79.5%
+      Condition: K(Phat) (K_weight=0.4275)
+        Phase2 Epoch 50/250: loss=0.190733
+        Phase2 Epoch 100/250: loss=0.163269
+        Phase2 Epoch 150/250: loss=0.090000
+        Phase2 Epoch 200/250: loss=0.069997
+        Phase2 Epoch 250/250: loss=0.068706
+        E_mu=0.9362  E_Sigma=1.9011
+  Stage 2 epoch 60/300: loss=0.001018
+  Stage 2 epoch 120/300: loss=0.000740
+  Stage 2 epoch 180/300: loss=0.000444
+  Stage 2 epoch 240/300: loss=0.000310
+  Stage 2 epoch 300/300: loss=0.000239
+  Stage 3 epoch 60/300: loss=0.000577
+  Stage 3 epoch 120/300: loss=0.000443
+  Stage 3 epoch 180/300: loss=0.000335
+  Stage 3 epoch 240/300: loss=0.000304
+  Stage 3 epoch 300/300: loss=0.000288
+  MTE@0.1: 1.6687
+  MTE@0.5: 2.2974
+  MTE@1.0: 2.7054
+  W2@0.1:  1.5202
+  W2@0.5:  1.8845
+  W2@1.0:  1.9343
+  MMD@1.0: 0.4025
+  Survival@1.0: 79.5%
+      baseline: W2=1.4283  E_mu=1.1370  E_Sig=1.7478
+       K(Phat): W2=1.9343  E_mu=0.9362  E_Sig=1.9011
+
+============================================================
+  N=20 | D=201 (K=99) | paraboloid | seed=9042
+============================================================
+    Phase1 Epoch 50/250: loss=0.749243
+    Phase1 Epoch 100/250: loss=0.631863
+    Phase1 Epoch 150/250: loss=0.416737
+    Phase1 Epoch 200/250: loss=0.246135
+    Phase1 Epoch 250/250: loss=0.116622
+      Condition: baseline (K_weight=0.0000)
+        Phase2 Epoch 50/250: loss=0.170510
+        Phase2 Epoch 100/250: loss=0.088258
+        Phase2 Epoch 150/250: loss=0.056256
+        Phase2 Epoch 200/250: loss=0.041719
+        Phase2 Epoch 250/250: loss=0.055558
+        E_mu=1.1299  E_Sigma=1.1609
+  Stage 2 epoch 60/300: loss=0.001964
+  Stage 2 epoch 120/300: loss=0.000833
+  Stage 2 epoch 180/300: loss=0.000430
+  Stage 2 epoch 240/300: loss=0.000216
+  Stage 2 epoch 300/300: loss=0.000146
+  Stage 3 epoch 60/300: loss=0.000350
+  Stage 3 epoch 120/300: loss=0.000297
+  Stage 3 epoch 180/300: loss=0.000245
+  Stage 3 epoch 240/300: loss=0.000185
+  Stage 3 epoch 300/300: loss=0.000155
+  MTE@0.1: 1.6495
+  MTE@0.5: 2.7626
+  MTE@1.0: 3.4191
+  W2@0.1:  0.9663
+  W2@0.5:  1.5081
+  W2@1.0:  2.1470
+  MMD@1.0: 0.2582
+  Survival@1.0: 76.0%
+      Condition: K(Phat) (K_weight=0.4275)
+        Phase2 Epoch 50/250: loss=0.129795
+        Phase2 Epoch 100/250: loss=0.053669
+        Phase2 Epoch 150/250: loss=0.066466
+        Phase2 Epoch 200/250: loss=0.035819
+        Phase2 Epoch 250/250: loss=0.036518
+        E_mu=0.8001  E_Sigma=1.2017
+  Stage 2 epoch 60/300: loss=0.001430
+  Stage 2 epoch 120/300: loss=0.000514
+  Stage 2 epoch 180/300: loss=0.000267
+  Stage 2 epoch 240/300: loss=0.000156
+  Stage 2 epoch 300/300: loss=0.000088
+  Stage 3 epoch 60/300: loss=0.000279
+  Stage 3 epoch 120/300: loss=0.000233
+  Stage 3 epoch 180/300: loss=0.000186
+  Stage 3 epoch 240/300: loss=0.000130
+  Stage 3 epoch 300/300: loss=0.000091
+  MTE@0.1: 1.5949
+  MTE@0.5: 2.6217
+  MTE@1.0: 3.1680
+  W2@0.1:  0.9134
+  W2@0.5:  1.3165
+  W2@1.0:  1.8696
+  MMD@1.0: 0.2070
+  Survival@1.0: 76.0%
+      baseline: W2=2.1470  E_mu=1.1299  E_Sig=1.1609
+       K(Phat): W2=1.8696  E_mu=0.8001  E_Sig=1.2017
+
+============================================================
+  N=20 | D=201 (K=99) | hyperbolic_paraboloid | seed=42
+============================================================
+    Phase1 Epoch 50/250: loss=0.786107
+    Phase1 Epoch 100/250: loss=0.755314
+    Phase1 Epoch 150/250: loss=0.725890
+    Phase1 Epoch 200/250: loss=0.564055
+    Phase1 Epoch 250/250: loss=0.402374
+      Condition: baseline (K_weight=0.0000)
+        Phase2 Epoch 50/250: loss=0.325982
+        Phase2 Epoch 100/250: loss=0.311538
+        Phase2 Epoch 150/250: loss=0.232754
+        Phase2 Epoch 200/250: loss=0.180258
+        Phase2 Epoch 250/250: loss=0.194965
+        E_mu=1.8318  E_Sigma=6.5707
+  Stage 2 epoch 60/300: loss=0.002172
+  Stage 2 epoch 120/300: loss=0.002003
+  Stage 2 epoch 180/300: loss=0.001804
+  Stage 2 epoch 240/300: loss=0.001532
+  Stage 2 epoch 300/300: loss=0.001138
+  Stage 3 epoch 60/300: loss=0.000408
+  Stage 3 epoch 120/300: loss=0.000292
+  Stage 3 epoch 180/300: loss=0.000281
+  Stage 3 epoch 240/300: loss=0.000272
+  Stage 3 epoch 300/300: loss=0.000261
+  MTE@0.1: 1.3014
+  MTE@0.5: 2.5595
+  MTE@1.0: 3.1174
+  W2@0.1:  0.8555
+  W2@0.5:  1.6877
+  W2@1.0:  1.9079
+  MMD@1.0: 0.2090
+  Survival@1.0: 76.5%
+      Condition: K(Phat) (K_weight=0.4275)
+        Phase2 Epoch 50/250: loss=0.343293
+        Phase2 Epoch 100/250: loss=0.310725
+        Phase2 Epoch 150/250: loss=0.239392
+        Phase2 Epoch 200/250: loss=0.156814
+        Phase2 Epoch 250/250: loss=0.108257
+        E_mu=1.3791  E_Sigma=5.2249
+  Stage 2 epoch 60/300: loss=0.002002
+  Stage 2 epoch 120/300: loss=0.001578
+  Stage 2 epoch 180/300: loss=0.001199
+  Stage 2 epoch 240/300: loss=0.000852
+  Stage 2 epoch 300/300: loss=0.000517
+  Stage 3 epoch 60/300: loss=0.000364
+  Stage 3 epoch 120/300: loss=0.000240
+  Stage 3 epoch 180/300: loss=0.000232
+  Stage 3 epoch 240/300: loss=0.000223
+  Stage 3 epoch 300/300: loss=0.000212
+  MTE@0.1: 1.2658
+  MTE@0.5: 2.5966
+  MTE@1.0: 3.1314
+  W2@0.1:  0.7548
+  W2@0.5:  1.6305
+  W2@1.0:  1.9451
+  MMD@1.0: 0.2229
+  Survival@1.0: 76.5%
+      baseline: W2=1.9079  E_mu=1.8318  E_Sig=6.5707
+       K(Phat): W2=1.9451  E_mu=1.3791  E_Sig=5.2249
+
+============================================================
+  N=20 | D=201 (K=99) | hyperbolic_paraboloid | seed=1042
+============================================================
+    Phase1 Epoch 50/250: loss=0.809726
+    Phase1 Epoch 100/250: loss=0.701370
+    Phase1 Epoch 150/250: loss=0.539352
+    Phase1 Epoch 200/250: loss=0.301255
+    Phase1 Epoch 250/250: loss=0.236404
+      Condition: baseline (K_weight=0.0000)
+        Phase2 Epoch 50/250: loss=0.133170
+        Phase2 Epoch 100/250: loss=0.107514
+        Phase2 Epoch 150/250: loss=0.129979
+        Phase2 Epoch 200/250: loss=0.120767
+        Phase2 Epoch 250/250: loss=0.041452
+        E_mu=0.7785  E_Sigma=1.3207
+  Stage 2 epoch 60/300: loss=0.000801
+  Stage 2 epoch 120/300: loss=0.000710
+  Stage 2 epoch 180/300: loss=0.000617
+  Stage 2 epoch 240/300: loss=0.000505
+  Stage 2 epoch 300/300: loss=0.000374
+  Stage 3 epoch 60/300: loss=0.000131
+  Stage 3 epoch 120/300: loss=0.000098
+  Stage 3 epoch 180/300: loss=0.000091
+  Stage 3 epoch 240/300: loss=0.000082
+  Stage 3 epoch 300/300: loss=0.000073
+  MTE@0.1: 1.3107
+  MTE@0.5: 2.1455
+  MTE@1.0: 2.7058
+  W2@0.1:  0.8541
+  W2@0.5:  1.1325
+  W2@1.0:  1.4463
+  MMD@1.0: 0.1266
+  Survival@1.0: 72.0%
+      Condition: K(Phat) (K_weight=0.4275)
+        Phase2 Epoch 50/250: loss=0.174427
+        Phase2 Epoch 100/250: loss=0.180030
+        Phase2 Epoch 150/250: loss=0.071396
+        Phase2 Epoch 200/250: loss=0.042393
+        Phase2 Epoch 250/250: loss=0.051449
+        E_mu=0.7681  E_Sigma=1.9356
+  Stage 2 epoch 60/300: loss=0.000533
+  Stage 2 epoch 120/300: loss=0.000469
+  Stage 2 epoch 180/300: loss=0.000405
+  Stage 2 epoch 240/300: loss=0.000334
+  Stage 2 epoch 300/300: loss=0.000260
+  Stage 3 epoch 60/300: loss=0.000110
+  Stage 3 epoch 120/300: loss=0.000089
+  Stage 3 epoch 180/300: loss=0.000083
+  Stage 3 epoch 240/300: loss=0.000076
+  Stage 3 epoch 300/300: loss=0.000068
+  MTE@0.1: 1.6327
+  MTE@0.5: 2.5271
+  MTE@1.0: 2.9811
+  W2@0.1:  0.8400
+  W2@0.5:  1.0866
+  W2@1.0:  1.3118
+  MMD@1.0: 0.1307
+  Survival@1.0: 72.0%
+      baseline: W2=1.4463  E_mu=0.7785  E_Sig=1.3207
+       K(Phat): W2=1.3118  E_mu=0.7681  E_Sig=1.9356
+
+============================================================
+  N=20 | D=201 (K=99) | hyperbolic_paraboloid | seed=2042
+============================================================
+    Phase1 Epoch 50/250: loss=0.886832
+    Phase1 Epoch 100/250: loss=0.675278
+    Phase1 Epoch 150/250: loss=0.589438
+    Phase1 Epoch 200/250: loss=0.412574
+    Phase1 Epoch 250/250: loss=0.256735
+      Condition: baseline (K_weight=0.0000)
+        Phase2 Epoch 50/250: loss=0.168192
+        Phase2 Epoch 100/250: loss=0.105662
+        Phase2 Epoch 150/250: loss=0.120420
+        Phase2 Epoch 200/250: loss=0.059456
+        Phase2 Epoch 250/250: loss=0.208841
+        E_mu=0.7813  E_Sigma=1.8509
+  Stage 2 epoch 60/300: loss=0.000551
+  Stage 2 epoch 120/300: loss=0.000487
+  Stage 2 epoch 180/300: loss=0.000436
+  Stage 2 epoch 240/300: loss=0.000385
+  Stage 2 epoch 300/300: loss=0.000335
+  Stage 3 epoch 60/300: loss=0.000119
+  Stage 3 epoch 120/300: loss=0.000088
+  Stage 3 epoch 180/300: loss=0.000077
+  Stage 3 epoch 240/300: loss=0.000071
+  Stage 3 epoch 300/300: loss=0.000069
+  MTE@0.1: 0.6281
+  MTE@0.5: 1.4136
+  MTE@1.0: 1.6938
+  W2@0.1:  0.6234
+  W2@0.5:  1.2311
+  W2@1.0:  1.2941
+  MMD@1.0: 0.1334
+  Survival@1.0: 78.5%
+      Condition: K(Phat) (K_weight=0.4275)
+        Phase2 Epoch 50/250: loss=0.147543
+        Phase2 Epoch 100/250: loss=0.098050
+        Phase2 Epoch 150/250: loss=0.108673
+        Phase2 Epoch 200/250: loss=0.123106
+        Phase2 Epoch 250/250: loss=0.055095
+        E_mu=0.8785  E_Sigma=2.3226
+  Stage 2 epoch 60/300: loss=0.000493
+  Stage 2 epoch 120/300: loss=0.000420
+  Stage 2 epoch 180/300: loss=0.000376
+  Stage 2 epoch 240/300: loss=0.000335
+  Stage 2 epoch 300/300: loss=0.000299
+  Stage 3 epoch 60/300: loss=0.000129
+  Stage 3 epoch 120/300: loss=0.000108
+  Stage 3 epoch 180/300: loss=0.000095
+  Stage 3 epoch 240/300: loss=0.000087
+  Stage 3 epoch 300/300: loss=0.000080
+  MTE@0.1: 0.5776
+  MTE@0.5: 1.4961
+  MTE@1.0: 1.8030
+  W2@0.1:  0.5471
+  W2@0.5:  1.2589
+  W2@1.0:  1.3371
+  MMD@1.0: 0.1496
+  Survival@1.0: 78.5%
+      baseline: W2=1.2941  E_mu=0.7813  E_Sig=1.8509
+       K(Phat): W2=1.3371  E_mu=0.8785  E_Sig=2.3226
+
+============================================================
+  N=20 | D=201 (K=99) | hyperbolic_paraboloid | seed=3042
+============================================================
+    Phase1 Epoch 50/250: loss=0.959586
+    Phase1 Epoch 100/250: loss=0.854256
+    Phase1 Epoch 150/250: loss=0.809206
+    Phase1 Epoch 200/250: loss=0.579702
+    Phase1 Epoch 250/250: loss=0.448642
+      Condition: baseline (K_weight=0.0000)
+        Phase2 Epoch 50/250: loss=0.402907
+        Phase2 Epoch 100/250: loss=0.221230
+        Phase2 Epoch 150/250: loss=0.192466
+        Phase2 Epoch 200/250: loss=0.049963
+        Phase2 Epoch 250/250: loss=0.021887
+        E_mu=0.4835  E_Sigma=0.9571
+  Stage 2 epoch 60/300: loss=0.001390
+  Stage 2 epoch 120/300: loss=0.001139
+  Stage 2 epoch 180/300: loss=0.000895
+  Stage 2 epoch 240/300: loss=0.000596
+  Stage 2 epoch 300/300: loss=0.000350
+  Stage 3 epoch 60/300: loss=0.000252
+  Stage 3 epoch 120/300: loss=0.000211
+  Stage 3 epoch 180/300: loss=0.000182
+  Stage 3 epoch 240/300: loss=0.000160
+  Stage 3 epoch 300/300: loss=0.000148
+  MTE@0.1: 1.4447
+  MTE@0.5: 2.6739
+  MTE@1.0: 3.1200
+  W2@0.1:  0.6789
+  W2@0.5:  1.3830
+  W2@1.0:  1.7810
+  MMD@1.0: 0.1386
+  Survival@1.0: 74.5%
+      Condition: K(Phat) (K_weight=0.4275)
+        Phase2 Epoch 50/250: loss=0.402009
+        Phase2 Epoch 100/250: loss=0.253701
+        Phase2 Epoch 150/250: loss=0.208519
+        Phase2 Epoch 200/250: loss=0.056218
+        Phase2 Epoch 250/250: loss=0.052465
+        E_mu=0.4583  E_Sigma=1.1773
+  Stage 2 epoch 60/300: loss=0.000730
+  Stage 2 epoch 120/300: loss=0.000612
+  Stage 2 epoch 180/300: loss=0.000531
+  Stage 2 epoch 240/300: loss=0.000449
+  Stage 2 epoch 300/300: loss=0.000278
+  Stage 3 epoch 60/300: loss=0.000239
+  Stage 3 epoch 120/300: loss=0.000210
+  Stage 3 epoch 180/300: loss=0.000192
+  Stage 3 epoch 240/300: loss=0.000179
+  Stage 3 epoch 300/300: loss=0.000171
+  MTE@0.1: 1.4347
+  MTE@0.5: 2.6473
+  MTE@1.0: 3.0921
+  W2@0.1:  0.6414
+  W2@0.5:  1.3208
+  W2@1.0:  1.7109
+  MMD@1.0: 0.1390
+  Survival@1.0: 74.5%
+      baseline: W2=1.7810  E_mu=0.4835  E_Sig=0.9571
+       K(Phat): W2=1.7109  E_mu=0.4583  E_Sig=1.1773
+
+============================================================
+  N=20 | D=201 (K=99) | hyperbolic_paraboloid | seed=4042
+============================================================
+    Phase1 Epoch 50/250: loss=0.792420
+    Phase1 Epoch 100/250: loss=0.830547
+    Phase1 Epoch 150/250: loss=0.659385
+    Phase1 Epoch 200/250: loss=0.409008
+    Phase1 Epoch 250/250: loss=0.176570
+      Condition: baseline (K_weight=0.0000)
+        Phase2 Epoch 50/250: loss=0.116484
+        Phase2 Epoch 100/250: loss=0.046259
+        Phase2 Epoch 150/250: loss=0.083512
+        Phase2 Epoch 200/250: loss=0.039210
+        Phase2 Epoch 250/250: loss=0.029048
+        E_mu=0.5719  E_Sigma=0.9224
+  Stage 2 epoch 60/300: loss=0.000773
+  Stage 2 epoch 120/300: loss=0.000573
+  Stage 2 epoch 180/300: loss=0.000408
+  Stage 2 epoch 240/300: loss=0.000296
+  Stage 2 epoch 300/300: loss=0.000223
+  Stage 3 epoch 60/300: loss=0.000077
+  Stage 3 epoch 120/300: loss=0.000044
+  Stage 3 epoch 180/300: loss=0.000040
+  Stage 3 epoch 240/300: loss=0.000038
+  Stage 3 epoch 300/300: loss=0.000036
+  MTE@0.1: 1.1643
+  MTE@0.5: 2.1689
+  MTE@1.0: 2.4129
+  W2@0.1:  0.6025
+  W2@0.5:  1.3020
+  W2@1.0:  1.2726
+  MMD@1.0: 0.1570
+  Survival@1.0: 76.0%
+      Condition: K(Phat) (K_weight=0.4275)
+        Phase2 Epoch 50/250: loss=0.127913
+        Phase2 Epoch 100/250: loss=0.064489
+        Phase2 Epoch 150/250: loss=0.039630
+        Phase2 Epoch 200/250: loss=0.031770
+        Phase2 Epoch 250/250: loss=0.034970
+        E_mu=0.5312  E_Sigma=1.1691
+  Stage 2 epoch 60/300: loss=0.000500
+  Stage 2 epoch 120/300: loss=0.000413
+  Stage 2 epoch 180/300: loss=0.000344
+  Stage 2 epoch 240/300: loss=0.000278
+  Stage 2 epoch 300/300: loss=0.000223
+  Stage 3 epoch 60/300: loss=0.000115
+  Stage 3 epoch 120/300: loss=0.000056
+  Stage 3 epoch 180/300: loss=0.000052
+  Stage 3 epoch 240/300: loss=0.000048
+  Stage 3 epoch 300/300: loss=0.000045
+  MTE@0.1: 1.3037
+  MTE@0.5: 2.1880
+  MTE@1.0: 2.3343
+  W2@0.1:  0.8334
+  W2@0.5:  1.4522
+  W2@1.0:  1.3383
+  MMD@1.0: 0.1670
+  Survival@1.0: 76.0%
+      baseline: W2=1.2726  E_mu=0.5719  E_Sig=0.9224
+       K(Phat): W2=1.3383  E_mu=0.5312  E_Sig=1.1691
+
+============================================================
+  N=20 | D=201 (K=99) | hyperbolic_paraboloid | seed=5042
+============================================================
+    Phase1 Epoch 50/250: loss=0.847259
+    Phase1 Epoch 100/250: loss=0.761481
+    Phase1 Epoch 150/250: loss=0.566718
+    Phase1 Epoch 200/250: loss=0.324644
+    Phase1 Epoch 250/250: loss=0.167130
+      Condition: baseline (K_weight=0.0000)
+        Phase2 Epoch 50/250: loss=0.121861
+        Phase2 Epoch 100/250: loss=0.096398
+        Phase2 Epoch 150/250: loss=0.095209
+        Phase2 Epoch 200/250: loss=0.060445
+        Phase2 Epoch 250/250: loss=0.081085
+        E_mu=0.8647  E_Sigma=2.2581
+  Stage 2 epoch 60/300: loss=0.000530
+  Stage 2 epoch 120/300: loss=0.000418
+  Stage 2 epoch 180/300: loss=0.000355
+  Stage 2 epoch 240/300: loss=0.000315
+  Stage 2 epoch 300/300: loss=0.000283
+  Stage 3 epoch 60/300: loss=0.000117
+  Stage 3 epoch 120/300: loss=0.000106
+  Stage 3 epoch 180/300: loss=0.000101
+  Stage 3 epoch 240/300: loss=0.000098
+  Stage 3 epoch 300/300: loss=0.000095
+  MTE@0.1: 1.1981
+  MTE@0.5: 2.2814
+  MTE@1.0: 2.8247
+  W2@0.1:  0.5929
+  W2@0.5:  0.9927
+  W2@1.0:  1.3025
+  MMD@1.0: 0.1294
+  Survival@1.0: 76.5%
+      Condition: K(Phat) (K_weight=0.4275)
+        Phase2 Epoch 50/250: loss=0.133662
+        Phase2 Epoch 100/250: loss=0.092634
+        Phase2 Epoch 150/250: loss=0.184373
+        Phase2 Epoch 200/250: loss=0.066554
+        Phase2 Epoch 250/250: loss=0.060273
+        E_mu=0.7730  E_Sigma=1.6808
+  Stage 2 epoch 60/300: loss=0.000431
+  Stage 2 epoch 120/300: loss=0.000322
+  Stage 2 epoch 180/300: loss=0.000261
+  Stage 2 epoch 240/300: loss=0.000224
+  Stage 2 epoch 300/300: loss=0.000196
+  Stage 3 epoch 60/300: loss=0.000083
+  Stage 3 epoch 120/300: loss=0.000073
+  Stage 3 epoch 180/300: loss=0.000071
+  Stage 3 epoch 240/300: loss=0.000068
+  Stage 3 epoch 300/300: loss=0.000067
+  MTE@0.1: 1.1794
+  MTE@0.5: 2.2753
+  MTE@1.0: 2.8572
+  W2@0.1:  0.5581
+  W2@0.5:  0.9908
+  W2@1.0:  1.3733
+  MMD@1.0: 0.1298
+  Survival@1.0: 76.5%
+      baseline: W2=1.3025  E_mu=0.8647  E_Sig=2.2581
+       K(Phat): W2=1.3733  E_mu=0.7730  E_Sig=1.6808
+
+============================================================
+  N=20 | D=201 (K=99) | hyperbolic_paraboloid | seed=6042
+============================================================
+    Phase1 Epoch 50/250: loss=0.924521
+    Phase1 Epoch 100/250: loss=0.812980
+    Phase1 Epoch 150/250: loss=0.569434
+    Phase1 Epoch 200/250: loss=0.346767
+    Phase1 Epoch 250/250: loss=0.167529
+      Condition: baseline (K_weight=0.0000)
+        Phase2 Epoch 50/250: loss=0.056010
+        Phase2 Epoch 100/250: loss=0.044033
+        Phase2 Epoch 150/250: loss=0.025607
+        Phase2 Epoch 200/250: loss=0.019055
+        Phase2 Epoch 250/250: loss=0.018489
+        E_mu=0.8681  E_Sigma=0.9287
+  Stage 2 epoch 60/300: loss=0.000537
+  Stage 2 epoch 120/300: loss=0.000458
+  Stage 2 epoch 180/300: loss=0.000404
+  Stage 2 epoch 240/300: loss=0.000352
+  Stage 2 epoch 300/300: loss=0.000302
+  Stage 3 epoch 60/300: loss=0.000066
+  Stage 3 epoch 120/300: loss=0.000043
+  Stage 3 epoch 180/300: loss=0.000039
+  Stage 3 epoch 240/300: loss=0.000037
+  Stage 3 epoch 300/300: loss=0.000036
+  MTE@0.1: 1.1959
+  MTE@0.5: 2.3832
+  MTE@1.0: 2.6939
+  W2@0.1:  0.6837
+  W2@0.5:  1.1017
+  W2@1.0:  1.2235
+  MMD@1.0: 0.1494
+  Survival@1.0: 73.0%
+      Condition: K(Phat) (K_weight=0.4275)
+        Phase2 Epoch 50/250: loss=0.061310
+        Phase2 Epoch 100/250: loss=0.122715
+        Phase2 Epoch 150/250: loss=0.035745
+        Phase2 Epoch 200/250: loss=0.021849
+        Phase2 Epoch 250/250: loss=0.015796
+        E_mu=0.8598  E_Sigma=1.0578
+  Stage 2 epoch 60/300: loss=0.000674
+  Stage 2 epoch 120/300: loss=0.000505
+  Stage 2 epoch 180/300: loss=0.000433
+  Stage 2 epoch 240/300: loss=0.000368
+  Stage 2 epoch 300/300: loss=0.000305
+  Stage 3 epoch 60/300: loss=0.000080
+  Stage 3 epoch 120/300: loss=0.000051
+  Stage 3 epoch 180/300: loss=0.000046
+  Stage 3 epoch 240/300: loss=0.000043
+  Stage 3 epoch 300/300: loss=0.000043
+  MTE@0.1: 1.2313
+  MTE@0.5: 2.3973
+  MTE@1.0: 2.6774
+  W2@0.1:  0.7350
+  W2@0.5:  1.1158
+  W2@1.0:  1.2150
+  MMD@1.0: 0.1583
+  Survival@1.0: 73.0%
+      baseline: W2=1.2235  E_mu=0.8681  E_Sig=0.9287
+       K(Phat): W2=1.2150  E_mu=0.8598  E_Sig=1.0578
+
+============================================================
+  N=20 | D=201 (K=99) | hyperbolic_paraboloid | seed=7042
+============================================================
+    Phase1 Epoch 50/250: loss=0.953408
+    Phase1 Epoch 100/250: loss=0.852922
+    Phase1 Epoch 150/250: loss=0.747173
+    Phase1 Epoch 200/250: loss=0.650080
+    Phase1 Epoch 250/250: loss=0.566081
+      Condition: baseline (K_weight=0.0000)
+        Phase2 Epoch 50/250: loss=0.453336
+        Phase2 Epoch 100/250: loss=0.316665
+        Phase2 Epoch 150/250: loss=0.153055
+        Phase2 Epoch 200/250: loss=0.055175
+        Phase2 Epoch 250/250: loss=0.189838
+        E_mu=0.8880  E_Sigma=4.8932
+  Stage 2 epoch 60/300: loss=0.002484
+  Stage 2 epoch 120/300: loss=0.001907
+  Stage 2 epoch 180/300: loss=0.001553
+  Stage 2 epoch 240/300: loss=0.001308
+  Stage 2 epoch 300/300: loss=0.001039
+  Stage 3 epoch 60/300: loss=0.000776
+  Stage 3 epoch 120/300: loss=0.000567
+  Stage 3 epoch 180/300: loss=0.000457
+  Stage 3 epoch 240/300: loss=0.000418
+  Stage 3 epoch 300/300: loss=0.000399
+  MTE@0.1: 1.1455
+  MTE@0.5: 2.3120
+  MTE@1.0: 2.4811
+  W2@0.1:  0.7889
+  W2@0.5:  1.5332
+  W2@1.0:  1.5284
+  MMD@1.0: 0.1885
+  Survival@1.0: 76.5%
+      Condition: K(Phat) (K_weight=0.4275)
+        Phase2 Epoch 50/250: loss=0.491600
+        Phase2 Epoch 100/250: loss=0.372277
+        Phase2 Epoch 150/250: loss=0.236910
+        Phase2 Epoch 200/250: loss=0.077611
+        Phase2 Epoch 250/250: loss=0.042389
+        E_mu=0.5762  E_Sigma=1.5036
+  Stage 2 epoch 60/300: loss=0.000986
+  Stage 2 epoch 120/300: loss=0.000781
+  Stage 2 epoch 180/300: loss=0.000679
+  Stage 2 epoch 240/300: loss=0.000630
+  Stage 2 epoch 300/300: loss=0.000595
+  Stage 3 epoch 60/300: loss=0.000521
+  Stage 3 epoch 120/300: loss=0.000342
+  Stage 3 epoch 180/300: loss=0.000251
+  Stage 3 epoch 240/300: loss=0.000220
+  Stage 3 epoch 300/300: loss=0.000195
+  MTE@0.1: 1.0355
+  MTE@0.5: 2.1926
+  MTE@1.0: 2.4368
+  W2@0.1:  0.6035
+  W2@0.5:  1.3319
+  W2@1.0:  1.3240
+  MMD@1.0: 0.1349
+  Survival@1.0: 76.5%
+      baseline: W2=1.5284  E_mu=0.8880  E_Sig=4.8932
+       K(Phat): W2=1.3240  E_mu=0.5762  E_Sig=1.5036
+
+============================================================
+  N=20 | D=201 (K=99) | hyperbolic_paraboloid | seed=8042
+============================================================
+    Phase1 Epoch 50/250: loss=0.946275
+    Phase1 Epoch 100/250: loss=0.804576
+    Phase1 Epoch 150/250: loss=0.570796
+    Phase1 Epoch 200/250: loss=0.317426
+    Phase1 Epoch 250/250: loss=0.173298
+      Condition: baseline (K_weight=0.0000)
+        Phase2 Epoch 50/250: loss=0.158790
+        Phase2 Epoch 100/250: loss=0.104539
+        Phase2 Epoch 150/250: loss=0.080070
+        Phase2 Epoch 200/250: loss=0.069828
+        Phase2 Epoch 250/250: loss=0.044556
+        E_mu=0.9503  E_Sigma=2.1491
+  Stage 2 epoch 60/300: loss=0.000950
+  Stage 2 epoch 120/300: loss=0.000658
+  Stage 2 epoch 180/300: loss=0.000448
+  Stage 2 epoch 240/300: loss=0.000246
+  Stage 2 epoch 300/300: loss=0.000120
+  Stage 3 epoch 60/300: loss=0.000269
+  Stage 3 epoch 120/300: loss=0.000185
+  Stage 3 epoch 180/300: loss=0.000171
+  Stage 3 epoch 240/300: loss=0.000159
+  Stage 3 epoch 300/300: loss=0.000148
+  MTE@0.1: 1.1180
+  MTE@0.5: 1.8200
+  MTE@1.0: 2.1915
+  W2@0.1:  0.7108
+  W2@0.5:  1.2519
+  W2@1.0:  1.3602
+  MMD@1.0: 0.2030
+  Survival@1.0: 79.5%
+      Condition: K(Phat) (K_weight=0.4275)
+        Phase2 Epoch 50/250: loss=0.113702
+        Phase2 Epoch 100/250: loss=0.123085
+        Phase2 Epoch 150/250: loss=0.083131
+        Phase2 Epoch 200/250: loss=0.056653
+        Phase2 Epoch 250/250: loss=0.043598
+        E_mu=0.8880  E_Sigma=1.8482
+  Stage 2 epoch 60/300: loss=0.000882
+  Stage 2 epoch 120/300: loss=0.000657
+  Stage 2 epoch 180/300: loss=0.000490
+  Stage 2 epoch 240/300: loss=0.000313
+  Stage 2 epoch 300/300: loss=0.000158
+  Stage 3 epoch 60/300: loss=0.000245
+  Stage 3 epoch 120/300: loss=0.000177
+  Stage 3 epoch 180/300: loss=0.000165
+  Stage 3 epoch 240/300: loss=0.000153
+  Stage 3 epoch 300/300: loss=0.000142
+  MTE@0.1: 1.0541
+  MTE@0.5: 1.8176
+  MTE@1.0: 2.2018
+  W2@0.1:  0.6184
+  W2@0.5:  1.1641
+  W2@1.0:  1.2747
+  MMD@1.0: 0.1701
+  Survival@1.0: 79.5%
+      baseline: W2=1.3602  E_mu=0.9503  E_Sig=2.1491
+       K(Phat): W2=1.2747  E_mu=0.8880  E_Sig=1.8482
+
+============================================================
+  N=20 | D=201 (K=99) | hyperbolic_paraboloid | seed=9042
+============================================================
+    Phase1 Epoch 50/250: loss=0.831020
+    Phase1 Epoch 100/250: loss=0.750058
+    Phase1 Epoch 150/250: loss=0.504221
+    Phase1 Epoch 200/250: loss=0.266855
+    Phase1 Epoch 250/250: loss=0.228265
+      Condition: baseline (K_weight=0.0000)
+        Phase2 Epoch 50/250: loss=0.151418
+        Phase2 Epoch 100/250: loss=0.103582
+        Phase2 Epoch 150/250: loss=0.138013
+        Phase2 Epoch 200/250: loss=0.039300
+        Phase2 Epoch 250/250: loss=0.040922
+        E_mu=0.8677  E_Sigma=1.8108
+  Stage 2 epoch 60/300: loss=0.000811
+  Stage 2 epoch 120/300: loss=0.000537
+  Stage 2 epoch 180/300: loss=0.000343
+  Stage 2 epoch 240/300: loss=0.000153
+  Stage 2 epoch 300/300: loss=0.000064
+  Stage 3 epoch 60/300: loss=0.000288
+  Stage 3 epoch 120/300: loss=0.000140
+  Stage 3 epoch 180/300: loss=0.000098
+  Stage 3 epoch 240/300: loss=0.000091
+  Stage 3 epoch 300/300: loss=0.000086
+  MTE@0.1: 1.5487
+  MTE@0.5: 2.4856
+  MTE@1.0: 2.9125
+  W2@0.1:  0.8628
+  W2@0.5:  1.3125
+  W2@1.0:  1.5785
+  MMD@1.0: 0.1506
+  Survival@1.0: 76.0%
+      Condition: K(Phat) (K_weight=0.4275)
+        Phase2 Epoch 50/250: loss=0.125454
+        Phase2 Epoch 100/250: loss=0.103479
+        Phase2 Epoch 150/250: loss=0.094968
+        Phase2 Epoch 200/250: loss=0.062554
+        Phase2 Epoch 250/250: loss=0.045240
+        E_mu=0.7901  E_Sigma=1.6648
+  Stage 2 epoch 60/300: loss=0.000970
+  Stage 2 epoch 120/300: loss=0.000650
+  Stage 2 epoch 180/300: loss=0.000383
+  Stage 2 epoch 240/300: loss=0.000146
+  Stage 2 epoch 300/300: loss=0.000057
+  Stage 3 epoch 60/300: loss=0.000280
+  Stage 3 epoch 120/300: loss=0.000134
+  Stage 3 epoch 180/300: loss=0.000077
+  Stage 3 epoch 240/300: loss=0.000068
+  Stage 3 epoch 300/300: loss=0.000063
+  MTE@0.1: 1.5863
+  MTE@0.5: 2.4746
+  MTE@1.0: 2.8855
+  W2@0.1:  0.8744
+  W2@0.5:  1.2138
+  W2@1.0:  1.4235
+  MMD@1.0: 0.1486
+  Survival@1.0: 76.0%
+      baseline: W2=1.5785  E_mu=0.8677  E_Sig=1.8108
+       K(Phat): W2=1.4235  E_mu=0.7901  E_Sig=1.6648
+
+  N=20, D=201 completed in 565.6s (28.3s per fork)
+
+============================================================
+  N=50 | D=201 (K=99) | paraboloid | seed=42
+============================================================
+    Phase1 Epoch 50/250: loss=0.836408
+    Phase1 Epoch 100/250: loss=0.760728
+    Phase1 Epoch 150/250: loss=0.625073
+    Phase1 Epoch 200/250: loss=0.407506
+    Phase1 Epoch 250/250: loss=0.241989
+      Condition: baseline (K_weight=0.0000)
+        Phase2 Epoch 50/250: loss=0.076799
+        Phase2 Epoch 100/250: loss=0.057516
+        Phase2 Epoch 150/250: loss=0.057727
+        Phase2 Epoch 200/250: loss=0.042915
+        Phase2 Epoch 250/250: loss=0.053837
+        E_mu=0.6344  E_Sigma=1.1094
+  Stage 2 epoch 60/300: loss=0.001028
+  Stage 2 epoch 120/300: loss=0.000701
+  Stage 2 epoch 180/300: loss=0.000576
+  Stage 2 epoch 240/300: loss=0.000364
+  Stage 2 epoch 300/300: loss=0.000233
+  Stage 3 epoch 60/300: loss=0.000260
+  Stage 3 epoch 120/300: loss=0.000117
+  Stage 3 epoch 180/300: loss=0.000096
+  Stage 3 epoch 240/300: loss=0.000074
+  Stage 3 epoch 300/300: loss=0.000058
+  MTE@0.1: 1.8252
+  MTE@0.5: 3.1974
+  MTE@1.0: 3.8321
+  W2@0.1:  1.0747
+  W2@0.5:  1.5941
+  W2@1.0:  2.1957
+  MMD@1.0: 0.2253
+  Survival@1.0: 76.5%
+      Condition: K(Phat) (K_weight=0.4275)
+        Phase2 Epoch 50/250: loss=0.118288
+        Phase2 Epoch 100/250: loss=0.030848
+        Phase2 Epoch 150/250: loss=0.051012
+        Phase2 Epoch 200/250: loss=0.040156
+        Phase2 Epoch 250/250: loss=0.029711
+        E_mu=0.3040  E_Sigma=0.4510
+  Stage 2 epoch 60/300: loss=0.001275
+  Stage 2 epoch 120/300: loss=0.000594
+  Stage 2 epoch 180/300: loss=0.000453
+  Stage 2 epoch 240/300: loss=0.000313
+  Stage 2 epoch 300/300: loss=0.000229
+  Stage 3 epoch 60/300: loss=0.000241
+  Stage 3 epoch 120/300: loss=0.000101
+  Stage 3 epoch 180/300: loss=0.000078
+  Stage 3 epoch 240/300: loss=0.000061
+  Stage 3 epoch 300/300: loss=0.000043
+  MTE@0.1: 1.6829
+  MTE@0.5: 3.0520
+  MTE@1.0: 3.7142
+  W2@0.1:  0.8476
+  W2@0.5:  1.3641
+  W2@1.0:  2.0350
+  MMD@1.0: 0.2162
+  Survival@1.0: 76.5%
+      baseline: W2=2.1957  E_mu=0.6344  E_Sig=1.1094
+       K(Phat): W2=2.0350  E_mu=0.3040  E_Sig=0.4510
+
+============================================================
+  N=50 | D=201 (K=99) | paraboloid | seed=1042
+============================================================
+    Phase1 Epoch 50/250: loss=0.763786
+    Phase1 Epoch 100/250: loss=0.630083
+    Phase1 Epoch 150/250: loss=0.420751
+    Phase1 Epoch 200/250: loss=0.245851
+    Phase1 Epoch 250/250: loss=0.112899
+      Condition: baseline (K_weight=0.0000)
+        Phase2 Epoch 50/250: loss=0.082649
+        Phase2 Epoch 100/250: loss=0.064411
+        Phase2 Epoch 150/250: loss=0.058208
+        Phase2 Epoch 200/250: loss=0.039300
+        Phase2 Epoch 250/250: loss=0.025333
+        E_mu=0.4187  E_Sigma=0.5832
+  Stage 2 epoch 60/300: loss=0.000510
+  Stage 2 epoch 120/300: loss=0.000354
+  Stage 2 epoch 180/300: loss=0.000243
+  Stage 2 epoch 240/300: loss=0.000184
+  Stage 2 epoch 300/300: loss=0.000148
+  Stage 3 epoch 60/300: loss=0.000053
+  Stage 3 epoch 120/300: loss=0.000046
+  Stage 3 epoch 180/300: loss=0.000038
+  Stage 3 epoch 240/300: loss=0.000036
+  Stage 3 epoch 300/300: loss=0.000029
+  MTE@0.1: 1.0548
+  MTE@0.5: 1.8904
+  MTE@1.0: 2.5963
+  W2@0.1:  0.7664
+  W2@0.5:  1.0871
+  W2@1.0:  1.4596
+  MMD@1.0: 0.2127
+  Survival@1.0: 72.0%
+      Condition: K(Phat) (K_weight=0.4275)
+        Phase2 Epoch 50/250: loss=0.090916
+        Phase2 Epoch 100/250: loss=0.084552
+        Phase2 Epoch 150/250: loss=0.045176
+        Phase2 Epoch 200/250: loss=0.034722
+        Phase2 Epoch 250/250: loss=0.029776
+        E_mu=0.3730  E_Sigma=1.1633
+  Stage 2 epoch 60/300: loss=0.000387
+  Stage 2 epoch 120/300: loss=0.000295
+  Stage 2 epoch 180/300: loss=0.000211
+  Stage 2 epoch 240/300: loss=0.000159
+  Stage 2 epoch 300/300: loss=0.000137
+  Stage 3 epoch 60/300: loss=0.000081
+  Stage 3 epoch 120/300: loss=0.000071
+  Stage 3 epoch 180/300: loss=0.000060
+  Stage 3 epoch 240/300: loss=0.000055
+  Stage 3 epoch 300/300: loss=0.000048
+  MTE@0.1: 1.2187
+  MTE@0.5: 1.9670
+  MTE@1.0: 2.5963
+  W2@0.1:  0.9277
+  W2@0.5:  1.1686
+  W2@1.0:  1.4065
+  MMD@1.0: 0.2164
+  Survival@1.0: 72.0%
+      baseline: W2=1.4596  E_mu=0.4187  E_Sig=0.5832
+       K(Phat): W2=1.4065  E_mu=0.3730  E_Sig=1.1633
+
+============================================================
+  N=50 | D=201 (K=99) | paraboloid | seed=2042
+============================================================
+    Phase1 Epoch 50/250: loss=0.842978
+    Phase1 Epoch 100/250: loss=0.936158
+    Phase1 Epoch 150/250: loss=0.651387
+    Phase1 Epoch 200/250: loss=0.528585
+    Phase1 Epoch 250/250: loss=0.335170
+      Condition: baseline (K_weight=0.0000)
+        Phase2 Epoch 50/250: loss=0.157197
+        Phase2 Epoch 100/250: loss=0.104453
+        Phase2 Epoch 150/250: loss=0.066628
+        Phase2 Epoch 200/250: loss=0.067808
+        Phase2 Epoch 250/250: loss=0.035324
+        E_mu=0.4579  E_Sigma=0.8318
+  Stage 2 epoch 60/300: loss=0.000775
+  Stage 2 epoch 120/300: loss=0.000692
+  Stage 2 epoch 180/300: loss=0.000486
+  Stage 2 epoch 240/300: loss=0.000287
+  Stage 2 epoch 300/300: loss=0.000224
+  Stage 3 epoch 60/300: loss=0.000271
+  Stage 3 epoch 120/300: loss=0.000155
+  Stage 3 epoch 180/300: loss=0.000115
+  Stage 3 epoch 240/300: loss=0.000087
+  Stage 3 epoch 300/300: loss=0.000085
+  MTE@0.1: 0.6423
+  MTE@0.5: 1.6062
+  MTE@1.0: 2.2410
+  W2@0.1:  0.5478
+  W2@0.5:  1.1883
+  W2@1.0:  1.7457
+  MMD@1.0: 0.2357
+  Survival@1.0: 78.5%
+      Condition: K(Phat) (K_weight=0.4275)
+        Phase2 Epoch 50/250: loss=0.152383
+        Phase2 Epoch 100/250: loss=0.094197
+        Phase2 Epoch 150/250: loss=0.076284
+        Phase2 Epoch 200/250: loss=0.036364
+        Phase2 Epoch 250/250: loss=0.033788
+        E_mu=0.3046  E_Sigma=0.5918
+  Stage 2 epoch 60/300: loss=0.000639
+  Stage 2 epoch 120/300: loss=0.000521
+  Stage 2 epoch 180/300: loss=0.000320
+  Stage 2 epoch 240/300: loss=0.000177
+  Stage 2 epoch 300/300: loss=0.000136
+  Stage 3 epoch 60/300: loss=0.000229
+  Stage 3 epoch 120/300: loss=0.000114
+  Stage 3 epoch 180/300: loss=0.000080
+  Stage 3 epoch 240/300: loss=0.000061
+  Stage 3 epoch 300/300: loss=0.000059
+  MTE@0.1: 0.5477
+  MTE@0.5: 1.5512
+  MTE@1.0: 2.1051
+  W2@0.1:  0.4718
+  W2@0.5:  1.1072
+  W2@1.0:  1.5649
+  MMD@1.0: 0.2104
+  Survival@1.0: 78.5%
+      baseline: W2=1.7457  E_mu=0.4579  E_Sig=0.8318
+       K(Phat): W2=1.5649  E_mu=0.3046  E_Sig=0.5918
+
+============================================================
+  N=50 | D=201 (K=99) | paraboloid | seed=3042
+============================================================
+    Phase1 Epoch 50/250: loss=0.840931
+    Phase1 Epoch 100/250: loss=0.806722
+    Phase1 Epoch 150/250: loss=0.720116
+    Phase1 Epoch 200/250: loss=0.606824
+    Phase1 Epoch 250/250: loss=0.251776
+      Condition: baseline (K_weight=0.0000)
+        Phase2 Epoch 50/250: loss=0.066565
+        Phase2 Epoch 100/250: loss=0.042885
+        Phase2 Epoch 150/250: loss=0.036711
+        Phase2 Epoch 200/250: loss=0.016244
+        Phase2 Epoch 250/250: loss=0.046359
+        E_mu=0.2865  E_Sigma=0.4474
+  Stage 2 epoch 60/300: loss=0.000848
+  Stage 2 epoch 120/300: loss=0.000564
+  Stage 2 epoch 180/300: loss=0.000456
+  Stage 2 epoch 240/300: loss=0.000278
+  Stage 2 epoch 300/300: loss=0.000194
+  Stage 3 epoch 60/300: loss=0.000244
+  Stage 3 epoch 120/300: loss=0.000184
+  Stage 3 epoch 180/300: loss=0.000101
+  Stage 3 epoch 240/300: loss=0.000080
+  Stage 3 epoch 300/300: loss=0.000072
+  MTE@0.1: 0.6916
+  MTE@0.5: 1.4097
+  MTE@1.0: 2.3486
+  W2@0.1:  0.5675
+  W2@0.5:  1.1336
+  W2@1.0:  1.8290
+  MMD@1.0: 0.2765
+  Survival@1.0: 74.5%
+      Condition: K(Phat) (K_weight=0.4275)
+        Phase2 Epoch 50/250: loss=0.087622
+        Phase2 Epoch 100/250: loss=0.047497
+        Phase2 Epoch 150/250: loss=0.098908
+        Phase2 Epoch 200/250: loss=0.018485
+        Phase2 Epoch 250/250: loss=0.022807
+        E_mu=0.3076  E_Sigma=0.8601
+  Stage 2 epoch 60/300: loss=0.000705
+  Stage 2 epoch 120/300: loss=0.000428
+  Stage 2 epoch 180/300: loss=0.000353
+  Stage 2 epoch 240/300: loss=0.000221
+  Stage 2 epoch 300/300: loss=0.000191
+  Stage 3 epoch 60/300: loss=0.000209
+  Stage 3 epoch 120/300: loss=0.000149
+  Stage 3 epoch 180/300: loss=0.000078
+  Stage 3 epoch 240/300: loss=0.000060
+  Stage 3 epoch 300/300: loss=0.000054
+  MTE@0.1: 0.6918
+  MTE@0.5: 1.3888
+  MTE@1.0: 2.3061
+  W2@0.1:  0.5434
+  W2@0.5:  1.0897
+  W2@1.0:  1.7346
+  MMD@1.0: 0.2745
+  Survival@1.0: 74.5%
+      baseline: W2=1.8290  E_mu=0.2865  E_Sig=0.4474
+       K(Phat): W2=1.7346  E_mu=0.3076  E_Sig=0.8601
+
+============================================================
+  N=50 | D=201 (K=99) | paraboloid | seed=4042
+============================================================
+    Phase1 Epoch 50/250: loss=0.799621
+    Phase1 Epoch 100/250: loss=0.679854
+    Phase1 Epoch 150/250: loss=0.457456
+    Phase1 Epoch 200/250: loss=0.209720
+    Phase1 Epoch 250/250: loss=0.117531
+      Condition: baseline (K_weight=0.0000)
+        Phase2 Epoch 50/250: loss=0.074868
+        Phase2 Epoch 100/250: loss=0.044046
+        Phase2 Epoch 150/250: loss=0.022907
+        Phase2 Epoch 200/250: loss=0.028813
+        Phase2 Epoch 250/250: loss=0.027553
+        E_mu=0.4864  E_Sigma=0.9196
+  Stage 2 epoch 60/300: loss=0.000764
+  Stage 2 epoch 120/300: loss=0.000637
+  Stage 2 epoch 180/300: loss=0.000544
+  Stage 2 epoch 240/300: loss=0.000400
+  Stage 2 epoch 300/300: loss=0.000294
+  Stage 3 epoch 60/300: loss=0.000169
+  Stage 3 epoch 120/300: loss=0.000138
+  Stage 3 epoch 180/300: loss=0.000103
+  Stage 3 epoch 240/300: loss=0.000086
+  Stage 3 epoch 300/300: loss=0.000081
+  MTE@0.1: 1.2368
+  MTE@0.5: 2.3533
+  MTE@1.0: 2.7654
+  W2@0.1:  0.7918
+  W2@0.5:  1.4152
+  W2@1.0:  1.6574
+  MMD@1.0: 0.2393
+  Survival@1.0: 76.0%
+      Condition: K(Phat) (K_weight=0.4275)
+        Phase2 Epoch 50/250: loss=0.079832
+        Phase2 Epoch 100/250: loss=0.085249
+        Phase2 Epoch 150/250: loss=0.030428
+        Phase2 Epoch 200/250: loss=0.023880
+        Phase2 Epoch 250/250: loss=0.023247
+        E_mu=0.3136  E_Sigma=0.4980
+  Stage 2 epoch 60/300: loss=0.000617
+  Stage 2 epoch 120/300: loss=0.000543
+  Stage 2 epoch 180/300: loss=0.000519
+  Stage 2 epoch 240/300: loss=0.000405
+  Stage 2 epoch 300/300: loss=0.000316
+  Stage 3 epoch 60/300: loss=0.000126
+  Stage 3 epoch 120/300: loss=0.000107
+  Stage 3 epoch 180/300: loss=0.000084
+  Stage 3 epoch 240/300: loss=0.000065
+  Stage 3 epoch 300/300: loss=0.000058
+  MTE@0.1: 1.1943
+  MTE@0.5: 2.3096
+  MTE@1.0: 2.7015
+  W2@0.1:  0.7443
+  W2@0.5:  1.3770
+  W2@1.0:  1.6550
+  MMD@1.0: 0.2354
+  Survival@1.0: 76.0%
+      baseline: W2=1.6574  E_mu=0.4864  E_Sig=0.9196
+       K(Phat): W2=1.6550  E_mu=0.3136  E_Sig=0.4980
+
+============================================================
+  N=50 | D=201 (K=99) | paraboloid | seed=5042
+============================================================
+    Phase1 Epoch 50/250: loss=0.840115
+    Phase1 Epoch 100/250: loss=0.730718
+    Phase1 Epoch 150/250: loss=0.656361
+    Phase1 Epoch 200/250: loss=0.455263
+    Phase1 Epoch 250/250: loss=0.266015
+      Condition: baseline (K_weight=0.0000)
+        Phase2 Epoch 50/250: loss=0.094491
+        Phase2 Epoch 100/250: loss=0.066753
+        Phase2 Epoch 150/250: loss=0.037688
+        Phase2 Epoch 200/250: loss=0.033281
+        Phase2 Epoch 250/250: loss=0.044253
+        E_mu=0.5407  E_Sigma=0.8715
+  Stage 2 epoch 60/300: loss=0.000822
+  Stage 2 epoch 120/300: loss=0.000377
+  Stage 2 epoch 180/300: loss=0.000243
+  Stage 2 epoch 240/300: loss=0.000169
+  Stage 2 epoch 300/300: loss=0.000112
+  Stage 3 epoch 60/300: loss=0.000302
+  Stage 3 epoch 120/300: loss=0.000164
+  Stage 3 epoch 180/300: loss=0.000131
+  Stage 3 epoch 240/300: loss=0.000122
+  Stage 3 epoch 300/300: loss=0.000113
+  MTE@0.1: 1.0881
+  MTE@0.5: 2.1945
+  MTE@1.0: 2.7423
+  W2@0.1:  0.8295
+  W2@0.5:  1.0867
+  W2@1.0:  1.6411
+  MMD@1.0: 0.1801
+  Survival@1.0: 76.5%
+      Condition: K(Phat) (K_weight=0.4275)
+        Phase2 Epoch 50/250: loss=0.088943
+        Phase2 Epoch 100/250: loss=0.058282
+        Phase2 Epoch 150/250: loss=0.058028
+        Phase2 Epoch 200/250: loss=0.034817
+        Phase2 Epoch 250/250: loss=0.021419
+        E_mu=0.4000  E_Sigma=0.5736
+  Stage 2 epoch 60/300: loss=0.000620
+  Stage 2 epoch 120/300: loss=0.000385
+  Stage 2 epoch 180/300: loss=0.000264
+  Stage 2 epoch 240/300: loss=0.000165
+  Stage 2 epoch 300/300: loss=0.000102
+  Stage 3 epoch 60/300: loss=0.000066
+  Stage 3 epoch 120/300: loss=0.000053
+  Stage 3 epoch 180/300: loss=0.000047
+  Stage 3 epoch 240/300: loss=0.000045
+  Stage 3 epoch 300/300: loss=0.000044
+  MTE@0.1: 1.1620
+  MTE@0.5: 2.2843
+  MTE@1.0: 3.0126
+  W2@0.1:  0.6685
+  W2@0.5:  0.8965
+  W2@1.0:  1.5841
+  MMD@1.0: 0.1897
+  Survival@1.0: 76.5%
+      baseline: W2=1.6411  E_mu=0.5407  E_Sig=0.8715
+       K(Phat): W2=1.5841  E_mu=0.4000  E_Sig=0.5736
+
+============================================================
+  N=50 | D=201 (K=99) | paraboloid | seed=6042
+============================================================
+    Phase1 Epoch 50/250: loss=0.868327
+    Phase1 Epoch 100/250: loss=0.696980
+    Phase1 Epoch 150/250: loss=0.518198
+    Phase1 Epoch 200/250: loss=0.305892
+    Phase1 Epoch 250/250: loss=0.150169
+      Condition: baseline (K_weight=0.0000)
+        Phase2 Epoch 50/250: loss=0.059019
+        Phase2 Epoch 100/250: loss=0.060774
+        Phase2 Epoch 150/250: loss=0.039417
+        Phase2 Epoch 200/250: loss=0.068072
+        Phase2 Epoch 250/250: loss=0.028051
+        E_mu=0.5249  E_Sigma=0.5406
+  Stage 2 epoch 60/300: loss=0.000793
+  Stage 2 epoch 120/300: loss=0.000679
+  Stage 2 epoch 180/300: loss=0.000384
+  Stage 2 epoch 240/300: loss=0.000385
+  Stage 2 epoch 300/300: loss=0.000256
+  Stage 3 epoch 60/300: loss=0.000198
+  Stage 3 epoch 120/300: loss=0.000173
+  Stage 3 epoch 180/300: loss=0.000148
+  Stage 3 epoch 240/300: loss=0.000152
+  Stage 3 epoch 300/300: loss=0.000137
+  MTE@0.1: 0.9364
+  MTE@0.5: 1.8292
+  MTE@1.0: 2.0899
+  W2@0.1:  0.7229
+  W2@0.5:  1.1778
+  W2@1.0:  1.2581
+  MMD@1.0: 0.1286
+  Survival@1.0: 73.0%
+      Condition: K(Phat) (K_weight=0.4275)
+        Phase2 Epoch 50/250: loss=0.082588
+        Phase2 Epoch 100/250: loss=0.070416
+        Phase2 Epoch 150/250: loss=0.064574
+        Phase2 Epoch 200/250: loss=0.031401
+        Phase2 Epoch 250/250: loss=0.022727
+        E_mu=0.3991  E_Sigma=1.0479
+  Stage 2 epoch 60/300: loss=0.000605
+  Stage 2 epoch 120/300: loss=0.000482
+  Stage 2 epoch 180/300: loss=0.000301
+  Stage 2 epoch 240/300: loss=0.000309
+  Stage 2 epoch 300/300: loss=0.000216
+  Stage 3 epoch 60/300: loss=0.000184
+  Stage 3 epoch 120/300: loss=0.000155
+  Stage 3 epoch 180/300: loss=0.000130
+  Stage 3 epoch 240/300: loss=0.000127
+  Stage 3 epoch 300/300: loss=0.000113
+  MTE@0.1: 1.0129
+  MTE@0.5: 1.9132
+  MTE@1.0: 2.1800
+  W2@0.1:  0.7558
+  W2@0.5:  1.2336
+  W2@1.0:  1.2853
+  MMD@1.0: 0.1395
+  Survival@1.0: 73.0%
+      baseline: W2=1.2581  E_mu=0.5249  E_Sig=0.5406
+       K(Phat): W2=1.2853  E_mu=0.3991  E_Sig=1.0479
+
+============================================================
+  N=50 | D=201 (K=99) | paraboloid | seed=7042
+============================================================
+    Phase1 Epoch 50/250: loss=0.842497
+    Phase1 Epoch 100/250: loss=0.695307
+    Phase1 Epoch 150/250: loss=0.352038
+    Phase1 Epoch 200/250: loss=0.160836
+    Phase1 Epoch 250/250: loss=0.136975
+      Condition: baseline (K_weight=0.0000)
+        Phase2 Epoch 50/250: loss=0.084267
+        Phase2 Epoch 100/250: loss=0.107197
+        Phase2 Epoch 150/250: loss=0.055014
+        Phase2 Epoch 200/250: loss=0.033149
+        Phase2 Epoch 250/250: loss=0.040242
+        E_mu=0.2599  E_Sigma=0.6813
+  Stage 2 epoch 60/300: loss=0.000786
+  Stage 2 epoch 120/300: loss=0.000561
+  Stage 2 epoch 180/300: loss=0.000400
+  Stage 2 epoch 240/300: loss=0.000369
+  Stage 2 epoch 300/300: loss=0.000318
+  Stage 3 epoch 60/300: loss=0.000202
+  Stage 3 epoch 120/300: loss=0.000153
+  Stage 3 epoch 180/300: loss=0.000125
+  Stage 3 epoch 240/300: loss=0.000115
+  Stage 3 epoch 300/300: loss=0.000106
+  MTE@0.1: 1.5358
+  MTE@0.5: 2.5891
+  MTE@1.0: 2.9360
+  W2@0.1:  0.8631
+  W2@0.5:  1.2370
+  W2@1.0:  1.3714
+  MMD@1.0: 0.1815
+  Survival@1.0: 76.5%
+      Condition: K(Phat) (K_weight=0.4275)
+        Phase2 Epoch 50/250: loss=0.093084
+        Phase2 Epoch 100/250: loss=0.058909
+        Phase2 Epoch 150/250: loss=0.031896
+        Phase2 Epoch 200/250: loss=0.029139
+        Phase2 Epoch 250/250: loss=0.026750
+        E_mu=0.1337  E_Sigma=0.3552
+  Stage 2 epoch 60/300: loss=0.000566
+  Stage 2 epoch 120/300: loss=0.000471
+  Stage 2 epoch 180/300: loss=0.000336
+  Stage 2 epoch 240/300: loss=0.000312
+  Stage 2 epoch 300/300: loss=0.000289
+  Stage 3 epoch 60/300: loss=0.000176
+  Stage 3 epoch 120/300: loss=0.000131
+  Stage 3 epoch 180/300: loss=0.000105
+  Stage 3 epoch 240/300: loss=0.000091
+  Stage 3 epoch 300/300: loss=0.000078
+  MTE@0.1: 1.3958
+  MTE@0.5: 2.5189
+  MTE@1.0: 2.9621
+  W2@0.1:  0.6540
+  W2@0.5:  1.0427
+  W2@1.0:  1.2324
+  MMD@1.0: 0.1168
+  Survival@1.0: 76.5%
+      baseline: W2=1.3714  E_mu=0.2599  E_Sig=0.6813
+       K(Phat): W2=1.2324  E_mu=0.1337  E_Sig=0.3552
+
+============================================================
+  N=50 | D=201 (K=99) | paraboloid | seed=8042
+============================================================
+    Phase1 Epoch 50/250: loss=0.808388
+    Phase1 Epoch 100/250: loss=0.554610
+    Phase1 Epoch 150/250: loss=0.275953
+    Phase1 Epoch 200/250: loss=0.209811
+    Phase1 Epoch 250/250: loss=0.098029
+      Condition: baseline (K_weight=0.0000)
+        Phase2 Epoch 50/250: loss=0.068897
+        Phase2 Epoch 100/250: loss=0.054359
+        Phase2 Epoch 150/250: loss=0.060968
+        Phase2 Epoch 200/250: loss=0.041676
+        Phase2 Epoch 250/250: loss=0.032309
+        E_mu=0.7896  E_Sigma=0.8083
+  Stage 2 epoch 60/300: loss=0.001210
+  Stage 2 epoch 120/300: loss=0.001077
+  Stage 2 epoch 180/300: loss=0.000831
+  Stage 2 epoch 240/300: loss=0.000739
+  Stage 2 epoch 300/300: loss=0.000581
+  Stage 3 epoch 60/300: loss=0.000484
+  Stage 3 epoch 120/300: loss=0.000334
+  Stage 3 epoch 180/300: loss=0.000209
+  Stage 3 epoch 240/300: loss=0.000155
+  Stage 3 epoch 300/300: loss=0.000174
+  MTE@0.1: 1.2506
+  MTE@0.5: 2.4197
+  MTE@1.0: 3.0567
+  W2@0.1:  0.7603
+  W2@0.5:  1.3167
+  W2@1.0:  1.5603
+  MMD@1.0: 0.2420
+  Survival@1.0: 79.5%
+      Condition: K(Phat) (K_weight=0.4275)
+        Phase2 Epoch 50/250: loss=0.053967
+        Phase2 Epoch 100/250: loss=0.062474
+        Phase2 Epoch 150/250: loss=0.045496
+        Phase2 Epoch 200/250: loss=0.057509
+        Phase2 Epoch 250/250: loss=0.027373
+        E_mu=0.5618  E_Sigma=0.7740
+  Stage 2 epoch 60/300: loss=0.001239
+  Stage 2 epoch 120/300: loss=0.001067
+  Stage 2 epoch 180/300: loss=0.000812
+  Stage 2 epoch 240/300: loss=0.000770
+  Stage 2 epoch 300/300: loss=0.000617
+  Stage 3 epoch 60/300: loss=0.000412
+  Stage 3 epoch 120/300: loss=0.000241
+  Stage 3 epoch 180/300: loss=0.000145
+  Stage 3 epoch 240/300: loss=0.000091
+  Stage 3 epoch 300/300: loss=0.000095
+  MTE@0.1: 1.2499
+  MTE@0.5: 2.4551
+  MTE@1.0: 3.0373
+  W2@0.1:  0.7125
+  W2@0.5:  1.3373
+  W2@1.0:  1.6025
+  MMD@1.0: 0.2666
+  Survival@1.0: 79.5%
+      baseline: W2=1.5603  E_mu=0.7896  E_Sig=0.8083
+       K(Phat): W2=1.6025  E_mu=0.5618  E_Sig=0.7740
+
+============================================================
+  N=50 | D=201 (K=99) | paraboloid | seed=9042
+============================================================
+    Phase1 Epoch 50/250: loss=0.822489
+    Phase1 Epoch 100/250: loss=0.675178
+    Phase1 Epoch 150/250: loss=0.287163
+    Phase1 Epoch 200/250: loss=0.132875
+    Phase1 Epoch 250/250: loss=0.169100
+      Condition: baseline (K_weight=0.0000)
+        Phase2 Epoch 50/250: loss=0.054791
+        Phase2 Epoch 100/250: loss=0.030747
+        Phase2 Epoch 150/250: loss=0.036973
+        Phase2 Epoch 200/250: loss=0.039771
+        Phase2 Epoch 250/250: loss=0.008102
+        E_mu=0.2891  E_Sigma=0.1823
+  Stage 2 epoch 60/300: loss=0.000722
+  Stage 2 epoch 120/300: loss=0.000555
+  Stage 2 epoch 180/300: loss=0.000372
+  Stage 2 epoch 240/300: loss=0.000249
+  Stage 2 epoch 300/300: loss=0.000244
+  Stage 3 epoch 60/300: loss=0.000266
+  Stage 3 epoch 120/300: loss=0.000086
+  Stage 3 epoch 180/300: loss=0.000064
+  Stage 3 epoch 240/300: loss=0.000047
+  Stage 3 epoch 300/300: loss=0.000042
+  MTE@0.1: 1.1154
+  MTE@0.5: 2.1377
+  MTE@1.0: 2.9168
+  W2@0.1:  0.7369
+  W2@0.5:  1.1064
+  W2@1.0:  1.5620
+  MMD@1.0: 0.2321
+  Survival@1.0: 76.0%
+      Condition: K(Phat) (K_weight=0.4275)
+        Phase2 Epoch 50/250: loss=0.089710
+        Phase2 Epoch 100/250: loss=0.060216
+        Phase2 Epoch 150/250: loss=0.032633
+        Phase2 Epoch 200/250: loss=0.086101
+        Phase2 Epoch 250/250: loss=0.006137
+        E_mu=0.1765  E_Sigma=0.1301
+  Stage 2 epoch 60/300: loss=0.000482
+  Stage 2 epoch 120/300: loss=0.000393
+  Stage 2 epoch 180/300: loss=0.000280
+  Stage 2 epoch 240/300: loss=0.000206
+  Stage 2 epoch 300/300: loss=0.000202
+  Stage 3 epoch 60/300: loss=0.000230
+  Stage 3 epoch 120/300: loss=0.000062
+  Stage 3 epoch 180/300: loss=0.000044
+  Stage 3 epoch 240/300: loss=0.000033
+  Stage 3 epoch 300/300: loss=0.000027
+  MTE@0.1: 1.1092
+  MTE@0.5: 2.1029
+  MTE@1.0: 2.8210
+  W2@0.1:  0.7223
+  W2@0.5:  1.0335
+  W2@1.0:  1.4044
+  MMD@1.0: 0.2152
+  Survival@1.0: 76.0%
+      baseline: W2=1.5620  E_mu=0.2891  E_Sig=0.1823
+       K(Phat): W2=1.4044  E_mu=0.1765  E_Sig=0.1301
+
+============================================================
+  N=50 | D=201 (K=99) | hyperbolic_paraboloid | seed=42
+============================================================
+    Phase1 Epoch 50/250: loss=0.882256
+    Phase1 Epoch 100/250: loss=0.735548
+    Phase1 Epoch 150/250: loss=0.661903
+    Phase1 Epoch 200/250: loss=0.390538
+    Phase1 Epoch 250/250: loss=0.227185
+      Condition: baseline (K_weight=0.0000)
+        Phase2 Epoch 50/250: loss=0.056408
+        Phase2 Epoch 100/250: loss=0.039904
+        Phase2 Epoch 150/250: loss=0.026185
+        Phase2 Epoch 200/250: loss=0.039567
+        Phase2 Epoch 250/250: loss=0.015813
+        E_mu=0.2754  E_Sigma=1.0511
+  Stage 2 epoch 60/300: loss=0.000460
+  Stage 2 epoch 120/300: loss=0.000390
+  Stage 2 epoch 180/300: loss=0.000324
+  Stage 2 epoch 240/300: loss=0.000290
+  Stage 2 epoch 300/300: loss=0.000247
+  Stage 3 epoch 60/300: loss=0.000193
+  Stage 3 epoch 120/300: loss=0.000146
+  Stage 3 epoch 180/300: loss=0.000113
+  Stage 3 epoch 240/300: loss=0.000108
+  Stage 3 epoch 300/300: loss=0.000093
+  MTE@0.1: 0.9626
+  MTE@0.5: 2.1217
+  MTE@1.0: 2.6412
+  W2@0.1:  0.5697
+  W2@0.5:  1.0297
+  W2@1.0:  1.2146
+  MMD@1.0: 0.1447
+  Survival@1.0: 76.5%
+      Condition: K(Phat) (K_weight=0.4275)
+        Phase2 Epoch 50/250: loss=0.082378
+        Phase2 Epoch 100/250: loss=0.067693
+        Phase2 Epoch 150/250: loss=0.054508
+        Phase2 Epoch 200/250: loss=0.019859
+        Phase2 Epoch 250/250: loss=0.031992
+        E_mu=0.2582  E_Sigma=1.1146
+  Stage 2 epoch 60/300: loss=0.000537
+  Stage 2 epoch 120/300: loss=0.000381
+  Stage 2 epoch 180/300: loss=0.000254
+  Stage 2 epoch 240/300: loss=0.000213
+  Stage 2 epoch 300/300: loss=0.000175
+  Stage 3 epoch 60/300: loss=0.000196
+  Stage 3 epoch 120/300: loss=0.000146
+  Stage 3 epoch 180/300: loss=0.000117
+  Stage 3 epoch 240/300: loss=0.000115
+  Stage 3 epoch 300/300: loss=0.000099
+  MTE@0.1: 1.5027
+  MTE@0.5: 2.4814
+  MTE@1.0: 2.9622
+  W2@0.1:  1.2061
+  W2@0.5:  1.4626
+  W2@1.0:  1.6351
+  MMD@1.0: 0.3213
+  Survival@1.0: 76.5%
+      baseline: W2=1.2146  E_mu=0.2754  E_Sig=1.0511
+       K(Phat): W2=1.6351  E_mu=0.2582  E_Sig=1.1146
+
+============================================================
+  N=50 | D=201 (K=99) | hyperbolic_paraboloid | seed=1042
+============================================================
+    Phase1 Epoch 50/250: loss=0.858135
+    Phase1 Epoch 100/250: loss=0.600385
+    Phase1 Epoch 150/250: loss=0.251391
+    Phase1 Epoch 200/250: loss=0.140096
+    Phase1 Epoch 250/250: loss=0.056367
+      Condition: baseline (K_weight=0.0000)
+        Phase2 Epoch 50/250: loss=0.051613
+        Phase2 Epoch 100/250: loss=0.029260
+        Phase2 Epoch 150/250: loss=0.024241
+        Phase2 Epoch 200/250: loss=0.043254
+        Phase2 Epoch 250/250: loss=0.020050
+        E_mu=0.2320  E_Sigma=0.4916
+  Stage 2 epoch 60/300: loss=0.001223
+  Stage 2 epoch 120/300: loss=0.001027
+  Stage 2 epoch 180/300: loss=0.000807
+  Stage 2 epoch 240/300: loss=0.000428
+  Stage 2 epoch 300/300: loss=0.000265
+  Stage 3 epoch 60/300: loss=0.000074
+  Stage 3 epoch 120/300: loss=0.000058
+  Stage 3 epoch 180/300: loss=0.000037
+  Stage 3 epoch 240/300: loss=0.000033
+  Stage 3 epoch 300/300: loss=0.000026
+  MTE@0.1: 1.6477
+  MTE@0.5: 2.6542
+  MTE@1.0: 3.1650
+  W2@0.1:  0.7737
+  W2@0.5:  1.1483
+  W2@1.0:  1.3661
+  MMD@1.0: 0.1796
+  Survival@1.0: 72.0%
+      Condition: K(Phat) (K_weight=0.4275)
+        Phase2 Epoch 50/250: loss=0.041078
+        Phase2 Epoch 100/250: loss=0.042640
+        Phase2 Epoch 150/250: loss=0.028447
+        Phase2 Epoch 200/250: loss=0.017100
+        Phase2 Epoch 250/250: loss=0.022733
+        E_mu=0.1980  E_Sigma=0.5745
+  Stage 2 epoch 60/300: loss=0.000872
+  Stage 2 epoch 120/300: loss=0.000763
+  Stage 2 epoch 180/300: loss=0.000614
+  Stage 2 epoch 240/300: loss=0.000393
+  Stage 2 epoch 300/300: loss=0.000252
+  Stage 3 epoch 60/300: loss=0.000071
+  Stage 3 epoch 120/300: loss=0.000054
+  Stage 3 epoch 180/300: loss=0.000035
+  Stage 3 epoch 240/300: loss=0.000031
+  Stage 3 epoch 300/300: loss=0.000024
+  MTE@0.1: 1.6638
+  MTE@0.5: 2.6301
+  MTE@1.0: 3.1184
+  W2@0.1:  0.8111
+  W2@0.5:  1.1252
+  W2@1.0:  1.2783
+  MMD@1.0: 0.1805
+  Survival@1.0: 72.0%
+      baseline: W2=1.3661  E_mu=0.2320  E_Sig=0.4916
+       K(Phat): W2=1.2783  E_mu=0.1980  E_Sig=0.5745
+
+============================================================
+  N=50 | D=201 (K=99) | hyperbolic_paraboloid | seed=2042
+============================================================
+    Phase1 Epoch 50/250: loss=0.881237
+    Phase1 Epoch 100/250: loss=0.784468
+    Phase1 Epoch 150/250: loss=0.585494
+    Phase1 Epoch 200/250: loss=0.239292
+    Phase1 Epoch 250/250: loss=0.104161
+      Condition: baseline (K_weight=0.0000)
+        Phase2 Epoch 50/250: loss=0.068363
+        Phase2 Epoch 100/250: loss=0.034079
+        Phase2 Epoch 150/250: loss=0.031223
+        Phase2 Epoch 200/250: loss=0.027536
+        Phase2 Epoch 250/250: loss=0.073774
+        E_mu=0.3019  E_Sigma=0.9713
+  Stage 2 epoch 60/300: loss=0.001186
+  Stage 2 epoch 120/300: loss=0.000999
+  Stage 2 epoch 180/300: loss=0.000806
+  Stage 2 epoch 240/300: loss=0.000642
+  Stage 2 epoch 300/300: loss=0.000416
+  Stage 3 epoch 60/300: loss=0.000118
+  Stage 3 epoch 120/300: loss=0.000099
+  Stage 3 epoch 180/300: loss=0.000085
+  Stage 3 epoch 240/300: loss=0.000090
+  Stage 3 epoch 300/300: loss=0.000085
+  MTE@0.1: 1.4137
+  MTE@0.5: 2.5055
+  MTE@1.0: 2.9690
+  W2@0.1:  0.9478
+  W2@0.5:  1.3810
+  W2@1.0:  1.5534
+  MMD@1.0: 0.2362
+  Survival@1.0: 78.5%
+      Condition: K(Phat) (K_weight=0.4275)
+        Phase2 Epoch 50/250: loss=0.058988
+        Phase2 Epoch 100/250: loss=0.032662
+        Phase2 Epoch 150/250: loss=0.040536
+        Phase2 Epoch 200/250: loss=0.020925
+        Phase2 Epoch 250/250: loss=0.018142
+        E_mu=0.2089  E_Sigma=0.4158
+  Stage 2 epoch 60/300: loss=0.000776
+  Stage 2 epoch 120/300: loss=0.000719
+  Stage 2 epoch 180/300: loss=0.000621
+  Stage 2 epoch 240/300: loss=0.000593
+  Stage 2 epoch 300/300: loss=0.000540
+  Stage 3 epoch 60/300: loss=0.000090
+  Stage 3 epoch 120/300: loss=0.000072
+  Stage 3 epoch 180/300: loss=0.000059
+  Stage 3 epoch 240/300: loss=0.000055
+  Stage 3 epoch 300/300: loss=0.000052
+  MTE@0.1: 1.0562
+  MTE@0.5: 2.3048
+  MTE@1.0: 2.7628
+  W2@0.1:  0.5137
+  W2@0.5:  1.1060
+  W2@1.0:  1.2324
+  MMD@1.0: 0.1184
+  Survival@1.0: 78.5%
+      baseline: W2=1.5534  E_mu=0.3019  E_Sig=0.9713
+       K(Phat): W2=1.2324  E_mu=0.2089  E_Sig=0.4158
+
+============================================================
+  N=50 | D=201 (K=99) | hyperbolic_paraboloid | seed=3042
+============================================================
+    Phase1 Epoch 50/250: loss=0.908122
+    Phase1 Epoch 100/250: loss=0.761285
+    Phase1 Epoch 150/250: loss=0.713694
+    Phase1 Epoch 200/250: loss=0.548315
+    Phase1 Epoch 250/250: loss=0.159596
+      Condition: baseline (K_weight=0.0000)
+        Phase2 Epoch 50/250: loss=0.036570
+        Phase2 Epoch 100/250: loss=0.035438
+        Phase2 Epoch 150/250: loss=0.023044
+        Phase2 Epoch 200/250: loss=0.016099
+        Phase2 Epoch 250/250: loss=0.036582
+        E_mu=0.1114  E_Sigma=0.2960
+  Stage 2 epoch 60/300: loss=0.000794
+  Stage 2 epoch 120/300: loss=0.000497
+  Stage 2 epoch 180/300: loss=0.000378
+  Stage 2 epoch 240/300: loss=0.000199
+  Stage 2 epoch 300/300: loss=0.000151
+  Stage 3 epoch 60/300: loss=0.000322
+  Stage 3 epoch 120/300: loss=0.000174
+  Stage 3 epoch 180/300: loss=0.000134
+  Stage 3 epoch 240/300: loss=0.000122
+  Stage 3 epoch 300/300: loss=0.000111
+  MTE@0.1: 3.1937
+  MTE@0.5: 3.9659
+  MTE@1.0: 4.1370
+  W2@0.1:  2.8491
+  W2@0.5:  3.0235
+  W2@1.0:  3.0032
+  MMD@1.0: 0.6495
+  Survival@1.0: 74.5%
+      Condition: K(Phat) (K_weight=0.4275)
+        Phase2 Epoch 50/250: loss=0.055698
+        Phase2 Epoch 100/250: loss=0.031591
+        Phase2 Epoch 150/250: loss=0.026417
+        Phase2 Epoch 200/250: loss=0.018747
+        Phase2 Epoch 250/250: loss=0.011838
+        E_mu=0.0780  E_Sigma=0.2805
+  Stage 2 epoch 60/300: loss=0.000728
+  Stage 2 epoch 120/300: loss=0.000468
+  Stage 2 epoch 180/300: loss=0.000362
+  Stage 2 epoch 240/300: loss=0.000184
+  Stage 2 epoch 300/300: loss=0.000125
+  Stage 3 epoch 60/300: loss=0.000252
+  Stage 3 epoch 120/300: loss=0.000170
+  Stage 3 epoch 180/300: loss=0.000129
+  Stage 3 epoch 240/300: loss=0.000107
+  Stage 3 epoch 300/300: loss=0.000090
+  MTE@0.1: 1.3922
+  MTE@0.5: 2.5614
+  MTE@1.0: 2.9916
+  W2@0.1:  0.6348
+  W2@0.5:  1.1935
+  W2@1.0:  1.2798
+  MMD@1.0: 0.1277
+  Survival@1.0: 74.5%
+      baseline: W2=3.0032  E_mu=0.1114  E_Sig=0.2960
+       K(Phat): W2=1.2798  E_mu=0.0780  E_Sig=0.2805
+
+============================================================
+  N=50 | D=201 (K=99) | hyperbolic_paraboloid | seed=4042
+============================================================
+    Phase1 Epoch 50/250: loss=0.816171
+    Phase1 Epoch 100/250: loss=0.584969
+    Phase1 Epoch 150/250: loss=0.377504
+    Phase1 Epoch 200/250: loss=0.085639
+    Phase1 Epoch 250/250: loss=0.052475
+      Condition: baseline (K_weight=0.0000)
+        Phase2 Epoch 50/250: loss=0.030234
+        Phase2 Epoch 100/250: loss=0.036877
+        Phase2 Epoch 150/250: loss=0.028940
+        Phase2 Epoch 200/250: loss=0.017137
+        Phase2 Epoch 250/250: loss=0.028272
+        E_mu=0.2271  E_Sigma=0.2982
+  Stage 2 epoch 60/300: loss=0.000631
+  Stage 2 epoch 120/300: loss=0.000569
+  Stage 2 epoch 180/300: loss=0.000435
+  Stage 2 epoch 240/300: loss=0.000310
+  Stage 2 epoch 300/300: loss=0.000182
+  Stage 3 epoch 60/300: loss=0.000029
+  Stage 3 epoch 120/300: loss=0.000027
+  Stage 3 epoch 180/300: loss=0.000026
+  Stage 3 epoch 240/300: loss=0.000024
+  Stage 3 epoch 300/300: loss=0.000026
+  MTE@0.1: 1.3124
+  MTE@0.5: 2.2971
+  MTE@1.0: 2.5778
+  W2@0.1:  0.6734
+  W2@0.5:  1.2617
+  W2@1.0:  1.3072
+  MMD@1.0: 0.2112
+  Survival@1.0: 76.0%
+      Condition: K(Phat) (K_weight=0.4275)
+        Phase2 Epoch 50/250: loss=0.035085
+        Phase2 Epoch 100/250: loss=0.036098
+        Phase2 Epoch 150/250: loss=0.016239
+        Phase2 Epoch 200/250: loss=0.020517
+        Phase2 Epoch 250/250: loss=0.029495
+        E_mu=0.1162  E_Sigma=0.2960
+  Stage 2 epoch 60/300: loss=0.000446
+  Stage 2 epoch 120/300: loss=0.000354
+  Stage 2 epoch 180/300: loss=0.000261
+  Stage 2 epoch 240/300: loss=0.000208
+  Stage 2 epoch 300/300: loss=0.000142
+  Stage 3 epoch 60/300: loss=0.000027
+  Stage 3 epoch 120/300: loss=0.000023
+  Stage 3 epoch 180/300: loss=0.000024
+  Stage 3 epoch 240/300: loss=0.000022
+  Stage 3 epoch 300/300: loss=0.000023
+  MTE@0.1: 1.5772
+  MTE@0.5: 2.4318
+  MTE@1.0: 2.6257
+  W2@0.1:  1.0284
+  W2@0.5:  1.4710
+  W2@1.0:  1.4688
+  MMD@1.0: 0.2861
+  Survival@1.0: 76.0%
+      baseline: W2=1.3072  E_mu=0.2271  E_Sig=0.2982
+       K(Phat): W2=1.4688  E_mu=0.1162  E_Sig=0.2960
+
+============================================================
+  N=50 | D=201 (K=99) | hyperbolic_paraboloid | seed=5042
+============================================================
+    Phase1 Epoch 50/250: loss=0.863751
+    Phase1 Epoch 100/250: loss=0.750305
+    Phase1 Epoch 150/250: loss=0.589861
+    Phase1 Epoch 200/250: loss=0.223076
+    Phase1 Epoch 250/250: loss=0.055273
+      Condition: baseline (K_weight=0.0000)
+        Phase2 Epoch 50/250: loss=0.083395
+        Phase2 Epoch 100/250: loss=0.054011
+        Phase2 Epoch 150/250: loss=0.041802
+        Phase2 Epoch 200/250: loss=0.022833
+        Phase2 Epoch 250/250: loss=0.027699
+        E_mu=0.4790  E_Sigma=0.6341
+  Stage 2 epoch 60/300: loss=0.001163
+  Stage 2 epoch 120/300: loss=0.001108
+  Stage 2 epoch 180/300: loss=0.000910
+  Stage 2 epoch 240/300: loss=0.000681
+  Stage 2 epoch 300/300: loss=0.000456
+  Stage 3 epoch 60/300: loss=0.000065
+  Stage 3 epoch 120/300: loss=0.000057
+  Stage 3 epoch 180/300: loss=0.000058
+  Stage 3 epoch 240/300: loss=0.000056
+  Stage 3 epoch 300/300: loss=0.000051
+  MTE@0.1: 1.3893
+  MTE@0.5: 2.4312
+  MTE@1.0: 3.0241
+  W2@0.1:  0.8592
+  W2@0.5:  1.0804
+  W2@1.0:  1.3546
+  MMD@1.0: 0.1960
+  Survival@1.0: 76.5%
+      Condition: K(Phat) (K_weight=0.4275)
+        Phase2 Epoch 50/250: loss=0.065514
+        Phase2 Epoch 100/250: loss=0.056279
+        Phase2 Epoch 150/250: loss=0.031318
+        Phase2 Epoch 200/250: loss=0.022875
+        Phase2 Epoch 250/250: loss=0.017467
+        E_mu=0.1936  E_Sigma=0.3301
+  Stage 2 epoch 60/300: loss=0.000829
+  Stage 2 epoch 120/300: loss=0.000781
+  Stage 2 epoch 180/300: loss=0.000612
+  Stage 2 epoch 240/300: loss=0.000474
+  Stage 2 epoch 300/300: loss=0.000357
+  Stage 3 epoch 60/300: loss=0.000246
+  Stage 3 epoch 120/300: loss=0.000170
+  Stage 3 epoch 180/300: loss=0.000133
+  Stage 3 epoch 240/300: loss=0.000117
+  Stage 3 epoch 300/300: loss=0.000111
+  MTE@0.1: 0.8064
+  MTE@0.5: 1.5880
+  MTE@1.0: 1.9860
+  W2@0.1:  0.4824
+  W2@0.5:  0.9712
+  W2@1.0:  1.2847
+  MMD@1.0: 0.1289
+  Survival@1.0: 76.5%
+      baseline: W2=1.3546  E_mu=0.4790  E_Sig=0.6341
+       K(Phat): W2=1.2847  E_mu=0.1936  E_Sig=0.3301
+
+============================================================
+  N=50 | D=201 (K=99) | hyperbolic_paraboloid | seed=6042
+============================================================
+    Phase1 Epoch 50/250: loss=0.893209
+    Phase1 Epoch 100/250: loss=0.691149
+    Phase1 Epoch 150/250: loss=0.572300
+    Phase1 Epoch 200/250: loss=0.239132
+    Phase1 Epoch 250/250: loss=0.094030
+      Condition: baseline (K_weight=0.0000)
+        Phase2 Epoch 50/250: loss=0.076038
+        Phase2 Epoch 100/250: loss=0.033444
+        Phase2 Epoch 150/250: loss=0.031332
+        Phase2 Epoch 200/250: loss=0.031933
+        Phase2 Epoch 250/250: loss=0.053516
+        E_mu=0.2357  E_Sigma=0.7108
+  Stage 2 epoch 60/300: loss=0.000684
+  Stage 2 epoch 120/300: loss=0.000660
+  Stage 2 epoch 180/300: loss=0.000556
+  Stage 2 epoch 240/300: loss=0.000500
+  Stage 2 epoch 300/300: loss=0.000443
+  Stage 3 epoch 60/300: loss=0.000219
+  Stage 3 epoch 120/300: loss=0.000189
+  Stage 3 epoch 180/300: loss=0.000152
+  Stage 3 epoch 240/300: loss=0.000137
+  Stage 3 epoch 300/300: loss=0.000124
+  MTE@0.1: 0.8388
+  MTE@0.5: 1.4645
+  MTE@1.0: 1.8609
+  W2@0.1:  0.6983
+  W2@0.5:  0.9295
+  W2@1.0:  1.2022
+  MMD@1.0: 0.1740
+  Survival@1.0: 73.0%
+      Condition: K(Phat) (K_weight=0.4275)
+        Phase2 Epoch 50/250: loss=0.057450
+        Phase2 Epoch 100/250: loss=0.054056
+        Phase2 Epoch 150/250: loss=0.024829
+        Phase2 Epoch 200/250: loss=0.019897
+        Phase2 Epoch 250/250: loss=0.025547
+        E_mu=0.2099  E_Sigma=0.5472
+  Stage 2 epoch 60/300: loss=0.000724
+  Stage 2 epoch 120/300: loss=0.000697
+  Stage 2 epoch 180/300: loss=0.000551
+  Stage 2 epoch 240/300: loss=0.000501
+  Stage 2 epoch 300/300: loss=0.000407
+  Stage 3 epoch 60/300: loss=0.000293
+  Stage 3 epoch 120/300: loss=0.000165
+  Stage 3 epoch 180/300: loss=0.000139
+  Stage 3 epoch 240/300: loss=0.000128
+  Stage 3 epoch 300/300: loss=0.000118
+  MTE@0.1: 0.9173
+  MTE@0.5: 1.5365
+  MTE@1.0: 1.8891
+  W2@0.1:  0.7800
+  W2@0.5:  0.9637
+  W2@1.0:  1.1560
+  MMD@1.0: 0.1838
+  Survival@1.0: 73.0%
+      baseline: W2=1.2022  E_mu=0.2357  E_Sig=0.7108
+       K(Phat): W2=1.1560  E_mu=0.2099  E_Sig=0.5472
+
+============================================================
+  N=50 | D=201 (K=99) | hyperbolic_paraboloid | seed=7042
+============================================================
+    Phase1 Epoch 50/250: loss=0.898203
+    Phase1 Epoch 100/250: loss=0.791179
+    Phase1 Epoch 150/250: loss=0.629248
+    Phase1 Epoch 200/250: loss=0.273580
+    Phase1 Epoch 250/250: loss=0.105325
+      Condition: baseline (K_weight=0.0000)
+        Phase2 Epoch 50/250: loss=0.077821
+        Phase2 Epoch 100/250: loss=0.080877
+        Phase2 Epoch 150/250: loss=0.032651
+        Phase2 Epoch 200/250: loss=0.038062
+        Phase2 Epoch 250/250: loss=0.018370
+        E_mu=0.1551  E_Sigma=0.3214
+  Stage 2 epoch 60/300: loss=0.001221
+  Stage 2 epoch 120/300: loss=0.001210
+  Stage 2 epoch 180/300: loss=0.000899
+  Stage 2 epoch 240/300: loss=0.000805
+  Stage 2 epoch 300/300: loss=0.000644
+  Stage 3 epoch 60/300: loss=0.000227
+  Stage 3 epoch 120/300: loss=0.000094
+  Stage 3 epoch 180/300: loss=0.000075
+  Stage 3 epoch 240/300: loss=0.000062
+  Stage 3 epoch 300/300: loss=0.000068
+  MTE@0.1: 0.9954
+  MTE@0.5: 2.0340
+  MTE@1.0: 2.6233
+  W2@0.1:  0.4571
+  W2@0.5:  0.9917
+  W2@1.0:  1.1463
+  MMD@1.0: 0.1464
+  Survival@1.0: 76.5%
+      Condition: K(Phat) (K_weight=0.4275)
+        Phase2 Epoch 50/250: loss=0.085019
+        Phase2 Epoch 100/250: loss=0.046261
+        Phase2 Epoch 150/250: loss=0.035421
+        Phase2 Epoch 200/250: loss=0.024451
+        Phase2 Epoch 250/250: loss=0.028092
+        E_mu=0.1260  E_Sigma=0.2734
+  Stage 2 epoch 60/300: loss=0.001290
+  Stage 2 epoch 120/300: loss=0.001253
+  Stage 2 epoch 180/300: loss=0.000910
+  Stage 2 epoch 240/300: loss=0.000834
+  Stage 2 epoch 300/300: loss=0.000690
+  Stage 3 epoch 60/300: loss=0.000234
+  Stage 3 epoch 120/300: loss=0.000094
+  Stage 3 epoch 180/300: loss=0.000072
+  Stage 3 epoch 240/300: loss=0.000057
+  Stage 3 epoch 300/300: loss=0.000060
+  MTE@0.1: 1.1495
+  MTE@0.5: 2.1182
+  MTE@1.0: 2.6978
+  W2@0.1:  0.6620
+  W2@0.5:  1.1092
+  W2@1.0:  1.2511
+  MMD@1.0: 0.1991
+  Survival@1.0: 76.5%
+      baseline: W2=1.1463  E_mu=0.1551  E_Sig=0.3214
+       K(Phat): W2=1.2511  E_mu=0.1260  E_Sig=0.2734
+
+============================================================
+  N=50 | D=201 (K=99) | hyperbolic_paraboloid | seed=8042
+============================================================
+    Phase1 Epoch 50/250: loss=0.900628
+    Phase1 Epoch 100/250: loss=0.648470
+    Phase1 Epoch 150/250: loss=0.316356
+    Phase1 Epoch 200/250: loss=0.190896
+    Phase1 Epoch 250/250: loss=0.092737
+      Condition: baseline (K_weight=0.0000)
+        Phase2 Epoch 50/250: loss=0.059144
+        Phase2 Epoch 100/250: loss=0.034264
+        Phase2 Epoch 150/250: loss=0.030725
+        Phase2 Epoch 200/250: loss=0.027834
+        Phase2 Epoch 250/250: loss=0.044350
+        E_mu=0.5150  E_Sigma=1.7623
+  Stage 2 epoch 60/300: loss=0.000851
+  Stage 2 epoch 120/300: loss=0.000548
+  Stage 2 epoch 180/300: loss=0.000336
+  Stage 2 epoch 240/300: loss=0.000208
+  Stage 2 epoch 300/300: loss=0.000139
+  Stage 3 epoch 60/300: loss=0.000618
+  Stage 3 epoch 120/300: loss=0.000385
+  Stage 3 epoch 180/300: loss=0.000375
+  Stage 3 epoch 240/300: loss=0.000262
+  Stage 3 epoch 300/300: loss=0.000238
+  MTE@0.1: 2.3327
+  MTE@0.5: 2.9547
+  MTE@1.0: 3.2709
+  W2@0.1:  2.0069
+  W2@0.5:  2.2506
+  W2@1.0:  2.3938
+  MMD@1.0: 0.5292
+  Survival@1.0: 79.5%
+      Condition: K(Phat) (K_weight=0.4275)
+        Phase2 Epoch 50/250: loss=0.152396
+        Phase2 Epoch 100/250: loss=0.060066
+        Phase2 Epoch 150/250: loss=0.055774
+        Phase2 Epoch 200/250: loss=0.024783
+        Phase2 Epoch 250/250: loss=0.021240
+        E_mu=0.2697  E_Sigma=0.7606
+  Stage 2 epoch 60/300: loss=0.000505
+  Stage 2 epoch 120/300: loss=0.000375
+  Stage 2 epoch 180/300: loss=0.000282
+  Stage 2 epoch 240/300: loss=0.000207
+  Stage 2 epoch 300/300: loss=0.000159
+  Stage 3 epoch 60/300: loss=0.000285
+  Stage 3 epoch 120/300: loss=0.000235
+  Stage 3 epoch 180/300: loss=0.000195
+  Stage 3 epoch 240/300: loss=0.000141
+  Stage 3 epoch 300/300: loss=0.000122
+  MTE@0.1: 1.1342
+  MTE@0.5: 2.0894
+  MTE@1.0: 2.5371
+  W2@0.1:  0.6080
+  W2@0.5:  1.1101
+  W2@1.0:  1.4337
+  MMD@1.0: 0.1645
+  Survival@1.0: 79.5%
+      baseline: W2=2.3938  E_mu=0.5150  E_Sig=1.7623
+       K(Phat): W2=1.4337  E_mu=0.2697  E_Sig=0.7606
+
+============================================================
+  N=50 | D=201 (K=99) | hyperbolic_paraboloid | seed=9042
+============================================================
+    Phase1 Epoch 50/250: loss=0.928215
+    Phase1 Epoch 100/250: loss=0.782729
+    Phase1 Epoch 150/250: loss=0.737393
+    Phase1 Epoch 200/250: loss=0.137352
+    Phase1 Epoch 250/250: loss=0.067582
+      Condition: baseline (K_weight=0.0000)
+        Phase2 Epoch 50/250: loss=0.049043
+        Phase2 Epoch 100/250: loss=0.091113
+        Phase2 Epoch 150/250: loss=0.020471
+        Phase2 Epoch 200/250: loss=0.021179
+        Phase2 Epoch 250/250: loss=0.042282
+        E_mu=0.3813  E_Sigma=1.1087
+  Stage 2 epoch 60/300: loss=0.000779
+  Stage 2 epoch 120/300: loss=0.000730
+  Stage 2 epoch 180/300: loss=0.000598
+  Stage 2 epoch 240/300: loss=0.000517
+  Stage 2 epoch 300/300: loss=0.000480
+  Stage 3 epoch 60/300: loss=0.000082
+  Stage 3 epoch 120/300: loss=0.000075
+  Stage 3 epoch 180/300: loss=0.000070
+  Stage 3 epoch 240/300: loss=0.000067
+  Stage 3 epoch 300/300: loss=0.000069
+  MTE@0.1: 1.3793
+  MTE@0.5: 2.1310
+  MTE@1.0: 2.7537
+  W2@0.1:  1.0230
+  W2@0.5:  1.1658
+  W2@1.0:  1.4000
+  MMD@1.0: 0.2471
+  Survival@1.0: 76.0%
+      Condition: K(Phat) (K_weight=0.4275)
+        Phase2 Epoch 50/250: loss=0.090957
+        Phase2 Epoch 100/250: loss=0.059584
+        Phase2 Epoch 150/250: loss=0.042225
+        Phase2 Epoch 200/250: loss=0.035286
+        Phase2 Epoch 250/250: loss=0.024442
+        E_mu=0.1791  E_Sigma=0.6192
+  Stage 2 epoch 60/300: loss=0.000867
+  Stage 2 epoch 120/300: loss=0.000800
+  Stage 2 epoch 180/300: loss=0.000593
+  Stage 2 epoch 240/300: loss=0.000461
+  Stage 2 epoch 300/300: loss=0.000386
+  Stage 3 epoch 60/300: loss=0.000055
+  Stage 3 epoch 120/300: loss=0.000049
+  Stage 3 epoch 180/300: loss=0.000043
+  Stage 3 epoch 240/300: loss=0.000041
+  Stage 3 epoch 300/300: loss=0.000040
+  MTE@0.1: 1.1210
+  MTE@0.5: 2.0275
+  MTE@1.0: 2.7240
+  W2@0.1:  0.7400
+  W2@0.5:  0.9244
+  W2@1.0:  1.1162
+  MMD@1.0: 0.1416
+  Survival@1.0: 76.0%
+      baseline: W2=1.4000  E_mu=0.3813  E_Sig=1.1087
+       K(Phat): W2=1.1162  E_mu=0.1791  E_Sig=0.6192
+
+  N=50, D=201 completed in 985.7s (49.3s per fork)
+
+============================================================
+  N=100 | D=201 (K=99) | paraboloid | seed=42
+============================================================
+    Phase1 Epoch 50/250: loss=0.866635
+    Phase1 Epoch 100/250: loss=0.775461
+    Phase1 Epoch 150/250: loss=0.657344
+    Phase1 Epoch 200/250: loss=0.092240
+    Phase1 Epoch 250/250: loss=0.062445
+      Condition: baseline (K_weight=0.0000)
+        Phase2 Epoch 50/250: loss=0.020332
+        Phase2 Epoch 100/250: loss=0.021105
+        Phase2 Epoch 150/250: loss=0.021742
+        Phase2 Epoch 200/250: loss=0.011675
+        Phase2 Epoch 250/250: loss=0.016743
+        E_mu=0.1459  E_Sigma=0.6234
+  Stage 2 epoch 60/300: loss=0.000469
+  Stage 2 epoch 120/300: loss=0.000458
+  Stage 2 epoch 180/300: loss=0.000385
+  Stage 2 epoch 240/300: loss=0.000252
+  Stage 2 epoch 300/300: loss=0.000191
+  Stage 3 epoch 60/300: loss=0.000152
+  Stage 3 epoch 120/300: loss=0.000076
+  Stage 3 epoch 180/300: loss=0.000050
+  Stage 3 epoch 240/300: loss=0.000058
+  Stage 3 epoch 300/300: loss=0.000036
+  MTE@0.1: 1.0726
+  MTE@0.5: 2.3168
+  MTE@1.0: 3.1462
+  W2@0.1:  0.7351
+  W2@0.5:  1.1783
+  W2@1.0:  1.7424
+  MMD@1.0: 0.2119
+  Survival@1.0: 76.5%
+      Condition: K(Phat) (K_weight=0.4275)
+        Phase2 Epoch 50/250: loss=0.034514
+        Phase2 Epoch 100/250: loss=0.021080
+        Phase2 Epoch 150/250: loss=0.031036
+        Phase2 Epoch 200/250: loss=0.024488
+        Phase2 Epoch 250/250: loss=0.011834
+        E_mu=0.0827  E_Sigma=0.3866
+  Stage 2 epoch 60/300: loss=0.000382
+  Stage 2 epoch 120/300: loss=0.000333
+  Stage 2 epoch 180/300: loss=0.000305
+  Stage 2 epoch 240/300: loss=0.000198
+  Stage 2 epoch 300/300: loss=0.000172
+  Stage 3 epoch 60/300: loss=0.000171
+  Stage 3 epoch 120/300: loss=0.000070
+  Stage 3 epoch 180/300: loss=0.000040
+  Stage 3 epoch 240/300: loss=0.000039
+  Stage 3 epoch 300/300: loss=0.000027
+  MTE@0.1: 1.0305
+  MTE@0.5: 2.2870
+  MTE@1.0: 3.0967
+  W2@0.1:  0.6608
+  W2@0.5:  1.0682
+  W2@1.0:  1.5426
+  MMD@1.0: 0.1835
+  Survival@1.0: 76.5%
+      baseline: W2=1.7424  E_mu=0.1459  E_Sig=0.6234
+       K(Phat): W2=1.5426  E_mu=0.0827  E_Sig=0.3866
+
+============================================================
+  N=100 | D=201 (K=99) | paraboloid | seed=1042
+============================================================
+    Phase1 Epoch 50/250: loss=0.842491
+    Phase1 Epoch 100/250: loss=0.726231
+    Phase1 Epoch 150/250: loss=0.577149
+    Phase1 Epoch 200/250: loss=0.127389
+    Phase1 Epoch 250/250: loss=0.051275
+      Condition: baseline (K_weight=0.0000)
+        Phase2 Epoch 50/250: loss=0.029316
+        Phase2 Epoch 100/250: loss=0.029200
+        Phase2 Epoch 150/250: loss=0.025655
+        Phase2 Epoch 200/250: loss=0.025802
+        Phase2 Epoch 250/250: loss=0.014967
+        E_mu=0.2122  E_Sigma=0.3860
+  Stage 2 epoch 60/300: loss=0.001072
+  Stage 2 epoch 120/300: loss=0.000837
+  Stage 2 epoch 180/300: loss=0.001140
+  Stage 2 epoch 240/300: loss=0.000555
+  Stage 2 epoch 300/300: loss=0.000529
+  Stage 3 epoch 60/300: loss=0.000068
+  Stage 3 epoch 120/300: loss=0.000065
+  Stage 3 epoch 180/300: loss=0.000054
+  Stage 3 epoch 240/300: loss=0.000048
+  Stage 3 epoch 300/300: loss=0.000050
+  MTE@0.1: 1.2403
+  MTE@0.5: 2.0511
+  MTE@1.0: 2.8503
+  W2@0.1:  0.9170
+  W2@0.5:  1.2216
+  W2@1.0:  1.7697
+  MMD@1.0: 0.2903
+  Survival@1.0: 72.0%
+      Condition: K(Phat) (K_weight=0.4275)
+        Phase2 Epoch 50/250: loss=0.046298
+        Phase2 Epoch 100/250: loss=0.029302
+        Phase2 Epoch 150/250: loss=0.035211
+        Phase2 Epoch 200/250: loss=0.019533
+        Phase2 Epoch 250/250: loss=0.017537
+        E_mu=0.1551  E_Sigma=0.3055
+  Stage 2 epoch 60/300: loss=0.000742
+  Stage 2 epoch 120/300: loss=0.000560
+  Stage 2 epoch 180/300: loss=0.000828
+  Stage 2 epoch 240/300: loss=0.000357
+  Stage 2 epoch 300/300: loss=0.000246
+  Stage 3 epoch 60/300: loss=0.000045
+  Stage 3 epoch 120/300: loss=0.000041
+  Stage 3 epoch 180/300: loss=0.000034
+  Stage 3 epoch 240/300: loss=0.000030
+  Stage 3 epoch 300/300: loss=0.000028
+  MTE@0.1: 1.0928
+  MTE@0.5: 1.8727
+  MTE@1.0: 2.6013
+  W2@0.1:  0.7743
+  W2@0.5:  1.0418
+  W2@1.0:  1.4679
+  MMD@1.0: 0.2430
+  Survival@1.0: 72.0%
+      baseline: W2=1.7697  E_mu=0.2122  E_Sig=0.3860
+       K(Phat): W2=1.4679  E_mu=0.1551  E_Sig=0.3055
+
+============================================================
+  N=100 | D=201 (K=99) | paraboloid | seed=2042
+============================================================
+    Phase1 Epoch 50/250: loss=0.881511
+    Phase1 Epoch 100/250: loss=0.667676
+    Phase1 Epoch 150/250: loss=0.235860
+    Phase1 Epoch 200/250: loss=0.111151
+    Phase1 Epoch 250/250: loss=0.123444
+      Condition: baseline (K_weight=0.0000)
+        Phase2 Epoch 50/250: loss=0.052270
+        Phase2 Epoch 100/250: loss=0.032692
+        Phase2 Epoch 150/250: loss=0.034174
+        Phase2 Epoch 200/250: loss=0.043512
+        Phase2 Epoch 250/250: loss=0.038396
+        E_mu=0.1650  E_Sigma=0.7770
+  Stage 2 epoch 60/300: loss=0.000604
+  Stage 2 epoch 120/300: loss=0.000446
+  Stage 2 epoch 180/300: loss=0.000412
+  Stage 2 epoch 240/300: loss=0.000307
+  Stage 2 epoch 300/300: loss=0.000214
+  Stage 3 epoch 60/300: loss=0.000200
+  Stage 3 epoch 120/300: loss=0.000175
+  Stage 3 epoch 180/300: loss=0.000138
+  Stage 3 epoch 240/300: loss=0.000130
+  Stage 3 epoch 300/300: loss=0.000111
+  MTE@0.1: 1.2682
+  MTE@0.5: 2.4194
+  MTE@1.0: 2.9874
+  W2@0.1:  0.8980
+  W2@0.5:  1.2994
+  W2@1.0:  1.4768
+  MMD@1.0: 0.2146
+  Survival@1.0: 78.5%
+      Condition: K(Phat) (K_weight=0.4275)
+        Phase2 Epoch 50/250: loss=0.166172
+        Phase2 Epoch 100/250: loss=0.026077
+        Phase2 Epoch 150/250: loss=0.041809
+        Phase2 Epoch 200/250: loss=0.006929
+        Phase2 Epoch 250/250: loss=0.003049
+        E_mu=0.0533  E_Sigma=0.0814
+  Stage 2 epoch 60/300: loss=0.000499
+  Stage 2 epoch 120/300: loss=0.000326
+  Stage 2 epoch 180/300: loss=0.000308
+  Stage 2 epoch 240/300: loss=0.000293
+  Stage 2 epoch 300/300: loss=0.000256
+  Stage 3 epoch 60/300: loss=0.000138
+  Stage 3 epoch 120/300: loss=0.000128
+  Stage 3 epoch 180/300: loss=0.000091
+  Stage 3 epoch 240/300: loss=0.000086
+  Stage 3 epoch 300/300: loss=0.000075
+  MTE@0.1: 0.9649
+  MTE@0.5: 2.2627
+  MTE@1.0: 2.8282
+  W2@0.1:  0.5498
+  W2@0.5:  1.0787
+  W2@1.0:  1.2963
+  MMD@1.0: 0.1320
+  Survival@1.0: 78.5%
+      baseline: W2=1.4768  E_mu=0.1650  E_Sig=0.7770
+       K(Phat): W2=1.2963  E_mu=0.0533  E_Sig=0.0814
+
+============================================================
+  N=100 | D=201 (K=99) | paraboloid | seed=3042
+============================================================
+    Phase1 Epoch 50/250: loss=0.872969
+    Phase1 Epoch 100/250: loss=0.897235
+    Phase1 Epoch 150/250: loss=0.665877
+    Phase1 Epoch 200/250: loss=0.162590
+    Phase1 Epoch 250/250: loss=0.099332
+      Condition: baseline (K_weight=0.0000)
+        Phase2 Epoch 50/250: loss=0.040919
+        Phase2 Epoch 100/250: loss=0.030003
+        Phase2 Epoch 150/250: loss=0.020960
+        Phase2 Epoch 200/250: loss=0.011698
+        Phase2 Epoch 250/250: loss=0.033271
+        E_mu=0.1346  E_Sigma=0.2512
+  Stage 2 epoch 60/300: loss=0.000505
+  Stage 2 epoch 120/300: loss=0.000399
+  Stage 2 epoch 180/300: loss=0.000342
+  Stage 2 epoch 240/300: loss=0.000200
+  Stage 2 epoch 300/300: loss=0.000288
+  Stage 3 epoch 60/300: loss=0.000050
+  Stage 3 epoch 120/300: loss=0.000040
+  Stage 3 epoch 180/300: loss=0.000050
+  Stage 3 epoch 240/300: loss=0.000039
+  Stage 3 epoch 300/300: loss=0.000035
+  MTE@0.1: 1.9370
+  MTE@0.5: 2.8059
+  MTE@1.0: 3.3596
+  W2@0.1:  1.4168
+  W2@0.5:  1.5563
+  W2@1.0:  1.8934
+  MMD@1.0: 0.3663
+  Survival@1.0: 74.5%
+      Condition: K(Phat) (K_weight=0.4275)
+        Phase2 Epoch 50/250: loss=0.062367
+        Phase2 Epoch 100/250: loss=0.032584
+        Phase2 Epoch 150/250: loss=0.017406
+        Phase2 Epoch 200/250: loss=0.018474
+        Phase2 Epoch 250/250: loss=0.039903
+        E_mu=0.1996  E_Sigma=1.1356
+  Stage 2 epoch 60/300: loss=0.000377
+  Stage 2 epoch 120/300: loss=0.000316
+  Stage 2 epoch 180/300: loss=0.000285
+  Stage 2 epoch 240/300: loss=0.000207
+  Stage 2 epoch 300/300: loss=0.000190
+  Stage 3 epoch 60/300: loss=0.000087
+  Stage 3 epoch 120/300: loss=0.000070
+  Stage 3 epoch 180/300: loss=0.000084
+  Stage 3 epoch 240/300: loss=0.000068
+  Stage 3 epoch 300/300: loss=0.000074
+  MTE@0.1: 2.1428
+  MTE@0.5: 2.9781
+  MTE@1.0: 3.5813
+  W2@0.1:  1.6610
+  W2@0.5:  1.8786
+  W2@1.0:  2.3844
+  MMD@1.0: 0.4330
+  Survival@1.0: 74.5%
+      baseline: W2=1.8934  E_mu=0.1346  E_Sig=0.2512
+       K(Phat): W2=2.3844  E_mu=0.1996  E_Sig=1.1356
+
+============================================================
+  N=100 | D=201 (K=99) | paraboloid | seed=4042
+============================================================
+    Phase1 Epoch 50/250: loss=0.828353
+    Phase1 Epoch 100/250: loss=0.661380
+    Phase1 Epoch 150/250: loss=0.215275
+    Phase1 Epoch 200/250: loss=0.075338
+    Phase1 Epoch 250/250: loss=0.055950
+      Condition: baseline (K_weight=0.0000)
+        Phase2 Epoch 50/250: loss=0.020164
+        Phase2 Epoch 100/250: loss=0.036644
+        Phase2 Epoch 150/250: loss=0.019597

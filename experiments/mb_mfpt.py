@@ -2,7 +2,7 @@
 MB inter-well MFPT + transition rate experiment.
 
 4-5 conditions × 4 surfaces × D × 10 seeds.
-Uses MB drift + state-dependent diffusion. Independent noise for GT vs learned.
+Uses MB drift + state-dependent diffusion. Paired noise (same dW) for GT and learned.
 
 Metrics per (surface, condition, seed):
   - E_mu, E_Sigma: coefficient errors
@@ -125,9 +125,8 @@ def run_one(surface_name, D, seed, cond_label, lw, epochs, sde_epochs,
     gt_at_1 = gt_results['gt_at_1']
 
     # Learned trajectories (no boundary — run free, censor post-hoc)
-    _COND_SEED_OFFSET = {"baseline": 0, "T": 1, "F": 2, "C": 3, "T+F": 4}
-    torch.manual_seed(seed + 5678 + _COND_SEED_OFFSET.get(cond_label, 99))
-    dW_lr = torch.randn(N_TRAJ, LONG_N_STEPS, 2, device=DEVICE)
+    # Use same dW as GT for paired comparison (reduces MC variance)
+    dW_lr = gt_results['dW_gt']
     with torch.no_grad():
         z0 = ae.encoder(init_ambient)
     z_traj, _ = pipeline.simulate(z0, LONG_N_STEPS, MB_DT, dW=dW_lr,
@@ -145,13 +144,16 @@ def run_one(surface_name, D, seed, cond_label, lw, epochs, sde_epochs,
             x_chunk = ae.decoder(z_chunk)
             lr_uv[:, start:end] = x_chunk[:, :2].reshape(B, end - start, 2)
 
-    # Censor trajectories that leave [-CENSOR_BOUND, CENSOR_BOUND]² in decoded (u,v)
-    ever_out = (lr_uv.abs() > CENSOR_BOUND).any(dim=-1).any(dim=-1)  # (B,)
+    # Censor trajectories that leave [-CENSOR_BOUND, CENSOR_BOUND]² or have NaN/Inf
+    not_finite = ~torch.isfinite(lr_uv)
+    ever_bad = not_finite.any(dim=-1).any(dim=-1)  # (B,)
+    ever_out_bound = (lr_uv.abs() > CENSOR_BOUND).any(dim=-1).any(dim=-1)  # (B,)
+    ever_out = ever_bad | ever_out_bound
     n_censored = ever_out.sum().item()
+    n_nan = ever_bad.sum().item()
+    if n_nan > 0:
+        print(f"    WARNING: {n_nan}/{B} trajectories contain NaN/Inf")
     exit_frac = n_censored / B
-    # Mask censored trajectories: set their assignments to -1 (ignored by metrics)
-    lr_uv_censored = lr_uv.clone()
-    lr_uv_censored[ever_out] = float('nan')  # won't match any core
 
     # Core-set well assignment (censored trajectories get -1 everywhere)
     lr_assign = assign_wells_coreset_2d(lr_uv, WELLS_UV.to(DEVICE))
@@ -212,6 +214,7 @@ def run_one(surface_name, D, seed, cond_label, lw, epochs, sde_epochs,
 
     # Pairwise MFPT error (average over all finite pairs)
     pairwise_err_vals = []
+    n_dropped_pairs = 0
     for i in range(3):
         for j in range(3):
             if i == j:
@@ -220,6 +223,10 @@ def run_one(surface_name, D, seed, cond_label, lw, epochs, sde_epochs,
             lr_val = lr_pairwise_mfpt[i, j].item()
             if np.isfinite(gt_val) and gt_val > 0 and np.isfinite(lr_val):
                 pairwise_err_vals.append(abs(lr_val - gt_val) / gt_val)
+            else:
+                n_dropped_pairs += 1
+    if n_dropped_pairs > 0:
+        print(f"    WARNING: {n_dropped_pairs}/6 MFPT pairs dropped (non-finite)")
     pairwise_mfpt_err = np.mean(pairwise_err_vals) if pairwise_err_vals else float('nan')
 
     # Implied timescale error (fixed lag for fair comparison)
@@ -296,7 +303,13 @@ def main():
                         help="Override N_TRAJ for MFPT simulation (default: from data_driven_sde)")
     parser.add_argument("--uniform", action="store_true",
                         help="Use uniform sampling instead of importance sampling")
+    parser.add_argument("--sampling", type=str, default="importance",
+                        choices=["importance", "uniform", "delta_net"],
+                        help="Sampling strategy: importance (30%% saddle), uniform, or delta_net (ATLAS-style)")
     args = parser.parse_args()
+    # --uniform is a legacy flag
+    if args.uniform:
+        args.sampling = "uniform"
 
     if args.n_traj is not None:
         import experiments.data_driven_sde as _dds
@@ -342,20 +355,30 @@ def main():
             np.random.seed(seed)
 
             surface = FourierAugmentedSurface(surface_name, args.D)
-            if args.uniform:
-                # Uniform sampling
+            bds = [(-TRAIN_BOUND, TRAIN_BOUND), (-TRAIN_BOUND, TRAIN_BOUND)]
+            if args.sampling == "uniform":
                 train_data = sample_from_highd_manifold(
                     surface, mb_local_drift_fn, mb_local_diffusion_fn,
-                    [(-TRAIN_BOUND, TRAIN_BOUND), (-TRAIN_BOUND, TRAIN_BOUND)],
-                    n_samples=args.N, seed=seed, device=DEVICE,
+                    bds, n_samples=args.N, seed=seed, device=DEVICE,
+                )
+            elif args.sampling == "delta_net":
+                from src.numeric.highd_manifolds import delta_net_subsample
+                uv_dn = delta_net_subsample(
+                    surface, bds, n_landmarks=args.N,
+                    n_candidates=max(10000, args.N * 100),
+                    seed=seed, device=DEVICE,
+                )
+                train_data = sample_from_highd_manifold(
+                    surface, mb_local_drift_fn, mb_local_diffusion_fn,
+                    bds, n_samples=args.N, seed=seed, device=DEVICE,
+                    uv_override=uv_dn,
                 )
             else:
                 # Importance-sample: 30% near saddle, 70% uniform
                 uv_is = importance_sample_mb(args.N, seed=seed, device=DEVICE)
                 train_data = sample_from_highd_manifold(
                     surface, mb_local_drift_fn, mb_local_diffusion_fn,
-                    [(-TRAIN_BOUND, TRAIN_BOUND), (-TRAIN_BOUND, TRAIN_BOUND)],
-                    n_samples=args.N, seed=seed, device=DEVICE,
+                    bds, n_samples=args.N, seed=seed, device=DEVICE,
                     uv_override=uv_is,
                 )
             x = train_data.samples.to(DEVICE)
@@ -381,8 +404,10 @@ def main():
                 boundary=None,
             )
             gt_uv = gt_local
-            # Censor GT the same way as learned (matched treatment)
-            gt_ever_out = (gt_uv.abs() > CENSOR_BOUND).any(dim=-1).any(dim=-1)
+            # Censor GT the same way as learned (matched treatment, incl NaN/Inf)
+            gt_not_finite = ~torch.isfinite(gt_uv)
+            gt_ever_out = (gt_not_finite.any(dim=-1).any(dim=-1) |
+                           (gt_uv.abs() > CENSOR_BOUND).any(dim=-1).any(dim=-1))
             gt_assign = assign_wells_coreset_2d(gt_uv, WELLS_UV.to(DEVICE))
             gt_assign[gt_ever_out] = -1
             gt_exit_frac = gt_ever_out.float().mean().item()
@@ -392,13 +417,14 @@ def main():
             print(f"  GT exit fraction: {gt_exit_frac:.1%}")
             # GT ambient at T=1.0
             step_1 = int(round(1.0 / MB_DT))
-            gt_at_1 = sde.chart(gt_local[:, step_1]) if step_1 < gt_local.shape[1] else None
-            del dW_gt, gt_local  # free memory
+            gt_at_1 = sde.chart(gt_uv[:, step_1]) if step_1 < gt_uv.shape[1] else None
+            del gt_local, gt_uv  # free memory (keep dW_gt for paired comparison)
 
             gt_results = {
                 'gt_assign': gt_assign, 'gt_pairwise_mfpt': gt_pairwise_mfpt,
                 'gt_its': gt_its, 'gt_stat': gt_stat, 'gt_at_1': gt_at_1,
                 'init_local': init_local, 'init_ambient': init_ambient,
+                'dW_gt': dW_gt,
             }
 
             for cond_label, lw in conditions.items():

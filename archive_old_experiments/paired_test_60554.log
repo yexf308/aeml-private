@@ -1,0 +1,14 @@
+
+============================================================
+  Seed 42
+============================================================
+Traceback (most recent call last):
+  File "/network/rit/lab/Yelab/anaconda3/lib/python3.9/runpy.py", line 197, in _run_module_as_main
+    return _run_code(code, main_globals, None,
+  File "/network/rit/lab/Yelab/anaconda3/lib/python3.9/runpy.py", line 87, in _run_code
+    exec(code, run_globals)
+  File "/network/rit/lab/Yelab/aeml/experiments/mb_mfpt_paired_test.py", line 145, in <module>
+    gt_m, res = run_seed(seed)
+  File "/network/rit/lab/Yelab/aeml/experiments/mb_mfpt_paired_test.py", line 52, in run_seed
+    sde = create_highd_lambdified_sde(
+TypeError: create_highd_lambdified_sde() takes 3 positional arguments but 5 were given

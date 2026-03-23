@@ -1,0 +1,26 @@
+Full ablation: mb dynamics, D=11
+Surfaces: ['paraboloid', 'hyperbolic_paraboloid', 'quartic_dome', 'sinusoidal']
+Conditions: ['baseline', 'T', 'F', 'C', 'T+F'] + ATLAS
+Seeds (10): [42, 1042, 2042, 3042, 4042, 5042, 6042, 7042, 8042, 9042]
+AE epochs: 4000, SDE epochs: 3000
+N_train: 200
+
+============================================================
+  paraboloid | seed=42 | mb | D=11
+============================================================
+    ATLAS  recon=0.0086  E_mu=1.5662
+    baseline      Epoch 800/4000: loss=0.000069
+      Epoch 1600/4000: loss=0.000010
+      Epoch 2400/4000: loss=0.000004
+      Epoch 3200/4000: loss=0.000003
+      Epoch 4000/4000: loss=0.000004
+  recon=0.0000  E_mu=0.0065  S2=0.001352
+    T      Epoch 800/4000: loss=0.000936
+      Epoch 1600/4000: loss=0.000025
+      Epoch 2400/4000: loss=0.000010
+      Epoch 3200/4000: loss=0.000011
+      Epoch 4000/4000: loss=0.000010
+  recon=0.0000  E_mu=0.0001  S2=0.001710
+    F      Epoch 800/4000: loss=0.001314
+      Epoch 1600/4000: loss=0.000148
+slurmstepd: error: *** JOB 60938 ON dgx14 CANCELLED AT 2026-03-18T21:48:19 ***

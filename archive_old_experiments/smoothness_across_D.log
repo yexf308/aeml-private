@@ -1,0 +1,697 @@
+
+######################################################################
+  D = 3
+######################################################################
+    AE Epoch 100/500: loss=0.734580
+    AE Epoch 200/500: loss=0.331667
+    AE Epoch 300/500: loss=0.048390
+    AE Epoch 400/500: loss=0.036269
+    AE Epoch 500/500: loss=0.008697
+
+  D=3 seed=42 baseline (lambda=0.0, metric=True)
+  MTE@0.1: 0.8662
+  MTE@0.5: 2.2203
+  MTE@1.0: 3.2884
+  W2@1.0:  2.1201
+  sW2@0.5: 1.5141 (96/200 in region)
+  sW2@1.0: 2.5000 (48/200 in region)
+  MMD@1.0: 0.3178
+  Survival@1.0: 76.5%
+  Stopped@1.0:  24.0%
+    E_mu_held=0.0879  W2=2.1201  (7s)
+
+  D=3 seed=42 smooth-euc (lambda=0.5, metric=False)
+  MTE@0.1: 0.8703
+  MTE@0.5: 2.0623
+  MTE@1.0: 2.8492
+  W2@1.0:  1.7075
+  sW2@0.5: 1.2999 (96/200 in region)
+  sW2@1.0: 2.0828 (48/200 in region)
+  MMD@1.0: 0.2605
+  Survival@1.0: 76.5%
+  Stopped@1.0:  24.0%
+    E_mu_held=0.2722  W2=1.7075  (6s)
+
+  D=3 seed=42 smooth-metric (lambda=0.5, metric=True)
+  MTE@0.1: 0.8732
+  MTE@0.5: 2.0701
+  MTE@1.0: 2.8687
+  W2@1.0:  1.7301
+  sW2@0.5: 1.3217 (96/200 in region)
+  sW2@1.0: 2.1404 (48/200 in region)
+  MMD@1.0: 0.2684
+  Survival@1.0: 76.5%
+  Stopped@1.0:  24.0%
+    E_mu_held=0.3544  W2=1.7301  (7s)
+    AE Epoch 100/500: loss=0.430567
+    AE Epoch 200/500: loss=0.086333
+    AE Epoch 300/500: loss=0.027231
+    AE Epoch 400/500: loss=0.010977
+    AE Epoch 500/500: loss=0.011287
+
+  D=3 seed=1042 baseline (lambda=0.0, metric=True)
+  MTE@0.1: 0.8075
+  MTE@0.5: 1.6543
+  MTE@1.0: 2.3190
+  W2@1.0:  1.2977
+  sW2@0.5: 0.7574 (100/200 in region)
+  sW2@1.0: 1.4982 (53/200 in region)
+  MMD@1.0: 0.2365
+  Survival@1.0: 72.0%
+  Stopped@1.0:  26.5%
+    E_mu_held=0.1165  W2=1.2977  (6s)
+
+  D=3 seed=1042 smooth-euc (lambda=0.5, metric=False)
+  MTE@0.1: 0.8093
+  MTE@0.5: 1.6052
+  MTE@1.0: 2.0854
+  W2@1.0:  1.1645
+  sW2@0.5: 0.6740 (100/200 in region)
+  sW2@1.0: 1.0693 (53/200 in region)
+  MMD@1.0: 0.1820
+  Survival@1.0: 72.0%
+  Stopped@1.0:  26.5%
+    E_mu_held=0.1788  W2=1.1645  (8s)
+
+  D=3 seed=1042 smooth-metric (lambda=0.5, metric=True)
+  MTE@0.1: 0.8099
+  MTE@0.5: 1.6194
+  MTE@1.0: 2.1118
+  W2@1.0:  1.1510
+  sW2@0.5: 0.6789 (100/200 in region)
+  sW2@1.0: 1.1478 (53/200 in region)
+  MMD@1.0: 0.1891
+  Survival@1.0: 72.0%
+  Stopped@1.0:  26.5%
+    E_mu_held=0.2188  W2=1.1510  (9s)
+    AE Epoch 100/500: loss=0.604837
+    AE Epoch 200/500: loss=0.128088
+    AE Epoch 300/500: loss=0.030871
+    AE Epoch 400/500: loss=0.012893
+    AE Epoch 500/500: loss=0.009301
+
+  D=3 seed=2042 baseline (lambda=0.0, metric=True)
+  MTE@0.1: 0.7430
+  MTE@0.5: 1.8436
+  MTE@1.0: 2.4580
+  W2@1.0:  1.5507
+  sW2@0.5: 1.1822 (95/200 in region)
+  sW2@1.0: 2.3006 (47/200 in region)
+  MMD@1.0: 0.1479
+  Survival@1.0: 78.5%
+  Stopped@1.0:  23.5%
+    E_mu_held=0.0916  W2=1.5507  (5s)
+
+  D=3 seed=2042 smooth-euc (lambda=0.5, metric=False)
+  MTE@0.1: 0.7382
+  MTE@0.5: 1.7316
+  MTE@1.0: 2.2224
+  W2@1.0:  1.3475
+  sW2@0.5: 0.8826 (95/200 in region)
+  sW2@1.0: 1.7138 (47/200 in region)
+  MMD@1.0: 0.1317
+  Survival@1.0: 78.5%
+  Stopped@1.0:  23.5%
+    E_mu_held=0.1849  W2=1.3475  (8s)
+
+  D=3 seed=2042 smooth-metric (lambda=0.5, metric=True)
+  MTE@0.1: 0.7402
+  MTE@0.5: 1.7298
+  MTE@1.0: 2.2321
+  W2@1.0:  1.3884
+  sW2@0.5: 0.8945 (95/200 in region)
+  sW2@1.0: 1.7400 (47/200 in region)
+  MMD@1.0: 0.1407
+  Survival@1.0: 78.5%
+  Stopped@1.0:  23.5%
+    E_mu_held=0.1845  W2=1.3884  (9s)
+    AE Epoch 100/500: loss=0.409766
+    AE Epoch 200/500: loss=0.092619
+    AE Epoch 300/500: loss=0.020118
+    AE Epoch 400/500: loss=0.012347
+    AE Epoch 500/500: loss=0.009120
+
+  D=3 seed=3042 baseline (lambda=0.0, metric=True)
+  MTE@0.1: 1.0442
+  MTE@0.5: 2.1909
+  MTE@1.0: 2.8704
+  W2@1.0:  1.6481
+  sW2@0.5: 1.3821 (99/200 in region)
+  sW2@1.0: 2.2458 (48/200 in region)
+  MMD@1.0: 0.2264
+  Survival@1.0: 74.5%
+  Stopped@1.0:  24.0%
+    E_mu_held=0.0890  W2=1.6481  (7s)
+
+  D=3 seed=3042 smooth-euc (lambda=0.5, metric=False)
+  MTE@0.1: 1.0360
+  MTE@0.5: 2.0221
+  MTE@1.0: 2.4577
+  W2@1.0:  1.1900
+  sW2@0.5: 1.0614 (99/200 in region)
+  sW2@1.0: 1.5560 (48/200 in region)
+  MMD@1.0: 0.1767
+  Survival@1.0: 74.5%
+  Stopped@1.0:  24.0%
+    E_mu_held=0.2061  W2=1.1900  (8s)
+
+  D=3 seed=3042 smooth-metric (lambda=0.5, metric=True)
+  MTE@0.1: 1.0381
+  MTE@0.5: 2.0306
+  MTE@1.0: 2.4873
+  W2@1.0:  1.2035
+  sW2@0.5: 1.0823 (99/200 in region)
+  sW2@1.0: 1.5831 (48/200 in region)
+  MMD@1.0: 0.1842
+  Survival@1.0: 74.5%
+  Stopped@1.0:  24.0%
+    E_mu_held=0.2412  W2=1.2035  (9s)
+    AE Epoch 100/500: loss=0.374004
+    AE Epoch 200/500: loss=0.044884
+    AE Epoch 300/500: loss=0.023724
+    AE Epoch 400/500: loss=0.016963
+    AE Epoch 500/500: loss=0.011931
+
+  D=3 seed=4042 baseline (lambda=0.0, metric=True)
+  MTE@0.1: 0.9869
+  MTE@0.5: 2.0825
+  MTE@1.0: 2.4820
+  W2@1.0:  1.1041
+  sW2@0.5: 0.9515 (107/200 in region)
+  sW2@1.0: 1.9726 (60/200 in region)
+  MMD@1.0: 0.1789
+  Survival@1.0: 76.0%
+  Stopped@1.0:  30.0%
+    E_mu_held=0.0952  W2=1.1041  (6s)
+
+  D=3 seed=4042 smooth-euc (lambda=0.5, metric=False)
+  MTE@0.1: 0.9810
+  MTE@0.5: 2.0222
+  MTE@1.0: 2.2563
+  W2@1.0:  0.8273
+  sW2@0.5: 0.7178 (107/200 in region)
+  sW2@1.0: 1.6229 (60/200 in region)
+  MMD@1.0: 0.0879
+  Survival@1.0: 76.0%
+  Stopped@1.0:  30.0%
+    E_mu_held=0.1695  W2=0.8273  (6s)
+
+  D=3 seed=4042 smooth-metric (lambda=0.5, metric=True)
+  MTE@0.1: 0.9809
+  MTE@0.5: 2.0275
+  MTE@1.0: 2.2594
+  W2@1.0:  0.8082
+  sW2@0.5: 0.7159 (107/200 in region)
+  sW2@1.0: 1.6083 (60/200 in region)
+  MMD@1.0: 0.0882
+  Survival@1.0: 76.0%
+  Stopped@1.0:  30.0%
+    E_mu_held=0.1946  W2=0.8082  (8s)
+
+######################################################################
+  D = 11
+######################################################################
+    AE Epoch 100/500: loss=0.510373
+    AE Epoch 200/500: loss=0.229251
+    AE Epoch 300/500: loss=0.056991
+    AE Epoch 400/500: loss=0.022426
+    AE Epoch 500/500: loss=0.018613
+
+  D=11 seed=42 baseline (lambda=0.0, metric=True)
+  MTE@0.1: 1.2197
+  MTE@0.5: 2.2520
+  MTE@1.0: 2.8043
+  W2@1.0:  1.6629
+  sW2@0.5: 1.1553 (96/200 in region)
+  sW2@1.0: 1.6703 (48/200 in region)
+  MMD@1.0: 0.1725
+  Survival@1.0: 76.5%
+  Stopped@1.0:  24.0%
+    E_mu_held=0.0755  W2=1.6629  (6s)
+
+  D=11 seed=42 smooth-euc (lambda=0.5, metric=False)
+  MTE@0.1: 1.2348
+  MTE@0.5: 2.3282
+  MTE@1.0: 2.7688
+  W2@1.0:  1.6966
+  sW2@0.5: 1.1442 (96/200 in region)
+  sW2@1.0: 1.4801 (48/200 in region)
+  MMD@1.0: 0.1886
+  Survival@1.0: 76.5%
+  Stopped@1.0:  24.0%
+    E_mu_held=0.1574  W2=1.6966  (8s)
+
+  D=11 seed=42 smooth-metric (lambda=0.5, metric=True)
+  MTE@0.1: 1.2403
+  MTE@0.5: 2.3658
+  MTE@1.0: 2.8219
+  W2@1.0:  1.7274
+  sW2@0.5: 1.1897 (96/200 in region)
+  sW2@1.0: 1.5405 (48/200 in region)
+  MMD@1.0: 0.1927
+  Survival@1.0: 76.5%
+  Stopped@1.0:  24.0%
+    E_mu_held=0.1681  W2=1.7274  (8s)
+    AE Epoch 100/500: loss=0.387297
+    AE Epoch 200/500: loss=0.048833
+    AE Epoch 300/500: loss=0.028491
+    AE Epoch 400/500: loss=0.019587
+    AE Epoch 500/500: loss=0.009158
+
+  D=11 seed=1042 baseline (lambda=0.0, metric=True)
+  MTE@0.1: 1.1091
+  MTE@0.5: 2.0833
+  MTE@1.0: 2.7828
+  W2@1.0:  1.5106
+  sW2@0.5: 1.0295 (100/200 in region)
+  sW2@1.0: 1.7875 (53/200 in region)
+  MMD@1.0: 0.2185
+  Survival@1.0: 72.0%
+  Stopped@1.0:  26.5%
+    E_mu_held=0.0425  W2=1.5106  (6s)
+
+  D=11 seed=1042 smooth-euc (lambda=0.5, metric=False)
+  MTE@0.1: 1.1147
+  MTE@0.5: 2.0518
+  MTE@1.0: 2.6507
+  W2@1.0:  1.4313
+  sW2@0.5: 0.9453 (100/200 in region)
+  sW2@1.0: 1.6434 (53/200 in region)
+  MMD@1.0: 0.1610
+  Survival@1.0: 72.0%
+  Stopped@1.0:  26.5%
+    E_mu_held=0.1205  W2=1.4313  (7s)
+
+  D=11 seed=1042 smooth-metric (lambda=0.5, metric=True)
+  MTE@0.1: 1.1140
+  MTE@0.5: 2.0463
+  MTE@1.0: 2.6474
+  W2@1.0:  1.4438
+  sW2@0.5: 0.9447 (100/200 in region)
+  sW2@1.0: 1.6404 (53/200 in region)
+  MMD@1.0: 0.1641
+  Survival@1.0: 72.0%
+  Stopped@1.0:  26.5%
+    E_mu_held=0.1259  W2=1.4438  (8s)
+    AE Epoch 100/500: loss=0.519204
+    AE Epoch 200/500: loss=0.040962
+    AE Epoch 300/500: loss=0.019885
+    AE Epoch 400/500: loss=0.012333
+    AE Epoch 500/500: loss=0.004340
+
+  D=11 seed=2042 baseline (lambda=0.0, metric=True)
+  MTE@0.1: 0.9867
+  MTE@0.5: 2.3873
+  MTE@1.0: 2.8710
+  W2@1.0:  1.4991
+  sW2@0.5: 1.2253 (95/200 in region)
+  sW2@1.0: 2.0759 (47/200 in region)
+  MMD@1.0: 0.2365
+  Survival@1.0: 78.5%
+  Stopped@1.0:  23.5%
+    E_mu_held=0.0267  W2=1.4991  (7s)
+
+  D=11 seed=2042 smooth-euc (lambda=0.5, metric=False)
+  MTE@0.1: 0.9932
+  MTE@0.5: 2.3154
+  MTE@1.0: 2.6894
+  W2@1.0:  1.3735
+  sW2@0.5: 1.0595 (95/200 in region)
+  sW2@1.0: 1.6173 (47/200 in region)
+  MMD@1.0: 0.1860
+  Survival@1.0: 78.5%
+  Stopped@1.0:  23.5%
+    E_mu_held=0.1095  W2=1.3735  (7s)
+
+  D=11 seed=2042 smooth-metric (lambda=0.5, metric=True)
+  MTE@0.1: 0.9921
+  MTE@0.5: 2.3127
+  MTE@1.0: 2.6853
+  W2@1.0:  1.3685
+  sW2@0.5: 1.0586 (95/200 in region)
+  sW2@1.0: 1.5982 (47/200 in region)
+  MMD@1.0: 0.1898
+  Survival@1.0: 78.5%
+  Stopped@1.0:  23.5%
+    E_mu_held=0.1140  W2=1.3685  (9s)
+    AE Epoch 100/500: loss=0.585509
+    AE Epoch 200/500: loss=0.093308
+    AE Epoch 300/500: loss=0.015868
+    AE Epoch 400/500: loss=0.008269
+    AE Epoch 500/500: loss=0.009705
+
+  D=11 seed=3042 baseline (lambda=0.0, metric=True)
+  MTE@0.1: 1.0497
+  MTE@0.5: 2.1067
+  MTE@1.0: 2.8755
+  W2@1.0:  1.7656
+  sW2@0.5: 1.1383 (99/200 in region)
+  sW2@1.0: 1.6910 (48/200 in region)
+  MMD@1.0: 0.2724
+  Survival@1.0: 74.5%
+  Stopped@1.0:  24.0%
+    E_mu_held=0.0240  W2=1.7656  (5s)
+
+  D=11 seed=3042 smooth-euc (lambda=0.5, metric=False)
+  MTE@0.1: 1.0447
+  MTE@0.5: 1.9832
+  MTE@1.0: 2.6369
+  W2@1.0:  1.3900
+  sW2@0.5: 0.9690 (99/200 in region)
+  sW2@1.0: 1.3327 (48/200 in region)
+  MMD@1.0: 0.2308
+  Survival@1.0: 74.5%
+  Stopped@1.0:  24.0%
+    E_mu_held=0.0820  W2=1.3900  (7s)
+
+  D=11 seed=3042 smooth-metric (lambda=0.5, metric=True)
+  MTE@0.1: 1.0461
+  MTE@0.5: 1.9889
+  MTE@1.0: 2.6559
+  W2@1.0:  1.4033
+  sW2@0.5: 0.9815 (99/200 in region)
+  sW2@1.0: 1.3426 (48/200 in region)
+  MMD@1.0: 0.2327
+  Survival@1.0: 74.5%
+  Stopped@1.0:  24.0%
+    E_mu_held=0.0864  W2=1.4033  (7s)
+    AE Epoch 100/500: loss=0.648043
+    AE Epoch 200/500: loss=0.302611
+    AE Epoch 300/500: loss=0.053690
+    AE Epoch 400/500: loss=0.023322
+    AE Epoch 500/500: loss=0.017297
+
+  D=11 seed=4042 baseline (lambda=0.0, metric=True)
+  MTE@0.1: 0.7759
+  MTE@0.5: 1.7548
+  MTE@1.0: 2.1680
+  W2@1.0:  1.3526
+  sW2@0.5: 0.6635 (107/200 in region)
+  sW2@1.0: 0.9315 (60/200 in region)
+  MMD@1.0: 0.1595
+  Survival@1.0: 76.0%
+  Stopped@1.0:  30.0%
+    E_mu_held=0.0475  W2=1.3526  (7s)
+
+  D=11 seed=4042 smooth-euc (lambda=0.5, metric=False)
+  MTE@0.1: 0.7777
+  MTE@0.5: 1.7292
+  MTE@1.0: 2.0116
+  W2@1.0:  1.3747
+  sW2@0.5: 0.6648 (107/200 in region)
+  sW2@1.0: 0.6791 (60/200 in region)
+  MMD@1.0: 0.1599
+  Survival@1.0: 76.0%
+  Stopped@1.0:  30.0%
+    E_mu_held=0.1309  W2=1.3747  (9s)
+
+  D=11 seed=4042 smooth-metric (lambda=0.5, metric=True)
+  MTE@0.1: 0.7773
+  MTE@0.5: 1.7238
+  MTE@1.0: 2.0127
+  W2@1.0:  1.3767
+  sW2@0.5: 0.6598 (107/200 in region)
+  sW2@1.0: 0.6899 (60/200 in region)
+  MMD@1.0: 0.1627
+  Survival@1.0: 76.0%
+  Stopped@1.0:  30.0%
+    E_mu_held=0.1447  W2=1.3767  (8s)
+
+######################################################################
+  D = 201
+######################################################################
+    AE Epoch 100/500: loss=0.692529
+    AE Epoch 200/500: loss=0.517641
+    AE Epoch 300/500: loss=0.307141
+    AE Epoch 400/500: loss=0.195588
+    AE Epoch 500/500: loss=0.153822
+
+  D=201 seed=42 baseline (lambda=0.0, metric=True)
+  MTE@0.1: 1.1573
+  MTE@0.5: 2.2241
+  MTE@1.0: 3.0051
+  W2@1.0:  1.9865
+  sW2@0.5: 1.2091 (96/200 in region)
+  sW2@1.0: 1.9044 (48/200 in region)
+  MMD@1.0: 0.2098
+  Survival@1.0: 76.5%
+  Stopped@1.0:  24.0%
+    E_mu_held=0.0116  W2=1.9865  (6s)
+
+  D=201 seed=42 smooth-euc (lambda=0.5, metric=False)
+  MTE@0.1: 1.1479
+  MTE@0.5: 2.2261
+  MTE@1.0: 3.0169
+  W2@1.0:  2.0157
+  sW2@0.5: 1.2006 (96/200 in region)
+  sW2@1.0: 1.9523 (48/200 in region)
+  MMD@1.0: 0.2708
+  Survival@1.0: 76.5%
+  Stopped@1.0:  24.0%
+    E_mu_held=0.0165  W2=2.0157  (7s)
+
+  D=201 seed=42 smooth-metric (lambda=0.5, metric=True)
+  MTE@0.1: 1.1477
+  MTE@0.5: 2.2253
+  MTE@1.0: 3.0161
+  W2@1.0:  2.0149
+  sW2@0.5: 1.1997 (96/200 in region)
+  sW2@1.0: 1.9509 (48/200 in region)
+  MMD@1.0: 0.2705
+  Survival@1.0: 76.5%
+  Stopped@1.0:  24.0%
+    E_mu_held=0.0166  W2=2.0149  (9s)
+    AE Epoch 100/500: loss=0.677658
+    AE Epoch 200/500: loss=0.445422
+    AE Epoch 300/500: loss=0.206121
+    AE Epoch 400/500: loss=0.125924
+    AE Epoch 500/500: loss=0.096496
+
+  D=201 seed=1042 baseline (lambda=0.0, metric=True)
+  MTE@0.1: 1.2037
+  MTE@0.5: 2.1992
+  MTE@1.0: 2.8233
+  W2@1.0:  1.5686
+  sW2@0.5: 1.0974 (100/200 in region)
+  sW2@1.0: 1.7641 (53/200 in region)
+  MMD@1.0: 0.2188
+  Survival@1.0: 72.0%
+  Stopped@1.0:  26.5%
+    E_mu_held=0.0070  W2=1.5686  (6s)
+
+  D=201 seed=1042 smooth-euc (lambda=0.5, metric=False)
+  MTE@0.1: 1.2037
+  MTE@0.5: 2.1939
+  MTE@1.0: 2.7746
+  W2@1.0:  1.6486
+  sW2@0.5: 1.0586 (100/200 in region)
+  sW2@1.0: 1.6840 (53/200 in region)
+  MMD@1.0: 0.2284
+  Survival@1.0: 72.0%
+  Stopped@1.0:  26.5%
+    E_mu_held=0.0121  W2=1.6486  (8s)
+
+  D=201 seed=1042 smooth-metric (lambda=0.5, metric=True)
+  MTE@0.1: 1.2037
+  MTE@0.5: 2.1939
+  MTE@1.0: 2.7743
+  W2@1.0:  1.6474
+  sW2@0.5: 1.0579 (100/200 in region)
+  sW2@1.0: 1.6834 (53/200 in region)
+  MMD@1.0: 0.2284
+  Survival@1.0: 72.0%
+  Stopped@1.0:  26.5%
+    E_mu_held=0.0122  W2=1.6474  (8s)
+    AE Epoch 100/500: loss=0.862178
+    AE Epoch 200/500: loss=0.689583
+    AE Epoch 300/500: loss=0.293232
+    AE Epoch 400/500: loss=0.122687
+    AE Epoch 500/500: loss=0.072011
+
+  D=201 seed=2042 baseline (lambda=0.0, metric=True)
+  MTE@0.1: 1.2058
+  MTE@0.5: 2.4773
+  MTE@1.0: 3.0624
+  W2@1.0:  1.8867
+  sW2@0.5: 1.6857 (95/200 in region)
+  sW2@1.0: 2.3635 (47/200 in region)
+  MMD@1.0: 0.2367
+  Survival@1.0: 78.5%
+  Stopped@1.0:  23.5%
+    E_mu_held=0.0059  W2=1.8867  (7s)
+
+  D=201 seed=2042 smooth-euc (lambda=0.5, metric=False)
+  MTE@0.1: 1.1915
+  MTE@0.5: 2.3943
+  MTE@1.0: 2.8643
+  W2@1.0:  1.5381
+  sW2@0.5: 1.4645 (95/200 in region)
+  sW2@1.0: 1.5857 (47/200 in region)
+  MMD@1.0: 0.2123
+  Survival@1.0: 78.5%
+  Stopped@1.0:  23.5%
+    E_mu_held=0.0130  W2=1.5381  (8s)
+
+  D=201 seed=2042 smooth-metric (lambda=0.5, metric=True)
+  MTE@0.1: 1.1917
+  MTE@0.5: 2.3955
+  MTE@1.0: 2.8663
+  W2@1.0:  1.5404
+  sW2@0.5: 1.4666 (95/200 in region)
+  sW2@1.0: 1.5916 (47/200 in region)
+  MMD@1.0: 0.2128
+  Survival@1.0: 78.5%
+  Stopped@1.0:  23.5%
+    E_mu_held=0.0130  W2=1.5404  (8s)
+    AE Epoch 100/500: loss=0.770404
+    AE Epoch 200/500: loss=0.555004
+    AE Epoch 300/500: loss=0.312049
+    AE Epoch 400/500: loss=0.098976
+    AE Epoch 500/500: loss=0.053331
+
+  D=201 seed=3042 baseline (lambda=0.0, metric=True)
+  MTE@0.1: 1.2183
+  MTE@0.5: 2.3139
+  MTE@1.0: 3.1648
+  W2@1.0:  2.0288
+  sW2@0.5: 1.0372 (99/200 in region)
+  sW2@1.0: 2.2698 (48/200 in region)
+  MMD@1.0: 0.2861
+  Survival@1.0: 74.5%
+  Stopped@1.0:  24.0%
+    E_mu_held=0.0050  W2=2.0288  (6s)
+
+  D=201 seed=3042 smooth-euc (lambda=0.5, metric=False)
+  MTE@0.1: 1.2077
+  MTE@0.5: 2.2123
+  MTE@1.0: 2.7189
+  W2@1.0:  1.3599
+  sW2@0.5: 0.8003 (99/200 in region)
+  sW2@1.0: 1.4856 (48/200 in region)
+  MMD@1.0: 0.1941
+  Survival@1.0: 74.5%
+  Stopped@1.0:  24.0%
+    E_mu_held=0.0121  W2=1.3599  (8s)
+
+  D=201 seed=3042 smooth-metric (lambda=0.5, metric=True)
+  MTE@0.1: 1.2078
+  MTE@0.5: 2.2124
+  MTE@1.0: 2.7186
+  W2@1.0:  1.3598
+  sW2@0.5: 0.7999 (99/200 in region)
+  sW2@1.0: 1.4843 (48/200 in region)
+  MMD@1.0: 0.1940
+  Survival@1.0: 74.5%
+  Stopped@1.0:  24.0%
+    E_mu_held=0.0122  W2=1.3598  (9s)
+    AE Epoch 100/500: loss=0.745430
+    AE Epoch 200/500: loss=0.428950
+    AE Epoch 300/500: loss=0.169607
+    AE Epoch 400/500: loss=0.085735
+    AE Epoch 500/500: loss=0.056488
+
+  D=201 seed=4042 baseline (lambda=0.0, metric=True)
+  MTE@0.1: 1.1198
+  MTE@0.5: 2.1724
+  MTE@1.0: 2.5637
+  W2@1.0:  1.7170
+  sW2@0.5: 1.0546 (107/200 in region)
+  sW2@1.0: 2.0988 (60/200 in region)
+  MMD@1.0: 0.2209
+  Survival@1.0: 76.0%
+  Stopped@1.0:  30.0%
+    E_mu_held=0.0073  W2=1.7170  (6s)
+
+  D=201 seed=4042 smooth-euc (lambda=0.5, metric=False)
+  MTE@0.1: 1.1153
+  MTE@0.5: 2.1391
+  MTE@1.0: 2.4453
+  W2@1.0:  1.5013
+  sW2@0.5: 0.9847 (107/200 in region)
+  sW2@1.0: 2.0344 (60/200 in region)
+  MMD@1.0: 0.1984
+  Survival@1.0: 76.0%
+  Stopped@1.0:  30.0%
+    E_mu_held=0.0147  W2=1.5013  (7s)
+
+  D=201 seed=4042 smooth-metric (lambda=0.5, metric=True)
+  MTE@0.1: 1.1154
+  MTE@0.5: 2.1396
+  MTE@1.0: 2.4451
+  W2@1.0:  1.5010
+  sW2@0.5: 0.9842 (107/200 in region)
+  sW2@1.0: 2.0323 (60/200 in region)
+  MMD@1.0: 0.1984
+  Survival@1.0: 76.0%
+  Stopped@1.0:  30.0%
+    E_mu_held=0.0147  W2=1.5010  (8s)
+
+Saved 45 rows to smoothness_across_D.csv
+
+======================================================================
+  D = 3
+======================================================================
+
+  smooth-euc vs baseline:
+    E_mu_held     +110.6%  0/5 wins  p=0.0079 **
+    W2@1.0         -19.2%  5/5 wins  p=0.0084 **
+    sW2@1.0        -23.5%  5/5 wins  p=0.0014 **
+    MTE@1.0        -11.5%  5/5 wins  p=0.0029 **
+
+  smooth-metric vs baseline:
+    E_mu_held     +148.5%  0/5 wins  p=0.0121 *
+    W2@1.0         -18.6%  5/5 wins  p=0.0084 **
+    sW2@1.0        -21.8%  5/5 wins  p=0.0020 **
+    MTE@1.0        -10.9%  5/5 wins  p=0.0030 **
+
+  smooth-metric vs smooth-euc (does metric help?):
+    E_mu_held      +18.0%  1/5 wins  p=0.0532 +
+    W2@1.0          +0.7%  2/5 wins  p=0.4715 
+    sW2@1.0         +2.2%  1/5 wins  p=0.0917 +
+    MTE@1.0         +0.7%  0/5 wins  p=0.0239 *
+
+======================================================================
+  D = 11
+======================================================================
+
+  smooth-euc vs baseline:
+    E_mu_held     +177.6%  0/5 wins  p=0.0001 **
+    W2@1.0          -6.7%  3/5 wins  p=0.2294 
+    sW2@1.0        -17.2%  5/5 wins  p=0.0080 **
+    MTE@1.0         -5.5%  5/5 wins  p=0.0112 *
+
+  smooth-metric vs baseline:
+    E_mu_held     +195.7%  0/5 wins  p=0.0001 **
+    W2@1.0          -6.0%  3/5 wins  p=0.2786 
+    sW2@1.0        -16.5%  5/5 wins  p=0.0145 *
+    MTE@1.0         -5.0%  4/5 wins  p=0.0294 *
+
+  smooth-metric vs smooth-euc (does metric help?):
+    E_mu_held       +6.5%  0/5 wins  p=0.0149 *
+    W2@1.0          +0.7%  1/5 wins  p=0.1514 
+    sW2@1.0         +0.9%  2/5 wins  p=0.4254 
+    MTE@1.0         +0.5%  2/5 wins  p=0.2915 
+
+======================================================================
+  D = 201
+======================================================================
+
+  smooth-euc vs baseline:
+    E_mu_held      +86.1%  0/5 wins  p=0.0003 **
+    W2@1.0         -12.2%  3/5 wins  p=0.1737 
+    sW2@1.0        -15.9%  4/5 wins  p=0.1470 
+    MTE@1.0         -5.5%  4/5 wins  p=0.1152 
+
+  smooth-metric vs baseline:
+    E_mu_held      +86.5%  0/5 wins  p=0.0003 **
+    W2@1.0         -12.2%  3/5 wins  p=0.1729 
+    sW2@1.0        -15.9%  4/5 wins  p=0.1456 
+    MTE@1.0         -5.5%  4/5 wins  p=0.1150 
+
+  smooth-metric vs smooth-euc (does metric help?):
+    E_mu_held       +0.2%  0/5 wins  p=0.0446 *
+    W2@1.0          -0.0%  4/5 wins  p=0.9491 
+    sW2@1.0         +0.0%  4/5 wins  p=0.9474 
+    MTE@1.0         +0.0%  4/5 wins  p=0.8501 
+
+Total time: 453.6s

@@ -123,9 +123,10 @@ def evaluate_pipeline(pipeline, autoencoder, sde, seed):
 
     with torch.no_grad():
         z0 = autoencoder.encoder(init_ambient)
-    _, learned_traj = pipeline.simulate(z0, N_STEPS, DT, dW=dW)
+    _, learned_traj = pipeline.simulate(z0, N_STEPS, DT, dW=dW,
+                                         boundary=BOUNDARY)
 
-    # Learned trajectories have no boundary — mark all alive
+    # Learned trajectories now have boundary matching GT
     B = learned_traj.shape[0]
     learned_alive = torch.ones(B, N_STEPS + 1, dtype=torch.bool, device=DEVICE)
 

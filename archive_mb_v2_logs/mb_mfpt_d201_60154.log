@@ -1,0 +1,477 @@
+Device: cuda
+D=201, N=50
+Surfaces: ['paraboloid', 'hyperbolic_paraboloid', 'quartic_dome', 'sinusoidal']
+Conditions: ['baseline', 'T', 'F', 'T+F']
+Seeds (10): [42, 1042, 2042, 3042, 4042, 5042, 6042, 7042, 8042, 9042]
+LONG_T=20.0, LONG_N_STEPS=2000
+Total runs: 160
+
+
+============================================================
+  paraboloid | seed=42
+============================================================
+
+  --- baseline ---
+      Epoch 100/500: loss=0.000628
+      Epoch 200/500: loss=0.000475
+      Epoch 300/500: loss=0.000496
+      Epoch 400/500: loss=0.000479
+      Epoch 500/500: loss=0.000321
+    recon=0.000296
+    E_mu=3.3868  E_Sigma=13.6838
+  Stage 2 epoch 100/300: loss=0.010254
+  Stage 2 epoch 200/300: loss=0.007666
+  Stage 2 epoch 300/300: loss=0.006502
+  Stage 3 epoch 100/300: loss=0.000584
+  Stage 3 epoch 200/300: loss=0.000643
+  Stage 3 epoch 300/300: loss=0.000567
+    MFPT: GT=1.253 learned=0.695 err=44.6%
+    Rate: GT=1.8718 learned=2.4523 err=31.0%
+
+  --- T ---
+      Epoch 100/500: loss=0.039819
+      Epoch 200/500: loss=0.023819
+      Epoch 300/500: loss=0.012659
+      Epoch 400/500: loss=0.008224
+      Epoch 500/500: loss=0.001730
+    recon=0.000039
+    E_mu=0.1595  E_Sigma=0.0299
+  Stage 2 epoch 100/300: loss=0.019557
+  Stage 2 epoch 200/300: loss=0.017598
+  Stage 2 epoch 300/300: loss=0.014276
+  Stage 3 epoch 100/300: loss=0.000020
+  Stage 3 epoch 200/300: loss=0.000013
+  Stage 3 epoch 300/300: loss=0.000008
+    MFPT: GT=1.253 learned=0.453 err=63.8%
+    Rate: GT=1.8718 learned=2.8954 err=54.7%
+
+  --- F ---
+      Epoch 100/500: loss=0.014732
+      Epoch 200/500: loss=0.003877
+      Epoch 300/500: loss=0.004291
+      Epoch 400/500: loss=0.003895
+      Epoch 500/500: loss=0.003713
+    recon=0.003768
+    E_mu=9.9077  E_Sigma=30.4564
+  Stage 2 epoch 100/300: loss=0.000019
+  Stage 2 epoch 200/300: loss=0.000022
+  Stage 2 epoch 300/300: loss=0.000021
+  Stage 3 epoch 100/300: loss=0.000969
+  Stage 3 epoch 200/300: loss=0.001049
+  Stage 3 epoch 300/300: loss=0.000960
+    MFPT: GT=1.253 learned=0.010 err=99.2%
+    Rate: GT=1.8718 learned=0.0000 err=100.0%
+
+  --- T+F ---
+      Epoch 100/500: loss=0.298986
+      Epoch 200/500: loss=0.079026
+      Epoch 300/500: loss=0.046403
+      Epoch 400/500: loss=0.028725
+      Epoch 500/500: loss=0.042466
+    recon=0.002822
+    E_mu=0.3198  E_Sigma=0.4288
+  Stage 2 epoch 100/300: loss=0.026049
+  Stage 2 epoch 200/300: loss=0.021572
+  Stage 2 epoch 300/300: loss=0.017227
+  Stage 3 epoch 100/300: loss=0.000026
+  Stage 3 epoch 200/300: loss=0.000022
+  Stage 3 epoch 300/300: loss=0.000017
+    MFPT: GT=1.253 learned=0.490 err=60.9%
+    Rate: GT=1.8718 learned=2.7674 err=47.8%
+
+============================================================
+  paraboloid | seed=1042
+============================================================
+
+  --- baseline ---
+      Epoch 100/500: loss=0.000601
+      Epoch 200/500: loss=0.000443
+      Epoch 300/500: loss=0.000388
+      Epoch 400/500: loss=0.000324
+      Epoch 500/500: loss=0.000251
+    recon=0.000197
+    E_mu=2.9305  E_Sigma=10.0941
+  Stage 2 epoch 100/300: loss=0.012398
+  Stage 2 epoch 200/300: loss=0.011191
+  Stage 2 epoch 300/300: loss=0.009964
+  Stage 3 epoch 100/300: loss=0.000432
+  Stage 3 epoch 200/300: loss=0.000373
+  Stage 3 epoch 300/300: loss=0.000393
+    MFPT: GT=1.221 learned=0.829 err=32.1%
+    Rate: GT=1.8767 learned=2.0322 err=8.3%
+
+  --- T ---
+      Epoch 100/500: loss=0.033046
+      Epoch 200/500: loss=0.010102
+      Epoch 300/500: loss=0.018515
+      Epoch 400/500: loss=0.004995
+      Epoch 500/500: loss=0.002115
+    recon=0.000049
+    E_mu=0.3334  E_Sigma=0.0581
+  Stage 2 epoch 100/300: loss=0.026842
+  Stage 2 epoch 200/300: loss=0.022970
+  Stage 2 epoch 300/300: loss=0.020018
+  Stage 3 epoch 100/300: loss=0.000015
+  Stage 3 epoch 200/300: loss=0.000011
+  Stage 3 epoch 300/300: loss=0.000006
+    MFPT: GT=1.221 learned=0.460 err=62.3%
+    Rate: GT=1.8767 learned=2.8092 err=49.7%
+
+  --- F ---
+      Epoch 100/500: loss=0.005033
+      Epoch 200/500: loss=0.005957
+      Epoch 300/500: loss=0.003625
+      Epoch 400/500: loss=0.003500
+      Epoch 500/500: loss=0.003806
+    recon=0.003573
+    E_mu=10.7404  E_Sigma=31.3608
+  Stage 2 epoch 100/300: loss=0.000108
+  Stage 2 epoch 200/300: loss=0.000103
+  Stage 2 epoch 300/300: loss=0.000114
+  Stage 3 epoch 100/300: loss=0.000964
+  Stage 3 epoch 200/300: loss=0.000897
+  Stage 3 epoch 300/300: loss=0.000937
+    MFPT: GT=1.221 learned=0.010 err=99.2%
+    Rate: GT=1.8767 learned=0.0000 err=100.0%
+
+  --- T+F ---
+      Epoch 100/500: loss=0.304747
+      Epoch 200/500: loss=0.105527
+      Epoch 300/500: loss=0.032658
+      Epoch 400/500: loss=0.033883
+      Epoch 500/500: loss=0.037824
+    recon=0.000694
+    E_mu=0.3099  E_Sigma=0.2574
+  Stage 2 epoch 100/300: loss=0.030225
+  Stage 2 epoch 200/300: loss=0.025859
+  Stage 2 epoch 300/300: loss=0.018812
+  Stage 3 epoch 100/300: loss=0.000013
+  Stage 3 epoch 200/300: loss=0.000011
+  Stage 3 epoch 300/300: loss=0.000010
+    MFPT: GT=1.221 learned=0.664 err=45.6%
+    Rate: GT=1.8767 learned=2.3097 err=23.1%
+
+============================================================
+  paraboloid | seed=2042
+============================================================
+
+  --- baseline ---
+      Epoch 100/500: loss=0.000684
+      Epoch 200/500: loss=0.000700
+      Epoch 300/500: loss=0.000449
+      Epoch 400/500: loss=0.000273
+      Epoch 500/500: loss=0.000188
+    recon=0.000140
+    E_mu=2.1726  E_Sigma=4.3286
+  Stage 2 epoch 100/300: loss=0.054918
+  Stage 2 epoch 200/300: loss=0.031092
+  Stage 2 epoch 300/300: loss=0.023100
+  Stage 3 epoch 100/300: loss=0.000273
+  Stage 3 epoch 200/300: loss=0.000257
+  Stage 3 epoch 300/300: loss=0.000259
+    MFPT: GT=1.302 learned=0.644 err=50.6%
+    Rate: GT=1.8699 learned=2.5809 err=38.0%
+
+  --- T ---
+      Epoch 100/500: loss=0.030452
+      Epoch 200/500: loss=0.018123
+      Epoch 300/500: loss=0.013213
+      Epoch 400/500: loss=0.002877
+      Epoch 500/500: loss=0.002121
+    recon=0.000051
+    E_mu=0.1168  E_Sigma=0.0488
+  Stage 2 epoch 100/300: loss=0.018104
+  Stage 2 epoch 200/300: loss=0.013699
+  Stage 2 epoch 300/300: loss=0.010729
+  Stage 3 epoch 100/300: loss=0.000078
+  Stage 3 epoch 200/300: loss=0.000049
+  Stage 3 epoch 300/300: loss=0.000024
+    MFPT: GT=1.302 learned=1.280 err=1.7%
+    Rate: GT=1.8699 learned=1.9017 err=1.7%
+
+  --- F ---
+      Epoch 100/500: loss=0.005609
+      Epoch 200/500: loss=0.004025
+      Epoch 300/500: loss=0.003987
+      Epoch 400/500: loss=0.003973
+      Epoch 500/500: loss=0.003983
+    recon=0.004010
+    E_mu=10.1584  E_Sigma=29.8817
+  Stage 2 epoch 100/300: loss=0.000027
+  Stage 2 epoch 200/300: loss=0.000027
+  Stage 2 epoch 300/300: loss=0.000024
+  Stage 3 epoch 100/300: loss=0.001080
+  Stage 3 epoch 200/300: loss=0.001119
+  Stage 3 epoch 300/300: loss=0.001155
+    MFPT: GT=1.302 learned=0.010 err=99.2%
+    Rate: GT=1.8699 learned=0.0000 err=100.0%
+
+  --- T+F ---
+      Epoch 100/500: loss=0.554267
+      Epoch 200/500: loss=0.074371
+      Epoch 300/500: loss=0.058336
+      Epoch 400/500: loss=0.033252
+      Epoch 500/500: loss=0.026753
+    recon=0.000695
+    E_mu=0.2817  E_Sigma=0.4033
+  Stage 2 epoch 100/300: loss=0.014920
+  Stage 2 epoch 200/300: loss=0.013629
+  Stage 2 epoch 300/300: loss=0.012842
+  Stage 3 epoch 100/300: loss=0.000033
+  Stage 3 epoch 200/300: loss=0.000024
+  Stage 3 epoch 300/300: loss=0.000022
+    MFPT: GT=1.302 learned=0.837 err=35.7%
+    Rate: GT=1.8699 learned=2.0710 err=10.8%
+
+============================================================
+  paraboloid | seed=3042
+============================================================
+
+  --- baseline ---
+      Epoch 100/500: loss=0.000652
+      Epoch 200/500: loss=0.000585
+      Epoch 300/500: loss=0.000549
+      Epoch 400/500: loss=0.000482
+      Epoch 500/500: loss=0.000459
+    recon=0.000444
+    E_mu=3.5825  E_Sigma=10.4160
+  Stage 2 epoch 100/300: loss=0.011808
+  Stage 2 epoch 200/300: loss=0.009426
+  Stage 2 epoch 300/300: loss=0.006789
+  Stage 3 epoch 100/300: loss=0.000849
+  Stage 3 epoch 200/300: loss=0.000990
+  Stage 3 epoch 300/300: loss=0.000826
+    MFPT: GT=1.341 learned=0.936 err=30.2%
+    Rate: GT=1.8309 learned=2.2972 err=25.5%
+
+  --- T ---
+      Epoch 100/500: loss=0.044582
+      Epoch 200/500: loss=0.012462
+      Epoch 300/500: loss=0.005213
+      Epoch 400/500: loss=0.005743
+      Epoch 500/500: loss=0.001316
+    recon=0.000034
+    E_mu=0.1509  E_Sigma=0.0206
+  Stage 2 epoch 100/300: loss=0.029981
+  Stage 2 epoch 200/300: loss=0.023396
+  Stage 2 epoch 300/300: loss=0.017479
+  Stage 3 epoch 100/300: loss=0.000044
+  Stage 3 epoch 200/300: loss=0.000015
+  Stage 3 epoch 300/300: loss=0.000008
+    MFPT: GT=1.341 learned=0.535 err=60.1%
+    Rate: GT=1.8309 learned=2.7522 err=50.3%
+
+  --- F ---
+      Epoch 100/500: loss=0.004987
+      Epoch 200/500: loss=0.004063
+      Epoch 300/500: loss=0.003828
+      Epoch 400/500: loss=0.003747
+      Epoch 500/500: loss=0.003828
+    recon=0.003825
+    E_mu=9.8189  E_Sigma=23.9300
+  Stage 2 epoch 100/300: loss=0.000018
+  Stage 2 epoch 200/300: loss=0.000018
+  Stage 2 epoch 300/300: loss=0.000017
+  Stage 3 epoch 100/300: loss=0.001168
+  Stage 3 epoch 200/300: loss=0.001333
+  Stage 3 epoch 300/300: loss=0.001157
+    MFPT: GT=1.341 learned=0.010 err=99.3%
+    Rate: GT=1.8309 learned=0.0000 err=100.0%
+
+  --- T+F ---
+      Epoch 100/500: loss=0.321343
+      Epoch 200/500: loss=0.071563
+      Epoch 300/500: loss=0.037282
+      Epoch 400/500: loss=0.029919
+      Epoch 500/500: loss=0.015910
+    recon=0.001096
+    E_mu=0.1564  E_Sigma=0.1321
+  Stage 2 epoch 100/300: loss=0.049564
+  Stage 2 epoch 200/300: loss=0.033770
+  Stage 2 epoch 300/300: loss=0.026500
+  Stage 3 epoch 100/300: loss=0.000048
+  Stage 3 epoch 200/300: loss=0.000019
+  Stage 3 epoch 300/300: loss=0.000013
+    MFPT: GT=1.341 learned=0.804 err=40.1%
+    Rate: GT=1.8309 learned=2.4596 err=34.3%
+
+============================================================
+  paraboloid | seed=4042
+============================================================
+
+  --- baseline ---
+      Epoch 100/500: loss=0.000467
+      Epoch 200/500: loss=0.000443
+      Epoch 300/500: loss=0.000497
+      Epoch 400/500: loss=0.000317
+      Epoch 500/500: loss=0.000129
+    recon=0.000169
+    E_mu=1.8940  E_Sigma=3.8108
+  Stage 2 epoch 100/300: loss=0.035587
+  Stage 2 epoch 200/300: loss=0.041039
+  Stage 2 epoch 300/300: loss=0.038825
+  Stage 3 epoch 100/300: loss=0.000350
+  Stage 3 epoch 200/300: loss=0.000259
+  Stage 3 epoch 300/300: loss=0.000317
+    MFPT: GT=1.303 learned=0.848 err=34.9%
+    Rate: GT=1.8542 learned=2.0119 err=8.5%
+
+  --- T ---
+      Epoch 100/500: loss=0.036031
+      Epoch 200/500: loss=0.017416
+      Epoch 300/500: loss=0.023592
+      Epoch 400/500: loss=0.002499
+      Epoch 500/500: loss=0.003598
+    recon=0.000159
+    E_mu=0.1265  E_Sigma=0.1210
+  Stage 2 epoch 100/300: loss=0.021141
+  Stage 2 epoch 200/300: loss=0.015595
+  Stage 2 epoch 300/300: loss=0.012613
+  Stage 3 epoch 100/300: loss=0.000021
+  Stage 3 epoch 200/300: loss=0.000013
+  Stage 3 epoch 300/300: loss=0.000010
+    MFPT: GT=1.303 learned=0.764 err=41.4%
+    Rate: GT=1.8542 learned=2.3469 err=26.6%
+
+  --- F ---
+      Epoch 100/500: loss=0.004527
+      Epoch 200/500: loss=0.003445
+      Epoch 300/500: loss=0.003494
+      Epoch 400/500: loss=0.003476
+      Epoch 500/500: loss=0.003352
+    recon=0.003424
+    E_mu=9.8747  E_Sigma=27.3118
+  Stage 2 epoch 100/300: loss=0.000020
+  Stage 2 epoch 200/300: loss=0.000020
+  Stage 2 epoch 300/300: loss=0.000020
+  Stage 3 epoch 100/300: loss=0.001121
+  Stage 3 epoch 200/300: loss=0.001060
+  Stage 3 epoch 300/300: loss=0.001198
+    MFPT: GT=1.303 learned=0.010 err=99.2%
+    Rate: GT=1.8542 learned=0.0000 err=100.0%
+
+  --- T+F ---
+      Epoch 100/500: loss=0.261744
+      Epoch 200/500: loss=0.080400
+      Epoch 300/500: loss=0.047074
+      Epoch 400/500: loss=0.026000
+      Epoch 500/500: loss=0.035895
+    recon=0.001088
+    E_mu=0.2790  E_Sigma=0.4617
+  Stage 2 epoch 100/300: loss=0.032859
+  Stage 2 epoch 200/300: loss=0.020887
+  Stage 2 epoch 300/300: loss=0.013092
+  Stage 3 epoch 100/300: loss=0.000023
+  Stage 3 epoch 200/300: loss=0.000019
+  Stage 3 epoch 300/300: loss=0.000020
+    MFPT: GT=1.303 learned=1.185 err=9.1%
+    Rate: GT=1.8542 learned=1.2523 err=32.5%
+
+============================================================
+  paraboloid | seed=5042
+============================================================
+
+  --- baseline ---
+      Epoch 100/500: loss=0.000668
+      Epoch 200/500: loss=0.000637
+      Epoch 300/500: loss=0.000456
+      Epoch 400/500: loss=0.000225
+      Epoch 500/500: loss=0.000158
+    recon=0.000141
+    E_mu=1.9780  E_Sigma=3.4039
+  Stage 2 epoch 100/300: loss=0.028253
+  Stage 2 epoch 200/300: loss=0.022631
+  Stage 2 epoch 300/300: loss=0.016087
+  Stage 3 epoch 100/300: loss=0.000208
+  Stage 3 epoch 200/300: loss=0.000195
+  Stage 3 epoch 300/300: loss=0.000182
+    MFPT: GT=1.322 learned=0.719 err=45.6%
+    Rate: GT=1.8647 learned=2.3742 err=27.3%
+
+  --- T ---
+      Epoch 100/500: loss=0.036524
+      Epoch 200/500: loss=0.020506
+      Epoch 300/500: loss=0.018428
+      Epoch 400/500: loss=0.004843
+      Epoch 500/500: loss=0.002968
+    recon=0.000050
+    E_mu=0.1086  E_Sigma=0.0646
+  Stage 2 epoch 100/300: loss=0.025012
+  Stage 2 epoch 200/300: loss=0.021641
+  Stage 2 epoch 300/300: loss=0.015573
+  Stage 3 epoch 100/300: loss=0.000016
+  Stage 3 epoch 200/300: loss=0.000011
+  Stage 3 epoch 300/300: loss=0.000008
+    MFPT: GT=1.322 learned=0.664 err=49.8%
+    Rate: GT=1.8647 learned=2.5138 err=34.8%
+
+  --- F ---
+      Epoch 100/500: loss=0.007231
+      Epoch 200/500: loss=0.004044
+      Epoch 300/500: loss=0.003698
+      Epoch 400/500: loss=0.003780
+      Epoch 500/500: loss=0.003797
+    recon=0.003713
+    E_mu=10.3621  E_Sigma=28.2456
+  Stage 2 epoch 100/300: loss=0.000031
+  Stage 2 epoch 200/300: loss=0.000028
+  Stage 2 epoch 300/300: loss=0.000028
+  Stage 3 epoch 100/300: loss=0.001154
+  Stage 3 epoch 200/300: loss=0.001152
+  Stage 3 epoch 300/300: loss=0.001054
+    MFPT: GT=1.322 learned=0.010 err=99.2%
+    Rate: GT=1.8647 learned=0.0000 err=100.0%
+
+  --- T+F ---
+      Epoch 100/500: loss=0.292665
+      Epoch 200/500: loss=0.094985
+      Epoch 300/500: loss=0.037163
+      Epoch 400/500: loss=0.040336
+      Epoch 500/500: loss=0.025592
+    recon=0.000870
+    E_mu=0.3017  E_Sigma=0.2912
+  Stage 2 epoch 100/300: loss=0.030224
+  Stage 2 epoch 200/300: loss=0.027027
+  Stage 2 epoch 300/300: loss=0.018139
+  Stage 3 epoch 100/300: loss=0.000020
+  Stage 3 epoch 200/300: loss=0.000018
+  Stage 3 epoch 300/300: loss=0.000016
+    MFPT: GT=1.322 learned=0.934 err=29.3%
+    Rate: GT=1.8647 learned=2.1851 err=17.2%
+
+============================================================
+  paraboloid | seed=6042
+============================================================
+
+  --- baseline ---
+      Epoch 100/500: loss=0.000713
+      Epoch 200/500: loss=0.000627
+      Epoch 300/500: loss=0.000448
+      Epoch 400/500: loss=0.000133
+      Epoch 500/500: loss=0.000063
+    recon=0.000062
+    E_mu=1.7545  E_Sigma=1.7666
+  Stage 2 epoch 100/300: loss=0.031101
+  Stage 2 epoch 200/300: loss=0.024239
+  Stage 2 epoch 300/300: loss=0.016643
+  Stage 3 epoch 100/300: loss=0.000255
+  Stage 3 epoch 200/300: loss=0.000232
+  Stage 3 epoch 300/300: loss=0.000215
+    MFPT: GT=1.303 learned=1.262 err=3.2%
+    Rate: GT=1.8535 learned=1.7407 err=6.1%
+
+  --- T ---
+      Epoch 100/500: loss=0.034561
+      Epoch 200/500: loss=0.015647
+      Epoch 300/500: loss=0.011211
+      Epoch 400/500: loss=0.002515
+      Epoch 500/500: loss=0.001827
+    recon=0.000043
+    E_mu=0.1207  E_Sigma=0.0356
+  Stage 2 epoch 100/300: loss=0.022494
+  Stage 2 epoch 200/300: loss=0.018728
+  Stage 2 epoch 300/300: loss=0.013886
+  Stage 3 epoch 100/300: loss=0.000059
+  Stage 3 epoch 200/300: loss=0.000041
+  Stage 3 epoch 300/300: loss=0.000030
+slurmstepd: error: *** JOB 60154 ON dgx24 CANCELLED AT 2026-03-14T19:43:54 ***

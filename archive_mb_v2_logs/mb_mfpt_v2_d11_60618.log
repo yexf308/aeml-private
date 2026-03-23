@@ -1,0 +1,52 @@
+Device: cuda
+D=11, N=200
+Surfaces: ['paraboloid', 'hyperbolic_paraboloid', 'quartic_dome', 'sinusoidal']
+Conditions: ['baseline', 'T', 'T+F']
+Seeds (10): [42, 1042, 2042, 3042, 4042, 5042, 6042, 7042, 8042, 9042]
+LONG_T=100.0, LONG_N_STEPS=20000, MB_DT=0.005
+Total runs: 120
+
+
+============================================================
+  paraboloid | seed=42
+============================================================
+
+  --- baseline ---
+      Epoch 100/500: loss=0.001376
+      Epoch 200/500: loss=0.000285
+      Epoch 300/500: loss=0.000192
+      Epoch 400/500: loss=0.000175
+      Epoch 500/500: loss=0.000124
+    recon=0.000220
+    E_mu=0.0260  E_Sigma=0.0027
+  Stage 2 epoch 333/1000: loss=0.369387
+  Stage 2 epoch 666/1000: loss=0.210583
+  Stage 2 epoch 999/1000: loss=0.100756
+  Stage 3 epoch 333/1000: loss=0.000056
+  Stage 3 epoch 666/1000: loss=0.000059
+  Stage 3 epoch 999/1000: loss=0.000056
+    Pairwise MFPT err=48.9%  ITS t2 err=90.4%  stat L1=1.0541
+    Exit fraction=0.0%
+
+  --- T ---
+      Epoch 100/500: loss=0.002361
+      Epoch 200/500: loss=0.001676
+      Epoch 300/500: loss=0.000720
+      Epoch 400/500: loss=0.000854
+      Epoch 500/500: loss=0.000581
+    recon=0.000134
+    E_mu=0.0014  E_Sigma=0.0001
+  Stage 2 epoch 333/1000: loss=0.306262
+  Stage 2 epoch 666/1000: loss=0.135298
+  Stage 2 epoch 999/1000: loss=0.072962
+  Stage 3 epoch 333/1000: loss=0.000002
+  Stage 3 epoch 666/1000: loss=0.000002
+  Stage 3 epoch 999/1000: loss=0.000002
+    Pairwise MFPT err=87.6%  ITS t2 err=91.0%  stat L1=0.3708
+    Exit fraction=52.6%
+
+  --- T+F ---
+      Epoch 100/500: loss=0.002898
+      Epoch 200/500: loss=0.001050
+      Epoch 300/500: loss=0.001223
+slurmstepd: error: *** JOB 60618 ON dgx19 CANCELLED AT 2026-03-17T09:59:48 ***

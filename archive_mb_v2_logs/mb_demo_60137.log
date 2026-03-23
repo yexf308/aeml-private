@@ -1,0 +1,112 @@
+Device: cuda
+D=11, N=50, kT=0.15
+Surface: paraboloid (Fourier-augmented)
+Dynamics: Müller-Brown overdamped Langevin
+Conditions: ['baseline', 'T+F']
+Seeds (5): [42, 1042, 2042, 3042, 4042]
+LONG_T=20.0, LONG_N_STEPS=2000
+TRAIN_BOUND=0.8
+Well centers (u,v): [[-0.30000001192092896, 0.550000011920929], [0.5699999928474426, -0.5799999833106995], [0.07000000029802322, -0.23000000417232513]]
+
+Well centers ambient norms: [1.2436062097549438, 1.4486606121063232, 1.0301169157028198]
+
+============================================================
+  seed=42
+============================================================
+  GT inter-well MFPT: 7.012±4.987 (frac=91%)
+  GT transition rate: 0.4410/t (4410 transitions in 10000t)
+
+  --- baseline ---
+      Epoch 100/500: loss=0.008187
+      Epoch 200/500: loss=0.005612
+      Epoch 300/500: loss=0.001544
+      Epoch 400/500: loss=0.000496
+      Epoch 500/500: loss=0.000341
+    recon=0.000323
+    σ_min: min=1.096 med=1.217
+    tangent_err=0.046609
+    E_mu=0.0700  E_Sigma=0.0321
+  Stage 2 epoch 100/300: loss=0.268098
+  Stage 2 epoch 200/300: loss=0.216508
+  Stage 2 epoch 300/300: loss=0.164679
+  Stage 3 epoch 100/300: loss=0.000925
+  Stage 3 epoch 200/300: loss=0.000801
+  Stage 3 epoch 300/300: loss=0.000717
+    Inter-well MFPT: 0.839±0.795 (frac=100%)
+    Transition rate: 1.5470/t (15470 transitions in 10000t)
+    MFPT err: 88.0%
+    Rate err: 250.8%
+
+  --- T+F ---
+      Epoch 100/500: loss=0.037554
+      Epoch 200/500: loss=0.012276
+      Epoch 300/500: loss=0.012429
+      Epoch 400/500: loss=0.003717
+      Epoch 500/500: loss=0.001720
+    recon=0.000021
+    σ_min: min=1.361 med=1.489
+    tangent_err=0.003020
+    E_mu=0.0063  E_Sigma=0.0014
+  Stage 2 epoch 100/300: loss=0.300975
+  Stage 2 epoch 200/300: loss=0.255355
+  Stage 2 epoch 300/300: loss=0.244511
+  Stage 3 epoch 100/300: loss=0.000164
+  Stage 3 epoch 200/300: loss=0.000083
+  Stage 3 epoch 300/300: loss=0.000048
+    Inter-well MFPT: 0.477±0.384 (frac=100%)
+    Transition rate: 1.4980/t (14980 transitions in 10000t)
+    MFPT err: 93.2%
+    Rate err: 239.7%
+
+============================================================
+  seed=1042
+============================================================
+  GT inter-well MFPT: 7.093±5.056 (frac=90%)
+  GT transition rate: 0.4070/t (4070 transitions in 10000t)
+
+  --- baseline ---
+      Epoch 100/500: loss=0.006755
+      Epoch 200/500: loss=0.004123
+      Epoch 300/500: loss=0.001506
+      Epoch 400/500: loss=0.000474
+      Epoch 500/500: loss=0.000265
+    recon=0.000278
+    σ_min: min=0.980 med=1.229
+    tangent_err=0.064195
+    E_mu=0.0653  E_Sigma=0.0477
+  Stage 2 epoch 100/300: loss=0.326206
+  Stage 2 epoch 200/300: loss=0.261252
+  Stage 2 epoch 300/300: loss=0.178957
+  Stage 3 epoch 100/300: loss=0.000803
+  Stage 3 epoch 200/300: loss=0.000642
+  Stage 3 epoch 300/300: loss=0.000641
+    Inter-well MFPT: 1.774±1.933 (frac=100%)
+    Transition rate: 1.1002/t (11002 transitions in 10000t)
+    MFPT err: 75.0%
+    Rate err: 170.3%
+
+  --- T+F ---
+      Epoch 100/500: loss=0.047919
+      Epoch 200/500: loss=0.010305
+      Epoch 300/500: loss=0.018092
+      Epoch 400/500: loss=0.002879
+      Epoch 500/500: loss=0.003392
+    recon=0.000108
+    σ_min: min=1.444 med=1.518
+    tangent_err=0.007930
+    E_mu=0.0056  E_Sigma=0.0024
+  Stage 2 epoch 100/300: loss=0.375933
+  Stage 2 epoch 200/300: loss=0.301719
+  Stage 2 epoch 300/300: loss=0.248199
+  Stage 3 epoch 100/300: loss=0.000053
+  Stage 3 epoch 200/300: loss=0.000044
+  Stage 3 epoch 300/300: loss=0.000037
+    Inter-well MFPT: 1.676±1.965 (frac=100%)
+    Transition rate: 1.1378/t (11378 transitions in 10000t)
+    MFPT err: 76.4%
+    Rate err: 179.6%
+
+============================================================
+  seed=2042
+============================================================
+slurmstepd: error: *** JOB 60137 ON dgx16 CANCELLED AT 2026-03-14T17:17:48 ***

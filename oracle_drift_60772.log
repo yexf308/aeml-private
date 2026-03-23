@@ -1,0 +1,89 @@
+Device: cuda
+D=11, N=200, grid_res=50
+Surfaces: ['paraboloid', 'hyperbolic_paraboloid']
+Seeds (10): [42, 1042, 2042, 3042, 4042, 5042, 6042, 7042, 8042, 9042]
+LONG_T=20.0, LONG_N_STEPS=4000, MB_DT=0.005
+
+============================================================
+  paraboloid | seed=42
+============================================================
+
+  --- baseline ---
+      Epoch 800/4000: loss=0.000069
+      Epoch 1600/4000: loss=0.000010
+      Epoch 2400/4000: loss=0.000004
+      Epoch 3200/4000: loss=0.000003
+      Epoch 4000/4000: loss=0.000004
+    recon=0.000003
+    E_mu=0.0065  E_Sigma=0.0005
+    Building oracle drift on 50×50 grid...
+    R1=6290.07  R2=283202.16  κ_g=1.369
+  Stage 2 epoch 1000/3000: loss=0.004178
+  Stage 2 epoch 2000/3000: loss=0.001341
+  Stage 2 epoch 3000/3000: loss=0.001352
+  Stage 3 epoch 1000/3000: loss=0.000013
+  Stage 3 epoch 2000/3000: loss=0.000012
+  Stage 3 epoch 3000/3000: loss=0.000012
+  Stage 3 epoch 1000/3000: loss=0.000011
+  Stage 3 epoch 2000/3000: loss=0.000011
+  Stage 3 epoch 3000/3000: loss=0.000013
+                                learned: MFPT=14.5%  ITS=41.7%  exit=0.0%
+              oracle_drift+learned_diff: MFPT=15.5%  ITS=19.1%  exit=1.0%
+               oracle_drift+oracle_diff: MFPT=11.8%  ITS=11.7%  exit=0.2%
+
+  --- T+F ---
+      Epoch 800/4000: loss=0.000257
+      Epoch 1600/4000: loss=0.000042
+      Epoch 2400/4000: loss=0.000030
+      Epoch 3200/4000: loss=0.000026
+      Epoch 4000/4000: loss=0.000024
+    recon=0.000000
+    E_mu=0.0001  E_Sigma=0.0000
+    Building oracle drift on 50×50 grid...
+    R1=279006.22  R2=75176552.00  κ_g=1.876
+  Stage 2 epoch 1000/3000: loss=0.007875
+  Stage 2 epoch 2000/3000: loss=0.001231
+  Stage 2 epoch 3000/3000: loss=0.000484
+  Stage 3 epoch 1000/3000: loss=0.000000
+  Stage 3 epoch 2000/3000: loss=0.000000
+  Stage 3 epoch 3000/3000: loss=0.000000
+  Stage 3 epoch 1000/3000: loss=0.000000
+  Stage 3 epoch 2000/3000: loss=0.000000
+  Stage 3 epoch 3000/3000: loss=0.000000
+                                learned: MFPT=7.2%  ITS=15.7%  exit=2.0%
+              oracle_drift+learned_diff: MFPT=8.2%  ITS=22.1%  exit=1.4%
+               oracle_drift+oracle_diff: MFPT=8.3%  ITS=23.7%  exit=1.4%
+
+============================================================
+  paraboloid | seed=1042
+============================================================
+
+  --- baseline ---
+      Epoch 800/4000: loss=0.000026
+      Epoch 1600/4000: loss=0.000006
+      Epoch 2400/4000: loss=0.000003
+      Epoch 3200/4000: loss=0.000002
+      Epoch 4000/4000: loss=0.000002
+    recon=0.000001
+    E_mu=0.0044  E_Sigma=0.0002
+    Building oracle drift on 50×50 grid...
+    R1=4768.82  R2=221499.44  κ_g=1.383
+  Stage 2 epoch 1000/3000: loss=0.000271
+  Stage 2 epoch 2000/3000: loss=0.000158
+  Stage 2 epoch 3000/3000: loss=0.000187
+  Stage 3 epoch 1000/3000: loss=0.000006
+  Stage 3 epoch 2000/3000: loss=0.000006
+  Stage 3 epoch 3000/3000: loss=0.000006
+  Stage 3 epoch 1000/3000: loss=0.000006
+  Stage 3 epoch 2000/3000: loss=0.000007
+  Stage 3 epoch 3000/3000: loss=0.000006
+                                learned: MFPT=16.5%  ITS=0.8%  exit=1.6%
+              oracle_drift+learned_diff: MFPT=7.4%  ITS=14.7%  exit=1.0%
+               oracle_drift+oracle_diff: MFPT=8.0%  ITS=15.9%  exit=1.2%
+
+  --- T+F ---
+      Epoch 800/4000: loss=0.000166
+      Epoch 1600/4000: loss=0.000047
+      Epoch 2400/4000: loss=0.000033
+      Epoch 3200/4000: loss=0.000024
+slurmstepd: error: *** JOB 60772 ON dgx19 CANCELLED AT 2026-03-18T11:25:38 ***

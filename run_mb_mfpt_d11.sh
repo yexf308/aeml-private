@@ -2,7 +2,7 @@
 #SBATCH --job-name=mb_mfpt_d11
 #SBATCH --partition=dgx
 #SBATCH --gres=gpu:1
-#SBATCH --time=06:00:00
+#SBATCH --time=12:00:00
 #SBATCH --mem=32G
 #SBATCH --output=mb_mfpt_d11_%j.log
 #SBATCH --error=mb_mfpt_d11_%j.log

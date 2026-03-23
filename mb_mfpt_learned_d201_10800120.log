@@ -1,0 +1,61 @@
+Device: cuda
+D=201, N=200
+Surfaces: ['paraboloid', 'hyperbolic_paraboloid', 'quartic_dome', 'sinusoidal']
+Conditions: ['baseline', 'T', 'T+F']
+Seeds (10): [42, 1042, 2042, 3042, 4042, 5042, 6042, 7042, 8042, 9042]
+LONG_T=20.0, LONG_N_STEPS=4000, MB_DT=0.005
+Total runs: 120
+
+
+============================================================
+  paraboloid | seed=42
+============================================================
+  GT exit fraction: 0.7%
+
+  --- baseline ---
+      Epoch 800/4000: loss=0.000003
+      Epoch 1600/4000: loss=0.000001
+      Epoch 2400/4000: loss=0.000001
+      Epoch 3200/4000: loss=0.000001
+      Epoch 4000/4000: loss=0.000001
+    recon=0.000001
+Traceback (most recent call last):
+  File "/network/rit/lab/Yelab/anaconda3/lib/python3.9/runpy.py", line 197, in _run_module_as_main
+    return _run_code(code, main_globals, None,
+  File "/network/rit/lab/Yelab/anaconda3/lib/python3.9/runpy.py", line 87, in _run_code
+    exec(code, run_globals)
+  File "/network/rit/lab/Yelab/aeml/experiments/mb_mfpt.py", line 436, in <module>
+    main()
+  File "/network/rit/lab/Yelab/aeml/experiments/mb_mfpt.py", line 364, in main
+    row = run_one(
+  File "/network/rit/lab/Yelab/aeml/experiments/mb_mfpt.py", line 110, in run_one
+    e_mu, e_sigma = compute_coefficient_errors(ae, sde, FourierAugmentedSurface(surface_name, D), eval_uv, DEVICE)
+  File "/network/rit/lab/Yelab/aeml/experiments/highd_N_D_sweep.py", line 163, in compute_coefficient_errors
+    d2phi_chunks.append(torch.func.vmap(decoder_hessian)(z[i:i+hess_bs]))
+  File "/network/rit/lab/Yelab/anaconda3/lib/python3.9/site-packages/torch/_functorch/apis.py", line 202, in wrapped
+    return vmap_impl(
+  File "/network/rit/lab/Yelab/anaconda3/lib/python3.9/site-packages/torch/_functorch/vmap.py", line 334, in vmap_impl
+    return _flat_vmap(
+  File "/network/rit/lab/Yelab/anaconda3/lib/python3.9/site-packages/torch/_functorch/vmap.py", line 484, in _flat_vmap
+    batched_outputs = func(*batched_inputs, **kwargs)
+  File "/network/rit/lab/Yelab/aeml/experiments/highd_N_D_sweep.py", line 156, in decoder_hessian
+    return torch.func.jacrev(torch.func.jacrev(ae.decoder))(z_single)
+  File "/network/rit/lab/Yelab/anaconda3/lib/python3.9/site-packages/torch/_functorch/eager_transforms.py", line 690, in wrapper_fn
+    flat_jacobians_per_input = compute_jacobian_stacked()
+  File "/network/rit/lab/Yelab/anaconda3/lib/python3.9/site-packages/torch/_functorch/eager_transforms.py", line 612, in compute_jacobian_stacked
+    chunked_result = vmap(vjp_fn)(basis)
+  File "/network/rit/lab/Yelab/anaconda3/lib/python3.9/site-packages/torch/_functorch/apis.py", line 202, in wrapped
+    return vmap_impl(
+  File "/network/rit/lab/Yelab/anaconda3/lib/python3.9/site-packages/torch/_functorch/vmap.py", line 334, in vmap_impl
+    return _flat_vmap(
+  File "/network/rit/lab/Yelab/anaconda3/lib/python3.9/site-packages/torch/_functorch/vmap.py", line 484, in _flat_vmap
+    batched_outputs = func(*batched_inputs, **kwargs)
+  File "/network/rit/lab/Yelab/anaconda3/lib/python3.9/site-packages/torch/_functorch/eager_transforms.py", line 395, in wrapper
+    result = _autograd_grad(
+  File "/network/rit/lab/Yelab/anaconda3/lib/python3.9/site-packages/torch/_functorch/eager_transforms.py", line 142, in _autograd_grad
+    grad_inputs = torch.autograd.grad(
+  File "/network/rit/lab/Yelab/anaconda3/lib/python3.9/site-packages/torch/autograd/__init__.py", line 503, in grad
+    result = _engine_run_backward(
+  File "/network/rit/lab/Yelab/anaconda3/lib/python3.9/site-packages/torch/autograd/graph.py", line 829, in _engine_run_backward
+    return Variable._execution_engine.run_backward(  # Calls into the C++ engine to run the backward pass
+torch.OutOfMemoryError: CUDA out of memory. Tried to allocate 632.00 MiB. GPU 0 has a total capacity of 44.39 GiB of which 611.25 MiB is free. Including non-PyTorch memory, this process has 43.79 GiB memory in use. Of the allocated memory 42.99 GiB is allocated by PyTorch, and 266.63 MiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)

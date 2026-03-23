@@ -1,0 +1,129 @@
+
+============================================================
+  Seed 42
+============================================================
+
+  --- baseline ---
+      Epoch 800/4000: loss=0.000114
+      Epoch 1600/4000: loss=0.000009
+      Epoch 2400/4000: loss=0.000005
+      Epoch 3200/4000: loss=0.000005
+      Epoch 4000/4000: loss=0.000005
+    recon=0.000005
+  Stage 2 epoch 333/1000: loss=0.022217
+  Stage 2 epoch 666/1000: loss=0.003859
+  Stage 2 epoch 999/1000: loss=0.001506
+  Stage 3 epoch 333/1000: loss=0.000126
+  Stage 3 epoch 666/1000: loss=0.000073
+  Stage 3 epoch 999/1000: loss=0.000060
+    GT MFPT=6.850
+    Paired:  learned=6.559  err=4.3%
+    Indep:   learned=6.682  err=2.5%
+
+  --- T+F ---
+      Epoch 800/4000: loss=0.000161
+      Epoch 1600/4000: loss=0.000056
+      Epoch 2400/4000: loss=0.000045
+      Epoch 3200/4000: loss=0.000048
+      Epoch 4000/4000: loss=0.000049
+    recon=0.000000
+  Stage 2 epoch 333/1000: loss=0.022756
+  Stage 2 epoch 666/1000: loss=0.003226
+  Stage 2 epoch 999/1000: loss=0.000965
+  Stage 3 epoch 333/1000: loss=0.000004
+  Stage 3 epoch 666/1000: loss=0.000004
+  Stage 3 epoch 999/1000: loss=0.000004
+    GT MFPT=6.850
+    Paired:  learned=6.514  err=4.9%
+    Indep:   learned=6.352  err=7.3%
+
+============================================================
+  Seed 1042
+============================================================
+
+  --- baseline ---
+      Epoch 800/4000: loss=0.000031
+      Epoch 1600/4000: loss=0.000012
+      Epoch 2400/4000: loss=0.000008
+      Epoch 3200/4000: loss=0.000008
+      Epoch 4000/4000: loss=0.000007
+    recon=0.000007
+  Stage 2 epoch 333/1000: loss=0.022050
+  Stage 2 epoch 666/1000: loss=0.001871
+  Stage 2 epoch 999/1000: loss=0.000621
+  Stage 3 epoch 333/1000: loss=0.000072
+  Stage 3 epoch 666/1000: loss=0.000066
+  Stage 3 epoch 999/1000: loss=0.000060
+    GT MFPT=6.804
+    Paired:  learned=6.514  err=4.3%
+    Indep:   learned=6.235  err=8.4%
+
+  --- T+F ---
+      Epoch 800/4000: loss=0.000145
+      Epoch 1600/4000: loss=0.000049
+      Epoch 2400/4000: loss=0.000028
+      Epoch 3200/4000: loss=0.000029
+      Epoch 4000/4000: loss=0.000027
+    recon=0.000000
+  Stage 2 epoch 333/1000: loss=0.027324
+  Stage 2 epoch 666/1000: loss=0.002974
+  Stage 2 epoch 999/1000: loss=0.001198
+  Stage 3 epoch 333/1000: loss=0.000005
+  Stage 3 epoch 666/1000: loss=0.000004
+  Stage 3 epoch 999/1000: loss=0.000004
+    GT MFPT=6.804
+    Paired:  learned=6.108  err=10.2%
+    Indep:   learned=5.978  err=12.1%
+
+============================================================
+  Seed 2042
+============================================================
+
+  --- baseline ---
+      Epoch 800/4000: loss=0.000051
+      Epoch 1600/4000: loss=0.000019
+      Epoch 2400/4000: loss=0.000006
+      Epoch 3200/4000: loss=0.000007
+      Epoch 4000/4000: loss=0.000005
+    recon=0.000006
+  Stage 2 epoch 333/1000: loss=0.024677
+  Stage 2 epoch 666/1000: loss=0.002722
+  Stage 2 epoch 999/1000: loss=0.000685
+  Stage 3 epoch 333/1000: loss=0.000060
+  Stage 3 epoch 666/1000: loss=0.000051
+  Stage 3 epoch 999/1000: loss=0.000054
+    GT MFPT=6.850
+    Paired:  learned=6.486  err=5.3%
+    Indep:   learned=6.636  err=3.1%
+
+  --- T+F ---
+      Epoch 800/4000: loss=0.000477
+      Epoch 1600/4000: loss=0.000070
+      Epoch 2400/4000: loss=0.000043
+      Epoch 3200/4000: loss=0.000044
+      Epoch 4000/4000: loss=0.000043
+    recon=0.000000
+  Stage 2 epoch 333/1000: loss=0.025276
+  Stage 2 epoch 666/1000: loss=0.003021
+  Stage 2 epoch 999/1000: loss=0.000408
+  Stage 3 epoch 333/1000: loss=0.000003
+  Stage 3 epoch 666/1000: loss=0.000002
+  Stage 3 epoch 999/1000: loss=0.000002
+    GT MFPT=6.850
+    Paired:  learned=6.477  err=5.4%
+    Indep:   learned=6.183  err=9.7%
+
+============================================================
+  SUMMARY
+============================================================
+
+  baseline:
+    Paired errors:  ['4.3%', '4.3%', '5.3%']  mean=4.6%
+    Indep  errors:  ['2.5%', '8.4%', '3.1%']  mean=4.6%
+
+  T+F:
+    Paired errors:  ['4.9%', '10.2%', '5.4%']  mean=6.9%
+    Indep  errors:  ['7.3%', '12.1%', '9.7%']  mean=9.7%
+
+  baseline vs T+F (paired):  ['4.3%', '4.3%', '5.3%'] vs ['4.9%', '10.2%', '5.4%']
+  baseline vs T+F (indep):   ['2.5%', '8.4%', '3.1%'] vs ['7.3%', '12.1%', '9.7%']

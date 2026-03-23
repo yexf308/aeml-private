@@ -158,7 +158,8 @@ def main():
 
             with torch.no_grad():
                 z0 = ae.encoder(init_ambient)
-            _, x_traj = pipeline.simulate(z0, MFPT_N_STEPS, DT, dW=dW)
+            _, x_traj = pipeline.simulate(z0, MFPT_N_STEPS, DT, dW=dW,
+                                            boundary=BOUNDARY * 2)
 
             gt_mfpt = compute_mfpt_ambient(gt_traj, RADII)
             lr_mfpt = compute_mfpt_ambient(x_traj, RADII)

@@ -1,0 +1,87 @@
+Full ablation: mb dynamics, D=201
+Surfaces: ['paraboloid', 'hyperbolic_paraboloid', 'quartic_dome', 'sinusoidal']
+Conditions: ['baseline', 'T', 'F', 'C', 'T+F'] + ATLAS
+Seeds (10): [42, 1042, 2042, 3042, 4042, 5042, 6042, 7042, 8042, 9042]
+AE epochs: 4000, SDE epochs: 3000
+N_train: 200
+
+============================================================
+  paraboloid | seed=42 | mb | D=201
+============================================================
+    ATLAS  recon=0.0000  E_mu=1.5603
+    baseline      Epoch 800/4000: loss=0.000003
+      Epoch 1600/4000: loss=0.000001
+      Epoch 2400/4000: loss=0.000001
+      Epoch 3200/4000: loss=0.000001
+      Epoch 4000/4000: loss=0.000001
+  recon=0.0000  E_mu=0.0218  S2=0.000258  S3=0.000000
+    T      Epoch 800/4000: loss=0.000122
+      Epoch 1600/4000: loss=0.000039
+      Epoch 2400/4000: loss=0.000026
+      Epoch 3200/4000: loss=0.000023
+      Epoch 4000/4000: loss=0.000021
+  recon=0.0000  E_mu=0.0002  S2=0.001646  S3=0.000000
+    F      Epoch 800/4000: loss=0.001474
+      Epoch 1600/4000: loss=0.001375
+      Epoch 2400/4000: loss=0.001470
+      Epoch 3200/4000: loss=0.001434
+      Epoch 4000/4000: loss=0.001402
+  recon=0.0014  E_mu=10.8140  S2=0.000165  S3=0.000010
+    C      Epoch 800/4000: loss=0.001471
+      Epoch 1600/4000: loss=0.001373
+      Epoch 2400/4000: loss=0.001469
+      Epoch 3200/4000: loss=0.001433
+      Epoch 4000/4000: loss=0.001401
+  recon=0.0014  E_mu=10.8127  S2=0.000000  S3=0.000010
+    T+F      Epoch 800/4000: loss=0.000558
+      Epoch 1600/4000: loss=0.000278
+      Epoch 2400/4000: loss=0.000197
+      Epoch 3200/4000: loss=0.000134
+      Epoch 4000/4000: loss=0.000081
+  recon=0.0000  E_mu=0.0005  S2=0.000028  S3=0.000000
+
+============================================================
+  paraboloid | seed=1042 | mb | D=201
+============================================================
+    ATLAS  recon=0.0001  E_mu=0.8803
+    baseline      Epoch 800/4000: loss=0.000012
+      Epoch 1600/4000: loss=0.000002
+      Epoch 2400/4000: loss=0.000001
+      Epoch 3200/4000: loss=0.000001
+      Epoch 4000/4000: loss=0.000001
+  recon=0.0000  E_mu=0.0387  S2=0.000006  S3=0.000000
+    T      Epoch 800/4000: loss=0.000079
+      Epoch 1600/4000: loss=0.000046
+      Epoch 2400/4000: loss=0.000021
+      Epoch 3200/4000: loss=0.000015
+      Epoch 4000/4000: loss=0.000016
+  recon=0.0000  E_mu=0.0002  S2=0.000004  S3=0.000000
+    F      Epoch 800/4000: loss=0.001355
+      Epoch 1600/4000: loss=0.001418
+      Epoch 2400/4000: loss=0.001360
+      Epoch 3200/4000: loss=0.001346
+      Epoch 4000/4000: loss=0.001423
+  recon=0.0014  E_mu=12.0324  S2=0.000014  S3=0.000010
+    C      Epoch 800/4000: loss=0.001354
+      Epoch 1600/4000: loss=0.001417
+      Epoch 2400/4000: loss=0.001359
+      Epoch 3200/4000: loss=0.001346
+      Epoch 4000/4000: loss=0.001422
+  recon=0.0014  E_mu=12.0245  S2=0.000000  S3=0.000010
+    T+F      Epoch 800/4000: loss=0.000421
+      Epoch 1600/4000: loss=0.000196
+      Epoch 2400/4000: loss=0.000087
+      Epoch 3200/4000: loss=0.000070
+      Epoch 4000/4000: loss=0.000078
+  recon=0.0000  E_mu=0.0005  S2=0.000005  S3=0.000000
+
+============================================================
+  paraboloid | seed=2042 | mb | D=201
+============================================================
+    ATLAS  recon=0.0001  E_mu=1.0322
+    baseline      Epoch 800/4000: loss=0.000009
+      Epoch 1600/4000: loss=0.000001
+      Epoch 2400/4000: loss=0.000000
+      Epoch 3200/4000: loss=0.000000
+      Epoch 4000/4000: loss=0.000000
+slurmstepd: error: *** JOB 60948 ON dgx04 CANCELLED AT 2026-03-18T23:21:01 ***

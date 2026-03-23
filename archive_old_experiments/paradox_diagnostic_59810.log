@@ -1,0 +1,632 @@
+Device: cuda
+D=11, N=50, surface=paraboloid
+Seeds: [42, 1042, 2042, 3042, 4042]
+dt values: [0.01, 0.005, 0.002]
+
+
+======================================================================
+  SEED 42
+======================================================================
+
+  === Condition: no_penalty ===
+      Epoch 100/500: loss=0.018654
+      Epoch 200/500: loss=0.010097
+      Epoch 300/500: loss=0.001782
+      Epoch 400/500: loss=0.000742
+      Epoch 500/500: loss=0.000952
+    recon_per_dim=0.001680
+    Static E_mu=1.0896  E_Sigma=1.3200
+  Precomputing encoder-pullback target...
+  Stage 2 epoch 60/300: loss=0.908104
+  Stage 2 epoch 120/300: loss=0.858047
+  Stage 2 epoch 180/300: loss=0.926901
+  Stage 2 epoch 240/300: loss=0.888410
+  Stage 2 epoch 300/300: loss=0.820563
+  Stage 3 epoch 60/300: loss=0.141960
+  Stage 3 epoch 120/300: loss=0.087812
+  Stage 3 epoch 180/300: loss=0.079952
+  Stage 3 epoch 240/300: loss=0.073990
+  Stage 3 epoch 300/300: loss=0.071471
+  MTE@0.1: 0.8258
+  MTE@0.5: 1.2306
+  MTE@1.0: 1.1833
+  W2@1.0:  0.7055
+  sW2@0.1: 0.3652 (292/500 in region)
+  sW2@0.2: 0.4615 (214/500 in region)
+  sW2@0.5: 0.6054 (97/500 in region)
+  sW2@1.0: 0.5442 (21/500 in region)
+  MMD@1.0: 0.1494
+  Survival@1.0: 28.0%
+  Stopped@1.0:  4.2%
+    Precomputing encoder-pullback target...
+  Stage 2 epoch 100/300: loss=0.865202
+  Stage 2 epoch 200/300: loss=0.927466
+  Stage 2 epoch 300/300: loss=0.820563
+  Stage 3 epoch 100/300: loss=0.108442
+  Stage 3 epoch 200/300: loss=0.087675
+  Stage 3 epoch 300/300: loss=0.071471
+
+    --- Diagnostic 1: Drift error along trajectory ---
+    t=0.00: drift_err=22.9017, cond#=1.4 (max=1.7), svd_max=1.942, svd_min=1.411, z_disp=0.000, amb_err=0.0314
+    t=0.10: drift_err=17.9932, cond#=1.4 (max=3.0), svd_max=1.873, svd_min=1.380, z_disp=0.409, amb_err=0.8491
+    t=0.25: drift_err=17.1096, cond#=1.3 (max=3.7), svd_max=1.743, svd_min=1.337, z_disp=0.530, amb_err=1.4549
+    t=0.50: drift_err=15.9641, cond#=1.3 (max=2.2), svd_max=1.736, svd_min=1.332, z_disp=0.764, amb_err=2.4475
+    t=0.75: drift_err=14.5760, cond#=1.3 (max=1.9), svd_max=1.754, svd_min=1.348, z_disp=0.785, amb_err=2.6372
+    t=0.99: drift_err=16.9565, cond#=1.3 (max=2.2), svd_max=1.683, svd_min=1.314, z_disp=0.804, amb_err=2.8884
+
+    --- Diagnostic 2: Decoder Jacobian at eval points ---
+    svd_max: 1.946±0.235
+    svd_min: 1.413±0.072
+    cond#:   1.4±0.2 (max=1.8)
+
+    --- Diagnostic 3: Varying dt ---
+    dt=0.0100 (n_steps=100): W2=0.7055, MTE@0.5=1.2306
+    dt=0.0050 (n_steps=200): W2=0.7866, MTE@0.5=1.2731
+    dt=0.0020 (n_steps=500): W2=0.8561, MTE@0.5=1.2452
+
+  === Condition: T+F ===
+      Epoch 100/500: loss=0.468872
+      Epoch 200/500: loss=0.038427
+      Epoch 300/500: loss=0.008950
+      Epoch 400/500: loss=0.011219
+      Epoch 500/500: loss=0.008317
+    recon_per_dim=0.000845
+    Static E_mu=0.1205  E_Sigma=0.2182
+  Precomputing encoder-pullback target...
+  Stage 2 epoch 60/300: loss=0.126661
+  Stage 2 epoch 120/300: loss=0.125125
+  Stage 2 epoch 180/300: loss=0.141844
+  Stage 2 epoch 240/300: loss=0.144971
+  Stage 2 epoch 300/300: loss=0.128316
+  Stage 3 epoch 60/300: loss=0.078123
+  Stage 3 epoch 120/300: loss=0.047400
+  Stage 3 epoch 180/300: loss=0.027612
+  Stage 3 epoch 240/300: loss=0.018298
+  Stage 3 epoch 300/300: loss=0.013271
+  MTE@0.1: 0.3873
+  MTE@0.5: 0.6845
+  MTE@1.0: 0.8648
+  W2@1.0:  0.5460
+  sW2@0.1: 0.2510 (292/500 in region)
+  sW2@0.2: 0.3157 (214/500 in region)
+  sW2@0.5: 0.4358 (97/500 in region)
+  sW2@1.0: 0.5532 (21/500 in region)
+  MMD@1.0: 0.3173
+  Survival@1.0: 28.0%
+  Stopped@1.0:  4.2%
+    Precomputing encoder-pullback target...
+  Stage 2 epoch 100/300: loss=0.129158
+  Stage 2 epoch 200/300: loss=0.145481
+  Stage 2 epoch 300/300: loss=0.128316
+  Stage 3 epoch 100/300: loss=0.057886
+  Stage 3 epoch 200/300: loss=0.022937
+  Stage 3 epoch 300/300: loss=0.013271
+
+    --- Diagnostic 1: Drift error along trajectory ---
+    t=0.00: drift_err=4.4313, cond#=1.5 (max=1.9), svd_max=2.558, svd_min=1.742, z_disp=0.000, amb_err=0.0096
+    t=0.10: drift_err=6.6801, cond#=1.4 (max=1.9), svd_max=2.463, svd_min=1.712, z_disp=0.334, amb_err=0.3146
+    t=0.25: drift_err=6.7425, cond#=1.4 (max=2.0), svd_max=2.459, svd_min=1.747, z_disp=0.469, amb_err=0.4185
+    t=0.50: drift_err=8.6717, cond#=1.5 (max=1.9), svd_max=2.530, svd_min=1.749, z_disp=0.702, amb_err=0.7594
+    t=0.75: drift_err=9.8992, cond#=1.4 (max=1.9), svd_max=2.503, svd_min=1.734, z_disp=0.713, amb_err=1.0730
+    t=0.99: drift_err=14.1473, cond#=1.5 (max=1.9), svd_max=2.490, svd_min=1.705, z_disp=0.699, amb_err=1.1422
+
+    --- Diagnostic 2: Decoder Jacobian at eval points ---
+    svd_max: 2.591±0.326
+    svd_min: 1.738±0.122
+    cond#:   1.5±0.2 (max=1.9)
+
+    --- Diagnostic 3: Varying dt ---
+    dt=0.0100 (n_steps=100): W2=0.5460, MTE@0.5=0.6845
+    dt=0.0050 (n_steps=200): W2=0.5612, MTE@0.5=0.6425
+    dt=0.0020 (n_steps=500): W2=0.6948, MTE@0.5=0.6414
+
+======================================================================
+  SEED 1042
+======================================================================
+
+  === Condition: no_penalty ===
+      Epoch 100/500: loss=0.016204
+      Epoch 200/500: loss=0.006816
+      Epoch 300/500: loss=0.001513
+      Epoch 400/500: loss=0.000929
+      Epoch 500/500: loss=0.000691
+    recon_per_dim=0.000629
+    Static E_mu=2.0323  E_Sigma=1.9276
+  Precomputing encoder-pullback target...
+  Stage 2 epoch 60/300: loss=1.237672
+  Stage 2 epoch 120/300: loss=1.123812
+  Stage 2 epoch 180/300: loss=1.054717
+  Stage 2 epoch 240/300: loss=1.049500
+  Stage 2 epoch 300/300: loss=1.057657
+  Stage 3 epoch 60/300: loss=0.123949
+  Stage 3 epoch 120/300: loss=0.116128
+  Stage 3 epoch 180/300: loss=0.100466
+  Stage 3 epoch 240/300: loss=0.086914
+  Stage 3 epoch 300/300: loss=0.079633
+  MTE@0.1: 0.8801
+  MTE@0.5: 1.3468
+  MTE@1.0: 1.3841
+  W2@1.0:  0.7976
+  sW2@0.1: 0.3606 (285/500 in region)
+  sW2@0.2: 0.4161 (204/500 in region)
+  sW2@0.5: 0.4577 (98/500 in region)
+  sW2@1.0: 0.6096 (31/500 in region)
+  MMD@1.0: 0.2189
+  Survival@1.0: 29.8%
+  Stopped@1.0:  6.2%
+    Precomputing encoder-pullback target...
+  Stage 2 epoch 100/300: loss=1.160705
+  Stage 2 epoch 200/300: loss=1.112936
+  Stage 2 epoch 300/300: loss=1.057657
+  Stage 3 epoch 100/300: loss=0.122786
+  Stage 3 epoch 200/300: loss=0.092578
+  Stage 3 epoch 300/300: loss=0.079633
+
+    --- Diagnostic 1: Drift error along trajectory ---
+    t=0.00: drift_err=21.2053, cond#=1.4 (max=1.9), svd_max=1.991, svd_min=1.445, z_disp=0.000, amb_err=0.0623
+    t=0.10: drift_err=20.1817, cond#=1.4 (max=2.2), svd_max=1.963, svd_min=1.404, z_disp=0.299, amb_err=1.1490
+    t=0.25: drift_err=17.7350, cond#=1.4 (max=2.2), svd_max=1.975, svd_min=1.440, z_disp=0.449, amb_err=1.8242
+    t=0.50: drift_err=17.8961, cond#=1.4 (max=2.3), svd_max=1.938, svd_min=1.420, z_disp=0.609, amb_err=2.3116
+    t=0.75: drift_err=12.4979, cond#=1.3 (max=1.9), svd_max=1.909, svd_min=1.441, z_disp=0.684, amb_err=2.3480
+    t=0.99: drift_err=13.8769, cond#=1.4 (max=2.8), svd_max=1.891, svd_min=1.432, z_disp=0.800, amb_err=2.6306
+
+    --- Diagnostic 2: Decoder Jacobian at eval points ---
+    svd_max: 1.989±0.303
+    svd_min: 1.426±0.157
+    cond#:   1.4±0.2 (max=1.9)
+
+    --- Diagnostic 3: Varying dt ---
+    dt=0.0100 (n_steps=100): W2=0.7976, MTE@0.5=1.3468
+    dt=0.0050 (n_steps=200): W2=0.7538, MTE@0.5=1.3330
+    dt=0.0020 (n_steps=500): W2=0.6962, MTE@0.5=1.3065
+
+  === Condition: T+F ===
+      Epoch 100/500: loss=0.312612
+      Epoch 200/500: loss=0.030504
+      Epoch 300/500: loss=0.026756
+      Epoch 400/500: loss=0.008413
+      Epoch 500/500: loss=0.002478
+    recon_per_dim=0.000031
+    Static E_mu=0.1508  E_Sigma=0.1113
+  Precomputing encoder-pullback target...
+  Stage 2 epoch 60/300: loss=0.107057
+  Stage 2 epoch 120/300: loss=0.104285
+  Stage 2 epoch 180/300: loss=0.097435
+  Stage 2 epoch 240/300: loss=0.099785
+  Stage 2 epoch 300/300: loss=0.107198
+  Stage 3 epoch 60/300: loss=0.034339
+  Stage 3 epoch 120/300: loss=0.025466
+  Stage 3 epoch 180/300: loss=0.015505
+  Stage 3 epoch 240/300: loss=0.012316
+  Stage 3 epoch 300/300: loss=0.009912
+  MTE@0.1: 0.9427
+  MTE@0.5: 1.7147
+  MTE@1.0: 1.9738
+  W2@1.0:  1.2918
+  sW2@0.1: 0.5335 (285/500 in region)
+  sW2@0.2: 0.7803 (204/500 in region)
+  sW2@0.5: 1.0850 (98/500 in region)
+  sW2@1.0: 1.3352 (31/500 in region)
+  MMD@1.0: 0.3240
+  Survival@1.0: 29.8%
+  Stopped@1.0:  6.2%
+    Precomputing encoder-pullback target...
+  Stage 2 epoch 100/300: loss=0.103950
+  Stage 2 epoch 200/300: loss=0.104582
+  Stage 2 epoch 300/300: loss=0.107198
+  Stage 3 epoch 100/300: loss=0.028943
+  Stage 3 epoch 200/300: loss=0.013142
+  Stage 3 epoch 300/300: loss=0.009912
+
+    --- Diagnostic 1: Drift error along trajectory ---
+    t=0.00: drift_err=3.7207, cond#=1.5 (max=2.0), svd_max=2.548, svd_min=1.684, z_disp=0.000, amb_err=0.0084
+    t=0.10: drift_err=6.0578, cond#=1.5 (max=2.0), svd_max=2.508, svd_min=1.679, z_disp=0.330, amb_err=1.2037
+    t=0.25: drift_err=9.3887, cond#=1.6 (max=2.0), svd_max=2.643, svd_min=1.663, z_disp=0.459, amb_err=1.9256
+    t=0.50: drift_err=11.0694, cond#=1.5 (max=2.0), svd_max=2.493, svd_min=1.628, z_disp=0.748, amb_err=4.1913
+    t=0.75: drift_err=10.4216, cond#=1.5 (max=2.0), svd_max=2.418, svd_min=1.577, z_disp=0.833, amb_err=5.0908
+    t=0.99: drift_err=10.0522, cond#=1.6 (max=3.1), svd_max=2.360, svd_min=1.505, z_disp=0.983, amb_err=5.8991
+
+    --- Diagnostic 2: Decoder Jacobian at eval points ---
+    svd_max: 2.569±0.392
+    svd_min: 1.682±0.084
+    cond#:   1.5±0.3 (max=2.0)
+
+    --- Diagnostic 3: Varying dt ---
+    dt=0.0100 (n_steps=100): W2=1.2918, MTE@0.5=1.7147
+    dt=0.0050 (n_steps=200): W2=1.3803, MTE@0.5=1.7528
+    dt=0.0020 (n_steps=500): W2=1.4189, MTE@0.5=1.6915
+
+======================================================================
+  SEED 2042
+======================================================================
+
+  === Condition: no_penalty ===
+      Epoch 100/500: loss=0.026320
+      Epoch 200/500: loss=0.009942
+      Epoch 300/500: loss=0.001677
+      Epoch 400/500: loss=0.000502
+      Epoch 500/500: loss=0.001295
+    recon_per_dim=0.000881
+    Static E_mu=0.8188  E_Sigma=0.8123
+  Precomputing encoder-pullback target...
+  Stage 2 epoch 60/300: loss=0.933293
+  Stage 2 epoch 120/300: loss=0.940168
+  Stage 2 epoch 180/300: loss=0.915020
+  Stage 2 epoch 240/300: loss=0.898437
+  Stage 2 epoch 300/300: loss=0.881544
+  Stage 3 epoch 60/300: loss=0.177302
+  Stage 3 epoch 120/300: loss=0.092386
+  Stage 3 epoch 180/300: loss=0.063230
+  Stage 3 epoch 240/300: loss=0.053112
+  Stage 3 epoch 300/300: loss=0.045744
+  MTE@0.1: 1.2828
+  MTE@0.5: 1.8933
+  MTE@1.0: 1.6533
+  W2@1.0:  0.7161
+  sW2@0.1: 0.6053 (293/500 in region)
+  sW2@0.2: 0.8501 (212/500 in region)
+  sW2@0.5: 1.0194 (88/500 in region)
+  sW2@1.0: 0.6041 (24/500 in region)
+  MMD@1.0: 0.1488
+  Survival@1.0: 26.6%
+  Stopped@1.0:  4.8%
+    Precomputing encoder-pullback target...
+  Stage 2 epoch 100/300: loss=0.976530
+  Stage 2 epoch 200/300: loss=0.889628
+  Stage 2 epoch 300/300: loss=0.881544
+  Stage 3 epoch 100/300: loss=0.110404
+  Stage 3 epoch 200/300: loss=0.059707
+  Stage 3 epoch 300/300: loss=0.045744
+
+    --- Diagnostic 1: Drift error along trajectory ---
+    t=0.00: drift_err=18.4290, cond#=1.3 (max=2.0), svd_max=1.967, svd_min=1.470, z_disp=0.000, amb_err=0.0215
+    t=0.10: drift_err=21.2745, cond#=1.4 (max=1.9), svd_max=1.859, svd_min=1.382, z_disp=0.402, amb_err=1.9378
+    t=0.25: drift_err=22.9858, cond#=1.4 (max=4.0), svd_max=1.786, svd_min=1.349, z_disp=0.622, amb_err=3.2697
+    t=0.50: drift_err=22.7403, cond#=1.4 (max=3.1), svd_max=1.764, svd_min=1.316, z_disp=0.758, amb_err=3.8923
+    t=0.75: drift_err=24.0054, cond#=1.4 (max=4.1), svd_max=1.857, svd_min=1.373, z_disp=0.887, amb_err=4.1153
+    t=0.99: drift_err=15.2650, cond#=1.5 (max=4.7), svd_max=1.767, svd_min=1.370, z_disp=0.835, amb_err=3.4644
+
+    --- Diagnostic 2: Decoder Jacobian at eval points ---
+    svd_max: 1.948±0.374
+    svd_min: 1.458±0.109
+    cond#:   1.3±0.2 (max=2.0)
+
+    --- Diagnostic 3: Varying dt ---
+    dt=0.0100 (n_steps=100): W2=0.7161, MTE@0.5=1.8933
+    dt=0.0050 (n_steps=200): W2=0.4326, MTE@0.5=1.6885
+    dt=0.0020 (n_steps=500): W2=0.5586, MTE@0.5=1.6806
+
+  === Condition: T+F ===
+      Epoch 100/500: loss=0.412362
+      Epoch 200/500: loss=0.031087
+      Epoch 300/500: loss=0.013758
+      Epoch 400/500: loss=0.006283
+      Epoch 500/500: loss=0.009002
+    recon_per_dim=0.001124
+    Static E_mu=0.0978  E_Sigma=0.1929
+  Precomputing encoder-pullback target...
+  Stage 2 epoch 60/300: loss=0.139974
+  Stage 2 epoch 120/300: loss=0.132540
+  Stage 2 epoch 180/300: loss=0.131488
+  Stage 2 epoch 240/300: loss=0.125739
+  Stage 2 epoch 300/300: loss=0.117311
+  Stage 3 epoch 60/300: loss=0.083107
+  Stage 3 epoch 120/300: loss=0.043940
+  Stage 3 epoch 180/300: loss=0.024521
+  Stage 3 epoch 240/300: loss=0.014614
+  Stage 3 epoch 300/300: loss=0.009827
+  MTE@0.1: 0.8919
+  MTE@0.5: 1.6260
+  MTE@1.0: 1.6996
+  W2@1.0:  1.0583
+  sW2@0.1: 0.4316 (293/500 in region)
+  sW2@0.2: 0.6760 (212/500 in region)
+  sW2@0.5: 1.1587 (88/500 in region)
+  sW2@1.0: 1.2532 (24/500 in region)
+  MMD@1.0: 0.3217
+  Survival@1.0: 26.6%
+  Stopped@1.0:  4.8%
+    Precomputing encoder-pullback target...
+  Stage 2 epoch 100/300: loss=0.151981
+  Stage 2 epoch 200/300: loss=0.133348
+  Stage 2 epoch 300/300: loss=0.117311
+  Stage 3 epoch 100/300: loss=0.055884
+  Stage 3 epoch 200/300: loss=0.023083
+  Stage 3 epoch 300/300: loss=0.009827
+
+    --- Diagnostic 1: Drift error along trajectory ---
+    t=0.00: drift_err=3.2221, cond#=1.5 (max=1.9), svd_max=2.625, svd_min=1.748, z_disp=0.000, amb_err=0.0116
+    t=0.10: drift_err=6.9818, cond#=1.5 (max=2.1), svd_max=2.607, svd_min=1.736, z_disp=0.308, amb_err=0.9502
+    t=0.25: drift_err=12.0192, cond#=1.6 (max=2.2), svd_max=2.627, svd_min=1.694, z_disp=0.584, amb_err=2.3569
+    t=0.50: drift_err=13.2662, cond#=1.5 (max=2.0), svd_max=2.578, svd_min=1.699, z_disp=0.730, amb_err=3.6528
+    t=0.75: drift_err=15.0988, cond#=1.5 (max=2.2), svd_max=2.538, svd_min=1.656, z_disp=0.846, amb_err=4.1307
+    t=0.99: drift_err=13.0992, cond#=1.5 (max=2.6), svd_max=2.476, svd_min=1.660, z_disp=0.882, amb_err=4.4580
+
+    --- Diagnostic 2: Decoder Jacobian at eval points ---
+    svd_max: 2.604±0.456
+    svd_min: 1.744±0.103
+    cond#:   1.5±0.2 (max=1.9)
+
+    --- Diagnostic 3: Varying dt ---
+    dt=0.0100 (n_steps=100): W2=1.0583, MTE@0.5=1.6260
+    dt=0.0050 (n_steps=200): W2=1.0944, MTE@0.5=1.4835
+    dt=0.0020 (n_steps=500): W2=1.2876, MTE@0.5=1.4203
+
+======================================================================
+  SEED 3042
+======================================================================
+
+  === Condition: no_penalty ===
+      Epoch 100/500: loss=0.025698
+      Epoch 200/500: loss=0.005883
+      Epoch 300/500: loss=0.001166
+      Epoch 400/500: loss=0.000477
+      Epoch 500/500: loss=0.000326
+    recon_per_dim=0.000264
+    Static E_mu=0.3488  E_Sigma=0.5348
+  Precomputing encoder-pullback target...
+  Stage 2 epoch 60/300: loss=1.529138
+  Stage 2 epoch 120/300: loss=1.179772
+  Stage 2 epoch 180/300: loss=1.105838
+  Stage 2 epoch 240/300: loss=1.006674
+  Stage 2 epoch 300/300: loss=1.168980
+  Stage 3 epoch 60/300: loss=0.135743
+  Stage 3 epoch 120/300: loss=0.099114
+  Stage 3 epoch 180/300: loss=0.074690
+  Stage 3 epoch 240/300: loss=0.063483
+  Stage 3 epoch 300/300: loss=0.064192
+  MTE@0.1: 0.8626
+  MTE@0.5: 1.2105
+  MTE@1.0: 1.3205
+  W2@1.0:  0.7129
+  sW2@0.1: 0.4109 (275/500 in region)
+  sW2@0.2: 0.4277 (204/500 in region)
+  sW2@0.5: 0.6949 (78/500 in region)
+  sW2@1.0: 1.1344 (25/500 in region)
+  MMD@1.0: 0.1580
+  Survival@1.0: 27.2%
+  Stopped@1.0:  5.0%
+    Precomputing encoder-pullback target...
+  Stage 2 epoch 100/300: loss=1.213607
+  Stage 2 epoch 200/300: loss=1.230408
+  Stage 2 epoch 300/300: loss=1.168980
+  Stage 3 epoch 100/300: loss=0.090829
+  Stage 3 epoch 200/300: loss=0.076414
+  Stage 3 epoch 300/300: loss=0.064192
+
+    --- Diagnostic 1: Drift error along trajectory ---
+    t=0.00: drift_err=21.1196, cond#=1.4 (max=1.7), svd_max=2.117, svd_min=1.550, z_disp=0.000, amb_err=0.0059
+    t=0.10: drift_err=26.9697, cond#=1.3 (max=1.6), svd_max=1.954, svd_min=1.480, z_disp=0.341, amb_err=1.1444
+    t=0.25: drift_err=13.6830, cond#=1.3 (max=1.9), svd_max=1.919, svd_min=1.444, z_disp=0.518, amb_err=1.5693
+    t=0.50: drift_err=14.8752, cond#=1.3 (max=1.6), svd_max=1.963, svd_min=1.475, z_disp=0.569, amb_err=1.1367
+    t=0.75: drift_err=8.1501, cond#=1.3 (max=1.6), svd_max=1.932, svd_min=1.482, z_disp=0.635, amb_err=1.0569
+    t=0.99: drift_err=24.0228, cond#=1.3 (max=1.6), svd_max=1.824, svd_min=1.442, z_disp=0.773, amb_err=1.8612
+
+    --- Diagnostic 2: Decoder Jacobian at eval points ---
+    svd_max: 2.067±0.261
+    svd_min: 1.511±0.122
+    cond#:   1.4±0.2 (max=1.7)
+
+    --- Diagnostic 3: Varying dt ---
+    dt=0.0100 (n_steps=100): W2=0.7129, MTE@0.5=1.2105
+    dt=0.0050 (n_steps=200): W2=0.6675, MTE@0.5=1.2035
+    dt=0.0020 (n_steps=500): W2=0.6013, MTE@0.5=1.2653
+
+  === Condition: T+F ===
+      Epoch 100/500: loss=0.548769
+      Epoch 200/500: loss=0.035259
+      Epoch 300/500: loss=0.008464
+      Epoch 400/500: loss=0.009393
+      Epoch 500/500: loss=0.002442
+    recon_per_dim=0.000028
+    Static E_mu=0.0383  E_Sigma=0.0295
+  Precomputing encoder-pullback target...
+  Stage 2 epoch 60/300: loss=0.161400
+  Stage 2 epoch 120/300: loss=0.145932
+  Stage 2 epoch 180/300: loss=0.147869
+  Stage 2 epoch 240/300: loss=0.154328
+  Stage 2 epoch 300/300: loss=0.149244
+  Stage 3 epoch 60/300: loss=0.070146
+  Stage 3 epoch 120/300: loss=0.054321
+  Stage 3 epoch 180/300: loss=0.042063
+  Stage 3 epoch 240/300: loss=0.034712
+  Stage 3 epoch 300/300: loss=0.031334
+  MTE@0.1: 0.8751
+  MTE@0.5: 1.3711
+  MTE@1.0: 1.7118
+  W2@1.0:  1.2070
+  sW2@0.1: 0.5273 (275/500 in region)
+  sW2@0.2: 0.6346 (204/500 in region)
+  sW2@0.5: 1.1722 (78/500 in region)
+  sW2@1.0: 1.6614 (25/500 in region)
+  MMD@1.0: 0.2301
+  Survival@1.0: 27.2%
+  Stopped@1.0:  5.0%
+    Precomputing encoder-pullback target...
+  Stage 2 epoch 100/300: loss=0.149733
+  Stage 2 epoch 200/300: loss=0.170209
+  Stage 2 epoch 300/300: loss=0.149244
+  Stage 3 epoch 100/300: loss=0.056798
+  Stage 3 epoch 200/300: loss=0.041647
+  Stage 3 epoch 300/300: loss=0.031334
+
+    --- Diagnostic 1: Drift error along trajectory ---
+    t=0.00: drift_err=3.0958, cond#=1.6 (max=2.3), svd_max=2.747, svd_min=1.705, z_disp=0.000, amb_err=0.0004
+    t=0.10: drift_err=14.0585, cond#=1.6 (max=2.2), svd_max=2.641, svd_min=1.659, z_disp=0.294, amb_err=1.2919
+    t=0.25: drift_err=12.8184, cond#=1.5 (max=2.1), svd_max=2.455, svd_min=1.617, z_disp=0.422, amb_err=1.8642
+    t=0.50: drift_err=9.7838, cond#=1.6 (max=2.1), svd_max=2.589, svd_min=1.651, z_disp=0.503, amb_err=1.7577
+    t=0.75: drift_err=7.2276, cond#=1.6 (max=2.0), svd_max=2.575, svd_min=1.643, z_disp=0.539, amb_err=1.1369
+    t=0.99: drift_err=21.1645, cond#=1.5 (max=2.1), svd_max=2.448, svd_min=1.611, z_disp=0.652, amb_err=2.5570
+
+    --- Diagnostic 2: Decoder Jacobian at eval points ---
+    svd_max: 2.696±0.459
+    svd_min: 1.662±0.167
+    cond#:   1.6±0.3 (max=2.4)
+
+    --- Diagnostic 3: Varying dt ---
+    dt=0.0100 (n_steps=100): W2=1.2070, MTE@0.5=1.3711
+    dt=0.0050 (n_steps=200): W2=1.2088, MTE@0.5=1.4000
+    dt=0.0020 (n_steps=500): W2=1.0749, MTE@0.5=1.4728
+
+======================================================================
+  SEED 4042
+======================================================================
+
+  === Condition: no_penalty ===
+      Epoch 100/500: loss=0.015158
+      Epoch 200/500: loss=0.007542
+      Epoch 300/500: loss=0.001608
+      Epoch 400/500: loss=0.000527
+      Epoch 500/500: loss=0.000659
+    recon_per_dim=0.000584
+    Static E_mu=0.6300  E_Sigma=0.8043
+  Precomputing encoder-pullback target...
+  Stage 2 epoch 60/300: loss=0.954285
+  Stage 2 epoch 120/300: loss=0.960363
+  Stage 2 epoch 180/300: loss=1.255932
+  Stage 2 epoch 240/300: loss=1.224734
+  Stage 2 epoch 300/300: loss=1.223061
+  Stage 3 epoch 60/300: loss=0.105422
+  Stage 3 epoch 120/300: loss=0.090421
+  Stage 3 epoch 180/300: loss=0.075326
+  Stage 3 epoch 240/300: loss=0.070137
+  Stage 3 epoch 300/300: loss=0.064848
+  MTE@0.1: 0.9976
+  MTE@0.5: 1.4096
+  MTE@1.0: 1.4389
+  W2@1.0:  0.5846
+  sW2@0.1: 0.3483 (287/500 in region)
+  sW2@0.2: 0.5281 (207/500 in region)
+  sW2@0.5: 0.4932 (102/500 in region)
+  sW2@1.0: 1.0329 (30/500 in region)
+  MMD@1.0: 0.2415
+  Survival@1.0: 28.2%
+  Stopped@1.0:  6.0%
+    Precomputing encoder-pullback target...
+  Stage 2 epoch 100/300: loss=1.013804
+  Stage 2 epoch 200/300: loss=1.183145
+  Stage 2 epoch 300/300: loss=1.223061
+  Stage 3 epoch 100/300: loss=0.123368
+  Stage 3 epoch 200/300: loss=0.066873
+  Stage 3 epoch 300/300: loss=0.064848
+
+    --- Diagnostic 1: Drift error along trajectory ---
+    t=0.00: drift_err=13.3214, cond#=1.4 (max=1.8), svd_max=1.921, svd_min=1.392, z_disp=0.000, amb_err=0.0150
+    t=0.10: drift_err=19.5679, cond#=1.4 (max=3.5), svd_max=1.848, svd_min=1.345, z_disp=0.417, amb_err=1.2781
+    t=0.25: drift_err=33.0927, cond#=1.4 (max=4.5), svd_max=1.756, svd_min=1.271, z_disp=0.636, amb_err=2.4196
+    t=0.50: drift_err=17.9170, cond#=1.4 (max=1.8), svd_max=1.887, svd_min=1.387, z_disp=0.728, amb_err=2.5804
+    t=0.75: drift_err=24.1370, cond#=1.4 (max=2.4), svd_max=1.760, svd_min=1.288, z_disp=1.070, amb_err=3.4429
+    t=0.99: drift_err=11.3309, cond#=1.4 (max=1.8), svd_max=1.794, svd_min=1.303, z_disp=1.066, amb_err=2.5792
+
+    --- Diagnostic 2: Decoder Jacobian at eval points ---
+    svd_max: 1.897±0.142
+    svd_min: 1.395±0.165
+    cond#:   1.4±0.2 (max=1.8)
+
+    --- Diagnostic 3: Varying dt ---
+    dt=0.0100 (n_steps=100): W2=0.5846, MTE@0.5=1.4096
+    dt=0.0050 (n_steps=200): W2=0.4983, MTE@0.5=1.3757
+    dt=0.0020 (n_steps=500): W2=0.6743, MTE@0.5=1.4711
+
+  === Condition: T+F ===
+      Epoch 100/500: loss=0.312504
+      Epoch 200/500: loss=0.052106
+      Epoch 300/500: loss=0.019672
+      Epoch 400/500: loss=0.016793
+      Epoch 500/500: loss=0.005687
+    recon_per_dim=0.000089
+    Static E_mu=0.1798  E_Sigma=0.1489
+  Precomputing encoder-pullback target...
+  Stage 2 epoch 60/300: loss=0.149213
+  Stage 2 epoch 120/300: loss=0.152329
+  Stage 2 epoch 180/300: loss=0.190306
+  Stage 2 epoch 240/300: loss=0.190923
+  Stage 2 epoch 300/300: loss=0.190612
+  Stage 3 epoch 60/300: loss=0.062745
+  Stage 3 epoch 120/300: loss=0.050211
+  Stage 3 epoch 180/300: loss=0.038726
+  Stage 3 epoch 240/300: loss=0.037028
+  Stage 3 epoch 300/300: loss=0.035078
+  MTE@0.1: 0.7338
+  MTE@0.5: 1.4466
+  MTE@1.0: 1.8806
+  W2@1.0:  1.5547
+  sW2@0.1: 0.4148 (287/500 in region)
+  sW2@0.2: 0.6207 (207/500 in region)
+  sW2@0.5: 1.1009 (102/500 in region)
+  sW2@1.0: 2.2578 (30/500 in region)
+  MMD@1.0: 0.3674
+  Survival@1.0: 28.2%
+  Stopped@1.0:  6.0%
+    Precomputing encoder-pullback target...
+  Stage 2 epoch 100/300: loss=0.145866
+  Stage 2 epoch 200/300: loss=0.187866
+  Stage 2 epoch 300/300: loss=0.190612
+  Stage 3 epoch 100/300: loss=0.068710
+  Stage 3 epoch 200/300: loss=0.038147
+  Stage 3 epoch 300/300: loss=0.035078
+
+    --- Diagnostic 1: Drift error along trajectory ---
+    t=0.00: drift_err=3.1865, cond#=1.6 (max=2.0), svd_max=2.832, svd_min=1.785, z_disp=0.000, amb_err=0.0031
+    t=0.10: drift_err=7.2740, cond#=1.5 (max=2.1), svd_max=2.709, svd_min=1.784, z_disp=0.288, amb_err=0.8823
+    t=0.25: drift_err=6.6289, cond#=1.5 (max=2.1), svd_max=2.594, svd_min=1.777, z_disp=0.456, amb_err=1.9019
+    t=0.50: drift_err=15.9591, cond#=1.5 (max=2.1), svd_max=2.677, svd_min=1.740, z_disp=0.551, amb_err=2.2629
+    t=0.75: drift_err=14.4697, cond#=1.6 (max=2.5), svd_max=2.672, svd_min=1.754, z_disp=0.881, amb_err=4.2165
+    t=0.99: drift_err=8.5944, cond#=1.5 (max=2.1), svd_max=2.507, svd_min=1.734, z_disp=0.839, amb_err=4.0142
+
+    --- Diagnostic 2: Decoder Jacobian at eval points ---
+    svd_max: 2.820±0.448
+    svd_min: 1.794±0.162
+    cond#:   1.6±0.3 (max=2.1)
+
+    --- Diagnostic 3: Varying dt ---
+    dt=0.0100 (n_steps=100): W2=1.5547, MTE@0.5=1.4466
+    dt=0.0050 (n_steps=200): W2=1.3652, MTE@0.5=1.4130
+    dt=0.0020 (n_steps=500): W2=1.0504, MTE@0.5=1.3947
+
+
+================================================================================
+SUMMARY
+================================================================================
+
+  --- no_penalty ---
+    E_mu:       0.9839±0.5773
+    W2@1.0:     0.7033±0.0682
+    cond#(mean): 1.4±0.0
+    cond#(max):  1.8±0.1
+    svd_max:    1.969±0.057
+    svd_min:    1.441±0.041
+    dt sensitivity:
+      dt=0.0100: W2=0.7033±0.0682, MTE@0.5=1.4182±0.2487
+      dt=0.0050: W2=0.6277±0.1397, MTE@0.5=1.3747±0.1672
+      dt=0.0020: W2=0.6773±0.1022, MTE@0.5=1.3937±0.1640
+
+  --- T+F ---
+    E_mu:       0.1174±0.0483
+    W2@1.0:     1.1316±0.3343
+    cond#(mean): 1.5±0.1
+    cond#(max):  2.1±0.2
+    svd_max:    2.656±0.093
+    svd_min:    1.724±0.047
+    dt sensitivity:
+      dt=0.0100: W2=1.1316±0.3343, MTE@0.5=1.3686±0.3634
+      dt=0.0050: W2=1.1220±0.2995, MTE@0.5=1.3384±0.3705
+      dt=0.0020: W2=1.1053±0.2466, MTE@0.5=1.3241±0.3571
+
+  --- Drift error along trajectory ---
+
+    no_penalty:
+      t=0.00: drift_err=19.3954±3.3577, cond#=1.4, amb_err=0.0272±0.0194
+      t=0.10: drift_err=21.1974±3.0750, cond#=1.4, amb_err=1.2717±0.3615
+      t=0.25: drift_err=20.9212±6.7747, cond#=1.4, amb_err=2.1075±0.6699
+      t=0.50: drift_err=17.8785±2.6953, cond#=1.4, amb_err=2.4737±0.8762
+      t=0.75: drift_err=16.6733±6.3866, cond#=1.4, amb_err=2.7200±1.0373
+      t=0.99: drift_err=16.2904±4.2827, cond#=1.4, amb_err=2.6847±0.5180
+
+    T+F:
+      t=0.00: drift_err=3.5313±0.5000, cond#=1.5, amb_err=0.0066±0.0042
+      t=0.10: drift_err=8.2104±2.9517, cond#=1.5, amb_err=0.9286±0.3427
+      t=0.25: drift_err=9.5195±2.5774, cond#=1.5, amb_err=1.6934±0.6621
+      t=0.50: drift_err=11.7500±2.6008, cond#=1.5, amb_err=2.5248±1.2509
+      t=0.75: drift_err=11.4234±2.9570, cond#=1.5, amb_err=3.1296±1.6870
+      t=0.99: drift_err=13.4115±4.3643, cond#=1.5, amb_err=3.6141±1.6322

@@ -1,7 +1,7 @@
 from ..symbolic.manifold_sdes import ManifoldSDE
 from .sampler import ImportanceSampler
 from .datasets import DatasetBatch
-from typing import Tuple
+from typing import Tuple, Optional
 import numpy as np
 import sympy as sp
 import torch
@@ -55,6 +55,153 @@ def sample_from_manifold(manifold_sde: ManifoldSDE, bounds, n_samples=1000, seed
     return convert_samples_to_torch(
         (ambient_samples, local_samples, extrinsic_drifts, extrinsic_covariances, orthogonal_projections, weights, hessians, local_covs),
         device=device
+    )
+
+
+def _greedy_delta_net(candidates: np.ndarray, delta: float,
+                      metric_fn=None, seed: int = 42) -> np.ndarray:
+    """Select a maximal delta-separated subset (delta-net) from candidates.
+
+    Args:
+        candidates: (N, d) array of candidate points in local coordinates.
+        delta: Minimum separation distance between landmarks.
+        metric_fn: Optional callable (u,v) -> (d,d) ndarray returning the
+            Riemannian metric tensor g at a point.  If None, Euclidean
+            distance is used.
+        seed: Random seed (used to shuffle candidate ordering).
+
+    Returns:
+        Integer index array into *candidates* for the selected net points.
+    """
+    rng = np.random.default_rng(seed)
+    order = rng.permutation(len(candidates))
+    selected = []  # indices into candidates
+    selected_pts = []  # cached coordinates
+
+    for idx in order:
+        pt = candidates[idx]
+        too_close = False
+        for sel_pt in selected_pts:
+            diff = pt - sel_pt
+            if metric_fn is not None:
+                # Riemannian distance: sqrt(diff^T g diff), g at midpoint
+                mid = 0.5 * (pt + sel_pt)
+                g = metric_fn(*mid)
+                dist_sq = diff @ g @ diff
+            else:
+                dist_sq = diff @ diff
+            if dist_sq < delta * delta:
+                too_close = True
+                break
+        if not too_close:
+            selected.append(idx)
+            selected_pts.append(pt)
+
+    return np.array(selected)
+
+
+def sample_delta_net_from_manifold(
+    manifold_sde: ManifoldSDE,
+    bounds,
+    n_landmarks: int,
+    n_candidates: int = 10000,
+    seed: Optional[int] = None,
+    device: str = 'cpu',
+) -> DatasetBatch:
+    """Sample well-distributed landmarks via greedy delta-net subsampling.
+
+    Generates a large uniform candidate pool, then selects a maximal
+    delta-separated subset using the Riemannian metric.  The separation
+    delta is chosen automatically so that approximately n_landmarks
+    points are selected (binary search).
+
+    Args:
+        manifold_sde: ManifoldSDE defining the manifold and dynamics.
+        bounds: List of (lo, hi) tuples for each local coordinate.
+        n_landmarks: Desired number of landmarks.
+        n_candidates: Size of the candidate pool (>> n_landmarks).
+        seed: Random seed.
+        device: Torch device.
+
+    Returns:
+        DatasetBatch with the selected landmarks.
+    """
+    rng = np.random.default_rng(seed)
+
+    # 1. Generate candidate pool (uniform in local coords)
+    d = len(bounds)
+    candidates = np.column_stack([
+        rng.uniform(lo, hi, n_candidates) for lo, hi in bounds
+    ])
+
+    # 2. Build a numpy metric function from the symbolic metric tensor
+    g_sym = manifold_sde.manifold.metric_tensor()
+    np_metric = manifold_sde.manifold.sympy_to_numpy(g_sym)
+
+    def metric_fn(*args):
+        return np.array(np_metric(*args), dtype=np.float64)
+
+    # 3. Binary search for delta that gives ~n_landmarks points
+    # Estimate scale from domain size
+    domain_diag = np.sqrt(sum((hi - lo)**2 for lo, hi in bounds))
+    delta_lo, delta_hi = 0.0, domain_diag
+    best_indices = None
+
+    for _ in range(30):  # bisection iterations
+        delta_mid = 0.5 * (delta_lo + delta_hi)
+        indices = _greedy_delta_net(candidates, delta_mid, metric_fn, seed=seed)
+        n_sel = len(indices)
+        if n_sel < n_landmarks:
+            delta_hi = delta_mid  # too sparse, reduce delta
+        else:
+            delta_lo = delta_mid  # too dense, increase delta
+            best_indices = indices
+
+    if best_indices is None:
+        # delta was always too large; take all candidates with smallest delta
+        best_indices = _greedy_delta_net(candidates, delta_lo, metric_fn, seed=seed)
+
+    # If we have more than needed, subsample; if fewer, keep all
+    if len(best_indices) > n_landmarks:
+        best_indices = rng.choice(best_indices, n_landmarks, replace=False)
+
+    selected_local = candidates[best_indices]
+
+    # 4. Compute all manifold quantities at selected points
+    np_vol = manifold_sde.manifold.sympy_to_numpy(manifold_sde.manifold.volume_density())
+    np_phi = manifold_sde.manifold.sympy_to_numpy(manifold_sde.manifold.chart)
+    np_ambient_drift = manifold_sde.manifold.sympy_to_numpy(manifold_sde.ambient_drift)
+    np_ambient_covariance = manifold_sde.manifold.sympy_to_numpy(manifold_sde.ambient_covariance)
+    np_phi_hessian = [
+        manifold_sde.manifold.sympy_to_numpy(
+            sp.hessian(manifold_sde.manifold.chart[i], manifold_sde.manifold.local_coordinates)
+        )
+        for i in range(manifold_sde.extrinsic_dim)
+    ]
+    np_local_cov = manifold_sde.manifold.sympy_to_numpy(manifold_sde.local_covariance)
+
+    ambient_samples = np.squeeze(
+        np.array([np_phi(*pt) for pt in selected_local]), axis=-1)
+    extrinsic_drifts = np.squeeze(
+        np.array([np_ambient_drift(*pt) for pt in selected_local]), axis=-1)
+    extrinsic_covariances = np.array(
+        [np_ambient_covariance(*pt) for pt in selected_local])
+    hessians = np.array(
+        [[np_phi_hessian[i](*pt) for i in range(manifold_sde.extrinsic_dim)]
+         for pt in selected_local])
+    local_covs = np.array([np_local_cov(*pt) for pt in selected_local])
+
+    # Importance weights: volume density (for consistency with other samplers)
+    raw_weights = np.array([float(np_vol(*pt)) for pt in selected_local])
+    weights = raw_weights / raw_weights.sum()
+
+    return convert_samples_to_torch(
+        (ambient_samples, selected_local, extrinsic_drifts,
+         extrinsic_covariances,
+         np.zeros((len(selected_local), manifold_sde.extrinsic_dim,
+                    manifold_sde.extrinsic_dim)),  # placeholder for projections
+         weights, hessians, local_covs),
+        device=device,
     )
 
 

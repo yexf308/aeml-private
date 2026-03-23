@@ -1,0 +1,3970 @@
+Device: cuda
+Surfaces: ['paraboloid', 'hyperbolic_paraboloid', 'quartic_dome', 'sinusoidal']
+Seeds (10): [42, 1042, 2042, 3042, 4042, 5042, 6042, 7042, 8042, 9042]
+AE epochs: 500, SDE epochs: 500
+N_TRAIN=20, N_TRAJ=500, T_MAX=1.0, DT=0.01
+
+======================================================================
+Surface: paraboloid
+======================================================================
+  Lambdifying SDE...
+
+============================================================
+  paraboloid | seed=42
+============================================================
+
+  Stage 1: AE (T+F, 500 epochs)
+    Epoch 100: loss=0.734580
+    Epoch 200: loss=0.331667
+    Epoch 300: loss=0.048390
+    Epoch 400: loss=0.036269
+    Epoch 500: loss=0.008697
+  Precomputing decoder derivatives (T+F)...
+  Precomputing encoder-pullback target (T+F)...
+  Stage 3: Diffusion net (T+F AE, 500 epochs)
+  Stage 3 epoch 100/500: loss=0.631766
+  Stage 3 epoch 200/500: loss=0.209671
+  Stage 3 epoch 300/500: loss=0.176803
+  Stage 3 epoch 400/500: loss=0.159896
+  Stage 3 epoch 500/500: loss=0.153373
+
+  Stage 1: AE (baseline, 500 epochs)
+    Epoch 100: loss=0.032449
+    Epoch 200: loss=0.028961
+    Epoch 300: loss=0.014075
+    Epoch 400: loss=0.009617
+    Epoch 500: loss=0.005801
+  Precomputing decoder derivatives (baseline)...
+  Precomputing encoder-pullback target (baseline)...
+  Stage 3: Diffusion net (baseline AE, 500 epochs)
+  Stage 3 epoch 100/500: loss=1.924313
+  Stage 3 epoch 200/500: loss=1.751543
+  Stage 3 epoch 300/500: loss=1.625880
+  Stage 3 epoch 400/500: loss=1.608643
+  Stage 3 epoch 500/500: loss=1.604947
+
+  --- Condition: baseline (drift=enc_pull) ---
+    Stage 2: Drift net (encoder pullback, 500 epochs)
+  Stage 2 epoch 100/500: loss=4.642978
+  Stage 2 epoch 200/500: loss=4.226577
+  Stage 2 epoch 300/500: loss=4.356077
+  Stage 2 epoch 400/500: loss=3.738826
+  Stage 2 epoch 500/500: loss=3.065727
+    Evaluating trajectory fidelity...
+  MTE@0.1: 0.8302
+  MTE@0.5: 1.2365
+  MTE@1.0: 1.2676
+  W2@1.0:  0.6929
+  sW2@0.1: 0.5105 (292/500 in region)
+  sW2@0.2: 0.7300 (214/500 in region)
+  sW2@0.5: 0.8249 (97/500 in region)
+  sW2@1.0: 1.2930 (21/500 in region)
+  MMD@1.0: 0.2252
+  Survival@1.0: 28.0%
+  Stopped@1.0:  4.2%
+    baseline: W2=0.6929  MTE=1.2676  MMD=0.2252  E_mu=3.071468  (8s)
+
+  --- Condition: T+F (dec) (drift=decoder) ---
+    Stage 2: Drift net (decoder-side, 500 epochs)
+  Stage 2 epoch 100/500: loss=0.578605
+  Stage 2 epoch 200/500: loss=0.506646
+  Stage 2 epoch 300/500: loss=0.511893
+  Stage 2 epoch 400/500: loss=0.518117
+  Stage 2 epoch 500/500: loss=0.447341
+    Evaluating trajectory fidelity...
+  MTE@0.1: 0.4269
+  MTE@0.5: 1.0207
+  MTE@1.0: 1.5329
+  W2@1.0:  1.3252
+  sW2@0.1: 0.2087 (292/500 in region)
+  sW2@0.2: 0.3589 (214/500 in region)
+  sW2@0.5: 0.6286 (97/500 in region)
+  sW2@1.0: 1.0349 (21/500 in region)
+  MMD@1.0: 0.4521
+  Survival@1.0: 28.0%
+  Stopped@1.0:  4.2%
+    T+F (dec): W2=1.3252  MTE=1.5329  MMD=0.4521  E_mu=0.117137  (7s)
+
+  --- Condition: T+F (enc) (drift=enc_pull) ---
+    Stage 2: Drift net (encoder pullback, 500 epochs)
+  Stage 2 epoch 100/500: loss=0.748459
+  Stage 2 epoch 200/500: loss=0.720166
+  Stage 2 epoch 300/500: loss=0.692332
+  Stage 2 epoch 400/500: loss=0.696119
+  Stage 2 epoch 500/500: loss=0.597345
+    Evaluating trajectory fidelity...
+  MTE@0.1: 0.4210
+  MTE@0.5: 0.8241
+  MTE@1.0: 0.9829
+  W2@1.0:  0.6173
+  sW2@0.1: 0.1684 (292/500 in region)
+  sW2@0.2: 0.2699 (214/500 in region)
+  sW2@0.5: 0.5462 (97/500 in region)
+  sW2@1.0: 0.7451 (21/500 in region)
+  MMD@1.0: 0.3250
+  Survival@1.0: 28.0%
+  Stopped@1.0:  4.2%
+    T+F (enc): W2=0.6173  MTE=0.9829  MMD=0.3250  E_mu=0.117137  (5s)
+
+============================================================
+  paraboloid | seed=1042
+============================================================
+
+  Stage 1: AE (T+F, 500 epochs)
+    Epoch 100: loss=0.430567
+    Epoch 200: loss=0.086333
+    Epoch 300: loss=0.027231
+    Epoch 400: loss=0.010977
+    Epoch 500: loss=0.011287
+  Precomputing decoder derivatives (T+F)...
+  Precomputing encoder-pullback target (T+F)...
+  Stage 3: Diffusion net (T+F AE, 500 epochs)
+  Stage 3 epoch 100/500: loss=0.339224
+  Stage 3 epoch 200/500: loss=0.193333
+  Stage 3 epoch 300/500: loss=0.054161
+  Stage 3 epoch 400/500: loss=0.042940
+  Stage 3 epoch 500/500: loss=0.032868
+
+  Stage 1: AE (baseline, 500 epochs)
+    Epoch 100: loss=0.029414
+    Epoch 200: loss=0.029075
+    Epoch 300: loss=0.028563
+    Epoch 400: loss=0.023225
+    Epoch 500: loss=0.010783
+  Precomputing decoder derivatives (baseline)...
+  Precomputing encoder-pullback target (baseline)...
+  Stage 3: Diffusion net (baseline AE, 500 epochs)
+  Stage 3 epoch 100/500: loss=2.486725
+  Stage 3 epoch 200/500: loss=2.340099
+  Stage 3 epoch 300/500: loss=2.266372
+  Stage 3 epoch 400/500: loss=2.235876
+  Stage 3 epoch 500/500: loss=2.224918
+
+  --- Condition: baseline (drift=enc_pull) ---
+    Stage 2: Drift net (encoder pullback, 500 epochs)
+  Stage 2 epoch 100/500: loss=1.523958
+  Stage 2 epoch 200/500: loss=1.362250
+  Stage 2 epoch 300/500: loss=1.248479
+  Stage 2 epoch 400/500: loss=1.252233
+  Stage 2 epoch 500/500: loss=1.138152
+    Evaluating trajectory fidelity...
+  MTE@0.1: 0.7908
+  MTE@0.5: 1.2139
+  MTE@1.0: 1.4043
+  W2@1.0:  0.9600
+  sW2@0.1: 0.3438 (285/500 in region)
+  sW2@0.2: 0.5494 (204/500 in region)
+  sW2@0.5: 0.6459 (98/500 in region)
+  sW2@1.0: 0.9627 (31/500 in region)
+  MMD@1.0: 0.2154
+  Survival@1.0: 29.8%
+  Stopped@1.0:  6.2%
+    baseline: W2=0.9600  MTE=1.4043  MMD=0.2154  E_mu=2.703405  (5s)
+
+  --- Condition: T+F (dec) (drift=decoder) ---
+    Stage 2: Drift net (decoder-side, 500 epochs)
+  Stage 2 epoch 100/500: loss=0.222291
+  Stage 2 epoch 200/500: loss=0.208510
+  Stage 2 epoch 300/500: loss=0.165718
+  Stage 2 epoch 400/500: loss=0.155476
+  Stage 2 epoch 500/500: loss=0.151368
+    Evaluating trajectory fidelity...
+  MTE@0.1: 0.8186
+  MTE@0.5: 1.3694
+  MTE@1.0: 1.6392
+  W2@1.0:  0.9505
+  sW2@0.1: 0.4726 (285/500 in region)
+  sW2@0.2: 0.6275 (204/500 in region)
+  sW2@0.5: 0.7846 (98/500 in region)
+  sW2@1.0: 1.2041 (31/500 in region)
+  MMD@1.0: 0.2981
+  Survival@1.0: 29.8%
+  Stopped@1.0:  6.2%
+    T+F (dec): W2=0.9505  MTE=1.6392  MMD=0.2981  E_mu=0.049103  (5s)
+
+  --- Condition: T+F (enc) (drift=enc_pull) ---
+    Stage 2: Drift net (encoder pullback, 500 epochs)
+  Stage 2 epoch 100/500: loss=0.884652
+  Stage 2 epoch 200/500: loss=0.792769
+  Stage 2 epoch 300/500: loss=0.639731
+  Stage 2 epoch 400/500: loss=0.560622
+  Stage 2 epoch 500/500: loss=0.518282
+    Evaluating trajectory fidelity...
+  MTE@0.1: 0.7808
+  MTE@0.5: 1.1152
+  MTE@1.0: 1.2149
+  W2@1.0:  0.8119
+  sW2@0.1: 0.3676 (285/500 in region)
+  sW2@0.2: 0.4524 (204/500 in region)
+  sW2@0.5: 0.3400 (98/500 in region)
+  sW2@1.0: 0.7623 (31/500 in region)
+  MMD@1.0: 0.1805
+  Survival@1.0: 29.8%
+  Stopped@1.0:  6.2%
+    T+F (enc): W2=0.8119  MTE=1.2149  MMD=0.1805  E_mu=0.049103  (5s)
+
+============================================================
+  paraboloid | seed=2042
+============================================================
+
+  Stage 1: AE (T+F, 500 epochs)
+    Epoch 100: loss=0.604837
+    Epoch 200: loss=0.128088
+    Epoch 300: loss=0.030871
+    Epoch 400: loss=0.012893
+    Epoch 500: loss=0.009301
+  Precomputing decoder derivatives (T+F)...
+  Precomputing encoder-pullback target (T+F)...
+  Stage 3: Diffusion net (T+F AE, 500 epochs)
+  Stage 3 epoch 100/500: loss=0.577000
+  Stage 3 epoch 200/500: loss=0.317350
+  Stage 3 epoch 300/500: loss=0.162314
+  Stage 3 epoch 400/500: loss=0.113995
+  Stage 3 epoch 500/500: loss=0.089264
+
+  Stage 1: AE (baseline, 500 epochs)
+    Epoch 100: loss=0.048425
+    Epoch 200: loss=0.028748
+    Epoch 300: loss=0.009360
+    Epoch 400: loss=0.007079
+    Epoch 500: loss=0.000820
+  Precomputing decoder derivatives (baseline)...
+  Precomputing encoder-pullback target (baseline)...
+  Stage 3: Diffusion net (baseline AE, 500 epochs)
+  Stage 3 epoch 100/500: loss=2.662761
+  Stage 3 epoch 200/500: loss=1.932113
+  Stage 3 epoch 300/500: loss=1.826502
+  Stage 3 epoch 400/500: loss=1.772063
+  Stage 3 epoch 500/500: loss=1.739653
+
+  --- Condition: baseline (drift=enc_pull) ---
+    Stage 2: Drift net (encoder pullback, 500 epochs)
+  Stage 2 epoch 100/500: loss=4.177494
+  Stage 2 epoch 200/500: loss=3.801671
+  Stage 2 epoch 300/500: loss=3.653487
+  Stage 2 epoch 400/500: loss=4.550864
+  Stage 2 epoch 500/500: loss=3.250938
+    Evaluating trajectory fidelity...
+  MTE@0.1: 0.8051
+  MTE@0.5: 1.2534
+  MTE@1.0: 1.1512
+  W2@1.0:  0.6587
+  sW2@0.1: 0.3990 (293/500 in region)
+  sW2@0.2: 0.5892 (212/500 in region)
+  sW2@0.5: 0.8682 (88/500 in region)
+  sW2@1.0: 0.3881 (24/500 in region)
+  MMD@1.0: 0.2327
+  Survival@1.0: 26.6%
+  Stopped@1.0:  4.8%
+    baseline: W2=0.6587  MTE=1.1512  MMD=0.2327  E_mu=0.659697  (5s)
+
+  --- Condition: T+F (dec) (drift=decoder) ---
+    Stage 2: Drift net (decoder-side, 500 epochs)
+  Stage 2 epoch 100/500: loss=0.536784
+  Stage 2 epoch 200/500: loss=0.503778
+  Stage 2 epoch 300/500: loss=0.454338
+  Stage 2 epoch 400/500: loss=0.426377
+  Stage 2 epoch 500/500: loss=0.454141
+    Evaluating trajectory fidelity...
+  MTE@0.1: 0.7870
+  MTE@0.5: 1.3311
+  MTE@1.0: 1.4404
+  W2@1.0:  1.0094
+  sW2@0.1: 0.7047 (293/500 in region)
+  sW2@0.2: 0.9543 (212/500 in region)
+  sW2@0.5: 1.0874 (88/500 in region)
+  sW2@1.0: 1.1990 (24/500 in region)
+  MMD@1.0: 0.3206
+  Survival@1.0: 26.6%
+  Stopped@1.0:  4.8%
+    T+F (dec): W2=1.0094  MTE=1.4404  MMD=0.3206  E_mu=0.054451  (5s)
+
+  --- Condition: T+F (enc) (drift=enc_pull) ---
+    Stage 2: Drift net (encoder pullback, 500 epochs)
+  Stage 2 epoch 100/500: loss=0.884320
+  Stage 2 epoch 200/500: loss=0.849631
+  Stage 2 epoch 300/500: loss=0.813203
+  Stage 2 epoch 400/500: loss=0.764177
+  Stage 2 epoch 500/500: loss=0.736211
+    Evaluating trajectory fidelity...
+  MTE@0.1: 0.7538
+  MTE@0.5: 1.1757
+  MTE@1.0: 1.2035
+  W2@1.0:  0.6476
+  sW2@0.1: 0.5984 (293/500 in region)
+  sW2@0.2: 0.7571 (212/500 in region)
+  sW2@0.5: 0.5825 (88/500 in region)
+  sW2@1.0: 0.7717 (24/500 in region)
+  MMD@1.0: 0.1953
+  Survival@1.0: 26.6%
+  Stopped@1.0:  4.8%
+    T+F (enc): W2=0.6476  MTE=1.2035  MMD=0.1953  E_mu=0.054451  (5s)
+
+============================================================
+  paraboloid | seed=3042
+============================================================
+
+  Stage 1: AE (T+F, 500 epochs)
+    Epoch 100: loss=0.409766
+    Epoch 200: loss=0.092619
+    Epoch 300: loss=0.020118
+    Epoch 400: loss=0.012347
+    Epoch 500: loss=0.009120
+  Precomputing decoder derivatives (T+F)...
+  Precomputing encoder-pullback target (T+F)...
+  Stage 3: Diffusion net (T+F AE, 500 epochs)
+  Stage 3 epoch 100/500: loss=0.387066
+  Stage 3 epoch 200/500: loss=0.088628
+  Stage 3 epoch 300/500: loss=0.068214
+  Stage 3 epoch 400/500: loss=0.058709
+  Stage 3 epoch 500/500: loss=0.051461
+
+  Stage 1: AE (baseline, 500 epochs)
+    Epoch 100: loss=0.045761
+    Epoch 200: loss=0.037710
+    Epoch 300: loss=0.023171
+    Epoch 400: loss=0.003199
+    Epoch 500: loss=0.002044
+  Precomputing decoder derivatives (baseline)...
+  Precomputing encoder-pullback target (baseline)...
+  Stage 3: Diffusion net (baseline AE, 500 epochs)
+  Stage 3 epoch 100/500: loss=0.768088
+  Stage 3 epoch 200/500: loss=0.501717
+  Stage 3 epoch 300/500: loss=0.397396
+  Stage 3 epoch 400/500: loss=0.345051
+  Stage 3 epoch 500/500: loss=0.307870
+
+  --- Condition: baseline (drift=enc_pull) ---
+    Stage 2: Drift net (encoder pullback, 500 epochs)
+  Stage 2 epoch 100/500: loss=5.672563
+  Stage 2 epoch 200/500: loss=5.452075
+  Stage 2 epoch 300/500: loss=4.313049
+  Stage 2 epoch 400/500: loss=5.126739
+  Stage 2 epoch 500/500: loss=6.451461
+    Evaluating trajectory fidelity...
+  MTE@0.1: 0.9246
+  MTE@0.5: 1.3350
+  MTE@1.0: 1.2900
+  W2@1.0:  0.5508
+  sW2@0.1: 0.3866 (275/500 in region)
+  sW2@0.2: 0.5624 (204/500 in region)
+  sW2@0.5: 0.4840 (78/500 in region)
+  sW2@1.0: 0.5241 (25/500 in region)
+  MMD@1.0: 0.1775
+  Survival@1.0: 27.2%
+  Stopped@1.0:  5.0%
+    baseline: W2=0.5508  MTE=1.2900  MMD=0.1775  E_mu=0.258665  (5s)
+
+  --- Condition: T+F (dec) (drift=decoder) ---
+    Stage 2: Drift net (decoder-side, 500 epochs)
+  Stage 2 epoch 100/500: loss=0.467673
+  Stage 2 epoch 200/500: loss=0.448784
+  Stage 2 epoch 300/500: loss=0.440570
+  Stage 2 epoch 400/500: loss=0.423857
+  Stage 2 epoch 500/500: loss=0.438544
+    Evaluating trajectory fidelity...
+  MTE@0.1: 1.0514
+  MTE@0.5: 2.0498
+  MTE@1.0: 2.5176
+  W2@1.0:  2.3554
+  sW2@0.1: 0.7539 (275/500 in region)
+  sW2@0.2: 1.1859 (204/500 in region)
+  sW2@0.5: 1.9426 (78/500 in region)
+  sW2@1.0: 2.5649 (25/500 in region)
+  MMD@1.0: 0.4153
+  Survival@1.0: 27.2%
+  Stopped@1.0:  5.0%
+    T+F (dec): W2=2.3554  MTE=2.5176  MMD=0.4153  E_mu=0.071581  (5s)
+
+  --- Condition: T+F (enc) (drift=enc_pull) ---
+    Stage 2: Drift net (encoder pullback, 500 epochs)
+  Stage 2 epoch 100/500: loss=0.500625
+  Stage 2 epoch 200/500: loss=0.481481
+  Stage 2 epoch 300/500: loss=0.446820
+  Stage 2 epoch 400/500: loss=0.450812
+  Stage 2 epoch 500/500: loss=0.415718
+    Evaluating trajectory fidelity...
+  MTE@0.1: 1.0191
+  MTE@0.5: 1.6594
+  MTE@1.0: 1.6919
+  W2@1.0:  1.2383
+  sW2@0.1: 0.6579 (275/500 in region)
+  sW2@0.2: 0.9818 (204/500 in region)
+  sW2@0.5: 1.2940 (78/500 in region)
+  sW2@1.0: 1.1584 (25/500 in region)
+  MMD@1.0: 0.2823
+  Survival@1.0: 27.2%
+  Stopped@1.0:  5.0%
+    T+F (enc): W2=1.2383  MTE=1.6919  MMD=0.2823  E_mu=0.071581  (5s)
+
+============================================================
+  paraboloid | seed=4042
+============================================================
+
+  Stage 1: AE (T+F, 500 epochs)
+    Epoch 100: loss=0.374004
+    Epoch 200: loss=0.044884
+    Epoch 300: loss=0.023724
+    Epoch 400: loss=0.016963
+    Epoch 500: loss=0.011931
+  Precomputing decoder derivatives (T+F)...
+  Precomputing encoder-pullback target (T+F)...
+  Stage 3: Diffusion net (T+F AE, 500 epochs)
+  Stage 3 epoch 100/500: loss=0.235649
+  Stage 3 epoch 200/500: loss=0.098478
+  Stage 3 epoch 300/500: loss=0.063998
+  Stage 3 epoch 400/500: loss=0.053527
+  Stage 3 epoch 500/500: loss=0.049674
+
+  Stage 1: AE (baseline, 500 epochs)
+    Epoch 100: loss=0.035737
+    Epoch 200: loss=0.016612
+    Epoch 300: loss=0.025106
+    Epoch 400: loss=0.002169
+    Epoch 500: loss=0.001436
+  Precomputing decoder derivatives (baseline)...
+  Precomputing encoder-pullback target (baseline)...
+  Stage 3: Diffusion net (baseline AE, 500 epochs)
+  Stage 3 epoch 100/500: loss=0.480363
+  Stage 3 epoch 200/500: loss=0.353050
+  Stage 3 epoch 300/500: loss=0.314229
+  Stage 3 epoch 400/500: loss=0.300824
+  Stage 3 epoch 500/500: loss=0.292528
+
+  --- Condition: baseline (drift=enc_pull) ---
+    Stage 2: Drift net (encoder pullback, 500 epochs)
+  Stage 2 epoch 100/500: loss=2.606713
+  Stage 2 epoch 200/500: loss=2.490760
+  Stage 2 epoch 300/500: loss=2.274228
+  Stage 2 epoch 400/500: loss=2.226758
+  Stage 2 epoch 500/500: loss=2.193512
+    Evaluating trajectory fidelity...
+  MTE@0.1: 1.0763
+  MTE@0.5: 1.6347
+  MTE@1.0: 1.6533
+  W2@1.0:  1.0185
+  sW2@0.1: 0.4638 (287/500 in region)
+  sW2@0.2: 0.8080 (207/500 in region)
+  sW2@0.5: 0.8430 (102/500 in region)
+  sW2@1.0: 0.9889 (30/500 in region)
+  MMD@1.0: 0.2646
+  Survival@1.0: 28.2%
+  Stopped@1.0:  6.0%
+    baseline: W2=1.0185  MTE=1.6533  MMD=0.2646  E_mu=0.755115  (6s)
+
+  --- Condition: T+F (dec) (drift=decoder) ---
+    Stage 2: Drift net (decoder-side, 500 epochs)
+  Stage 2 epoch 100/500: loss=0.317516
+  Stage 2 epoch 200/500: loss=0.313976
+  Stage 2 epoch 300/500: loss=0.298883
+  Stage 2 epoch 400/500: loss=0.299527
+  Stage 2 epoch 500/500: loss=0.306589
+    Evaluating trajectory fidelity...
+  MTE@0.1: 1.0798
+  MTE@0.5: 1.8441
+  MTE@1.0: 2.2239
+  W2@1.0:  1.6789
+  sW2@0.1: 0.5753 (287/500 in region)
+  sW2@0.2: 0.9462 (207/500 in region)
+  sW2@0.5: 1.2228 (102/500 in region)
+  sW2@1.0: 2.1171 (30/500 in region)
+  MMD@1.0: 0.3827
+  Survival@1.0: 28.2%
+  Stopped@1.0:  6.0%
+    T+F (dec): W2=1.6789  MTE=2.2239  MMD=0.3827  E_mu=0.087766  (5s)
+
+  --- Condition: T+F (enc) (drift=enc_pull) ---
+    Stage 2: Drift net (encoder pullback, 500 epochs)
+  Stage 2 epoch 100/500: loss=0.268628
+  Stage 2 epoch 200/500: loss=0.255054
+  Stage 2 epoch 300/500: loss=0.246689
+  Stage 2 epoch 400/500: loss=0.243923
+  Stage 2 epoch 500/500: loss=0.252858
+    Evaluating trajectory fidelity...
+  MTE@0.1: 1.0597
+  MTE@0.5: 1.6964
+  MTE@1.0: 1.9276
+  W2@1.0:  1.3364
+  sW2@0.1: 0.5150 (287/500 in region)
+  sW2@0.2: 0.8190 (207/500 in region)
+  sW2@0.5: 1.0085 (102/500 in region)
+  sW2@1.0: 1.9644 (30/500 in region)
+  MMD@1.0: 0.3161
+  Survival@1.0: 28.2%
+  Stopped@1.0:  6.0%
+    T+F (enc): W2=1.3364  MTE=1.9276  MMD=0.3161  E_mu=0.087766  (5s)
+
+============================================================
+  paraboloid | seed=5042
+============================================================
+
+  Stage 1: AE (T+F, 500 epochs)
+    Epoch 100: loss=0.255059
+    Epoch 200: loss=0.071236
+    Epoch 300: loss=0.020724
+    Epoch 400: loss=0.018688
+    Epoch 500: loss=0.014815
+  Precomputing decoder derivatives (T+F)...
+  Precomputing encoder-pullback target (T+F)...
+  Stage 3: Diffusion net (T+F AE, 500 epochs)
+  Stage 3 epoch 100/500: loss=0.271968
+  Stage 3 epoch 200/500: loss=0.229442
+  Stage 3 epoch 300/500: loss=0.203212
+  Stage 3 epoch 400/500: loss=0.192585
+  Stage 3 epoch 500/500: loss=0.182592
+
+  Stage 1: AE (baseline, 500 epochs)
+    Epoch 100: loss=0.013417
+    Epoch 200: loss=0.011714
+    Epoch 300: loss=0.005447
+    Epoch 400: loss=0.004707
+    Epoch 500: loss=0.043089
+  Precomputing decoder derivatives (baseline)...
+  Precomputing encoder-pullback target (baseline)...
+  Stage 3: Diffusion net (baseline AE, 500 epochs)
+  Stage 3 epoch 100/500: loss=0.975993
+  Stage 3 epoch 200/500: loss=0.798007
+  Stage 3 epoch 300/500: loss=0.778413
+  Stage 3 epoch 400/500: loss=0.770190
+  Stage 3 epoch 500/500: loss=0.766321
+
+  --- Condition: baseline (drift=enc_pull) ---
+    Stage 2: Drift net (encoder pullback, 500 epochs)
+  Stage 2 epoch 100/500: loss=2.232070
+  Stage 2 epoch 200/500: loss=1.298716
+  Stage 2 epoch 300/500: loss=0.864826
+  Stage 2 epoch 400/500: loss=0.731078
+  Stage 2 epoch 500/500: loss=1.313807
+    Evaluating trajectory fidelity...
+  MTE@0.1: 0.9601
+  MTE@0.5: 1.3477
+  MTE@1.0: 1.3851
+  W2@1.0:  1.2281
+  sW2@0.1: 0.6339 (285/500 in region)
+  sW2@0.2: 0.6696 (216/500 in region)
+  sW2@0.5: 0.8075 (93/500 in region)
+  sW2@1.0: 1.3740 (33/500 in region)
+  MMD@1.0: 0.5081
+  Survival@1.0: 25.8%
+  Stopped@1.0:  6.6%
+    baseline: W2=1.2281  MTE=1.3851  MMD=0.5081  E_mu=1.832313  (5s)
+
+  --- Condition: T+F (dec) (drift=decoder) ---
+    Stage 2: Drift net (decoder-side, 500 epochs)
+  Stage 2 epoch 100/500: loss=0.781970
+  Stage 2 epoch 200/500: loss=0.397135
+  Stage 2 epoch 300/500: loss=0.306442
+  Stage 2 epoch 400/500: loss=0.200215
+  Stage 2 epoch 500/500: loss=0.167351
+    Evaluating trajectory fidelity...
+  MTE@0.1: 0.9645
+  MTE@0.5: 1.7105
+  MTE@1.0: 1.8666
+  W2@1.0:  1.7803
+  sW2@0.1: 0.7145 (285/500 in region)
+  sW2@0.2: 0.8862 (216/500 in region)
+  sW2@0.5: 1.1494 (93/500 in region)
+  sW2@1.0: 1.6953 (33/500 in region)
+  MMD@1.0: 0.3770
+  Survival@1.0: 25.8%
+  Stopped@1.0:  6.6%
+    T+F (dec): W2=1.7803  MTE=1.8666  MMD=0.3770  E_mu=0.372119  (5s)
+
+  --- Condition: T+F (enc) (drift=enc_pull) ---
+    Stage 2: Drift net (encoder pullback, 500 epochs)
+  Stage 2 epoch 100/500: loss=0.433602
+  Stage 2 epoch 200/500: loss=0.249139
+  Stage 2 epoch 300/500: loss=0.194246
+  Stage 2 epoch 400/500: loss=0.134659
+  Stage 2 epoch 500/500: loss=0.118990
+    Evaluating trajectory fidelity...
+  MTE@0.1: 0.9060
+  MTE@0.5: 1.4151
+  MTE@1.0: 1.4097
+  W2@1.0:  1.2301
+  sW2@0.1: 0.5294 (285/500 in region)
+  sW2@0.2: 0.5799 (216/500 in region)
+  sW2@0.5: 0.6287 (93/500 in region)
+  sW2@1.0: 1.2823 (33/500 in region)
+  MMD@1.0: 0.3050
+  Survival@1.0: 25.8%
+  Stopped@1.0:  6.6%
+    T+F (enc): W2=1.2301  MTE=1.4097  MMD=0.3050  E_mu=0.372119  (6s)
+
+============================================================
+  paraboloid | seed=6042
+============================================================
+
+  Stage 1: AE (T+F, 500 epochs)
+    Epoch 100: loss=0.217232
+    Epoch 200: loss=0.127302
+    Epoch 300: loss=0.047220
+    Epoch 400: loss=0.031556
+    Epoch 500: loss=0.011599
+  Precomputing decoder derivatives (T+F)...
+  Precomputing encoder-pullback target (T+F)...
+  Stage 3: Diffusion net (T+F AE, 500 epochs)
+  Stage 3 epoch 100/500: loss=0.245003
+  Stage 3 epoch 200/500: loss=0.208087
+  Stage 3 epoch 300/500: loss=0.194538
+  Stage 3 epoch 400/500: loss=0.208367
+  Stage 3 epoch 500/500: loss=0.178182
+
+  Stage 1: AE (baseline, 500 epochs)
+    Epoch 100: loss=0.034704
+    Epoch 200: loss=0.036093
+    Epoch 300: loss=0.009773
+    Epoch 400: loss=0.011680
+    Epoch 500: loss=0.003404
+  Precomputing decoder derivatives (baseline)...
+  Precomputing encoder-pullback target (baseline)...
+  Stage 3: Diffusion net (baseline AE, 500 epochs)
+  Stage 3 epoch 100/500: loss=1.079832
+  Stage 3 epoch 200/500: loss=1.054943
+  Stage 3 epoch 300/500: loss=1.044652
+  Stage 3 epoch 400/500: loss=1.038628
+  Stage 3 epoch 500/500: loss=1.033034
+
+  --- Condition: baseline (drift=enc_pull) ---
+    Stage 2: Drift net (encoder pullback, 500 epochs)
+  Stage 2 epoch 100/500: loss=2.081900
+  Stage 2 epoch 200/500: loss=1.937188
+  Stage 2 epoch 300/500: loss=1.882176
+  Stage 2 epoch 400/500: loss=1.830656
+  Stage 2 epoch 500/500: loss=1.836512
+    Evaluating trajectory fidelity...
+  MTE@0.1: 0.8187
+  MTE@0.5: 1.1800
+  MTE@1.0: 1.0965
+  W2@1.0:  0.9995
+  sW2@0.1: 0.4854 (290/500 in region)
+  sW2@0.2: 0.5505 (208/500 in region)
+  sW2@0.5: 0.6221 (89/500 in region)
+  sW2@1.0: 0.6671 (30/500 in region)
+  MMD@1.0: 0.3388
+  Survival@1.0: 27.2%
+  Stopped@1.0:  6.0%
+    baseline: W2=0.9995  MTE=1.0965  MMD=0.3388  E_mu=1.964754  (5s)
+
+  --- Condition: T+F (dec) (drift=decoder) ---
+    Stage 2: Drift net (decoder-side, 500 epochs)
+  Stage 2 epoch 100/500: loss=0.600308
+  Stage 2 epoch 200/500: loss=0.566210
+  Stage 2 epoch 300/500: loss=0.565313
+  Stage 2 epoch 400/500: loss=0.524358
+  Stage 2 epoch 500/500: loss=0.534085
+    Evaluating trajectory fidelity...
+  MTE@0.1: 0.7356
+  MTE@0.5: 1.2862
+  MTE@1.0: 1.2694
+  W2@1.0:  0.8419
+  sW2@0.1: 0.3341 (290/500 in region)
+  sW2@0.2: 0.3997 (208/500 in region)
+  sW2@0.5: 0.5002 (89/500 in region)
+  sW2@1.0: 0.7054 (30/500 in region)
+  MMD@1.0: 0.2658
+  Survival@1.0: 27.2%
+  Stopped@1.0:  6.0%
+    T+F (dec): W2=0.8419  MTE=1.2694  MMD=0.2658  E_mu=0.103330  (5s)
+
+  --- Condition: T+F (enc) (drift=enc_pull) ---
+    Stage 2: Drift net (encoder pullback, 500 epochs)
+  Stage 2 epoch 100/500: loss=0.789715
+  Stage 2 epoch 200/500: loss=0.661242
+  Stage 2 epoch 300/500: loss=0.659636
+  Stage 2 epoch 400/500: loss=0.741262
+  Stage 2 epoch 500/500: loss=0.588752
+    Evaluating trajectory fidelity...
+  MTE@0.1: 0.7347
+  MTE@0.5: 1.2456
+  MTE@1.0: 1.2167
+  W2@1.0:  0.8338
+  sW2@0.1: 0.3099 (290/500 in region)
+  sW2@0.2: 0.3601 (208/500 in region)
+  sW2@0.5: 0.4704 (89/500 in region)
+  sW2@1.0: 0.6304 (30/500 in region)
+  MMD@1.0: 0.2486
+  Survival@1.0: 27.2%
+  Stopped@1.0:  6.0%
+    T+F (enc): W2=0.8338  MTE=1.2167  MMD=0.2486  E_mu=0.103330  (5s)
+
+============================================================
+  paraboloid | seed=7042
+============================================================
+
+  Stage 1: AE (T+F, 500 epochs)
+    Epoch 100: loss=0.314515
+    Epoch 200: loss=0.060357
+    Epoch 300: loss=0.050441
+    Epoch 400: loss=0.004175
+    Epoch 500: loss=0.009667
+  Precomputing decoder derivatives (T+F)...
+  Precomputing encoder-pullback target (T+F)...
+  Stage 3: Diffusion net (T+F AE, 500 epochs)
+  Stage 3 epoch 100/500: loss=0.131757
+  Stage 3 epoch 200/500: loss=0.023400
+  Stage 3 epoch 300/500: loss=0.016059
+  Stage 3 epoch 400/500: loss=0.014520
+  Stage 3 epoch 500/500: loss=0.013893
+
+  Stage 1: AE (baseline, 500 epochs)
+    Epoch 100: loss=0.029923
+    Epoch 200: loss=0.028027
+    Epoch 300: loss=0.017422
+    Epoch 400: loss=0.004458
+    Epoch 500: loss=0.001100
+  Precomputing decoder derivatives (baseline)...
+  Precomputing encoder-pullback target (baseline)...
+  Stage 3: Diffusion net (baseline AE, 500 epochs)
+  Stage 3 epoch 100/500: loss=1.001500
+  Stage 3 epoch 200/500: loss=0.785035
+  Stage 3 epoch 300/500: loss=0.741581
+  Stage 3 epoch 400/500: loss=0.715261
+  Stage 3 epoch 500/500: loss=0.682247
+
+  --- Condition: baseline (drift=enc_pull) ---
+    Stage 2: Drift net (encoder pullback, 500 epochs)
+  Stage 2 epoch 100/500: loss=2.612270
+  Stage 2 epoch 200/500: loss=2.305452
+  Stage 2 epoch 300/500: loss=1.866848
+  Stage 2 epoch 400/500: loss=1.853216
+  Stage 2 epoch 500/500: loss=1.683033
+    Evaluating trajectory fidelity...
+  MTE@0.1: 0.8556
+  MTE@0.5: 1.2826
+  MTE@1.0: 1.3430
+  W2@1.0:  0.6857
+  sW2@0.1: 0.4351 (316/500 in region)
+  sW2@0.2: 0.5559 (232/500 in region)
+  sW2@0.5: 0.5178 (109/500 in region)
+  sW2@1.0: 0.5942 (29/500 in region)
+  MMD@1.0: 0.1626
+  Survival@1.0: 28.8%
+  Stopped@1.0:  5.8%
+    baseline: W2=0.6857  MTE=1.3430  MMD=0.1626  E_mu=1.053027  (6s)
+
+  --- Condition: T+F (dec) (drift=decoder) ---
+    Stage 2: Drift net (decoder-side, 500 epochs)
+  Stage 2 epoch 100/500: loss=0.146692
+  Stage 2 epoch 200/500: loss=0.141130
+  Stage 2 epoch 300/500: loss=0.141256
+  Stage 2 epoch 400/500: loss=0.138930
+  Stage 2 epoch 500/500: loss=0.144139
+    Evaluating trajectory fidelity...
+  MTE@0.1: 0.8809
+  MTE@0.5: 1.5951
+  MTE@1.0: 1.8550
+  W2@1.0:  1.2224
+  sW2@0.1: 0.5733 (316/500 in region)
+  sW2@0.2: 0.8375 (232/500 in region)
+  sW2@0.5: 0.9650 (109/500 in region)
+  sW2@1.0: 1.4548 (29/500 in region)
+  MMD@1.0: 0.3864
+  Survival@1.0: 28.8%
+  Stopped@1.0:  5.8%
+    T+F (dec): W2=1.2224  MTE=1.8550  MMD=0.3864  E_mu=0.042312  (5s)
+
+  --- Condition: T+F (enc) (drift=enc_pull) ---
+    Stage 2: Drift net (encoder pullback, 500 epochs)
+  Stage 2 epoch 100/500: loss=0.243037
+  Stage 2 epoch 200/500: loss=0.237617
+  Stage 2 epoch 300/500: loss=0.238604
+  Stage 2 epoch 400/500: loss=0.223596
+  Stage 2 epoch 500/500: loss=0.228903
+    Evaluating trajectory fidelity...
+  MTE@0.1: 0.8619
+  MTE@0.5: 1.4328
+  MTE@1.0: 1.4967
+  W2@1.0:  0.7453
+  sW2@0.1: 0.5256 (316/500 in region)
+  sW2@0.2: 0.7306 (232/500 in region)
+  sW2@0.5: 0.7389 (109/500 in region)
+  sW2@1.0: 1.0204 (29/500 in region)
+  MMD@1.0: 0.2747
+  Survival@1.0: 28.8%
+  Stopped@1.0:  5.8%
+    T+F (enc): W2=0.7453  MTE=1.4967  MMD=0.2747  E_mu=0.042312  (5s)
+
+============================================================
+  paraboloid | seed=8042
+============================================================
+
+  Stage 1: AE (T+F, 500 epochs)
+    Epoch 100: loss=0.314688
+    Epoch 200: loss=0.050619
+    Epoch 300: loss=0.018098
+    Epoch 400: loss=0.016959
+    Epoch 500: loss=0.002621
+  Precomputing decoder derivatives (T+F)...
+  Precomputing encoder-pullback target (T+F)...
+  Stage 3: Diffusion net (T+F AE, 500 epochs)
+  Stage 3 epoch 100/500: loss=0.147752
+  Stage 3 epoch 200/500: loss=0.105967
+  Stage 3 epoch 300/500: loss=0.081378
+  Stage 3 epoch 400/500: loss=0.060888
+  Stage 3 epoch 500/500: loss=0.051681
+
+  Stage 1: AE (baseline, 500 epochs)
+    Epoch 100: loss=0.040291
+    Epoch 200: loss=0.025290
+    Epoch 300: loss=0.006269
+    Epoch 400: loss=0.005300
+    Epoch 500: loss=0.004030
+  Precomputing decoder derivatives (baseline)...
+  Precomputing encoder-pullback target (baseline)...
+  Stage 3: Diffusion net (baseline AE, 500 epochs)
+  Stage 3 epoch 100/500: loss=0.453660
+  Stage 3 epoch 200/500: loss=0.339598
+  Stage 3 epoch 300/500: loss=0.275463
+  Stage 3 epoch 400/500: loss=0.252336
+  Stage 3 epoch 500/500: loss=0.239735
+
+  --- Condition: baseline (drift=enc_pull) ---
+    Stage 2: Drift net (encoder pullback, 500 epochs)
+  Stage 2 epoch 100/500: loss=1.825683
+  Stage 2 epoch 200/500: loss=1.666942
+  Stage 2 epoch 300/500: loss=1.577627
+  Stage 2 epoch 400/500: loss=1.662479
+  Stage 2 epoch 500/500: loss=1.327429
+    Evaluating trajectory fidelity...
+  MTE@0.1: 0.7677
+  MTE@0.5: 1.1009
+  MTE@1.0: 1.4556
+  W2@1.0:  1.1198
+  sW2@0.1: 0.3594 (269/500 in region)
+  sW2@0.2: 0.4853 (192/500 in region)
+  sW2@0.5: 0.7706 (84/500 in region)
+  sW2@1.0: 1.5369 (29/500 in region)
+  MMD@1.0: 0.2441
+  Survival@1.0: 27.0%
+  Stopped@1.0:  5.8%
+    baseline: W2=1.1198  MTE=1.4556  MMD=0.2441  E_mu=0.523158  (5s)
+
+  --- Condition: T+F (dec) (drift=decoder) ---
+    Stage 2: Drift net (decoder-side, 500 epochs)
+  Stage 2 epoch 100/500: loss=0.246009
+  Stage 2 epoch 200/500: loss=0.244396
+  Stage 2 epoch 300/500: loss=0.241583
+  Stage 2 epoch 400/500: loss=0.240131
+  Stage 2 epoch 500/500: loss=0.240956
+    Evaluating trajectory fidelity...
+  MTE@0.1: 0.7096
+  MTE@0.5: 1.2486
+  MTE@1.0: 1.5548
+  W2@1.0:  0.9167
+  sW2@0.1: 0.3291 (269/500 in region)
+  sW2@0.2: 0.4834 (192/500 in region)
+  sW2@0.5: 0.8367 (84/500 in region)
+  sW2@1.0: 1.5862 (29/500 in region)
+  MMD@1.0: 0.3067
+  Survival@1.0: 27.0%
+  Stopped@1.0:  5.8%
+    T+F (dec): W2=0.9167  MTE=1.5548  MMD=0.3067  E_mu=0.092211  (5s)
+
+  --- Condition: T+F (enc) (drift=enc_pull) ---
+    Stage 2: Drift net (encoder pullback, 500 epochs)
+  Stage 2 epoch 100/500: loss=0.356442
+  Stage 2 epoch 200/500: loss=0.339026
+  Stage 2 epoch 300/500: loss=0.318330
+  Stage 2 epoch 400/500: loss=0.309370
+  Stage 2 epoch 500/500: loss=0.302702
+    Evaluating trajectory fidelity...
+  MTE@0.1: 0.7036
+  MTE@0.5: 1.1145
+  MTE@1.0: 1.3508
+  W2@1.0:  0.6886
+  sW2@0.1: 0.2998 (269/500 in region)
+  sW2@0.2: 0.4265 (192/500 in region)
+  sW2@0.5: 0.6560 (84/500 in region)
+  sW2@1.0: 1.2285 (29/500 in region)
+  MMD@1.0: 0.2498
+  Survival@1.0: 27.0%
+  Stopped@1.0:  5.8%
+    T+F (enc): W2=0.6886  MTE=1.3508  MMD=0.2498  E_mu=0.092211  (5s)
+
+============================================================
+  paraboloid | seed=9042
+============================================================
+
+  Stage 1: AE (T+F, 500 epochs)
+    Epoch 100: loss=0.634333
+    Epoch 200: loss=0.235904
+    Epoch 300: loss=0.051707
+    Epoch 400: loss=0.036538
+    Epoch 500: loss=0.031721
+  Precomputing decoder derivatives (T+F)...
+  Precomputing encoder-pullback target (T+F)...
+  Stage 3: Diffusion net (T+F AE, 500 epochs)
+  Stage 3 epoch 100/500: loss=0.322911
+  Stage 3 epoch 200/500: loss=0.083719
+  Stage 3 epoch 300/500: loss=0.056693
+  Stage 3 epoch 400/500: loss=0.050099
+  Stage 3 epoch 500/500: loss=0.047046
+
+  Stage 1: AE (baseline, 500 epochs)
+    Epoch 100: loss=0.033903
+    Epoch 200: loss=0.030608
+    Epoch 300: loss=0.011199
+    Epoch 400: loss=0.005470
+    Epoch 500: loss=0.003171
+  Precomputing decoder derivatives (baseline)...
+  Precomputing encoder-pullback target (baseline)...
+  Stage 3: Diffusion net (baseline AE, 500 epochs)
+  Stage 3 epoch 100/500: loss=0.606106
+  Stage 3 epoch 200/500: loss=0.407739
+  Stage 3 epoch 300/500: loss=0.333556
+  Stage 3 epoch 400/500: loss=0.316646
+  Stage 3 epoch 500/500: loss=0.304174
+
+  --- Condition: baseline (drift=enc_pull) ---
+    Stage 2: Drift net (encoder pullback, 500 epochs)
+  Stage 2 epoch 100/500: loss=2.995505
+  Stage 2 epoch 200/500: loss=2.775630
+  Stage 2 epoch 300/500: loss=2.504828
+  Stage 2 epoch 400/500: loss=2.735981
+  Stage 2 epoch 500/500: loss=2.417352
+    Evaluating trajectory fidelity...
+  MTE@0.1: 0.8631
+  MTE@0.5: 1.2476
+  MTE@1.0: 1.5864
+  W2@1.0:  1.0500
+  sW2@0.1: 0.4231 (280/500 in region)
+  sW2@0.2: 0.4553 (205/500 in region)
+  sW2@0.5: 0.8020 (85/500 in region)
+  sW2@1.0: 1.0052 (22/500 in region)
+  MMD@1.0: 0.3193
+  Survival@1.0: 28.2%
+  Stopped@1.0:  4.4%
+    baseline: W2=1.0500  MTE=1.5864  MMD=0.3193  E_mu=0.912030  (6s)
+
+  --- Condition: T+F (dec) (drift=decoder) ---
+    Stage 2: Drift net (decoder-side, 500 epochs)
+  Stage 2 epoch 100/500: loss=0.317452
+  Stage 2 epoch 200/500: loss=0.298576
+  Stage 2 epoch 300/500: loss=0.291744
+  Stage 2 epoch 400/500: loss=0.299425
+  Stage 2 epoch 500/500: loss=0.288101
+    Evaluating trajectory fidelity...
+  MTE@0.1: 0.7832
+  MTE@0.5: 1.3845
+  MTE@1.0: 2.0289
+  W2@1.0:  1.5909
+  sW2@0.1: 0.4454 (280/500 in region)
+  sW2@0.2: 0.5987 (205/500 in region)
+  sW2@0.5: 1.1947 (85/500 in region)
+  sW2@1.0: 1.4669 (22/500 in region)
+  MMD@1.0: 0.3780
+  Survival@1.0: 28.2%
+  Stopped@1.0:  4.4%
+    T+F (dec): W2=1.5909  MTE=2.0289  MMD=0.3780  E_mu=0.075785  (5s)
+
+  --- Condition: T+F (enc) (drift=enc_pull) ---
+    Stage 2: Drift net (encoder pullback, 500 epochs)
+  Stage 2 epoch 100/500: loss=0.304891
+  Stage 2 epoch 200/500: loss=0.279708
+  Stage 2 epoch 300/500: loss=0.262499
+  Stage 2 epoch 400/500: loss=0.280302
+  Stage 2 epoch 500/500: loss=0.264235
+    Evaluating trajectory fidelity...
+  MTE@0.1: 0.7839
+  MTE@0.5: 1.3683
+  MTE@1.0: 1.9189
+  W2@1.0:  1.4561
+  sW2@0.1: 0.4384 (280/500 in region)
+  sW2@0.2: 0.5837 (205/500 in region)
+  sW2@0.5: 1.1394 (85/500 in region)
+  sW2@1.0: 1.3188 (22/500 in region)
+  MMD@1.0: 0.3354
+  Survival@1.0: 28.2%
+  Stopped@1.0:  4.4%
+    T+F (enc): W2=1.4561  MTE=1.9189  MMD=0.3354  E_mu=0.075785  (5s)
+
+======================================================================
+Surface: hyperbolic_paraboloid
+======================================================================
+  Lambdifying SDE...
+
+============================================================
+  hyperbolic_paraboloid | seed=42
+============================================================
+
+  Stage 1: AE (T+F, 500 epochs)
+    Epoch 100: loss=0.738288
+    Epoch 200: loss=0.596634
+    Epoch 300: loss=0.351177
+    Epoch 400: loss=0.324629
+    Epoch 500: loss=0.277782
+  Precomputing decoder derivatives (T+F)...
+  Precomputing encoder-pullback target (T+F)...
+  Stage 3: Diffusion net (T+F AE, 500 epochs)
+  Stage 3 epoch 100/500: loss=1.046228
+  Stage 3 epoch 200/500: loss=0.491361
+  Stage 3 epoch 300/500: loss=0.316698
+  Stage 3 epoch 400/500: loss=0.238960
+  Stage 3 epoch 500/500: loss=0.215481
+
+  Stage 1: AE (baseline, 500 epochs)
+    Epoch 100: loss=0.058035
+    Epoch 200: loss=0.008969
+    Epoch 300: loss=0.004773
+    Epoch 400: loss=0.003666
+    Epoch 500: loss=0.002535
+  Precomputing decoder derivatives (baseline)...
+  Precomputing encoder-pullback target (baseline)...
+  Stage 3: Diffusion net (baseline AE, 500 epochs)
+  Stage 3 epoch 100/500: loss=1.140174
+  Stage 3 epoch 200/500: loss=0.619360
+  Stage 3 epoch 300/500: loss=0.527891
+  Stage 3 epoch 400/500: loss=0.514049
+  Stage 3 epoch 500/500: loss=0.508821
+
+  --- Condition: baseline (drift=enc_pull) ---
+    Stage 2: Drift net (encoder pullback, 500 epochs)
+  Stage 2 epoch 100/500: loss=1.086513
+  Stage 2 epoch 200/500: loss=0.964028
+  Stage 2 epoch 300/500: loss=0.935893
+  Stage 2 epoch 400/500: loss=0.976818
+  Stage 2 epoch 500/500: loss=0.840368
+    Evaluating trajectory fidelity...
+  MTE@0.1: 0.6469
+  MTE@0.5: 1.0802
+  MTE@1.0: 1.0267
+  W2@1.0:  0.6072
+  sW2@0.1: 0.3002 (292/500 in region)
+  sW2@0.2: 0.3250 (214/500 in region)
+  sW2@0.5: 0.4363 (97/500 in region)
+  sW2@1.0: 0.4811 (21/500 in region)
+  MMD@1.0: 0.2263
+  Survival@1.0: 28.0%
+  Stopped@1.0:  4.2%
+    baseline: W2=0.6072  MTE=1.0267  MMD=0.2263  E_mu=0.134853  (5s)
+
+  --- Condition: T+F (dec) (drift=decoder) ---
+    Stage 2: Drift net (decoder-side, 500 epochs)
+  Stage 2 epoch 100/500: loss=9.401070
+  Stage 2 epoch 200/500: loss=8.093490
+  Stage 2 epoch 300/500: loss=8.161258
+  Stage 2 epoch 400/500: loss=8.885962
+  Stage 2 epoch 500/500: loss=7.575425
+    Evaluating trajectory fidelity...
+  MTE@0.1: 0.8050
+  MTE@0.5: 1.4931
+  MTE@1.0: 1.9209
+  W2@1.0:  1.6037
+  sW2@0.1: 0.3837 (292/500 in region)
+  sW2@0.2: 0.4905 (214/500 in region)
+  sW2@0.5: 1.0695 (97/500 in region)
+  sW2@1.0: 1.6138 (21/500 in region)
+  MMD@1.0: 0.3802
+  Survival@1.0: 28.0%
+  Stopped@1.0:  4.2%
+    T+F (dec): W2=1.6037  MTE=1.9209  MMD=0.3802  E_mu=0.740770  (5s)
+
+  --- Condition: T+F (enc) (drift=enc_pull) ---
+    Stage 2: Drift net (encoder pullback, 500 epochs)
+  Stage 2 epoch 100/500: loss=2.760226
+  Stage 2 epoch 200/500: loss=2.635680
+  Stage 2 epoch 300/500: loss=2.585263
+  Stage 2 epoch 400/500: loss=2.449548
+  Stage 2 epoch 500/500: loss=2.496857
+    Evaluating trajectory fidelity...
+  MTE@0.1: 0.7574
+  MTE@0.5: 1.0201
+  MTE@1.0: 1.0475
+  W2@1.0:  0.5646
+  sW2@0.1: 0.3510 (292/500 in region)
+  sW2@0.2: 0.3713 (214/500 in region)
+  sW2@0.5: 0.6230 (97/500 in region)
+  sW2@1.0: 0.5305 (21/500 in region)
+  MMD@1.0: 0.1694
+  Survival@1.0: 28.0%
+  Stopped@1.0:  4.2%
+    T+F (enc): W2=0.5646  MTE=1.0475  MMD=0.1694  E_mu=0.740770  (5s)
+
+============================================================
+  hyperbolic_paraboloid | seed=1042
+============================================================
+
+  Stage 1: AE (T+F, 500 epochs)
+    Epoch 100: loss=0.500111
+    Epoch 200: loss=0.058129
+    Epoch 300: loss=0.018877
+    Epoch 400: loss=0.011459
+    Epoch 500: loss=0.001735
+  Precomputing decoder derivatives (T+F)...
+  Precomputing encoder-pullback target (T+F)...
+  Stage 3: Diffusion net (T+F AE, 500 epochs)
+  Stage 3 epoch 100/500: loss=0.199116
+  Stage 3 epoch 200/500: loss=0.119441
+  Stage 3 epoch 300/500: loss=0.077163
+  Stage 3 epoch 400/500: loss=0.050587
+  Stage 3 epoch 500/500: loss=0.037441
+
+  Stage 1: AE (baseline, 500 epochs)
+    Epoch 100: loss=0.042781
+    Epoch 200: loss=0.025449
+    Epoch 300: loss=0.004415
+    Epoch 400: loss=0.004482
+    Epoch 500: loss=0.001022
+  Precomputing decoder derivatives (baseline)...
+  Precomputing encoder-pullback target (baseline)...
+  Stage 3: Diffusion net (baseline AE, 500 epochs)
+  Stage 3 epoch 100/500: loss=0.591199
+  Stage 3 epoch 200/500: loss=0.438962
+  Stage 3 epoch 300/500: loss=0.398713
+  Stage 3 epoch 400/500: loss=0.380613
+  Stage 3 epoch 500/500: loss=0.368583
+
+  --- Condition: baseline (drift=enc_pull) ---
+    Stage 2: Drift net (encoder pullback, 500 epochs)
+  Stage 2 epoch 100/500: loss=1.224864
+  Stage 2 epoch 200/500: loss=1.014948
+  Stage 2 epoch 300/500: loss=0.778934
+  Stage 2 epoch 400/500: loss=0.649924
+  Stage 2 epoch 500/500: loss=0.586948
+    Evaluating trajectory fidelity...
+  MTE@0.1: 0.7472
+  MTE@0.5: 1.2928
+  MTE@1.0: 1.7569
+  W2@1.0:  1.1545
+  sW2@0.1: 0.3037 (285/500 in region)
+  sW2@0.2: 0.4632 (204/500 in region)
+  sW2@0.5: 0.6061 (98/500 in region)
+  sW2@1.0: 1.2224 (31/500 in region)
+  MMD@1.0: 0.2270
+  Survival@1.0: 29.8%
+  Stopped@1.0:  6.2%
+    baseline: W2=1.1545  MTE=1.7569  MMD=0.2270  E_mu=0.317600  (5s)
+
+  --- Condition: T+F (dec) (drift=decoder) ---
+    Stage 2: Drift net (decoder-side, 500 epochs)
+  Stage 2 epoch 100/500: loss=0.293530
+  Stage 2 epoch 200/500: loss=0.195683
+  Stage 2 epoch 300/500: loss=0.177016
+  Stage 2 epoch 400/500: loss=0.166592
+  Stage 2 epoch 500/500: loss=0.154309
+    Evaluating trajectory fidelity...
+  MTE@0.1: 0.8799
+  MTE@0.5: 1.6089
+  MTE@1.0: 2.1597
+  W2@1.0:  1.4442
+  sW2@0.1: 0.3589 (285/500 in region)
+  sW2@0.2: 0.5738 (204/500 in region)
+  sW2@0.5: 0.9875 (98/500 in region)
+  sW2@1.0: 1.7198 (31/500 in region)
+  MMD@1.0: 0.2846
+  Survival@1.0: 29.8%
+  Stopped@1.0:  6.2%
+    T+F (dec): W2=1.4442  MTE=2.1597  MMD=0.2846  E_mu=0.022453  (5s)
+
+  --- Condition: T+F (enc) (drift=enc_pull) ---
+    Stage 2: Drift net (encoder pullback, 500 epochs)
+  Stage 2 epoch 100/500: loss=0.451777
+  Stage 2 epoch 200/500: loss=0.348788
+  Stage 2 epoch 300/500: loss=0.233005
+  Stage 2 epoch 400/500: loss=0.202253
+  Stage 2 epoch 500/500: loss=0.201391
+    Evaluating trajectory fidelity...
+  MTE@0.1: 0.8561
+  MTE@0.5: 1.4424
+  MTE@1.0: 1.8443
+  W2@1.0:  1.2337
+  sW2@0.1: 0.3211 (285/500 in region)
+  sW2@0.2: 0.4975 (204/500 in region)
+  sW2@0.5: 0.8371 (98/500 in region)
+  sW2@1.0: 1.4073 (31/500 in region)
+  MMD@1.0: 0.2234
+  Survival@1.0: 29.8%
+  Stopped@1.0:  6.2%
+    T+F (enc): W2=1.2337  MTE=1.8443  MMD=0.2234  E_mu=0.022453  (5s)
+
+============================================================
+  hyperbolic_paraboloid | seed=2042
+============================================================
+
+  Stage 1: AE (T+F, 500 epochs)
+    Epoch 100: loss=0.625622
+    Epoch 200: loss=0.024634
+    Epoch 300: loss=0.011172
+    Epoch 400: loss=0.006893
+    Epoch 500: loss=0.009897
+  Precomputing decoder derivatives (T+F)...
+  Precomputing encoder-pullback target (T+F)...
+  Stage 3: Diffusion net (T+F AE, 500 epochs)
+  Stage 3 epoch 100/500: loss=0.600288
+  Stage 3 epoch 200/500: loss=0.143865
+  Stage 3 epoch 300/500: loss=0.083225
+  Stage 3 epoch 400/500: loss=0.050445
+  Stage 3 epoch 500/500: loss=0.026245
+
+  Stage 1: AE (baseline, 500 epochs)
+    Epoch 100: loss=0.055183
+    Epoch 200: loss=0.047124
+    Epoch 300: loss=0.003606
+    Epoch 400: loss=0.001421
+    Epoch 500: loss=0.000698
+  Precomputing decoder derivatives (baseline)...
+  Precomputing encoder-pullback target (baseline)...
+  Stage 3: Diffusion net (baseline AE, 500 epochs)
+  Stage 3 epoch 100/500: loss=0.986218
+  Stage 3 epoch 200/500: loss=0.503934
+  Stage 3 epoch 300/500: loss=0.408368
+  Stage 3 epoch 400/500: loss=0.308125
+  Stage 3 epoch 500/500: loss=0.270756
+
+  --- Condition: baseline (drift=enc_pull) ---
+    Stage 2: Drift net (encoder pullback, 500 epochs)
+  Stage 2 epoch 100/500: loss=2.969138
+  Stage 2 epoch 200/500: loss=2.194020
+  Stage 2 epoch 300/500: loss=2.112963
+  Stage 2 epoch 400/500: loss=1.785934
+  Stage 2 epoch 500/500: loss=2.175393
+    Evaluating trajectory fidelity...
+  MTE@0.1: 0.7553
+  MTE@0.5: 1.0959
+  MTE@1.0: 1.1416
+  W2@1.0:  0.6453
+  sW2@0.1: 0.2477 (293/500 in region)
+  sW2@0.2: 0.3397 (212/500 in region)
+  sW2@0.5: 0.4107 (88/500 in region)
+  sW2@1.0: 0.4672 (24/500 in region)
+  MMD@1.0: 0.2293
+  Survival@1.0: 26.6%
+  Stopped@1.0:  4.8%
+    baseline: W2=0.6453  MTE=1.1416  MMD=0.2293  E_mu=0.151208  (6s)
+
+  --- Condition: T+F (dec) (drift=decoder) ---
+    Stage 2: Drift net (decoder-side, 500 epochs)
+  Stage 2 epoch 100/500: loss=0.210436
+  Stage 2 epoch 200/500: loss=0.162411
+  Stage 2 epoch 300/500: loss=0.155958
+  Stage 2 epoch 400/500: loss=0.148612
+  Stage 2 epoch 500/500: loss=0.150762
+    Evaluating trajectory fidelity...
+  MTE@0.1: 0.8590
+  MTE@0.5: 1.6579
+  MTE@1.0: 2.1069
+  W2@1.0:  1.2673
+  sW2@0.1: 0.3834 (293/500 in region)
+  sW2@0.2: 0.5104 (212/500 in region)
+  sW2@0.5: 0.9477 (88/500 in region)
+  sW2@1.0: 1.1070 (24/500 in region)
+  MMD@1.0: 0.3107
+  Survival@1.0: 26.6%
+  Stopped@1.0:  4.8%
+    T+F (dec): W2=1.2673  MTE=2.1069  MMD=0.3107  E_mu=0.031781  (5s)
+
+  --- Condition: T+F (enc) (drift=enc_pull) ---
+    Stage 2: Drift net (encoder pullback, 500 epochs)
+  Stage 2 epoch 100/500: loss=0.905306
+  Stage 2 epoch 200/500: loss=0.859221
+  Stage 2 epoch 300/500: loss=0.812508
+  Stage 2 epoch 400/500: loss=0.795464
+  Stage 2 epoch 500/500: loss=0.785001
+    Evaluating trajectory fidelity...
+  MTE@0.1: 0.8345
+  MTE@0.5: 1.4236
+  MTE@1.0: 1.6528
+  W2@1.0:  0.7443
+  sW2@0.1: 0.3182 (293/500 in region)
+  sW2@0.2: 0.3999 (212/500 in region)
+  sW2@0.5: 0.6931 (88/500 in region)
+  sW2@1.0: 0.6430 (24/500 in region)
+  MMD@1.0: 0.2531
+  Survival@1.0: 26.6%
+  Stopped@1.0:  4.8%
+    T+F (enc): W2=0.7443  MTE=1.6528  MMD=0.2531  E_mu=0.031781  (5s)
+
+============================================================
+  hyperbolic_paraboloid | seed=3042
+============================================================
+
+  Stage 1: AE (T+F, 500 epochs)
+    Epoch 100: loss=0.632198
+    Epoch 200: loss=0.029200
+    Epoch 300: loss=0.007594
+    Epoch 400: loss=0.019289
+    Epoch 500: loss=0.002007
+  Precomputing decoder derivatives (T+F)...
+  Precomputing encoder-pullback target (T+F)...
+  Stage 3: Diffusion net (T+F AE, 500 epochs)
+  Stage 3 epoch 100/500: loss=0.148720
+  Stage 3 epoch 200/500: loss=0.039865
+  Stage 3 epoch 300/500: loss=0.026779
+  Stage 3 epoch 400/500: loss=0.024779
+  Stage 3 epoch 500/500: loss=0.021441
+
+  Stage 1: AE (baseline, 500 epochs)
+    Epoch 100: loss=0.062554
+    Epoch 200: loss=0.047013
+    Epoch 300: loss=0.006137
+    Epoch 400: loss=0.002261
+    Epoch 500: loss=0.001256
+  Precomputing decoder derivatives (baseline)...
+  Precomputing encoder-pullback target (baseline)...
+  Stage 3: Diffusion net (baseline AE, 500 epochs)
+  Stage 3 epoch 100/500: loss=0.613041
+  Stage 3 epoch 200/500: loss=0.273773
+  Stage 3 epoch 300/500: loss=0.127675
+  Stage 3 epoch 400/500: loss=0.093584
+  Stage 3 epoch 500/500: loss=0.086436
+
+  --- Condition: baseline (drift=enc_pull) ---
+    Stage 2: Drift net (encoder pullback, 500 epochs)
+  Stage 2 epoch 100/500: loss=1.572796
+  Stage 2 epoch 200/500: loss=1.343317
+  Stage 2 epoch 300/500: loss=1.095245
+  Stage 2 epoch 400/500: loss=1.148465
+  Stage 2 epoch 500/500: loss=1.245974
+    Evaluating trajectory fidelity...
+  MTE@0.1: 0.7940
+  MTE@0.5: 1.1670
+  MTE@1.0: 1.2837
+  W2@1.0:  0.5852
+  sW2@0.1: 0.3323 (275/500 in region)
+  sW2@0.2: 0.4196 (204/500 in region)
+  sW2@0.5: 0.6616 (78/500 in region)
+  sW2@1.0: 0.5798 (25/500 in region)
+  MMD@1.0: 0.1692
+  Survival@1.0: 27.2%
+  Stopped@1.0:  5.0%
+    baseline: W2=0.5852  MTE=1.2837  MMD=0.1692  E_mu=0.142100  (5s)
+
+  --- Condition: T+F (dec) (drift=decoder) ---
+    Stage 2: Drift net (decoder-side, 500 epochs)
+  Stage 2 epoch 100/500: loss=0.264905
+  Stage 2 epoch 200/500: loss=0.221179
+  Stage 2 epoch 300/500: loss=0.232091
+  Stage 2 epoch 400/500: loss=0.209027
+  Stage 2 epoch 500/500: loss=0.213498
+    Evaluating trajectory fidelity...
+  MTE@0.1: 0.8175
+  MTE@0.5: 1.4472
+  MTE@1.0: 1.9327
+  W2@1.0:  1.3070
+  sW2@0.1: 0.4948 (275/500 in region)
+  sW2@0.2: 0.6588 (204/500 in region)
+  sW2@0.5: 1.2707 (78/500 in region)
+  sW2@1.0: 1.2165 (25/500 in region)
+  MMD@1.0: 0.3098
+  Survival@1.0: 27.2%
+  Stopped@1.0:  5.0%
+    T+F (dec): W2=1.3070  MTE=1.9327  MMD=0.3098  E_mu=0.003793  (5s)
+
+  --- Condition: T+F (enc) (drift=enc_pull) ---
+    Stage 2: Drift net (encoder pullback, 500 epochs)
+  Stage 2 epoch 100/500: loss=0.993213
+  Stage 2 epoch 200/500: loss=0.825731
+  Stage 2 epoch 300/500: loss=0.850175
+  Stage 2 epoch 400/500: loss=0.785109
+  Stage 2 epoch 500/500: loss=0.768781
+    Evaluating trajectory fidelity...
+  MTE@0.1: 0.8062
+  MTE@0.5: 1.3657
+  MTE@1.0: 1.7186
+  W2@1.0:  1.1782
+  sW2@0.1: 0.4809 (275/500 in region)
+  sW2@0.2: 0.6281 (204/500 in region)
+  sW2@0.5: 1.2112 (78/500 in region)
+  sW2@1.0: 1.1270 (25/500 in region)
+  MMD@1.0: 0.2571
+  Survival@1.0: 27.2%
+  Stopped@1.0:  5.0%
+    T+F (enc): W2=1.1782  MTE=1.7186  MMD=0.2571  E_mu=0.003793  (5s)
+
+============================================================
+  hyperbolic_paraboloid | seed=4042
+============================================================
+
+  Stage 1: AE (T+F, 500 epochs)
+    Epoch 100: loss=0.516743
+    Epoch 200: loss=0.023914
+    Epoch 300: loss=0.011076
+    Epoch 400: loss=0.018028
+    Epoch 500: loss=0.002597
+  Precomputing decoder derivatives (T+F)...
+  Precomputing encoder-pullback target (T+F)...
+  Stage 3: Diffusion net (T+F AE, 500 epochs)
+  Stage 3 epoch 100/500: loss=0.157701
+  Stage 3 epoch 200/500: loss=0.038368
+  Stage 3 epoch 300/500: loss=0.018630
+  Stage 3 epoch 400/500: loss=0.013554
+  Stage 3 epoch 500/500: loss=0.012674
+
+  Stage 1: AE (baseline, 500 epochs)
+    Epoch 100: loss=0.025480
+    Epoch 200: loss=0.027033
+    Epoch 300: loss=0.007014
+    Epoch 400: loss=0.001648
+    Epoch 500: loss=0.000967
+  Precomputing decoder derivatives (baseline)...
+  Precomputing encoder-pullback target (baseline)...
+  Stage 3: Diffusion net (baseline AE, 500 epochs)
+  Stage 3 epoch 100/500: loss=0.310398
+  Stage 3 epoch 200/500: loss=0.152188
+  Stage 3 epoch 300/500: loss=0.102209
+  Stage 3 epoch 400/500: loss=0.096370
+  Stage 3 epoch 500/500: loss=0.094427
+
+  --- Condition: baseline (drift=enc_pull) ---
+    Stage 2: Drift net (encoder pullback, 500 epochs)
+  Stage 2 epoch 100/500: loss=1.395729
+  Stage 2 epoch 200/500: loss=1.266962
+  Stage 2 epoch 300/500: loss=1.221468
+  Stage 2 epoch 400/500: loss=1.177177
+  Stage 2 epoch 500/500: loss=1.182174
+    Evaluating trajectory fidelity...
+  MTE@0.1: 1.0474
+  MTE@0.5: 1.5637
+  MTE@1.0: 1.5286
+  W2@1.0:  0.9261
+  sW2@0.1: 0.3976 (287/500 in region)
+  sW2@0.2: 0.6034 (207/500 in region)
+  sW2@0.5: 0.7404 (102/500 in region)
+  sW2@1.0: 1.3469 (30/500 in region)
+  MMD@1.0: 0.2226
+  Survival@1.0: 28.2%
+  Stopped@1.0:  6.0%
+    baseline: W2=0.9261  MTE=1.5286  MMD=0.2226  E_mu=0.161381  (5s)
+
+  --- Condition: T+F (dec) (drift=decoder) ---
+    Stage 2: Drift net (decoder-side, 500 epochs)
+  Stage 2 epoch 100/500: loss=0.278941
+  Stage 2 epoch 200/500: loss=0.238715
+  Stage 2 epoch 300/500: loss=0.220060
+  Stage 2 epoch 400/500: loss=0.218480
+  Stage 2 epoch 500/500: loss=0.218690
+    Evaluating trajectory fidelity...
+  MTE@0.1: 1.1195
+  MTE@0.5: 1.9427
+  MTE@1.0: 2.2020
+  W2@1.0:  1.5293
+  sW2@0.1: 0.5019 (287/500 in region)
+  sW2@0.2: 0.8239 (207/500 in region)
+  sW2@0.5: 1.2038 (102/500 in region)
+  sW2@1.0: 1.9428 (30/500 in region)
+  MMD@1.0: 0.3045
+  Survival@1.0: 28.2%
+  Stopped@1.0:  6.0%
+    T+F (dec): W2=1.5293  MTE=2.2020  MMD=0.3045  E_mu=0.076203  (5s)
+
+  --- Condition: T+F (enc) (drift=enc_pull) ---
+    Stage 2: Drift net (encoder pullback, 500 epochs)
+  Stage 2 epoch 100/500: loss=0.308655
+  Stage 2 epoch 200/500: loss=0.284342
+  Stage 2 epoch 300/500: loss=0.277401
+  Stage 2 epoch 400/500: loss=0.272385
+  Stage 2 epoch 500/500: loss=0.266569
+    Evaluating trajectory fidelity...
+  MTE@0.1: 1.1019
+  MTE@0.5: 1.8005
+  MTE@1.0: 1.9228
+  W2@1.0:  1.2088
+  sW2@0.1: 0.4635 (287/500 in region)
+  sW2@0.2: 0.7371 (207/500 in region)
+  sW2@0.5: 1.0127 (102/500 in region)
+  sW2@1.0: 1.6963 (30/500 in region)
+  MMD@1.0: 0.2735
+  Survival@1.0: 28.2%
+  Stopped@1.0:  6.0%
+    T+F (enc): W2=1.2088  MTE=1.9228  MMD=0.2735  E_mu=0.076203  (5s)
+
+============================================================
+  hyperbolic_paraboloid | seed=5042
+============================================================
+
+  Stage 1: AE (T+F, 500 epochs)
+    Epoch 100: loss=0.108207
+    Epoch 200: loss=0.026286
+    Epoch 300: loss=0.009713
+    Epoch 400: loss=0.010652
+    Epoch 500: loss=0.002206
+  Precomputing decoder derivatives (T+F)...
+  Precomputing encoder-pullback target (T+F)...
+  Stage 3: Diffusion net (T+F AE, 500 epochs)
+  Stage 3 epoch 100/500: loss=0.158062
+  Stage 3 epoch 200/500: loss=0.026830
+  Stage 3 epoch 300/500: loss=0.019882
+  Stage 3 epoch 400/500: loss=0.015404
+  Stage 3 epoch 500/500: loss=0.012465
+
+  Stage 1: AE (baseline, 500 epochs)
+    Epoch 100: loss=0.016596
+    Epoch 200: loss=0.012350
+    Epoch 300: loss=0.004457
+    Epoch 400: loss=0.002268
+    Epoch 500: loss=0.001924
+  Precomputing decoder derivatives (baseline)...
+  Precomputing encoder-pullback target (baseline)...
+  Stage 3: Diffusion net (baseline AE, 500 epochs)
+  Stage 3 epoch 100/500: loss=0.359162
+  Stage 3 epoch 200/500: loss=0.290776
+  Stage 3 epoch 300/500: loss=0.246762
+  Stage 3 epoch 400/500: loss=0.228978
+  Stage 3 epoch 500/500: loss=0.218016
+
+  --- Condition: baseline (drift=enc_pull) ---
+    Stage 2: Drift net (encoder pullback, 500 epochs)
+  Stage 2 epoch 100/500: loss=0.838713
+  Stage 2 epoch 200/500: loss=0.764397
+  Stage 2 epoch 300/500: loss=0.682189
+  Stage 2 epoch 400/500: loss=0.640694
+  Stage 2 epoch 500/500: loss=0.965392
+    Evaluating trajectory fidelity...
+  MTE@0.1: 0.9429
+  MTE@0.5: 1.4169
+  MTE@1.0: 1.3944
+  W2@1.0:  0.9359
+  sW2@0.1: 0.4649 (285/500 in region)
+  sW2@0.2: 0.5795 (216/500 in region)
+  sW2@0.5: 0.6269 (93/500 in region)
+  sW2@1.0: 0.9040 (33/500 in region)
+  MMD@1.0: 0.3164
+  Survival@1.0: 25.8%
+  Stopped@1.0:  6.6%
+    baseline: W2=0.9359  MTE=1.3944  MMD=0.3164  E_mu=0.831716  (5s)
+
+  --- Condition: T+F (dec) (drift=decoder) ---
+    Stage 2: Drift net (decoder-side, 500 epochs)
+  Stage 2 epoch 100/500: loss=0.373325
+  Stage 2 epoch 200/500: loss=0.336980
+  Stage 2 epoch 300/500: loss=0.338778
+  Stage 2 epoch 400/500: loss=0.346104
+  Stage 2 epoch 500/500: loss=0.298960
+    Evaluating trajectory fidelity...
+  MTE@0.1: 0.7961
+  MTE@0.5: 1.5246
+  MTE@1.0: 1.6908
+  W2@1.0:  1.1434
+  sW2@0.1: 0.2742 (285/500 in region)
+  sW2@0.2: 0.4285 (216/500 in region)
+  sW2@0.5: 0.6254 (93/500 in region)
+  sW2@1.0: 1.1717 (33/500 in region)
+  MMD@1.0: 0.3031
+  Survival@1.0: 25.8%
+  Stopped@1.0:  6.6%
+    T+F (dec): W2=1.1434  MTE=1.6908  MMD=0.3031  E_mu=0.038613  (5s)
+
+  --- Condition: T+F (enc) (drift=enc_pull) ---
+    Stage 2: Drift net (encoder pullback, 500 epochs)
+  Stage 2 epoch 100/500: loss=0.395233
+  Stage 2 epoch 200/500: loss=0.373613
+  Stage 2 epoch 300/500: loss=0.378986
+  Stage 2 epoch 400/500: loss=0.364967
+  Stage 2 epoch 500/500: loss=0.378665
+    Evaluating trajectory fidelity...
+  MTE@0.1: 0.7894
+  MTE@0.5: 1.4447
+  MTE@1.0: 1.5509
+  W2@1.0:  0.9000
+  sW2@0.1: 0.2562 (285/500 in region)
+  sW2@0.2: 0.3862 (216/500 in region)
+  sW2@0.5: 0.5067 (93/500 in region)
+  sW2@1.0: 0.8886 (33/500 in region)
+  MMD@1.0: 0.2928
+  Survival@1.0: 25.8%
+  Stopped@1.0:  6.6%
+    T+F (enc): W2=0.9000  MTE=1.5509  MMD=0.2928  E_mu=0.038613  (5s)
+
+============================================================
+  hyperbolic_paraboloid | seed=6042
+============================================================
+
+  Stage 1: AE (T+F, 500 epochs)
+    Epoch 100: loss=0.196913
+    Epoch 200: loss=0.036889
+    Epoch 300: loss=0.024708
+    Epoch 400: loss=0.015097
+    Epoch 500: loss=0.009922
+  Precomputing decoder derivatives (T+F)...
+  Precomputing encoder-pullback target (T+F)...
+  Stage 3: Diffusion net (T+F AE, 500 epochs)
+  Stage 3 epoch 100/500: loss=0.182057
+  Stage 3 epoch 200/500: loss=0.041515
+  Stage 3 epoch 300/500: loss=0.022463
+  Stage 3 epoch 400/500: loss=0.016756
+  Stage 3 epoch 500/500: loss=0.015562
+
+  Stage 1: AE (baseline, 500 epochs)
+    Epoch 100: loss=0.030394
+    Epoch 200: loss=0.024257
+    Epoch 300: loss=0.007304
+    Epoch 400: loss=0.006594
+    Epoch 500: loss=0.001684
+  Precomputing decoder derivatives (baseline)...
+  Precomputing encoder-pullback target (baseline)...
+  Stage 3: Diffusion net (baseline AE, 500 epochs)
+  Stage 3 epoch 100/500: loss=0.396428
+  Stage 3 epoch 200/500: loss=0.287559
+  Stage 3 epoch 300/500: loss=0.249720
+  Stage 3 epoch 400/500: loss=0.234137
+  Stage 3 epoch 500/500: loss=0.227610
+
+  --- Condition: baseline (drift=enc_pull) ---
+    Stage 2: Drift net (encoder pullback, 500 epochs)
+  Stage 2 epoch 100/500: loss=1.049901
+  Stage 2 epoch 200/500: loss=0.979593
+  Stage 2 epoch 300/500: loss=0.924105
+  Stage 2 epoch 400/500: loss=0.923971
+  Stage 2 epoch 500/500: loss=0.899102
+    Evaluating trajectory fidelity...
+  MTE@0.1: 0.9145
+  MTE@0.5: 1.5632
+  MTE@1.0: 1.5346
+  W2@1.0:  1.0407
+  sW2@0.1: 0.4871 (290/500 in region)
+  sW2@0.2: 0.6350 (208/500 in region)
+  sW2@0.5: 0.8074 (89/500 in region)
+  sW2@1.0: 1.1218 (30/500 in region)
+  MMD@1.0: 0.2323
+  Survival@1.0: 27.2%
+  Stopped@1.0:  6.0%
+    baseline: W2=1.0407  MTE=1.5346  MMD=0.2323  E_mu=0.227402  (6s)
+
+  --- Condition: T+F (dec) (drift=decoder) ---
+    Stage 2: Drift net (decoder-side, 500 epochs)
+  Stage 2 epoch 100/500: loss=0.245371
+  Stage 2 epoch 200/500: loss=0.227773
+  Stage 2 epoch 300/500: loss=0.213629
+  Stage 2 epoch 400/500: loss=0.189364
+  Stage 2 epoch 500/500: loss=0.166153
+    Evaluating trajectory fidelity...
+  MTE@0.1: 0.4734
+  MTE@0.5: 0.8965
+  MTE@1.0: 1.1808
+  W2@1.0:  1.0448
+  sW2@0.1: 0.2858 (290/500 in region)
+  sW2@0.2: 0.3876 (208/500 in region)
+  sW2@0.5: 0.6890 (89/500 in region)
+  sW2@1.0: 0.8085 (30/500 in region)
+  MMD@1.0: 0.3143
+  Survival@1.0: 27.2%
+  Stopped@1.0:  6.0%
+    T+F (dec): W2=1.0448  MTE=1.1808  MMD=0.3143  E_mu=0.021373  (5s)
+
+  --- Condition: T+F (enc) (drift=enc_pull) ---
+    Stage 2: Drift net (encoder pullback, 500 epochs)
+  Stage 2 epoch 100/500: loss=0.279334
+  Stage 2 epoch 200/500: loss=0.267675
+  Stage 2 epoch 300/500: loss=0.265234
+  Stage 2 epoch 400/500: loss=0.259475
+  Stage 2 epoch 500/500: loss=0.243742
+    Evaluating trajectory fidelity...
+  MTE@0.1: 0.4644
+  MTE@0.5: 0.7891
+  MTE@1.0: 0.9857
+  W2@1.0:  0.8369
+  sW2@0.1: 0.2636 (290/500 in region)
+  sW2@0.2: 0.3391 (208/500 in region)
+  sW2@0.5: 0.5533 (89/500 in region)
+  sW2@1.0: 0.6191 (30/500 in region)
+  MMD@1.0: 0.2911
+  Survival@1.0: 27.2%
+  Stopped@1.0:  6.0%
+    T+F (enc): W2=0.8369  MTE=0.9857  MMD=0.2911  E_mu=0.021373  (5s)
+
+============================================================
+  hyperbolic_paraboloid | seed=7042
+============================================================
+
+  Stage 1: AE (T+F, 500 epochs)
+    Epoch 100: loss=0.065347
+    Epoch 200: loss=0.026498
+    Epoch 300: loss=0.003669
+    Epoch 400: loss=0.001935
+    Epoch 500: loss=0.001290
+  Precomputing decoder derivatives (T+F)...
+  Precomputing encoder-pullback target (T+F)...
+  Stage 3: Diffusion net (T+F AE, 500 epochs)
+  Stage 3 epoch 100/500: loss=0.142362
+  Stage 3 epoch 200/500: loss=0.028228
+  Stage 3 epoch 300/500: loss=0.011597
+  Stage 3 epoch 400/500: loss=0.007490
+  Stage 3 epoch 500/500: loss=0.006330
+
+  Stage 1: AE (baseline, 500 epochs)
+    Epoch 100: loss=0.040400
+    Epoch 200: loss=0.036115
+    Epoch 300: loss=0.010646
+    Epoch 400: loss=0.001518
+    Epoch 500: loss=0.002826
+  Precomputing decoder derivatives (baseline)...
+  Precomputing encoder-pullback target (baseline)...
+  Stage 3: Diffusion net (baseline AE, 500 epochs)
+  Stage 3 epoch 100/500: loss=0.337994
+  Stage 3 epoch 200/500: loss=0.171176
+  Stage 3 epoch 300/500: loss=0.109710
+  Stage 3 epoch 400/500: loss=0.080616
+  Stage 3 epoch 500/500: loss=0.075675
+
+  --- Condition: baseline (drift=enc_pull) ---
+    Stage 2: Drift net (encoder pullback, 500 epochs)
+  Stage 2 epoch 100/500: loss=1.699080
+  Stage 2 epoch 200/500: loss=1.340027
+  Stage 2 epoch 300/500: loss=1.153500
+  Stage 2 epoch 400/500: loss=1.208516
+  Stage 2 epoch 500/500: loss=0.973184
+    Evaluating trajectory fidelity...
+  MTE@0.1: 0.7966
+  MTE@0.5: 1.1140
+  MTE@1.0: 1.1043
+  W2@1.0:  0.5723
+  sW2@0.1: 0.3351 (316/500 in region)
+  sW2@0.2: 0.4319 (232/500 in region)
+  sW2@0.5: 0.4905 (109/500 in region)
+  sW2@1.0: 0.5050 (29/500 in region)
+  MMD@1.0: 0.1293
+  Survival@1.0: 28.8%
+  Stopped@1.0:  5.8%
+    baseline: W2=0.5723  MTE=1.1043  MMD=0.1293  E_mu=0.144992  (5s)
+
+  --- Condition: T+F (dec) (drift=decoder) ---
+    Stage 2: Drift net (decoder-side, 500 epochs)
+  Stage 2 epoch 100/500: loss=0.304143
+  Stage 2 epoch 200/500: loss=0.273620
+  Stage 2 epoch 300/500: loss=0.276189
+  Stage 2 epoch 400/500: loss=0.268259
+  Stage 2 epoch 500/500: loss=0.261692
+    Evaluating trajectory fidelity...
+  MTE@0.1: 0.8926
+  MTE@0.5: 1.5794
+  MTE@1.0: 1.9783
+  W2@1.0:  1.3898
+  sW2@0.1: 0.5309 (316/500 in region)
+  sW2@0.2: 0.8085 (232/500 in region)
+  sW2@0.5: 1.1868 (109/500 in region)
+  sW2@1.0: 1.6209 (29/500 in region)
+  MMD@1.0: 0.2939
+  Survival@1.0: 28.8%
+  Stopped@1.0:  5.8%
+    T+F (dec): W2=1.3898  MTE=1.9783  MMD=0.2939  E_mu=0.011184  (5s)
+
+  --- Condition: T+F (enc) (drift=enc_pull) ---
+    Stage 2: Drift net (encoder pullback, 500 epochs)
+  Stage 2 epoch 100/500: loss=0.586805
+  Stage 2 epoch 200/500: loss=0.546750
+  Stage 2 epoch 300/500: loss=0.512474
+  Stage 2 epoch 400/500: loss=0.510336
+  Stage 2 epoch 500/500: loss=0.439342
+    Evaluating trajectory fidelity...
+  MTE@0.1: 0.8690
+  MTE@0.5: 1.4363
+  MTE@1.0: 1.6854
+  W2@1.0:  1.1468
+  sW2@0.1: 0.4948 (316/500 in region)
+  sW2@0.2: 0.7324 (232/500 in region)
+  sW2@0.5: 1.0778 (109/500 in region)
+  sW2@1.0: 1.4189 (29/500 in region)
+  MMD@1.0: 0.2388
+  Survival@1.0: 28.8%
+  Stopped@1.0:  5.8%
+    T+F (enc): W2=1.1468  MTE=1.6854  MMD=0.2388  E_mu=0.011184  (5s)
+
+============================================================
+  hyperbolic_paraboloid | seed=8042
+============================================================
+
+  Stage 1: AE (T+F, 500 epochs)
+    Epoch 100: loss=0.396986
+    Epoch 200: loss=0.060101
+    Epoch 300: loss=0.003861
+    Epoch 400: loss=0.013672
+    Epoch 500: loss=0.001104
+  Precomputing decoder derivatives (T+F)...
+  Precomputing encoder-pullback target (T+F)...
+  Stage 3: Diffusion net (T+F AE, 500 epochs)
+  Stage 3 epoch 100/500: loss=0.248441
+  Stage 3 epoch 200/500: loss=0.133970
+  Stage 3 epoch 300/500: loss=0.090710
+  Stage 3 epoch 400/500: loss=0.046140
+  Stage 3 epoch 500/500: loss=0.031560
+
+  Stage 1: AE (baseline, 500 epochs)
+    Epoch 100: loss=0.035942
+    Epoch 200: loss=0.034823
+    Epoch 300: loss=0.038347
+    Epoch 400: loss=0.041900
+    Epoch 500: loss=0.020525
+  Precomputing decoder derivatives (baseline)...
+  Precomputing encoder-pullback target (baseline)...
+  Stage 3: Diffusion net (baseline AE, 500 epochs)
+  Stage 3 epoch 100/500: loss=2.513694
+  Stage 3 epoch 200/500: loss=2.258207
+  Stage 3 epoch 300/500: loss=2.170537
+  Stage 3 epoch 400/500: loss=2.151852
+  Stage 3 epoch 500/500: loss=2.145506
+
+  --- Condition: baseline (drift=enc_pull) ---
+    Stage 2: Drift net (encoder pullback, 500 epochs)
+  Stage 2 epoch 100/500: loss=1.661080
+  Stage 2 epoch 200/500: loss=1.501590
+  Stage 2 epoch 300/500: loss=1.619497
+  Stage 2 epoch 400/500: loss=1.282563
+  Stage 2 epoch 500/500: loss=1.566890
+    Evaluating trajectory fidelity...
+  MTE@0.1: 0.7513
+  MTE@0.5: 0.9937
+  MTE@1.0: 1.1342
+  W2@1.0:  0.6666
+  sW2@0.1: 0.3889 (269/500 in region)
+  sW2@0.2: 0.4372 (192/500 in region)
+  sW2@0.5: 0.5467 (84/500 in region)
+  sW2@1.0: 0.7636 (29/500 in region)
+  MMD@1.0: 0.1230
+  Survival@1.0: 27.0%
+  Stopped@1.0:  5.8%
+    baseline: W2=0.6666  MTE=1.1342  MMD=0.1230  E_mu=1.148784  (6s)
+
+  --- Condition: T+F (dec) (drift=decoder) ---
+    Stage 2: Drift net (decoder-side, 500 epochs)
+  Stage 2 epoch 100/500: loss=0.245182
+  Stage 2 epoch 200/500: loss=0.206941
+  Stage 2 epoch 300/500: loss=0.205303
+  Stage 2 epoch 400/500: loss=0.198350
+  Stage 2 epoch 500/500: loss=0.204637
+    Evaluating trajectory fidelity...
+  MTE@0.1: 0.7959
+  MTE@0.5: 1.5100
+  MTE@1.0: 2.0120
+  W2@1.0:  1.3173
+  sW2@0.1: 0.3806 (269/500 in region)
+  sW2@0.2: 0.5196 (192/500 in region)
+  sW2@0.5: 0.9309 (84/500 in region)
+  sW2@1.0: 1.2967 (29/500 in region)
+  MMD@1.0: 0.3538
+  Survival@1.0: 27.0%
+  Stopped@1.0:  5.8%
+    T+F (dec): W2=1.3173  MTE=2.0120  MMD=0.3538  E_mu=0.017065  (5s)
+
+  --- Condition: T+F (enc) (drift=enc_pull) ---
+    Stage 2: Drift net (encoder pullback, 500 epochs)
+  Stage 2 epoch 100/500: loss=0.483745
+  Stage 2 epoch 200/500: loss=0.420090
+  Stage 2 epoch 300/500: loss=0.425589
+  Stage 2 epoch 400/500: loss=0.407144
+  Stage 2 epoch 500/500: loss=0.412976
+    Evaluating trajectory fidelity...
+  MTE@0.1: 0.7808
+  MTE@0.5: 1.3037
+  MTE@1.0: 1.5447
+  W2@1.0:  0.7885
+  sW2@0.1: 0.3318 (269/500 in region)
+  sW2@0.2: 0.4230 (192/500 in region)
+  sW2@0.5: 0.6337 (84/500 in region)
+  sW2@1.0: 0.7282 (29/500 in region)
+  MMD@1.0: 0.2569
+  Survival@1.0: 27.0%
+  Stopped@1.0:  5.8%
+    T+F (enc): W2=0.7885  MTE=1.5447  MMD=0.2569  E_mu=0.017065  (5s)
+
+============================================================
+  hyperbolic_paraboloid | seed=9042
+============================================================
+
+  Stage 1: AE (T+F, 500 epochs)
+    Epoch 100: loss=0.603632
+    Epoch 200: loss=0.033963
+    Epoch 300: loss=0.015127
+    Epoch 400: loss=0.011711
+    Epoch 500: loss=0.028142
+  Precomputing decoder derivatives (T+F)...
+  Precomputing encoder-pullback target (T+F)...
+  Stage 3: Diffusion net (T+F AE, 500 epochs)
+  Stage 3 epoch 100/500: loss=0.127477
+  Stage 3 epoch 200/500: loss=0.099973
+  Stage 3 epoch 300/500: loss=0.087092
+  Stage 3 epoch 400/500: loss=0.080017
+  Stage 3 epoch 500/500: loss=0.084598
+
+  Stage 1: AE (baseline, 500 epochs)
+    Epoch 100: loss=0.037130
+    Epoch 200: loss=0.028862
+    Epoch 300: loss=0.009269
+    Epoch 400: loss=0.007588
+    Epoch 500: loss=0.006582
+  Precomputing decoder derivatives (baseline)...
+  Precomputing encoder-pullback target (baseline)...
+  Stage 3: Diffusion net (baseline AE, 500 epochs)
+  Stage 3 epoch 100/500: loss=1.325211
+  Stage 3 epoch 200/500: loss=1.175052
+  Stage 3 epoch 300/500: loss=1.141267
+  Stage 3 epoch 400/500: loss=1.120319
+  Stage 3 epoch 500/500: loss=1.106252
+
+  --- Condition: baseline (drift=enc_pull) ---
+    Stage 2: Drift net (encoder pullback, 500 epochs)
+  Stage 2 epoch 100/500: loss=1.656112
+  Stage 2 epoch 200/500: loss=1.300498
+  Stage 2 epoch 300/500: loss=1.118400
+  Stage 2 epoch 400/500: loss=1.341993
+  Stage 2 epoch 500/500: loss=1.389779
+    Evaluating trajectory fidelity...
+  MTE@0.1: 0.7277
+  MTE@0.5: 1.0184
+  MTE@1.0: 1.1845
+  W2@1.0:  0.8049
+  sW2@0.1: 0.4144 (280/500 in region)
+  sW2@0.2: 0.5260 (205/500 in region)
+  sW2@0.5: 0.5199 (85/500 in region)
+  sW2@1.0: 0.7034 (22/500 in region)
+  MMD@1.0: 0.3209
+  Survival@1.0: 28.2%
+  Stopped@1.0:  4.4%
+    baseline: W2=0.8049  MTE=1.1845  MMD=0.3209  E_mu=0.653501  (5s)
+
+  --- Condition: T+F (dec) (drift=decoder) ---
+    Stage 2: Drift net (decoder-side, 500 epochs)
+  Stage 2 epoch 100/500: loss=0.254185
+  Stage 2 epoch 200/500: loss=0.236367
+  Stage 2 epoch 300/500: loss=0.241427
+  Stage 2 epoch 400/500: loss=0.176403
+  Stage 2 epoch 500/500: loss=0.156217
+    Evaluating trajectory fidelity...
+  MTE@0.1: 0.9779
+  MTE@0.5: 1.5277
+  MTE@1.0: 1.9322
+  W2@1.0:  1.2329
+  sW2@0.1: 0.5799 (280/500 in region)
+  sW2@0.2: 0.7086 (205/500 in region)
+  sW2@0.5: 1.0783 (85/500 in region)
+  sW2@1.0: 1.2136 (22/500 in region)
+  MMD@1.0: 0.2475
+  Survival@1.0: 28.2%
+  Stopped@1.0:  4.4%
+    T+F (dec): W2=1.2329  MTE=1.9322  MMD=0.2475  E_mu=0.037851  (5s)
+
+  --- Condition: T+F (enc) (drift=enc_pull) ---
+    Stage 2: Drift net (encoder pullback, 500 epochs)
+  Stage 2 epoch 100/500: loss=0.492731
+  Stage 2 epoch 200/500: loss=0.428737
+  Stage 2 epoch 300/500: loss=0.420121
+  Stage 2 epoch 400/500: loss=0.383415
+  Stage 2 epoch 500/500: loss=0.383867
+    Evaluating trajectory fidelity...
+  MTE@0.1: 0.9556
+  MTE@0.5: 1.3990
+  MTE@1.0: 1.7023
+  W2@1.0:  0.9805
+  sW2@0.1: 0.5371 (280/500 in region)
+  sW2@0.2: 0.6462 (205/500 in region)
+  sW2@0.5: 0.9111 (85/500 in region)
+  sW2@1.0: 0.9966 (22/500 in region)
+  MMD@1.0: 0.2068
+  Survival@1.0: 28.2%
+  Stopped@1.0:  4.4%
+    T+F (enc): W2=0.9805  MTE=1.7023  MMD=0.2068  E_mu=0.037851  (5s)
+
+======================================================================
+Surface: quartic_dome
+======================================================================
+  Lambdifying SDE...
+
+============================================================
+  quartic_dome | seed=42
+============================================================
+
+  Stage 1: AE (T+F, 500 epochs)
+    Epoch 100: loss=0.211863
+    Epoch 200: loss=0.062627
+    Epoch 300: loss=0.039767
+    Epoch 400: loss=0.027774
+    Epoch 500: loss=0.016662
+  Precomputing decoder derivatives (T+F)...
+  Precomputing encoder-pullback target (T+F)...
+  Stage 3: Diffusion net (T+F AE, 500 epochs)
+  Stage 3 epoch 100/500: loss=0.094457
+  Stage 3 epoch 200/500: loss=0.053904
+  Stage 3 epoch 300/500: loss=0.045162
+  Stage 3 epoch 400/500: loss=0.039438
+  Stage 3 epoch 500/500: loss=0.031160
+
+  Stage 1: AE (baseline, 500 epochs)
+    Epoch 100: loss=0.011358
+    Epoch 200: loss=0.012600
+    Epoch 300: loss=0.009357
+    Epoch 400: loss=0.007878
+    Epoch 500: loss=0.005657
+  Precomputing decoder derivatives (baseline)...
+  Precomputing encoder-pullback target (baseline)...
+  Stage 3: Diffusion net (baseline AE, 500 epochs)
+  Stage 3 epoch 100/500: loss=0.662343
+  Stage 3 epoch 200/500: loss=0.637018
+  Stage 3 epoch 300/500: loss=0.614055
+  Stage 3 epoch 400/500: loss=0.602444
+  Stage 3 epoch 500/500: loss=0.596178
+
+  --- Condition: baseline (drift=enc_pull) ---
+    Stage 2: Drift net (encoder pullback, 500 epochs)
+  Stage 2 epoch 100/500: loss=0.475827
+  Stage 2 epoch 200/500: loss=0.421683
+  Stage 2 epoch 300/500: loss=0.411170
+  Stage 2 epoch 400/500: loss=0.406768
+  Stage 2 epoch 500/500: loss=0.431929
+    Evaluating trajectory fidelity...
+  MTE@0.1: 0.3623
+  MTE@0.5: 0.6122
+  MTE@1.0: 0.7274
+  W2@1.0:  0.4205
+  sW2@0.1: 0.2554 (292/500 in region)
+  sW2@0.2: 0.2699 (214/500 in region)
+  sW2@0.5: 0.3480 (97/500 in region)
+  sW2@1.0: 0.4456 (21/500 in region)
+  MMD@1.0: 0.2773
+  Survival@1.0: 28.0%
+  Stopped@1.0:  4.2%
+    baseline: W2=0.4205  MTE=0.7274  MMD=0.2773  E_mu=1.816049  (5s)
+
+  --- Condition: T+F (dec) (drift=decoder) ---
+    Stage 2: Drift net (decoder-side, 500 epochs)
+  Stage 2 epoch 100/500: loss=0.470292
+  Stage 2 epoch 200/500: loss=0.428029
+  Stage 2 epoch 300/500: loss=0.407883
+  Stage 2 epoch 400/500: loss=0.436113
+  Stage 2 epoch 500/500: loss=0.421753
+    Evaluating trajectory fidelity...
+  MTE@0.1: 0.3040
+  MTE@0.5: 0.6536
+  MTE@1.0: 0.8098
+  W2@1.0:  0.4973
+  sW2@0.1: 0.1749 (292/500 in region)
+  sW2@0.2: 0.2197 (214/500 in region)
+  sW2@0.5: 0.3906 (97/500 in region)
+  sW2@1.0: 0.5307 (21/500 in region)
+  MMD@1.0: 0.3007
+  Survival@1.0: 28.0%
+  Stopped@1.0:  4.2%
+    T+F (dec): W2=0.4973  MTE=0.8098  MMD=0.3007  E_mu=0.258749  (5s)
+
+  --- Condition: T+F (enc) (drift=enc_pull) ---
+    Stage 2: Drift net (encoder pullback, 500 epochs)
+  Stage 2 epoch 100/500: loss=0.372830
+  Stage 2 epoch 200/500: loss=0.342379
+  Stage 2 epoch 300/500: loss=0.330103
+  Stage 2 epoch 400/500: loss=0.343783
+  Stage 2 epoch 500/500: loss=0.338184
+    Evaluating trajectory fidelity...
+  MTE@0.1: 0.3036
+  MTE@0.5: 0.6688
+  MTE@1.0: 0.8463
+  W2@1.0:  0.5195
+  sW2@0.1: 0.1739 (292/500 in region)
+  sW2@0.2: 0.2265 (214/500 in region)
+  sW2@0.5: 0.3947 (97/500 in region)
+  sW2@1.0: 0.5173 (21/500 in region)
+  MMD@1.0: 0.3039
+  Survival@1.0: 28.0%
+  Stopped@1.0:  4.2%
+    T+F (enc): W2=0.5195  MTE=0.8463  MMD=0.3039  E_mu=0.258749  (5s)
+
+============================================================
+  quartic_dome | seed=1042
+============================================================
+
+  Stage 1: AE (T+F, 500 epochs)
+    Epoch 100: loss=0.151726
+    Epoch 200: loss=0.043531
+    Epoch 300: loss=0.037870
+    Epoch 400: loss=0.027509
+    Epoch 500: loss=0.024983
+  Precomputing decoder derivatives (T+F)...
+  Precomputing encoder-pullback target (T+F)...
+  Stage 3: Diffusion net (T+F AE, 500 epochs)
+  Stage 3 epoch 100/500: loss=0.203649
+  Stage 3 epoch 200/500: loss=0.145711
+  Stage 3 epoch 300/500: loss=0.093814
+  Stage 3 epoch 400/500: loss=0.067803
+  Stage 3 epoch 500/500: loss=0.051348
+
+  Stage 1: AE (baseline, 500 epochs)
+    Epoch 100: loss=0.018802
+    Epoch 200: loss=0.019801
+    Epoch 300: loss=0.010793
+    Epoch 400: loss=0.008873
+    Epoch 500: loss=0.004015
+  Precomputing decoder derivatives (baseline)...
+  Precomputing encoder-pullback target (baseline)...
+  Stage 3: Diffusion net (baseline AE, 500 epochs)
+  Stage 3 epoch 100/500: loss=0.590272
+  Stage 3 epoch 200/500: loss=0.535598
+  Stage 3 epoch 300/500: loss=0.508638
+  Stage 3 epoch 400/500: loss=0.489399
+  Stage 3 epoch 500/500: loss=0.480012
+
+  --- Condition: baseline (drift=enc_pull) ---
+    Stage 2: Drift net (encoder pullback, 500 epochs)
+  Stage 2 epoch 100/500: loss=0.422936
+  Stage 2 epoch 200/500: loss=0.402471
+  Stage 2 epoch 300/500: loss=0.348233
+  Stage 2 epoch 400/500: loss=0.328705
+  Stage 2 epoch 500/500: loss=0.310186
+    Evaluating trajectory fidelity...
+  MTE@0.1: 0.6585
+  MTE@0.5: 1.0759
+  MTE@1.0: 1.2583
+  W2@1.0:  0.7434
+  sW2@0.1: 0.3203 (285/500 in region)
+  sW2@0.2: 0.3885 (204/500 in region)
+  sW2@0.5: 0.5028 (98/500 in region)
+  sW2@1.0: 0.6844 (31/500 in region)
+  MMD@1.0: 0.1831
+  Survival@1.0: 29.8%
+  Stopped@1.0:  6.2%
+    baseline: W2=0.7434  MTE=1.2583  MMD=0.1831  E_mu=1.188212  (5s)
+
+  --- Condition: T+F (dec) (drift=decoder) ---
+    Stage 2: Drift net (decoder-side, 500 epochs)
+  Stage 2 epoch 100/500: loss=0.445186
+  Stage 2 epoch 200/500: loss=0.408169
+  Stage 2 epoch 300/500: loss=0.327612
+  Stage 2 epoch 400/500: loss=0.269145
+  Stage 2 epoch 500/500: loss=0.283839
+    Evaluating trajectory fidelity...
+  MTE@0.1: 0.6740
+  MTE@0.5: 1.1742
+  MTE@1.0: 1.4012
+  W2@1.0:  0.8050
+  sW2@0.1: 0.3295 (285/500 in region)
+  sW2@0.2: 0.4414 (204/500 in region)
+  sW2@0.5: 0.4836 (98/500 in region)
+  sW2@1.0: 0.7959 (31/500 in region)
+  MMD@1.0: 0.2571
+  Survival@1.0: 29.8%
+  Stopped@1.0:  6.2%
+    T+F (dec): W2=0.8050  MTE=1.4012  MMD=0.2571  E_mu=0.613212  (5s)
+
+  --- Condition: T+F (enc) (drift=enc_pull) ---
+    Stage 2: Drift net (encoder pullback, 500 epochs)
+  Stage 2 epoch 100/500: loss=0.634624
+  Stage 2 epoch 200/500: loss=0.559305
+  Stage 2 epoch 300/500: loss=0.488122
+  Stage 2 epoch 400/500: loss=0.355757
+  Stage 2 epoch 500/500: loss=0.392109
+    Evaluating trajectory fidelity...
+  MTE@0.1: 0.6847
+  MTE@0.5: 1.2240
+  MTE@1.0: 1.4478
+  W2@1.0:  0.8488
+  sW2@0.1: 0.3494 (285/500 in region)
+  sW2@0.2: 0.4805 (204/500 in region)
+  sW2@0.5: 0.5024 (98/500 in region)
+  sW2@1.0: 0.8059 (31/500 in region)
+  MMD@1.0: 0.2953
+  Survival@1.0: 29.8%
+  Stopped@1.0:  6.2%
+    T+F (enc): W2=0.8488  MTE=1.4478  MMD=0.2953  E_mu=0.613212  (5s)
+
+============================================================
+  quartic_dome | seed=2042
+============================================================
+
+  Stage 1: AE (T+F, 500 epochs)
+    Epoch 100: loss=0.294127
+    Epoch 200: loss=0.048055
+    Epoch 300: loss=0.042678
+    Epoch 400: loss=0.021009
+    Epoch 500: loss=0.015029
+  Precomputing decoder derivatives (T+F)...
+  Precomputing encoder-pullback target (T+F)...
+  Stage 3: Diffusion net (T+F AE, 500 epochs)
+  Stage 3 epoch 100/500: loss=0.053649
+  Stage 3 epoch 200/500: loss=0.047111
+  Stage 3 epoch 300/500: loss=0.043917
+  Stage 3 epoch 400/500: loss=0.040173
+  Stage 3 epoch 500/500: loss=0.036632
+
+  Stage 1: AE (baseline, 500 epochs)
+    Epoch 100: loss=0.019884
+    Epoch 200: loss=0.017013
+    Epoch 300: loss=0.006062
+    Epoch 400: loss=0.004259
+    Epoch 500: loss=0.000618
+  Precomputing decoder derivatives (baseline)...
+  Precomputing encoder-pullback target (baseline)...
+  Stage 3: Diffusion net (baseline AE, 500 epochs)
+  Stage 3 epoch 100/500: loss=0.277287
+  Stage 3 epoch 200/500: loss=0.253248
+  Stage 3 epoch 300/500: loss=0.236711
+  Stage 3 epoch 400/500: loss=0.215058
+  Stage 3 epoch 500/500: loss=0.204618
+
+  --- Condition: baseline (drift=enc_pull) ---
+    Stage 2: Drift net (encoder pullback, 500 epochs)
+  Stage 2 epoch 100/500: loss=1.036925
+  Stage 2 epoch 200/500: loss=0.995326
+  Stage 2 epoch 300/500: loss=0.910573
+  Stage 2 epoch 400/500: loss=1.072009
+  Stage 2 epoch 500/500: loss=0.845758
+    Evaluating trajectory fidelity...
+  MTE@0.1: 0.5757
+  MTE@0.5: 0.9627
+  MTE@1.0: 0.9713
+  W2@1.0:  0.6409
+  sW2@0.1: 0.2663 (293/500 in region)
+  sW2@0.2: 0.3689 (212/500 in region)
+  sW2@0.5: 0.4885 (88/500 in region)
+  sW2@1.0: 0.5155 (24/500 in region)
+  MMD@1.0: 0.2351
+  Survival@1.0: 26.6%
+  Stopped@1.0:  4.8%
+    baseline: W2=0.6409  MTE=0.9713  MMD=0.2351  E_mu=0.510662  (6s)
+
+  --- Condition: T+F (dec) (drift=decoder) ---
+    Stage 2: Drift net (decoder-side, 500 epochs)
+  Stage 2 epoch 100/500: loss=0.449839
+  Stage 2 epoch 200/500: loss=0.420176
+  Stage 2 epoch 300/500: loss=0.391233
+  Stage 2 epoch 400/500: loss=0.367660
+  Stage 2 epoch 500/500: loss=0.400341
+    Evaluating trajectory fidelity...
+  MTE@0.1: 0.7850
+  MTE@0.5: 1.4409
+  MTE@1.0: 1.4919
+  W2@1.0:  0.9427
+  sW2@0.1: 0.4126 (293/500 in region)
+  sW2@0.2: 0.5548 (212/500 in region)
+  sW2@0.5: 0.7830 (88/500 in region)
+  sW2@1.0: 0.6207 (24/500 in region)
+  MMD@1.0: 0.3202
+  Survival@1.0: 26.6%
+  Stopped@1.0:  4.8%
+    T+F (dec): W2=0.9427  MTE=1.4919  MMD=0.3202  E_mu=0.171618  (5s)
+
+  --- Condition: T+F (enc) (drift=enc_pull) ---
+    Stage 2: Drift net (encoder pullback, 500 epochs)
+  Stage 2 epoch 100/500: loss=0.324507
+  Stage 2 epoch 200/500: loss=0.315113
+  Stage 2 epoch 300/500: loss=0.297104
+  Stage 2 epoch 400/500: loss=0.294135
+  Stage 2 epoch 500/500: loss=0.300897
+    Evaluating trajectory fidelity...
+  MTE@0.1: 0.7878
+  MTE@0.5: 1.4550
+  MTE@1.0: 1.4718
+  W2@1.0:  0.8553
+  sW2@0.1: 0.4198 (293/500 in region)
+  sW2@0.2: 0.5685 (212/500 in region)
+  sW2@0.5: 0.7823 (88/500 in region)
+  sW2@1.0: 0.6093 (24/500 in region)
+  MMD@1.0: 0.3161
+  Survival@1.0: 26.6%
+  Stopped@1.0:  4.8%
+    T+F (enc): W2=0.8553  MTE=1.4718  MMD=0.3161  E_mu=0.171618  (5s)
+
+============================================================
+  quartic_dome | seed=3042
+============================================================
+
+  Stage 1: AE (T+F, 500 epochs)
+    Epoch 100: loss=0.175068
+    Epoch 200: loss=0.059617
+    Epoch 300: loss=0.045543
+    Epoch 400: loss=0.052055
+    Epoch 500: loss=0.030653
+  Precomputing decoder derivatives (T+F)...
+  Precomputing encoder-pullback target (T+F)...
+  Stage 3: Diffusion net (T+F AE, 500 epochs)
+  Stage 3 epoch 100/500: loss=0.139856
+  Stage 3 epoch 200/500: loss=0.087317
+  Stage 3 epoch 300/500: loss=0.072258
+  Stage 3 epoch 400/500: loss=0.064034
+  Stage 3 epoch 500/500: loss=0.056746
+
+  Stage 1: AE (baseline, 500 epochs)
+    Epoch 100: loss=0.016832
+    Epoch 200: loss=0.013977
+    Epoch 300: loss=0.009375
+    Epoch 400: loss=0.003297
+    Epoch 500: loss=0.004453
+  Precomputing decoder derivatives (baseline)...
+  Precomputing encoder-pullback target (baseline)...
+  Stage 3: Diffusion net (baseline AE, 500 epochs)
+  Stage 3 epoch 100/500: loss=0.260598
+  Stage 3 epoch 200/500: loss=0.203388
+  Stage 3 epoch 300/500: loss=0.184751
+  Stage 3 epoch 400/500: loss=0.179155
+  Stage 3 epoch 500/500: loss=0.175282
+
+  --- Condition: baseline (drift=enc_pull) ---
+    Stage 2: Drift net (encoder pullback, 500 epochs)
+  Stage 2 epoch 100/500: loss=1.002009
+  Stage 2 epoch 200/500: loss=0.985170
+  Stage 2 epoch 300/500: loss=0.920132
+  Stage 2 epoch 400/500: loss=0.994168
+  Stage 2 epoch 500/500: loss=1.115513
+    Evaluating trajectory fidelity...
+  MTE@0.1: 0.8793
+  MTE@0.5: 1.5124
+  MTE@1.0: 1.6564
+  W2@1.0:  0.9809
+  sW2@0.1: 0.4052 (275/500 in region)
+  sW2@0.2: 0.5749 (204/500 in region)
+  sW2@0.5: 0.8434 (78/500 in region)
+  sW2@1.0: 1.2129 (25/500 in region)
+  MMD@1.0: 0.3783
+  Survival@1.0: 27.2%
+  Stopped@1.0:  5.0%
+    baseline: W2=0.9809  MTE=1.6564  MMD=0.3783  E_mu=0.624793  (5s)
+
+  --- Condition: T+F (dec) (drift=decoder) ---
+    Stage 2: Drift net (decoder-side, 500 epochs)
+  Stage 2 epoch 100/500: loss=0.561978
+  Stage 2 epoch 200/500: loss=0.532682
+  Stage 2 epoch 300/500: loss=0.524992
+  Stage 2 epoch 400/500: loss=0.500263
+  Stage 2 epoch 500/500: loss=0.505843
+    Evaluating trajectory fidelity...
+  MTE@0.1: 0.8789
+  MTE@0.5: 1.5353
+  MTE@1.0: 1.6384
+  W2@1.0:  0.7303
+  sW2@0.1: 0.3958 (275/500 in region)
+  sW2@0.2: 0.6174 (204/500 in region)
+  sW2@0.5: 0.7681 (78/500 in region)
+  sW2@1.0: 0.8034 (25/500 in region)
+  MMD@1.0: 0.2440
+  Survival@1.0: 27.2%
+  Stopped@1.0:  5.0%
+    T+F (dec): W2=0.7303  MTE=1.6384  MMD=0.2440  E_mu=0.346377  (5s)
+
+  --- Condition: T+F (enc) (drift=enc_pull) ---
+    Stage 2: Drift net (encoder pullback, 500 epochs)
+  Stage 2 epoch 100/500: loss=0.399151
+  Stage 2 epoch 200/500: loss=0.388518
+  Stage 2 epoch 300/500: loss=0.379673
+  Stage 2 epoch 400/500: loss=0.349248
+  Stage 2 epoch 500/500: loss=0.360869
+    Evaluating trajectory fidelity...
+  MTE@0.1: 0.8838
+  MTE@0.5: 1.6000
+  MTE@1.0: 1.7756
+  W2@1.0:  0.9006
+  sW2@0.1: 0.4102 (275/500 in region)
+  sW2@0.2: 0.6511 (204/500 in region)
+  sW2@0.5: 0.9028 (78/500 in region)
+  sW2@1.0: 1.1027 (25/500 in region)
+  MMD@1.0: 0.2940
+  Survival@1.0: 27.2%
+  Stopped@1.0:  5.0%
+    T+F (enc): W2=0.9006  MTE=1.7756  MMD=0.2940  E_mu=0.346377  (5s)
+
+============================================================
+  quartic_dome | seed=4042
+============================================================
+
+  Stage 1: AE (T+F, 500 epochs)
+    Epoch 100: loss=0.121547
+    Epoch 200: loss=0.050077
+    Epoch 300: loss=0.028231
+    Epoch 400: loss=0.014333
+    Epoch 500: loss=0.017632
+  Precomputing decoder derivatives (T+F)...
+  Precomputing encoder-pullback target (T+F)...
+  Stage 3: Diffusion net (T+F AE, 500 epochs)
+  Stage 3 epoch 100/500: loss=0.056056
+  Stage 3 epoch 200/500: loss=0.017913
+  Stage 3 epoch 300/500: loss=0.013164
+  Stage 3 epoch 400/500: loss=0.010581
+  Stage 3 epoch 500/500: loss=0.009266
+
+  Stage 1: AE (baseline, 500 epochs)
+    Epoch 100: loss=0.014192
+    Epoch 200: loss=0.010500
+    Epoch 300: loss=0.003622
+    Epoch 400: loss=0.002539
+    Epoch 500: loss=0.000998
+  Precomputing decoder derivatives (baseline)...
+  Precomputing encoder-pullback target (baseline)...
+  Stage 3: Diffusion net (baseline AE, 500 epochs)
+  Stage 3 epoch 100/500: loss=0.153918
+  Stage 3 epoch 200/500: loss=0.147300
+  Stage 3 epoch 300/500: loss=0.139351
+  Stage 3 epoch 400/500: loss=0.132526
+  Stage 3 epoch 500/500: loss=0.129060
+
+  --- Condition: baseline (drift=enc_pull) ---
+    Stage 2: Drift net (encoder pullback, 500 epochs)
+  Stage 2 epoch 100/500: loss=0.676218
+  Stage 2 epoch 200/500: loss=0.650533
+  Stage 2 epoch 300/500: loss=0.654882
+  Stage 2 epoch 400/500: loss=0.636591
+  Stage 2 epoch 500/500: loss=0.632756
+    Evaluating trajectory fidelity...
+  MTE@0.1: 0.8800
+  MTE@0.5: 1.4847
+  MTE@1.0: 1.5307
+  W2@1.0:  0.6800
+  sW2@0.1: 0.3808 (287/500 in region)
+  sW2@0.2: 0.6318 (207/500 in region)
+  sW2@0.5: 0.6680 (102/500 in region)
+  sW2@1.0: 0.8425 (30/500 in region)
+  MMD@1.0: 0.2670
+  Survival@1.0: 28.2%
+  Stopped@1.0:  6.0%
+    baseline: W2=0.6800  MTE=1.5307  MMD=0.2670  E_mu=0.834623  (5s)
+
+  --- Condition: T+F (dec) (drift=decoder) ---
+    Stage 2: Drift net (decoder-side, 500 epochs)
+  Stage 2 epoch 100/500: loss=0.245969
+  Stage 2 epoch 200/500: loss=0.238610
+  Stage 2 epoch 300/500: loss=0.229405
+  Stage 2 epoch 400/500: loss=0.227598
+  Stage 2 epoch 500/500: loss=0.226544
+    Evaluating trajectory fidelity...
+  MTE@0.1: 0.8936
+  MTE@0.5: 1.6163
+  MTE@1.0: 1.8701
+  W2@1.0:  1.2171
+  sW2@0.1: 0.4510 (287/500 in region)
+  sW2@0.2: 0.7233 (207/500 in region)
+  sW2@0.5: 0.9504 (102/500 in region)
+  sW2@1.0: 1.5489 (30/500 in region)
+  MMD@1.0: 0.3275
+  Survival@1.0: 28.2%
+  Stopped@1.0:  6.0%
+    T+F (dec): W2=1.2171  MTE=1.8701  MMD=0.3275  E_mu=0.181506  (5s)
+
+  --- Condition: T+F (enc) (drift=enc_pull) ---
+    Stage 2: Drift net (encoder pullback, 500 epochs)
+  Stage 2 epoch 100/500: loss=0.300606
+  Stage 2 epoch 200/500: loss=0.291625
+  Stage 2 epoch 300/500: loss=0.277089
+  Stage 2 epoch 400/500: loss=0.270622
+  Stage 2 epoch 500/500: loss=0.274349
+    Evaluating trajectory fidelity...
+  MTE@0.1: 0.8901
+  MTE@0.5: 1.6058
+  MTE@1.0: 1.8812
+  W2@1.0:  1.2055
+  sW2@0.1: 0.4407 (287/500 in region)
+  sW2@0.2: 0.7010 (207/500 in region)
+  sW2@0.5: 0.9160 (102/500 in region)
+  sW2@1.0: 1.5509 (30/500 in region)
+  MMD@1.0: 0.3252
+  Survival@1.0: 28.2%
+  Stopped@1.0:  6.0%
+    T+F (enc): W2=1.2055  MTE=1.8812  MMD=0.3252  E_mu=0.181506  (5s)
+
+============================================================
+  quartic_dome | seed=5042
+============================================================
+
+  Stage 1: AE (T+F, 500 epochs)
+    Epoch 100: loss=0.182201
+    Epoch 200: loss=0.093856
+    Epoch 300: loss=0.088060
+    Epoch 400: loss=0.073905
+    Epoch 500: loss=0.063725
+  Precomputing decoder derivatives (T+F)...
+  Precomputing encoder-pullback target (T+F)...
+  Stage 3: Diffusion net (T+F AE, 500 epochs)
+  Stage 3 epoch 100/500: loss=0.105674
+  Stage 3 epoch 200/500: loss=0.098293
+  Stage 3 epoch 300/500: loss=0.087398
+  Stage 3 epoch 400/500: loss=0.078185
+  Stage 3 epoch 500/500: loss=0.072977
+
+  Stage 1: AE (baseline, 500 epochs)
+    Epoch 100: loss=0.011676
+    Epoch 200: loss=0.007729
+    Epoch 300: loss=0.009402
+    Epoch 400: loss=0.007828
+    Epoch 500: loss=0.001243
+  Precomputing decoder derivatives (baseline)...
+  Precomputing encoder-pullback target (baseline)...
+  Stage 3: Diffusion net (baseline AE, 500 epochs)
+  Stage 3 epoch 100/500: loss=0.128629
+  Stage 3 epoch 200/500: loss=0.119669
+  Stage 3 epoch 300/500: loss=0.109014
+  Stage 3 epoch 400/500: loss=0.102323
+  Stage 3 epoch 500/500: loss=0.098358
+
+  --- Condition: baseline (drift=enc_pull) ---
+    Stage 2: Drift net (encoder pullback, 500 epochs)
+  Stage 2 epoch 100/500: loss=0.992355
+  Stage 2 epoch 200/500: loss=0.813651
+  Stage 2 epoch 300/500: loss=0.701651
+  Stage 2 epoch 400/500: loss=0.589077
+  Stage 2 epoch 500/500: loss=0.551565
+    Evaluating trajectory fidelity...
+  MTE@0.1: 0.8838
+  MTE@0.5: 1.4048
+  MTE@1.0: 1.3783
+  W2@1.0:  0.6902
+  sW2@0.1: 0.3648 (285/500 in region)
+  sW2@0.2: 0.4037 (216/500 in region)
+  sW2@0.5: 0.5071 (93/500 in region)
+  sW2@1.0: 0.9303 (33/500 in region)
+  MMD@1.0: 0.2496
+  Survival@1.0: 25.8%
+  Stopped@1.0:  6.6%
+    baseline: W2=0.6902  MTE=1.3783  MMD=0.2496  E_mu=0.862681  (5s)
+
+  --- Condition: T+F (dec) (drift=decoder) ---
+    Stage 2: Drift net (decoder-side, 500 epochs)
+  Stage 2 epoch 100/500: loss=0.716768
+  Stage 2 epoch 200/500: loss=0.618546
+  Stage 2 epoch 300/500: loss=0.555485
+  Stage 2 epoch 400/500: loss=0.567610
+  Stage 2 epoch 500/500: loss=0.483484
+    Evaluating trajectory fidelity...
+  MTE@0.1: 0.8803
+  MTE@0.5: 1.5201
+  MTE@1.0: 1.5639
+  W2@1.0:  0.9566
+  sW2@0.1: 0.3762 (285/500 in region)
+  sW2@0.2: 0.4760 (216/500 in region)
+  sW2@0.5: 0.6473 (93/500 in region)
+  sW2@1.0: 1.1129 (33/500 in region)
+  MMD@1.0: 0.3159
+  Survival@1.0: 25.8%
+  Stopped@1.0:  6.6%
+    T+F (dec): W2=0.9566  MTE=1.5639  MMD=0.3159  E_mu=0.772130  (5s)
+
+  --- Condition: T+F (enc) (drift=enc_pull) ---
+    Stage 2: Drift net (encoder pullback, 500 epochs)
+  Stage 2 epoch 100/500: loss=1.221005
+  Stage 2 epoch 200/500: loss=0.973102
+  Stage 2 epoch 300/500: loss=0.795286
+  Stage 2 epoch 400/500: loss=0.782838
+  Stage 2 epoch 500/500: loss=0.697526
+    Evaluating trajectory fidelity...
+  MTE@0.1: 0.8742
+  MTE@0.5: 1.4936
+  MTE@1.0: 1.5335
+  W2@1.0:  0.9266
+  sW2@0.1: 0.3620 (285/500 in region)
+  sW2@0.2: 0.4514 (216/500 in region)
+  sW2@0.5: 0.6122 (93/500 in region)
+  sW2@1.0: 1.0755 (33/500 in region)
+  MMD@1.0: 0.3062
+  Survival@1.0: 25.8%
+  Stopped@1.0:  6.6%
+    T+F (enc): W2=0.9266  MTE=1.5335  MMD=0.3062  E_mu=0.772130  (6s)
+
+============================================================
+  quartic_dome | seed=6042
+============================================================
+
+  Stage 1: AE (T+F, 500 epochs)
+    Epoch 100: loss=0.117790
+    Epoch 200: loss=0.095640
+    Epoch 300: loss=0.059478
+    Epoch 400: loss=0.022483
+    Epoch 500: loss=0.031739
+  Precomputing decoder derivatives (T+F)...
+  Precomputing encoder-pullback target (T+F)...
+  Stage 3: Diffusion net (T+F AE, 500 epochs)
+  Stage 3 epoch 100/500: loss=0.037677
+  Stage 3 epoch 200/500: loss=0.031228
+  Stage 3 epoch 300/500: loss=0.023752
+  Stage 3 epoch 400/500: loss=0.018325
+  Stage 3 epoch 500/500: loss=0.015668
+
+  Stage 1: AE (baseline, 500 epochs)
+    Epoch 100: loss=0.019110
+    Epoch 200: loss=0.019184
+    Epoch 300: loss=0.009052
+    Epoch 400: loss=0.003782
+    Epoch 500: loss=0.006678
+  Precomputing decoder derivatives (baseline)...
+  Precomputing encoder-pullback target (baseline)...
+  Stage 3: Diffusion net (baseline AE, 500 epochs)
+  Stage 3 epoch 100/500: loss=0.145503
+  Stage 3 epoch 200/500: loss=0.126777
+  Stage 3 epoch 300/500: loss=0.113855
+  Stage 3 epoch 400/500: loss=0.102046
+  Stage 3 epoch 500/500: loss=0.095911
+
+  --- Condition: baseline (drift=enc_pull) ---
+    Stage 2: Drift net (encoder pullback, 500 epochs)
+  Stage 2 epoch 100/500: loss=0.902652
+  Stage 2 epoch 200/500: loss=0.840836
+  Stage 2 epoch 300/500: loss=0.834565
+  Stage 2 epoch 400/500: loss=0.741295
+  Stage 2 epoch 500/500: loss=0.776645
+    Evaluating trajectory fidelity...
+  MTE@0.1: 0.6984
+  MTE@0.5: 1.2359
+  MTE@1.0: 1.3961
+  W2@1.0:  1.0984
+  sW2@0.1: 0.3674 (290/500 in region)
+  sW2@0.2: 0.4597 (208/500 in region)
+  sW2@0.5: 0.6429 (89/500 in region)
+  sW2@1.0: 1.1396 (30/500 in region)
+  MMD@1.0: 0.3952
+  Survival@1.0: 27.2%
+  Stopped@1.0:  6.0%
+    baseline: W2=1.0984  MTE=1.3961  MMD=0.3952  E_mu=0.774262  (5s)
+
+  --- Condition: T+F (dec) (drift=decoder) ---
+    Stage 2: Drift net (decoder-side, 500 epochs)
+  Stage 2 epoch 100/500: loss=0.204382
+  Stage 2 epoch 200/500: loss=0.199382
+  Stage 2 epoch 300/500: loss=0.194843
+  Stage 2 epoch 400/500: loss=0.195048
+  Stage 2 epoch 500/500: loss=0.196630
+    Evaluating trajectory fidelity...
+  MTE@0.1: 0.6259
+  MTE@0.5: 1.2513
+  MTE@1.0: 1.3654
+  W2@1.0:  1.0781
+  sW2@0.1: 0.3156 (290/500 in region)
+  sW2@0.2: 0.4770 (208/500 in region)
+  sW2@0.5: 0.6450 (89/500 in region)
+  sW2@1.0: 1.1850 (30/500 in region)
+  MMD@1.0: 0.3110
+  Survival@1.0: 27.2%
+  Stopped@1.0:  6.0%
+    T+F (dec): W2=1.0781  MTE=1.3654  MMD=0.3110  E_mu=0.183831  (5s)
+
+  --- Condition: T+F (enc) (drift=enc_pull) ---
+    Stage 2: Drift net (encoder pullback, 500 epochs)
+  Stage 2 epoch 100/500: loss=0.187769
+  Stage 2 epoch 200/500: loss=0.183636
+  Stage 2 epoch 300/500: loss=0.177199
+  Stage 2 epoch 400/500: loss=0.180652
+  Stage 2 epoch 500/500: loss=0.175316
+    Evaluating trajectory fidelity...
+  MTE@0.1: 0.6256
+  MTE@0.5: 1.2477
+  MTE@1.0: 1.3583
+  W2@1.0:  1.1032
+  sW2@0.1: 0.3169 (290/500 in region)
+  sW2@0.2: 0.4827 (208/500 in region)
+  sW2@0.5: 0.6538 (89/500 in region)
+  sW2@1.0: 1.2184 (30/500 in region)
+  MMD@1.0: 0.3190
+  Survival@1.0: 27.2%
+  Stopped@1.0:  6.0%
+    T+F (enc): W2=1.1032  MTE=1.3583  MMD=0.3190  E_mu=0.183831  (5s)
+
+============================================================
+  quartic_dome | seed=7042
+============================================================
+
+  Stage 1: AE (T+F, 500 epochs)
+    Epoch 100: loss=0.150866
+    Epoch 200: loss=0.036416
+    Epoch 300: loss=0.022926
+    Epoch 400: loss=0.026415
+    Epoch 500: loss=0.011165
+  Precomputing decoder derivatives (T+F)...
+  Precomputing encoder-pullback target (T+F)...
+  Stage 3: Diffusion net (T+F AE, 500 epochs)
+  Stage 3 epoch 100/500: loss=0.093610
+  Stage 3 epoch 200/500: loss=0.023439
+  Stage 3 epoch 300/500: loss=0.016655
+  Stage 3 epoch 400/500: loss=0.013649
+  Stage 3 epoch 500/500: loss=0.012221
+
+  Stage 1: AE (baseline, 500 epochs)
+    Epoch 100: loss=0.014571
+    Epoch 200: loss=0.013531
+    Epoch 300: loss=0.014689
+    Epoch 400: loss=0.005810
+    Epoch 500: loss=0.003064
+  Precomputing decoder derivatives (baseline)...
+  Precomputing encoder-pullback target (baseline)...
+  Stage 3: Diffusion net (baseline AE, 500 epochs)
+  Stage 3 epoch 100/500: loss=0.128842
+  Stage 3 epoch 200/500: loss=0.100466
+  Stage 3 epoch 300/500: loss=0.096775
+  Stage 3 epoch 400/500: loss=0.094991
+  Stage 3 epoch 500/500: loss=0.093980
+
+  --- Condition: baseline (drift=enc_pull) ---
+    Stage 2: Drift net (encoder pullback, 500 epochs)
+  Stage 2 epoch 100/500: loss=0.755821
+  Stage 2 epoch 200/500: loss=0.725845
+  Stage 2 epoch 300/500: loss=0.661479
+  Stage 2 epoch 400/500: loss=0.623306
+  Stage 2 epoch 500/500: loss=0.562109
+    Evaluating trajectory fidelity...
+  MTE@0.1: 0.6517
+  MTE@0.5: 1.0538
+  MTE@1.0: 1.0797
+  W2@1.0:  0.5498
+  sW2@0.1: 0.3358 (316/500 in region)
+  sW2@0.2: 0.4262 (232/500 in region)
+  sW2@0.5: 0.4379 (109/500 in region)
+  sW2@1.0: 0.6155 (29/500 in region)
+  MMD@1.0: 0.2105
+  Survival@1.0: 28.8%
+  Stopped@1.0:  5.8%
+    baseline: W2=0.5498  MTE=1.0797  MMD=0.2105  E_mu=0.908039  (5s)
+
+  --- Condition: T+F (dec) (drift=decoder) ---
+    Stage 2: Drift net (decoder-side, 500 epochs)
+  Stage 2 epoch 100/500: loss=0.279909
+  Stage 2 epoch 200/500: loss=0.269461
+  Stage 2 epoch 300/500: loss=0.263334
+  Stage 2 epoch 400/500: loss=0.246736
+  Stage 2 epoch 500/500: loss=0.229929
+    Evaluating trajectory fidelity...
+  MTE@0.1: 0.6682
+  MTE@0.5: 1.1669
+  MTE@1.0: 1.3612
+  W2@1.0:  0.8731
+  sW2@0.1: 0.3593 (316/500 in region)
+  sW2@0.2: 0.5077 (232/500 in region)
+  sW2@0.5: 0.6657 (109/500 in region)
+  sW2@1.0: 1.0554 (29/500 in region)
+  MMD@1.0: 0.2651
+  Survival@1.0: 28.8%
+  Stopped@1.0:  5.8%
+    T+F (dec): W2=0.8731  MTE=1.3612  MMD=0.2651  E_mu=0.145285  (5s)
+
+  --- Condition: T+F (enc) (drift=enc_pull) ---
+    Stage 2: Drift net (encoder pullback, 500 epochs)
+  Stage 2 epoch 100/500: loss=0.239355
+  Stage 2 epoch 200/500: loss=0.232786
+  Stage 2 epoch 300/500: loss=0.232333
+  Stage 2 epoch 400/500: loss=0.219690
+  Stage 2 epoch 500/500: loss=0.210035
+    Evaluating trajectory fidelity...
+  MTE@0.1: 0.6679
+  MTE@0.5: 1.1514
+  MTE@1.0: 1.3060
+  W2@1.0:  0.8029
+  sW2@0.1: 0.3616 (316/500 in region)
+  sW2@0.2: 0.5103 (232/500 in region)
+  sW2@0.5: 0.6404 (109/500 in region)
+  sW2@1.0: 0.9758 (29/500 in region)
+  MMD@1.0: 0.2472
+  Survival@1.0: 28.8%
+  Stopped@1.0:  5.8%
+    T+F (enc): W2=0.8029  MTE=1.3060  MMD=0.2472  E_mu=0.145285  (5s)
+
+============================================================
+  quartic_dome | seed=8042
+============================================================
+
+  Stage 1: AE (T+F, 500 epochs)
+    Epoch 100: loss=0.176601
+    Epoch 200: loss=0.108424
+    Epoch 300: loss=0.061124
+    Epoch 400: loss=0.047261
+    Epoch 500: loss=0.023462
+  Precomputing decoder derivatives (T+F)...
+  Precomputing encoder-pullback target (T+F)...
+  Stage 3: Diffusion net (T+F AE, 500 epochs)
+  Stage 3 epoch 100/500: loss=0.041576
+  Stage 3 epoch 200/500: loss=0.037516
+  Stage 3 epoch 300/500: loss=0.033296
+  Stage 3 epoch 400/500: loss=0.027979
+  Stage 3 epoch 500/500: loss=0.023647
+
+  Stage 1: AE (baseline, 500 epochs)
+    Epoch 100: loss=0.018767
+    Epoch 200: loss=0.015935
+    Epoch 300: loss=0.006757
+    Epoch 400: loss=0.015931
+    Epoch 500: loss=0.001228
+  Precomputing decoder derivatives (baseline)...
+  Precomputing encoder-pullback target (baseline)...
+  Stage 3: Diffusion net (baseline AE, 500 epochs)
+  Stage 3 epoch 100/500: loss=0.160237
+  Stage 3 epoch 200/500: loss=0.157094
+  Stage 3 epoch 300/500: loss=0.153167
+  Stage 3 epoch 400/500: loss=0.147726
+  Stage 3 epoch 500/500: loss=0.142149
+
+  --- Condition: baseline (drift=enc_pull) ---
+    Stage 2: Drift net (encoder pullback, 500 epochs)
+  Stage 2 epoch 100/500: loss=0.515813
+  Stage 2 epoch 200/500: loss=0.479438
+  Stage 2 epoch 300/500: loss=0.453946
+  Stage 2 epoch 400/500: loss=0.480151
+  Stage 2 epoch 500/500: loss=0.436637
+    Evaluating trajectory fidelity...
+  MTE@0.1: 0.6455
+  MTE@0.5: 1.0462
+  MTE@1.0: 1.2009
+  W2@1.0:  0.5464
+  sW2@0.1: 0.2705 (269/500 in region)
+  sW2@0.2: 0.3927 (192/500 in region)
+  sW2@0.5: 0.4774 (84/500 in region)
+  sW2@1.0: 0.6274 (29/500 in region)
+  MMD@1.0: 0.2107
+  Survival@1.0: 27.0%
+  Stopped@1.0:  5.8%
+    baseline: W2=0.5464  MTE=1.2009  MMD=0.2107  E_mu=1.091459  (5s)
+
+  --- Condition: T+F (dec) (drift=decoder) ---
+    Stage 2: Drift net (decoder-side, 500 epochs)
+  Stage 2 epoch 100/500: loss=0.334678
+  Stage 2 epoch 200/500: loss=0.315450
+  Stage 2 epoch 300/500: loss=0.309048
+  Stage 2 epoch 400/500: loss=0.301211
+  Stage 2 epoch 500/500: loss=0.270354
+    Evaluating trajectory fidelity...
+  MTE@0.1: 0.6792
+  MTE@0.5: 1.1865
+  MTE@1.0: 1.3866
+  W2@1.0:  0.8506
+  sW2@0.1: 0.4487 (269/500 in region)
+  sW2@0.2: 0.6197 (192/500 in region)
+  sW2@0.5: 0.6460 (84/500 in region)
+  sW2@1.0: 0.5986 (29/500 in region)
+  MMD@1.0: 0.2501
+  Survival@1.0: 27.0%
+  Stopped@1.0:  5.8%
+    T+F (dec): W2=0.8506  MTE=1.3866  MMD=0.2501  E_mu=0.296586  (5s)
+
+  --- Condition: T+F (enc) (drift=enc_pull) ---
+    Stage 2: Drift net (encoder pullback, 500 epochs)
+  Stage 2 epoch 100/500: loss=0.494396
+  Stage 2 epoch 200/500: loss=0.465860
+  Stage 2 epoch 300/500: loss=0.437881
+  Stage 2 epoch 400/500: loss=0.451303
+  Stage 2 epoch 500/500: loss=0.382985
+    Evaluating trajectory fidelity...
+  MTE@0.1: 0.6804
+  MTE@0.5: 1.1849
+  MTE@1.0: 1.4098
+  W2@1.0:  0.9190
+  sW2@0.1: 0.4562 (269/500 in region)
+  sW2@0.2: 0.6313 (192/500 in region)
+  sW2@0.5: 0.6664 (84/500 in region)
+  sW2@1.0: 0.6568 (29/500 in region)
+  MMD@1.0: 0.2605
+  Survival@1.0: 27.0%
+  Stopped@1.0:  5.8%
+    T+F (enc): W2=0.9190  MTE=1.4098  MMD=0.2605  E_mu=0.296586  (6s)
+
+============================================================
+  quartic_dome | seed=9042
+============================================================
+
+  Stage 1: AE (T+F, 500 epochs)
+    Epoch 100: loss=0.186700
+    Epoch 200: loss=0.070528
+    Epoch 300: loss=0.033628
+    Epoch 400: loss=0.023990
+    Epoch 500: loss=0.017943
+  Precomputing decoder derivatives (T+F)...
+  Precomputing encoder-pullback target (T+F)...
+  Stage 3: Diffusion net (T+F AE, 500 epochs)
+  Stage 3 epoch 100/500: loss=0.089324
+  Stage 3 epoch 200/500: loss=0.028802
+  Stage 3 epoch 300/500: loss=0.021195
+  Stage 3 epoch 400/500: loss=0.017645
+  Stage 3 epoch 500/500: loss=0.015795
+
+  Stage 1: AE (baseline, 500 epochs)
+    Epoch 100: loss=0.013259
+    Epoch 200: loss=0.012390
+    Epoch 300: loss=0.010520
+    Epoch 400: loss=0.006633
+    Epoch 500: loss=0.003112
+  Precomputing decoder derivatives (baseline)...
+  Precomputing encoder-pullback target (baseline)...
+  Stage 3: Diffusion net (baseline AE, 500 epochs)
+  Stage 3 epoch 100/500: loss=0.428424
+  Stage 3 epoch 200/500: loss=0.334775
+  Stage 3 epoch 300/500: loss=0.299859
+  Stage 3 epoch 400/500: loss=0.286504
+  Stage 3 epoch 500/500: loss=0.282080
+
+  --- Condition: baseline (drift=enc_pull) ---
+    Stage 2: Drift net (encoder pullback, 500 epochs)
+  Stage 2 epoch 100/500: loss=0.579692
+  Stage 2 epoch 200/500: loss=0.520689
+  Stage 2 epoch 300/500: loss=0.517305
+  Stage 2 epoch 400/500: loss=0.491258
+  Stage 2 epoch 500/500: loss=0.493440
+    Evaluating trajectory fidelity...
+  MTE@0.1: 0.3637
+  MTE@0.5: 0.5755
+  MTE@1.0: 0.7066
+  W2@1.0:  0.5140
+  sW2@0.1: 0.2646 (280/500 in region)
+  sW2@0.2: 0.2623 (205/500 in region)
+  sW2@0.5: 0.3811 (85/500 in region)
+  sW2@1.0: 0.4306 (22/500 in region)
+  MMD@1.0: 0.2207
+  Survival@1.0: 28.2%
+  Stopped@1.0:  4.4%
+    baseline: W2=0.5140  MTE=0.7066  MMD=0.2207  E_mu=0.772031  (5s)
+
+  --- Condition: T+F (dec) (drift=decoder) ---
+    Stage 2: Drift net (decoder-side, 500 epochs)
+  Stage 2 epoch 100/500: loss=0.265569
+  Stage 2 epoch 200/500: loss=0.242332
+  Stage 2 epoch 300/500: loss=0.230106
+  Stage 2 epoch 400/500: loss=0.248149
+  Stage 2 epoch 500/500: loss=0.228660
+    Evaluating trajectory fidelity...
+  MTE@0.1: 0.2952
+  MTE@0.5: 0.5485
+  MTE@1.0: 0.7451
+  W2@1.0:  0.5540
+  sW2@0.1: 0.2171 (280/500 in region)
+  sW2@0.2: 0.2052 (205/500 in region)
+  sW2@0.5: 0.3249 (85/500 in region)
+  sW2@1.0: 0.4436 (22/500 in region)
+  MMD@1.0: 0.2662
+  Survival@1.0: 28.2%
+  Stopped@1.0:  4.4%
+    T+F (dec): W2=0.5540  MTE=0.7451  MMD=0.2662  E_mu=0.278322  (5s)
+
+  --- Condition: T+F (enc) (drift=enc_pull) ---
+    Stage 2: Drift net (encoder pullback, 500 epochs)
+  Stage 2 epoch 100/500: loss=0.232371
+  Stage 2 epoch 200/500: loss=0.213284
+  Stage 2 epoch 300/500: loss=0.198096
+  Stage 2 epoch 400/500: loss=0.218543
+  Stage 2 epoch 500/500: loss=0.191287
+    Evaluating trajectory fidelity...
+  MTE@0.1: 0.2946
+  MTE@0.5: 0.5612
+  MTE@1.0: 0.7750
+  W2@1.0:  0.6561
+  sW2@0.1: 0.2228 (280/500 in region)
+  sW2@0.2: 0.2202 (205/500 in region)
+  sW2@0.5: 0.3674 (85/500 in region)
+  sW2@1.0: 0.4009 (22/500 in region)
+  MMD@1.0: 0.2783
+  Survival@1.0: 28.2%
+  Stopped@1.0:  4.4%
+    T+F (enc): W2=0.6561  MTE=0.7750  MMD=0.2783  E_mu=0.278322  (5s)
+
+======================================================================
+Surface: sinusoidal
+======================================================================
+  Lambdifying SDE...
+
+============================================================
+  sinusoidal | seed=42
+============================================================
+
+  Stage 1: AE (T+F, 500 epochs)
+    Epoch 100: loss=0.074066
+    Epoch 200: loss=0.050353
+    Epoch 300: loss=0.022393
+    Epoch 400: loss=0.010743
+    Epoch 500: loss=0.002166
+  Precomputing decoder derivatives (T+F)...
+  Precomputing encoder-pullback target (T+F)...
+  Stage 3: Diffusion net (T+F AE, 500 epochs)
+  Stage 3 epoch 100/500: loss=0.079650
+  Stage 3 epoch 200/500: loss=0.018142
+  Stage 3 epoch 300/500: loss=0.015603
+  Stage 3 epoch 400/500: loss=0.013225
+  Stage 3 epoch 500/500: loss=0.010290
+
+  Stage 1: AE (baseline, 500 epochs)
+    Epoch 100: loss=0.007194
+    Epoch 200: loss=0.004668
+    Epoch 300: loss=0.002004
+    Epoch 400: loss=0.001363
+    Epoch 500: loss=0.001220
+  Precomputing decoder derivatives (baseline)...
+  Precomputing encoder-pullback target (baseline)...
+  Stage 3: Diffusion net (baseline AE, 500 epochs)
+  Stage 3 epoch 100/500: loss=0.258144
+  Stage 3 epoch 200/500: loss=0.217594
+  Stage 3 epoch 300/500: loss=0.213091
+  Stage 3 epoch 400/500: loss=0.209144
+  Stage 3 epoch 500/500: loss=0.205659
+
+  --- Condition: baseline (drift=enc_pull) ---
+    Stage 2: Drift net (encoder pullback, 500 epochs)
+  Stage 2 epoch 100/500: loss=0.431114
+  Stage 2 epoch 200/500: loss=0.365364
+  Stage 2 epoch 300/500: loss=0.324584
+  Stage 2 epoch 400/500: loss=0.351769
+  Stage 2 epoch 500/500: loss=0.318279
+    Evaluating trajectory fidelity...
+  MTE@0.1: 0.2866
+  MTE@0.5: 0.5937
+  MTE@1.0: 0.7557
+  W2@1.0:  0.4071
+  sW2@0.1: 0.1534 (292/500 in region)
+  sW2@0.2: 0.1899 (214/500 in region)
+  sW2@0.5: 0.3548 (97/500 in region)
+  sW2@1.0: 0.5001 (21/500 in region)
+  MMD@1.0: 0.2266
+  Survival@1.0: 28.0%
+  Stopped@1.0:  4.2%
+    baseline: W2=0.4071  MTE=0.7557  MMD=0.2266  E_mu=0.123576  (5s)
+
+  --- Condition: T+F (dec) (drift=decoder) ---
+    Stage 2: Drift net (decoder-side, 500 epochs)
+  Stage 2 epoch 100/500: loss=0.208947
+  Stage 2 epoch 200/500: loss=0.201636
+  Stage 2 epoch 300/500: loss=0.185149
+  Stage 2 epoch 400/500: loss=0.173093
+  Stage 2 epoch 500/500: loss=0.176621
+    Evaluating trajectory fidelity...
+  MTE@0.1: 0.2748
+  MTE@0.5: 0.6561
+  MTE@1.0: 0.9142
+  W2@1.0:  0.5327
+  sW2@0.1: 0.1512 (292/500 in region)
+  sW2@0.2: 0.2157 (214/500 in region)
+  sW2@0.5: 0.4076 (97/500 in region)
+  sW2@1.0: 0.6827 (21/500 in region)
+  MMD@1.0: 0.2727
+  Survival@1.0: 28.0%
+  Stopped@1.0:  4.2%
+    T+F (dec): W2=0.5327  MTE=0.9142  MMD=0.2727  E_mu=0.034911  (5s)
+
+  --- Condition: T+F (enc) (drift=enc_pull) ---
+    Stage 2: Drift net (encoder pullback, 500 epochs)
+  Stage 2 epoch 100/500: loss=0.201981
+  Stage 2 epoch 200/500: loss=0.194095
+  Stage 2 epoch 300/500: loss=0.178315
+  Stage 2 epoch 400/500: loss=0.166828
+  Stage 2 epoch 500/500: loss=0.161700
+    Evaluating trajectory fidelity...
+  MTE@0.1: 0.2753
+  MTE@0.5: 0.6594
+  MTE@1.0: 0.9208
+  W2@1.0:  0.5335
+  sW2@0.1: 0.1497 (292/500 in region)
+  sW2@0.2: 0.2116 (214/500 in region)
+  sW2@0.5: 0.3946 (97/500 in region)
+  sW2@1.0: 0.6397 (21/500 in region)
+  MMD@1.0: 0.2751
+  Survival@1.0: 28.0%
+  Stopped@1.0:  4.2%
+    T+F (enc): W2=0.5335  MTE=0.9208  MMD=0.2751  E_mu=0.034911  (5s)
+
+============================================================
+  sinusoidal | seed=1042
+============================================================
+
+  Stage 1: AE (T+F, 500 epochs)
+    Epoch 100: loss=0.038462
+    Epoch 200: loss=0.040901
+    Epoch 300: loss=0.036163
+    Epoch 400: loss=0.020507
+    Epoch 500: loss=0.005027
+  Precomputing decoder derivatives (T+F)...
+  Precomputing encoder-pullback target (T+F)...
+  Stage 3: Diffusion net (T+F AE, 500 epochs)
+  Stage 3 epoch 100/500: loss=0.029709
+  Stage 3 epoch 200/500: loss=0.017853
+  Stage 3 epoch 300/500: loss=0.010429
+  Stage 3 epoch 400/500: loss=0.005141
+  Stage 3 epoch 500/500: loss=0.004090
+
+  Stage 1: AE (baseline, 500 epochs)
+    Epoch 100: loss=0.003428
+    Epoch 200: loss=0.002404
+    Epoch 300: loss=0.001787
+    Epoch 400: loss=0.001832
+    Epoch 500: loss=0.000800
+  Precomputing decoder derivatives (baseline)...
+  Precomputing encoder-pullback target (baseline)...
+  Stage 3: Diffusion net (baseline AE, 500 epochs)
+  Stage 3 epoch 100/500: loss=0.225208
+  Stage 3 epoch 200/500: loss=0.154288
+  Stage 3 epoch 300/500: loss=0.134678
+  Stage 3 epoch 400/500: loss=0.104256
+  Stage 3 epoch 500/500: loss=0.092071
+
+  --- Condition: baseline (drift=enc_pull) ---
+    Stage 2: Drift net (encoder pullback, 500 epochs)
+  Stage 2 epoch 100/500: loss=0.574730
+  Stage 2 epoch 200/500: loss=0.481527
+  Stage 2 epoch 300/500: loss=0.338330
+  Stage 2 epoch 400/500: loss=0.387379
+  Stage 2 epoch 500/500: loss=0.359572
+    Evaluating trajectory fidelity...
+  MTE@0.1: 0.6930
+  MTE@0.5: 1.2446
+  MTE@1.0: 1.5270
+  W2@1.0:  0.7525
+  sW2@0.1: 0.2181 (285/500 in region)
+  sW2@0.2: 0.3310 (204/500 in region)
+  sW2@0.5: 0.4958 (98/500 in region)
+  sW2@1.0: 0.8017 (31/500 in region)
+  MMD@1.0: 0.2063
+  Survival@1.0: 29.8%
+  Stopped@1.0:  6.2%
+    baseline: W2=0.7525  MTE=1.5270  MMD=0.2063  E_mu=0.097084  (5s)
+
+  --- Condition: T+F (dec) (drift=decoder) ---
+    Stage 2: Drift net (decoder-side, 500 epochs)
+  Stage 2 epoch 100/500: loss=0.211075
+  Stage 2 epoch 200/500: loss=0.193384
+  Stage 2 epoch 300/500: loss=0.147051
+  Stage 2 epoch 400/500: loss=0.143892
+  Stage 2 epoch 500/500: loss=0.149043
+    Evaluating trajectory fidelity...
+  MTE@0.1: 0.7845
+  MTE@0.5: 1.4737
+  MTE@1.0: 1.7642
+  W2@1.0:  0.7612
+  sW2@0.1: 0.2794 (285/500 in region)
+  sW2@0.2: 0.3747 (204/500 in region)
+  sW2@0.5: 0.5035 (98/500 in region)
+  sW2@1.0: 1.0143 (31/500 in region)
+  MMD@1.0: 0.2581
+  Survival@1.0: 29.8%
+  Stopped@1.0:  6.2%
+    T+F (dec): W2=0.7612  MTE=1.7642  MMD=0.2581  E_mu=0.028838  (5s)
+
+  --- Condition: T+F (enc) (drift=enc_pull) ---
+    Stage 2: Drift net (encoder pullback, 500 epochs)
+  Stage 2 epoch 100/500: loss=0.246932
+  Stage 2 epoch 200/500: loss=0.224190
+  Stage 2 epoch 300/500: loss=0.166241
+  Stage 2 epoch 400/500: loss=0.176795
+  Stage 2 epoch 500/500: loss=0.191363
+    Evaluating trajectory fidelity...
+  MTE@0.1: 0.7818
+  MTE@0.5: 1.4550
+  MTE@1.0: 1.7145
+  W2@1.0:  0.7093
+  sW2@0.1: 0.2731 (285/500 in region)
+  sW2@0.2: 0.3640 (204/500 in region)
+  sW2@0.5: 0.4804 (98/500 in region)
+  sW2@1.0: 0.9722 (31/500 in region)
+  MMD@1.0: 0.2468
+  Survival@1.0: 29.8%
+  Stopped@1.0:  6.2%
+    T+F (enc): W2=0.7093  MTE=1.7145  MMD=0.2468  E_mu=0.028838  (5s)
+
+============================================================
+  sinusoidal | seed=2042
+============================================================
+
+  Stage 1: AE (T+F, 500 epochs)
+    Epoch 100: loss=0.083719
+    Epoch 200: loss=0.083740
+    Epoch 300: loss=0.070038
+    Epoch 400: loss=0.026599
+    Epoch 500: loss=0.012649
+  Precomputing decoder derivatives (T+F)...
+  Precomputing encoder-pullback target (T+F)...
+  Stage 3: Diffusion net (T+F AE, 500 epochs)
+  Stage 3 epoch 100/500: loss=0.047242
+  Stage 3 epoch 200/500: loss=0.039784
+  Stage 3 epoch 300/500: loss=0.036372
+  Stage 3 epoch 400/500: loss=0.033981
+  Stage 3 epoch 500/500: loss=0.031839
+
+  Stage 1: AE (baseline, 500 epochs)
+    Epoch 100: loss=0.006432
+    Epoch 200: loss=0.004008
+    Epoch 300: loss=0.002710
+    Epoch 400: loss=0.005060
+    Epoch 500: loss=0.002043
+  Precomputing decoder derivatives (baseline)...
+  Precomputing encoder-pullback target (baseline)...
+  Stage 3: Diffusion net (baseline AE, 500 epochs)
+  Stage 3 epoch 100/500: loss=0.278905
+  Stage 3 epoch 200/500: loss=0.223972
+  Stage 3 epoch 300/500: loss=0.208181
+  Stage 3 epoch 400/500: loss=0.205561
+  Stage 3 epoch 500/500: loss=0.204020
+
+  --- Condition: baseline (drift=enc_pull) ---
+    Stage 2: Drift net (encoder pullback, 500 epochs)
+  Stage 2 epoch 100/500: loss=0.568198
+  Stage 2 epoch 200/500: loss=0.539537
+  Stage 2 epoch 300/500: loss=0.522754
+  Stage 2 epoch 400/500: loss=0.537832
+  Stage 2 epoch 500/500: loss=0.519267
+    Evaluating trajectory fidelity...
+  MTE@0.1: 1.0008
+  MTE@0.5: 1.8495
+  MTE@1.0: 1.7768
+  W2@1.0:  0.6999
+  sW2@0.1: 0.4391 (293/500 in region)
+  sW2@0.2: 0.6096 (212/500 in region)
+  sW2@0.5: 0.8601 (88/500 in region)
+  sW2@1.0: 0.7797 (24/500 in region)
+  MMD@1.0: 0.2406
+  Survival@1.0: 26.6%
+  Stopped@1.0:  4.8%
+    baseline: W2=0.6999  MTE=1.7768  MMD=0.2406  E_mu=0.094943  (5s)
+
+  --- Condition: T+F (dec) (drift=decoder) ---
+    Stage 2: Drift net (decoder-side, 500 epochs)
+  Stage 2 epoch 100/500: loss=0.177999
+  Stage 2 epoch 200/500: loss=0.168275
+  Stage 2 epoch 300/500: loss=0.168279
+  Stage 2 epoch 400/500: loss=0.165101
+  Stage 2 epoch 500/500: loss=0.168237
+    Evaluating trajectory fidelity...
+  MTE@0.1: 0.8792
+  MTE@0.5: 1.6616
+  MTE@1.0: 1.6387
+  W2@1.0:  0.7861
+  sW2@0.1: 0.4650 (293/500 in region)
+  sW2@0.2: 0.6127 (212/500 in region)
+  sW2@0.5: 0.7800 (88/500 in region)
+  sW2@1.0: 0.6264 (24/500 in region)
+  MMD@1.0: 0.2890
+  Survival@1.0: 26.6%
+  Stopped@1.0:  4.8%
+    T+F (dec): W2=0.7861  MTE=1.6387  MMD=0.2890  E_mu=0.032410  (5s)
+
+  --- Condition: T+F (enc) (drift=enc_pull) ---
+    Stage 2: Drift net (encoder pullback, 500 epochs)
+  Stage 2 epoch 100/500: loss=0.275277
+  Stage 2 epoch 200/500: loss=0.256382
+  Stage 2 epoch 300/500: loss=0.257975
+  Stage 2 epoch 400/500: loss=0.256792
+  Stage 2 epoch 500/500: loss=0.260445
+    Evaluating trajectory fidelity...
+  MTE@0.1: 0.8692
+  MTE@0.5: 1.6006
+  MTE@1.0: 1.5346
+  W2@1.0:  0.6422
+  sW2@0.1: 0.4364 (293/500 in region)
+  sW2@0.2: 0.5514 (212/500 in region)
+  sW2@0.5: 0.6931 (88/500 in region)
+  sW2@1.0: 0.4868 (24/500 in region)
+  MMD@1.0: 0.2609
+  Survival@1.0: 26.6%
+  Stopped@1.0:  4.8%
+    T+F (enc): W2=0.6422  MTE=1.5346  MMD=0.2609  E_mu=0.032410  (5s)
+
+============================================================
+  sinusoidal | seed=3042
+============================================================
+
+  Stage 1: AE (T+F, 500 epochs)
+    Epoch 100: loss=0.056387
+    Epoch 200: loss=0.053260
+    Epoch 300: loss=0.047690
+    Epoch 400: loss=0.007651
+    Epoch 500: loss=0.003093
+  Precomputing decoder derivatives (T+F)...
+  Precomputing encoder-pullback target (T+F)...
+  Stage 3: Diffusion net (T+F AE, 500 epochs)
+  Stage 3 epoch 100/500: loss=0.070007
+  Stage 3 epoch 200/500: loss=0.027116
+  Stage 3 epoch 300/500: loss=0.010262
+  Stage 3 epoch 400/500: loss=0.007309
+  Stage 3 epoch 500/500: loss=0.006848
+
+  Stage 1: AE (baseline, 500 epochs)
+    Epoch 100: loss=0.005412
+    Epoch 200: loss=0.003923
+    Epoch 300: loss=0.001832
+    Epoch 400: loss=0.001257
+    Epoch 500: loss=0.001562
+  Precomputing decoder derivatives (baseline)...
+  Precomputing encoder-pullback target (baseline)...
+  Stage 3: Diffusion net (baseline AE, 500 epochs)
+  Stage 3 epoch 100/500: loss=0.234716
+  Stage 3 epoch 200/500: loss=0.167253
+  Stage 3 epoch 300/500: loss=0.156425
+  Stage 3 epoch 400/500: loss=0.154240
+  Stage 3 epoch 500/500: loss=0.152973
+
+  --- Condition: baseline (drift=enc_pull) ---
+    Stage 2: Drift net (encoder pullback, 500 epochs)
+  Stage 2 epoch 100/500: loss=0.470715
+  Stage 2 epoch 200/500: loss=0.442854
+  Stage 2 epoch 300/500: loss=0.429645
+  Stage 2 epoch 400/500: loss=0.433543
+  Stage 2 epoch 500/500: loss=0.394258
+    Evaluating trajectory fidelity...
+  MTE@0.1: 0.9894
+  MTE@0.5: 1.7552
+  MTE@1.0: 1.9318
+  W2@1.0:  0.7217
+  sW2@0.1: 0.3687 (275/500 in region)
+  sW2@0.2: 0.5537 (204/500 in region)
+  sW2@0.5: 0.7932 (78/500 in region)
+  sW2@1.0: 0.9269 (25/500 in region)
+  MMD@1.0: 0.2208
+  Survival@1.0: 27.2%
+  Stopped@1.0:  5.0%
+    baseline: W2=0.7217  MTE=1.9318  MMD=0.2208  E_mu=0.088987  (5s)
+
+  --- Condition: T+F (dec) (drift=decoder) ---
+    Stage 2: Drift net (decoder-side, 500 epochs)
+  Stage 2 epoch 100/500: loss=0.282681
+  Stage 2 epoch 200/500: loss=0.264781
+  Stage 2 epoch 300/500: loss=0.253615
+  Stage 2 epoch 400/500: loss=0.261703
+  Stage 2 epoch 500/500: loss=0.242486
+    Evaluating trajectory fidelity...
+  MTE@0.1: 1.0091
+  MTE@0.5: 1.8705
+  MTE@1.0: 2.1359
+  W2@1.0:  1.0133
+  sW2@0.1: 0.4326 (275/500 in region)
+  sW2@0.2: 0.6911 (204/500 in region)
+  sW2@0.5: 0.9476 (78/500 in region)
+  sW2@1.0: 1.0971 (25/500 in region)
+  MMD@1.0: 0.2578
+  Survival@1.0: 27.2%
+  Stopped@1.0:  5.0%
+    T+F (dec): W2=1.0133  MTE=2.1359  MMD=0.2578  E_mu=0.028334  (5s)
+
+  --- Condition: T+F (enc) (drift=enc_pull) ---
+    Stage 2: Drift net (encoder pullback, 500 epochs)
+  Stage 2 epoch 100/500: loss=0.300072
+  Stage 2 epoch 200/500: loss=0.281733
+  Stage 2 epoch 300/500: loss=0.270569
+  Stage 2 epoch 400/500: loss=0.276554
+  Stage 2 epoch 500/500: loss=0.253874
+    Evaluating trajectory fidelity...
+  MTE@0.1: 1.0062
+  MTE@0.5: 1.8372
+  MTE@1.0: 2.0717
+  W2@1.0:  0.9063
+  sW2@0.1: 0.4232 (275/500 in region)
+  sW2@0.2: 0.6702 (204/500 in region)
+  sW2@0.5: 0.8933 (78/500 in region)
+  sW2@1.0: 0.9933 (25/500 in region)
+  MMD@1.0: 0.2442
+  Survival@1.0: 27.2%
+  Stopped@1.0:  5.0%
+    T+F (enc): W2=0.9063  MTE=2.0717  MMD=0.2442  E_mu=0.028334  (6s)
+
+============================================================
+  sinusoidal | seed=4042
+============================================================
+
+  Stage 1: AE (T+F, 500 epochs)
+    Epoch 100: loss=0.032049
+    Epoch 200: loss=0.032575
+    Epoch 300: loss=0.028604
+    Epoch 400: loss=0.005550
+    Epoch 500: loss=0.003673
+  Precomputing decoder derivatives (T+F)...
+  Precomputing encoder-pullback target (T+F)...
+  Stage 3: Diffusion net (T+F AE, 500 epochs)
+  Stage 3 epoch 100/500: loss=0.040450
+  Stage 3 epoch 200/500: loss=0.017049
+  Stage 3 epoch 300/500: loss=0.014351
+  Stage 3 epoch 400/500: loss=0.012013
+  Stage 3 epoch 500/500: loss=0.009241
+
+  Stage 1: AE (baseline, 500 epochs)
+    Epoch 100: loss=0.003620
+    Epoch 200: loss=0.002236
+    Epoch 300: loss=0.001514
+    Epoch 400: loss=0.001232
+    Epoch 500: loss=0.001849
+  Precomputing decoder derivatives (baseline)...
+  Precomputing encoder-pullback target (baseline)...
+  Stage 3: Diffusion net (baseline AE, 500 epochs)
+  Stage 3 epoch 100/500: loss=0.105673
+  Stage 3 epoch 200/500: loss=0.077503
+  Stage 3 epoch 300/500: loss=0.066060
+  Stage 3 epoch 400/500: loss=0.061811
+  Stage 3 epoch 500/500: loss=0.060458
+
+  --- Condition: baseline (drift=enc_pull) ---
+    Stage 2: Drift net (encoder pullback, 500 epochs)
+  Stage 2 epoch 100/500: loss=0.436994
+  Stage 2 epoch 200/500: loss=0.389713
+  Stage 2 epoch 300/500: loss=0.366164
+  Stage 2 epoch 400/500: loss=0.370107
+  Stage 2 epoch 500/500: loss=0.360090
+    Evaluating trajectory fidelity...
+  MTE@0.1: 0.6185
+  MTE@0.5: 1.1203
+  MTE@1.0: 1.3386
+  W2@1.0:  0.6714
+  sW2@0.1: 0.2425 (287/500 in region)
+  sW2@0.2: 0.3861 (207/500 in region)
+  sW2@0.5: 0.5771 (102/500 in region)
+  sW2@1.0: 0.7458 (30/500 in region)
+  MMD@1.0: 0.2593
+  Survival@1.0: 28.2%
+  Stopped@1.0:  6.0%
+    baseline: W2=0.6714  MTE=1.3386  MMD=0.2593  E_mu=0.075365  (5s)
+
+  --- Condition: T+F (dec) (drift=decoder) ---
+    Stage 2: Drift net (decoder-side, 500 epochs)
+  Stage 2 epoch 100/500: loss=0.235977
+  Stage 2 epoch 200/500: loss=0.218604
+  Stage 2 epoch 300/500: loss=0.188336
+  Stage 2 epoch 400/500: loss=0.211645
+  Stage 2 epoch 500/500: loss=0.203524
+    Evaluating trajectory fidelity...
+  MTE@0.1: 0.8360
+  MTE@0.5: 1.4998
+  MTE@1.0: 1.6548
+  W2@1.0:  0.7504
+  sW2@0.1: 0.2975 (287/500 in region)
+  sW2@0.2: 0.4479 (207/500 in region)
+  sW2@0.5: 0.6438 (102/500 in region)
+  sW2@1.0: 1.0824 (30/500 in region)
+  MMD@1.0: 0.3009
+  Survival@1.0: 28.2%
+  Stopped@1.0:  6.0%
+    T+F (dec): W2=0.7504  MTE=1.6548  MMD=0.3009  E_mu=0.038294  (5s)
+
+  --- Condition: T+F (enc) (drift=enc_pull) ---
+    Stage 2: Drift net (encoder pullback, 500 epochs)
+  Stage 2 epoch 100/500: loss=0.307903
+  Stage 2 epoch 200/500: loss=0.288584
+  Stage 2 epoch 300/500: loss=0.255997
+  Stage 2 epoch 400/500: loss=0.277928
+  Stage 2 epoch 500/500: loss=0.266697
+    Evaluating trajectory fidelity...
+  MTE@0.1: 0.8329
+  MTE@0.5: 1.4800
+  MTE@1.0: 1.6258
+  W2@1.0:  0.7596
+  sW2@0.1: 0.2904 (287/500 in region)
+  sW2@0.2: 0.4302 (207/500 in region)
+  sW2@0.5: 0.6404 (102/500 in region)
+  sW2@1.0: 1.0972 (30/500 in region)
+  MMD@1.0: 0.3010
+  Survival@1.0: 28.2%
+  Stopped@1.0:  6.0%
+    T+F (enc): W2=0.7596  MTE=1.6258  MMD=0.3010  E_mu=0.038294  (5s)
+
+============================================================
+  sinusoidal | seed=5042
+============================================================
+
+  Stage 1: AE (T+F, 500 epochs)
+    Epoch 100: loss=0.047009
+    Epoch 200: loss=0.017820
+    Epoch 300: loss=0.001382
+    Epoch 400: loss=0.000857
+    Epoch 500: loss=0.000367
+  Precomputing decoder derivatives (T+F)...
+  Precomputing encoder-pullback target (T+F)...
+  Stage 3: Diffusion net (T+F AE, 500 epochs)
+  Stage 3 epoch 100/500: loss=0.057249
+  Stage 3 epoch 200/500: loss=0.013182
+  Stage 3 epoch 300/500: loss=0.004245
+  Stage 3 epoch 400/500: loss=0.003060
+  Stage 3 epoch 500/500: loss=0.002204
+
+  Stage 1: AE (baseline, 500 epochs)
+    Epoch 100: loss=0.003982
+    Epoch 200: loss=0.003377
+    Epoch 300: loss=0.002893
+    Epoch 400: loss=0.001821
+    Epoch 500: loss=0.001277
+  Precomputing decoder derivatives (baseline)...
+  Precomputing encoder-pullback target (baseline)...
+  Stage 3: Diffusion net (baseline AE, 500 epochs)
+  Stage 3 epoch 100/500: loss=0.222035
+  Stage 3 epoch 200/500: loss=0.195011
+  Stage 3 epoch 300/500: loss=0.189086
+  Stage 3 epoch 400/500: loss=0.186427
+  Stage 3 epoch 500/500: loss=0.186058
+
+  --- Condition: baseline (drift=enc_pull) ---
+    Stage 2: Drift net (encoder pullback, 500 epochs)
+  Stage 2 epoch 100/500: loss=0.328940
+  Stage 2 epoch 200/500: loss=0.319209
+  Stage 2 epoch 300/500: loss=0.322028
+  Stage 2 epoch 400/500: loss=0.323322
+  Stage 2 epoch 500/500: loss=0.314290
+    Evaluating trajectory fidelity...
+  MTE@0.1: 0.9576
+  MTE@0.5: 1.7028
+  MTE@1.0: 1.7911
+  W2@1.0:  0.8250
+  sW2@0.1: 0.3097 (285/500 in region)
+  sW2@0.2: 0.4510 (216/500 in region)
+  sW2@0.5: 0.5904 (93/500 in region)
+  sW2@1.0: 1.0102 (33/500 in region)
+  MMD@1.0: 0.2776
+  Survival@1.0: 25.8%
+  Stopped@1.0:  6.6%
+    baseline: W2=0.8250  MTE=1.7911  MMD=0.2776  E_mu=0.147989  (5s)
+
+  --- Condition: T+F (dec) (drift=decoder) ---
+    Stage 2: Drift net (decoder-side, 500 epochs)
+  Stage 2 epoch 100/500: loss=0.150880
+  Stage 2 epoch 200/500: loss=0.147237
+  Stage 2 epoch 300/500: loss=0.143843
+  Stage 2 epoch 400/500: loss=0.145233
+  Stage 2 epoch 500/500: loss=0.143779
+    Evaluating trajectory fidelity...
+  MTE@0.1: 0.9597
+  MTE@0.5: 1.7971
+  MTE@1.0: 1.9315
+  W2@1.0:  1.0003
+  sW2@0.1: 0.3913 (285/500 in region)
+  sW2@0.2: 0.5752 (216/500 in region)
+  sW2@0.5: 0.7984 (93/500 in region)
+  sW2@1.0: 1.1709 (33/500 in region)
+  MMD@1.0: 0.3078
+  Survival@1.0: 25.8%
+  Stopped@1.0:  6.6%
+    T+F (dec): W2=1.0003  MTE=1.9315  MMD=0.3078  E_mu=0.007238  (5s)
+
+  --- Condition: T+F (enc) (drift=enc_pull) ---
+    Stage 2: Drift net (encoder pullback, 500 epochs)
+  Stage 2 epoch 100/500: loss=0.319363
+  Stage 2 epoch 200/500: loss=0.286734
+  Stage 2 epoch 300/500: loss=0.231376
+  Stage 2 epoch 400/500: loss=0.215003
+  Stage 2 epoch 500/500: loss=0.235048
+    Evaluating trajectory fidelity...
+  MTE@0.1: 0.9513
+  MTE@0.5: 1.7538
+  MTE@1.0: 1.8929
+  W2@1.0:  0.9864
+  sW2@0.1: 0.3639 (285/500 in region)
+  sW2@0.2: 0.5348 (216/500 in region)
+  sW2@0.5: 0.7395 (93/500 in region)
+  sW2@1.0: 1.1230 (33/500 in region)
+  MMD@1.0: 0.3010
+  Survival@1.0: 25.8%
+  Stopped@1.0:  6.6%
+    T+F (enc): W2=0.9864  MTE=1.8929  MMD=0.3010  E_mu=0.007238  (5s)
+
+============================================================
+  sinusoidal | seed=6042
+============================================================
+
+  Stage 1: AE (T+F, 500 epochs)
+    Epoch 100: loss=0.040946
+    Epoch 200: loss=0.013596
+    Epoch 300: loss=0.001869
+    Epoch 400: loss=0.001225
+    Epoch 500: loss=0.004602
+  Precomputing decoder derivatives (T+F)...
+  Precomputing encoder-pullback target (T+F)...
+  Stage 3: Diffusion net (T+F AE, 500 epochs)
+  Stage 3 epoch 100/500: loss=0.043672
+  Stage 3 epoch 200/500: loss=0.027816
+  Stage 3 epoch 300/500: loss=0.012141
+  Stage 3 epoch 400/500: loss=0.006492
+  Stage 3 epoch 500/500: loss=0.004284
+
+  Stage 1: AE (baseline, 500 epochs)
+    Epoch 100: loss=0.002258
+    Epoch 200: loss=0.001555
+    Epoch 300: loss=0.001208
+    Epoch 400: loss=0.003502
+    Epoch 500: loss=0.000714
+  Precomputing decoder derivatives (baseline)...
+  Precomputing encoder-pullback target (baseline)...
+  Stage 3: Diffusion net (baseline AE, 500 epochs)
+  Stage 3 epoch 100/500: loss=0.182177
+  Stage 3 epoch 200/500: loss=0.148384
+  Stage 3 epoch 300/500: loss=0.142567
+  Stage 3 epoch 400/500: loss=0.139349
+  Stage 3 epoch 500/500: loss=0.137737
+
+  --- Condition: baseline (drift=enc_pull) ---
+    Stage 2: Drift net (encoder pullback, 500 epochs)
+  Stage 2 epoch 100/500: loss=0.405670
+  Stage 2 epoch 200/500: loss=0.375439
+  Stage 2 epoch 300/500: loss=0.365412
+  Stage 2 epoch 400/500: loss=0.368830
+  Stage 2 epoch 500/500: loss=0.350904
+    Evaluating trajectory fidelity...
+  MTE@0.1: 0.7111
+  MTE@0.5: 1.4160
+  MTE@1.0: 1.5502
+  W2@1.0:  1.0486
+  sW2@0.1: 0.3133 (290/500 in region)
+  sW2@0.2: 0.4488 (208/500 in region)
+  sW2@0.5: 0.6569 (89/500 in region)
+  sW2@1.0: 1.1034 (30/500 in region)
+  MMD@1.0: 0.2883
+  Survival@1.0: 27.2%
+  Stopped@1.0:  6.0%
+    baseline: W2=1.0486  MTE=1.5502  MMD=0.2883  E_mu=0.159170  (5s)
+
+  --- Condition: T+F (dec) (drift=decoder) ---
+    Stage 2: Drift net (decoder-side, 500 epochs)
+  Stage 2 epoch 100/500: loss=0.190207
+  Stage 2 epoch 200/500: loss=0.173907
+  Stage 2 epoch 300/500: loss=0.179597
+  Stage 2 epoch 400/500: loss=0.168846
+  Stage 2 epoch 500/500: loss=0.145829
+    Evaluating trajectory fidelity...
+  MTE@0.1: 0.3652
+  MTE@0.5: 0.6606
+  MTE@1.0: 0.9040
+  W2@1.0:  0.8086
+  sW2@0.1: 0.2297 (290/500 in region)
+  sW2@0.2: 0.2864 (208/500 in region)
+  sW2@0.5: 0.5079 (89/500 in region)
+  sW2@1.0: 0.6497 (30/500 in region)
+  MMD@1.0: 0.3002
+  Survival@1.0: 27.2%
+  Stopped@1.0:  6.0%
+    T+F (dec): W2=0.8086  MTE=0.9040  MMD=0.3002  E_mu=0.025854  (5s)
+
+  --- Condition: T+F (enc) (drift=enc_pull) ---
+    Stage 2: Drift net (encoder pullback, 500 epochs)
+  Stage 2 epoch 100/500: loss=0.245932
+  Stage 2 epoch 200/500: loss=0.220585
+  Stage 2 epoch 300/500: loss=0.224980
+  Stage 2 epoch 400/500: loss=0.213498
+  Stage 2 epoch 500/500: loss=0.184997
+    Evaluating trajectory fidelity...
+  MTE@0.1: 0.3623
+  MTE@0.5: 0.6453
+  MTE@1.0: 0.8741
+  W2@1.0:  0.7700
+  sW2@0.1: 0.2244 (290/500 in region)
+  sW2@0.2: 0.2767 (208/500 in region)
+  sW2@0.5: 0.4824 (89/500 in region)
+  sW2@1.0: 0.6091 (30/500 in region)
+  MMD@1.0: 0.2946
+  Survival@1.0: 27.2%
+  Stopped@1.0:  6.0%
+    T+F (enc): W2=0.7700  MTE=0.8741  MMD=0.2946  E_mu=0.025854  (5s)
+
+============================================================
+  sinusoidal | seed=7042
+============================================================
+
+  Stage 1: AE (T+F, 500 epochs)
+    Epoch 100: loss=0.053854
+    Epoch 200: loss=0.050892
+    Epoch 300: loss=0.041338
+    Epoch 400: loss=0.025071
+    Epoch 500: loss=0.006686
+  Precomputing decoder derivatives (T+F)...
+  Precomputing encoder-pullback target (T+F)...
+  Stage 3: Diffusion net (T+F AE, 500 epochs)
+  Stage 3 epoch 100/500: loss=0.040637
+  Stage 3 epoch 200/500: loss=0.028221
+  Stage 3 epoch 300/500: loss=0.023893
+  Stage 3 epoch 400/500: loss=0.018339
+  Stage 3 epoch 500/500: loss=0.014500
+
+  Stage 1: AE (baseline, 500 epochs)
+    Epoch 100: loss=0.008026
+    Epoch 200: loss=0.002778
+    Epoch 300: loss=0.002369
+    Epoch 400: loss=0.002692
+    Epoch 500: loss=0.001278
+  Precomputing decoder derivatives (baseline)...
+  Precomputing encoder-pullback target (baseline)...
+  Stage 3: Diffusion net (baseline AE, 500 epochs)
+  Stage 3 epoch 100/500: loss=0.130786
+  Stage 3 epoch 200/500: loss=0.102564
+  Stage 3 epoch 300/500: loss=0.094481
+  Stage 3 epoch 400/500: loss=0.090522
+  Stage 3 epoch 500/500: loss=0.088605
+
+  --- Condition: baseline (drift=enc_pull) ---
+    Stage 2: Drift net (encoder pullback, 500 epochs)
+  Stage 2 epoch 100/500: loss=0.465190
+  Stage 2 epoch 200/500: loss=0.450045
+  Stage 2 epoch 300/500: loss=0.435184
+  Stage 2 epoch 400/500: loss=0.439413
+  Stage 2 epoch 500/500: loss=0.437093
+    Evaluating trajectory fidelity...
+  MTE@0.1: 0.7506
+  MTE@0.5: 1.3040
+  MTE@1.0: 1.4108
+  W2@1.0:  0.5616
+  sW2@0.1: 0.3351 (316/500 in region)
+  sW2@0.2: 0.4580 (232/500 in region)
+  sW2@0.5: 0.4505 (109/500 in region)
+  sW2@1.0: 0.5446 (29/500 in region)
+  MMD@1.0: 0.2157
+  Survival@1.0: 28.8%
+  Stopped@1.0:  5.8%
+    baseline: W2=0.5616  MTE=1.4108  MMD=0.2157  E_mu=0.064342  (5s)
+
+  --- Condition: T+F (dec) (drift=decoder) ---
+    Stage 2: Drift net (decoder-side, 500 epochs)
+  Stage 2 epoch 100/500: loss=0.207232
+  Stage 2 epoch 200/500: loss=0.203620
+  Stage 2 epoch 300/500: loss=0.196450
+  Stage 2 epoch 400/500: loss=0.192171
+  Stage 2 epoch 500/500: loss=0.195482
+    Evaluating trajectory fidelity...
+  MTE@0.1: 0.7552
+  MTE@0.5: 1.3885
+  MTE@1.0: 1.5313
+  W2@1.0:  0.8125
+  sW2@0.1: 0.3762 (316/500 in region)
+  sW2@0.2: 0.5358 (232/500 in region)
+  sW2@0.5: 0.6343 (109/500 in region)
+  sW2@1.0: 0.6043 (29/500 in region)
+  MMD@1.0: 0.2517
+  Survival@1.0: 28.8%
+  Stopped@1.0:  5.8%
+    T+F (dec): W2=0.8125  MTE=1.5313  MMD=0.2517  E_mu=0.041802  (5s)
+
+  --- Condition: T+F (enc) (drift=enc_pull) ---
+    Stage 2: Drift net (encoder pullback, 500 epochs)
+  Stage 2 epoch 100/500: loss=0.307324
+  Stage 2 epoch 200/500: loss=0.299414
+  Stage 2 epoch 300/500: loss=0.289929
+  Stage 2 epoch 400/500: loss=0.285545
+  Stage 2 epoch 500/500: loss=0.285881
+    Evaluating trajectory fidelity...
+  MTE@0.1: 0.7510
+  MTE@0.5: 1.3640
+  MTE@1.0: 1.4952
+  W2@1.0:  0.8097
+  sW2@0.1: 0.3642 (316/500 in region)
+  sW2@0.2: 0.5094 (232/500 in region)
+  sW2@0.5: 0.5962 (109/500 in region)
+  sW2@1.0: 0.6064 (29/500 in region)
+  MMD@1.0: 0.2472
+  Survival@1.0: 28.8%
+  Stopped@1.0:  5.8%
+    T+F (enc): W2=0.8097  MTE=1.4952  MMD=0.2472  E_mu=0.041802  (5s)
+
+============================================================
+  sinusoidal | seed=8042
+============================================================
+
+  Stage 1: AE (T+F, 500 epochs)
+    Epoch 100: loss=0.032709
+    Epoch 200: loss=0.016915
+    Epoch 300: loss=0.006121
+    Epoch 400: loss=0.002569
+    Epoch 500: loss=0.000749
+  Precomputing decoder derivatives (T+F)...
+  Precomputing encoder-pullback target (T+F)...
+  Stage 3: Diffusion net (T+F AE, 500 epochs)
+  Stage 3 epoch 100/500: loss=0.161627
+  Stage 3 epoch 200/500: loss=0.108752
+  Stage 3 epoch 300/500: loss=0.056370
+  Stage 3 epoch 400/500: loss=0.028605
+  Stage 3 epoch 500/500: loss=0.015266
+
+  Stage 1: AE (baseline, 500 epochs)
+    Epoch 100: loss=0.003372
+    Epoch 200: loss=0.002486
+    Epoch 300: loss=0.001368
+    Epoch 400: loss=0.000872
+    Epoch 500: loss=0.000683
+  Precomputing decoder derivatives (baseline)...
+  Precomputing encoder-pullback target (baseline)...
+  Stage 3: Diffusion net (baseline AE, 500 epochs)
+  Stage 3 epoch 100/500: loss=0.159038
+  Stage 3 epoch 200/500: loss=0.112080
+  Stage 3 epoch 300/500: loss=0.079006
+  Stage 3 epoch 400/500: loss=0.059019
+  Stage 3 epoch 500/500: loss=0.049416
+
+  --- Condition: baseline (drift=enc_pull) ---
+    Stage 2: Drift net (encoder pullback, 500 epochs)
+  Stage 2 epoch 100/500: loss=0.524301
+  Stage 2 epoch 200/500: loss=0.495866
+  Stage 2 epoch 300/500: loss=0.480269
+  Stage 2 epoch 400/500: loss=0.465310
+  Stage 2 epoch 500/500: loss=0.487168
+    Evaluating trajectory fidelity...
+  MTE@0.1: 0.5092
+  MTE@0.5: 0.9878
+  MTE@1.0: 1.1722
+  W2@1.0:  0.5685
+  sW2@0.1: 0.2529 (269/500 in region)
+  sW2@0.2: 0.3617 (192/500 in region)
+  sW2@0.5: 0.5935 (84/500 in region)
+  sW2@1.0: 1.0397 (29/500 in region)
+  MMD@1.0: 0.1837
+  Survival@1.0: 27.0%
+  Stopped@1.0:  5.8%
+    baseline: W2=0.5685  MTE=1.1722  MMD=0.1837  E_mu=0.078022  (5s)
+
+  --- Condition: T+F (dec) (drift=decoder) ---
+    Stage 2: Drift net (decoder-side, 500 epochs)
+  Stage 2 epoch 100/500: loss=0.237472
+  Stage 2 epoch 200/500: loss=0.215757
+  Stage 2 epoch 300/500: loss=0.221022
+  Stage 2 epoch 400/500: loss=0.211290
+  Stage 2 epoch 500/500: loss=0.216350
+    Evaluating trajectory fidelity...
+  MTE@0.1: 0.5401
+  MTE@0.5: 1.1444
+  MTE@1.0: 1.5460
+  W2@1.0:  0.8124
+  sW2@0.1: 0.2526 (269/500 in region)
+  sW2@0.2: 0.3522 (192/500 in region)
+  sW2@0.5: 0.6709 (84/500 in region)
+  sW2@1.0: 1.0017 (29/500 in region)
+  MMD@1.0: 0.2657
+  Survival@1.0: 27.0%
+  Stopped@1.0:  5.8%
+    T+F (dec): W2=0.8124  MTE=1.5460  MMD=0.2657  E_mu=0.005130  (5s)
+
+  --- Condition: T+F (enc) (drift=enc_pull) ---
+    Stage 2: Drift net (encoder pullback, 500 epochs)
+  Stage 2 epoch 100/500: loss=0.227162
+  Stage 2 epoch 200/500: loss=0.204113
+  Stage 2 epoch 300/500: loss=0.209360
+  Stage 2 epoch 400/500: loss=0.202955
+  Stage 2 epoch 500/500: loss=0.207589
+    Evaluating trajectory fidelity...
+  MTE@0.1: 0.5405
+  MTE@0.5: 1.1396
+  MTE@1.0: 1.5274
+  W2@1.0:  0.7833
+  sW2@0.1: 0.2526 (269/500 in region)
+  sW2@0.2: 0.3500 (192/500 in region)
+  sW2@0.5: 0.6584 (84/500 in region)
+  sW2@1.0: 1.0088 (29/500 in region)
+  MMD@1.0: 0.2639
+  Survival@1.0: 27.0%
+  Stopped@1.0:  5.8%
+    T+F (enc): W2=0.7833  MTE=1.5274  MMD=0.2639  E_mu=0.005130  (6s)
+
+============================================================
+  sinusoidal | seed=9042
+============================================================
+
+  Stage 1: AE (T+F, 500 epochs)
+    Epoch 100: loss=0.063669
+    Epoch 200: loss=0.057276
+    Epoch 300: loss=0.014400
+    Epoch 400: loss=0.006078
+    Epoch 500: loss=0.005071
+  Precomputing decoder derivatives (T+F)...
+  Precomputing encoder-pullback target (T+F)...
+  Stage 3: Diffusion net (T+F AE, 500 epochs)
+  Stage 3 epoch 100/500: loss=0.097586
+  Stage 3 epoch 200/500: loss=0.022801
+  Stage 3 epoch 300/500: loss=0.015957
+  Stage 3 epoch 400/500: loss=0.011319
+  Stage 3 epoch 500/500: loss=0.009921
+
+  Stage 1: AE (baseline, 500 epochs)
+    Epoch 100: loss=0.006050
+    Epoch 200: loss=0.003914
+    Epoch 300: loss=0.001688
+    Epoch 400: loss=0.002094
+    Epoch 500: loss=0.002873
+  Precomputing decoder derivatives (baseline)...
+  Precomputing encoder-pullback target (baseline)...
+  Stage 3: Diffusion net (baseline AE, 500 epochs)
+  Stage 3 epoch 100/500: loss=0.215022
+  Stage 3 epoch 200/500: loss=0.152127
+  Stage 3 epoch 300/500: loss=0.142752
+  Stage 3 epoch 400/500: loss=0.140207
+  Stage 3 epoch 500/500: loss=0.139159
+
+  --- Condition: baseline (drift=enc_pull) ---
+    Stage 2: Drift net (encoder pullback, 500 epochs)
+  Stage 2 epoch 100/500: loss=0.448143
+  Stage 2 epoch 200/500: loss=0.417313
+  Stage 2 epoch 300/500: loss=0.446370
+  Stage 2 epoch 400/500: loss=0.334573
+  Stage 2 epoch 500/500: loss=0.352593
+    Evaluating trajectory fidelity...
+  MTE@0.1: 0.6554
+  MTE@0.5: 1.1182
+  MTE@1.0: 1.4575
+  W2@1.0:  0.6378
+  sW2@0.1: 0.2989 (280/500 in region)
+  sW2@0.2: 0.4004 (205/500 in region)
+  sW2@0.5: 0.6969 (85/500 in region)
+  sW2@1.0: 0.8034 (22/500 in region)
+  MMD@1.0: 0.1833
+  Survival@1.0: 28.2%
+  Stopped@1.0:  4.4%
+    baseline: W2=0.6378  MTE=1.4575  MMD=0.1833  E_mu=0.093371  (5s)
+
+  --- Condition: T+F (dec) (drift=decoder) ---
+    Stage 2: Drift net (decoder-side, 500 epochs)
+  Stage 2 epoch 100/500: loss=0.270740
+  Stage 2 epoch 200/500: loss=0.244277
+  Stage 2 epoch 300/500: loss=0.239976
+  Stage 2 epoch 400/500: loss=0.189689
+  Stage 2 epoch 500/500: loss=0.194314
+    Evaluating trajectory fidelity...
+  MTE@0.1: 0.7031
+  MTE@0.5: 1.1694
+  MTE@1.0: 1.5868
+  W2@1.0:  0.7162
+  sW2@0.1: 0.2996 (280/500 in region)
+  sW2@0.2: 0.4379 (205/500 in region)
+  sW2@0.5: 0.7179 (85/500 in region)
+  sW2@1.0: 0.7310 (22/500 in region)
+  MMD@1.0: 0.2256
+  Survival@1.0: 28.2%
+  Stopped@1.0:  4.4%
+    T+F (dec): W2=0.7162  MTE=1.5868  MMD=0.2256  E_mu=0.061225  (5s)
+
+  --- Condition: T+F (enc) (drift=enc_pull) ---
+    Stage 2: Drift net (encoder pullback, 500 epochs)
+  Stage 2 epoch 100/500: loss=0.347500
+  Stage 2 epoch 200/500: loss=0.315774
+  Stage 2 epoch 300/500: loss=0.313770
+  Stage 2 epoch 400/500: loss=0.254309
+  Stage 2 epoch 500/500: loss=0.253584
+    Evaluating trajectory fidelity...
+  MTE@0.1: 0.7002
+  MTE@0.5: 1.1521
+  MTE@1.0: 1.5566
+  W2@1.0:  0.6773
+  sW2@0.1: 0.2905 (280/500 in region)
+  sW2@0.2: 0.4137 (205/500 in region)
+  sW2@0.5: 0.6781 (85/500 in region)
+  sW2@1.0: 0.7064 (22/500 in region)
+  MMD@1.0: 0.2193
+  Survival@1.0: 28.2%
+  Stopped@1.0:  4.4%
+    T+F (enc): W2=0.6773  MTE=1.5566  MMD=0.2193  E_mu=0.061225  (5s)
+
+Saved 120 rows to enc_pull_d3_dynamics.csv
+
+==========================================================================================
+SUMMARY (median over seeds)
+==========================================================================================
+
+  paraboloid:
+     condition      W2@1.0     MMD@1.0     MTE@1.0        E_mu
+  ------------  ----------  ----------  ----------  ----------
+      baseline      0.9797      0.2384      1.3640      0.9825
+     T+F (dec)      1.2738      0.3775      1.7471      0.0818
+     T+F (enc)      0.8229      0.2785      1.3803      0.0818
+
+  hyperbolic_paraboloid:
+     condition      W2@1.0     MMD@1.0     MTE@1.0        E_mu
+  ------------  ----------  ----------  ----------  ----------
+      baseline      0.7357      0.2267      1.2341      0.1944
+     T+F (dec)      1.3122      0.3071      1.9555      0.0271
+     T+F (enc)      0.9402      0.2550      1.6691      0.0271
+
+  quartic_dome:
+     condition      W2@1.0     MMD@1.0     MTE@1.0        E_mu
+  ------------  ----------  ----------  ----------  ----------
+      baseline      0.6604      0.2424      1.2296      0.8487
+     T+F (dec)      0.8619      0.2834      1.3939      0.2685
+     T+F (enc)      0.8780      0.2996      1.4288      0.2685
+
+  sinusoidal:
+     condition      W2@1.0     MMD@1.0     MTE@1.0        E_mu
+  ------------  ----------  ----------  ----------  ----------
+      baseline      0.6856      0.2237      1.4923      0.0942
+     T+F (dec)      0.7974      0.2692      1.6128      0.0306
+     T+F (enc)      0.7648      0.2624      1.5456      0.0306
+
+==========================================================================================
+PAIRED COMPARISONS: T+F (enc) vs T+F (dec)  [Wilcoxon signed-rank]
+==========================================================================================
+
+  paraboloid:
+        W2@1.0: enc=0.8229  dec=1.2738  delta=-35.4%  p=0.002
+       MMD@1.0: enc=0.2785  dec=0.3775  delta=-26.2%  p=0.002
+       MTE@1.0: enc=1.3803  dec=1.7471  delta=-21.0%  p=0.002
+          E_mu: enc=0.0818  dec=0.0818  delta=+0.0%  p=nan
+
+  hyperbolic_paraboloid:
+        W2@1.0: enc=0.9402  dec=1.3122  delta=-28.3%  p=0.002
+       MMD@1.0: enc=0.2550  dec=0.3071  delta=-17.0%  p=0.002
+       MTE@1.0: enc=1.6691  dec=1.9555  delta=-14.6%  p=0.002
+          E_mu: enc=0.0271  dec=0.0271  delta=+0.0%  p=nan
+
+  quartic_dome:
+        W2@1.0: enc=0.8780  dec=0.8619  delta=+1.9%  p=0.492
+       MMD@1.0: enc=0.2996  dec=0.2834  delta=+5.7%  p=0.322
+       MTE@1.0: enc=1.4288  dec=1.3939  delta=+2.5%  p=0.432
+          E_mu: enc=0.2685  dec=0.2685  delta=+0.0%  p=nan
+
+  sinusoidal:
+        W2@1.0: enc=0.7648  dec=0.7974  delta=-4.1%  p=0.014
+       MMD@1.0: enc=0.2624  dec=0.2692  delta=-2.5%  p=0.014
+       MTE@1.0: enc=1.5456  dec=1.6128  delta=-4.2%  p=0.004
+          E_mu: enc=0.0306  dec=0.0306  delta=+0.0%  p=nan
+
+Total time: 1389.9s
+Done.
